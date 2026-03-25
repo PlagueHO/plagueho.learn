@@ -1,0 +1,20 @@
+# Code Owners
+# Each line specifies a pattern and the owner(s) for that path.
+# Owners are notified for pull requests that modify matching files.
+
+# Global owner
+* @PlagueHO
+
+# GitHub Copilot agents, prompts and skills
+.github/agents/ @PlagueHO
+.github/prompts/ @PlagueHO
+.github/skills/ @PlagueHO
+
+# Scripts
+scripts/ @PlagueHO
+
+# Patterns and templates
+patterns/ @PlagueHO
+
+# Documentation
+docs/ @PlagueHO

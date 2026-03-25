@@ -1,0 +1,58 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Check for secrets in code
+        uses: trufflesecurity/trufflehog@v3.94.0
+        with:
+          path: ./
+          extra_args: --only-verified
+
+      - name: Validate YAML files
+        run: |
+          find . \( -name "*.yml" -o -name "*.yaml" \) -not -path "./.git/*" | while read file; do
+            python3 -c "import yaml; yaml.safe_load(open('$file'))" && echo "✓ $file" || echo "✗ $file"
+          done
+
+      - name: Validate JSON files
+        run: |
+          find . -name "*.json" | grep -v ".git/" | grep -v "node_modules/" | while read file; do
+            python3 -c "import json; json.load(open('$file'))" && echo "✓ $file" || echo "✗ $file"
+          done
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Exclude submodules from Markdown linting
+        run: |
+          git submodule --quiet foreach 'echo "${displaypath}/**"' >> .markdownlintignore
+
+      - name: Validate Markdown
+        run: pnpm lint:md
+
