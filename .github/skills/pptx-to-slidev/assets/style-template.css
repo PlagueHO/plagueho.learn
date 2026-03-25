@@ -1,0 +1,283 @@
+/*
+ * Slidev Theme Template — Generated from PowerPoint
+ *
+ * This template is populated with values extracted from a PPTX theme.
+ * Replace all <PLACEHOLDER> values with actual theme.json data.
+ *
+ * Color scheme: <SCHEME_NAME>
+ * Font scheme:  <FONT_SCHEME_NAME>
+ * Generated:    <DATE>
+ */
+
+/* === Web Font Import === */
+/* Import a Google Fonts match for the PowerPoint font if not web-available */
+@import url('https://fonts.googleapis.com/css2?family=<WEB_FONT>:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+/* === CSS Variables — PowerPoint Theme Colors === */
+:root {
+  /* Core colors */
+  --theme-dk1: <dk1>;           /* Text dark (usually #000000) */
+  --theme-lt1: <lt1>;           /* Background light (usually #FFFFFF) */
+  --theme-dk2: <dk2>;           /* Dark accent (headings, emphasis) */
+  --theme-lt2: <lt2>;           /* Light accent (tinted backgrounds) */
+
+  /* Brand accents */
+  --theme-accent1: <accent1>;   /* Primary brand */
+  --theme-accent2: <accent2>;   /* Secondary brand */
+  --theme-accent3: <accent3>;   /* Tertiary / CTA */
+  --theme-accent4: <accent4>;
+  --theme-accent5: <accent5>;
+  --theme-accent6: <accent6>;   /* Muted / borders */
+
+  /* Links */
+  --theme-hlink: <hlink>;
+  --theme-folhlink: <folHlink>;
+
+  /* Slidev integration */
+  --slidev-theme-primary: <accent1>;
+  --slidev-theme-accent: <accent2>;
+}
+
+/* === Base Slide Styling === */
+.slidev-layout {
+  font-family: '<MINOR_FONT>', '<WEB_FONT>', system-ui, -apple-system, sans-serif;
+  color: var(--theme-dk1);
+  background-color: var(--theme-lt1);
+}
+
+/* === Headings === */
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3,
+.slidev-layout h4 {
+  font-family: '<MAJOR_FONT>', '<WEB_FONT>', system-ui, sans-serif;
+  font-weight: 600;
+}
+
+.slidev-layout h1 {
+  color: var(--theme-dk2);
+  font-size: 2em;
+  line-height: 1.2;
+}
+
+.slidev-layout h2 {
+  color: var(--theme-accent1);
+  font-size: 1.4em;
+}
+
+.slidev-layout h3 {
+  color: var(--theme-dk2);
+  font-size: 1.15em;
+}
+
+/* === Links === */
+.slidev-layout a {
+  color: var(--theme-hlink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.slidev-layout a:hover {
+  border-bottom-color: var(--theme-hlink);
+}
+
+/* === Code Blocks === */
+.slidev-layout pre {
+  background-color: #1a1a2e !important;
+  border-radius: 8px;
+  border-left: 4px solid var(--theme-accent2);
+}
+
+.slidev-layout code:not(pre code) {
+  background-color: #e8f4fd;
+  color: var(--theme-accent1);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* === Lists === */
+.slidev-layout ul > li::marker,
+.slidev-layout ol > li::marker {
+  color: var(--theme-accent2);
+}
+
+.slidev-layout li {
+  line-height: 1.8;
+}
+
+/* === Blockquotes === */
+.slidev-layout blockquote {
+  border-left: 4px solid var(--theme-accent3);
+  background-color: /* lighten accent3 10% */;
+  padding: 0.8em 1.2em;
+  border-radius: 0 8px 8px 0;
+  color: var(--theme-dk2);
+}
+
+/* === Tables === */
+.slidev-layout table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.slidev-layout th {
+  background-color: var(--theme-accent1);
+  color: var(--theme-lt1);
+  font-family: '<MAJOR_FONT>', '<WEB_FONT>', sans-serif;
+  font-weight: 600;
+  padding: 0.6em 1em;
+  text-align: left;
+}
+
+.slidev-layout td {
+  padding: 0.5em 1em;
+  border-bottom: 1px solid var(--theme-accent6);
+}
+
+.slidev-layout tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+/* ===== CUSTOM LAYOUT CLASSES ===== */
+/* Add classes below based on visual patterns found in the PPTX */
+
+/* Gradient background (title slides, section dividers) */
+.warm-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--theme-accent6) 0%,
+    var(--theme-lt2) 60%,
+    var(--theme-lt1) 100%
+  );
+}
+
+/* Dark background (emphasis slides) */
+.dark-bg {
+  background-color: var(--theme-dk2);
+  color: var(--theme-lt1);
+}
+
+.dark-bg h1,
+.dark-bg h2,
+.dark-bg h3 {
+  color: var(--theme-lt1);
+}
+
+/* Light tinted background */
+.warm-bg {
+  background-color: var(--theme-lt2);
+}
+
+/* Card grid layout (2×2 or 2×N) */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.card {
+  background: var(--theme-lt1);
+  border-radius: 12px;
+  padding: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-top: 3px solid var(--theme-accent2);
+}
+
+.card h3 {
+  color: var(--theme-dk2);
+  font-size: 1em;
+  margin-bottom: 0.4rem;
+}
+
+.card p {
+  font-size: 0.85em;
+  color: #444;
+  line-height: 1.5;
+}
+
+/* Icon circle (circular badge) */
+.icon-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--theme-accent2);
+  color: white;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* Accent gradient bar */
+.accent-bar {
+  height: 4px;
+  background: linear-gradient(90deg, var(--theme-accent1), var(--theme-accent2), var(--theme-accent3));
+  border-radius: 2px;
+  margin: 1rem 0;
+}
+
+/* Section title */
+.section-title {
+  font-size: 2.5em;
+  color: var(--theme-dk2);
+  font-weight: 600;
+}
+
+/* Takeaway / numbered list */
+.takeaway-list {
+  list-style: none;
+  padding: 0;
+}
+
+.takeaway-list li {
+  padding: 0.6em 0;
+  border-bottom: 1px solid var(--theme-accent6);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.takeaway-list li:last-child {
+  border-bottom: none;
+}
+
+.takeaway-bullet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--theme-accent2);
+  color: white;
+  font-size: 0.8em;
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Call-to-action box */
+.cta-box {
+  background: var(--theme-lt2);
+  border: 2px solid var(--theme-accent6);
+  border-radius: 12px;
+  padding: 1.2rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Slide number */
+.slidev-page-number {
+  color: var(--theme-accent1);
+}
+
+/* Presenter notes */
+.slidev-layout .slidev-note {
+  font-family: '<MINOR_FONT>', sans-serif;
+}
