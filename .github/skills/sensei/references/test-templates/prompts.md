@@ -87,23 +87,23 @@ from pathlib import Path
 def parse_prompts(skill_name: str) -> dict:
     """Parse prompts.md into structured test data."""
     content = Path(f"tests/{skill_name}/prompts.md").read_text()
-    
+
     # Extract "Should Trigger" section
     trigger_match = re.search(
-        r"## Should Trigger\n\n(.*?)(?=\n## |\Z)", 
-        content, 
+        r"## Should Trigger\n\n(.*?)(?=\n## |\Z)",
+        content,
         re.DOTALL
     )
     triggers = re.findall(r'\d+\. "([^"]+)"', trigger_match.group(1))
-    
+
     # Extract "Should NOT Trigger" section
     anti_match = re.search(
-        r"## Should NOT Trigger\n\n(.*?)(?=\n## MCP Tool|\n## Notes|\Z)", 
-        content, 
+        r"## Should NOT Trigger\n\n(.*?)(?=\n## MCP Tool|\n## Notes|\Z)",
+        content,
         re.DOTALL
     )
     anti_triggers = re.findall(r'\d+\. "([^"]+)"', anti_match.group(1))
-    
+
     # Extract MCP routing info
     invokes_match = re.search(
         r"### This Skill Invokes\n(.*?)(?=\n### |\n## |\Z)",
@@ -111,7 +111,7 @@ def parse_prompts(skill_name: str) -> dict:
         re.DOTALL
     )
     invoked_tools = re.findall(r'`([^`]+)`', invokes_match.group(1)) if invokes_match else []
-    
+
     return {
         "triggers": triggers,
         "anti_triggers": anti_triggers,

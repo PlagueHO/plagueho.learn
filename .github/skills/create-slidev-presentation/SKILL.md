@@ -17,9 +17,8 @@ metadata:
 
 # Create Slidev Presentation
 
-Scaffold a new Slidev presentation in this repository. Creates the folder
-structure, initial slide content, and a living outline document that evolves
-as the presentation is built up by agents and the user.
+Scaffold a new Slidev presentation with folder structure, slides.md,
+OUTLINE.md (living outline), and images/.
 
 ## Prerequisites
 
@@ -30,20 +29,18 @@ as the presentation is built up by agents and the user.
 
 ### Step 1 — Gather Inputs
 
-Collect the following from the user (derive from context if already provided):
+Collect from the user (derive from context when available):
 
 1. **Title**: The presentation title (e.g., "Azure AI Deep Dive")
-2. **Folder name**: kebab-case name for the subfolder under `presentations/`
-   (e.g., `azure-ai-deep-dive`). Derive from the title if not specified.
-3. **Outline**: A list of topics, sections, or talking points. This can be
-   a rough bullet list — it will be structured into the outline document.
-4. **Target duration**: Approximate length in minutes (default: 45)
+2. **Folder name**: kebab-case subfolder name under `presentations/`
+   (e.g., `azure-ai-deep-dive`). Derive from title if not given.
+3. **Outline**: Topics, sections, or talking points (rough bullet list is fine).
+4. **Target duration**: Length in minutes (default: 45)
 5. **Target audience**: Who is this presentation for?
 6. **Event / context**: Where will this be presented? (optional)
-7. **Template choice**: Use the existing `presentations/template/slides.md`
-   as a starting point, or create a minimal fresh deck. Default: use template.
-8. **Theme**: Slidev theme to use (default: `seriph`). Available in this
-   repo: `seriph`, `default`.
+7. **Template choice**: Use `presentations/template/slides.md` or create
+   a minimal fresh deck. Default: use template.
+8. **Theme**: Slidev theme (default: `seriph`). Available: `seriph`, `default`.
 
 Confirm the folder name with the user before proceeding.
 
@@ -58,7 +55,7 @@ presentations/<folder-name>/
 └── images/         # Images referenced in slides
 ```
 
-Create the `images/` directory by placing a `.gitkeep` file in it:
+Create `images/` with a `.gitkeep`:
 
 ```text
 presentations/<folder-name>/images/.gitkeep
@@ -68,19 +65,18 @@ presentations/<folder-name>/images/.gitkeep
 
 #### Option A — From Template (default)
 
-Read the template from `presentations/template/slides.md` and customize:
+Read `presentations/template/slides.md` and customize:
 
 1. Replace the `title` frontmatter field with the presentation title.
 2. Replace the `info` block with the presentation title and description.
 3. Replace the title slide heading and subtitle.
-4. Replace the "About Me" slide content if the user provides bio details.
+4. Replace the "About Me" slide content if bio details are provided.
 5. Create slide stubs for each major section from the outline:
    - Use appropriate layouts (`default`, `two-cols`, `image-right`,
      `center`, `section`) based on the content type.
    - Add placeholder content with the section title and key points.
    - Include `<!-- Speaker notes go here -->` comments.
-6. Keep the Table of Contents, Key Takeaways, and Thank You slides from
-   the template.
+6. Keep the Table of Contents, Key Takeaways, and Thank You slides.
 
 #### Option B — Fresh Deck
 
@@ -110,8 +106,6 @@ Then generate slide content from the outline:
 
 #### Slide Conventions
 
-Follow these conventions from the repository standards:
-
 - Separate slides with `---` (with optional YAML frontmatter between them).
 - Use `<v-click>` and `<v-clicks>` for progressive reveal animations.
 - Use fenced code blocks with language tags for syntax highlighting.
@@ -126,8 +120,7 @@ Follow these conventions from the repository standards:
 
 ### Step 4 — Generate OUTLINE.md
 
-Create the outline document using the template in
-`<skill-root>/assets/outline-template.md` as a starting point.
+Use the template at `<skill-root>/assets/outline-template.md`.
 
 1. Read the template file from this skill's `assets/` directory.
 2. Replace all `{PLACEHOLDER}` tokens with actual values:
@@ -149,8 +142,7 @@ Create the outline document using the template in
 5. Add any shared resources or links to the **Resources & Links** section.
 6. Add the initial entry to the **Evolution Log**.
 
-The OUTLINE.md is a living document. As the presentation evolves, agents
-and the user should update it to reflect:
+Update OUTLINE.md as the presentation evolves to reflect:
 
 - Added or removed slides
 - Changed flow or ordering
@@ -160,18 +152,15 @@ and the user should update it to reflect:
 
 ### Step 5 — Optional: Create style.css
 
-If the user requests custom theming or a specific visual style:
+If custom theming is requested:
 
 1. Create `presentations/<folder-name>/style.css`.
-2. Use CSS custom properties for theme colors following the pattern in
-   existing presentations (e.g., `--theme-dk1`, `--theme-accent1`, etc.).
-3. Set `--slidev-theme-primary` and `--slidev-theme-accent` for Slidev
-   integration.
-4. Style headings, links, code blocks, and list markers using the theme
-   variables.
+2. Use CSS custom properties for theme colors (e.g., `--theme-dk1`,
+   `--theme-accent1`) matching existing presentations.
+3. Set `--slidev-theme-primary` and `--slidev-theme-accent`.
+4. Style headings, links, code blocks, and list markers with theme variables.
 
-If no custom styling is requested, skip this step — the Slidev theme
-handles styling.
+Skip if no custom styling is requested — the Slidev theme handles defaults.
 
 ### Step 6 — Verify and Present
 
@@ -188,23 +177,19 @@ handles styling.
    ```
 
 3. Present a summary:
-   - The generated folder tree
+   - Generated folder tree
    - Slide count and section breakdown
-   - Any decisions or assumptions made
-   - Suggest next steps: "Review OUTLINE.md, flesh out slide content,
+   - Decisions or assumptions made
+   - Next steps: "Review OUTLINE.md, flesh out slide content,
      add images, and run the dev server to preview."
 
 ## Outline Document Purpose
 
-The `OUTLINE.md` serves as the **single source of truth** for the
-presentation's structure and evolution:
+`OUTLINE.md` is the single source of truth for structure and evolution:
 
 - **Planning**: Define objectives, audience, and flow before writing slides.
-- **Collaboration**: Agents and users can update the outline independently
-  and use it to drive slide content changes.
+- **Collaboration**: Agents and users update the outline independently to
+  drive slide content changes.
 - **Tracking**: The evolution log captures what changed and why.
-- **Completeness**: Check that all outlined sections have corresponding
-  slides and that timing adds up to the target duration.
-
-When modifying the presentation later, always update `OUTLINE.md` to
-reflect the changes.
+- **Completeness**: Verify all outlined sections have corresponding slides
+  and timing totals the target duration.

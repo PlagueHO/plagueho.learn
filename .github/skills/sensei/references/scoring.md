@@ -204,10 +204,10 @@ def score_skill(skill):
         return "Invalid"  # exceeds spec hard limit
     if len(skill.description) < 150:
         return "Low"
-    
+
     has_triggers = contains_trigger_phrases(skill.description)
     has_routing_clarity = contains_routing_patterns(skill.description)
-    
+
     if not has_triggers:
         return "Low"
     if word_count(skill.description) > 60:
@@ -223,7 +223,7 @@ def contains_trigger_phrases(description):
     return any(p.lower() in description.lower() for p in patterns)
 
 def contains_routing_patterns(description):
-    patterns = ['INVOKES:', 'FOR SINGLE OPERATIONS:', 
+    patterns = ['INVOKES:', 'FOR SINGLE OPERATIONS:',
                 '**WORKFLOW SKILL**', '**UTILITY SKILL**', '**ANALYSIS SKILL**']
     return any(p.lower() in description.lower() for p in patterns)
 ```

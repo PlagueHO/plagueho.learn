@@ -1,5 +1,5 @@
 ---
-name: pptx-to-slidev
+name: create-slidev-from-powerpoint
 
 description: >-
   **WORKFLOW SKILL** — Convert PowerPoint (.pptx) to Slidev Markdown with
@@ -15,11 +15,10 @@ metadata:
   version: "1.0"
 ---
 
-# PPTX to Slidev Converter
+# Create Slidev from PowerPoint
 
-Convert a PowerPoint (.pptx) file into a Slidev presentation that visually
-replicates the original as closely as possible. The output is a self-contained
-presentation folder with `slides.md`, `style.css`, and extracted `images/`.
+Convert a `.pptx` file into a Slidev presentation (`slides.md`, `style.css`,
+`images/`) that visually replicates the original.
 
 ## Prerequisites
 
@@ -27,10 +26,7 @@ presentation folder with `slides.md`, `style.css`, and extracted `images/`.
 - **Node.js 18+** and **pnpm** (for running Slidev)
 - **Slidev CLI** installed as a project devDependency (`@slidev/cli`)
 
-The extraction script (`scripts/extract_pptx.py`) and its dependencies
-(`scripts/requirements.txt`) are bundled with this skill.
-
-Install Python dependencies if not present:
+Install Python dependencies if needed:
 
 ```bash
 pip install -r <skill-path>/scripts/requirements.txt
@@ -40,48 +36,46 @@ pip install -r <skill-path>/scripts/requirements.txt
 
 ### Step 1 — Confirm Inputs
 
-Gather the following from the user:
+Gather from the user:
 
 1. **Source PPTX path** — absolute path to the `.pptx` file
-2. **Output folder name** — kebab-case name for the presentation folder
-   under `presentations/` (e.g., `my-talk`)
-3. **Target fidelity** — ask if any slides can be simplified or if
-   pixel-perfect replication is the goal
+2. **Output folder name** — kebab-case name under `presentations/` (e.g., `my-talk`)
+3. **Target fidelity** — whether slides can be simplified or pixel-perfect
+   replication is required
 
-Derive paths:
+Derived paths:
 
 - Extraction output: `presentations/<name>/_extracted/`
 - Final presentation: `presentations/<name>/`
 
 ### Step 2 — Extract PPTX Content
 
-Run the extraction script to produce structured JSON and images:
+Run the extraction script:
 
 ```powershell
 python <skill-path>/scripts/extract_pptx.py "<source.pptx>" "presentations/<name>/_extracted"
 ```
 
-This produces:
+Output:
 
 | File | Contents |
 |------|----------|
 | `theme.json` | Color scheme, font names, slide dimensions |
-| `slides.json` | All slide content: shapes, text, formatting, positions |
+| `slides.json` | Slide content: shapes, text, formatting, positions |
 | `layouts.json` | Slide layout definitions and placeholders |
-| `images/` | All extracted media files (JPG, PNG, SVG) |
+| `images/` | Extracted media files (JPG, PNG, SVG) |
 
-Read all four output files to understand the presentation structure.
+Read all output files to understand the presentation structure.
 
 ### Step 3 — Build the CSS Theme
 
-Create `presentations/<name>/style.css` using the theme data from
-`theme.json`. Follow this mapping from PowerPoint color scheme to CSS:
+Create `presentations/<name>/style.css` from `theme.json`:
 
-1. **Read `theme.json`** — extract the color values for `dk1`, `dk2`, `lt1`,
+1. **Read `theme.json`** — extract color values for `dk1`, `dk2`, `lt1`,
    `lt2`, `accent1`–`accent6`, `hlink`, `folHlink`, `major_font`,
    `minor_font`, and slide dimensions.
 
-2. **Create CSS variables** — map every PowerPoint theme color to a CSS
+2. **Create CSS variables** — map each PowerPoint theme color to a CSS
    custom property:
 
    ```css
@@ -102,9 +96,9 @@ Create `presentations/<name>/style.css` using the theme data from
    }
    ```
 
-3. **Map fonts** — use the `major_font` for headings and `minor_font` for
-   body text. Always include web-safe fallbacks and import a Google Fonts
-   alternative if the primary font is not web-available:
+3. **Map fonts** — use `major_font` for headings and `minor_font` for body
+   text. Include web-safe fallbacks and import a Google Fonts alternative
+   if the font is not web-available:
 
    ```css
    @import url('https://fonts.googleapis.com/css2?family=<web-font>:wght@400;600;700&display=swap');
@@ -120,19 +114,17 @@ Create `presentations/<name>/style.css` using the theme data from
    ```
 
 4. **Style base elements** — apply theme colors to headings, links, code
-   blocks, tables, lists, and blockquotes. Refer to the CSS mapping
-   reference at `references/css-mapping.md` for the complete property map.
+   blocks, tables, lists, and blockquotes. Refer to
+   `references/css-mapping.md` for the complete property map.
 
-5. **Create custom layout classes** — analyze `slides.json` to identify
-   recurring visual patterns (card grids, section dividers, gradient
-   backgrounds, icon circles, etc.) and create CSS classes for each. Common
-   patterns include:
+5. **Create custom layout classes** — analyze `slides.json` for recurring
+   visual patterns and create CSS classes for each. Common patterns:
 
    | PPTX Pattern | CSS Class | Description |
    |-------------|-----------|-------------|
    | Gradient background fill | `.warm-gradient` | `linear-gradient` matching theme colors |
-   | Dark solid background | `.dark-bg` | Uses `dk2` background with light text |
-   | Light tinted background | `.warm-bg` | Uses `lt2` background |
+   | Dark solid background | `.dark-bg` | `dk2` background with light text |
+   | Light tinted background | `.warm-bg` | `lt2` background |
    | 2×2 or 2×N card layout | `.card-grid` + `.card` | CSS Grid with styled cards |
    | Circular icon shapes | `.icon-circle` | Rounded badge with accent color |
    | Section divider slides | `.section-title` | Large centered heading |
@@ -143,7 +135,7 @@ Create `presentations/<name>/style.css` using the theme data from
 ### Step 4 — Generate slides.md
 
 Create `presentations/<name>/slides.md` by converting each slide from
-`slides.json` into Slidev Markdown format.
+`slides.json` into Slidev Markdown.
 
 #### 4.1 — Frontmatter
 
@@ -166,31 +158,34 @@ canvasHeight: <slide_height_px from theme.json>
 
 #### 4.2 — Per-Slide Conversion Rules
 
-For each slide in `slides.json`, generate a slide block separated by `---`.
-Apply these rules:
+For each slide, generate a block separated by `---`:
 
 **Text content:**
+
 - Convert placeholder text to Markdown headings (`#`, `##`, `###`) based on
   placeholder type and font size
 - Title placeholders → `# Heading`
 - Subtitle placeholders → `## Subheading` or paragraph text
 - Body text → paragraphs, with `**bold**` and `*italic*` from run formatting
-- Bulleted lists → Markdown `- ` lists with proper indentation for levels
-- Numbered lists → Markdown `1. ` lists
+- Bulleted lists → Markdown `-` lists with proper indentation for levels
+- Numbered lists → Markdown `1.` lists
 
 **Images:**
+
 - Copy images from `_extracted/images/` to `presentations/<name>/images/`
 - Reference as `./images/<filename>`
-- Position images using UnoCSS classes or inline HTML `<img>` tags
+- Position using UnoCSS classes or inline HTML `<img>` tags
 - For background images, use the `background` frontmatter field
 
 **Tables:**
+
 - Convert `table_rows` arrays to Markdown tables with `|` syntax
 - Apply heading row styling via the CSS theme
 
 **Layout reconstruction:**
-- For slides with complex positioning (multiple shapes at specific
-  coordinates), use `<div>` elements with UnoCSS utility classes:
+
+- For slides with complex positioning, use `<div>` elements with UnoCSS
+  utility classes:
   - Flexbox: `flex`, `flex-col`, `items-center`, `justify-center`, `gap-4`
   - Grid: `grid grid-cols-2 gap-4`
   - Sizing: `w-full`, `h-full`, `w-1/2`, `max-h-96`
@@ -199,12 +194,15 @@ Apply these rules:
   - Colors: inline `style` attributes referencing CSS variables
 
 **Slide transitions:**
-- Use `transition: fade-out` for content slides
-- Use `transition: slide-left` as default
-- Use `transition: slide-up` for section dividers
+
+- Content slides: `transition: fade-out`
+- Default: `transition: slide-left`
+- Section dividers: `transition: slide-up`
 
 **Speaker notes:**
-- Add notes from `slides.json` using HTML comment syntax:
+
+- Add notes from `slides.json` as HTML comments:
+
   ```markdown
   <!--
   Speaker notes text here.
@@ -212,8 +210,6 @@ Apply these rules:
   ```
 
 #### 4.3 — Slide Type Patterns
-
-Match PPTX slide layouts to Slidev patterns:
 
 | PPTX Layout | Slidev Pattern |
 |-------------|---------------|
@@ -227,9 +223,8 @@ Match PPTX slide layouts to Slidev patterns:
 
 ### Step 5 — Copy Images
 
-Move extracted images from `_extracted/images/` to the final
-`presentations/<name>/images/` directory. Ensure file references in
-`slides.md` match.
+Move images from `_extracted/images/` to `presentations/<name>/images/`.
+Verify file references in `slides.md` match.
 
 ### Step 6 — Clean Up Extraction Artifacts
 
@@ -247,19 +242,18 @@ Remove-Item -Recurse -Force "presentations/<name>/_extracted"
    pnpm slidev presentations/<name>/slides.md
    ```
 
-2. **Compare visually** — open the original PPTX side-by-side and walk
-   through each slide. Check:
+2. **Compare visually** — open the original PPTX side-by-side. Check:
 
    - [ ] Color scheme matches (headings, backgrounds, accents)
    - [ ] Font family and weights are correct
    - [ ] Images appear in correct positions and sizes
    - [ ] Tables render with proper styling
    - [ ] Slide layouts match the original arrangement
-   - [ ] Speaker notes are present in presenter mode (`p` key)
-   - [ ] Code blocks (if any) have proper syntax highlighting
+   - [ ] Speaker notes present in presenter mode (`p` key)
+   - [ ] Code blocks have proper syntax highlighting
 
-3. **Fix discrepancies** — iterate on `slides.md` and `style.css` until the
-   output matches the PPTX as closely as possible. Common fixes:
+3. **Fix discrepancies** — iterate on `slides.md` and `style.css` until
+   output matches the PPTX. Common fixes:
    - Adjust `font-size` values in CSS for heading hierarchy
    - Tweak gradient angles and color stops
    - Adjust grid/flex proportions for card layouts
@@ -267,22 +261,20 @@ Remove-Item -Recurse -Force "presentations/<name>/_extracted"
 
 ## Edge Cases
 
-- **Embedded charts/SmartArt** — python-pptx cannot extract these as editable
-  content. Export them as images from PowerPoint first, or screenshot and add
-  as static images.
-- **Custom fonts not available on web** — import the closest Google Fonts
-  match and document the substitution in a CSS comment.
-- **Animations/builds in PPTX** — map to `<v-click>` and `<v-clicks>` where
-  the animation order is clear. Complex animation sequences may need
-  simplification.
-- **Video/audio embeds** — Slidev does not support embedded video/audio
-  natively. Link to external sources or use iframes.
-- **Very text-heavy slides** — reduce font size or split into two slides to
-  avoid overflow. Slidev canvas is fixed at the specified dimensions.
+- **Embedded charts/SmartArt** — python-pptx cannot extract these. Export as
+  images from PowerPoint first, or screenshot and add as static images.
+- **Custom fonts unavailable on web** — import the closest Google Fonts match
+  and document the substitution in a CSS comment.
+- **Animations/builds** — map to `<v-click>` and `<v-clicks>` where animation
+  order is clear. Simplify complex animation sequences.
+- **Video/audio embeds** — Slidev lacks native video/audio support. Link to
+  external sources or use iframes.
+- **Text-heavy slides** — reduce font size or split into two slides to avoid
+  overflow. Slidev canvas is fixed at the specified dimensions.
 - **Grouped shapes** — python-pptx extracts group members individually.
-  Reconstruct the visual grouping using CSS flex/grid containers.
-- **SVG icons/shapes** — if extracted, embed inline or as `<img>` tags.
-  For simple shapes (circles, rectangles), recreate with CSS.
+  Reconstruct grouping using CSS flex/grid containers.
+- **SVG icons/shapes** — embed inline or as `<img>` tags. For simple shapes,
+  recreate with CSS.
 - **Slide masters with multiple variants** — check `layouts.json` for the
   full list. Map each used layout to the closest Slidev equivalent.
 

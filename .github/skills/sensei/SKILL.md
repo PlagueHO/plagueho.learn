@@ -67,7 +67,7 @@ Sensei uses these defaults (override by specifying in your prompt):
 
 Auto-detect skills directory by checking (in order):
 1. `skills/` in project root
-2. `.github/skills/` 
+2. `.github/skills/`
 3. User-specified path
 
 ## Invocation Modes

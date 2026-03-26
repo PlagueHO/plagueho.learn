@@ -34,14 +34,14 @@ const shouldNotTriggerPrompts = [
   // Unrelated topics
   'What is the weather today?',
   'Help me write a poem',
-  
+
   // Related but different skills (from DO NOT USE FOR)
   'Prompt that should use other-skill instead',
   'Another scenario for different skill',
-  
+
   // Single operations (from FOR SINGLE OPERATIONS - should use MCP directly)
   'Single operation that should bypass this skill',
-  
+
   // Other platforms/tools
   'Help me with competing-tool',
 ];

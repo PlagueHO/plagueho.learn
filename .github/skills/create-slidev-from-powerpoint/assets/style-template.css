@@ -110,7 +110,7 @@
 /* === Blockquotes === */
 .slidev-layout blockquote {
   border-left: 4px solid var(--theme-accent3);
-  background-color: /* lighten accent3 10% */;
+  background-color: color-mix(in srgb, var(--theme-accent3) 10%, white);
   padding: 0.8em 1.2em;
   border-radius: 0 8px 8px 0;
   color: var(--theme-dk2);

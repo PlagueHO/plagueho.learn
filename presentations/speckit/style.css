@@ -1,0 +1,684 @@
+
+
+:root {
+  --theme-dk1: #000000;
+  --theme-lt1: #FFFFFF;
+  --theme-dk2: #103954;
+  --theme-lt2: #FFF8F3;
+  --theme-accent1: #114D8B;
+  --theme-accent2: #38A4DC;
+  --theme-accent3: #FE5B38;
+  --theme-accent4: #D59DD7;
+  --theme-accent5: #FEE298;
+  --theme-accent6: #D7D2CA;
+  --theme-hlink: #38A4DC;
+  --theme-folhlink: #114D8B;
+  --slidev-theme-primary: #114D8B;
+  --slidev-theme-accent: #38A4DC;
+}
+
+.slidev-layout {
+  font-family: 'Segoe Sans Display', 'Segoe UI', system-ui, sans-serif;
+  color: var(--theme-dk1);
+}
+
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3,
+.slidev-layout h4 {
+  font-family: 'Segoe Sans Display', 'Segoe UI Semibold', system-ui, sans-serif;
+  font-weight: 600;
+}
+
+.slidev-layout h1 {
+  background: linear-gradient(135deg, #0a2e4a 0%, #103954 40%, #1a6bb5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Slide Banner (dark title strip) ─── */
+.slide-banner {
+  background: var(--theme-dk2);
+  padding: 1rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+}
+
+.slide-banner h1 {
+  color: white !important;
+  background: none !important;
+  -webkit-text-fill-color: white !important;
+  font-size: 2.2em;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.banner-decoration {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 240px;
+  height: auto;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.slide-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 2rem;
+}
+
+.content-panel {
+  display: flex;
+  gap: 1rem;
+  background: white;
+  border-radius: 16px;
+  padding: 1.2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  width: 100%;
+}
+
+.slidev-layout h2 {
+  color: var(--theme-accent1);
+}
+
+.slidev-layout a {
+  color: var(--theme-hlink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.slidev-layout a:hover {
+  border-bottom-color: var(--theme-hlink);
+}
+
+/* List markers */
+.slidev-layout ul > li::marker,
+.slidev-layout ol > li::marker {
+  color: var(--theme-accent2);
+}
+
+.slidev-layout li {
+  line-height: 1.8;
+}
+
+/* Tables */
+.slidev-layout th {
+  background-color: var(--theme-accent1);
+  color: var(--theme-lt1);
+  font-weight: 600;
+  padding: 0.5em 0.8em;
+  font-size: 0.85em;
+}
+
+.slidev-layout td {
+  padding: 0.4em 0.8em;
+  border-bottom: 1px solid var(--theme-accent6);
+  font-size: 0.78em;
+}
+
+.slidev-layout tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.commands-panel {
+  flex: 1;
+  min-height: 0;
+  align-self: stretch;
+  padding: 0.6rem;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.commands-body {
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  overflow: hidden;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+.commands-banner-spacer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  visibility: hidden;
+}
+
+.commands-table-wrap {
+  flex: 1 1 60%;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.commands-selectable,
+.commands-selectable * {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.commands-table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--theme-accent6);
+}
+
+.commands-row {
+  display: grid;
+  grid-template-columns: 1.05fr 1.65fr 1.45fr;
+  line-height: 1.28;
+}
+
+.commands-cell {
+  padding: 0.3rem 0.55rem;
+  vertical-align: top;
+  border-bottom: 1px solid var(--theme-accent6);
+  font-size: 0.73em;
+}
+
+.commands-header {
+  background-color: var(--theme-accent1);
+  color: var(--theme-lt1);
+  font-weight: 600;
+}
+
+.commands-header .commands-cell {
+  font-size: 0.8em;
+}
+
+.commands-row:nth-child(odd):not(.commands-header) {
+  background-color: #f8f9fa;
+}
+
+.commands-note {
+  margin-top: 0.35rem;
+  font-size: 0.74rem;
+  opacity: 0.8;
+}
+
+.commands-flowchart-wrap {
+  flex: 1 1 40%;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.commands-flowchart {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 96%;
+  object-fit: contain;
+}
+
+/* Code blocks */
+.slidev-layout pre {
+  background-color: #1a1a2e !important;
+  border-radius: 8px;
+  border-left: 4px solid var(--theme-accent2);
+}
+
+.slidev-layout code:not(pre code) {
+  background-color: #e8f4fd;
+  color: var(--theme-accent1);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* ─── Warm Gradient Background (Section slides) ─── */
+.warm-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--theme-accent6) 0%,
+    var(--theme-lt2) 50%,
+    var(--theme-lt1) 100%
+  );
+}
+
+.warm-gradient h1 {
+  color: var(--theme-dk2);
+  background: none;
+  -webkit-text-fill-color: var(--theme-dk2);
+  font-size: 2.8em;
+  font-weight: 700;
+}
+
+/* ─── Bullet Panel (large text with bullet points) ─── */
+.bullet-panel {
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 2.5rem;
+}
+
+.bullet-list {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin: 0;
+}
+
+.bullet-list li {
+  font-size: 2em;
+  line-height: 1.4;
+  margin-bottom: 0.5em;
+  color: var(--theme-dk1);
+}
+
+.bullet-list li:last-child {
+  margin-bottom: 0;
+}
+
+.bullet-list li strong {
+  font-weight: 800;
+}
+
+/* ─── Dark Background ─── */
+.dark-bg {
+  background-color: var(--theme-dk2);
+  color: var(--theme-lt1);
+}
+
+.dark-bg h1,
+.dark-bg h2,
+.dark-bg h3 {
+  color: var(--theme-lt1);
+}
+
+/* ─── Content slide background ─── */
+.content-slide {
+  background-color: var(--theme-lt1);
+}
+
+/* ─── Card Grid (2x2 layout) ─── */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+
+.card {
+  background: var(--theme-lt1);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.card h3 {
+  background: linear-gradient(135deg, #0a2e4a 0%, #103954 40%, #1a6bb5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 0.95em;
+  margin-bottom: 0.3em;
+  font-weight: 700;
+}
+
+.card-image {
+  display: flex;
+  align-items: stretch;
+  width: 38%;
+  min-width: 38%;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.card p {
+  color: #444;
+  font-size: 0.78em;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ─── Icon Circle ─── */
+.icon-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--theme-accent1);
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+/* ─── Accent Separator Bar ─── */
+.accent-bar {
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--theme-accent1),
+    var(--theme-accent2),
+    var(--theme-accent3)
+  );
+  border-radius: 2px;
+  margin: 0.8rem 0;
+}
+
+/* ─── Container with rounded border (like PPTX rounded rectangles) ─── */
+.content-container {
+  background: rgba(215, 210, 202, 0.15);
+  border-radius: 16px;
+  padding: 1rem;
+}
+
+/* ─── Key Takeaway Items ─── */
+.takeaway-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--theme-accent6);
+}
+
+.takeaway-item:last-child {
+  border-bottom: none;
+}
+
+.takeaway-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--theme-accent2);
+  color: white;
+  font-weight: 700;
+  font-size: 0.8em;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.takeaway-text {
+  font-size: 0.82em;
+  line-height: 1.45;
+}
+
+.takeaway-text strong {
+  color: var(--theme-dk2);
+  font-family: 'Segoe Sans Display', 'Segoe UI Semibold', system-ui, sans-serif;
+}
+
+/* ─── Left Panel (dark blue rounded corner panel) ─── */
+.left-panel {
+  background: linear-gradient(180deg, var(--theme-accent1) 0%, var(--theme-dk2) 100%);
+  border-radius: 0 0 24px 0;
+  color: var(--theme-lt1);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.left-panel h1 {
+  color: var(--theme-lt1) !important;
+  background: none !important;
+  -webkit-text-fill-color: var(--theme-lt1) !important;
+  font-size: 1.6em;
+  line-height: 1.3;
+  text-align: left;
+}
+
+/* ─── CTA Box ─── */
+.cta-box {
+  background: linear-gradient(135deg, var(--theme-accent1), var(--theme-dk2));
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  color: var(--theme-lt1);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.cta-box p {
+  font-size: 0.95em;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.cta-link {
+  background: var(--theme-lt1);
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.cta-link a {
+  color: var(--theme-accent1) !important;
+  font-weight: 700;
+  font-size: 0.85em;
+}
+
+/* ─── Setup command box ─── */
+.command-box {
+  background: #1e293b;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-family: 'Fira Code', 'Consolas', monospace;
+  color: #e2e8f0;
+  font-size: 0.82em;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0;
+}
+
+.command-box code {
+  font-family: inherit;
+  color: inherit;
+  font-size: 0.95em;
+  background: none;
+  padding: 0;
+}
+
+.cmd-bin {
+  color: #7dd3fc;
+  font-weight: 600;
+}
+
+.cmd-url {
+  color: #86efac;
+}
+
+.command-label {
+  color: var(--theme-accent2);
+  font-weight: 600;
+  min-width: 120px;
+  font-family: 'Segoe Sans Display', sans-serif;
+  font-size: 0.9em;
+}
+
+/* ─── QR code container ─── */
+.qr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.qr-container img {
+  border-radius: 8px;
+}
+
+/* ─── Title slide (split hero) ─── */
+.title-hero {
+  background: var(--theme-lt1);
+}
+
+.title-hero-left {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 3rem;
+  background: var(--theme-lt1);
+  text-align: left;
+}
+
+.ms-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.ms-logo-squares {
+  display: grid;
+  grid-template-columns: 10px 10px;
+  gap: 2px;
+}
+
+.ms-sq {
+  width: 10px;
+  height: 10px;
+}
+
+.ms-logo-text {
+  font-family: 'Segoe Sans Display', 'Segoe UI', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #737373;
+  letter-spacing: -0.01em;
+}
+
+.title-hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title-hero-heading {
+  font-size: 2.8em !important;
+  line-height: 1.12 !important;
+  font-weight: 700 !important;
+  color: var(--theme-dk2) !important;
+  background: none !important;
+  -webkit-text-fill-color: var(--theme-dk2) !important;
+  margin-bottom: 1.5rem !important;
+  text-align: left !important;
+}
+
+.title-hero-heading .text-accent {
+  color: var(--theme-accent2);
+  -webkit-text-fill-color: var(--theme-accent2);
+}
+
+.title-hero-author {
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
+.title-hero-author .author-name {
+  font-size: 1.1em;
+  color: var(--theme-dk1);
+  margin-bottom: 0.15rem;
+  font-weight: 400;
+}
+
+.title-hero-author .author-role {
+  font-size: 0.9em;
+  color: var(--theme-dk1);
+  margin-bottom: 0.15rem;
+  font-weight: 400;
+}
+
+.title-hero-author .author-note {
+  font-size: 0.9em;
+  color: var(--theme-dk1);
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+.title-hero-date {
+  font-size: 0.82em;
+  color: var(--theme-dk1);
+  margin-top: auto;
+  padding-bottom: 0.5rem;
+  text-align: left;
+}
+
+.title-hero-right {
+  width: 50%;
+  background:
+    linear-gradient(rgba(16, 57, 84, 0.55), rgba(16, 57, 84, 0.55)),
+    url('./images/slide11_img10.jpg') center/cover;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── GitHub URL bar ─── */
+.url-bar {
+  position: absolute;
+  top: 56px;
+  right: 180px;
+  color: var(--theme-lt1);
+  font-size: 0.9em;
+  z-index: 10;
+}
+
+.url-bar a {
+  color: var(--theme-lt1) !important;
+}
+
+/* ─── Thank you slide ─── */
+.thankyou-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.thankyou-text {
+  color: #000 !important;
+}
+
+.thankyou-text strong {
+  color: #000 !important;
+}
+
+.thankyou-item:last-child {
+  border-bottom: none;
+}
+
+.thankyou-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--theme-accent2);
+  color: white;
+  font-weight: 700;
+  font-size: 0.85em;
+  flex-shrink: 0;
+}

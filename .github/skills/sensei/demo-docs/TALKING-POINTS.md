@@ -57,7 +57,7 @@ Run sensei on file-utils --fast
 
 **What happens:**
 1. READ - Loads the skill
-2. SCORE - Evaluates as "Low" 
+2. SCORE - Evaluates as "Low"
 3. IMPROVE - Adds triggers and anti-triggers
 4. TOKENS - Checks budget
 5. SUMMARY - Shows before/after

@@ -61,13 +61,13 @@ jobs:
               core.info('No triage results — board is clear');
               return;
             }
-            
+
             const results = JSON.parse(fs.readFileSync(path, 'utf8'));
             if (results.length === 0) {
               core.info('📋 Board is clear — Ralph found no untriaged issues');
               return;
             }
-            
+
             for (const decision of results) {
               try {
                 await github.rest.issues.addLabels({
@@ -76,7 +76,7 @@ jobs:
                   issue_number: decision.issueNumber,
                   labels: [decision.label]
                 });
-                
+
                 await github.rest.issues.createComment({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
@@ -92,13 +92,13 @@ jobs:
                     '> To reassign, swap the `squad:*` label.'
                   ].join('\n')
                 });
-                
+
                 core.info(`Triaged #${decision.issueNumber} → ${decision.assignTo} (${decision.source})`);
               } catch (e) {
                 core.warning(`Failed to triage #${decision.issueNumber}: ${e.message}`);
               }
             }
-            
+
             core.info(`🔄 Ralph triaged ${results.length} issue(s)`);
 
       # Copilot auto-assign step (uses PAT if available)

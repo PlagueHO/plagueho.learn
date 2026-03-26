@@ -1,8 +1,8 @@
 # Sensei Audit: agent-customization Skill (microsoft/vscode-copilot-chat)
 
-**Requested by:** Shayne Boyer (via Harald)  
-**Date:** 2026-02-18  
-**Auditor:** Rusty  
+**Requested by:** Shayne Boyer (via Harald)
+**Date:** 2026-02-18
+**Auditor:** Rusty
 **Baseline:** ~50% Sensei compliance
 
 ---
@@ -63,7 +63,7 @@ Ordered by **ROI (score impact ÷ effort)**:
 
 ### 1️⃣ Add Skill Type Prefix [ROI: 9.9/10]
 
-**Impact:** Enables High score (single missing element)  
+**Impact:** Enables High score (single missing element)
 **Effort:** Trivial (1 word)
 
 **Current:**
@@ -83,7 +83,7 @@ description: |
 
 ### 2️⃣ Add INVOKES Routing Clause [ROI: 9.8/10]
 
-**Impact:** Unlocks High score (with type prefix)  
+**Impact:** Unlocks High score (with type prefix)
 **Effort:** Low (1–2 phrases)
 
 **Current:**
@@ -102,7 +102,7 @@ description: |
 
 ### 3️⃣ Add FOR SINGLE OPERATIONS Guidance [ROI: 8.5/10]
 
-**Impact:** Completes High score, prevents skill collision  
+**Impact:** Completes High score, prevents skill collision
 **Effort:** Low (1 phrase)
 
 **Current:**
@@ -121,7 +121,7 @@ description: |
 
 ### 4️⃣ Consolidate References to 2–3 Modules [ROI: 7.2/10]
 
-**Impact:** Recovers +13pp from SkillsBench over-modularization penalty  
+**Impact:** Recovers +13pp from SkillsBench over-modularization penalty
 **Effort:** Medium (requires merging & reorganization)
 
 **Current:** 6 separate reference files (~14.4KB total)
@@ -144,12 +144,12 @@ description: |
 
 ### 5️⃣ Reduce Edge Case Clarifications → Lead with Affirmatives [ROI: 6.8/10]
 
-**Impact:** Reduces negative delta risk; prevents skill misuse  
+**Impact:** Reduces negative delta risk; prevents skill misuse
 **Effort:** Medium (rewrite & validation)
 
 **Current pattern:**
 ```markdown
-**Instructions vs Skill?** Does this apply to *most* work, or *specific* tasks? 
+**Instructions vs Skill?** Does this apply to *most* work, or *specific* tasks?
 Most → Instructions. Specific → Skill.
 ```
 
@@ -174,7 +174,7 @@ Replace the current description with:
 
 ```yaml
 description: |
-  **WORKFLOW SKILL** - Create, update, review, fix, or debug VS Code agent customization files (.instructions.md, .prompt.md, .agent.md, SKILL.md, copilot-instructions.md, AGENTS.md). 
+  **WORKFLOW SKILL** - Create, update, review, fix, or debug VS Code agent customization files (.instructions.md, .prompt.md, .agent.md, SKILL.md, copilot-instructions.md, AGENTS.md).
   USE FOR: saving coding preferences; troubleshooting why instructions/skills/agents are ignored or not invoked; configuring applyTo patterns; defining tool restrictions; creating custom agent modes or specialized workflows; packaging domain knowledge; fixing YAML frontmatter syntax.
   DO NOT USE FOR: quick one-off YAML edits (use a text editor); reading project docs (do that first); configuration that applies everywhere (use workspace instructions directly).
   INVOKES: Git (version control, file operations), shell commands (hooks execution), YAML parser (frontmatter validation).
@@ -188,7 +188,7 @@ description: |
 4. **Added INVOKES clause** — declares Git + shell + YAML parser
 5. **Added FOR SINGLE OPERATIONS** — routes simple tasks away from skill
 
-**Character count:** ~480 (within 150–500 ideal; under 1024 hard limit)  
+**Character count:** ~480 (within 150–500 ideal; under 1024 hard limit)
 **Score trajectory:** Medium-High → **High** (all checks pass)
 
 ---
@@ -201,7 +201,7 @@ description: |
 | **2** (Optional) | Consolidate 6 refs → 2–3 modules | 2–4 hours | +13.7pp (SkillsBench recovery) |
 | **3** (Optional) | Refactor edge cases → affirmative guidance | 1–2 hours | −risk for negative delta |
 
-**Minimum viable:** Complete step 1 → **High score achieved**.  
+**Minimum viable:** Complete step 1 → **High score achieved**.
 **Recommended:** Steps 1 + 2 → **High score + SkillsBench +13.7pp performance boost**.
 
 ---

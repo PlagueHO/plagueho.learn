@@ -42,6 +42,7 @@
     "teamsdevapp.vscode-ai-foundry",
     "timonwong.shellcheck",
     "xabikos.javascriptsnippets",
-    "yzhang.markdown-all-in-one"
+    "yzhang.markdown-all-in-one",
+    "antfu.slidev"
   ]
 }

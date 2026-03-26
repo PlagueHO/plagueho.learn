@@ -42,6 +42,7 @@ Plugins and skills are maintained separately in
 ## Asset Organization
 
 - **Demos**: Presentation-ready demos go in `demos/`
+- **Presentations**: Slidev Markdown presentations go in `presentations/` (one subfolder per talk)
 - **Learning Pathways**: Curated learning pathways go in `learning-pathways/`
 - **Patterns**: Reusable development patterns go in `patterns/`
 - **Scripts**: Utility scripts organized by technology in `scripts/`

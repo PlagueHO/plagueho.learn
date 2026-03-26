@@ -6,9 +6,15 @@
   "scripts": {
     "lint:md": "markdownlint-cli2",
     "lint:md:fix": "markdownlint-cli2 --fix",
-    "lint:md:ci": "markdownlint-cli2"
+    "lint:md:ci": "markdownlint-cli2",
+    "slidev": "slidev --open",
+    "slidev:build": "slidev build",
+    "slidev:export": "slidev export"
   },
   "devDependencies": {
+    "@slidev/cli": "^52.14.1",
+    "@slidev/theme-default": "^0.25.0",
+    "@slidev/theme-seriph": "^0.25.0",
     "markdownlint-cli2": "^0.22.0"
   },
   "description": "Organizational assets repository for Daniel Scott-Raynsford (PlagueHO)",

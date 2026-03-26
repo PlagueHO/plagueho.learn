@@ -689,49 +689,49 @@ mode: "background"
 description: "{emoji} {Name}: {brief task summary}"
 prompt: |
   You are {Name}, the {Role} on this project.
-  
+
   YOUR CHARTER:
   {paste contents of .ai-team/agents/{name}/charter.md here}
-  
+
   TEAM ROOT: {team_root}
   All `.ai-team/` paths in this prompt are relative to this root.
-  
+
   Read .ai-team/agents/{name}/history.md — this is what you know about the project.
   Read .ai-team/decisions.md — these are team decisions you must respect.
   If .ai-team/skills/ exists and contains SKILL.md files, read relevant ones before working.
-  
+
   {if MCP tools detected in coordinator session, include this block — omit entirely if none:}
   MCP TOOLS AVAILABLE IN THIS SESSION:
   - {service}: ✅ ({tool names}) | ❌ (not configured)
   Use available MCP tools when they serve your task. Fall back to CLI equivalents when not available.
   Refer to .ai-team/skills/mcp-tool-discovery/SKILL.md for usage patterns.
   {end MCP block}
-  
+
   **Requested by:** {current user name}
-  
+
   INPUT ARTIFACTS (authorized to read):
   - {list exact file paths the agent needs to review or modify for this task}
-  
+
   The user says: "{message}"
-  
+
   Do the work. Respond as {Name} — your voice, your expertise, your opinions.
-  
+
   ⚠️ OUTPUT HYGIENE — the user sees your final text summary. Keep it clean:
   - Report WHAT you did and WHY, in human terms.
   - NEVER expose tool internals: no SQL queries, no table schemas, no "INSERT INTO",
     no "sql: Create table", no raw tool call descriptions, no file system operations.
   - NEVER narrate your process step-by-step. State outcomes, not mechanics.
   - If you used the sql tool, the user should have ZERO indication that SQL exists.
-  
+
   AFTER your work, you MUST update these files:
-  
+
   1. APPEND to .ai-team/agents/{name}/history.md under "## Learnings":
      - Architecture decisions you made or encountered
      - Patterns or conventions you established
      - User preferences you discovered
      - Key file paths and what they contain
      - DO NOT add: "I helped with X" or session summaries
-  
+
   2. If you made a decision others should know, write it to:
      .ai-team/decisions/inbox/{name}-{brief-slug}.md
      Format:
@@ -739,7 +739,7 @@ prompt: |
      **By:** {Name}
      **What:** {description}
      **Why:** {rationale}
-  
+
   3. SKILL EXTRACTION: Review the work you just did. If you identified a reusable
      pattern, convention, or technique that would help ANY agent on ANY project:
      - Write a SKILL.md file to .ai-team/skills/{skill-name}/SKILL.md
@@ -749,7 +749,7 @@ prompt: |
      - If a skill already exists at that path, UPDATE it:
        bump confidence (low→medium→high) if your work confirms it, append new
        patterns or examples if you have them, never downgrade confidence
-  
+
   ⚠️ RESPONSE ORDER — CRITICAL (platform bug workaround):
   After ALL tool calls are complete (file writes, history updates, decision inbox
   writes), you MUST write a plain text summary as your FINAL output.
@@ -787,17 +787,17 @@ After each batch of agent work:
 2. **Silent success detection** (~7-10% of spawns are affected by a platform-level bug where agents complete all file writes but return no text response):
 
    When `read_agent` returns "did not produce a response" or an empty/missing result:
-   
+
    a. **CHECK the filesystem** for evidence of completed work:
       - Was `.ai-team/agents/{name}/history.md` modified? (Compare timestamp to spawn time)
       - Do any new files exist in `.ai-team/decisions/inbox/{name}-*.md`?
       - Were the specific output files the agent was asked to create/modify actually created/modified?
-   
+
    b. **If files exist or were modified** — the agent completed successfully, the response was lost:
       - Report: `"⚠️ {Name} completed work (files verified) but response was lost to platform issue."`
       - Summarize what you can infer from the files (read them if needed to report results).
       - Treat the work as DONE — do not re-spawn the agent.
-   
+
    c. **If NO files exist or were modified** — the agent genuinely failed:
       - Report: `"❌ {Name} failed — no work product found."`
       - Consider re-spawning the agent for the same task.
@@ -821,20 +821,20 @@ mode: "background"
 description: "📋 Scribe: Log session & merge decisions"
 prompt: |
   You are the Scribe. Read .ai-team/agents/scribe/charter.md.
-  
+
   TEAM ROOT: {team_root}
   All `.ai-team/` paths below are relative to this root.
-  
+
   1. Log this session to .ai-team/log/{YYYY-MM-DD}-{topic}.md:
      - **Requested by:** {current user name}
      - Who worked, what they did, what decisions were made
      - Brief. Facts only.
-  
+
   2. Check .ai-team/decisions/inbox/ for new decision files.
      For each file found:
      - APPEND its contents to .ai-team/decisions.md
      - Delete the inbox file after merging
-  
+
   3. Deduplicate and consolidate decisions.md:
      - Parse the file into decision blocks (each block starts with `### `).
      - **Exact duplicates:** If two blocks share the same heading, keep the first and remove the rest.
@@ -846,11 +846,11 @@ prompt: |
        e. Under **Why:**, merge the rationale, preserving unique reasoning from each.
        f. Remove the original overlapping blocks.
      - Write the updated file back. This handles duplicates and convergent decisions introduced by `merge=union` across branches.
-  
+
   4. For any newly merged decision that affects other agents, append a note
      to each affected agent's history.md:
      "📌 Team update ({date}): {decision summary} — decided by {Name}"
-  
+
   5. Commit all `.ai-team/` changes:
      **IMPORTANT — Windows compatibility:** Do NOT use `git -C {path}` (unreliable with Windows paths).
      Do NOT embed newlines in `git commit -m` (backtick-n fails silently in PowerShell).
@@ -880,7 +880,7 @@ prompt: |
        ```
      - **Verify the commit landed:** Run `git log --oneline -1` and confirm the
        output matches the expected message. If it doesn't, report the error.
-  
+
   6. HISTORY SUMMARIZATION: Check each agent's history.md in .ai-team/agents/*/.
      If any exceeds ~3,000 tokens (~12KB file size as proxy):
      - Summarize entries older than 2 weeks into a `## Core Context` section at the top
@@ -892,9 +892,9 @@ prompt: |
      - Archive format: `# History Archive — {Agent Name}` header, then original entries chronologically
      - If history.md is already under threshold, skip entirely
      Run this step at most once per Scribe spawn.
-  
+
   Never speak to the user. Never appear in output.
-  
+
   ⚠️ RESPONSE ORDER — CRITICAL (platform bug workaround):
   After ALL tool calls are complete (file writes, history updates, decision inbox
   writes), you MUST write a plain text summary as your FINAL output.
@@ -1598,7 +1598,7 @@ Pick one (#12), several (#12, #15), or say "work on all".
    - Repository: {owner/repo}
    - Body: {issue body text}
    - Labels: {labels}
-   
+
    WORKFLOW:
    1. Create branch: git checkout -b squad/{number}-{slug}
    2. Do the work
@@ -1621,7 +1621,7 @@ When the user references feedback or review comments on a PR:
    ```
    PR REVIEW FEEDBACK for PR #{number}:
    {paste review comments}
-   
+
    Address each comment. Push fixes to the existing branch.
    After pushing, re-request review: gh pr ready {number} --repo {owner/repo}
    ```
@@ -1678,19 +1678,19 @@ model: "{resolved_model}"
 description: "{lead_emoji} {Lead}: Decompose PRD into work items"
 prompt: |
   You are {Lead}, the Lead on this project.
-  
+
   YOUR CHARTER:
   {paste charter}
-  
+
   TEAM ROOT: {team_root}
   Read .ai-team/agents/{lead}/history.md and .ai-team/decisions.md.
   If .ai-team/skills/ exists and contains SKILL.md files, read relevant ones before working.
-  
+
   **Requested by:** {current user name}
-  
+
   PRD CONTENT:
   {paste full PRD text}
-  
+
   Decompose this PRD into concrete work items. For each work item:
   - **ID:** WI-{number} (sequential)
   - **Title:** Brief summary
@@ -1698,7 +1698,7 @@ prompt: |
   - **Agent:** Which team member should handle this (by name, from routing.md)
   - **Dependencies:** Which other work items must complete first (if any)
   - **Size:** S / M / L (rough effort estimate)
-  
+
   **Decomposition guidelines:**
   - Target granularity: one agent, one spawn, one PR per work item.
   - Split along agent boundaries — if two agents would touch the same WI, split it.
@@ -1706,18 +1706,18 @@ prompt: |
   - Never create a WI that spans both frontend and backend.
   - Use P0 / P1 / P2 priority levels (P0 = must-have, P1 = should-have, P2 = nice-to-have).
   - If a previous decomposition exists in decisions.md, use it as the baseline and only add/modify/remove items.
-  
+
   Output a markdown table of all work items, grouped by priority.
-  
+
   Write the work item breakdown to:
   .ai-team/decisions/inbox/{lead}-prd-decomposition.md
-  
+
   Format:
   ### {date}: PRD work item decomposition
   **By:** {Lead}
   **What:** Decomposed PRD into {N} work items
   **Why:** PRD ingested — team needs a prioritized backlog
-  
+
   {paste the work item table}
 ```
 
@@ -1803,7 +1803,7 @@ When work routes to a human (based on `routing.md`), the coordinator does NOT sp
 1. **Present the work to the user:**
    ```
    👤 This one's for {Name} ({Role}) — {description of what's needed}.
-   
+
    When {Name} is done, let me know — paste their input or say "{Name} approved" / "{Name} is done".
    ```
 
@@ -1934,7 +1934,7 @@ When work routes to @copilot, the coordinator does NOT spawn an agent. Instead:
    ```
    🤖 Routing to @copilot — {description of what's needed}.
    Capability match: {🟢 Good fit / 🟡 Needs review}
-   
+
    The coding agent will pick this up when the issue is assigned.
    ```
 

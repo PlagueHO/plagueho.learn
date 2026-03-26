@@ -51,4 +51,3 @@ How to decide who handles what.
 | Azure infra (Bicep/Terraform), CI/CD, DevOps patterns | Tank | Trinity |
 | AI/Copilot/Foundry content, bleeding-edge research | Oracle | Neo |
 | Presentation review and technical accuracy | Neo | Oracle |
-

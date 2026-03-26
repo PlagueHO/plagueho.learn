@@ -49,7 +49,7 @@ description: 'Utility for working with files'
 ### 1:10-3:30 | LIVE DEMO
 **Screen:** Copilot CLI terminal
 
-**Audio:** 
+**Audio:**
 > "Let me show you. I'll run Sensei on this skill."
 
 **Type:**

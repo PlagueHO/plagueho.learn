@@ -19,7 +19,7 @@ shouldTriggerPrompts:
   - "command form"
   - "context-rich example"
 
-# Prompts that should NOT activate this skill  
+# Prompts that should NOT activate this skill
 # Generated from "DO NOT USE FOR:" in description
 shouldNotTriggerPrompts:
   - "phrase matching anti-trigger"
@@ -114,12 +114,12 @@ shouldTriggerPrompts:
   - "How do I extract text from a PDF?"
   - "Extract the text from this PDF"
   - "extract PDF text from my document"
-  
+
   # From USE FOR: "rotate PDF"
   - "rotate PDF"
   - "How do I rotate a PDF?"
   - "Rotate this PDF 90 degrees"
-  
+
   # From USE FOR: "merge PDFs"
   - "merge PDFs"
   - "How do I merge multiple PDFs?"
@@ -130,11 +130,11 @@ shouldNotTriggerPrompts:
   - "create a PDF"
   - "generate a new PDF"
   - "make a PDF from scratch"
-  
-  # From DO NOT USE FOR: "image extraction"  
+
+  # From DO NOT USE FOR: "image extraction"
   - "extract images from PDF"
   - "get the images from this PDF"
-  
+
   # MCP direct operations (from INVOKES)
   - "list my PDF files"
   - "check if file exists"

@@ -302,6 +302,9 @@ FakesAssemblies/
 node_modules/
 package-lock.json
 
+# Slidev build output
+presentations/**/dist/
+
 # Visual Studio 6 build log
 *.plg
 
@@ -417,3 +420,10 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+# Squad: ignore runtime state (logs, inbox, sessions)
+.squad/orchestration-log/
+.squad/log/
+.squad/decisions/inbox/
+.squad/sessions/
+# Squad: SubSquad activation file (local to this machine)
+.squad-workstream

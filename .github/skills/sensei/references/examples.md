@@ -208,11 +208,11 @@ const shouldTriggerPrompts = [
   // Exact matches
   'Extract text from this PDF',
   'Rotate this PDF 90 degrees',
-  
+
   // Natural variations
   'I need to merge these PDF files together',
   'Can you help me split this PDF into pages?',
-  
+
   // Keyword focused
   'PDF to text conversion',
   'Combine multiple PDFs',
@@ -226,12 +226,12 @@ const shouldNotTriggerPrompts = [
   // Unrelated topics (always include)
   'What is the weather today?',
   'Write a poem about mountains',
-  
+
   // Related but different skills
   'Create a new PDF document',      // → document-creator
   'Extract images from this PDF',   // → image-extractor
   'OCR this scanned document',      // → ocr-processor
-  
+
   // Other platforms
   'Help me with Word documents',
   'Convert Excel to CSV',

@@ -12,7 +12,12 @@
   "ignores": [
     "**/node_modules/**",
     "**/.vscode/**",
-    ".github/skills/sensei/**"
+    ".github/skills/sensei/**",
+    "presentations/**/slides.md",
+    ".copilot/**",
+    ".github/agents/**",
+    ".github/skills/**",
+    ".squad/**"
   ],
   // Output formatting
   "outputFormatters": [
