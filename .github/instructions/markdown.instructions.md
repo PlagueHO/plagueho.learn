@@ -10,6 +10,10 @@ All markdown content in this repository **must** follow the
 Use GFM syntax for tables, task lists, strikethrough, autolinks, and fenced code
 blocks. Do not use non-GFM markdown extensions unless explicitly approved.
 
+## Additional Rules
+
+- Never force wrap lines in markdown files. Allow lines to exceed typical limits for better readability and to preserve formatting.
+
 ## Markdown Content Rules
 
 The following markdown content rules are enforced in the validators:
