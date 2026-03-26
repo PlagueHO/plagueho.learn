@@ -33,8 +33,8 @@ canvasHeight: 720
         <span class="text-accent">Spec Kit</span>
       </h1>
       <div class="title-hero-author">
-        <p class="author-name">Daniel Scott-Raynsford</p>
-        <p class="author-role">Partner Solution Architect | Microsoft EPS</p>
+        <p class="author-name">Daniel Scott-Raynsford (DSR)</p>
+        <p class="author-role">Sr. Partner Solution Architect | Cloud & AI Apps |        Microsoft EPS</p>
         <p class="author-note">… recovering software engineer</p>
       </div>
     </div>
