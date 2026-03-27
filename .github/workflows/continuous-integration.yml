@@ -56,3 +56,51 @@ jobs:
       - name: Validate Markdown
         run: pnpm lint:md
 
+  build-presentations:
+    name: Build Presentations
+    runs-on: ubuntu-latest
+    needs: validate
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build Slidev presentations
+        run: |
+          set -e
+          shopt -s nullglob
+          found=0
+          for slides in presentations/*/slides.md; do
+            deck=$(dirname "$slides")
+            deck_name=$(basename "$deck")
+            echo "::group::Building $deck"
+            pnpm exec slidev build "$slides" --out "$deck/dist"
+            echo "::endgroup::"
+            zip -r "dist-${deck_name}.zip" "$deck/dist"
+            echo "Packaged dist-${deck_name}.zip"
+            found=$((found + 1))
+          done
+          if [ "$found" -eq 0 ]; then
+            echo "No presentations found to build."
+          else
+            echo "Successfully built and packaged $found presentation(s)."
+          fi
+
+      - name: Upload presentation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: presentations
+          path: dist-*.zip
+          if-no-files-found: warn
+

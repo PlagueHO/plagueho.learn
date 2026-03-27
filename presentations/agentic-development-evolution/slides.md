@@ -93,7 +93,7 @@ transition: fade-out
       <div class="vscode-editor-area">
         <div class="vscode-editor-pane">
           <div class="vscode-line-nums">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13</div>
-          <div class="vscode-code-content"><span class="type-line" style="--li:0;"><span class="j-brace">{</span></span><span class="type-line" style="--li:1;">  <span class="j-key">"👤 name"</span><span class="j-colon">:</span> <span class="j-str">"Daniel Scott-Raynsford"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:2;">  <span class="j-key">"🏷️ alias"</span><span class="j-colon">:</span> <span class="j-str">"PlagueHO"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:3;">  <span class="j-key">"💼 role"</span><span class="j-colon">:</span> <span class="j-str">"Partner Solution Architect"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:4;">  <span class="j-key">"🏢 team"</span><span class="j-colon">:</span> <span class="j-str">"Cloud &amp; AI Apps · Microsoft EPS"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:5;">  <span class="j-key">"💻 origin"</span><span class="j-colon">:</span> <span class="j-str">"Recovering software engineer"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:6;">  <span class="j-key">"🔗 links"</span><span class="j-colon">:</span> <span class="j-brace">{</span></span><span class="type-line" style="--li:7;">    <span class="j-key">"🌐 web"</span><span class="j-colon">:</span> <a href="https://danielscottraynsford.com" target="_blank" class="j-link">"danielscottraynsford.com"</a><span class="j-punc">,</span></span><span class="type-line" style="--li:8;">    <span class="j-key">"💼 linkedin"</span><span class="j-colon">:</span> <a href="https://www.linkedin.com/in/dscottraynsford/" target="_blank" class="j-link">"linkedin.com/in/dscottraynsford"</a><span class="j-punc">,</span></span><span class="type-line" style="--li:9;">    <span class="j-key">"🐙 github"</span><span class="j-colon">:</span> <a href="https://github.com/PlagueHO" target="_blank" class="j-link">"github.com/PlagueHO"</a></span><span class="type-line" style="--li:10;">  <span class="j-brace">}</span></span><span class="type-line" style="--li:11;"><span class="j-brace">}</span><span class="cs-cursor"></span></span></div>
+          <div class="vscode-code-content"><span class="type-line" style="--li:0;"><span class="j-brace">{</span></span><span class="type-line" style="--li:1;">  <span class="j-key">"👤 name"</span><span class="j-colon">:</span> <span class="j-str">"Daniel Scott-Raynsford"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:2;">  <span class="j-key">"🏷️ alias"</span><span class="j-colon">:</span> <span class="j-str">"PlagueHO"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:3;">  <span class="j-key">"💼 role"</span><span class="j-colon">:</span> <span class="j-str">"Partner Solution Architect"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:4;">  <span class="j-key">"🏢 team"</span><span class="j-colon">:</span> <span class="j-str">"Cloud &amp; AI Apps · Microsoft EPS"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:5;">  <span class="j-key">"💻 origin"</span><span class="j-colon">:</span> <span class="j-str">"Recovering software engineer"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:6;">  <span class="j-key">"🔗 links"</span><span class="j-colon">:</span> <span class="j-brace">{</span></span><span class="type-line" style="--li:7; padding-left: 2ch;">  <span class="j-key">"🌐 web"</span><span class="j-colon">:</span> <a href="https://danielscottraynsford.com" target="_blank" class="j-link">"danielscottraynsford.com"</a><span class="j-punc">,</span></span><span class="type-line" style="--li:8; padding-left: 2ch;">  <span class="j-key">"💼 linkedin"</span><span class="j-colon">:</span> <a href="https://www.linkedin.com/in/dscottraynsford/" target="_blank" class="j-link">"linkedin.com/in/dscottraynsford"</a><span class="j-punc">,</span></span><span class="type-line" style="--li:9; padding-left: 2ch;">  <span class="j-key">"🐙 github"</span><span class="j-colon">:</span> <a href="https://github.com/PlagueHO" target="_blank" class="j-link">"github.com/PlagueHO"</a></span><span class="type-line" style="--li:10;">  <span class="j-brace">}</span></span><span class="type-line" style="--li:11;"><span class="j-brace">}</span><span class="cs-cursor"></span></span></div>
         </div>
       </div>
       <div class="vscode-statusbar">
@@ -128,7 +128,7 @@ transition: slide-up
   </div>
 
   <div class="agenda-header">
-    <p class="agenda-eyebrow">40 MINUTES · 4 LIVE DEMOS</p>
+    <p class="agenda-eyebrow">40 MINUTES · 3 LIVE DEMOS</p>
     <h1 class="agenda-title">Agenda</h1>
   </div>
 
@@ -178,13 +178,6 @@ transition: slide-up
       <span class="agenda-demo-pulse"></span>
       <span class="agenda-demo-text">
         <span class="agenda-demo-num">🎬 Demo 3</span>
-        <span class="agenda-demo-desc">Sessions + RPI / HVE</span>
-      </span>
-    </a>
-    <a href="/12" class="agenda-demo-pill">
-      <span class="agenda-demo-pulse"></span>
-      <span class="agenda-demo-text">
-        <span class="agenda-demo-num">🎬 Demo 4</span>
         <span class="agenda-demo-desc">az prototype</span>
       </span>
     </a>
@@ -192,8 +185,8 @@ transition: slide-up
 </div>
 
 <!--
-Quick scan of the agenda — don't dwell. Point out the 4 demo markers so people
-know when to pay extra attention. "We'll be jumping out to live code 4 times."
+Quick scan of the agenda — don't dwell. Point out the 3 demo markers so people
+know when to pay extra attention. "We'll be jumping out to live code 3 times."
 -->
 
 ---
@@ -210,64 +203,70 @@ transition: fade-out
     <img src="./images/vscode-insiders.png" class="banner-icon" alt="VS Code Insiders" />
   </div>
   <div style="padding: 0.3rem 1.8rem 0; display: flex; align-items: baseline; gap: 0.7rem;">
-    <span style="color: var(--theme-muted); font-size: 1.6rem; line-height: 1.3;">The baseline for all developers using Agentic Engineering</span>
+    <span style="background: linear-gradient(135deg, #114D8B 0%, #38A4DC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.4rem; font-weight: 700; line-height: 1.3;">The baseline for all developers using Agentic Engineering: 7-Layer Customization Stack</span>
   </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0; align-items: stretch; padding: 0.5rem 1.8rem 1rem;">
-    <div class="content-panel" style="gap: 1rem; flex: 1; align-items: stretch;">
-      <div style="flex: 1; display: flex; flex-direction: column;">
-        <h3 style="background: linear-gradient(135deg, #114D8B 0%, #38A4DC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.15em; margin: 0 0 0.45rem; font-weight: 700;">7-Layer Customization Stack</h3>
-        <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
-        <div class="pyramid-stack" style="width: 82%;">
-          <div class="pyramid-layer" style="margin: 0 0; background: linear-gradient(90deg, #0a2e4a, #103954);">
-            <span class="pyramid-num">1</span>
-            <span class="pyramid-name">Instructions</span>
-            <span class="pyramid-desc">Always-on repo/path conventions</span>
-          </div>
-          <div class="pyramid-layer pyramid-layer-faded" style="margin: 0 0.5rem; background: linear-gradient(90deg, #114D8B, #1a5ea8);">
-            <span class="pyramid-num">2</span>
-            <span class="pyramid-name">Prompts</span>
-            <span class="pyramid-desc">Reusable task templates</span>
-          </div>
-          <div class="pyramid-layer" style="margin: 0 1.1rem; background: linear-gradient(90deg, #085f92, #0d83c0);">
-            <span class="pyramid-num">3</span>
-            <span class="pyramid-name">MCP</span>
-            <span class="pyramid-desc">External tool & API surface (N+M)</span>
-          </div>
-          <div class="pyramid-layer" style="margin: 0 1.8rem; background: linear-gradient(90deg, #0c6484, #1088ac);">
-            <span class="pyramid-num">4</span>
-            <span class="pyramid-name">Agents</span>
-            <span class="pyramid-desc">Specialist personas with tool scopes</span>
-          </div>
-          <div class="pyramid-layer" style="margin: 0 2.7rem; background: linear-gradient(90deg, #077769, #08a08d);">
-            <span class="pyramid-num">5</span>
-            <span class="pyramid-name">Skills</span>
-            <span class="pyramid-desc">Demand-loaded expertise bundles</span>
-          </div>
-          <div class="pyramid-layer" style="margin: 0 3.7rem; background: linear-gradient(90deg, #0a7f59, #0da977);">
-            <span class="pyramid-num">6</span>
-            <span class="pyramid-name">Hooks</span>
-            <span class="pyramid-desc">Deterministic lifecycle commands</span>
-          </div>
-          <div class="pyramid-layer" style="margin: 0 4.8rem; background: linear-gradient(90deg, #5635a0, #7850c0);">
-            <span class="pyramid-num">7</span>
-            <span class="pyramid-name">Plugins</span>
-            <span class="pyramid-desc">Composable: agents, skills, hooks & MCPs</span>
-          </div>
-        </div>
-        </div>
+  <div class="slide-body" style="flex-direction: column; gap: 0.35rem; align-items: stretch; padding: 0.3rem 1.8rem 0.5rem;">
+    <!-- Pyramid — full width, centred -->
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
+      <div class="pyramid-stack" style="width: 58%;">
+        <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/custom-instructions" target="_blank" style="margin: 0 0; background: linear-gradient(90deg, #0a2e4a, #103954); text-decoration: none; cursor: pointer;">
+          <span class="pyramid-num">1</span>
+          <span class="pyramid-name">Instructions</span>
+          <span class="pyramid-desc">Always-on repo/path conventions</span>
+        </a>
+        <a class="pyramid-layer pyramid-layer-faded" href="https://code.visualstudio.com/docs/copilot/customization/prompt-files" target="_blank" style="margin: 0 0.5rem; background: linear-gradient(90deg, #114D8B, #1a5ea8); text-decoration: none; cursor: pointer;">
+          <span class="pyramid-num">2</span>
+          <span class="pyramid-name">Prompts</span>
+          <span class="pyramid-desc">Reusable task templates</span>
+        </a>
+        <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/mcp-servers" target="_blank" style="margin: 0 1.1rem; background: linear-gradient(90deg, #085f92, #0d83c0); text-decoration: none; cursor: pointer;">
+          <span class="pyramid-num">3</span>
+          <span class="pyramid-name">MCP</span>
+          <span class="pyramid-desc">External tool & API surface (N+M)</span>
+        </a>
+        <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/custom-agents" target="_blank" style="margin: 0 1.8rem; background: linear-gradient(90deg, #0c6484, #1088ac); text-decoration: none; cursor: pointer;">
+          <span class="pyramid-num">4</span>
+          <span class="pyramid-name">Agents</span>
+          <span class="pyramid-desc">Specialist personas with tool scopes</span>
+        </a>
+        <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/agent-skills" target="_blank" style="margin: 0 2.7rem; background: linear-gradient(90deg, #077769, #08a08d); text-decoration: none; cursor: pointer;">
+          <span class="pyramid-num">5</span>
+          <span class="pyramid-name">Skills</span>
+          <span class="pyramid-desc">Demand-loaded expertise bundles</span>
+        </a>
+        <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/hooks" target="_blank" style="margin: 0 3.7rem; background: linear-gradient(90deg, #0a7f59, #0da977); text-decoration: none; cursor: pointer;">
+          <span class="pyramid-num">6</span>
+          <span class="pyramid-name">Hooks</span>
+          <span class="pyramid-desc">Deterministic lifecycle commands</span>
+        </a>
+        <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/agent-plugins" target="_blank" style="margin: 0 4.8rem; background: linear-gradient(90deg, #5635a0, #7850c0); text-decoration: none; cursor: pointer;">
+          <span class="pyramid-num">7</span>
+          <span class="pyramid-name">Plugins</span>
+          <span class="pyramid-desc">Composable: agents, skills, hooks & MCPs</span>
+        </a>
       </div>
-      <div style="width: 28%; display: flex; flex-direction: column; justify-content: flex-end; gap: 0.6rem;">
-        <div class="card" style="border-color: var(--theme-accent2); border-width: 2px;">
-          <h3 style="background: linear-gradient(135deg, #114D8B 0%, #38A4DC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 0.95em; margin: 0 0 0.3em; font-weight: 700;">🧩 Skills Ecosystem</h3>
-          <p><a href="https://agentskills.io/" target="_blank">agentskills.io</a> — open standard adopted by 15+ agent products.
-          Three distribution tiers: community (<a href="https://github.com/github/awesome-copilot" target="_blank">awesome-copilot</a>),
-          vendor (<a href="https://github.com/dotnet/skills" target="_blank">dotnet/skills</a>),
-          personal (<a href="https://github.com/PlagueHO/plagueho.skills" target="_blank">plagueho.skills</a>).</p>
-        </div>
-        <div class="card" style="border-color: #5635a0; border-width: 2px;">
-          <h3 style="background: linear-gradient(135deg, #5635a0 0%, #9c79e0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 0.95em; margin: 0 0 0.3em; font-weight: 700;">🧩 Plugins = Team in a Box</h3>
-          <p>A composable bundle of agents, skills, hooks & MCPs. One install, full engineering culture for any domain.</p>
-        </div>
+    </div>
+    <!-- /troubleshoot — full-width card -->
+    <div class="card" style="border-color: #c2410c; border-width: 2px; display: flex; align-items: center; gap: 0.6rem; padding: 0.45rem 0.85rem;">
+      <span style="font-size: 1.2em; flex-shrink: 0;">🔍</span>
+      <div>
+        <h3 style="background: linear-gradient(135deg, #c2410c 0%, #f97316 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 0.88em; margin: 0 0 0.1em; font-weight: 700;">/troubleshoot — Agent Chat Debug</h3>
+        <p style="margin: 0; font-size: 0.75em;">JSONL event tree: discovery → tool_calls → llm_request. <em>"Why did the AI do that?"</em></p>
+      </div>
+    </div>
+    <!-- 3 cards side-by-side below the pyramid -->
+    <div style="display: flex; gap: 0.7rem; align-items: stretch;">
+      <div class="card" style="flex: 1; border-color: var(--theme-accent2); border-width: 2px;">
+        <h3 style="background: linear-gradient(135deg, #114D8B 0%, #38A4DC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 0.95em; margin: 0 0 0.3em; font-weight: 700;">🧩 Skills Ecosystem</h3>
+        <p><a href="https://agentskills.io/" target="_blank">agentskills.io</a> — open standard adopted by 15+ agent products including GitHub Copilot.</p>
+      </div>
+      <div class="card" style="flex: 1; border-color: #5635a0; border-width: 2px;">
+        <h3 style="background: linear-gradient(135deg, #5635a0 0%, #9c79e0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 0.95em; margin: 0 0 0.3em; font-weight: 700;">🧩 Plugins = Team in a Box</h3>
+        <p>A composable bundle of agents, skills, hooks & MCPs. One install, full engineering culture for any domain.</p>
+      </div>
+      <div class="card" style="flex: 1; border-color: #0d6e6e; border-width: 2px;">
+        <h3 style="background: linear-gradient(135deg, #0d6e6e 0%, #14b8a6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 0.95em; margin: 0 0 0.3em; font-weight: 700;">🏢 Organizational Marketplace</h3>
+        <p>Common marketplaces: <a href="https://github.com/github/awesome-copilot" target="_blank">community</a>, <a href="https://github.com/dotnet/skills" target="_blank">vendor</a>, <a href="https://github.com/PlagueHO/plagueho.skills" target="_blank">personal</a> — or organizations create their own to share plugins, skills, and agents at scale.</p>
       </div>
     </div>
   </div>
@@ -308,7 +307,7 @@ transition: fade-out
     <div class="demo-item"><span class="check">▸</span> Show Sensei improving skill frontmatter quality</div>
   </div>
 
-  <img src="./images/section-2-troubleshoot.jpg" style="position: absolute; bottom: 1.2rem; right: 1.5rem; height: 420px; border-radius: 14px; opacity: 0.85; box-shadow: 0 8px 32px rgba(0,0,0,0.5);" alt="/troubleshoot meme" />
+  <img src="./images/section-2-troubleshoot.jpg" style="position: absolute; bottom: 1.2rem; left: 50%; transform: translateX(-50%); height: 630px; border-radius: 14px; opacity: 0; box-shadow: 0 8px 32px rgba(0,0,0,0.5); animation: fade-in-delayed 1s ease 3s forwards;" alt="/troubleshoot meme" />
 </div>
 
 <!--
@@ -353,45 +352,97 @@ transition: fade-out
 
 <div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
   <div class="slide-banner">
-    <h1>Determinism, Visibility & Orchestration</h1>
+    <h1>Determinism & Orchestration</h1>
     <img src="./images/github-copilot.png" class="banner-icon" alt="GitHub Copilot" />
   </div>
-  <div class="slide-body">
-    <div class="content-panel">
-      <div class="card-grid" style="flex: 1;">
-        <div class="card">
-          <div class="icon-circle">📐</div>
-          <h3>Spec Kit & SDD</h3>
-          <p>Specifications become executable — code serves specs, not the other way around. 8 slash commands: <code>/speckit.specify</code> → <code>.plan</code> → <code>.implement</code>. "Unit tests for English."</p>
+  <div class="slide-body" style="flex-direction: column; gap: 0.55rem; align-items: stretch; padding: 0.4rem 1.8rem 0.8rem;">
+    <!-- 3 tools — horizontal: icon left, heading + text right -->
+    <div style="display: flex; gap: 0.65rem; align-items: stretch; flex: 1;">
+      <!-- Spec Kit -->
+      <a href="https://github.com/github/spec-kit" target="_blank" class="card card-link" style="flex: 1; display: flex; flex-direction: row; align-items: flex-start; gap: 0.9rem; padding: 0.95rem 1.1rem; border-color: #c2410c; border-width: 2px;">
+        <div class="icon-circle" style="flex-shrink: 0; margin: 0; align-self: flex-start; background: linear-gradient(135deg, #c2410c, #f97316);">📐</div>
+        <div>
+          <h3 style="background: linear-gradient(135deg, #c2410c 0%, #f97316 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 0.35em; font-size: 1.05em; font-weight: 700;">Spec Kit &amp; SDD</h3>
+          <p style="margin: 0; font-size: 0.88em;">Specifications become executable — code serves specs, not the other way around. 8 slash commands: <code>/speckit.specify</code> → <code>.plan</code> → <code>.implement</code>. "Unit tests for English."</p>
         </div>
-        <div class="card">
-          <div class="icon-circle">⚙️</div>
-          <h3>GitHub Agentic Workflows</h3>
-          <p>Write <code>.md</code> workflows, compile to guarded Actions with <code>gh aw compile</code>. Three-layer security: substrate, configuration, plan-level trust with SafeOutputs.</p>
+        <span class="card-link-arrow">↗</span>
+      </a>
+      <!-- GitHub Agentic Workflows -->
+      <a href="https://github.com/github/gh-aw" target="_blank" class="card card-link" style="flex: 1; display: flex; flex-direction: row; align-items: flex-start; gap: 0.9rem; padding: 0.95rem 1.1rem; border-color: var(--theme-accent2); border-width: 2px;">
+        <div class="icon-circle" style="flex-shrink: 0; margin: 0; align-self: flex-start; background: linear-gradient(135deg, #085f92, #38A4DC);">⚙️</div>
+        <div>
+          <h3 style="background: linear-gradient(135deg, #085f92 0%, #38A4DC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 0.35em; font-size: 1.05em; font-weight: 700;">GitHub Agentic Workflows</h3>
+          <p style="margin: 0; font-size: 0.88em;">Write <code>.md</code> workflows, compile to guarded Actions with <code>gh aw compile</code>. Three-layer security: substrate, configuration, plan-level trust with SafeOutputs.</p>
         </div>
-        <div class="card">
-          <div class="icon-circle">🔍</div>
-          <h3>/troubleshoot</h3>
-          <p>The observability layer — JSONL debug logs, event trees, discovery/tool_call/llm_request tracing. Answers: "Why did the AI do what it did?"</p>
+        <span class="card-link-arrow">↗</span>
+      </a>
+      <!-- WorkIQ -->
+      <a href="https://aka.ms/workiq" target="_blank" class="card card-link" style="flex: 1; display: flex; flex-direction: row; align-items: flex-start; gap: 0.9rem; padding: 0.95rem 1.1rem; border-color: #5635a0; border-width: 2px;">
+        <div class="icon-circle" style="flex-shrink: 0; margin: 0; align-self: flex-start; background: linear-gradient(135deg, #5635a0, #7850c0);">💼</div>
+        <div>
+          <h3 style="background: linear-gradient(135deg, #5635a0 0%, #9c79e0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 0.35em; font-size: 1.05em; font-weight: 700;">WorkIQ &amp; Enterprise Context</h3>
+          <p style="margin: 0; font-size: 0.88em;">MCP bridge to Microsoft 365 — meetings, emails, Teams. Makes prompts like "build me a demo from the Zava meeting" operational.</p>
         </div>
-        <div class="card">
-          <div class="icon-circle">💼</div>
-          <h3>WorkIQ & Enterprise Context</h3>
-          <p>MCP bridge to Microsoft 365 — meetings, emails, Teams. Makes prompts like "build me a demo from the Zava meeting" operational.</p>
-        </div>
-      </div>
-      <div style="width: 28%; display: flex; flex-direction: column; gap: 0.5rem; justify-content: center;">
-        <div class="callout" style="font-size: 0.78em;">
-          <strong>SDD vs. Vibe Coding</strong><br/>
-          Vibe: one-shot → code. No traceability.<br/>
-          SDD: spec → plan → tasks → code. Every step auditable.
-        </div>
-        <div class="callout callout-teal" style="font-size: 0.78em;">
-          <strong>Key insight</strong><br/>
-          Better models helped, but <strong>better process helped more</strong>.
-        </div>
-      </div>
+        <span class="card-link-arrow">↗</span>
+      </a>
     </div>
+    <!-- HVE Core — RPI Workflow + Design Thinking (two columns) -->
+    <a href="https://microsoft.github.io/hve-core/" target="_blank" class="card card-link" style="flex: 1.3; padding: 0.75rem 1rem; display: flex; flex-direction: column; gap: 0.5rem; border-color: var(--theme-accent5); border-width: 2px;">
+      <span class="card-link-arrow">↗</span>
+      <div style="display: flex; gap: 1rem; align-items: stretch; flex: 1;">
+        <!-- LEFT: RPI -->
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between;">
+          <h3 style="background: linear-gradient(135deg, #114D8B 0%, #38A4DC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 0.35rem; font-size: 1.05em; font-weight: 700;">HVE Core — RPI Workflow</h3>
+          <p style="font-size: 0.88em; color: var(--theme-muted); margin: 0 0 0.4rem;">&ldquo;AI can&rsquo;t tell the difference between investigating and implementing. The fix is <strong>preventing AI from doing certain things at certain times</strong>.&rdquo;</p>
+          <div class="flow-pipeline" style="justify-content: flex-start;">
+            <div class="flow-step">🔍 Research</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-step">📋 Plan</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-step flow-step-active">⚡ Implement</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-step">✅ Review</div>
+          </div>
+          <p style="font-size: 0.82em; color: var(--theme-muted); margin: 0.3rem 0 0; font-style: italic;">Each phase produces artifacts. Context cleared between phases.</p>
+        </div>
+        <!-- RIGHT: Design Thinking -->
+        <div style="flex: 1; min-width: 0; border-left: 1px solid rgba(88,138,220,0.2); padding-left: 0.85rem; display: flex; flex-direction: column; justify-content: space-between;">
+          <h3 style="background: linear-gradient(135deg, #077769 0%, #14b8a6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 0.35rem; font-size: 1.05em; font-weight: 700;">Design Thinking + 10 Roles</h3>
+          <div style="display: flex; gap: 0.4rem; margin-bottom: 0.4rem;">
+            <div style="padding: 0.35rem 0.5rem; border-radius: 6px; background: rgba(221,107,32,0.08); font-size: 0.82em; text-align: center; flex: 1;">
+              <strong>Problem</strong><br/>Scope · Research · Synthesize
+            </div>
+            <div style="padding: 0.35rem 0.5rem; border-radius: 6px; background: rgba(15,108,141,0.08); font-size: 0.82em; text-align: center; flex: 1;">
+              <strong>Solution</strong><br/>Brainstorm · Concept · Prototype
+            </div>
+            <div style="padding: 0.35rem 0.5rem; border-radius: 6px; background: rgba(232,185,49,0.12); font-size: 0.82em; text-align: center; flex: 1;">
+              <strong>Validation</strong><br/>Hi-Fi · Test · Scale
+            </div>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.3rem;">
+            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">👨‍💻 Engineer</span>
+            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">📊 TPM</span>
+            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">🏗️ Architect</span>
+            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">🔒 Security</span>
+            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">📈 Data</span>
+            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">⚙️ SRE</span>
+            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">💼 BPM</span>
+            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">🆕 New</span>
+            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">🎨 UX</span>
+            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">🔧 Utility</span>
+          </div>
+        </div>
+      </div>
+    </a>
+    <!-- SDD vs. Vibe Coding tip -->
+    <a href="https://github.com/github/spec-kit" target="_blank" class="card card-link" style="display: flex; flex-direction: row; align-items: center; gap: 0.9rem; padding: 0.85rem 1.1rem; border-color: #0d6e6e; border-width: 2px;">
+      <div class="icon-circle" style="flex-shrink: 0; margin: 0; align-self: flex-start; background: linear-gradient(135deg, #0d6e6e, #14b8a6);">⚖️</div>
+      <div>
+        <h3 style="background: linear-gradient(135deg, #0d6e6e 0%, #14b8a6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 0.3em; font-size: 1.05em; font-weight: 700;">SDD vs. Vibe Coding</h3>
+        <p style="margin: 0; font-size: 0.88em;">Vibe: one-shot → code. No traceability. &nbsp;|&nbsp; SDD: spec → plan → tasks → code. Every step auditable, traceable, and reversible.</p>
+      </div>
+      <span class="card-link-arrow">↗</span>
+    </a>
   </div>
 </div>
 
@@ -420,48 +471,71 @@ transition: fade-out
     <h1>Scaling Intelligence Out</h1>
     <img src="./images/github-copilot.png" class="banner-icon" alt="GitHub Copilot" />
   </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.6rem;">
-    <div class="content-panel two-col-grid" style="align-items: stretch;">
-      <div style="display: flex; flex-direction: column; gap: 0.6rem;">
-        <p class="kicker" style="margin: 0;">From subagents to squads</p>
-        <div class="card" style="flex: 1;">
-          <h3>🔀 Subagents as a Primitive</h3>
-          <p>Three types: <code>search_subagent</code> (fast read-only), <code>execution_subagent</code> (command runner), <code>runSubagent</code> (general delegation). Each runs in its own context — parallel-safe, no contamination.</p>
-        </div>
-        <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent);">
-          <h3>📂 Squad — Durable Multi-Agent Teams</h3>
-          <p><code>.squad/</code> lives in your repo: team.md, routing.md, decisions.md, agent charters + history. Parallel fan-out. Memory persists in git — the team gets smarter the more you use it.</p>
-        </div>
-        <div class="callout" style="font-size: 0.78em; margin: 0;">
-          <strong>When does multi-agent pay off?</strong> When the context cost of one giant agent exceeds the coordination cost of several focused ones.
-        </div>
+  <div class="slide-body" style="flex-direction: column; gap: 0.55rem; align-items: stretch; padding: 0.4rem 1.8rem 0.8rem;">
+    <!-- Two-column main content -->
+    <div style="display: flex; gap: 0.65rem; align-items: stretch; flex: 1;">
+      <!-- LEFT: From subagents to squads -->
+      <div style="flex: 1.15; display: flex; flex-direction: column; gap: 0.55rem;">
+        <span style="background: linear-gradient(135deg, #114D8B 0%, #38A4DC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.2rem; font-weight: 700; line-height: 1.3;">From Subagents to Squads</span>
+        <a href="https://docs.github.com/en/copilot/reference/customization-cheat-sheet" target="_blank" class="card card-link" style="flex: 1; border: 2px solid var(--theme-accent2); padding: 0.95rem 1.1rem; display: flex; flex-direction: row; align-items: flex-start; gap: 0.9rem;">
+          <div class="icon-circle" style="flex-shrink: 0; background: linear-gradient(135deg, #085f92, #38A4DC);">🔀</div>
+          <div>
+            <h3 style="background: linear-gradient(135deg, #085f92 0%, #38A4DC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 0.35em; font-size: 1.15em; font-weight: 700;">Subagents as a Primitive</h3>
+            <p style="margin: 0; font-size: 0.96em;">Three types: <code>search_subagent</code> (fast read-only), <code>execution_subagent</code> (command runner), <code>runSubagent</code> (general delegation). Each runs in its own context — parallel-safe, no contamination.</p>
+          </div>
+          <span class="card-link-arrow">↗</span>
+        </a>
+        <a href="https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli" target="_blank" class="card card-link" style="flex: 1; border: 2px solid #15803d; padding: 0.95rem 1.1rem; display: flex; flex-direction: row; align-items: flex-start; gap: 0.9rem;">
+          <div class="icon-circle" style="flex-shrink: 0; background: linear-gradient(135deg, #15803d, #22c55e);">🚀</div>
+          <div>
+            <h3 style="background: linear-gradient(135deg, #15803d 0%, #22c55e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 0.35em; font-size: 1.15em; font-weight: 700;">Copilot CLI — Fleet Mode</h3>
+            <p style="margin: 0; font-size: 0.96em;">Headless, scriptable agent: <code>copilot -p "..." --allow-all-tools</code>. Dispatch one task across many repos in parallel. <code>/yolo</code> enables full auto-approval — purpose-built for CI pipelines and mass repo operations.</p>
+          </div>
+          <span class="card-link-arrow">↗</span>
+        </a>
+        <a href="https://github.com/bradygaster/squad" target="_blank" class="card card-link" style="flex: 1; border: 2px solid var(--theme-accent); padding: 0.95rem 1.1rem; display: flex; flex-direction: row; align-items: flex-start; gap: 0.9rem;">
+          <div class="icon-circle" style="flex-shrink: 0; background: linear-gradient(135deg, #c2410c, #f97316);">📂</div>
+          <div>
+            <h3 style="background: linear-gradient(135deg, #c2410c 0%, #f97316 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 0.35em; font-size: 1.15em; font-weight: 700;">Squad — Durable Multi-Agent Teams</h3>
+            <p style="margin: 0; font-size: 0.96em;"><code>.squad/</code> lives in your repo: team.md, routing.md, decisions.md, agent charters + history. Parallel fan-out. Memory persists in git — the team gets smarter the more you use it.</p>
+          </div>
+          <span class="card-link-arrow">↗</span>
+        </a>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-        <p class="kicker" style="margin: 0;">Monitoring, memory & recovery</p>
-        <div class="three-col-grid" style="flex: 1;">
-          <div class="card" style="text-align: center;">
+      <!-- RIGHT: Monitoring, memory & recovery -->
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.55rem;">
+        <span style="background: linear-gradient(135deg, #114D8B 0%, #38A4DC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.2rem; font-weight: 700; line-height: 1.3;">Monitoring, Memory &amp; Recovery</span>
+        <div style="display: flex; gap: 0.55rem; flex: 1; align-items: stretch;">
+          <a href="https://github.com/bradygaster/squad" target="_blank" class="card card-link" style="flex: 1; text-align: center; border: 2px solid var(--theme-accent5); padding: 0.9rem 0.7rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4rem;">
             <div class="icon-circle">📊</div>
-            <h3>Monitor</h3>
-            <p>Observe active, blocked, completed work. <code>/status</code>, <code>gh aw logs</code></p>
-          </div>
-          <div class="card" style="text-align: center;">
-            <div class="icon-circle">🧠</div>
-            <h3>Memory</h3>
-            <p>decisions.md, history.md, wisdom.md — all in git, all searchable</p>
-          </div>
-          <div class="card" style="text-align: center;">
-            <div class="icon-circle">🔄</div>
-            <h3>Recovery</h3>
-            <p>Checkpoint resume, SafeOutputs rollback, session persistence</p>
-          </div>
+            <h3 style="font-size: 1.1em; margin: 0 0 0.25em; background: linear-gradient(135deg, #114D8B 0%, #38A4DC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Monitor</h3>
+            <p style="font-size: 0.9em; margin: 0;">Observe active, blocked, completed work. <code>/status</code>, <code>gh aw logs</code></p>
+            <span class="card-link-arrow">↗</span>
+          </a>
+          <a href="https://github.com/bradygaster/squad" target="_blank" class="card card-link" style="flex: 1; text-align: center; border: 2px solid #5635a0; padding: 0.9rem 0.7rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4rem;">
+            <div class="icon-circle" style="background: linear-gradient(135deg, #5635a0, #7850c0);">🧠</div>
+            <h3 style="font-size: 1.1em; margin: 0 0 0.25em; background: linear-gradient(135deg, #5635a0 0%, #9c79e0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Memory</h3>
+            <p style="font-size: 0.9em; margin: 0;">decisions.md, history.md, wisdom.md — all in git, all searchable</p>
+            <span class="card-link-arrow">↗</span>
+          </a>
+          <a href="https://github.com/bradygaster/squad" target="_blank" class="card card-link" style="flex: 1; text-align: center; border: 2px solid #077769; padding: 0.9rem 0.7rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4rem;">
+            <div class="icon-circle" style="background: linear-gradient(135deg, #077769, #14b8a6);">🔄</div>
+            <h3 style="font-size: 1.1em; margin: 0 0 0.25em; background: linear-gradient(135deg, #077769 0%, #14b8a6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Recovery</h3>
+            <p style="font-size: 0.9em; margin: 0;">Checkpoint resume, SafeOutputs rollback, session persistence</p>
+            <span class="card-link-arrow">↗</span>
+          </a>
         </div>
-        <pre class="terminal-snippet" style="font-size: 0.72rem;">&#35; Squad parallel fan-out — You: "Team, build the login page"
+        <pre class="terminal-snippet" style="font-size: 0.86rem;">&#35; Squad parallel fan-out — You: "Team, build the login page"
 🏗️ Lead    — analyzing requirements
 ⚛️ Frontend — building login form         all launched
 🔧 Backend  — setting up auth endpoints   in parallel
 🧪 Tester   — writing tests from spec
 📋 Scribe   — logging everything</pre>
       </div>
+    </div>
+    <!-- Bottom: callout card -->
+    <div class="card" style="border: 2px solid #c2410c; padding: 0.85rem 1.1rem; background: rgba(254,91,56,0.04);">
+      <p style="margin: 0; font-size: 0.96em;"><strong>When does multi-agent pay off?</strong> When the context cost of one giant agent exceeds the coordination cost of several focused ones.</p>
     </div>
   </div>
 </div>
@@ -540,150 +614,7 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 9 — BEYOND DEVELOPMENT                         ~4 min
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
-  <div class="slide-banner">
-    <h1>Beyond Development: More Roles, More Artifacts</h1>
-    <img src="./images/github-copilot.png" class="banner-icon" alt="GitHub Copilot" />
-  </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.6rem;">
-    <div class="content-panel" style="flex-direction: column; gap: 0.6rem;">
-      <div class="two-col-grid" style="gap: 0.8rem;">
-        <div>
-          <p class="kicker" style="margin-bottom: 0.3rem;">HVE Core — RPI Workflow</p>
-          <p style="font-size: 0.82em; color: var(--theme-muted); margin: 0 0 0.5rem;">
-            "AI can't tell the difference between investigating and implementing.
-            The solution isn't teaching AI to be smarter — it's <strong>preventing AI from
-            doing certain things at certain times</strong>."
-          </p>
-          <div class="flow-pipeline">
-            <div class="flow-step">🔍 Research</div>
-            <span class="flow-arrow">→</span>
-            <div class="flow-step">📋 Plan</div>
-            <span class="flow-arrow">→</span>
-            <div class="flow-step flow-step-active">⚡ Implement</div>
-            <span class="flow-arrow">→</span>
-            <div class="flow-step">✅ Review</div>
-          </div>
-          <p style="font-size: 0.75em; color: var(--theme-muted); margin: 0.3rem 0 0; font-style: italic;">
-            Each phase produces artifacts. Context cleared between phases. The constraint changes the goal.
-          </p>
-        </div>
-        <div>
-          <p class="kicker" style="margin-bottom: 0.3rem;">Design Thinking + 10 Roles</p>
-          <div class="three-col-grid" style="gap: 0.35rem;">
-            <div style="padding: 0.3rem 0.5rem; border-radius: 8px; background: rgba(221, 107, 32, 0.08); font-size: 0.72em; text-align: center;">
-              <strong>Problem</strong><br/>Scope · Research · Synthesize
-            </div>
-            <div style="padding: 0.3rem 0.5rem; border-radius: 8px; background: rgba(15, 108, 141, 0.08); font-size: 0.72em; text-align: center;">
-              <strong>Solution</strong><br/>Brainstorm · Concept · Prototype
-            </div>
-            <div style="padding: 0.3rem 0.5rem; border-radius: 8px; background: rgba(232, 185, 49, 0.12); font-size: 0.72em; text-align: center;">
-              <strong>Validation</strong><br/>Hi-Fi · Test · Scale
-            </div>
-          </div>
-          <div style="display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.4rem;">
-            <span style="padding: 0.15rem 0.45rem; border-radius: 6px; background: rgba(21, 48, 71, 0.06); font-size: 0.68em;">👨‍💻 Engineer</span>
-            <span style="padding: 0.15rem 0.45rem; border-radius: 6px; background: rgba(21, 48, 71, 0.06); font-size: 0.68em;">📊 TPM</span>
-            <span style="padding: 0.15rem 0.45rem; border-radius: 6px; background: rgba(21, 48, 71, 0.06); font-size: 0.68em;">🏗️ Architect</span>
-            <span style="padding: 0.15rem 0.45rem; border-radius: 6px; background: rgba(21, 48, 71, 0.06); font-size: 0.68em;">🔒 Security</span>
-            <span style="padding: 0.15rem 0.45rem; border-radius: 6px; background: rgba(21, 48, 71, 0.06); font-size: 0.68em;">📈 Data</span>
-            <span style="padding: 0.15rem 0.45rem; border-radius: 6px; background: rgba(21, 48, 71, 0.06); font-size: 0.68em;">⚙️ SRE</span>
-            <span style="padding: 0.15rem 0.45rem; border-radius: 6px; background: rgba(21, 48, 71, 0.06); font-size: 0.68em;">💼 BPM</span>
-            <span style="padding: 0.15rem 0.45rem; border-radius: 6px; background: rgba(21, 48, 71, 0.06); font-size: 0.68em;">🆕 New</span>
-            <span style="padding: 0.15rem 0.45rem; border-radius: 6px; background: rgba(21, 48, 71, 0.06); font-size: 0.68em;">🎨 UX</span>
-            <span style="padding: 0.15rem 0.45rem; border-radius: 6px; background: rgba(21, 48, 71, 0.06); font-size: 0.68em;">🔧 Utility</span>
-          </div>
-        </div>
-      </div>
-      <div class="callout" style="margin: 0; font-size: 0.82em;">
-        <strong>The important shift:</strong> Better agentic systems don't just generate code faster. They make
-        <strong>research</strong>, <strong>planning</strong>, and <strong>review</strong> first-class outputs that more roles can work on.
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--
-Two key stories:
-
-LEFT — HVE Core RPI:
-  - The core insight: AI writes first, thinks never. The fix is constraints.
-  - Walk the pipeline: Research → Plan → Implement → Review
-  - Each produces artifacts, context cleared between phases
-  - "When AI knows it can't implement during research, it optimizes for truth"
-
-RIGHT — Design Thinking + 10 Roles:
-  - Three spaces (Problem, Solution, Validation)
-  - 10 role-specific entry points — PMs, architects, analysts, UX, security
-  - Not just engineering anymore
-
-Bottom callout: "Research, planning, and review are first-class outputs"
--->
-
----
-transition: fade-out
----
-
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 10 — DEMO 3: Sessions + RPI / HVE              ~4 min
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="demo-shell">
-  <div class="demo-icon">🧪</div>
-  <h1 class="demo-title">Demo 3: Sessions + RPI Workflow</h1>
-  <p class="demo-subtitle">VS Code sessions make multi-role collaboration visible — RPI shows constrained AI</p>
-
-  <div class="demo-badge">🎬 ~4 minutes</div>
-
-  <div class="demo-checklist">
-    <div class="demo-item"><span class="check">▸</span> Show VS Code sessions — multiple roles in one surface</div>
-    <div class="demo-item"><span class="check">▸</span> Run RPI Research phase — AI investigates, doesn't implement</div>
-    <div class="demo-item"><span class="check">▸</span> Show research artifact — citations, file references, evidence</div>
-    <div class="demo-item"><span class="check">▸</span> Transition to Plan phase — clear context, structured output</div>
-  </div>
-</div>
-
-<!--
-DEMO SCRIPT — Sessions + RPI / HVE (~4 min)
-═══════════════════════════════════════════
-
-SETUP: VS Code with HVE Core configured and a repo with existing code.
-Pre-create a research artifact so you have a fallback.
-
-1. VS CODE SESSIONS (1 min)
-   - Show the sessions panel / experience
-   - Point out: multiple participants, shared artifacts, visible state
-   - "This is how PMs and architects participate in the same surface"
-
-2. RPI RESEARCH PHASE (2 min)
-   - Chat: use the Task Researcher agent
-   - Give it a task: "Add error handling to the export function"
-   - Watch: agent SEARCHES for existing patterns, CITES file+line
-   - Show output: research document with evidence, not code
-   - Key message: "It stopped optimizing for 'plausible code' and
-     started optimizing for 'verified truth'"
-
-3. PLAN PHASE (1 min)
-   - Clear context (/clear or new chat)
-   - Switch to Task Planner agent
-   - Feed it the research document
-   - Show: structured plan with success criteria, checkboxes
-   - "Every step traces back to research"
-
-4. WRAP (30 sec)
-   - "The constraint changes the goal. Separate investigating from
-     implementing, and both get better."
--->
-
----
-transition: fade-out
----
-
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 11 — PROTOTYPE-FIRST WORKFLOWS                 ~3 min
+     SLIDE 9 — PROTOTYPE-FIRST WORKFLOWS                  ~3 min
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
@@ -691,64 +622,100 @@ transition: fade-out
     <h1>Prototype-First: Concept to Deploy</h1>
     <img src="./images/azure.png" class="banner-icon" alt="Azure" />
   </div>
-  <div style="padding: 0.3rem 1.8rem 0; display: flex; align-items: baseline; gap: 0.7rem;">
-    <strong style="font-size: 1.85rem; color: var(--theme-deep); font-weight: 700; letter-spacing: -0.02em;">az prototype</strong>
-    <span style="color: var(--theme-muted); font-size: 1.6rem; line-height: 1.3;">— AI-powered Azure prototype CLI &nbsp;·&nbsp;
-      <a href="https://learn.microsoft.com/cli/azure/prototype?view=azure-cli-latest" target="_blank" style="font-size: 1.6rem;">docs on Microsoft Learn ↗</a>
+  <div style="padding: 0.2rem 1.8rem 0; display: flex; align-items: baseline; gap: 0.6rem;">
+    <strong style="font-size: 1.5rem; color: var(--theme-deep); font-weight: 700; letter-spacing: -0.02em;">az prototype</strong>
+    <span style="color: var(--theme-muted); font-size: 1.3rem; line-height: 1.3;">— AI-powered Azure prototype CLI &nbsp;·&nbsp;
+      <a href="https://learn.microsoft.com/cli/azure/prototype?view=azure-cli-latest" target="_blank" style="font-size: 1.3rem;">docs on Microsoft Learn ↗</a>
     </span>
   </div>
-  <div class="slide-body" style="align-items: stretch; padding: 0.5rem 1.8rem 1rem;">
+  <div class="slide-body" style="align-items: stretch; padding: 0.4rem 1.8rem 0.5rem;">
     <div class="content-panel" style="gap: 1rem; flex: 1; align-items: stretch;">
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.7rem; min-width: 0;">
-        <div class="callout" style="font-size: 1.0em;">
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem; min-width: 0;">
+        <div class="callout" style="font-size: 0.9em;">
           <strong>A working app beats a beautiful mockup</strong> — because the cost of
           generating the first useful slice is now lower than reviewing a slide deck.
         </div>
-        <pre class="terminal-snippet" style="font-size: 1.19rem; flex: 1;">az extension add --name prototype
-az prototype init --name retail-assistant --template ai-app
-az prototype design --interactive
-az prototype build
-az prototype deploy
-az prototype analyze costs        &#35; T-shirt pricing (S/M/L)
-az prototype analyze error        &#35; Even accepts screenshots!
-az prototype generate speckit     &#35; Bridge to SDD
-az prototype generate backlog     &#35; to GitHub Issues</pre>
+        <div class="terminal-snippet" style="font-size: 1.0rem; flex: 1; font-family: monospace; position: relative; overflow: auto;">
+          <div class="cli-line" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
+            <span class="cli-text">az extension add --name prototype</span>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('az extension add --name prototype')" title="Copy">⧉</button>
+          </div>
+          <div class="cli-line" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
+            <span class="cli-text">az prototype init --name retail-assistant --template ai-app</span>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('az prototype init --name retail-assistant --template ai-app')" title="Copy">⧉</button>
+          </div>
+          <div class="cli-line cli-comment" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
+            <span class="cli-text"># az prototype init --name retail-assistant --template ai-app --iac-tool bicep</span>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('az prototype init --name retail-assistant --template ai-app --iac-tool bicep')" title="Copy">⧉</button>
+          </div>
+          <div class="cli-line" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
+            <span class="cli-text">az prototype design --interactive</span>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('az prototype design --interactive')" title="Copy">⧉</button>
+          </div>
+          <div class="cli-line" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
+            <span class="cli-text">az prototype build</span>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('az prototype build')" title="Copy">⧉</button>
+          </div>
+          <div class="cli-line" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
+            <span class="cli-text">az prototype deploy</span>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('az prototype deploy')" title="Copy">⧉</button>
+          </div>
+          <div class="cli-line" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
+            <span class="cli-text">az prototype analyze costs        <span class="cli-dim"># T-shirt pricing (S/M/L)</span></span>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('az prototype analyze costs')" title="Copy">⧉</button>
+          </div>
+          <div class="cli-line" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
+            <span class="cli-text">az prototype analyze error        <span class="cli-dim"># Even accepts screenshots!</span></span>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('az prototype analyze error')" title="Copy">⧉</button>
+          </div>
+          <div class="cli-line" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
+            <span class="cli-text">az prototype generate speckit     <span class="cli-dim"># Bridge to SDD</span></span>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('az prototype generate speckit')" title="Copy">⧉</button>
+          </div>
+          <div class="cli-line" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
+            <span class="cli-text">az prototype generate backlog     <span class="cli-dim"># to GitHub Issues</span></span>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('az prototype generate backlog')" title="Copy">⧉</button>
+          </div>
+        </div>
       </div>
-      <div style="width: 33%; display: flex; flex-direction: column; gap: 0.5rem; min-width: 0;">
+      <div style="width: 33%; display: flex; flex-direction: column; gap: 0.3rem; min-width: 0;">
         <div style="display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.85rem; border-radius: 10px; background: linear-gradient(135deg, var(--theme-accent5) 0%, var(--theme-accent2) 100%); margin-bottom: 0.35rem; box-shadow: 0 4px 14px rgba(17,77,139,0.3);">
           <span style="font-size: 1.5rem; line-height: 1;">🤖</span>
           <div style="display: flex; flex-direction: column; gap: 0.05rem;">
-            <span style="font-size: 1.1rem; font-weight: 700; color: white; letter-spacing: -0.01em; line-height: 1.2;">11 built-in agents</span>
+            <span style="font-size: 1.1rem; font-weight: 700; color: white; letter-spacing: -0.01em; line-height: 1.2;">12 built-in agents</span>
             <span style="font-size: 0.7rem; color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: 0.12em;">AI-powered specialists</span>
           </div>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 0.3rem; font-size: 1.08em; flex: 1;">
-          <div style="display: flex; align-items: center; gap: 0.45rem; padding: 0.28rem 0.55rem; border-radius: 7px; background: rgba(221, 107, 32, 0.08);">
+        <div style="display: flex; flex-direction: column; gap: 0.12rem; font-size: 0.82em; flex: 1;">
+          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(221, 107, 32, 0.08);">
             <span>📋</span><strong>biz-analyst</strong> — always engaged
           </div>
-          <div style="display: flex; align-items: center; gap: 0.45rem; padding: 0.28rem 0.55rem; border-radius: 7px; background: rgba(21, 48, 71, 0.05);">
+          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(21, 48, 71, 0.05);">
             <span>🏗️</span><strong>cloud-architect</strong> — design
           </div>
-          <div style="display: flex; align-items: center; gap: 0.45rem; padding: 0.28rem 0.55rem; border-radius: 7px; background: rgba(221, 107, 32, 0.08);">
+          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(221, 107, 32, 0.08);">
             <span>💰</span><strong>cost-analyst</strong> — pricing
           </div>
-          <div style="display: flex; align-items: center; gap: 0.45rem; padding: 0.28rem 0.55rem; border-radius: 7px; background: rgba(21, 48, 71, 0.05);">
+          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(21, 48, 71, 0.05);">
             <span>🔒</span><strong>security-reviewer</strong>
           </div>
-          <div style="display: flex; align-items: center; gap: 0.45rem; padding: 0.28rem 0.55rem; border-radius: 7px; background: rgba(221, 107, 32, 0.08);">
+          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(221, 107, 32, 0.08);">
             <span>👨‍💻</span><strong>app-developer</strong> — code
           </div>
-          <div style="display: flex; align-items: center; gap: 0.45rem; padding: 0.28rem 0.55rem; border-radius: 7px; background: rgba(21, 48, 71, 0.05);">
+          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(21, 48, 71, 0.05);">
             <span>🧱</span><strong>terraform / bicep</strong> — IaC
           </div>
-          <div style="display: flex; align-items: center; gap: 0.45rem; padding: 0.28rem 0.55rem; border-radius: 7px; background: rgba(221, 107, 32, 0.08);">
+          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(221, 107, 32, 0.08);">
             <span>🧪</span><strong>qa-engineer</strong> — testing
           </div>
-          <div style="display: flex; align-items: center; gap: 0.45rem; padding: 0.28rem 0.55rem; border-radius: 7px; background: rgba(21, 48, 71, 0.05);">
+          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(21, 48, 71, 0.05);">
             <span>📝</span><strong>documentation</strong>
           </div>
-          <div style="display: flex; align-items: center; gap: 0.45rem; padding: 0.28rem 0.55rem; border-radius: 7px; background: rgba(221, 107, 32, 0.08);">
+          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(221, 107, 32, 0.08);">
             <span>📡</span><strong>monitoring-agent</strong> — observability
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(88, 138, 220, 0.1);">
+            <span>🛡️</span><strong>governor</strong> — policy enforcement
           </div>
         </div>
         <div class="callout callout-teal" style="font-size: 0.95em; margin: 0;">
@@ -781,12 +748,12 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 12 — DEMO 4: az prototype                      ~4 min
+     SLIDE 12 — DEMO 3: az prototype                      ~4 min
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="demo-shell">
   <div class="demo-icon">⚡</div>
-  <h1 class="demo-title">Demo 4: az prototype</h1>
+  <h1 class="demo-title">Demo 3: az prototype</h1>
   <p class="demo-subtitle">From concept to deployed Azure resources in one iterative flow</p>
 
   <div class="demo-badge">🎬 ~4 minutes</div>
@@ -800,7 +767,7 @@ transition: fade-out
 </div>
 
 <!--
-DEMO SCRIPT — az prototype (~4 min)
+DEMO SCRIPT — Demo 3: az prototype (~4 min)
 ════════════════════════════════════
 
 SETUP: Azure CLI with prototype extension installed. Azure subscription

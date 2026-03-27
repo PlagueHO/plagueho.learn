@@ -401,6 +401,45 @@
   padding: 0.85rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   border: 1px solid var(--theme-line);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* ── Clickable card links ── */
+
+a.card-link,
+.card-link {
+  color: var(--theme-ink);
+  border-bottom: none !important;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+}
+
+a.card-link:hover,
+.card-link:hover {
+  border-bottom-color: transparent !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
+}
+
+a.card-link p,
+a.card-link span {
+  color: var(--theme-muted);
+}
+
+.card-link-arrow {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.65rem;
+  font-size: 0.68em;
+  color: var(--theme-muted);
+  opacity: 0.35;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.card-link:hover .card-link-arrow {
+  opacity: 0.9;
 }
 
 .card h3 {
@@ -907,6 +946,11 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes fade-in-delayed {
+  from { opacity: 0; }
+  to   { opacity: 0.85; }
+}
+
 @keyframes orb-drift {
   0%,  100% { transform: translate(0, 0) scale(1); }
   33%        { transform: translate(18px, -14px) scale(1.06); }
@@ -1283,6 +1327,55 @@
 
 .terminal-snippet .comment {
   color: #6b7280;
+}
+
+/* ── Interactive CLI lines with copy buttons ── */
+.cli-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.1rem 0.3rem;
+  border-radius: 5px;
+  position: relative;
+  min-height: 1.6em;
+}
+
+.cli-line:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.cli-text {
+  flex: 1;
+  white-space: pre;
+}
+
+.cli-dim {
+  color: #6b7280;
+}
+
+.cli-comment .cli-text {
+  color: #6b7280;
+  font-style: italic;
+}
+
+.copy-btn {
+  opacity: 0;
+  transition: opacity 0.15s ease, background 0.15s ease;
+  background: rgba(88, 138, 220, 0.15);
+  border: 1px solid rgba(88, 138, 220, 0.35);
+  border-radius: 4px;
+  color: #93c5fd;
+  font-size: 0.75rem;
+  padding: 0.05rem 0.35rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+  line-height: 1.4;
+}
+
+.copy-btn:hover {
+  background: rgba(88, 138, 220, 0.35);
+  color: white;
 }
 
 /* ══════════════════════════════════════════════════════════════
