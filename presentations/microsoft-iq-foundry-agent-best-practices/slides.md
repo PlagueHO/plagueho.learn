@@ -477,30 +477,27 @@ transition: fade-out
         </v-clicks>
       </div>
       <div>
-        <div class="callout" style="font-size:0.82rem;margin-bottom:0.6rem;">
+        <div class="comparison-grid" style="gap:0.5rem;margin-bottom:0.5rem;">
+          <div class="comparison-col before" style="padding:0.6rem 0.8rem;">
+            <span class="comparison-label before">❌ TOOL PROLIFERATION</span>
+            <div style="font-size:0.78rem;margin-top:0.3rem;">
+              <div style="font-family:monospace;font-size:0.7rem;background:rgba(0,0,0,0.06);padding:0.3rem 0.5rem;border-radius:4px;margin-bottom:0.3rem;line-height:1.6;">GetCustomer()<br/>GetInvoices()<br/>GetBalance()<br/>GetPaymentHistory()<br/>GetCreditLimit()<br/>…× 100s more</div>
+              <p style="color:var(--theme-muted);font-size:0.72rem;margin:0;">Agent must chain 3-5 calls per task.<br/>Selection accuracy drops with every tool added.</p>
+            </div>
+          </div>
+          <div class="comparison-col after" style="padding:0.6rem 0.8rem;">
+            <span class="comparison-label after">✅ INTELLIGENT TOOLS</span>
+            <div style="font-size:0.78rem;margin-top:0.3rem;">
+              <div style="font-family:monospace;font-size:0.7rem;background:rgba(0,0,0,0.06);padding:0.3rem 0.5rem;border-radius:4px;margin-bottom:0.3rem;line-height:1.6;"><em>"What is my outstanding<br/>invoice value for<br/>Customer X?"</em></div>
+              <p style="color:var(--theme-muted);font-size:0.72rem;margin:0;">One intelligent tool handles orchestration internally.<br/><strong>Fewer tools = better selection = reliable agents.</strong></p>
+            </div>
+          </div>
+        </div>
+        <div class="callout" style="font-size:0.82rem;margin-bottom:0.5rem;">
           💡 Treat tool definitions like <strong>API contracts</strong> — they're the interface between the agent and the real world.
         </div>
-        <div class="callout-teal callout" style="font-size:0.78rem;margin-bottom:0.6rem;">
-          ⚠️ <strong>Tool proliferation is real.</strong> Don't wrap every REST endpoint as a tool. Instead of <code>GetCustomer</code> + <code>GetInvoices</code> + <code>GetBalance</code>, build one intelligent tool: <em>"What is my outstanding invoice value for Customer X?"</em>
-        </div>
-        <div style="font-size:0.7rem;color:var(--theme-muted);margin-bottom:0.3rem;font-weight:600;">MCP TOOL REGISTRATION EXAMPLE</div>
-        <div style="background:#1e1e1e;color:#d4d4d4;padding:0.8rem 1rem;border-radius:6px;font-size:0.72rem;font-family:monospace;line-height:1.5;margin:0;overflow:hidden;white-space:pre;">&#123;
-  "name": "get_flight_schedule",
-  "description": "Retrieves the current flight
-    schedule for a specific runway",
-  "parameters": &#123;
-    "type": "object",
-    "properties": &#123;
-      "runway": &#123;
-        "type": "string",
-        "description": "Runway identifier (e.g. 27L)"
-      &#125;
-    &#125;,
-    "required": ["runway"]
-  &#125;
-&#125;</div>
-        <div class="callout-teal callout" style="font-size:0.78rem;margin-top:0.5rem;">
-          The <code>description</code> field is the single most important factor in tool selection accuracy.
+        <div class="callout-teal callout" style="font-size:0.78rem;">
+          The tool <code>description</code> field is the single most important factor in selection accuracy.
         </div>
       </div>
     </div>
