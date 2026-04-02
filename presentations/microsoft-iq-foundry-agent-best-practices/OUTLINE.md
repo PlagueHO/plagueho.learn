@@ -91,11 +91,11 @@ What should attendees take away from this presentation?
 - **Content**:
   - (1) Clear tool descriptions — precision matters
   - (2) Schema validation — define inputs/outputs
-  - (3) Scoped tool sets — don't overload
+  - (3) Intelligent tools over tool sprawl — don't wrap every REST endpoint as a tool. 1,000 tiny deterministic tools (GetCustomer, GetInvoices, GetBalance) kills selection accuracy. Build intelligent tools that accept natural language: "What is my outstanding invoice value for Customer X?"
   - (4) Fallback strategies — circuit breakers, retries
   - (5) Evaluation — test tool selection in CI
   - Code snippet showing MCP tool registration example
-- **Speaker Notes**: "Tool reliability is an engineering discipline, not a prompt trick. Treat tool definitions like API contracts."
+- **Speaker Notes**: "Tool reliability is an engineering discipline, not a prompt trick. Treat tool definitions like API contracts. Watch out for tool sprawl — the anti-pattern of wrapping every endpoint as a separate tool."
 - **Duration**: ~2.5 min
 - **Animations**: Progressive reveal of fundamentals
 
@@ -156,3 +156,4 @@ Track changes to the presentation as it evolves.
 | Date | Change | Reason |
 |------|--------|--------|
 | 2026-04-02 | Initial outline created | New presentation for Microsoft Asia Partner CTO Community Episode 1 |
+| 2026-04-02 | Added tool sprawl vs intelligent tools concept to slide 8 | Key anti-pattern: wrapping every REST endpoint as a tool kills selection accuracy |

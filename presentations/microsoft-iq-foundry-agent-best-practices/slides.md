@@ -464,7 +464,7 @@ transition: fade-out
         </div>
         <div class="takeaway-item" style="margin-bottom:0.4rem;">
           <span class="takeaway-num">3</span>
-          <span class="takeaway-text"><strong>Scoped tool sets</strong> — Don't give an agent 200 tools. Scope to the task domain. Fewer tools = better selection accuracy.</span>
+          <span class="takeaway-text"><strong>Intelligent tools, not tool sprawl</strong> — 1,000 tiny tools (GetCustomer, GetInvoices, GetBalance…) kills selection accuracy. Build intelligent tools: <em>"What is my outstanding invoice value for Customer X?"</em></span>
         </div>
         <div class="takeaway-item" style="margin-bottom:0.4rem;">
           <span class="takeaway-num">4</span>
@@ -479,6 +479,9 @@ transition: fade-out
       <div>
         <div class="callout" style="font-size:0.82rem;margin-bottom:0.6rem;">
           💡 Treat tool definitions like <strong>API contracts</strong> — they're the interface between the agent and the real world.
+        </div>
+        <div class="callout-teal callout" style="font-size:0.78rem;margin-bottom:0.6rem;">
+          ⚠️ <strong>Tool sprawl is real.</strong> Don't wrap every REST endpoint as a tool. Instead of <code>GetCustomer</code> + <code>GetInvoices</code> + <code>GetBalance</code>, build one intelligent tool: <em>"What is my outstanding invoice value for Customer X?"</em>
         </div>
         <div style="font-size:0.7rem;color:var(--theme-muted);margin-bottom:0.3rem;font-weight:600;">MCP TOOL REGISTRATION EXAMPLE</div>
         <div style="background:#1e1e1e;color:#d4d4d4;padding:0.8rem 1rem;border-radius:6px;font-size:0.72rem;font-family:monospace;line-height:1.5;margin:0;overflow:hidden;white-space:pre;">&#123;
@@ -507,10 +510,14 @@ transition: fade-out
 <!--
 This is the practical slide. Tool reliability is an engineering
 discipline, not a prompt trick. Walk through each principle with a
-click. The code example shows MCP tool registration — emphasise that
-the description field is how the model decides which tool to call.
-Bad description = wrong tool selected. Evaluation is critical:
-test your agent's tool selection like you test your APIs.
+click. Emphasise tool sprawl — the anti-pattern of wrapping every
+REST endpoint as a separate tool. Instead, build intelligent tools
+that accept natural language and handle orchestration internally.
+Example: instead of GetCustomer + GetInvoices + GetBalance (3 tool
+calls the agent must chain), build one tool that answers "What is my
+outstanding invoice value for Customer X?" directly. The code example
+shows MCP tool registration — the description field is how the model
+decides which tool to call. Bad description = wrong tool selected.
 -->
 
 ---
