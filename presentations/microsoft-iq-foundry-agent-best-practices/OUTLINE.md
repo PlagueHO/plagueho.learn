@@ -91,7 +91,7 @@ What should attendees take away from this presentation?
 - **Content**:
   - (1) Clear tool descriptions — precision matters
   - (2) Schema validation — define inputs/outputs
-  - (3) Intelligent tools over tool proliferation — don't wrap every REST endpoint as a tool. 1,000 tiny deterministic tools (GetCustomer, GetInvoices, GetBalance) kills selection accuracy. Build intelligent tools that accept natural language: "What is my outstanding invoice value for Customer X?"
+  - (3) Intelligent tools over tool proliferation — don't wrap every REST endpoint as a tool. 1,000 tiny deterministic tools (GetFlightSchedule, GetRunwayStatus, GetMaintenanceLog) kills selection accuracy. Build intelligent tools that accept natural language: "Is runway 27L safe to reopen given current maintenance and weather?"
   - (4) Fallback strategies — circuit breakers, retries
   - (5) Evaluation — test tool selection in CI
   - Code snippet showing MCP tool registration example

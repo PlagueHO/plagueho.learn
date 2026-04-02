@@ -464,7 +464,7 @@ transition: fade-out
         </div>
         <div class="takeaway-item" style="margin-bottom:0.4rem;">
           <span class="takeaway-num">3</span>
-          <span class="takeaway-text"><strong>Intelligent tools, not tool proliferation</strong> — 1,000 tiny tools (GetCustomer, GetInvoices, GetBalance…) kills selection accuracy. Build intelligent tools: <em>"What is my outstanding invoice value for Customer X?"</em></span>
+          <span class="takeaway-text"><strong>Intelligent tools, not tool proliferation</strong> — 1,000 tiny tools (GetFlightSchedule, GetRunwayStatus, GetMaintenanceLog…) kills selection accuracy. Build intelligent tools: <em>"Is runway 27L safe to reopen?"</em></span>
         </div>
         <div class="takeaway-item" style="margin-bottom:0.4rem;">
           <span class="takeaway-num">4</span>
@@ -481,14 +481,14 @@ transition: fade-out
           <div class="comparison-col before" style="padding:0.6rem 0.8rem;">
             <span class="comparison-label before">❌ TOOL PROLIFERATION</span>
             <div style="font-size:0.78rem;margin-top:0.3rem;">
-              <div style="font-family:monospace;font-size:0.7rem;background:rgba(0,0,0,0.06);padding:0.3rem 0.5rem;border-radius:4px;margin-bottom:0.3rem;line-height:1.6;">GetCustomer()<br/>GetInvoices()<br/>GetBalance()<br/>GetPaymentHistory()<br/>GetCreditLimit()<br/>…× 100s more</div>
+              <div style="font-family:monospace;font-size:0.7rem;background:rgba(0,0,0,0.06);padding:0.3rem 0.5rem;border-radius:4px;margin-bottom:0.3rem;line-height:1.6;">GetFlightSchedule()<br/>GetRunwayStatus()<br/>GetMaintenanceLog()<br/>GetWeatherReport()<br/>GetCrewRoster()<br/>…× 100s more</div>
               <p style="color:var(--theme-muted);font-size:0.72rem;margin:0;">Agent must chain 3-5 calls per task.<br/>Selection accuracy drops with every tool added.</p>
             </div>
           </div>
           <div class="comparison-col after" style="padding:0.6rem 0.8rem;">
             <span class="comparison-label after">✅ INTELLIGENT TOOLS</span>
             <div style="font-size:0.78rem;margin-top:0.3rem;">
-              <div style="font-family:monospace;font-size:0.7rem;background:rgba(0,0,0,0.06);padding:0.3rem 0.5rem;border-radius:4px;margin-bottom:0.3rem;line-height:1.6;"><em>"What is my outstanding<br/>invoice value for<br/>Customer X?"</em></div>
+              <div style="font-family:monospace;font-size:0.7rem;background:rgba(0,0,0,0.06);padding:0.3rem 0.5rem;border-radius:4px;margin-bottom:0.3rem;line-height:1.6;"><em>"Is runway 27L safe to<br/>reopen given current<br/>maintenance and weather?"</em></div>
               <p style="color:var(--theme-muted);font-size:0.72rem;margin:0;">One intelligent tool handles orchestration internally.<br/><strong>Fewer tools = better selection = reliable agents.</strong></p>
             </div>
           </div>
@@ -510,9 +510,10 @@ discipline, not a prompt trick. Walk through each principle with a
 click. Emphasise tool proliferation — the anti-pattern of wrapping every
 REST endpoint as a separate tool. Instead, build intelligent tools
 that accept natural language and handle orchestration internally.
-Example: instead of GetCustomer + GetInvoices + GetBalance (3 tool
-calls the agent must chain), build one tool that answers "What is my
-outstanding invoice value for Customer X?" directly. The code example
+Example: instead of GetFlightSchedule + GetRunwayStatus + GetMaintenanceLog +
+GetWeatherReport (4 tool calls the agent must chain), build one tool
+that answers "Is runway 27L safe to reopen given current maintenance
+and weather?" directly.The code example
 shows MCP tool registration — the description field is how the model
 decides which tool to call. Bad description = wrong tool selected.
 -->
