@@ -1171,3 +1171,196 @@
   color: #7dd3f7;
   -webkit-text-fill-color: #7dd3f7;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   AGENT PATTERN GRID — three-column pattern comparison
+   ══════════════════════════════════════════════════════════════ */
+
+.agent-pattern-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+  align-items: stretch;
+}
+
+.agent-pattern-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--theme-line);
+  box-shadow: 0 6px 20px rgba(17, 77, 139, 0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.agent-pattern-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(17, 77, 139, 0.12);
+}
+
+.agent-pattern-card.pattern-responses {
+  border-top: 4px solid #78909c;
+}
+
+.agent-pattern-card.pattern-hosted {
+  border-top: 4px solid var(--theme-accent2);
+}
+
+.agent-pattern-card.pattern-prompt {
+  border-top: 4px solid var(--iq-foundry);
+}
+
+.agent-pattern-label {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0.15rem 0.55rem;
+  border-radius: 6px;
+  color: #5a6a78;
+  background: rgba(16, 57, 84, 0.07);
+  align-self: flex-start;
+}
+
+.agent-pattern-label-highlight {
+  color: var(--theme-accent5);
+  background: rgba(56, 164, 220, 0.1);
+}
+
+.agent-pattern-label-governed {
+  color: #0a5e0a;
+  background: rgba(16, 124, 16, 0.1);
+}
+
+.agent-pattern-subtitle {
+  margin: 0;
+  font-size: 0.62rem;
+  color: var(--theme-muted);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* Diagram — vertical stack of boxes */
+.agent-pattern-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 0.35rem 0;
+}
+
+.apd-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  width: 100%;
+  padding: 0.25rem 0.4rem;
+  border-radius: 8px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-align: center;
+  border: 1px solid var(--theme-line);
+  line-height: 1.3;
+}
+
+.apd-arrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--theme-accent2);
+  line-height: 1;
+}
+
+.apd-you {
+  background: rgba(16, 57, 84, 0.06);
+  color: var(--theme-deep);
+  border-color: rgba(16, 57, 84, 0.15);
+}
+
+.apd-framework {
+  background: rgba(91, 95, 199, 0.08);
+  color: var(--react-reason);
+  border-color: rgba(91, 95, 199, 0.2);
+}
+
+.apd-react {
+  background: rgba(56, 164, 220, 0.06);
+  border-color: rgba(56, 164, 220, 0.18);
+  flex-wrap: wrap;
+}
+
+.apd-foundry {
+  background: linear-gradient(135deg, rgba(17, 77, 139, 0.08), rgba(56, 164, 220, 0.08));
+  color: var(--theme-accent5);
+  border-color: rgba(17, 77, 139, 0.18);
+}
+
+.apd-agentsvc {
+  background: linear-gradient(135deg, rgba(56, 164, 220, 0.1), rgba(17, 77, 139, 0.1));
+  color: var(--theme-accent5);
+  border-color: rgba(56, 164, 220, 0.25);
+  box-shadow: 0 2px 6px rgba(56, 164, 220, 0.1);
+}
+
+.apd-config {
+  background: rgba(16, 124, 16, 0.06);
+  color: #0a5e0a;
+  border-color: rgba(16, 124, 16, 0.18);
+}
+
+.apd-agentsvc-full {
+  background: linear-gradient(135deg, rgba(16, 124, 16, 0.06), rgba(56, 164, 220, 0.08));
+  color: var(--theme-accent5);
+  border-color: rgba(16, 124, 16, 0.2);
+  box-shadow: 0 2px 8px rgba(16, 124, 16, 0.08);
+  flex-direction: column;
+  padding: 0.3rem 0.4rem;
+}
+
+/* Pros / Cons section */
+.agent-pattern-proscons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-top: auto;
+}
+
+.agent-pc-section {
+  padding: 0.2rem 0.35rem;
+  border-radius: 6px;
+}
+
+.agent-pc-section.agent-pros {
+  background: rgba(16, 124, 16, 0.04);
+}
+
+.agent-pc-section.agent-cons {
+  background: rgba(254, 91, 56, 0.04);
+}
+
+.agent-pc-header {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.05rem;
+}
+
+.agent-pc-section ul {
+  margin: 0;
+  padding-left: 0.85rem;
+  list-style: disc;
+}
+
+.agent-pc-section li {
+  font-size: 0.58rem;
+  line-height: 1.45;
+  color: var(--theme-muted);
+  margin: 0;
+}
+
+.agent-pc-section li + li {
+  margin-top: 0.05rem;
+}

@@ -105,7 +105,7 @@ transition: slide-up
     <h1>Agentic Tool Evolution</h1>
   </div>
   <div class="slide-body" style="flex-direction:column;gap:0.3rem;align-items:stretch;">
-    <div class="hero-quote" style="align-self:center;padding:0.35rem 1.2rem;font-size:1.2rem;">
+    <div class="hero-quote" style="align-self:center;padding:0.35rem 1.2rem;font-size:1.8rem;text-align:center;justify-content:center;max-width:none;white-space:nowrap;">
       <span class="hero-quote-emoji">😰</span>
       <span>An agent without tools is just a <em>chatbot with anxiety.</em></span>
     </div>
@@ -142,8 +142,8 @@ transition: slide-up
       <div class="comparison-col before" v-click="5">
         <span class="comparison-label before">Bad tool contract</span>
         <div class="panel" style="padding:0.5rem 0.8rem;">
-          <p style="margin:0 0 0.3rem;font-family:monospace;font-size:1.35rem;color:var(--theme-deep);">get_gate_status</p>
-          <ul class="dense-list" style="margin:0;">
+          <p style="margin:0 0 0.3rem;font-family:monospace;font-size:1.69rem;color:var(--theme-deep);">get_gate_status</p>
+          <ul class="dense-list" style="margin:0;font-size:1.54rem;">
             <li>Returns data, but agent can't act on it</li>
             <li>Supervisor still plans the response manually</li>
             <li>Weak semantic signal for the model</li>
@@ -153,8 +153,8 @@ transition: slide-up
       <div class="comparison-col after" v-click="6">
         <span class="comparison-label after">Good tool contract</span>
         <div class="panel" style="padding:0.5rem 0.8rem;">
-          <p style="margin:0 0 0.3rem;font-family:monospace;font-size:1.35rem;color:var(--theme-deep);">create_gate_disruption_remediation_plan</p>
-          <ul class="dense-list" style="margin:0;">
+          <p style="margin:0 0 0.3rem;font-family:monospace;font-size:1.69rem;color:var(--theme-deep);">create_gate_disruption_remediation_plan</p>
+          <ul class="dense-list" style="margin:0;font-size:1.54rem;">
             <li>Description explains when to invoke it</li>
             <li>Parameters: gate, failure type, time horizon</li>
             <li>Agent reasons about full operational response</li>
@@ -163,7 +163,7 @@ transition: slide-up
       </div>
     </div>
     <div class="callout-teal callout" style="font-size:1.44rem;max-width:none;" v-click="7">
-      The moat is not that you have an agent. The moat is that your smart knowledge tools encode governed operational reasoning customers can consume repeatedly.
+      Don't ship tools — ship intelligence. Model + tools + instructions = outcomes customers can't build themselves.
     </div>
   </div>
 </div>
@@ -174,47 +174,106 @@ transition: fade-out
 
 <div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
   <div class="slide-banner">
-    <h1>Foundry Runtime + Agent Choice</h1>
+    <h1>Three Ways to Build Agents with Foundry</h1>
     <img src="./images/azure.png" class="banner-icon" alt="Azure" />
   </div>
-  <div class="slide-body" style="flex-direction:column;gap:0.8rem;align-items:stretch;">
-    <div class="panel" style="padding:1rem 1.1rem;">
-      <p class="kicker" style="color:var(--theme-accent2);">Foundry Agent Service v2</p>
-      <div class="flow-pipeline" style="justify-content:center;flex-wrap:wrap;row-gap:0.45rem;margin:0.35rem 0 0.55rem;">
-        <span class="flow-step flow-step-active">Ops request</span>
-        <span class="flow-arrow">→</span>
-        <span class="react-phase reason">Reason</span>
-        <span class="flow-arrow">→</span>
-        <span class="react-phase action">Tool calls</span>
-        <span class="flow-arrow">→</span>
-        <span class="react-phase observe">Observe</span>
-        <span class="flow-arrow">↺</span>
-        <span class="flow-step">Governance</span>
+  <div class="slide-body" style="flex-direction:column;gap:0.45rem;align-items:stretch;">
+    <p style="margin:0;text-align:center;color:var(--theme-muted);font-size:0.82rem;">The ReAct loop (Reason → Act → Observe) can be implemented at different levels — from fully code-owned to fully platform-managed.</p>
+    <div class="agent-pattern-grid">
+      <div class="agent-pattern-card pattern-responses" v-click>
+        <span class="agent-pattern-label">Responses Agent</span>
+        <p class="agent-pattern-subtitle">Foundry Models Direct · Your Compute</p>
+        <div class="agent-pattern-diagram">
+          <span class="apd-box apd-you">Your Code</span>
+          <span class="apd-arrow">↕</span>
+          <span class="apd-box apd-framework">Agent Framework</span>
+          <span class="apd-arrow">↕</span>
+          <span class="apd-box apd-react"><span class="react-phase reason" style="font-size:0.65rem;padding:0.1rem 0.4rem;">Reason</span> <span class="react-phase action" style="font-size:0.65rem;padding:0.1rem 0.4rem;">Act</span> <span class="react-phase observe" style="font-size:0.65rem;padding:0.1rem 0.4rem;">Observe</span></span>
+          <span class="apd-arrow">↕</span>
+          <span class="apd-box apd-foundry">Foundry Models</span>
+        </div>
+        <div class="agent-pattern-proscons">
+          <div class="agent-pc-section agent-pros">
+            <span class="agent-pc-header">✅ Pros</span>
+            <ul>
+              <li>Full control over orchestration logic</li>
+              <li>Flexible model and tool selection</li>
+              <li>Host anywhere (your infra)</li>
+            </ul>
+          </div>
+          <div class="agent-pc-section agent-cons">
+            <span class="agent-pc-header">⚠️ Cons</span>
+            <ul>
+              <li>You manage state and scaling</li>
+              <li>No built-in governance or versioning</li>
+              <li>More code to build and maintain</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <p style="margin:0;text-align:center;color:var(--theme-muted);font-size:0.88rem;">Foundry orchestrates the loop, tool access, and enterprise controls so the airport pilot can move from prototype to real control-room usage.</p>
+      <div class="agent-pattern-card pattern-hosted" v-click>
+        <span class="agent-pattern-label agent-pattern-label-highlight">Hosted Agent <span style="font-size:0.6rem;opacity:0.7;">(preview)</span></span>
+        <p class="agent-pattern-subtitle">Agent Service v2 · Your Code on Foundry Infra</p>
+        <div class="agent-pattern-diagram">
+          <span class="apd-box apd-you">Your Code</span>
+          <span class="apd-arrow">↕</span>
+          <span class="apd-box apd-framework">Agent Framework</span>
+          <span class="apd-arrow">↕</span>
+          <span class="apd-box apd-react"><span class="react-phase reason" style="font-size:0.65rem;padding:0.1rem 0.4rem;">Reason</span> <span class="react-phase action" style="font-size:0.65rem;padding:0.1rem 0.4rem;">Act</span> <span class="react-phase observe" style="font-size:0.65rem;padding:0.1rem 0.4rem;">Observe</span></span>
+          <span class="apd-arrow">↕</span>
+          <span class="apd-box apd-agentsvc">Agent Service Runtime</span>
+        </div>
+        <div class="agent-pattern-proscons">
+          <div class="agent-pc-section agent-pros">
+            <span class="agent-pc-header">✅ Pros</span>
+            <ul>
+              <li>Custom logic with managed infra</li>
+              <li>Foundry identity, scaling, and observability</li>
+              <li>Publishable with versioned endpoints</li>
+            </ul>
+          </div>
+          <div class="agent-pc-section agent-cons">
+            <span class="agent-pc-header">⚠️ Cons</span>
+            <ul>
+              <li>Requires containerization</li>
+              <li>You still own orchestration code</li>
+              <li>Preview — limited networking support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="agent-pattern-card pattern-prompt" v-click>
+        <span class="agent-pattern-label agent-pattern-label-governed">Prompt Agent</span>
+        <p class="agent-pattern-subtitle">Agent Service v2 · Fully Managed</p>
+        <div class="agent-pattern-diagram">
+          <span class="apd-box apd-config">Instructions + Model + Tools</span>
+          <span class="apd-arrow">↕</span>
+          <span class="apd-box apd-agentsvc-full"><span class="react-phase reason" style="font-size:0.65rem;padding:0.1rem 0.4rem;">Reason</span> <span class="react-phase action" style="font-size:0.65rem;padding:0.1rem 0.4rem;">Act</span> <span class="react-phase observe" style="font-size:0.65rem;padding:0.1rem 0.4rem;">Observe</span><br/><span style="font-size:0.6rem;color:var(--theme-muted);">Agent Service Runtime</span></span>
+          <span class="apd-arrow">↕</span>
+          <span class="apd-box apd-foundry">Foundry Tools + Models</span>
+        </div>
+        <div class="agent-pattern-proscons">
+          <div class="agent-pc-section agent-pros">
+            <span class="agent-pc-header">✅ Pros</span>
+            <ul>
+              <li>No code — portal or API/SDK config</li>
+              <li>Built-in governance and versioning</li>
+              <li>Tool calling managed by the runtime</li>
+            </ul>
+          </div>
+          <div class="agent-pc-section agent-cons">
+            <span class="agent-pc-header">⚠️ Cons</span>
+            <ul>
+              <li>No custom orchestration logic</li>
+              <li>Limited to platform-supported tools</li>
+              <li>Less flexibility for complex workflows</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="comparison-grid" style="align-items:stretch;">
-      <div class="comparison-col before" v-click>
-        <span class="comparison-label before">Responses Agent</span>
-        <h3>Code-owned and fast</h3>
-        <ul class="dense-list">
-          <li>Rapid iteration in application code</li>
-          <li>Flexible for prototyping and experiments</li>
-          <li>Best when speed and ownership dominate</li>
-        </ul>
-      </div>
-      <div class="comparison-col after" v-click>
-        <span class="comparison-label after">Foundry Agent</span>
-        <h3>Versioned and governed</h3>
-        <ul class="dense-list">
-          <li>Managed lifecycle and platform controls</li>
-          <li>Clearer versioning and operational governance</li>
-          <li>Best when piloting into production operations</li>
-        </ul>
-      </div>
-    </div>
-    <div class="callout" style="font-size:0.94rem;text-align:center;max-width:none;" v-click>
-      <strong>Decision:</strong> speed and code ownership versus governance and lifecycle control.
+    <div class="callout" style="font-size:0.78rem;text-align:center;max-width:none;" v-click>
+      <strong>Choose your pattern:</strong> More code ownership ← → More platform governance. Hosted Agents bridge the gap — your framework, Foundry's runtime.
     </div>
   </div>
 </div>
