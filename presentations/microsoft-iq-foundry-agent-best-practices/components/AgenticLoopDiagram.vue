@@ -109,6 +109,7 @@ onUnmounted(() => {
   gap: 0.5rem;
   margin: 0.15rem auto 0.3rem;
   min-height: 180px;
+  transform: translateX(8px);
 }
 
 .al-ring {
@@ -184,7 +185,7 @@ onUnmounted(() => {
 /* Action — right */
 .al-action {
   top: 50%;
-  right: -6px;
+  right: -30px;
   transform: translateY(-50%);
 }
 .al-action.active {
@@ -226,7 +227,8 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
-  width: 220px;
+  width: 290px;
+  margin-left: 2.2rem;
   flex-shrink: 0;
 }
 
@@ -234,6 +236,7 @@ onUnmounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 0.2rem;
+  width: 100%;
   padding: 0.3rem 0.75rem;
   border-radius: 999px;
   font-size: 1.02rem;

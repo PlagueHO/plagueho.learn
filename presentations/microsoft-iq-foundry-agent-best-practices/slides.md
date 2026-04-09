@@ -105,9 +105,12 @@ transition: slide-up
     <h1>Agentic Tool Evolution</h1>
   </div>
   <div class="slide-body" style="flex-direction:column;gap:0.3rem;align-items:stretch;">
-    <div class="hero-quote" style="align-self:center;padding:0.35rem 1.2rem;font-size:1.8rem;text-align:center;justify-content:center;max-width:none;white-space:nowrap;">
-      <span class="hero-quote-emoji">😰</span>
-      <span>An agent without tools is just a <em>chatbot with anxiety.</em></span>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.25rem;">
+      <div class="thought-bubble">
+        <span class="thought-bubble-emoji">😰</span>
+        <span>An agent without tools is just a <em>chatbot with anxiety.</em></span>
+      </div>
+      <div class="thought-dots"><span></span><span></span><span></span></div>
     </div>
     <div class="highlight-strip">
       <div class="highlight-pill" v-click="2">
@@ -162,8 +165,8 @@ transition: slide-up
         </div>
       </div>
     </div>
-    <div class="callout-teal callout" style="font-size:1.44rem;max-width:none;" v-click="7">
-      Don't ship tools — ship intelligence. Model + tools + instructions = outcomes customers can't build themselves.
+    <div class="callout-teal callout" style="font-size:1.08rem;max-width:none;text-align:center;white-space:nowrap;" v-click="7">
+      Don't ship tools — ship intelligence 🧠. → Model + tools + instructions = outcomes customers can't build themselves.
     </div>
   </div>
 </div>
@@ -172,109 +175,110 @@ transition: slide-up
 transition: fade-out
 ---
 
-<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
+<div class="absolute inset-0 flex flex-col slide-compact-layout" style="background: var(--theme-bg-cool);">
   <div class="slide-banner">
-    <h1>Three Ways to Build Agents with Foundry</h1>
+    <h1>Three Ways* to Build Agents with Foundry</h1>
     <img src="./images/azure.png" class="banner-icon" alt="Azure" />
   </div>
-  <div class="slide-body" style="flex-direction:column;gap:0.45rem;align-items:stretch;">
-    <p style="margin:0;text-align:center;color:var(--theme-muted);font-size:0.82rem;">The ReAct loop (Reason → Act → Observe) can be implemented at different levels — from fully code-owned to fully platform-managed.</p>
+  <div class="slide-body" style="flex-direction:column;align-items:stretch;">
+    <div style="display:flex;align-items:center;justify-content:center;gap:1.2rem;margin:10px 0;" v-click>
+      <img src="./images/microsoft-foundry-icon.png" alt="Microsoft Foundry" style="width:55px;height:55px;flex-shrink:0;" />
+      <div style="background:rgba(0,120,212,0.08);border:2px solid #0078d4;border-radius:24px;padding:0.6rem 1.4rem;font-size:0.95rem;line-height:1.5;color:var(--theme-ink);">
+        <strong>With Microsoft Foundry and Microsoft Agent Framework…</strong><br/>
+        The ReAct loop (Reason → Act → Observe) can be implemented at different levels — from fully code-owned to fully platform-managed.
+      </div>
+    </div>
     <div class="agent-pattern-grid">
       <div class="agent-pattern-card pattern-responses" v-click>
-        <span class="agent-pattern-label">Responses Agent</span>
-        <p class="agent-pattern-subtitle">Foundry Models Direct · Your Compute</p>
-        <div class="agent-pattern-diagram">
-          <span class="apd-box apd-you">Your Code</span>
+        <a href="https://learn.microsoft.com/azure/foundry/agents/overview" target="_blank" class="agent-pattern-label" style="text-decoration:none;">Responses Agent</a>
+        <p class="agent-pattern-subtitle">Your App calls Tools and Manages Agent State and uses Foundry Models</p>
+        <div class="agent-pattern-diagram" style="gap:0.15rem;">
+          <span class="apd-box apd-you" style="border: 2px solid rgba(16,57,84,0.2); padding: 0.3rem 0.35rem; flex-direction: column; gap: 0.1rem;">
+            <strong style="font-size: 0.60rem; color: var(--theme-deep);">Your App (Your Infra)</strong>
+            <span class="apd-box apd-framework" style="font-size:0.60rem;width:100%;padding:0.15rem;">Agent Framework</span>
+            <div style="display:flex;gap:0.15rem;width:100%;">
+              <span class="apd-box apd-tools" style="font-size:0.58rem;flex:1;padding:0.15rem;">Your Tools</span>
+              <span class="apd-box" style="font-size:0.58rem;flex:1;padding:0.15rem;background:rgba(16,57,84,0.06);border-color:rgba(16,57,84,0.15);color:var(--theme-deep);">State Management</span>
+            </div>
+          </span>
           <span class="apd-arrow">↕</span>
-          <span class="apd-box apd-framework">Agent Framework</span>
-          <span class="apd-arrow">↕</span>
-          <span class="apd-box apd-react"><span class="react-phase reason" style="font-size:0.65rem;padding:0.1rem 0.4rem;">Reason</span> <span class="react-phase action" style="font-size:0.65rem;padding:0.1rem 0.4rem;">Act</span> <span class="react-phase observe" style="font-size:0.65rem;padding:0.1rem 0.4rem;">Observe</span></span>
-          <span class="apd-arrow">↕</span>
-          <span class="apd-box apd-foundry">Foundry Models</span>
+          <span class="apd-box apd-foundry" style="font-size:0.63rem;padding:0.2rem 0.3rem;">Foundry Models (Chat Completions API)</span>
+          <span class="apd-box apd-mcp" style="font-size:0.60rem;padding:0.2rem 0.4rem;width:100%;border:1.5px dashed rgba(120,144,156,0.3);">External Tools / MCP Servers<br/><span style="font-size:0.52rem;color:var(--theme-muted);">(Work IQ · Fabric IQ · Custom)</span></span>
         </div>
-        <div class="agent-pattern-proscons">
-          <div class="agent-pc-section agent-pros">
-            <span class="agent-pc-header">✅ Pros</span>
-            <ul>
-              <li>Full control over orchestration logic</li>
-              <li>Flexible model and tool selection</li>
-              <li>Host anywhere (your infra)</li>
-            </ul>
-          </div>
-          <div class="agent-pc-section agent-cons">
-            <span class="agent-pc-header">⚠️ Cons</span>
-            <ul>
-              <li>You manage state and scaling</li>
-              <li>No built-in governance or versioning</li>
-              <li>More code to build and maintain</li>
-            </ul>
-          </div>
+        <div class="agent-pattern-traits">
+          <ul>
+            <li>Full orchestration control — you own the loop, state, and retry logic</li>
+            <li>Tool calling by your app — any tool, any protocol, full flexibility</li>
+            <li>No built-in governance — you manage identity, auth, and security</li>
+            <li>No built-in versioning — you handle deployment and rollback</li>
+            <li>Host anywhere — your infra, your cloud, your rules</li>
+            <li>Observability, evaluation, and monitoring are your responsibility</li>
+          </ul>
         </div>
       </div>
       <div class="agent-pattern-card pattern-hosted" v-click>
-        <span class="agent-pattern-label agent-pattern-label-highlight">Hosted Agent <span style="font-size:0.6rem;opacity:0.7;">(preview)</span></span>
-        <p class="agent-pattern-subtitle">Agent Service v2 · Your Code on Foundry Infra</p>
-        <div class="agent-pattern-diagram">
-          <span class="apd-box apd-you">Your Code</span>
+        <a href="https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents" target="_blank" class="agent-pattern-label agent-pattern-label-highlight" style="text-decoration:none;">Hosted Agent (preview)</a>
+        <p class="agent-pattern-subtitle">Your App calls Foundry Agent Service • Your App hosted in Agent Service • Tools called by Agent Service</p>
+        <div class="agent-pattern-diagram" style="gap:0.15rem;">
+          <span class="apd-box apd-config" style="font-size:0.63rem;padding:0.2rem 0.3rem;background:rgba(56,164,220,0.06);border-color:rgba(56,164,220,0.18);color:var(--theme-accent5);">Your App calls Hosted Agent</span>
           <span class="apd-arrow">↕</span>
-          <span class="apd-box apd-framework">Agent Framework</span>
-          <span class="apd-arrow">↕</span>
-          <span class="apd-box apd-react"><span class="react-phase reason" style="font-size:0.65rem;padding:0.1rem 0.4rem;">Reason</span> <span class="react-phase action" style="font-size:0.65rem;padding:0.1rem 0.4rem;">Act</span> <span class="react-phase observe" style="font-size:0.65rem;padding:0.1rem 0.4rem;">Observe</span></span>
-          <span class="apd-arrow">↕</span>
-          <span class="apd-box apd-agentsvc">Agent Service Runtime</span>
+          <span class="apd-box apd-agentsvc" style="border: 2px solid rgba(56, 164, 220, 0.3); padding: 0.3rem 0.35rem; flex-direction: column; gap: 0.1rem;">
+            <strong style="font-size: 0.60rem; color: var(--theme-accent2);">Foundry Agent Service</strong>
+            <span class="apd-box apd-you" style="font-size: 0.60rem; width: 100%; padding: 0.2rem 0.3rem;">Hosted Agent (Container)
+              <div style="display:flex;flex-direction:column;align-items:center;gap:0.05rem;width:100%;margin-top:0.08rem;border-top:1px solid rgba(16,57,84,0.1);padding-top:0.08rem;">
+                <span class="apd-box apd-framework" style="margin:0;font-size:0.55rem;width:100%;padding:0.12rem;">Agent Framework</span>
+                <span class="apd-box" style="margin:0;font-size:0.55rem;width:100%;padding:0.12rem;background:rgba(91,95,199,0.06);border-color:rgba(91,95,199,0.15);color:var(--react-reason);">Hosting Adapter</span>
+              </div>
+            </span>
+            <div style="display:flex;gap:0.15rem;width:100%;">
+              <span class="apd-box apd-foundry" style="font-size:0.58rem;flex:1;padding:0.15rem;">Foundry Models</span>
+              <span class="apd-box apd-tools" style="font-size:0.58rem;flex:1;padding:0.15rem;">Foundry Tools</span>
+            </div>
+          </span>
+          <span class="apd-box apd-mcp" style="font-size:0.60rem;padding:0.2rem 0.4rem;width:100%;border:1.5px dashed rgba(56,164,220,0.3);">External Tools / MCP Servers<br/><span style="font-size:0.52rem;color:var(--theme-muted);">(Work IQ · Fabric IQ · Custom)</span></span>
         </div>
-        <div class="agent-pattern-proscons">
-          <div class="agent-pc-section agent-pros">
-            <span class="agent-pc-header">✅ Pros</span>
-            <ul>
-              <li>Custom logic with managed infra</li>
-              <li>Foundry identity, scaling, and observability</li>
-              <li>Publishable with versioned endpoints</li>
-            </ul>
-          </div>
-          <div class="agent-pc-section agent-cons">
-            <span class="agent-pc-header">⚠️ Cons</span>
-            <ul>
-              <li>Requires containerization</li>
-              <li>You still own orchestration code</li>
-              <li>Preview — limited networking support</li>
-            </ul>
-          </div>
+        <div class="agent-pattern-traits">
+          <ul>
+            <li>Custom orchestration code — your logic runs inside Foundry Agent Service</li>
+            <li>Tool calling by Agent Service — Foundry tools + external tools / MCP</li>
+            <li>Foundry identity, scaling, and observability built-in</li>
+            <li>Publishable with versioned endpoints via Agent ID</li>
+            <li>You still manage orchestration code complexity and testing</li>
+            <li>Currently in preview — some features still evolving</li>
+          </ul>
         </div>
       </div>
       <div class="agent-pattern-card pattern-prompt" v-click>
-        <span class="agent-pattern-label agent-pattern-label-governed">Prompt Agent</span>
-        <p class="agent-pattern-subtitle">Agent Service v2 · Fully Managed</p>
-        <div class="agent-pattern-diagram">
-          <span class="apd-box apd-config">Instructions + Model + Tools</span>
+        <a href="https://learn.microsoft.com/azure/foundry/agents/overview#prompt-agents" target="_blank" class="agent-pattern-label agent-pattern-label-governed" style="text-decoration:none;">Prompt Agent</a>
+        <p class="agent-pattern-subtitle">Your App calls Foundry Agent Service • Fully hosted by Foundry • Tools called by Agent Service</p>
+        <div class="agent-pattern-diagram" style="gap:0.15rem;">
+          <span class="apd-box apd-config" style="font-size:0.63rem;padding:0.2rem 0.3rem;">Your App calls Agent Service (Responses API)</span>
           <span class="apd-arrow">↕</span>
-          <span class="apd-box apd-agentsvc-full"><span class="react-phase reason" style="font-size:0.65rem;padding:0.1rem 0.4rem;">Reason</span> <span class="react-phase action" style="font-size:0.65rem;padding:0.1rem 0.4rem;">Act</span> <span class="react-phase observe" style="font-size:0.65rem;padding:0.1rem 0.4rem;">Observe</span><br/><span style="font-size:0.6rem;color:var(--theme-muted);">Agent Service Runtime</span></span>
-          <span class="apd-arrow">↕</span>
-          <span class="apd-box apd-foundry">Foundry Tools + Models</span>
+          <span class="apd-box apd-agentsvc" style="border: 2px solid rgba(16,124,16,0.3); padding: 0.3rem 0.35rem; flex-direction: column; gap: 0.1rem;">
+            <strong style="font-size: 0.60rem; color: #0a5e0a;">Foundry Agent Service (Fully Managed)</strong>
+            <span class="apd-box" style="font-size:0.60rem;width:100%;padding:0.15rem;background:rgba(16,124,16,0.06);border-color:rgba(16,124,16,0.18);color:#0a5e0a;">Instructions + Model + Tools Config</span>
+            <div style="display:flex;gap:0.15rem;width:100%;">
+              <span class="apd-box apd-foundry" style="font-size:0.58rem;flex:1;padding:0.15rem;">Foundry Models</span>
+              <span class="apd-box apd-tools" style="font-size:0.58rem;flex:1;padding:0.15rem;">Foundry Tools</span>
+            </div>
+          </span>
+          <span class="apd-box apd-mcp" style="font-size:0.60rem;padding:0.2rem 0.4rem;width:100%;border:1.5px dashed rgba(16,124,16,0.3);">External Tools / MCP Servers<br/><span style="font-size:0.52rem;color:var(--theme-muted);">(Work IQ · Fabric IQ · Custom)</span></span>
         </div>
-        <div class="agent-pattern-proscons">
-          <div class="agent-pc-section agent-pros">
-            <span class="agent-pc-header">✅ Pros</span>
-            <ul>
-              <li>No code — portal or API/SDK config</li>
-              <li>Built-in governance and versioning</li>
-              <li>Tool calling managed by the runtime</li>
-            </ul>
-          </div>
-          <div class="agent-pc-section agent-cons">
-            <span class="agent-pc-header">⚠️ Cons</span>
-            <ul>
-              <li>No custom orchestration logic</li>
-              <li>Limited to platform-supported tools</li>
-              <li>Less flexibility for complex workflows</li>
-            </ul>
-          </div>
+        <div class="agent-pattern-traits">
+          <ul>
+            <li>No orchestration code required — configure via portal or API/SDK</li>
+            <li>Tool calling by Foundry Agent Service — but tools can't be assigned at runtime</li>
+            <li>Strong governance and security provided by Agent ID</li>
+            <li>Built-in versioning support</li>
+            <li>Good fit for M365 Copilot &amp; Copilot Studio integration</li>
+            <li>Limited orchestration control — no custom logic</li>
+          </ul>
         </div>
       </div>
     </div>
-    <div class="callout" style="font-size:0.78rem;text-align:center;max-width:none;" v-click>
-      <strong>Choose your pattern:</strong> More code ownership ← → More platform governance. Hosted Agents bridge the gap — your framework, Foundry's runtime.
-    </div>
+    <p style="margin:0;text-align:right;font-size:0.62rem;color:var(--theme-muted);position:absolute;bottom:0.5rem;right:1rem;">
+      * There is a 4th way: <a href="https://learn.microsoft.com/azure/foundry/agents/concepts/workflow" target="_blank">Workflow Agent (preview)</a>, but we aren't covering those in this session.
+    </p>
   </div>
 </div>
 
@@ -287,53 +291,113 @@ transition: slide-left
     <h1>IQ Layers in Action</h1>
     <img src="./images/azure.png" class="banner-icon" alt="Azure" />
   </div>
-  <div class="slide-body" style="flex-direction:column;gap:0.75rem;align-items:stretch;">
+  <div class="slide-body" style="flex-direction:column;gap:0.4rem;align-items:stretch;">
     <div class="iq-grid">
       <div class="iq-pillar iq-work" v-click>
-        <div class="iq-icon">🏢</div>
-        <h3>Work IQ</h3>
-        <p><strong>People context</strong></p>
-        <ul class="dense-list" style="font-size:0.82rem;">
-          <li>Maintenance dispatcher emails about repair ETA</li>
-          <li>Shift-manager conversations on crew availability</li>
-          <li>Organizational coordination signals</li>
+        <a href="https://learn.microsoft.com/microsoft-agent-365/tooling-servers-overview" target="_blank" class="iq-header-pill iq-header-work"><span class="iq-header-icon"><img src="./images/microsoft-work-iq.avif" alt="Work IQ" /></span> Work IQ: Organizational context</a>
+        <ul class="dense-list" style="font-size:0.88rem;line-height:1.2;">
+          <li>Dispatcher emails &amp; meeting notes on repair ETA</li>
+          <li>Shift-manager Teams chats on crew availability</li>
+          <li>Calendar and scheduling signals across crews</li>
+          <li>SharePoint docs, OneDrive files, and org signals</li>
         </ul>
       </div>
       <div class="iq-pillar iq-fabric" v-click>
-        <div class="iq-icon">📊</div>
-        <h3>Fabric IQ</h3>
-        <p><strong>Business data</strong></p>
-        <ul class="dense-list" style="font-size:0.82rem;">
+        <a href="https://learn.microsoft.com/fabric/iq/overview" target="_blank" class="iq-header-pill iq-header-fabric"><span class="iq-header-icon"><img src="./images/microsoft-fabric-icon.svg" alt="Fabric IQ" /></span> Fabric IQ: Business Rules and Data</a>
+        <ul class="dense-list" style="font-size:0.88rem;line-height:1.2;">
           <li>Gate availability and flight schedules</li>
           <li>Crew rosters and duty windows</li>
           <li>Semantic understanding of operations data</li>
         </ul>
       </div>
       <div class="iq-pillar iq-foundry" v-click>
-        <div class="iq-icon">🧠</div>
-        <h3>Foundry IQ</h3>
-        <p><strong>Enterprise knowledge</strong></p>
-        <ul class="dense-list" style="font-size:0.82rem;">
+        <a href="https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-foundry-iq" target="_blank" class="iq-header-pill iq-header-foundry"><span class="iq-header-icon"><img src="./images/microsoft-foundry-icon.png" alt="Foundry IQ" /></span> Foundry IQ: Enterprise Knowledge</a>
+        <ul class="dense-list" style="font-size:0.88rem;line-height:1.2;">
           <li>Airbridge failure SOPs and incident history</li>
           <li>Grounding across knowledge sources</li>
           <li>Retrieval that contains blast radius</li>
         </ul>
       </div>
     </div>
-    <div class="panel" style="padding:1rem 1.1rem;" v-click>
-      <p class="kicker">Gate 35 airbridge failure</p>
-      <p style="margin:0 0 0.55rem;color:var(--theme-ink);font-size:0.94rem;line-height:1.55;">Flights SQ308 and QF1 need reassignment, Gate 22 has a maintenance hold expiring in 40 min, crew duty windows are tightening, and passengers across both flights need updated messaging.</p>
-      <div class="flow-pipeline" style="justify-content:center;flex-wrap:wrap;row-gap:0.45rem;">
-        <span class="flow-step">Work IQ</span>
-        <span class="flow-arrow">+</span>
-        <span class="flow-step">Fabric IQ</span>
-        <span class="flow-arrow">+</span>
-        <span class="flow-step">Foundry IQ</span>
-        <span class="flow-arrow">→</span>
-        <span class="flow-step flow-step-active">Remediation plan</span>
+    <div class="tool-card-grid">
+      <div class="iq-pillar iq-tool-foundry-card" v-click>
+        <a href="https://learn.microsoft.com/azure/foundry/agents/concepts/tool-catalog" target="_blank" class="iq-header-pill iq-header-foundry"><span class="iq-header-icon"><img src="./images/microsoft-foundry-icon.png" alt="Foundry Tools" /></span> Foundry Tools: Built-in Agent Capabilities</a>
+        <ul class="dense-list" style="font-size:0.88rem;line-height:1.2;">
+          <li>Bing Search &amp; Bing Custom Search for web grounding</li>
+          <li>Code Interpreter for sandboxed Python execution</li>
+          <li>File Search, Azure AI Search &amp; SharePoint</li>
+          <li>Azure Functions, OpenAPI &amp; Browser Automation</li>
+        </ul>
+      </div>
+      <div class="iq-pillar iq-tool-mcp-card" v-click>
+        <a href="https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol" target="_blank" class="iq-header-pill iq-header-mcp"><span class="iq-header-icon">🔌</span> MCP Tools: Connect to Anything</a>
+        <ul class="dense-list" style="font-size:0.88rem;line-height:1.2;">
+          <li>Custom maintenance &amp; operations APIs</li>
+          <li>Databases, CRMs &amp; legacy systems</li>
+          <li>Notification services (SMS, email, push)</li>
+          <li>Any REST/gRPC endpoint via MCP servers</li>
+        </ul>
       </div>
     </div>
-    <div class="callout-teal callout" style="font-size:0.9rem;max-width:none;" v-click>
+    <div class="panel" style="padding:0.25rem 0.8rem;" v-click>
+      <span class="iq-header-pill iq-header-diagram" style="margin-bottom:0.1rem;">Our example: Gate 35 airbridge failure — agent calls IQ tools, MCP tools and Foundry Tools via agentic loop</span>
+      <div style="display:grid;grid-template-columns:1fr 1fr;align-items:stretch;gap:0.3rem;">
+        <div style="display:flex;align-items:center;justify-content:center;">
+          <IQReActLoopDiagram />
+        </div>
+        <div style="margin:0;color:var(--theme-ink);font-size:0.52rem;line-height:1.25;flex:1;display:flex;flex-direction:column;justify-content:center;gap:0.12rem;">
+          <div class="thought-step thought-problem">
+            <span>⚠️ Problem: Gate 35 airbridge has failed. 4 hour repair time expected. Implement remediation plan.</span>
+          </div>
+          <div class="thought-step thought-reason">
+            <span>💭 Reason: I need to come up with a plan to remediate the gate disruption. I need to understand what assets are affected by a gate disruption.</span>
+          </div>
+          <div class="thought-step thought-action">
+            <span>🛠️ Action: Call <strong>Fabric IQ</strong> to understand operations impact for Gates.</span>
+          </div>
+          <div class="thought-step thought-observe">
+            <span>👀 Observe: Gates affect flights, passengers, crew, ground staff and baggage.</span>
+          </div>
+          <div class="thought-step thought-reason">
+            <span>💭 Reason: I need to find available gates and check flight schedules for Gate 35.</span>
+          </div>
+          <div class="thought-step thought-action">
+            <span>🛠️ Action: Query <strong>Fabric IQ</strong> for gate availability &amp; Gate 35 flight schedules.</span>
+          </div>
+          <div class="thought-step thought-observe">
+            <span>👀 Observe: Gate 22 free in 40 min. SQ308 departs in 90 min, QF1 in 3 hrs.</span>
+          </div>
+          <div class="thought-step thought-reason">
+            <span>💭 Reason: SQ308 is urgent. I need crew duty windows and dispatcher status.</span>
+          </div>
+          <div class="thought-step thought-action">
+            <span>🛠️ Action: Call <strong>Work IQ</strong> for crew shift schedules &amp; dispatcher emails.</span>
+          </div>
+          <div class="thought-step thought-observe">
+            <span>👀 Observe: Crew B shift ends in 2 hrs. Dispatcher confirmed repair ETA via email.</span>
+          </div>
+          <div class="thought-step thought-reason">
+            <span>💭 Reason: I need the airbridge failure SOP and current weather conditions.</span>
+          </div>
+          <div class="thought-step thought-action">
+            <span>🛠️ Action: Query <strong>Foundry IQ</strong> for SOPs → <strong>Bing Search</strong> for weather NOTAMs.</span>
+          </div>
+          <div class="thought-step thought-observe">
+            <span>👀 Observe: SOP says reassign within 60 min. Clear weather — no delays expected.</span>
+          </div>
+          <div class="thought-step thought-reason">
+            <span>💭 Reason: Reassign SQ308 → Gate 22, hold QF1. Must notify passengers &amp; maintenance.</span>
+          </div>
+          <div class="thought-step thought-action">
+            <span>🛠️ Action: <strong>MCP maintenance API</strong> for parts status → <strong>Foundry notify_passengers</strong> tool.</span>
+          </div>
+          <div class="thought-step thought-complete">
+            <span>✅ Remediation plan implemented.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="callout-teal callout" style="font-size:0.68rem;max-width:none;padding:0.2rem 0.6rem;" v-click>
       This is where the moat comes from: governed, business-aware reasoning across multiple sources. It is also where security becomes non-negotiable because the agent now touches people data, operational systems, and enterprise knowledge.
     </div>
   </div>

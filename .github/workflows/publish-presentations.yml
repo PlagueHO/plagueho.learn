@@ -1,0 +1,58 @@
+name: Publish Presentations
+
+on:
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: write
+
+jobs:
+  publish-presentations:
+    name: Build and Publish Presentations
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build and package Slidev presentations
+        run: |
+          set -e
+          shopt -s nullglob
+          tag="${GITHUB_REF_NAME}"
+          found=0
+          for slides in presentations/*/slides.md; do
+            deck=$(dirname "$slides")
+            deck_name=$(basename "$deck")
+            echo "::group::Building $deck_name"
+            pnpm exec slidev build "$slides" --out "$deck/dist"
+            echo "::endgroup::"
+            zip -r "${deck_name}-${tag}.zip" "$deck/dist"
+            echo "Packaged ${deck_name}-${tag}.zip"
+            found=$((found + 1))
+          done
+          if [ "$found" -eq 0 ]; then
+            echo "::error::No presentations found to build."
+            exit 1
+          else
+            echo "Successfully built and packaged $found presentation(s)."
+          fi
+
+      - name: Create GitHub release with presentation assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: '*.zip'
+          fail_on_unmatched_files: true
