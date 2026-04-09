@@ -345,7 +345,7 @@ transition: slide-up
   <div class="slide-body" style="flex-direction:column;gap:0.65rem;align-items:stretch;">
     <div class="three-col-grid">
       <div class="section-card" v-click>
-        <p class="section-number">1 · Design tools for calling</p>
+        <span class="iq-header-pill iq-header-diagram">1 · Design tools for calling</span>
         <ul class="dense-list" style="font-size:0.82rem;line-height:1.55;">
           <li>Design for when and why, not just how</li>
           <li>Consolidate tiny wrappers into semantic tools</li>
@@ -353,7 +353,7 @@ transition: slide-up
         </ul>
       </div>
       <div class="section-card" v-click>
-        <p class="section-number">2 · Instruct agents like operators</p>
+        <span class="iq-header-pill iq-header-diagram">2 · Instruct agents like operators</span>
         <ul class="dense-list" style="font-size:0.82rem;line-height:1.55;">
           <li>Write operating rules, not vague aspirations</li>
           <li>Define escalation and pre-check conditions</li>
@@ -361,7 +361,7 @@ transition: slide-up
         </ul>
       </div>
       <div class="section-card" v-click>
-        <p class="section-number">3 · Evaluate and monitor</p>
+        <span class="iq-header-pill iq-header-diagram">3 · Evaluate and monitor</span>
         <ul class="dense-list" style="font-size:0.82rem;line-height:1.55;">
           <li>Pre-production datasets and synthetic scenarios</li>
           <li>Post-production monitoring for drift</li>
@@ -371,7 +371,7 @@ transition: slide-up
     </div>
     <div class="comparison-grid" style="gap:0.65rem;align-items:stretch;">
       <div class="comparison-col before" style="padding:0.7rem 0.8rem;" v-click>
-        <span class="comparison-label before">Bad tool contract</span>
+        <span class="iq-header-pill iq-header-bad">Bad tool contract</span>
         <div class="panel" style="padding:0.45rem 0.6rem;">
           <p style="margin:0 0 0.25rem;font-family:monospace;font-size:0.8rem;color:var(--theme-deep);">get_gate_status</p>
           <ul class="dense-list" style="margin:0;font-size:0.74rem;line-height:1.4;">
@@ -382,7 +382,7 @@ transition: slide-up
         </div>
       </div>
       <div class="comparison-col after" style="padding:0.7rem 0.8rem;" v-click>
-        <span class="comparison-label after">Good tool contract</span>
+        <span class="iq-header-pill iq-header-good">Good tool contract</span>
         <div class="panel" style="padding:0.45rem 0.6rem;">
           <p style="margin:0 0 0.25rem;font-family:monospace;font-size:0.8rem;color:var(--theme-deep);">create_gate_disruption_remediation_plan</p>
           <ul class="dense-list" style="margin:0;font-size:0.74rem;line-height:1.4;">
@@ -395,18 +395,15 @@ transition: slide-up
     </div>
     <div class="highlight-strip" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.65rem;">
       <div class="highlight-pill slide-in-row" style="align-items:flex-start;" v-click>
-        <span class="hl-icon">📘</span>
-        <span class="hl-label">Instruction example</span>
+        <span class="iq-header-pill iq-header-diagram"><span class="hl-icon">📘</span> Instruction example</span>
         <span class="hl-desc">Escalate gate reassignment if more than 3 connecting flights are affected.</span>
       </div>
       <div class="highlight-pill slide-in-row" style="align-items:flex-start;" v-click>
-        <span class="hl-icon">🧪</span>
-        <span class="hl-label">Foundry evaluators</span>
+        <span class="iq-header-pill iq-header-diagram"><span class="hl-icon">🧪</span> Foundry evaluators</span>
         <span class="hl-desc">Task Completion, Task Adherence, Tool Selection, Tool Call Accuracy, and related agent evaluators.</span>
       </div>
       <div class="highlight-pill slide-in-row" style="align-items:flex-start;" v-click>
-        <span class="hl-icon">🔗</span>
-        <span class="hl-label">On-screen references</span>
+        <span class="iq-header-pill iq-header-diagram"><span class="hl-icon">🔗</span> On-screen references</span>
         <span class="hl-desc"><a href="https://aka.ms/e2e-agent-eval-sample" target="_blank">aka.ms/e2e-agent-eval-sample</a><br /><a href="https://learn.microsoft.com/azure/foundry/concepts/evaluation-evaluators/agent-evaluators" target="_blank">learn.microsoft.com/.../agent-evaluators</a></span>
       </div>
     </div>
