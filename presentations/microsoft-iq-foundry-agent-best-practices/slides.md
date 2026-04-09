@@ -292,60 +292,35 @@ transition: slide-left
     <img src="./images/azure.png" class="banner-icon" alt="Azure" />
   </div>
   <div class="slide-body" style="flex-direction:column;gap:0.4rem;align-items:stretch;">
-    <div class="iq-grid">
+    <div class="iq-grid iq-grid-five">
       <div class="iq-pillar iq-work" v-click>
-        <a href="https://learn.microsoft.com/microsoft-agent-365/tooling-servers-overview" target="_blank" class="iq-header-pill iq-header-work"><span class="iq-header-icon"><img src="./images/microsoft-work-iq.avif" alt="Work IQ" /></span> Work IQ: Organizational context</a>
-        <ul class="dense-list" style="font-size:0.88rem;line-height:1.2;">
-          <li>Dispatcher emails &amp; meeting notes on repair ETA</li>
-          <li>Shift-manager Teams chats on crew availability</li>
-          <li>Calendar and scheduling signals across crews</li>
-          <li>SharePoint docs, OneDrive files, and org signals</li>
-        </ul>
+        <a href="https://learn.microsoft.com/microsoft-agent-365/tooling-servers-overview" target="_blank" class="iq-header-pill iq-header-work"><span class="iq-header-icon"><img src="./images/microsoft-work-iq.avif" alt="Work IQ" /></span><span class="iq-header-copy"><span class="iq-header-title">Work IQ</span><span class="iq-header-subtitle">Org context</span></span></a>
+        <p class="iq-card-summary">Organizational signals from Microsoft 365, including email, Teams, calendars, and docs that show who is doing what right now.</p>
       </div>
       <div class="iq-pillar iq-fabric" v-click>
-        <a href="https://learn.microsoft.com/fabric/iq/overview" target="_blank" class="iq-header-pill iq-header-fabric"><span class="iq-header-icon"><img src="./images/microsoft-fabric-icon.svg" alt="Fabric IQ" /></span> Fabric IQ: Business Rules and Data</a>
-        <ul class="dense-list" style="font-size:0.88rem;line-height:1.2;">
-          <li>Gate availability and flight schedules</li>
-          <li>Crew rosters and duty windows</li>
-          <li>Semantic understanding of operations data</li>
-        </ul>
+        <a href="https://learn.microsoft.com/fabric/iq/overview" target="_blank" class="iq-header-pill iq-header-fabric"><span class="iq-header-icon"><img src="./images/microsoft-fabric-icon.svg" alt="Fabric IQ" /></span><span class="iq-header-copy"><span class="iq-header-title">Fabric IQ</span><span class="iq-header-subtitle">Business data</span></span></a>
+        <p class="iq-card-summary">Operational business data with semantic context, such as schedules, resources, and constraints the agent can reason over.</p>
       </div>
       <div class="iq-pillar iq-foundry" v-click>
-        <a href="https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-foundry-iq" target="_blank" class="iq-header-pill iq-header-foundry"><span class="iq-header-icon"><img src="./images/microsoft-foundry-icon.png" alt="Foundry IQ" /></span> Foundry IQ: Enterprise Knowledge</a>
-        <ul class="dense-list" style="font-size:0.88rem;line-height:1.2;">
-          <li>Airbridge failure SOPs and incident history</li>
-          <li>Grounding across knowledge sources</li>
-          <li>Retrieval that contains blast radius</li>
-        </ul>
+        <a href="https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-foundry-iq" target="_blank" class="iq-header-pill iq-header-foundry"><span class="iq-header-icon"><img src="./images/microsoft-foundry-icon.png" alt="Foundry IQ" /></span><span class="iq-header-copy"><span class="iq-header-title">Foundry IQ</span><span class="iq-header-subtitle">Enterprise knowledge</span></span></a>
+        <p class="iq-card-summary">Enterprise knowledge and grounding across internal sources, including SOPs and policies needed for governed decisions.</p>
       </div>
-    </div>
-    <div class="tool-card-grid">
       <div class="iq-pillar iq-tool-foundry-card" v-click>
-        <a href="https://learn.microsoft.com/azure/foundry/agents/concepts/tool-catalog" target="_blank" class="iq-header-pill iq-header-foundry"><span class="iq-header-icon"><img src="./images/microsoft-foundry-icon.png" alt="Foundry Tools" /></span> Foundry Tools: Built-in Agent Capabilities</a>
-        <ul class="dense-list" style="font-size:0.88rem;line-height:1.2;">
-          <li>Bing Search &amp; Bing Custom Search for web grounding</li>
-          <li>Code Interpreter for sandboxed Python execution</li>
-          <li>File Search, Azure AI Search &amp; SharePoint</li>
-          <li>Azure Functions, OpenAPI &amp; Browser Automation</li>
-        </ul>
+        <a href="https://learn.microsoft.com/azure/foundry/agents/concepts/tool-catalog" target="_blank" class="iq-header-pill iq-header-foundry"><span class="iq-header-icon"><img src="./images/microsoft-foundry-icon.png" alt="Foundry Tools" /></span><span class="iq-header-copy"><span class="iq-header-title">Foundry Tools</span><span class="iq-header-subtitle">Built-in</span></span></a>
+        <p class="iq-card-summary">Native agent capabilities like search, code execution, and action connectors for safe, managed tool use.</p>
       </div>
       <div class="iq-pillar iq-tool-mcp-card" v-click>
-        <a href="https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol" target="_blank" class="iq-header-pill iq-header-mcp"><span class="iq-header-icon">🔌</span> MCP Tools: Connect to Anything</a>
-        <ul class="dense-list" style="font-size:0.88rem;line-height:1.2;">
-          <li>Custom maintenance &amp; operations APIs</li>
-          <li>Databases, CRMs &amp; legacy systems</li>
-          <li>Notification services (SMS, email, push)</li>
-          <li>Any REST/gRPC endpoint via MCP servers</li>
-        </ul>
+        <a href="https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol" target="_blank" class="iq-header-pill iq-header-mcp"><span class="iq-header-icon">🔌</span><span class="iq-header-copy"><span class="iq-header-title">MCP Tools</span><span class="iq-header-subtitle">Connect anything</span></span></a>
+        <p class="iq-card-summary">External integrations via MCP servers to bring in custom APIs, databases, legacy systems, and workflow endpoints.</p>
       </div>
     </div>
-    <div class="panel" style="padding:0.25rem 0.8rem;" v-click>
-      <span class="iq-header-pill iq-header-diagram" style="margin-bottom:0.1rem;">Our example: Gate 35 airbridge failure — agent calls IQ tools, MCP tools and Foundry Tools via agentic loop</span>
-      <div style="display:grid;grid-template-columns:1fr 1fr;align-items:stretch;gap:0.3rem;">
+    <div class="panel" style="padding:0.25rem 0.8rem;" v-click="6">
+      <span class="iq-header-pill iq-header-diagram" style="margin-bottom:0.1rem;font-size:0.97rem;">Our example: Gate 35 airbridge failure — agent calls IQ tools, MCP tools and Foundry Tools via agentic loop</span>
+      <div style="display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:0.3rem;">
         <div style="display:flex;align-items:center;justify-content:center;">
           <IQReActLoopDiagram />
         </div>
-        <div style="margin:0;color:var(--theme-ink);font-size:0.52rem;line-height:1.25;flex:1;display:flex;flex-direction:column;justify-content:center;gap:0.12rem;">
+        <div style="margin:0;color:var(--theme-ink);font-size:0.52rem;line-height:1.25;flex:1;display:flex;flex-direction:column;justify-content:center;gap:0.12rem;" v-click="7">
           <div class="thought-step thought-problem">
             <span>⚠️ Problem: Gate 35 airbridge has failed. 4 hour repair time expected. Implement remediation plan.</span>
           </div>
@@ -358,38 +333,17 @@ transition: slide-left
           <div class="thought-step thought-observe">
             <span>👀 Observe: Gates affect flights, passengers, crew, ground staff and baggage.</span>
           </div>
+          <div class="thought-step thought-ellipsis">
+            <span>...</span>
+          </div>
           <div class="thought-step thought-reason">
-            <span>💭 Reason: I need to find available gates and check flight schedules for Gate 35.</span>
+            <span>💭 Reason: SQ308 is urgent; I need duty windows, SOP constraints, and repair ETA.</span>
           </div>
           <div class="thought-step thought-action">
-            <span>🛠️ Action: Query <strong>Fabric IQ</strong> for gate availability &amp; Gate 35 flight schedules.</span>
+            <span>🛠️ Action: Query <strong>Work IQ</strong> for crew shifts and <strong>Foundry IQ</strong> for disruption SOP guidance.</span>
           </div>
           <div class="thought-step thought-observe">
-            <span>👀 Observe: Gate 22 free in 40 min. SQ308 departs in 90 min, QF1 in 3 hrs.</span>
-          </div>
-          <div class="thought-step thought-reason">
-            <span>💭 Reason: SQ308 is urgent. I need crew duty windows and dispatcher status.</span>
-          </div>
-          <div class="thought-step thought-action">
-            <span>🛠️ Action: Call <strong>Work IQ</strong> for crew shift schedules &amp; dispatcher emails.</span>
-          </div>
-          <div class="thought-step thought-observe">
-            <span>👀 Observe: Crew B shift ends in 2 hrs. Dispatcher confirmed repair ETA via email.</span>
-          </div>
-          <div class="thought-step thought-reason">
-            <span>💭 Reason: I need the airbridge failure SOP and current weather conditions.</span>
-          </div>
-          <div class="thought-step thought-action">
-            <span>🛠️ Action: Query <strong>Foundry IQ</strong> for SOPs → <strong>Bing Search</strong> for weather NOTAMs.</span>
-          </div>
-          <div class="thought-step thought-observe">
-            <span>👀 Observe: SOP says reassign within 60 min. Clear weather — no delays expected.</span>
-          </div>
-          <div class="thought-step thought-reason">
-            <span>💭 Reason: Reassign SQ308 → Gate 22, hold QF1. Must notify passengers &amp; maintenance.</span>
-          </div>
-          <div class="thought-step thought-action">
-            <span>🛠️ Action: <strong>MCP maintenance API</strong> for parts status → <strong>Foundry notify_passengers</strong> tool.</span>
+            <span>👀 Observe: Crew coverage confirmed and SOP supports reassignment within target time.</span>
           </div>
           <div class="thought-step thought-complete">
             <span>✅ Remediation plan implemented.</span>
@@ -397,8 +351,8 @@ transition: slide-left
         </div>
       </div>
     </div>
-    <div class="callout-teal callout" style="font-size:0.68rem;max-width:none;padding:0.2rem 0.6rem;" v-click>
-      This is where the moat comes from: governed, business-aware reasoning across multiple sources. It is also where security becomes non-negotiable because the agent now touches people data, operational systems, and enterprise knowledge.
+    <div class="callout-teal callout" style="font-size:0.68rem;max-width:none;padding:0.2rem 0.6rem;" v-click="6">
+      The moat is governed, business-aware reasoning across IQ layers and MCP tools. Because the agent touches people data and operations systems, security is non-negotiable.
     </div>
   </div>
 </div>

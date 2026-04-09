@@ -113,10 +113,11 @@ onUnmounted(() => {
 
 <style scoped>
 .iq-react-wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: 160px 320px;
   align-items: center;
   justify-content: center;
-  gap: 1.2rem;
+  column-gap: 1.2rem;
   margin: 0 auto;
   min-height: 160px;
   width: 100%;
@@ -236,8 +237,9 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  min-width: 200px;
-  margin-left: 1.2rem;
+  width: 320px;
+  min-width: 320px;
+  margin-left: 1.75rem;
 }
 
 .iq-react-tool-pill {
@@ -249,6 +251,9 @@ onUnmounted(() => {
   font-size: 0.7rem;
   font-weight: 600;
   white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: white;
   background: rgba(120, 144, 156, 0.7);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
@@ -286,7 +291,7 @@ onUnmounted(() => {
 @keyframes iq-tool-fly-in {
   from {
     opacity: 0;
-    transform: translateX(-16px) scale(0.7);
+    transform: translateX(0) scale(0.82);
   }
   to {
     opacity: 1;
