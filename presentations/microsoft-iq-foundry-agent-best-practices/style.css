@@ -489,6 +489,15 @@
   margin-bottom: 10px;
 }
 
+.slidev-page-5 .thought-step {
+  font-size: 0.99rem;
+  line-height: 1.25;
+}
+
+.slidev-page-5 .thought-icon {
+  font-size: 0.99rem;
+}
+
 .slide-compact-layout .slide-body {
   justify-content: flex-start !important;
   padding-top: 0 !important;
@@ -802,8 +811,10 @@
 }
 
 .thought-problem {
-  border-color: rgba(254, 91, 56, 0.2);
+  border-color: transparent;
+  border-width: 0;
   margin-left: 0;
+  margin-bottom: 10px;
   font-weight: 700;
   color: var(--react-action, #FE5B38);
 }
@@ -827,8 +838,10 @@
 }
 
 .thought-complete {
-  border-color: rgba(46, 125, 50, 0.2);
+  border-color: transparent;
+  border-width: 0;
   margin-left: 0;
+  margin-top: 10px;
   font-weight: 700;
   color: #2e7d32;
 }
@@ -839,6 +852,20 @@
   color: var(--theme-muted);
   font-weight: 700;
   letter-spacing: 0.08em;
+}
+
+.thought-ellipsis-only {
+  margin-left: 0;
+  align-self: center;
+  color: var(--theme-muted);
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.02rem 0;
+}
+
+.thought-ellipsis-only span {
+  display: block;
+  font-size: 1.1rem;
 }
 
 /* ══════════════════════════════════════════════════════════════

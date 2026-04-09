@@ -295,11 +295,11 @@ transition: slide-left
     <div class="iq-grid iq-grid-five">
       <div class="iq-pillar iq-work" v-click>
         <a href="https://learn.microsoft.com/microsoft-agent-365/tooling-servers-overview" target="_blank" class="iq-header-pill iq-header-work"><span class="iq-header-icon"><img src="./images/microsoft-work-iq.avif" alt="Work IQ" /></span><span class="iq-header-copy"><span class="iq-header-title">Work IQ</span><span class="iq-header-subtitle">Org context</span></span></a>
-        <p class="iq-card-summary">Organizational signals from Microsoft 365, including email, Teams, calendars, and docs that show who is doing what right now.</p>
+        <p class="iq-card-summary">Organizational knowledge and information from Microsoft 365, including email, Teams, calendars, and docs that show who is doing what right now.</p>
       </div>
       <div class="iq-pillar iq-fabric" v-click>
         <a href="https://learn.microsoft.com/fabric/iq/overview" target="_blank" class="iq-header-pill iq-header-fabric"><span class="iq-header-icon"><img src="./images/microsoft-fabric-icon.svg" alt="Fabric IQ" /></span><span class="iq-header-copy"><span class="iq-header-title">Fabric IQ</span><span class="iq-header-subtitle">Business data</span></span></a>
-        <p class="iq-card-summary">Operational business data with semantic context, such as schedules, resources, and constraints the agent can reason over.</p>
+        <p class="iq-card-summary">Organizational business data, ontology, and business rules with semantic context, such as schedules, resources, constraints, and policy logic the agent can reason over.</p>
       </div>
       <div class="iq-pillar iq-foundry" v-click>
         <a href="https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-foundry-iq" target="_blank" class="iq-header-pill iq-header-foundry"><span class="iq-header-icon"><img src="./images/microsoft-foundry-icon.png" alt="Foundry IQ" /></span><span class="iq-header-copy"><span class="iq-header-title">Foundry IQ</span><span class="iq-header-subtitle">Enterprise knowledge</span></span></a>
@@ -320,30 +320,30 @@ transition: slide-left
         <div style="display:flex;align-items:center;justify-content:center;">
           <IQReActLoopDiagram />
         </div>
-        <div style="margin:0;color:var(--theme-ink);font-size:0.52rem;line-height:1.25;flex:1;display:flex;flex-direction:column;justify-content:center;gap:0.12rem;" v-click="7">
+        <div style="margin:0;color:var(--theme-ink);font-size:1.04rem;line-height:1.25;flex:1;display:flex;flex-direction:column;justify-content:center;gap:0.12rem;" v-click="7">
           <div class="thought-step thought-problem">
             <span>⚠️ Problem: Gate 35 airbridge has failed. 4 hour repair time expected. Implement remediation plan.</span>
           </div>
           <div class="thought-step thought-reason">
-            <span>💭 Reason: I need to come up with a plan to remediate the gate disruption. I need to understand what assets are affected by a gate disruption.</span>
+            <span>💭 <strong>Reason:</strong> I need to come up with a plan to remediate the gate disruption. I need to understand what assets are affected by a gate disruption.</span>
           </div>
           <div class="thought-step thought-action">
-            <span>🛠️ Action: Call <strong>Fabric IQ</strong> to understand operations impact for Gates.</span>
+            <span>🛠️ <strong>Action:</strong> Call <strong>Fabric IQ</strong> to understand operations impact for Gates.</span>
           </div>
           <div class="thought-step thought-observe">
-            <span>👀 Observe: Gates affect flights, passengers, crew, ground staff and baggage.</span>
+            <span>👀 <strong>Observe:</strong> Gates affect flights, passengers, crew, ground staff and baggage.</span>
           </div>
-          <div class="thought-step thought-ellipsis">
-            <span>...</span>
+          <div class="thought-ellipsis-only" aria-hidden="true">
+            <span>⋮</span>
           </div>
           <div class="thought-step thought-reason">
-            <span>💭 Reason: SQ308 is urgent; I need duty windows, SOP constraints, and repair ETA.</span>
+            <span>💭 <strong>Reason:</strong> SQ308 is urgent; I need duty windows, SOP constraints, and repair ETA.</span>
           </div>
           <div class="thought-step thought-action">
-            <span>🛠️ Action: Query <strong>Work IQ</strong> for crew shifts and <strong>Foundry IQ</strong> for disruption SOP guidance.</span>
+            <span>🛠️ <strong>Action:</strong> Query <strong>Work IQ</strong> for crew shifts and <strong>Foundry IQ</strong> for disruption SOP guidance.</span>
           </div>
           <div class="thought-step thought-observe">
-            <span>👀 Observe: Crew coverage confirmed and SOP supports reassignment within target time.</span>
+            <span>👀 <strong>Observe:</strong> Crew coverage confirmed and SOP supports reassignment within target time.</span>
           </div>
           <div class="thought-step thought-complete">
             <span>✅ Remediation plan implemented.</span>
