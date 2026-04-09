@@ -361,6 +361,107 @@
   gap: 0 !important;
 }
 
+/* Slide 6: Governing Intelligent Tool Use — match compact slide 4/5 rhythm */
+.slidev-page-6 .slide-body {
+  justify-content: flex-start !important;
+  padding: 6px 1.4rem 8px !important;
+  gap: 0.45rem !important;
+}
+
+.slidev-page-6 .three-col-grid {
+  gap: 0.55rem;
+}
+
+.slidev-page-6 .section-card {
+  padding: 0.7rem 0.85rem;
+  gap: 0.18rem;
+}
+
+.slidev-page-6 .section-number {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.12rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--theme-accent5);
+  background: rgba(17, 77, 139, 0.08);
+}
+
+.slidev-page-6 .section-card .dense-list {
+  font-size: 0.74rem !important;
+  line-height: 1.4 !important;
+}
+
+.slidev-page-6 .section-card .dense-list li + li {
+  margin-top: 0.2rem;
+}
+
+.slidev-page-6 .comparison-grid {
+  gap: 0.5rem !important;
+}
+
+.slidev-page-6 .comparison-col {
+  padding: 0.58rem 0.72rem !important;
+}
+
+.slidev-page-6 .comparison-label {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 0.18rem;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.slidev-page-6 .comparison-label.before {
+  color: #4f6274;
+  background: rgba(16, 57, 84, 0.09);
+}
+
+.slidev-page-6 .comparison-label.after {
+  color: var(--theme-accent5);
+  background: rgba(56, 164, 220, 0.14);
+}
+
+.slidev-page-6 .highlight-strip {
+  gap: 0.5rem !important;
+}
+
+.slidev-page-6 .highlight-pill {
+  padding: 0.35rem 0.45rem;
+  gap: 0.18rem;
+}
+
+.slidev-page-6 .highlight-pill .hl-icon {
+  font-size: 1.2rem;
+}
+
+.slidev-page-6 .highlight-pill .hl-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.08rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--theme-accent5);
+  background: rgba(17, 77, 139, 0.08);
+}
+
+.slidev-page-6 .highlight-pill .hl-desc {
+  font-size: 0.76rem;
+  line-height: 1.25;
+}
+
+.slidev-page-6 .callout {
+  margin-top: 0.1rem;
+  font-size: 0.76rem !important;
+  padding: 0.28rem 0.55rem !important;
+}
+
 .slidev-page-5 .slide-banner h1 {
   font-size: 1.665em;
 }

@@ -104,8 +104,8 @@ transition: slide-up
   <div class="slide-banner">
     <h1>Agentic Tool Evolution</h1>
   </div>
-  <div class="slide-body" style="flex-direction:column;gap:0.3rem;align-items:stretch;">
-    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.25rem;">
+  <div class="slide-body" style="flex-direction:column;gap:0.3rem;align-items:stretch;justify-content:center;">
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.25rem;">
       <div class="thought-bubble">
         <span class="thought-bubble-emoji">😰</span>
         <span>An agent without tools is just a <em>chatbot with anxiety.</em></span>
@@ -141,31 +141,7 @@ transition: slide-up
       </div>
       <div class="ia-caption">Higher intelligence → higher value &amp; capability</div>
     </div>
-    <div class="comparison-grid" style="align-items:stretch;">
-      <div class="comparison-col before" v-click="5">
-        <span class="comparison-label before">Bad tool contract</span>
-        <div class="panel" style="padding:0.5rem 0.8rem;">
-          <p style="margin:0 0 0.3rem;font-family:monospace;font-size:1.69rem;color:var(--theme-deep);">get_gate_status</p>
-          <ul class="dense-list" style="margin:0;font-size:1.54rem;">
-            <li>Returns data, but agent can't act on it</li>
-            <li>Supervisor still plans the response manually</li>
-            <li>Weak semantic signal for the model</li>
-          </ul>
-        </div>
-      </div>
-      <div class="comparison-col after" v-click="6">
-        <span class="comparison-label after">Good tool contract</span>
-        <div class="panel" style="padding:0.5rem 0.8rem;">
-          <p style="margin:0 0 0.3rem;font-family:monospace;font-size:1.69rem;color:var(--theme-deep);">create_gate_disruption_remediation_plan</p>
-          <ul class="dense-list" style="margin:0;font-size:1.54rem;">
-            <li>Description explains when to invoke it</li>
-            <li>Parameters: gate, failure type, time horizon</li>
-            <li>Agent reasons about full operational response</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="callout-teal callout" style="font-size:1.08rem;max-width:none;text-align:center;white-space:nowrap;" v-click="7">
+    <div class="callout-teal callout" style="font-size:1.08rem;max-width:none;text-align:center;white-space:nowrap;" v-click="5">
       Don't ship tools — ship intelligence 🧠. → Model + tools + instructions = outcomes customers can't build themselves.
     </div>
   </div>
@@ -394,15 +370,27 @@ transition: slide-up
       </div>
     </div>
     <div class="comparison-grid" style="gap:0.65rem;align-items:stretch;">
-      <div class="comparison-col before" style="padding:0.8rem 0.9rem;" v-click>
-        <span class="comparison-label before">Example · tool naming</span>
-        <p style="margin:0.45rem 0 0.3rem;font-family:monospace;font-size:0.76rem;color:var(--theme-deep);">get_gate_status</p>
-        <p style="margin:0;color:var(--theme-muted);font-size:0.74rem;line-height:1.45;">Returns data, but the agent cannot plan a response or coordinate actions.</p>
+      <div class="comparison-col before" style="padding:0.7rem 0.8rem;" v-click>
+        <span class="comparison-label before">Bad tool contract</span>
+        <div class="panel" style="padding:0.45rem 0.6rem;">
+          <p style="margin:0 0 0.25rem;font-family:monospace;font-size:0.8rem;color:var(--theme-deep);">get_gate_status</p>
+          <ul class="dense-list" style="margin:0;font-size:0.74rem;line-height:1.4;">
+            <li>Returns data, but agent can't act on it</li>
+            <li>Supervisor still plans the response manually</li>
+            <li>Weak semantic signal for the model</li>
+          </ul>
+        </div>
       </div>
-      <div class="comparison-col after" style="padding:0.8rem 0.9rem;" v-click>
-        <span class="comparison-label after">Example · better contract</span>
-        <p style="margin:0.45rem 0 0.3rem;font-family:monospace;font-size:0.76rem;color:var(--theme-deep);">create_gate_disruption_remediation_plan</p>
-        <p style="margin:0;color:var(--theme-muted);font-size:0.74rem;line-height:1.45;">Description: use when a gate becomes unexpectedly unavailable to generate a coordinated remediation plan.</p>
+      <div class="comparison-col after" style="padding:0.7rem 0.8rem;" v-click>
+        <span class="comparison-label after">Good tool contract</span>
+        <div class="panel" style="padding:0.45rem 0.6rem;">
+          <p style="margin:0 0 0.25rem;font-family:monospace;font-size:0.8rem;color:var(--theme-deep);">create_gate_disruption_remediation_plan</p>
+          <ul class="dense-list" style="margin:0;font-size:0.74rem;line-height:1.4;">
+            <li>Description explains when to invoke it</li>
+            <li>Parameters: gate, failure type, time horizon</li>
+            <li>Agent reasons about full operational response</li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="highlight-strip" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.65rem;">
