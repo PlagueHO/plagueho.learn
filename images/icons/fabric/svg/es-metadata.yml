@@ -1,0 +1,10 @@
+schemaVersion: 1.0.0
+providers:
+- provider: InventoryAsCode
+  version: 1.0.0
+  metadata:
+    isProduction: true
+    routing:
+      defaultAreaPath:
+        org: powerbi
+        path: Trident\Design\Fabric UX\Framework\Design System
