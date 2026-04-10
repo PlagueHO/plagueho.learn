@@ -27,7 +27,10 @@ pnpm exec slidev export presentations/microsoft-iq-foundry-agent-best-practices/
 
 ## Session Abstract
 
-This session introduces the fundamental architectural shift from stateless ChatCompletions (simple request/response) to the autonomous **ReAct Loop** (Reason → Action → Observe) that powers modern AI agents. Through an interactive animated demo and an airport management scenario, attendees will understand why tool usage is the critical capability that separates chatbots from agents, and how Microsoft's three foundational intelligence layers — **Foundry IQ**, **Work IQ**, and **Fabric IQ** — provide the enterprise knowledge agents need to perform tasks reliably. The session closes with practical guidance on tool design, selection reliability, and Foundry Agent Service v2 as the enterprise runtime.
+This session introduces the fundamental architectural shift from stateless ChatCompletions (simple request/response) to the autonomous **ReAct Loop** (Reason → Action → Observe) that powers modern AI agents.
+Through an interactive animated demo and an airport management scenario, attendees will understand why tool usage is the critical capability that separates chatbots from agents,
+and how Microsoft's three foundational intelligence layers — **Foundry IQ**, **Work IQ**, and **Fabric IQ** — provide the enterprise knowledge agents need to perform tasks reliably.
+The session closes with practical guidance on tool design, selection reliability, and Foundry Agent Service v2 as the enterprise runtime.
 
 ## Key Topics
 

@@ -342,50 +342,50 @@ transition: slide-up
     <h1>Governing Intelligent Tool Use</h1>
     <img src="./images/github-copilot.png" class="banner-icon" alt="GitHub Copilot" />
   </div>
-  <div class="slide-body" style="flex-direction:column;gap:0.65rem;align-items:stretch;">
+  <div class="slide-body" style="flex-direction:column;gap:0.45rem;align-items:stretch;">
     <div class="three-col-grid">
-      <div class="section-card" v-click>
-        <span class="iq-header-pill iq-header-diagram">1 · Design tools for calling</span>
-        <ul class="dense-list" style="font-size:0.82rem;line-height:1.55;">
+      <div class="section-card" v-click="1">
+        <span class="iq-header-pill iq-header-diagram slide6-header slide6-header-1">1 · Design tools for calling</span>
+        <ul class="dense-list">
           <li>Design for when and why, not just how</li>
           <li>Consolidate tiny wrappers into semantic tools</li>
           <li>Treat descriptions and schema like API contracts</li>
         </ul>
       </div>
-      <div class="section-card" v-click>
-        <span class="iq-header-pill iq-header-diagram">2 · Instruct agents like operators</span>
-        <ul class="dense-list" style="font-size:0.82rem;line-height:1.55;">
+      <div class="section-card" v-click="1">
+        <span class="iq-header-pill iq-header-diagram slide6-header slide6-header-2">2 · Instruct agents like operators</span>
+        <ul class="dense-list">
           <li>Write operating rules, not vague aspirations</li>
           <li>Define escalation and pre-check conditions</li>
           <li>Govern when the agent must not act alone</li>
         </ul>
       </div>
-      <div class="section-card" v-click>
-        <span class="iq-header-pill iq-header-diagram">3 · Evaluate and monitor</span>
-        <ul class="dense-list" style="font-size:0.82rem;line-height:1.55;">
+      <div class="section-card" v-click="1">
+        <span class="iq-header-pill iq-header-diagram slide6-header slide6-header-3">3 · Evaluate and monitor</span>
+        <ul class="dense-list">
           <li>Pre-production datasets and synthetic scenarios</li>
           <li>Post-production monitoring for drift</li>
           <li>Scheduled red teaming for security and safety</li>
         </ul>
       </div>
     </div>
-    <div class="comparison-grid" style="gap:0.65rem;align-items:stretch;">
-      <div class="comparison-col before" style="padding:0.7rem 0.8rem;" v-click>
-        <span class="iq-header-pill iq-header-bad">Bad tool contract</span>
+    <div class="comparison-grid" style="gap:0.45rem;align-items:stretch;">
+      <div class="comparison-col before" style="padding:0.7rem 0.8rem;" v-click="2">
+        <span class="iq-header-pill iq-header-bad slide6-header slide6-header-4">Bad tool contract</span>
         <div class="panel" style="padding:0.45rem 0.6rem;">
           <p style="margin:0 0 0.25rem;font-family:monospace;font-size:0.8rem;color:var(--theme-deep);">get_gate_status</p>
-          <ul class="dense-list" style="margin:0;font-size:0.74rem;line-height:1.4;">
+          <ul class="dense-list" style="margin:0;">
             <li>Returns data, but agent can't act on it</li>
             <li>Supervisor still plans the response manually</li>
             <li>Weak semantic signal for the model</li>
           </ul>
         </div>
       </div>
-      <div class="comparison-col after" style="padding:0.7rem 0.8rem;" v-click>
-        <span class="iq-header-pill iq-header-good">Good tool contract</span>
+      <div class="comparison-col after" style="padding:0.7rem 0.8rem;" v-click="2">
+        <span class="iq-header-pill iq-header-good slide6-header slide6-header-5">Good tool contract</span>
         <div class="panel" style="padding:0.45rem 0.6rem;">
           <p style="margin:0 0 0.25rem;font-family:monospace;font-size:0.8rem;color:var(--theme-deep);">create_gate_disruption_remediation_plan</p>
-          <ul class="dense-list" style="margin:0;font-size:0.74rem;line-height:1.4;">
+          <ul class="dense-list" style="margin:0;">
             <li>Description explains when to invoke it</li>
             <li>Parameters: gate, failure type, time horizon</li>
             <li>Agent reasons about full operational response</li>
@@ -393,22 +393,46 @@ transition: slide-up
         </div>
       </div>
     </div>
-    <div class="highlight-strip" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.65rem;">
-      <div class="highlight-pill slide-in-row" style="align-items:flex-start;" v-click>
-        <span class="iq-header-pill iq-header-diagram"><span class="hl-icon">📘</span> Instruction example</span>
-        <span class="hl-desc">Escalate gate reassignment if more than 3 connecting flights are affected.</span>
+    <div class="highlight-strip" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.45rem;">
+      <div class="highlight-pill slide-in-row" style="align-items:flex-start;" v-click="3">
+        <span class="iq-header-pill iq-header-diagram slide6-header slide6-header-6"><span class="hl-icon">📘</span> Instruction example</span>
+        <span class="hl-desc">When a gate disruption affects ≥ 2 connecting flights within a 3-hour window, call <code>create_gate_disruption_remediation_plan</code> with gate ID, affected flights, and time horizon. Route the plan to the Flight Ops Approval Agent. Do not execute reassignments until approved.</span>
       </div>
-      <div class="highlight-pill slide-in-row" style="align-items:flex-start;" v-click>
-        <span class="iq-header-pill iq-header-diagram"><span class="hl-icon">🧪</span> Foundry evaluators</span>
-        <span class="hl-desc">Task Completion, Task Adherence, Tool Selection, Tool Call Accuracy, and related agent evaluators.</span>
+      <div class="highlight-pill slide-in-row" style="align-items:flex-start;" v-click="3">
+        <span class="iq-header-pill iq-header-diagram slide6-header slide6-header-7"><span class="hl-icon">🧪</span> Foundry agent evaluators</span>
+        <span class="hl-desc"><strong>System:</strong> <a href="https://learn.microsoft.com/azure/ai-foundry/concepts/evaluation-evaluators/agent-evaluators#task-completion" target="_blank">Task Completion</a>, <a href="https://learn.microsoft.com/azure/ai-foundry/concepts/evaluation-evaluators/agent-evaluators#task-adherence" target="_blank">Task Adherence</a>, <a href="https://learn.microsoft.com/azure/ai-foundry/concepts/evaluation-evaluators/agent-evaluators#task-navigation-efficiency" target="_blank">Navigation Efficiency</a>, <a href="https://learn.microsoft.com/azure/ai-foundry/concepts/evaluation-evaluators/agent-evaluators#intent-resolution" target="_blank">Intent Resolution</a><br /><strong>Process:</strong> <a href="https://learn.microsoft.com/azure/ai-foundry/concepts/evaluation-evaluators/agent-evaluators#tool-call-accuracy" target="_blank">Tool Call Accuracy</a>, <a href="https://learn.microsoft.com/azure/ai-foundry/concepts/evaluation-evaluators/agent-evaluators#tool-selection" target="_blank">Tool Selection</a>, <a href="https://learn.microsoft.com/azure/ai-foundry/concepts/evaluation-evaluators/agent-evaluators#tool-input-accuracy" target="_blank">Tool Input Accuracy</a>, <a href="https://learn.microsoft.com/azure/ai-foundry/concepts/evaluation-evaluators/agent-evaluators#tool-output-utilization" target="_blank">Tool Output Utilization</a>, <a href="https://learn.microsoft.com/azure/ai-foundry/concepts/evaluation-evaluators/agent-evaluators#tool-call-success" target="_blank">Tool Call Success</a></span>
       </div>
-      <div class="highlight-pill slide-in-row" style="align-items:flex-start;" v-click>
-        <span class="iq-header-pill iq-header-diagram"><span class="hl-icon">🔗</span> On-screen references</span>
-        <span class="hl-desc"><a href="https://aka.ms/e2e-agent-eval-sample" target="_blank">aka.ms/e2e-agent-eval-sample</a><br /><a href="https://learn.microsoft.com/azure/foundry/concepts/evaluation-evaluators/agent-evaluators" target="_blank">learn.microsoft.com/.../agent-evaluators</a></span>
+      <div class="highlight-pill slide-in-row" style="align-items:flex-start;" v-click="3">
+        <span class="iq-header-pill iq-header-diagram slide6-header slide6-header-8"><span class="hl-icon">🔗</span> References</span>
+        <ul class="dense-list hl-desc" style="margin:0;padding-left:1.1rem;">
+          <li><a href="https://aka.ms/e2e-agent-eval-sample" target="_blank">aka.ms/e2e-agent-eval-sample</a></li>
+          <li><a href="https://learn.microsoft.com/azure/foundry/concepts/evaluation-evaluators/agent-evaluators" target="_blank">learn.microsoft.com/.../agent-evaluators</a></li>
+          <li><a href="https://gorilla.cs.berkeley.edu/leaderboard.html" target="_blank">BFCL-v4 Leaderboard</a> — Tool Use to Agentic Evaluation</li>
+        </ul>
       </div>
     </div>
-    <div class="callout" style="font-size:0.84rem;max-width:none;" v-click>
-      Brute-force harness pattern: generate many synthetic gate-failure scenarios from tool definitions, run the agent across the permutations, and tune descriptions, instructions, and model settings until tool selection stabilizes.
+    <div class="panel ralph-loop-panel" v-click="4">
+      <div class="ralph-loop-copy">
+        <span class="iq-header-pill iq-header-diagram slide6-header slide6-header-9">Ralph Loop: Iterative Tool Contract Refinement</span>
+        <div class="ralph-step-flow">
+          <div class="ralph-step-box"><strong><span class="ralph-step-icon">📖</span> Read</strong><span class="ralph-step-desc">Load current tool contract</span></div>
+          <span class="ralph-step-arrow">→</span>
+          <div class="ralph-step-box"><strong><span class="ralph-step-icon">🧪</span> Test</strong><span class="ralph-step-desc">Run agent against prompt suite</span></div>
+          <span class="ralph-step-arrow">→</span>
+          <div class="ralph-step-box"><strong><span class="ralph-step-icon">📊</span> Evaluate</strong><span class="ralph-step-desc">Score tool-call compliance</span></div>
+          <span class="ralph-step-arrow">→</span>
+          <div class="ralph-step-box"><strong><span class="ralph-step-icon">🔍</span> Diagnose</strong><span class="ralph-step-desc">Identify why calls missed or misfired</span></div>
+          <span class="ralph-step-arrow">→</span>
+          <div class="ralph-step-box"><strong><span class="ralph-step-icon">🔧</span> Refine</strong><span class="ralph-step-desc">Update contract &amp; repeat</span></div>
+        </div>
+      </div>
+      <div class="ralph-loop-image-shell">
+        <img src="./images/ralph.jpg" alt="Ralph Loop iterative refinement illustration" class="ralph-loop-image" />
+      </div>
+    </div>
+    <div class="model-warning-callout" v-click="5">
+      <span class="model-warning-icon">⚠️</span>
+      <span class="model-warning-text"><strong>Different models, versions, and prompts produce different tool-call behavior</strong> — re-evaluate after every change.</span>
     </div>
   </div>
 </div>

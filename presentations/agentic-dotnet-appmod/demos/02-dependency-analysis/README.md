@@ -19,7 +19,7 @@ Chat: "Analyze the dependency tree of this solution and create a multi-layer upg
 
 Walk through the generated plan:
 
-```
+```text
 Phase 1 (Leaves — no dependencies on other projects):
   ├── ContosoLegacy.Utilities
   ├── ContosoLegacy.Logging

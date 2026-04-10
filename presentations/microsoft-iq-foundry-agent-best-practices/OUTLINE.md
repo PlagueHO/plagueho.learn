@@ -26,7 +26,9 @@ What should attendees take away from this presentation?
 
 ## Narrative Thread
 
-The running story for this deck is the evolution of an airport operations solution, anchored on a single concrete incident: **the airbridge on Gate 35 fails mid-morning, suddenly taking the gate out of service**. We start with a basic chat interface that helps an operations supervisor ask simple questions — "What is the SOP for airbridge failure?" and "Which flights are using Gate 35?" — then progressively reveal why those one-shot answers are insufficient and how the solution must evolve into a governed, tool-using agent that can "Create and execute an operational plan remediating the Gate 35 airbridge failure and continuously respond to changing conditions."
+The running story for this deck is the evolution of an airport operations solution, anchored on a single concrete incident: **the airbridge on Gate 35 fails mid-morning, suddenly taking the gate out of service**.
+We start with a basic chat interface that helps an operations supervisor ask simple questions — "What is the SOP for airbridge failure?" and "Which flights are using Gate 35?" — then progressively reveal why those one-shot answers are insufficient
+and how the solution must evolve into a governed, tool-using agent that can "Create and execute an operational plan remediating the Gate 35 airbridge failure and continuously respond to changing conditions."
 
 The airbridge failure is deliberately mundane but operationally cascading: flights must be reassigned, passengers re-routed, ground crews redirected, maintenance dispatched, knock-on delays managed, and communications updated — all while conditions keep changing. This makes the case for agentic behavior visceral rather than theoretical.
 
@@ -66,7 +68,9 @@ Crucially, the story is not just about building an internal copilot. It is about
   - That works for two isolated lookups, but it completely misses the real need: the supervisor must reassign those flights to other gates, check crew availability for the new stands, dispatch a maintenance team, notify passengers across multiple flights, and keep adjusting as conditions change (e.g. the maintenance ETA slips, another gate becomes available, a crew shift ends).
   - The real question is: "Create and execute an operational plan remediating the Gate 35 airbridge failure and continuously respond to changing conditions." That requires a loop, not a lookup.
   - Business seed: the loop is what lets you deliver continuous operational intelligence, not just one-shot answers — and that's what makes agents productizable.
-- **Speaker Notes**: "Most organizations are still here on the left: request, response, done. The supervisor asks 'What is the SOP?' and 'Which flights use Gate 35?' and gets two answers. But the real task is much bigger: reassign flights, redirect crews, dispatch maintenance, update passengers, and keep adapting. That requires an agent that loops: reason, act, observe, and continue until the disruption is resolved. The rest of this presentation is about what's different."
+- **Speaker Notes**: "Most organizations are still here on the left: request, response, done. The supervisor asks 'What is the SOP?' and 'Which flights use Gate 35?' and gets two answers.
+  But the real task is much bigger: reassign flights, redirect crews, dispatch maintenance, update passengers, and keep adapting.
+  That requires an agent that loops: reason, act, observe, and continue until the disruption is resolved. The rest of this presentation is about what's different."
 - **Duration**: ~2.5 min
 - **Animations**: Reveal left side first, then transition to the loop on the right
 - **Discussion / Thoughts**:
@@ -87,10 +91,15 @@ Crucially, the story is not just about building an internal copilot. It is about
   - Business framing: **this is purchasable intelligence** — disruption recovery, gate remediation, and operational coordination delivered as intelligent services on demand
 - **Narrative**:
   - To handle the Gate 35 airbridge failure, the agent needs tools: gate status lookup, flight schedule query, crew availability check, maintenance dispatch, passenger notification, and operational plan management.
-  - But tool calling is only as good as tool design. Consider a tool named `get_gate_status` — it can tell you Gate 35 is out of service, but the agent has no idea what to do next. Compare that to `create_gate_disruption_remediation_plan` with clear parameters (gate number, failure type, time horizon) and a description: "Use when a gate becomes unexpectedly unavailable to generate a coordinated remediation plan covering flight reassignment, crew reallocation, maintenance dispatch, and passenger communications." Now the agent can reason about the full operational response, not just one data point.
+  - But tool calling is only as good as tool design. Consider a tool named `get_gate_status` — it can tell you Gate 35 is out of service, but the agent has no idea what to do next.
+    Compare that to `create_gate_disruption_remediation_plan` with clear parameters (gate number, failure type, time horizon) and a description:
+    "Use when a gate becomes unexpectedly unavailable to generate a coordinated remediation plan covering flight reassignment, crew reallocation, maintenance dispatch, and passenger communications."
+    Now the agent can reason about the full operational response, not just one data point.
   - This is where the story changes: a thin tool like "get gate status" helps retrieve data, but a smarter tool like "create gate disruption remediation plan" encapsulates real operational reasoning.
   - The deeper opportunity is to package that reasoning as a customer-facing capability, so the product is no longer just software access but intelligent operational outcomes on tap.
-- **Speaker Notes**: "The real differentiator is not the model alone. It's the tools. And those tools are evolving from CRUD wrappers into smart, business-aware tools that increasingly look agentic themselves. But here's the trap: if your tool is just 'get gate status', the agent can answer questions but can't fix anything. A tool like 'create gate disruption remediation plan' lets the agent reason about the full operational response. Tool calling starts with tool design."
+- **Speaker Notes**: "The real differentiator is not the model alone. It's the tools. And those tools are evolving from CRUD wrappers into smart, business-aware tools that increasingly look agentic themselves.
+  But here's the trap: if your tool is just 'get gate status', the agent can answer questions but can't fix anything.
+  A tool like 'create gate disruption remediation plan' lets the agent reason about the full operational response. Tool calling starts with tool design."
 - **Duration**: ~2.5 min
 - **Animations**: Reveal progression strip left to right
 - **Discussion / Thoughts**:
@@ -213,7 +222,9 @@ Crucially, the story is not just about building an internal copilot. It is about
   4. Foundry gives you the runtime, agent lifecycle model, and built-in evaluation framework
   5. Design tools for calling, instruct agents like operators, and evaluate continuously — treat tool-using agents as intelligent apps that need testing, monitoring, governance, security, and scheduled red teaming
 - **Narrative**:
-  - Close the airport story explicitly: we started with an ops chatbot that could answer "What is the SOP for airbridge failure?" and "Which flights are on Gate 35?", and ended with a governed agent system that can create and execute a full remediation plan — reassigning flights, dispatching maintenance, coordinating crews, updating passengers, and continuously adapting as conditions change — with Foundry evaluators continuously checking that tool use remains correct and safe.
+  - Close the airport story explicitly: we started with an ops chatbot that could answer "What is the SOP for airbridge failure?" and "Which flights are on Gate 35?",
+    and ended with a governed agent system that can create and execute a full remediation plan — reassigning flights, dispatching maintenance, coordinating crews, updating passengers,
+    and continuously adapting as conditions change — with Foundry evaluators continuously checking that tool use remains correct and safe.
   - Generalize: "Substitute your domain for airports. Healthcare, logistics, finance — the pattern is the same. Encode your domain intelligence into governed tools, instruct agents on how to use them, evaluate continuously, and you have a product advantage that's hard to copy."
   - That capability stack can be sold as intelligence on tap: faster recovery, lower operating cost, better outcomes, and a harder-to-copy product advantage.
 - **Speaker Notes**: "Let me leave you with five things. First, agents need a different operating model — not just a different API. Second, the moat is in the tools, not the model.
