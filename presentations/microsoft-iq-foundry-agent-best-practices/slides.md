@@ -16,7 +16,7 @@ canvasHeight: 720
 <div class="hero-shell">
   <div class="hero-qr-block">
     <img src="./images/presentation-qr-code.png" class="hero-qr" alt="Presentation QR code" />
-    <a href="https://github.com/PlagueHO/plagueho.learn" target="_blank" class="hero-qr-url">github.com/PlagueHO/plagueho.learn</a>
+    <a href="https://danielscottraynsford.com/plagueho.learn/microsoft-iq-foundry-agent-best-practices" target="_blank" class="hero-qr-url">danielscottraynsford.com/plagueho.learn/microsoft-iq-foundry-agent-best-practices</a>
   </div>
   <p class="eyebrow">Microsoft IQ · ReAct Loop · Foundry Agent Service · Airport Operations</p>
   <h1 class="hero-heading">From Chat<br />to Agents</h1>
