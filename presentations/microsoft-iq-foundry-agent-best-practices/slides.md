@@ -1,10 +1,10 @@
 ---
 theme: default
-title: "From Chat to Agents: The Agentic Loop & Microsoft IQ"
+title: "From Chat to Agents: The Agentic Loop & Work IQ, Fabric IQ and Foundry IQ"
 info: |
-  ## From Chat to Agents: The Agentic Loop & Microsoft IQ
+  ## From Chat to Agents: The Agentic Loop & Work IQ, Fabric IQ and Foundry IQ
   A 20-minute session by Daniel Scott-Raynsford on the shift from chat to
-  tool-using agents, the role of Microsoft IQ intelligence layers, and why
+  tool-using agents, the role of Work IQ, Fabric IQ and Foundry IQ intelligence layers, and why
   Foundry is the governed runtime for enterprise agent systems.
 class: text-center
 transition: slide-left
@@ -18,7 +18,7 @@ canvasHeight: 720
     <img src="./images/presentation-qr-code.png" class="hero-qr" alt="Presentation QR code" />
     <a href="https://danielscottraynsford.com/plagueho.learn/microsoft-iq-foundry-agent-best-practices" target="_blank" class="hero-qr-url">danielscottraynsford.com/plagueho.learn/microsoft-iq-foundry-agent-best-practices</a>
   </div>
-  <p class="eyebrow">Microsoft IQ · ReAct Loop · Foundry Agent Service · Airport Operations</p>
+  <p class="eyebrow">Work IQ, Fabric IQ and Foundry IQ · ReAct Loop · Foundry Agent Service · Airport Operations</p>
   <h1 class="hero-heading">From Chat<br />to Agents</h1>
   <p class="hero-sub">
     How a simple ops chatbot becomes a <strong>governed, tool-using agent system</strong> with

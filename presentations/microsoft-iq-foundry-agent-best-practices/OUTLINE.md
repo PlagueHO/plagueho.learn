@@ -1,10 +1,10 @@
-# From Chat to Agents: The Agentic Loop & Microsoft IQ - Presentation Outline
+# From Chat to Agents: The Agentic Loop & Work IQ, Fabric IQ and Foundry IQ - Presentation Outline
 
 ## Metadata
 
 | Field | Value |
 |-------|-------|
-| **Title** | From Chat to Agents: The Agentic Loop & Microsoft IQ |
+| **Title** | From Chat to Agents: The Agentic Loop & Work IQ, Fabric IQ and Foundry IQ |
 | **Presenter** | Daniel Scott-Raynsford |
 | **Target Duration** | 20 minutes |
 | **Target Audience** | CTOs, Heads of Architecture (ISVs & SIs across Asia) |
@@ -42,7 +42,7 @@ Crucially, the story is not just about building an internal copilot. It is about
 
 - **Layout**: cover-style custom hero (reuse hero-shell pattern from agentic-development-evolution)
 - **Content**:
-  - Session title "From Chat to Agents: The Agentic Loop & Microsoft IQ", subtitle, event badge, 20-minute visual indicator
+  - Session title "From Chat to Agents: The Agentic Loop & Work IQ, Fabric IQ and Foundry IQ", subtitle, event badge, 20-minute visual indicator
   - Presenter card: **Daniel Scott-Raynsford** — Principal Software Engineer, Microsoft; GitHub: [@PlagueHO](https://github.com/PlagueHO)
   - "How this was built" — keep to a single spoken sentence rather than occupying visual real estate on the hero. Use the extra seconds for the airport story seed instead.
   - Framing: this presentation is itself a compact example of an agentic workflow — meeting → recap → outline → slides
