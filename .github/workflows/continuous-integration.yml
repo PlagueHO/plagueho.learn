@@ -85,7 +85,7 @@ jobs:
             deck=$(dirname "$slides")
             deck_name=$(basename "$deck")
             echo "::group::Building $deck"
-            pnpm exec slidev build "$slides" --out "$deck/dist"
+            pnpm exec slidev build "$slides" --out "$(pwd)/$deck/dist"
             echo "::endgroup::"
             zip -r "dist-${deck_name}.zip" "$deck/dist"
             echo "Packaged dist-${deck_name}.zip"
