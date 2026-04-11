@@ -274,7 +274,7 @@ transition: slide-left
         <p class="iq-card-summary">Organizational knowledge and information from Microsoft 365, including email, Teams, calendars, and docs that show who is doing what right now.</p>
       </div>
       <div class="iq-pillar iq-fabric" v-click>
-        <a href="https://learn.microsoft.com/fabric/iq/overview" target="_blank" class="iq-header-pill iq-header-fabric"><span class="iq-header-icon"><img src="./images/microsoft-fabric-icon.svg" alt="Fabric IQ" /></span><span class="iq-header-copy"><span class="iq-header-title">Fabric IQ</span><span class="iq-header-subtitle">Business data</span></span></a>
+        <a href="https://learn.microsoft.com/fabric/iq/overview" target="_blank" class="iq-header-pill iq-header-fabric"><span class="iq-header-icon"><img src="./images/fabric_48_color.svg" alt="Fabric IQ" /></span><span class="iq-header-copy"><span class="iq-header-title">Fabric IQ</span><span class="iq-header-subtitle">Business data</span></span></a>
         <p class="iq-card-summary">Organizational business data, ontology, and business rules with semantic context, such as schedules, resources, constraints, and policy logic the agent can reason over.</p>
       </div>
       <div class="iq-pillar iq-foundry" v-click>
