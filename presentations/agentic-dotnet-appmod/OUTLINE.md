@@ -48,7 +48,6 @@ What should attendees take away from this presentation?
 - **Layout**: default
 - **Content**:
   - 4-day SDC engagement in New Zealand with Microsoft SDC Partner
-  - Hosted with Steve Hornblow
   - Collaborated with Jay Schmelzer (Director, DevDiv CoreAI AppMod) and Taylor Southwick (Principal Engineer, AppMod)
   - Target: 10M LOC, 30-year-old .NET application
   - "Completely game changing" experience — all 4 days recorded
@@ -59,13 +58,16 @@ What should attendees take away from this presentation?
 
 - **Layout**: default two-column
 - **Content**:
-  - 4.1 The AppMod CAT team is frustrated with "sizzle reels" showing magic single-click AI AppMod — Jay Schmelzer: "Everybody wants push a button… but the reality is it's not."
+  - 4.1 There are lots of "sizzle reels" showing magic single-click AI AppMod — "Everybody wants push a button… but the reality is it's not for any large or complex applications."
+    - 4.1.1 Problem isn't code conversion- it's package support, ability to validate existing app, low understanding of existing app, technical debt etc.
+    - 4.1.1 Just because we can convert some Cobol to Java doesn't address the actual problem at that complexity (millions of lines of code, incomplete functional spec, non linear pathway)
   - 4.2 Reality: if your app is small enough for single-click AppMod, it's small enough to rebuild entirely with AI
   - 4.3 For non-trivial apps (50K+ LOC), follow the standard .NET AppMod approach and techniques — then leverage AI to automate and make it repeatable
   - 4.4 AI is an acceleration and orchestration mechanism, not a blind code-rewriter — attempting to modernize an entire solution at once leads to unreviewable PRs, loss of confidence, and late regression discovery
   - 4.5 Jay on unreviewed PRs: "No one's gonna review that." — if the output is too large for a human to validate, the migration stalls
-  - 4.6 You MUST understand standard .NET AppMod before starting (link to Auckland .NET User Group recording)
-- **Speaker Notes**: This is the "what doesn't work" part of the title. Set expectations correctly. AppMod CAT team's own words: stop promising magic. The incremental approach was repeatedly stressed — "maintain confidence at every step".
+  - 4.6 You MUST understand standard .NET AppMod before starting — **recommended prerequisite**: watch the [Auckland .NET User Group recording](https://www.youtube.com/watch?v=umcl-Ooaay4) to get the most out of this presentation
+  - 4.7 Show the primary .NET upgrade process (`images/upgrade-process.png`) — this is the standard process for upgrading a .NET app and frames the entire presentation
+- **Speaker Notes**: This is the "what doesn't work" part of the title. Set expectations correctly. AppMod CAT team's own words: stop promising magic. The incremental approach was repeatedly stressed — "maintain confidence at every step". Point attendees to the Auckland recording as essential prep.
 - **Duration**: ~4 min
 - **Animations**: Progressive reveal
 
@@ -75,66 +77,119 @@ What should attendees take away from this presentation?
 - **Content**:
   - 5.1 VS Code Insiders — mandatory. Jay Schmelzer quote: "Everyone in DevDiv uses Insiders, no one uses stable. We recommend all customers use Insiders unless they have some compliance reason not to."
   - 5.2 Update aggressively — every day we started with an update. Solutions to yesterday's problems often arrived in today's update.
-  - 5.3 Use `Microsoft.GitHubCopilot.AppModernization.Mcp` NuGet MCP package — the official App Mod tools and agents
-  - 5.4 Be careful with AppMod extensions — multiple competing extensions confuse agents. Remove all extensions, use NuGet MCP only.
-- **Speaker Notes**: "When developers complain 'Claude does X but Copilot doesn't' — it's because they're on old builds." This is about staying current.
+  - 5.3 Use `Microsoft.GitHubCopilot.Modernization.Mcp` NuGet MCP package — the official App Mod tools and agents
+  - 5.4 **WARNING**: You should use the `Microsoft.GitHubCopilot.Modernization.Mcp` NuGet MCP package. The `GitHub Copilot modernization for .NET` VS Code extension ([marketplace link](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.vscode-dotnet-modernize)) depends on `GitHub Copilot Chat` extension which is not used any more.
+  - 5.5 Be careful with other AppMod extensions — multiple competing extensions confuse agents. Remove all other AppMod extensions.
+  - 5.6 Configure MCP servers in your workspace `.vscode/mcp.json` — this ensures the entire team uses the same tool configuration:
+
+    ```json
+    {
+      "inputs": [],
+      "servers": {
+        "context7": {
+          "type": "stdio",
+          "command": "npx",
+          "args": ["-y", "@upstash/context7-mcp@latest"]
+        },
+        "Microsoft.GitHubCopilot.Modernization.Mcp": {
+          "type": "stdio",
+          "command": "dnx",
+          "args": ["Microsoft.GitHubCopilot.Modernization.Mcp@1.0.1026-preview1", "--yes"]
+        }
+      }
+    }
+    ```
+
+  - 5.7 The first step of any AppMod engagement is to run a **Modernization Assessment** using the `#generate_dotnet_upgrade_assessment` tool — e.g., `#generate_dotnet_upgrade_assessment for #file:Orchard.sln` — this gives you the baseline report before any code changes
+- **Speaker Notes**: "When developers complain 'Claude does X but Copilot doesn't' — it's because they're on old builds." Emphasize: DO NOT install both the extension and the NuGet MCP — pick one. Show the mcp.json config live. The assessment is the critical first step.
 - **Duration**: ~3 min
 - **Animations**: Progressive bullet reveal
+- **Demo handoff**: → Demo 0
 
-### 6. Skills Over Prompts — The Shift That Changed Everything
+### DEMO 0: Modernization Assessment — First Steps
+
+- Show the workspace `.vscode/mcp.json` configuration with `Microsoft.GitHubCopilot.Modernization.Mcp` server
+- Run `#discover_upgrade_scenarios` to identify available upgrade paths and scenarios
+- Respond with `Yes, target .NET 10` - this should create the `.github\upggrades\scnearios\dotnet-version-upgrade` folder and `assessment.csv`, `assessment.md`, `assessment.json` and `scenario.json` files.
+- Walk through the assessment report — project inventory, framework targets, dependency analysis, migration complexity
+- Key metrics from the Orchard CMS assessment (see `dotnet-version-upgrade/assessment.md`):
+  - 88 projects, all require upgrade (all net48, all non-SDK-style)
+  - 93 NuGet packages (41 need upgrade)
+  - 286K LOC across 4,549 code files — 5,016 issues found
+  - Estimated 4,316+ LOC to modify (~1.5% of codebase)
+  - Most modules rated 🔴 High difficulty (WAP project type), tests/libraries rated 🟢 Low
+- Reference files in `dotnet-version-upgrade/`: `assessment.md`, `assessment.json`, `assessment.csv`, `scenario.json`
+- This baseline report drives all subsequent planning: dependency layers, skill selection, and migration ordering
+- **After slide**: 5
+
+### 6. Breaking Down the Monster — Dependency Layers
+
+- **Layout**: default two-column with Mermaid dependency diagram
+- **Content**:
+  - 6.1 AppMod MUST be broken into phases that result in a working application at each step — ship partial progress rather than waiting for full completion
+  - 6.2 Each phase must be small enough to review in a PR — a 10K LOC PR is unacceptable and will never get merged → AppMod stalls
+  - 6.3 Build a dependency tree of projects and libraries, then identify leaf nodes (projects with the fewest downstream dependencies)
+  - 6.4 Modernize leaf nodes first, work upward using breadth-first/layered traversal — avoids repeated breakage of dependent projects and massive cross-cutting PRs
+  - 6.5 Projects within the same dependency layer can be modernized in parallel, while layers themselves remain sequential
+  - 6.6 Use AI AppMod tools/agents/skills to generate the multi-layer dependency upgrade plan
+  - 6.6a **Orchard CMS example**: `Orchard.sln` contains ~87 projects organized as Modules → Core → Framework → Web. The layer extraction skill reveals NHibernate.Linq at the base, Orchard.Framework as the core hub, ~50 modules as thick middle layers, and Orchard.Web at the top
+  - 6.7 SDK-style conversion is the first mandatory step — convert projects to SDK-style + PackageReference
+    - This is often the largest single PR and the hardest to decompose
+    - SDK-style conversion and `packages.config → PackageReference` are tightly coupled in current tooling and cannot be cleanly separated
+    - Mixing SDK-style and non-SDK projects in the same solution is "hit or miss" and causes build/restore issues
+    - Old format explicitly listed transitive dependencies; new format relies on inferred versions — leads to version collisions and "things that used to work by accident" breaking
+    - Once SDK-style conversion is complete, further modernization becomes easier and more incremental
+    - **Orchard CMS example**: all ~87 projects use `packages.config` — converting to SDK-style + PackageReference is the critical gating step before any module-level modernization can proceed
+  - 6.8 Package upgrades are solution-wide concerns — inconsistent versions across projects are a common source of migration pain. Group upgrades logically (e.g., Azure SDKs together) to keep PRs reviewable
+  - 6.9 Continuous small incremental change: AI tools + agents + skills ensure change is reviewable and mergeable
+- **Speaker Notes**: Break the problem into dependency layers, start at the leaves, keep PRs small. AI makes this repeatable. SDK-style conversion is the biggest hurdle. The layered approach enables parallelization within each layer. In Orchard CMS, leaf modules (Tags, AntiSpam, Markdown) are ideal first targets — Orchard.Framework is the bottleneck.
+- **Duration**: ~5 min
+- **Animations**: Mermaid diagram build
+- **Demo handoff**: → Demo 1
+
+### DEMO 1: Creating Skills, Plugins & The Org Marketplace
+
+- **Step 1: Create a skill using Copilot itself**
+  - Show how to use a "skill creator" skill — a skill whose job is to scaffold new skills with deterministic validation
+  - Reference: [PlagueHO skill-creator](https://github.com/PlagueHO/plagueho.skills/tree/main/plugins/skill-lifecycle/skills/skill-creator) — uses structured frontmatter, token counting, and compliance checks to produce high-quality skills
+  - Demo: ask Copilot to create a skill (e.g., "analyze Orchard CMS's NHibernate usage and recommend EF Core equivalents"), show the skill scaffold output
+  - Use Sensei to validate the generated skill quality
+- **Step 2: Walk through the assessment report**
+  - Open the `dotnet-version-upgrade/assessment.md` generated in Demo 0
+  - Highlight the key metrics: 88 projects, 5,016 issues, difficulty ratings per project
+  - Show how the assessment feeds into planning which skills to build first
+- **Step 3: Introduce Agent Plugins and the Organizational Marketplace**
+  - Agent Plugins in VS Code let you package skills, prompts, instructions, and agents into installable, shareable units — [VS Code Agent Plugins docs](https://code.visualstudio.com/docs/copilot/customization/agent-plugins)
+  - The [github/awesome-copilot](https://github.com/github/awesome-copilot) repo is a community plugin marketplace — discover and install skills, prompts, agents, and instructions
+  - **Every organization should create their own plugin repo** — a private marketplace for internal skills, prompts, and agents. This is what mature teams are doing now
+  - For our AppMod engagement, a shared plugin repo was created early in the week to store and share AppMod-specific skills across the team — this became the primary collaboration mechanism by day 3
+  - Show: how to install a plugin from a repo, how the `.github/` structure maps to discoverable skills
+- **After slide**: 6
+
+### 7. Skills Over Prompts — The Shift That Changed Everything
 
 - **Layout**: default two-column
 - **Content**:
-  - 6.1 Most engineers started the week building prompts → by mid-week everyone was building skills
-  - 6.2 Prompts are flexible but fragile — skills are deterministic, reusable units of work. Prompts struggled with long context, repeatability, and resumability
-  - 6.3 Very few use cases where a skill isn't a better fit than a prompt. DevDiv expects prompts to "fade away"
-  - 6.4 Project-specific logic belongs in skills, not prompts — encapsulate framework-specific or org-specific migration quirks
-  - 6.5 By end of week: 20+ skills for specialized AppMod edge cases, only ~2 prompts remaining (to "build new skills")
-  - 6.6 Specific skill categories that emerged:
+  - 7.1 Most engineers started the week building prompts → by mid-week everyone was building skills
+  - 7.2 Prompts are flexible but fragile — skills are deterministic, reusable units of work. Prompts struggled with long context, repeatability, and resumability
+  - 7.3 Very few use cases where a skill isn't a better fit than a prompt. DevDiv expects prompts to "fade away"
+  - 7.4 Project-specific logic belongs in skills, not prompts — encapsulate framework-specific or org-specific migration quirks
+  - 7.5 By end of week: 20+ skills for specialized AppMod edge cases, only ~2 prompts remaining (to "build new skills")
+  - 7.6 Specific skill categories that emerged:
     - **Build-fix skills** — resolve compiler and dependency errors after each migration step
     - **Package update skills** — upgrade, reconcile, and replace incompatible NuGet packages
     - **System.Web adapter skills** — wrap System.Web functionality for ASP.NET Core using the System Web Adapters repo
     - **Route inventory skills** — extract and analyze legacy ASP.NET routes (including ASPX-as-API endpoints)
     - **Migration verification skills** — compare old vs. new implementations and summarize deltas
     - **Performance profiling skills** (planned) — capture perf before and after migration, flag regressions
-  - 6.7 Jay on skill adoption: "I've not seen one customer open up a markdown editor and just start typing the skill and it's done. It doesn't happen." — Use agent conversations to construct and refine skills iteratively
-  - 6.8 Sensei for skill quality validation
-  - 6.9 Skill Creator Skill and Convert-Prompt-to-Skill tool
-  - 6.10 Once engineers got comfortable → became a "Skill and Agent factory", amplifying the entire team
-  - 6.11 Agents orchestrate skills and maintain state across steps, enabling pause/resume and iterative progress — prompts become inputs to agents, not the execution mechanism
+  - 7.7 Jay on skill adoption: "I've not seen one customer open up a markdown editor and just start typing the skill and it's done. It doesn't happen." — Use agent conversations to construct and refine skills iteratively
+  - 7.8 Sensei for skill quality validation
+  - 7.9 Skill Creator Skill and Convert-Prompt-to-Skill tool
+  - 7.10 Once engineers got comfortable → became a "Skill and Agent factory", amplifying the entire team
+  - 7.11 Agents orchestrate skills and maintain state across steps, enabling pause/resume and iterative progress — prompts become inputs to agents, not the execution mechanism
 - **Speaker Notes**: This is the core operating model shift. Skills are deterministic, portable, discoverable. Prompts are throwaway. Proved over 4 days with real engineers. Repeated or failure-prone prompt logic was moved into skills. The incremental workflow demanded skill boundaries — scaffold, migrate one controller, build-fix, verify — could not be enforced with prompts alone.
 - **Duration**: ~5 min
 - **Animations**: Progressive reveal
-- **Demo handoff**: → Demo 1
-
-### DEMO 1: Building & Refining Skills
-
-- Build a skill from an agent conversation
-- Use Sensei to validate quality
-- Show convert-prompt-to-skill flow
-- **After slide**: 6
-
-### 7. Breaking Down the Monster — Dependency Layers
-
-- **Layout**: default two-column with Mermaid dependency diagram
-- **Content**:
-  - 7.1 AppMod MUST be broken into phases that result in a working application at each step — ship partial progress rather than waiting for full completion
-  - 7.2 Each phase must be small enough to review in a PR — a 10K LOC PR is unacceptable and will never get merged → AppMod stalls
-  - 7.3 Build a dependency tree of projects and libraries, then identify leaf nodes (projects with the fewest downstream dependencies)
-  - 7.4 Modernize leaf nodes first, work upward using breadth-first/layered traversal — avoids repeated breakage of dependent projects and massive cross-cutting PRs
-  - 7.5 Projects within the same dependency layer can be modernized in parallel, while layers themselves remain sequential
-  - 7.6 Use AI AppMod tools/agents/skills to generate the multi-layer dependency upgrade plan
-  - 7.7 SDK-style conversion is the first mandatory step — convert projects to SDK-style + PackageReference
-    - This is often the largest single PR and the hardest to decompose
-    - SDK-style conversion and `packages.config → PackageReference` are tightly coupled in current tooling and cannot be cleanly separated
-    - Mixing SDK-style and non-SDK projects in the same solution is "hit or miss" and causes build/restore issues
-    - Old format explicitly listed transitive dependencies; new format relies on inferred versions — leads to version collisions and "things that used to work by accident" breaking
-    - Once SDK-style conversion is complete, further modernization becomes easier and more incremental
-  - 7.8 Package upgrades are solution-wide concerns — inconsistent versions across projects are a common source of migration pain. Group upgrades logically (e.g., Azure SDKs together) to keep PRs reviewable
-  - 7.9 Continuous small incremental change: AI tools + agents + skills ensure change is reviewable and mergeable
-- **Speaker Notes**: This is the "how to fix it" part. The key insight: break the problem into dependency layers, start at the leaves, keep PRs small. AI makes this repeatable, not magical. SDK-style conversion is the biggest hurdle — acknowledge it will be a large PR and plan accordingly. The layered approach also enables parallelization of work within each layer.
-- **Duration**: ~5 min
-- **Animations**: Mermaid diagram build
 - **Demo handoff**: → Demo 2
 
 ### 8. Building the Layer Extraction Skill — From Prompt to Agent
@@ -170,6 +225,7 @@ What should attendees take away from this presentation?
     - Produced 12 dependency layers — "looks sane"
     - Layers varied in "thickness" (number of projects per layer)
     - Layers are numbered, ordered, and used as planning boundaries for parallel execution
+    - **In our Orchard CMS demo**: expect similar layering — NHibernate.Linq at the base, Orchard.Framework as the core hub, ~50 modules in the middle layers, Orchard.Web at the top
   - 8.8 **Dependency extraction feeds everything downstream**: planning → build-fix loop → modernization execution
     - Results persisted into session/state so other agents can reason over them
     - Handed off to orchestration agents that decide what to modernize, when, and how
@@ -179,10 +235,12 @@ What should attendees take away from this presentation?
 - **Animations**: Progressive reveal showing the evolution: prompt → choke → refine → working skill
 - **Demo handoff**: → Demo 2
 
-### DEMO 2: Dependency Layer Extraction — The Skill in Action
+### DEMO 2: Dependency Layer Extraction — Orchard CMS
 
-- Run the dependency layer extraction skill against a sample .NET solution
-- Show the 12-layer output and explain what each layer represents
+- Run the dependency layer extraction skill against Orchard CMS's `Orchard.sln` (~87 projects)
+- Show the layered output — expect 10-15 layers spanning leaf modules (e.g., Orchard.Tags, SysCache, Markdown) up through Orchard.Framework, Orchard.Core, to Orchard.Web
+- Highlight NHibernate.Linq as a library dependency at the base layer
+- Show how ~50 Orchard modules create "thick" middle layers perfect for parallel modernization
 - Demonstrate the prompt→skill refinement loop live
 - Show how the layer doc feeds into the build-fix loop
 - **After slide**: 8
@@ -194,6 +252,7 @@ What should attendees take away from this presentation?
   - 9.1 Once a project is multi-targeted (e.g., framework + core), build failures become expected and useful signals
   - 9.2 The pattern: add new target → build fails → reveals missing APIs/incompatible calls → agent fixes iteratively → project builds cleanly → commit and move on
   - 9.3 Agents run builds automatically via `dotnet` CLI, observe failures, apply fixes, and repeat until stable
+  - 9.3a **Orchard CMS example**: convert Orchard.Tags (leaf module) to SDK-style → `dotnet build` fails on NHibernate references and missing System.Web types → agent resolves package references and adds compatibility shims → builds clean → commit and move to Orchard.AntiSpam
   - 9.4 In VS Code, enable auto-approval for safe commands (e.g., commands starting with `dotnet`) to let agents execute builds and fixes without manual confirmation on every iteration
   - 9.5 Taylor Southwick: "Make changes that are required to get you to modern .NET. Don't do all sorts of nice fluffy things." — focus on what's necessary, defer optimization
   - 9.6 This loop is especially effective once SDK-style projects and PackageReference are in place — failures are clearer and easier to isolate
@@ -216,6 +275,7 @@ What should attendees take away from this presentation?
   - 10.8 This avoids the "turn it on at the end and hope" anti-pattern
   - 10.9 Use route inventory skills to analyze legacy routes (including ASPX pages acting as APIs) and plan the migration order
   - 10.10 Backward-compatibility routing: skills generate dual routes (modern + legacy) automatically for consumers dependent on `.aspx` routes
+  - 10.11 **Orchard CMS example**: Orchard 1.x → Orchard Core is the canonical Strangler Fig journey — the community actually built Orchard Core from scratch on ASP.NET Core while Orchard 1.x remained in production. We can demonstrate this exact pattern in our demos
 - **Speaker Notes**: The Strangler Fig was explicitly and strongly recommended. This is the only practical way to migrate very large ASP.NET solutions (100+ projects) without long "big bang" freezes. It enables production deployments before full completion and reduces risk through incremental rollout. Note: YARP was not prescribed — use whatever reverse proxy fits the environment.
 - **Duration**: ~4 min
 - **Animations**: Architecture diagram build showing Core growing / Framework shrinking
@@ -229,6 +289,7 @@ What should attendees take away from this presentation?
   - 11.3 Sub-agents isolate heavy analysis or search work into separate context windows — "Anytime it needs to search or analyze things that could cause a lot of output, use the plan agent."
   - 11.4 Assign backlog items to agents and let them run — "We got a backlog of stuff, just assign it to the coding agent."
   - 11.5 Dependency layers enable parallelization: projects within the same layer can be modernized simultaneously, while layers are sequential
+  - 11.5a **Orchard CMS example**: leaf-layer modules like Orchard.Tags, Orchard.AntiSpam, Markdown, Lucene, and SysCache have no inter-dependencies — five agents can modernize all five simultaneously, each producing an independent PR
   - 11.6 Async conversion (sync→async) should be a separate, deferred agent — not part of the initial modernization pass. Taylor: "That's probably a good one for the deferred… having the agent continue on after you've done that core side."
   - 11.7 But it took 2-3 days to build confidence (and other practices below helped)
   - 11.8 Agent plugins in VS Code — package agentic assets and create a private marketplace for your org
@@ -238,11 +299,12 @@ What should attendees take away from this presentation?
 - **Animations**: Progressive reveal
 - **Demo handoff**: → Demo 3
 
-### DEMO 3: Async Parallel Execution
+### DEMO 3: Async Parallel Execution — Orchard Modules
 
-- Fire off multiple AppMod tasks in parallel using Agent Panel / subagents
-- Show sub-agent context isolation for heavy analysis
-- Show how to review results async
+- From the Orchard CMS layer doc, identify leaf-layer modules (e.g., Orchard.Tags, Orchard.AntiSpam, Markdown, Lucene, SysCache)
+- Fire off parallel AppMod tasks — each agent modernizes one leaf module independently
+- Show sub-agent context isolation for heavy analysis (e.g., analyzing NHibernate mappings in Orchard.Search)
+- Show how to review results async — each module produces a reviewable PR
 - **After slide**: 11
 
 ### 12. Tool Wrangling & Workspace MCP
@@ -256,7 +318,7 @@ What should attendees take away from this presentation?
   - 12.5 Workspace-level `mcp.json`, shared prompt files in `.github/prompts`, repo-level `custom-instructions.md` — critical for repeatability across repos, not a per-developer setup
   - 12.6 Microsoft Learn MCP is critical — but everyone needs the same MCP server names → rely on Workspace MCPs
   - 12.7 Practical tip: NuGet MCP server config example for workspace `mcp.json`
-- **Speaker Notes**: This is one of the "what doesn't work" items. Tool wrangling catches experienced teams off guard. Make it a discipline. Jay explicitly warned: "I can review it and I don't understand it. It's too much." — minimize tool surface area to what agents actually need.
+- **Speaker Notes**: This is one of the "what doesn't work" items. Tool wrangling catches experienced teams off guard. Make it a discipline. Taylor explicitly warned: "I can review it and I don't understand it. It's too much." — minimize tool surface area to what agents actually need.
 - **Duration**: ~3 min
 
 ### 13. Observability — Chat Debug & The 100× Pattern
@@ -279,7 +341,7 @@ What should attendees take away from this presentation?
 
 ### DEMO 4: /troubleshoot & The 100× Pattern
 
-- Trigger an AppMod task that goes astray
+- Trigger an AppMod task on an Orchard module that goes astray (e.g., agent incorrectly rewrites NHibernate session management or mishandles Autofac→DI conversion)
 - Use /troubleshoot to diagnose — show the Chat Debug view
 - Ask "Why did you do X rather than Y and update Skill Z"
 - Show the skill being updated and the behavior permanently fixed
@@ -299,7 +361,7 @@ What should attendees take away from this presentation?
 - **Speaker Notes**: Testing was repeatedly described as the primary constraint. Don't chase unit coverage on legacy code — focus on behavioral parity at the integration level. The goal is confidence, not coverage metrics.
 - **Duration**: ~3 min
 
-### 15. What To Do Now — Partner Playbook
+### 15. What To Do Now
 
 - **Layout**: default grid
 - **Content**:
@@ -308,6 +370,7 @@ What should attendees take away from this presentation?
   - 15.3 Set up workspace-level `mcp.json` + `custom-instructions.md` for consistency
   - 15.4 Convert prompts to skills immediately — use Sensei to validate
   - 15.5 Build a dependency-layer upgrade plan before touching code — SDK-style conversion first
+  - 15.5a **Start with Orchard CMS** as a practice target — clone it, run the layer extraction skill, experience the full workflow before a customer engagement
   - 15.6 Use the build-fix loop: add target → build → fix → commit → next project
   - 15.7 Plan Strangler Fig for ASP.NET apps — Core in front, proxy back to Framework
   - 15.8 Go async: Agent Panel, subagents, fleets — stop watching
@@ -333,14 +396,12 @@ What should attendees take away from this presentation?
 - **Duration**: ~2 min
 - **Animations**: Progressive reveal
 
-### 17. The Partner Opportunity
+### 17. The Opportunity
 
 - **Layout**: default
 - **Content**:
   - Many customers claim AI Dev expertise but are months out of date — "months = years" at current pace
-  - Running workshops like this for customers is a huge opportunity for partners
-  - Reusable learnings, recorded workshops, skill libraries — all shareable
-  - This is a partner product opportunity: AppMod-as-a-service using agentic tools
+  - Running workshops like this is a huge opportunity to teach organizations real app modernization skills
   - The entire approach is teachable and repeatable — build a modernization playbook with reusable agent + skill libraries
 - **Speaker Notes**: The call to action for partners: this is your opportunity to differentiate. You can run this workshop format. The tools and skills are reusable.
 - **Duration**: ~2 min
@@ -356,10 +417,11 @@ What should attendees take away from this presentation?
 
 | # | Demo Title | Description | After Slide | Prep Required |
 |---|-----------|-------------|-------------|---------------|
-| 1 | Building & Refining Skills | Build a skill from an agent conversation, validate with Sensei, convert-prompt-to-skill | 6 | Have a sample prompt to convert, Sensei installed |
-| 2 | Dependency Layer Extraction | Run the layer extraction skill against a sample .NET solution, show prompt→skill refinement loop, demonstrate layer doc output feeding build-fix loop | 8 | Sample .NET app with complex dependencies, AppMod MCP NuGet installed |
-| 3 | Async Parallel Execution | Fire off multiple AppMod tasks in parallel using Agent Panel/subagents | 11 | Multiple leaf projects ready for parallel modernization |
-| 4 | /troubleshoot & The 100× Pattern | Trigger a misbehavior, diagnose with /troubleshoot and Chat Debug view, update skill to permanently fix | 13 | Prepared scenario where an AppMod skill makes a known mistake |
+| 0 | Modernization Assessment — First Steps | Configure `.vscode/mcp.json` with `Microsoft.GitHubCopilot.Modernization.Mcp`, run assessment against Orchard CMS, walk through baseline report | 5 | Orchard CMS repo cloned, VS Code Insiders, MCP NuGet OR extension installed (not both!) |
+| 1 | Creating Skills, Plugins & Org Marketplace | Create a skill with skill-creator, validate with Sensei, walk through assessment report, introduce Agent Plugins and org plugin marketplace | 6 | Skill-creator skill installed, Sensei installed, assessment from Demo 0 available |
+| 2 | Dependency Layer Extraction — Orchard CMS | Run the layer extraction skill against Orchard CMS's 87-project `Orchard.sln`, show prompt→skill refinement loop, demonstrate the layered output (modules → core → tests → tools), show how the layer doc feeds into the build-fix loop | 8 | Orchard CMS repo cloned (`OrchardCMS/Orchard`, `dev` branch), AppMod MCP NuGet installed, VS Code Insiders |
+| 3 | Async Parallel Execution — Orchard Modules | Fire off parallel AppMod tasks across multiple Orchard leaf modules (e.g., Orchard.Tags, Orchard.AntiSpam, Markdown) using Agent Panel/subagents | 11 | Orchard CMS layer doc generated, multiple leaf-layer modules identified for parallel modernization |
+| 4 | /troubleshoot & The 100× Pattern | Trigger a misbehavior during Orchard module migration (e.g., NHibernate mapping issue), diagnose with /troubleshoot and Chat Debug view, update skill to permanently fix | 13 | Prepared scenario where an AppMod skill makes a known mistake on an Orchard module |
 
 ## Edge Cases Requiring Custom Skills
 
@@ -371,18 +433,41 @@ Specific edge cases identified during the workshop that required custom skills (
 4. **Context-window blowouts during large migrations** — agents attempting full migrations in one pass exceeded context limits. Drove creation of smaller, step-scoped skills (scaffold, migrate one controller, build-fix, verify).
 5. **Bugs discovered during agent runs** — logged and converted into new or enhanced skills in the shared repository.
 
-## Sample .NET App
+## Sample .NET App — Orchard CMS 1.x
 
-A sample "legacy" .NET Framework application structured to demonstrate:
+We use [Orchard CMS 1.x](https://github.com/OrchardCMS/Orchard) (`OrchardCMS/Orchard`, `dev` branch) as the live demo target:
 
-- Multi-project solution with dependency layers (leaf → intermediate → top-level)
-- Common AppMod patterns (ASP.NET Framework → ASP.NET Core)
-- Strangler Fig pattern with proxy between Core and Framework
-- Pre-built skills for common AppMod edge cases (build-fix, route inventory, System.Web adapters)
+- **~87 projects** in `src/Orchard.sln` — modules, core framework, tests, tools, themes, and libraries
+- Pure **.NET Framework** (ASP.NET MVC 5.x) — explicitly "the older, .NET Framework-based version"
+- **BSD-3-Clause** license, .NET Foundation member, 2.4K stars, 186 contributors
+- Rich module system (~50 modules: Blogs, Workflows, Taxonomies, DynamicForms, Search, Caching, Redis, Azure, etc.) — ideal dependency layer analysis material
+- **NHibernate ORM** — creates realistic ORM-to-EF-Core migration scenarios
+- Uses `packages.config` everywhere — perfect for SDK-style conversion demos
+- Test projects included (Orchard.Framework.Tests, Orchard.Core.Tests, Orchard.Tests.Modules, etc.)
+- Solution folders organized into Modules, Tests, Tools, Themes, Libraries — mirrors the dependency layer extraction story
+- A clear successor exists: [Orchard Core](https://github.com/OrchardCMS/OrchardCore) on ASP.NET Core — gives a real-world reference for what "done" looks like
 - Workspace MCP config (`mcp.json`) for AppMod NuGet
-- Designed to be usable in live demos within 5-10 minutes
+
+### Why Orchard CMS?
+
+| Criterion | Orchard CMS 1.x |
+|-----------|------------------|
+| Projects in solution | ~87 |
+| Framework | .NET Framework 4.x (ASP.NET MVC) |
+| License | BSD-3-Clause |
+| ORM | NHibernate (→ EF Core migration story) |
+| Package format | `packages.config` (→ SDK-style + PackageReference) |
+| Module architecture | ~50 decoupled modules with clear dependency graph |
+| ASP.NET migration path | Strangler Fig → Orchard Core |
+| Test coverage | Unit + integration + spec tests |
+| Community & docs | .NET Foundation, extensive docs, active Discord |
 
 ## Resources & Links
+
+### Demo App
+
+- [Orchard CMS 1.x](https://github.com/OrchardCMS/Orchard) — ~87 project .NET Framework CMS, BSD-3-Clause, .NET Foundation
+- [Orchard Core](https://github.com/OrchardCMS/OrchardCore) — the ASP.NET Core successor (reference for "what done looks like")
 
 ### AppMod Tools
 
@@ -393,8 +478,9 @@ A sample "legacy" .NET Framework application structured to demonstrate:
 
 - [Sensei](https://github.com/spboyer/sensei)
 - [Convert Prompt to Skill](https://github.com/PlagueHO/plagueho.os/tree/main/.github/skills/convert-prompt-to-skill)
-- [Skill Creator Skill](https://github.com/PlagueHO/plagueho.os/tree/main/.github/skills/skill-creator)
+- [Skill Creator Skill (PlagueHO)](https://github.com/PlagueHO/plagueho.skills/tree/main/plugins/skill-lifecycle/skills/skill-creator)
 - [Agent Plugins in VS Code](https://code.visualstudio.com/docs/copilot/customization/agent-plugins)
+- [github/awesome-copilot](https://github.com/github/awesome-copilot) — community plugin marketplace for skills, prompts, agents, and instructions
 
 ### Copilot Platform
 
@@ -417,3 +503,4 @@ A sample "legacy" .NET Framework application structured to demonstrate:
 | 2026-04-08 | Initial outline created | New presentation based on AppMod workshop learnings |
 | 2026-04-11 | Major expansion with detailed workshop guidance | Enriched from March 10 meeting transcript: added Strangler Fig pattern, build-fix loop, testing strategy, expanded skills detail, dependency layers, async/parallel, tool wrangling, observability, edge cases section |
 | 2026-04-11 | Added Layer Extraction Skill creation slide (8) | Enriched from March 10-11 meeting transcripts: detailed prompt→skill pipeline story, choking problem and fix, refinement loop, 12-layer output, `sdc-mod-build-dependency-layers` agent evolution. Renumbered slides 9-18 |
+| 2026-04-11 | Adopted Orchard CMS 1.x as demo app | Replaced generic "sample .NET app" with Orchard CMS (OrchardCMS/Orchard, ~87 projects, .NET Framework, BSD-3-Clause). Updated all demos, slide examples, and resources to reference Orchard CMS |

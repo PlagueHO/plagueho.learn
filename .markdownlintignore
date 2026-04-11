@@ -1,2 +1,4 @@
 # Exclude git submodules from markdownlint
+
 .github/skills/sensei/**
+presentations/**/dotnet-version-upgrade/**

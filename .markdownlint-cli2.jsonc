@@ -17,7 +17,8 @@
     ".copilot/**",
     ".github/agents/**",
     ".github/skills/**",
-    ".squad/**"
+    ".squad/**",
+    "presentations/**/dotnet-version-upgrade/**"
   ],
   // Output formatting
   "outputFormatters": [
