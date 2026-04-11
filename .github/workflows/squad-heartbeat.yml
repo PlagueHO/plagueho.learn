@@ -8,8 +8,8 @@ name: Squad Heartbeat (Ralph)
 
 on:
   schedule:
-    # Every 30 minutes — adjust via cron expression as needed
-    - cron: '*/30 * * * *'
+    # Once per day at 06:00 UTC
+    - cron: '0 6 * * *'
 
   # React to completed work or new squad work
   issues:
