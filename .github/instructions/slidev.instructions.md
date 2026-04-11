@@ -15,7 +15,8 @@ Each presentation lives in its own folder under `presentations/`:
 ```text
 presentations/
   my-talk/
-    slides.md       # Main slide content (Slidev Markdown)
+    OUTLINE.md      # Outline for mapping to template slides. Start here when creating a new talk.
+    slides.md       # Main slide content (Slidev Markdown). Generate from OUTLINE.md.
     components/     # Custom Vue components (optional)
     images/         # Images used in slides
     theme/          # Custom theme overrides (optional)

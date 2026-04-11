@@ -130,67 +130,67 @@ transition: slide-up
     <h1 class="agenda-title">Agenda</h1>
   </div>
   <div class="agenda-grid">
-    <a href="/5" class="agenda-card agenda-card-1">
+    <div @click="$slidev.nav.go(5)" class="agenda-card agenda-card-1" style="cursor:pointer;">
       <div class="agenda-card-accent"></div>
       <span class="agenda-num">01</span>
       <h2>The Hard Truth</h2>
       <p>No sizzle reels — what large-scale AppMod actually looks like</p>
-    </a>
-    <a href="/6" class="agenda-card agenda-card-2">
+    </div>
+    <div @click="$slidev.nav.go(6)" class="agenda-card agenda-card-2" style="cursor:pointer;">
       <div class="agenda-card-accent"></div>
       <span class="agenda-num">02</span>
       <h2>Toolchain &amp; Tool Discipline</h2>
       <p>VS Code Insiders, AppMod MCP, workspace config, tool hygiene</p>
-    </a>
-    <a href="/8" class="agenda-card agenda-card-3">
+    </div>
+    <div @click="$slidev.nav.go(8)" class="agenda-card agenda-card-3" style="cursor:pointer;">
       <div class="agenda-card-accent"></div>
       <span class="agenda-num">03</span>
       <h2>Layers, Skills &amp; Build-Fix</h2>
       <p>Dependency layers, skills over prompts, the build-fix loop</p>
-    </a>
-    <a href="/13" class="agenda-card agenda-card-4">
+    </div>
+    <div @click="$slidev.nav.go(13)" class="agenda-card agenda-card-4" style="cursor:pointer;">
       <div class="agenda-card-accent"></div>
       <span class="agenda-num">04</span>
       <h2>Async &amp; Observability</h2>
       <p>Go async, the 100× pattern, what to do now</p>
-    </a>
+    </div>
   </div>
   <div class="agenda-demos">
-    <a href="/7" class="agenda-demo-pill">
-      <span class="agenda-demo-pulse"></span>
-      <span class="agenda-demo-text">
-        <span class="agenda-demo-num">🎬 Demo 0</span>
-        <span class="agenda-demo-desc">Assessment</span>
-      </span>
-    </a>
-    <a href="/9" class="agenda-demo-pill">
+    <div @click="$slidev.nav.go(7)" class="agenda-demo-pill" style="cursor:pointer;">
       <span class="agenda-demo-pulse"></span>
       <span class="agenda-demo-text">
         <span class="agenda-demo-num">🎬 Demo 1</span>
-        <span class="agenda-demo-desc">Dependency Layers</span>
+        <span class="agenda-demo-desc">Assessment</span>
       </span>
-    </a>
-    <a href="/11" class="agenda-demo-pill">
+    </div>
+    <div @click="$slidev.nav.go(9)" class="agenda-demo-pill" style="cursor:pointer;">
       <span class="agenda-demo-pulse"></span>
       <span class="agenda-demo-text">
         <span class="agenda-demo-num">🎬 Demo 2</span>
-        <span class="agenda-demo-desc">Prompt→Skill</span>
+        <span class="agenda-demo-desc">Dependency Layers</span>
       </span>
-    </a>
-    <a href="/14" class="agenda-demo-pill">
+    </div>
+    <div @click="$slidev.nav.go(11)" class="agenda-demo-pill" style="cursor:pointer;">
       <span class="agenda-demo-pulse"></span>
       <span class="agenda-demo-text">
         <span class="agenda-demo-num">🎬 Demo 3</span>
-        <span class="agenda-demo-desc">Async Execution</span>
+        <span class="agenda-demo-desc">Prompt→Skill</span>
       </span>
-    </a>
-    <a href="/16" class="agenda-demo-pill">
+    </div>
+    <div @click="$slidev.nav.go(14)" class="agenda-demo-pill" style="cursor:pointer;">
       <span class="agenda-demo-pulse"></span>
       <span class="agenda-demo-text">
         <span class="agenda-demo-num">🎬 Demo 4</span>
+        <span class="agenda-demo-desc">Async Execution</span>
+      </span>
+    </div>
+    <div @click="$slidev.nav.go(16)" class="agenda-demo-pill" style="cursor:pointer;">
+      <span class="agenda-demo-pulse"></span>
+      <span class="agenda-demo-text">
+        <span class="agenda-demo-num">🎬 Demo 5</span>
         <span class="agenda-demo-desc">/troubleshoot &amp; 100×</span>
       </span>
-    </a>
+    </div>
   </div>
 </div>
 
@@ -358,12 +358,12 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 7 — DEMO 0: MODERNIZATION ASSESSMENT           ~3 min
+     SLIDE 7 — DEMO 1: MODERNIZATION ASSESSMENT           ~3 min
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="demo-shell">
   <div class="demo-icon">📋</div>
-  <h1 class="demo-title">Demo 0: Modernization Assessment — First Steps</h1>
+  <h1 class="demo-title">Demo 1: Modernization Assessment — First Steps</h1>
   <p class="demo-subtitle">Configure the toolchain, run the baseline assessment, understand your starting point</p>
   <div class="demo-badge">🎬 ~3 minutes</div>
   <div class="demo-checklist">
@@ -471,12 +471,12 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 9 — DEMO 1: DEPENDENCY LAYER EXTRACTION         ~5 min
+     SLIDE 9 — DEMO 2: DEPENDENCY LAYER EXTRACTION         ~5 min
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="demo-shell">
   <div class="demo-icon">📦</div>
-  <h1 class="demo-title">Demo 1: Dependency Layer Extraction — Orchard CMS</h1>
+  <h1 class="demo-title">Demo 2: Dependency Layer Extraction — Orchard CMS</h1>
   <p class="demo-subtitle">Run the appmod-layer-planner skill against Orchard CMS (~88 projects)</p>
   <div class="demo-badge">🎬 ~5 minutes</div>
   <div class="demo-checklist">
@@ -492,7 +492,7 @@ transition: fade-out
 DEMO SCRIPT — Dependency Layer Extraction (~5 min)
 ═══════════════════════════════════════════════════
 
-SETUP: Orchard CMS repo with assessment from Demo 0 already generated.
+SETUP: Orchard CMS repo with assessment from Demo 1 already generated.
 
 1. RUN THE SKILL (2 min)
    - Run the appmod-layer-planner skill against Orchard.sln
@@ -609,12 +609,12 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 11 — DEMO 2: THE PROMPT→SKILL PIPELINE          ~5 min
+     SLIDE 11 — DEMO 3: THE PROMPT→SKILL PIPELINE          ~5 min
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="demo-shell">
   <div class="demo-icon">🔧</div>
-  <h1 class="demo-title">Demo 2: The Prompt→Skill Pipeline</h1>
+  <h1 class="demo-title">Demo 3: The Prompt→Skill Pipeline</h1>
   <p class="demo-subtitle">Create, refine, and share skills — the workflow the team used every day</p>
   <div class="demo-badge">🎬 ~5 minutes</div>
   <div class="demo-checklist">
@@ -769,12 +769,12 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 14 — DEMO 3: ASYNC PARALLEL EXECUTION           ~3 min
+     SLIDE 14 — DEMO 4: ASYNC PARALLEL EXECUTION           ~3 min
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="demo-shell">
   <div class="demo-icon">⚡</div>
-  <h1 class="demo-title">Demo 3: Async Parallel Execution — Orchard Modules</h1>
+  <h1 class="demo-title">Demo 4: Async Parallel Execution — Orchard Modules</h1>
   <p class="demo-subtitle">Fire off parallel AppMod tasks across Orchard CMS leaf modules</p>
   <div class="demo-badge">🎬 ~3 minutes</div>
   <div class="demo-checklist">
@@ -862,12 +862,12 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 16 — DEMO 4: /troubleshoot & 100× PATTERN      ~5 min
+     SLIDE 16 — DEMO 5: /troubleshoot & 100× PATTERN      ~5 min
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="demo-shell">
   <div class="demo-icon">🔍</div>
-  <h1 class="demo-title">Demo 4: /troubleshoot &amp; The 100× Pattern</h1>
+  <h1 class="demo-title">Demo 5: /troubleshoot &amp; The 100× Pattern</h1>
   <p class="demo-subtitle">Observe, diagnose, update the skill — permanently fix the behavior</p>
   <div class="demo-badge">🎬 ~5 minutes</div>
   <div class="demo-checklist">

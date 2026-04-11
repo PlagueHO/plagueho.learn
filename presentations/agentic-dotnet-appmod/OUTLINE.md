@@ -105,9 +105,9 @@ What should attendees take away from this presentation?
 - **Speaker Notes**: "When developers complain 'Claude does X but Copilot doesn't' — it's because they're on old builds." DO NOT install both the extension and the NuGet MCP — pick one. Jay on blind trust in tools: "We don't just trust the stuff… You will be overwhelmed by what it did." — tool output must be broken into smaller, inspectable steps.
 - **Duration**: ~3 min
 - **Animations**: Progressive bullet reveal
-- **Demo handoff**: → Demo 0
+- **Demo handoff**: → Demo 1
 
-### DEMO 0: Modernization Assessment — First Steps
+### DEMO 1: Modernization Assessment — First Steps
 
 - Show the workspace `.vscode/mcp.json` configuration with `Microsoft.GitHubCopilot.AppModernization.Mcp` server
 - Run `#discover_upgrade_scenarios` to identify available upgrade paths and scenarios
@@ -144,9 +144,9 @@ What should attendees take away from this presentation?
 - **Speaker Notes**: Break the problem into dependency layers, start at the leaves, keep PRs small. AI makes this repeatable. SDK-style conversion is the biggest hurdle. The layered approach enables parallelization within each layer. For web apps, Strangler Fig was explicitly and strongly recommended by the CAT team — Core in front, proxy to Framework, migrate incrementally.
 - **Duration**: ~4 min
 - **Animations**: Mermaid diagram build
-- **Demo handoff**: → Demo 1
+- **Demo handoff**: → Demo 2
 
-### DEMO 1: Dependency Layer Extraction — Orchard CMS
+### DEMO 2: Dependency Layer Extraction — Orchard CMS
 
 - Run the `appmod-layer-planner` skill (in [skills/appmod-layer-planner/](skills/appmod-layer-planner/)) against Orchard CMS's `Orchard.sln` (~88 projects)
 - Show the generated output: [dotnet-version-upgrade/layer-plan.md](dotnet-version-upgrade/layer-plan.md) — a phased modernization plan with:
@@ -185,9 +185,9 @@ What should attendees take away from this presentation?
   Use [Sensei](https://github.com/spboyer/sensei) for skill quality validation and [Skill Creator](https://github.com/PlagueHO/plagueho.skills/tree/main/plugins/skill-lifecycle/skills/skill-creator) to scaffold new skills.
 - **Duration**: ~5 min
 - **Animations**: Progressive reveal showing evolution: prompt → choke → refine → working skill
-- **Demo handoff**: → Demo 2
+- **Demo handoff**: → Demo 3
 
-### DEMO 2: The Prompt→Skill Pipeline — Creating & Refining Skills
+### DEMO 3: The Prompt→Skill Pipeline — Creating & Refining Skills
 
 - **Step 1: Create a skill using Copilot**
   - Use a "skill creator" skill to scaffold a new skill (e.g., "analyze Orchard CMS's NHibernate usage and recommend EF Core equivalents")
@@ -235,9 +235,9 @@ What should attendees take away from this presentation?
 - **Speaker Notes**: Day 1-2: engineers watched every agent step. Day 3-4: they fired off parallel tasks and reviewed results. The acceleration was dramatic. The key mindset shift: modernization is agent-orchestrated, not agent-monolithic.
 - **Duration**: ~3 min
 - **Animations**: Progressive reveal
-- **Demo handoff**: → Demo 3
+- **Demo handoff**: → Demo 4
 
-### DEMO 3: Async Parallel Execution — Orchard Modules
+### DEMO 4: Async Parallel Execution — Orchard Modules
 
 - From the Orchard CMS [layer-plan.md](dotnet-version-upgrade/layer-plan.md), identify Phase 1 leaf projects (NHibernate.Linq, WarmupStarter, Orchard CLI, Orchard.Profile, MSBuild.Orchard.Tasks)
 - Open multiple Agent Panels and fire off parallel modernization prompts — one per leaf project:
@@ -269,9 +269,9 @@ What should attendees take away from this presentation?
 - **Speaker Notes**: This is the most important operational pattern. The 100× multiplier comes from closing the feedback loop: don't just fix the immediate problem, update the skill so it never happens again. Observability makes agent behavior inspectable, not opaque — critical for trust.
 - **Duration**: ~3 min
 - **Animations**: Progressive reveal (10× → 100×)
-- **Demo handoff**: → Demo 4
+- **Demo handoff**: → Demo 5
 
-### DEMO 4: /troubleshoot & The 100× Pattern
+### DEMO 5: /troubleshoot & The 100× Pattern
 
 - Trigger an AppMod task on an Orchard module that goes astray (e.g., agent incorrectly rewrites NHibernate session management or mishandles Autofac→DI conversion)
 - Use /troubleshoot to diagnose — show the Chat Debug view
@@ -312,11 +312,11 @@ What should attendees take away from this presentation?
 
 | # | Demo Title | Description | After Slide | Prep Required |
 |---|-----------|-------------|-------------|---------------|
-| 0 | Modernization Assessment — First Steps | Configure `.vscode/mcp.json` with `Microsoft.GitHubCopilot.AppModernization.Mcp`, run assessment against Orchard CMS, walk through baseline report | 5 | Orchard CMS repo cloned, VS Code Insiders, MCP NuGet installed |
-| 1 | Dependency Layer Extraction — Orchard CMS | Run `appmod-layer-planner` skill against Orchard CMS, show generated `layer-plan.md` with 15-phase plan, Mermaid diagram, story points per layer | 6 | `appmod-layer-planner` skill in `skills/`, assessment from Demo 0, Orchard CMS repo cloned |
-| 2 | The Prompt→Skill Pipeline | Create a skill with skill-creator, validate with Sensei, demonstrate prompt→skill refinement loop, introduce Agent Plugins | 7 | Skill-creator skill installed, Sensei installed, assessment from Demo 0 available |
-| 3 | Async Parallel Execution — Orchard Modules | Fire off parallel AppMod tasks across multiple Orchard leaf modules using Agent Panel/subagents | 9 | Orchard CMS layer doc generated, leaf-layer modules identified for parallel modernization |
-| 4 | /troubleshoot & The 100× Pattern | Trigger a misbehavior during Orchard module migration, diagnose with /troubleshoot and Chat Debug view, update skill to permanently fix | 10 | Prepared scenario where an AppMod skill makes a known mistake on an Orchard module |
+| 1 | Modernization Assessment — First Steps | Configure `.vscode/mcp.json` with `Microsoft.GitHubCopilot.AppModernization.Mcp`, run assessment against Orchard CMS, walk through baseline report | 5 | Orchard CMS repo cloned, VS Code Insiders, MCP NuGet installed |
+| 2 | Dependency Layer Extraction — Orchard CMS | Run `appmod-layer-planner` skill against Orchard CMS, show generated `layer-plan.md` with 15-phase plan, Mermaid diagram, story points per layer | 6 | `appmod-layer-planner` skill in `skills/`, assessment from Demo 1, Orchard CMS repo cloned |
+| 3 | The Prompt→Skill Pipeline | Create a skill with skill-creator, validate with Sensei, demonstrate prompt→skill refinement loop, introduce Agent Plugins | 7 | Skill-creator skill installed, Sensei installed, assessment from Demo 1 available |
+| 4 | Async Parallel Execution — Orchard Modules | Fire off parallel AppMod tasks across multiple Orchard leaf modules using Agent Panel/subagents | 9 | Orchard CMS layer doc generated, leaf-layer modules identified for parallel modernization |
+| 5 | /troubleshoot & The 100× Pattern | Trigger a misbehavior during Orchard module migration, diagnose with /troubleshoot and Chat Debug view, update skill to permanently fix | 10 | Prepared scenario where an AppMod skill makes a known mistake on an Orchard module |
 
 ## Edge Cases Requiring Custom Skills
 
@@ -399,4 +399,4 @@ We use [Orchard CMS 1.x](https://github.com/OrchardCMS/Orchard) (`OrchardCMS/Orc
 | 2026-04-11 | Major expansion with detailed workshop guidance | Enriched from March 10 meeting transcript: added Strangler Fig pattern, build-fix loop, testing strategy, expanded skills detail, dependency layers, async/parallel, tool wrangling, observability, edge cases section |
 | 2026-04-11 | Added Layer Extraction Skill creation slide (8) | Enriched from March 10-11 meeting transcripts: detailed prompt→skill pipeline story, choking problem and fix, refinement loop, 12-layer output, `sdc-mod-build-dependency-layers` agent evolution. Renumbered slides 9-18 |
 | 2026-04-11 | Adopted Orchard CMS 1.x as demo app | Replaced generic "sample .NET app" with Orchard CMS (OrchardCMS/Orchard, ~87 projects, .NET Framework, BSD-3-Clause). Updated all demos, slide examples, and resources to reference Orchard CMS |
-| 2026-04-11 | Structural tightening pass | Merged slides 7+8 (Skills), 9+14 (Build-Fix+Testing), 15+16+17 (Actions+Takeaways). Folded Strangler Fig into dependency layers, tool wrangling into toolchain. Reordered demos for narrative consistency. Reduced from 18 to 12 slides to fit 45-minute slot. Fixed MCP package name inconsistency, duplicate 4.1.1 numbering, `dnx` typo, Demo 0 path typo |
+| 2026-04-11 | Structural tightening pass | Merged slides 7+8 (Skills), 9+14 (Build-Fix+Testing), 15+16+17 (Actions+Takeaways). Folded Strangler Fig into dependency layers, tool wrangling into toolchain. Reordered demos for narrative consistency. Reduced from 18 to 12 slides to fit 45-minute slot. Fixed MCP package name inconsistency, duplicate 4.1.1 numbering, `dnx` typo, Demo 1 path typo |

@@ -1,49 +1,61 @@
 # GitHub Copilot Instructions
 
-These instructions apply to all GitHub Copilot interactions in this repository.
+See `AGENTS.md` for directory layout, build/lint commands, and CI pipeline.
 
-## Repository Purpose
+## Purpose
 
-This is the external-facing learning content repository for Daniel Scott-Raynsford
-(PlagueHO). It contains demos, presentations, learning pathways, and reusable
-patterns intended for sharing at events, workshops, and online. Agentic workflow
-automation assets are in [PlagueHO/plagueho.os](https://github.com/PlagueHO/plagueho.os).
-Plugins and skills are maintained separately in
-[PlagueHO/skills](https://github.com/PlagueHO/skills).
-
-## General Coding Principles
-
-- Write clean, readable, and maintainable code
-- Follow the principle of least privilege for security
-- Prefer explicit over implicit
-- Write self-documenting code with meaningful names
-- Keep functions small and focused on a single responsibility
-- Handle errors explicitly and gracefully
-
-## Code Style
-
-- Use consistent indentation (2 spaces for YAML/JSON, 4 spaces for PowerShell/Python)
-- Include a newline at the end of every file
-- Avoid trailing whitespace
-- Keep lines under 120 characters where possible
-
-## Documentation
-
-- All scripts should include a header comment explaining their purpose, parameters, and usage
-- All patterns should include a README explaining when and how to use them
-- Prompts should include a description of their purpose and expected inputs/outputs
+External-facing learning content repository for Daniel Scott-Raynsford
+(PlagueHO) — Slidev presentations, demos, learning pathways, and reusable
+patterns. Primary content is Markdown; tooling is Node.js (pnpm) with Slidev
+and markdownlint-cli2. Agentic workflow assets live in
+[PlagueHO/plagueho.os](https://github.com/PlagueHO/plagueho.os); plugins and
+skills in [PlagueHO/skills](https://github.com/PlagueHO/skills).
 
 ## Security
 
 - Never commit secrets, passwords, API keys, or other sensitive information
 - Use environment variables or secret management tools for sensitive values
-- Validate all inputs, especially when processing external data
+- Validate all inputs when processing external data
+- TruffleHog runs in CI — verified secrets will block merge
 
-## Asset Organization
+## Code Style
 
-- **Demos**: Presentation-ready demos go in `demos/`
-- **Presentations**: Slidev Markdown presentations go in `presentations/` (one subfolder per talk)
-- **Learning Pathways**: Curated learning pathways go in `learning-pathways/`
-- **Patterns**: Reusable development patterns go in `patterns/`
-- **Scripts**: Utility scripts organized by technology in `scripts/`
-- **Docs**: NOT maintained here — see [PlagueHO/plagueho.os](https://github.com/PlagueHO/plagueho.os)
+- 2 spaces for YAML, JSON, and Markdown; 4 spaces for PowerShell and Python
+- Newline at end of every file; no trailing whitespace
+- Lines under 120 characters (Markdown lint allows up to 400 for prose)
+- Use `-` for unordered lists; `1.` for ordered lists (markdownlint MD004)
+- Use `*` for emphasis and strong emphasis (markdownlint MD049/MD050)
+- Fenced code blocks with backticks; always specify language tag (MD040)
+
+## Naming Conventions
+
+| Element | Convention | Example |
+|---------|-----------|---------|
+| Presentation folders | kebab-case | `agentic-development-evolution` |
+| Image files | kebab-case | `architecture-overview.png` |
+| Scripts | kebab-case or PascalCase (PowerShell) | `generate-pages-index.mjs`, `Build-LayerPlan.ps1` |
+| Learning pathways | kebab-case | `microsoft-foundry-agentic-ai.md` |
+| Markdown headings | Sentence case | `## Adding a presentation` |
+
+## Markdown Patterns
+
+- Follow GitHub Flavored Markdown (GFM) — pipe tables, task lists, fenced code
+- Do not wrap lines manually — let the editor handle wrapping
+- Use `##` for top-level sections; do not use `#` (reserved for the title)
+- Tables must have leading and trailing pipes (MD055)
+- Separate sections with a single blank line
+
+## Slidev Patterns
+
+- Required frontmatter: `theme`, `title`, `info`, `transition`, `mdc: true`
+- Separate slides with `---`; use per-slide YAML for layout/transition
+- Use `<v-click>` / `<v-clicks>` for progressive reveal
+- Code blocks: specify language + line highlights (`ts {2,3|5|all}`)
+- Store images in the talk's `images/` subfolder with relative paths
+- `presentations/**/slides.md` is excluded from markdownlint
+
+## Documentation
+
+- Every script includes a header comment with purpose, parameters, and usage
+- Every pattern and demo folder includes a `README.md`
+- Every presentation includes an `OUTLINE.md` created before slides

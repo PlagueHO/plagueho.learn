@@ -18,9 +18,16 @@ pnpm slidev export presentations/<talk-name>/slides.md
 
 ## Creating a New Presentation
 
+Every new presentation **must** start from the `template/` folder, which
+contains a full set of reusable slide types covering common presentation
+patterns (title hero, agenda, comparison, demo, code walkthrough, etc.).
+
 1. Copy the `template/` folder and rename it to your talk name (kebab-case)
-2. Edit `slides.md` with your content
-3. Run `pnpm slidev presentations/<your-talk>/slides.md` to preview
+1. Write an `OUTLINE.md` mapping your sections to slide types — use
+   [template/INDEX.md](template/INDEX.md) to pick the best template slide
+   for each section
+1. Edit `slides.md`, replacing template placeholders with your content
+1. Run `pnpm slidev presentations/<your-talk>/slides.md` to preview
 
 Or ask GitHub Copilot:
 
@@ -33,7 +40,9 @@ Each presentation is a self-contained subfolder:
 ```text
 presentations/
   my-talk/
-    slides.md         # Main slide content
+    OUTLINE.md        # Talk outline mapped to template slide types
+    slides.md         # Main slide content (built from template)
+    style.css         # Optional custom styles
     components/       # Custom Vue components (optional)
     images/           # Images referenced in slides
 ```
@@ -75,3 +84,6 @@ pnpm add -D @slidev/theme-<name>
 
 See [template/slides.md](template/slides.md) for a starter deck demonstrating
 common Slidev features including animations, code blocks, diagrams, and layouts.
+Refer to [template/INDEX.md](template/INDEX.md) for a full index of available
+slide types and guidance on selecting the right template slide for each section
+of your outline.
