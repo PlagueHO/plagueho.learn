@@ -218,7 +218,7 @@ transition: fade-out
       </div>
       <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent2);">
         <h3>🎯 What</h3>
-        <p>SDC engagement with partner <strong>Vista</strong> in New Zealand</p>
+        <p>SDC engagement with partner a in New Zealand</p>
         <p>Target: <strong>10M LOC, 30-year-old .NET application</strong></p>
         <p>Goal: realistic AppMod at enterprise scale using AI</p>
       </div>

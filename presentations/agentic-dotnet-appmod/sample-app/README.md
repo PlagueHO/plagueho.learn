@@ -79,5 +79,5 @@ for consistent naming across the team:
 ## Notes
 
 - This is a simplified sample for demo purposes
-- The actual Vista workshop used a 10M LOC application
+- The actual SDC/ISV workshop used a 10M LOC application
 - The patterns demonstrated here apply at any scale
