@@ -126,7 +126,7 @@ transition: slide-up
     <div class="agenda-orb agenda-orb-3"></div>
   </div>
   <div class="agenda-header">
-    <p class="agenda-eyebrow">45 MINUTES · 4 LIVE DEMOS · UNPLUGGED</p>
+    <p class="agenda-eyebrow">45 MINUTES · 5 LIVE DEMOS · UNPLUGGED</p>
     <h1 class="agenda-title">Agenda</h1>
   </div>
   <div class="agenda-grid">
@@ -136,41 +136,48 @@ transition: slide-up
       <h2>The Hard Truth</h2>
       <p>No sizzle reels — what large-scale AppMod actually looks like</p>
     </a>
-    <a href="/7" class="agenda-card agenda-card-2">
+    <a href="/6" class="agenda-card agenda-card-2">
       <div class="agenda-card-accent"></div>
       <span class="agenda-num">02</span>
-      <h2>Toolchain &amp; Skills</h2>
-      <p>VS Code Insiders, AppMod MCP, Skills &gt; Prompts</p>
+      <h2>Toolchain &amp; Tool Discipline</h2>
+      <p>VS Code Insiders, AppMod MCP, workspace config, tool hygiene</p>
     </a>
-    <a href="/10" class="agenda-card agenda-card-3">
+    <a href="/8" class="agenda-card agenda-card-3">
       <div class="agenda-card-accent"></div>
       <span class="agenda-num">03</span>
-      <h2>Break It Down &amp; Go Async</h2>
-      <p>Dependency layers, leaf-first, parallel execution</p>
+      <h2>Layers, Skills &amp; Build-Fix</h2>
+      <p>Dependency layers, skills over prompts, the build-fix loop</p>
     </a>
-    <a href="/14" class="agenda-card agenda-card-4">
+    <a href="/13" class="agenda-card agenda-card-4">
       <div class="agenda-card-accent"></div>
       <span class="agenda-num">04</span>
-      <h2>Observability &amp; Playbook</h2>
-      <p>The 100× pattern, tool wrangling, partner opportunity</p>
+      <h2>Async &amp; Observability</h2>
+      <p>Go async, the 100× pattern, what to do now</p>
     </a>
   </div>
   <div class="agenda-demos">
+    <a href="/7" class="agenda-demo-pill">
+      <span class="agenda-demo-pulse"></span>
+      <span class="agenda-demo-text">
+        <span class="agenda-demo-num">🎬 Demo 0</span>
+        <span class="agenda-demo-desc">Assessment</span>
+      </span>
+    </a>
     <a href="/9" class="agenda-demo-pill">
       <span class="agenda-demo-pulse"></span>
       <span class="agenda-demo-text">
         <span class="agenda-demo-num">🎬 Demo 1</span>
-        <span class="agenda-demo-desc">Building Skills</span>
+        <span class="agenda-demo-desc">Dependency Layers</span>
       </span>
     </a>
-    <a href="/12" class="agenda-demo-pill">
+    <a href="/11" class="agenda-demo-pill">
       <span class="agenda-demo-pulse"></span>
       <span class="agenda-demo-text">
         <span class="agenda-demo-num">🎬 Demo 2</span>
-        <span class="agenda-demo-desc">Dependency Analysis</span>
+        <span class="agenda-demo-desc">Prompt→Skill</span>
       </span>
     </a>
-    <a href="/13" class="agenda-demo-pill">
+    <a href="/14" class="agenda-demo-pill">
       <span class="agenda-demo-pulse"></span>
       <span class="agenda-demo-text">
         <span class="agenda-demo-num">🎬 Demo 3</span>
@@ -188,7 +195,7 @@ transition: slide-up
 </div>
 
 <!--
-Quick scan of the agenda — don't dwell. Point out the 4 demo markers so
+Quick scan of the agenda — don't dwell. Point out the 5 demo markers so
 people know when we'll jump to live code. "This is an unplugged session —
 ask questions anytime, challenge anything, let's make it a conversation."
 -->
@@ -251,34 +258,30 @@ transition: fade-out
   <div class="slide-banner">
     <h1>The Hard Truth About Large-Scale AppMod</h1>
   </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.6rem; align-items: stretch; padding: 0.5rem 1.8rem 0.8rem;">
-    <div class="callout" style="background: #fff0ec; border-left: 4px solid var(--theme-accent); padding: 0.6rem 1rem; font-size: 0.95em;">
-      <strong>⚠️ From the AppMod CAT team:</strong> "We get frustrated with AppMod sizzle reels that show magic single-click AI-driven modernization. This is generally not the real and lived experience."
+  <div class="slide-body" style="flex-direction: column; gap: 0.5rem; align-items: stretch; padding: 0.4rem 1.8rem 0.8rem;">
+    <div class="callout" style="background: #fff0ec; border-left: 4px solid var(--theme-accent); padding: 0.5rem 1rem; font-size: 0.92em;">
+      <strong>⚠️ Jay Schmelzer:</strong> "Everybody wants push a button… but the reality is it's not for any large or complex applications."
     </div>
     <div style="display: flex; gap: 0.8rem; align-items: stretch; flex: 1;">
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.6rem;">
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
         <div class="card" style="flex: 1; border-left: 3px solid #dc2626;">
           <h3>❌ What Doesn't Work</h3>
           <p>"Single-click" AI AppMod for non-trivial apps</p>
+          <p>Problem isn't code conversion — it's package support, validation, tech debt</p>
           <p>If your app is <strong>small enough for single-click</strong>, it's small enough to <strong>rebuild entirely with AI</strong></p>
-          <p>Promising magic leads to <strong>disappointment</strong></p>
         </div>
         <div class="card" style="flex: 1; border-left: 3px solid #16a34a;">
           <h3>✅ What Does Work</h3>
-          <p>Follow <strong>standard .NET AppMod approach</strong> and techniques</p>
-          <p>Leverage AI to <strong>automate and make it repeatable</strong></p>
-          <p>Break into <strong>phases with small, reviewable PRs</strong></p>
+          <p>Follow <strong>standard .NET AppMod approach</strong> — then leverage AI to automate and make it repeatable</p>
+          <p>AI is an acceleration mechanism, <strong>not a blind code-rewriter</strong></p>
+          <p>Jay on big PRs: <strong>"No one's gonna review that."</strong></p>
         </div>
       </div>
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.6rem;">
-        <div class="card" style="flex: 1; border-color: var(--theme-accent2); border-width: 2px;">
-          <h3>📏 The Scale Threshold</h3>
-          <p style="font-size: 0.85em;"><strong>&lt; 50K LOC</strong> — AI can probably handle most of it with guidance</p>
-          <p style="font-size: 0.85em;"><strong>50K–500K LOC</strong> — structured AI-assisted approach essential</p>
-          <p style="font-size: 0.85em;"><strong>500K+ LOC</strong> — multi-layer dependency planning, custom skills, incremental phases</p>
-        </div>
-        <div class="callout callout-teal" style="font-size: 0.82em;">
-          <strong>📺 Pre-requisite:</strong> You MUST understand standard .NET AppMod before starting. Auckland .NET User Group recording — <em>Modernizing ASP.NET Framework to Core in 2026</em>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem; align-items: center; justify-content: center;">
+        <img src="./images/upgrade-process.png" alt=".NET upgrade process" style="max-width: 100%; border-radius: 10px; border: 1px solid var(--theme-line); box-shadow: 0 2px 8px rgba(0,0,0,0.08);" />
+        <div class="callout callout-teal" style="font-size: 0.82em; width: 100%;">
+          <strong>📺 Pre-requisite:</strong> You MUST understand standard .NET AppMod before starting.
+          <a href="https://www.youtube.com/watch?v=umcl-Ooaay4" target="_blank">Auckland .NET User Group recording</a>
         </div>
       </div>
     </div>
@@ -287,9 +290,9 @@ transition: fade-out
 
 <!--
 This is the "what doesn't work" part of the title. Set expectations correctly.
-The AppMod CAT team's own words: stop promising magic. If your customer has a
-50K+ LOC app, single-click won't work. But structured AI-assisted modernization
-is incredibly effective — that's the rest of this talk.
+The AppMod CAT team's own words: stop promising magic. The incremental approach
+was repeatedly stressed — "maintain confidence at every step". Point attendees
+to the Auckland recording as essential prep.
 -->
 
 ---
@@ -297,41 +300,45 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 6 — THE RIGHT TOOLCHAIN                        ~3 min
+     SLIDE 6 — THE RIGHT TOOLCHAIN & TOOL DISCIPLINE      ~3 min
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
   <div class="slide-banner">
-    <h1>The Right Toolchain</h1>
+    <h1>The Right Toolchain &amp; Tool Discipline</h1>
   </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.6rem; align-items: stretch; padding: 0.5rem 1.8rem 0.8rem;">
-    <div class="callout" style="background: #e8f4fd; border-left: 4px solid var(--theme-accent2); padding: 0.6rem 1rem; font-size: 0.92em;">
-      <strong>💬 Jay Schmelzer (Director, DevDiv CoreAI AppMod):</strong> "Everyone in DevDiv uses Insiders, no one uses stable. We recommend all customers use Insiders unless they have some compliance reason not to or are restricted from installing their own tools."
+  <div class="slide-body" style="flex-direction: column; gap: 0.45rem; align-items: stretch; padding: 0.35rem 1.8rem 0.7rem;">
+    <div class="callout" style="background: #e8f4fd; border-left: 4px solid var(--theme-accent2); padding: 0.45rem 1rem; font-size: 0.88em;">
+      <strong>💬 Jay Schmelzer:</strong> "Everyone in DevDiv uses Insiders, no one uses stable. We recommend all customers use Insiders."
     </div>
-    <div style="display: flex; gap: 0.7rem; align-items: stretch; flex: 1;">
+    <div style="display: flex; gap: 0.6rem; align-items: stretch;">
       <div class="card" style="flex: 1; border-color: var(--theme-accent2); border-width: 2px;">
         <h3>💻 VS Code Insiders</h3>
         <p>AI Dev moves so fast that by the time a feature reaches Stable, <strong>the state of the art has moved on</strong></p>
-        <p>When developers complain "Claude does X but GitHub doesn't" — <strong>it's because they're on old builds</strong></p>
       </div>
       <div class="card" style="flex: 1; border-color: #16a34a; border-width: 2px;">
         <h3>⬆️ Update Aggressively</h3>
-        <p>Every day we started with an update</p>
-        <p>Solutions to <strong>yesterday's problems</strong> often arrived in <strong>today's update</strong></p>
-        <p>New features appeared <strong>every single day</strong> that were beneficial</p>
+        <p>Every day we started with an update. Solutions to <strong>yesterday's problems</strong> often arrived in <strong>today's update</strong></p>
       </div>
-    </div>
-    <div style="display: flex; gap: 0.7rem; align-items: stretch;">
       <div class="card" style="flex: 1; border-color: #5635a0; border-width: 2px;">
         <h3>📦 AppMod MCP NuGet</h3>
-        <p>Use <code>Microsoft.GitHubCopilot.AppModernization.Mcp</code> NuGet package</p>
-        <p>This gives you access to the <strong>official App Mod tools and agents</strong></p>
+        <p>Use <code>Microsoft.GitHubCopilot.AppModernization.Mcp</code> — the official AppMod tools and agents</p>
       </div>
+    </div>
+    <div style="display: flex; gap: 0.6rem; align-items: stretch;">
       <div class="card" style="flex: 1; border-color: #dc2626; border-width: 2px;">
         <h3>⚠️ Extension Hygiene</h3>
-        <p>Multiple competing AppMod extensions from Microsoft — <strong>they confuse agents</strong></p>
-        <p><strong>Remove all</strong> AppMod extensions. Use <strong>only</strong> the NuGet MCP package.</p>
-        <p>We ran into far fewer issues this way</p>
+        <p><strong>Remove all</strong> AppMod extensions. Use <strong>only</strong> the NuGet MCP package. Multiple competing extensions confuse agents.</p>
+      </div>
+      <div class="card" style="flex: 1; border-left: 3px solid #d97706;">
+        <h3>🔧 Tool Wrangling Is a Discipline</h3>
+        <p>When things went wrong, tools had been disabled/enabled by different agents. <strong>Restrict tool surface area.</strong></p>
+        <p>Taylor: <em>"I can review it and I don't understand it. It's too much."</em></p>
+      </div>
+      <div class="card" style="flex: 1; border-left: 3px solid #0d6e6e;">
+        <h3>📋 Workspace Config</h3>
+        <p>Commit <code>mcp.json</code>, shared prompts in <code>.github/prompts</code>, <code>custom-instructions.md</code></p>
+        <p><strong>Repeatability across repos</strong>, not per-developer setup</p>
       </div>
     </div>
   </div>
@@ -340,7 +347,10 @@ transition: fade-out
 <!--
 This is practical, day-1 advice. Before you write a single line of code, get
 your toolchain right. Insiders + daily updates + AppMod MCP NuGet + remove
-competing extensions. This alone eliminated half our issues in the first two days.
+competing extensions. Tool wrangling is a real discipline — when things went
+wrong, often tools had been disabled/enabled by different agents. Restrict
+which tools are enabled to reduce noise. Jay on blind trust in tools: "We don't
+just trust the stuff… You will be overwhelmed by what it did."
 -->
 
 ---
@@ -348,172 +358,44 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 7 — SKILLS OVER PROMPTS                        ~5 min
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
-  <div class="slide-banner">
-    <h1>Skills Over Prompts — The Shift That Changed Everything</h1>
-  </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.5rem; align-items: stretch; padding: 0.4rem 1.8rem 0.7rem;">
-    <div style="display: flex; gap: 0.7rem; align-items: stretch;">
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
-        <div class="card" style="border-left: 3px solid var(--theme-accent); flex: 1;">
-          <h3>📈 The Workshop Arc</h3>
-          <p><strong>Day 1:</strong> Engineers build prompts (familiar, comfortable)</p>
-          <p><strong>Day 2:</strong> Prompts hit limits — skills emerge as better fit</p>
-          <p><strong>Day 3–4:</strong> Team becomes a "Skill &amp; Agent factory"</p>
-          <p><strong>End of week:</strong> 20+ skills, only ~2 prompts remain</p>
-        </div>
-        <div class="callout callout-teal" style="font-size: 0.85em;">
-          <strong>DevDiv note:</strong> "We expect prompts to fade away." Very few use cases where a skill isn't a better fit.
-        </div>
-      </div>
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
-        <div class="card" style="border-color: #5635a0; border-width: 2px;">
-          <h3>🔄 The Skill Workflow</h3>
-          <p>Use your <strong>agent conversation</strong> to construct and refine skills</p>
-          <p>Skills are repeatable process building blocks called by agents <strong>like tools</strong></p>
-          <p>Once engineers felt comfortable, they <strong>amplified the entire team</strong> — "more repeatable and deterministic"</p>
-        </div>
-        <div class="card" style="border-color: #0d6e6e; border-width: 2px;">
-          <h3>🛠️ Key Tools</h3>
-          <p><a href="https://github.com/spboyer/sensei" target="_blank"><strong>Sensei</strong></a> — ensure agents select the correct skill</p>
-          <p><a href="https://github.com/PlagueHO/plagueho.os/tree/main/.github/skills/skill-creator" target="_blank"><strong>Skill Creator</strong></a> — build skills correctly &amp; optimally</p>
-          <p><a href="https://github.com/PlagueHO/plagueho.os/tree/main/.github/skills/convert-prompt-to-skill" target="_blank"><strong>Prompt → Skill</strong></a> — convert existing prompts</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--
-This is the core operating model shift. Skills are deterministic, portable,
-discoverable. Prompts are throwaway. The workshop proved this over 4 days with
-real engineers working on a real 10M LOC app.
-
-Key insight: once engineers started building skills instead of prompts, they
-became a factory — each skill amplified everyone on the team. This is the
-multiplier effect.
--->
-
----
-transition: fade-out
----
-
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 8 — SKILLS DEEP DIVE: THE ECOSYSTEM            ~2 min
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
-  <div class="slide-banner">
-    <h1>The Skills Ecosystem</h1>
-  </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.55rem; align-items: stretch; padding: 0.4rem 1.8rem 0.7rem;">
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
-      <div class="pyramid-stack" style="width: 58%;">
-        <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/custom-instructions" target="_blank" style="margin: 0 0; background: linear-gradient(90deg, #0a2e4a, #103954); text-decoration: none; cursor: pointer;">
-          <span class="pyramid-num">1</span>
-          <span class="pyramid-name">Instructions</span>
-          <span class="pyramid-desc">Always-on repo/path conventions</span>
-        </a>
-        <a class="pyramid-layer pyramid-layer-faded" href="https://code.visualstudio.com/docs/copilot/customization/prompt-files" target="_blank" style="margin: 0 0.5rem; background: linear-gradient(90deg, #114D8B, #1a5ea8); text-decoration: none; cursor: pointer;">
-          <span class="pyramid-num">2</span>
-          <span class="pyramid-name">Prompts</span>
-          <span class="pyramid-desc">Fading away — convert to skills</span>
-        </a>
-        <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/mcp-servers" target="_blank" style="margin: 0 1.1rem; background: linear-gradient(90deg, #085f92, #0d83c0); text-decoration: none; cursor: pointer;">
-          <span class="pyramid-num">3</span>
-          <span class="pyramid-name">MCP</span>
-          <span class="pyramid-desc">AppMod MCP NuGet — the core tooling</span>
-        </a>
-        <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/custom-agents" target="_blank" style="margin: 0 1.8rem; background: linear-gradient(90deg, #0c6484, #1088ac); text-decoration: none; cursor: pointer;">
-          <span class="pyramid-num">4</span>
-          <span class="pyramid-name">Agents</span>
-          <span class="pyramid-desc">Specialist personas with tool scopes</span>
-        </a>
-        <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/agent-skills" target="_blank" style="margin: 0 2.7rem; background: linear-gradient(90deg, #077769, #08a08d); text-decoration: none; cursor: pointer;">
-          <span class="pyramid-num">5</span>
-          <span class="pyramid-name">Skills</span>
-          <span class="pyramid-desc">★ 20+ built during workshop</span>
-        </a>
-        <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/hooks" target="_blank" style="margin: 0 3.7rem; background: linear-gradient(90deg, #0a7f59, #0da977); text-decoration: none; cursor: pointer;">
-          <span class="pyramid-num">6</span>
-          <span class="pyramid-name">Hooks</span>
-          <span class="pyramid-desc">Deterministic lifecycle commands</span>
-        </a>
-        <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/agent-plugins" target="_blank" style="margin: 0 4.8rem; background: linear-gradient(90deg, #5635a0, #7850c0); text-decoration: none; cursor: pointer;">
-          <span class="pyramid-num">7</span>
-          <span class="pyramid-name">Plugins</span>
-          <span class="pyramid-desc">Package &amp; share via org marketplace</span>
-        </a>
-      </div>
-    </div>
-    <div style="display: flex; gap: 0.7rem; align-items: stretch;">
-      <div class="card" style="flex: 1; border-color: #077769; border-width: 2px;">
-        <h3>🧩 Skills = Repeatable Building Blocks</h3>
-        <p>Each skill handles a specialized AppMod edge case. Agents call them like tools. <a href="https://agentskills.io/" target="_blank">agentskills.io</a> open standard.</p>
-      </div>
-      <div class="card" style="flex: 1; border-color: #5635a0; border-width: 2px;">
-        <h3>🏢 Organizational Marketplace</h3>
-        <p>Package as <a href="https://code.visualstudio.com/docs/copilot/customization/agent-plugins" target="_blank">Agent Plugins</a>. Create a <strong>private marketplace</strong> for your org. Discoverability &amp; sharing at scale.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--
-Show the 7-layer customization stack but highlight where the workshop focused:
-Skills (layer 5) and MCP (layer 3) did 90% of the heavy lifting. Prompts
-(layer 2) faded. Plugins (layer 7) are how you share everything with your org.
--->
-
----
-transition: fade-out
----
-
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 9 — DEMO 1: Building & Refining Skills         ~5 min
+     SLIDE 7 — DEMO 0: MODERNIZATION ASSESSMENT           ~3 min
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="demo-shell">
-  <div class="demo-icon">🔧</div>
-  <h1 class="demo-title">Demo 1: Building &amp; Refining Skills</h1>
-  <p class="demo-subtitle">From prompt to skill — the workflow the team used every day</p>
-  <div class="demo-badge">🎬 ~5 minutes</div>
+  <div class="demo-icon">📋</div>
+  <h1 class="demo-title">Demo 0: Modernization Assessment — First Steps</h1>
+  <p class="demo-subtitle">Configure the toolchain, run the baseline assessment, understand your starting point</p>
+  <div class="demo-badge">🎬 ~3 minutes</div>
   <div class="demo-checklist">
-    <div class="demo-item"><span class="check">▸</span> Start with a prompt that handles an AppMod edge case</div>
-    <div class="demo-item"><span class="check">▸</span> Convert it to a skill using convert-prompt-to-skill</div>
-    <div class="demo-item"><span class="check">▸</span> Run Sensei to validate skill quality &amp; routing</div>
-    <div class="demo-item"><span class="check">▸</span> Show the agent selecting the skill automatically</div>
+    <div class="demo-item"><span class="check">▸</span> Show workspace <code>.vscode/mcp.json</code> with AppMod MCP server configured</div>
+    <div class="demo-item"><span class="check">▸</span> Run <code>#discover_upgrade_scenarios</code> → target .NET 10</div>
+    <div class="demo-item"><span class="check">▸</span> Walk through assessment: 88 projects, 286K LOC, 5,016 issues</div>
+    <div class="demo-item"><span class="check">▸</span> Show how the baseline report drives all subsequent planning</div>
   </div>
 </div>
 
 <!--
-DEMO SCRIPT — Building & Refining Skills (~5 min)
-═════════════════════════════════════════════════════════
+DEMO SCRIPT — Modernization Assessment (~3 min)
+═════════════════════════════════════════════════
 
-SETUP: VS Code Insiders open with sample .NET app and .github/skills/ configured.
+SETUP: VS Code Insiders with Orchard CMS repo, AppMod MCP NuGet installed.
 
-1. PROMPT → SKILL (2 min)
-   - Show a prompt that handles a common AppMod edge case
-   - Run: "convert this prompt to a skill"
-   - Walk through the generated SKILL.md frontmatter
-   - Point out: triggers, description, anti-triggers
+1. SHOW CONFIG (30 sec)
+   - Open .vscode/mcp.json — show the Microsoft.GitHubCopilot.AppModernization.Mcp
+     server configuration plus context7 MCP
+   - Point out: workspace-level config, committed to repo, same for everyone
 
-2. SENSEI VALIDATION (1.5 min)
-   - Run: "run sensei on the new skill"
-   - Show before/after frontmatter improvements
-   - Key message: "Sensei ensures agents route to the right skill"
+2. RUN ASSESSMENT (1 min)
+   - Run: #discover_upgrade_scenarios
+   - Respond: "Yes, target .NET 10"
+   - Show generated files: assessment.csv, assessment.md, assessment.json, scenario.json
 
-3. LIVE ROUTING (1 min)
-   - Chat: "modernize this WCF service"
-   - Watch Copilot discover and select the skill automatically
-   - Key message: "The skill IS the repeatable process"
-
-4. WRAP (30 sec)
-   - "By day 3, the team was a Skill & Agent factory.
-     Each skill amplified everyone."
+3. WALK THROUGH REPORT (1.5 min)
+   - 88 projects, all require upgrade (all net48, all non-SDK-style)
+   - 93 NuGet packages (41 need upgrade)
+   - 286K LOC across 4,549 code files — 5,016 issues found
+   - Most modules rated 🔴 High difficulty (WAP project type)
+   - "This baseline drives everything: layers, skill selection, migration ordering"
 -->
 
 ---
@@ -521,25 +403,34 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 10 — BREAKING DOWN THE MONSTER                  ~5 min
+     SLIDE 8 — BREAKING DOWN THE MONSTER                   ~4 min
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
   <div class="slide-banner">
     <h1>Breaking Down the Monster — Dependency Layers</h1>
   </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.5rem; align-items: stretch; padding: 0.4rem 1.8rem 0.7rem;">
+  <div class="slide-body" style="flex-direction: column; gap: 0.4rem; align-items: stretch; padding: 0.35rem 1.8rem 0.65rem;">
     <div style="display: flex; gap: 0.8rem; align-items: stretch; flex: 1;">
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
-        <div class="callout" style="background: #fff0ec; border-left: 4px solid var(--theme-accent); font-size: 0.88em;">
-          <strong>⚠️ A 10K LOC PR is unacceptable and will never get merged</strong> — AppMod stalls and never makes progress.
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.4rem;">
+        <div class="callout" style="background: #fff0ec; border-left: 4px solid var(--theme-accent); font-size: 0.85em;">
+          <strong>⚠️ A 10K LOC PR is unacceptable and will never get merged</strong> — AppMod stalls.
         </div>
         <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent2);">
           <h3>📋 The Approach</h3>
-          <p><strong>1.</strong> Use AI AppMod tools to build a <strong>multi-layer dependency upgrade plan</strong></p>
-          <p><strong>2.</strong> Start at <strong>leaf projects</strong> — work up through the dependency tree</p>
-          <p><strong>3.</strong> Each phase = <strong>working application + reviewable PR</strong></p>
-          <p><strong>4.</strong> Continuous small incremental change using AI tools, agents &amp; skills</p>
+          <p><strong>1.</strong> Build a <strong>dependency tree</strong>, identify leaf nodes</p>
+          <p><strong>2.</strong> Modernize leaves first — breadth-first layered traversal</p>
+          <p><strong>3.</strong> Each phase = <strong>working app + reviewable PR</strong></p>
+          <p><strong>4.</strong> Projects within the same layer can be modernized <strong>in parallel</strong></p>
+        </div>
+        <div class="card" style="border-left: 3px solid #d97706; font-size: 0.88em;">
+          <h3>🔄 SDK-Style Conversion First</h3>
+          <p>Convert to SDK-style + PackageReference is the <strong>mandatory gating step</strong></p>
+          <p>Often the largest single PR — mixing old/new format is "hit or miss"</p>
+        </div>
+        <div class="card" style="border-left: 3px solid #0d6e6e; font-size: 0.88em;">
+          <h3>🌿 Strangler Fig for ASP.NET</h3>
+          <p>Core app sits in front, proxies unmigrated routes to legacy Framework app, migrate incrementally</p>
         </div>
       </div>
       <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
@@ -567,13 +458,12 @@ graph TD
 </div>
 
 <!--
-This is the "how to fix it" part. The key insight: break the problem into
-dependency layers, start at the leaves, keep PRs small. AI makes this
-repeatable, not magical.
-
-Walk through the Mermaid diagram: leaves (green) → shared libs (blue) →
-services (orange) → web app (pink). Each arrow is a phase boundary.
-Each phase produces a working app and a mergeable PR.
+Break the problem into dependency layers, start at the leaves, keep PRs small.
+AI makes this repeatable. SDK-style conversion is the biggest hurdle — plan for
+a large PR and get it done first. The layered approach enables parallelization
+within each layer. For web apps, Strangler Fig was explicitly and strongly
+recommended by the CAT team — Core in front, proxy to Framework, migrate
+incrementally. Avoids the "turn it on at the end and hope" anti-pattern.
 -->
 
 ---
@@ -581,43 +471,44 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 11 — DEMO 2: Dependency Analysis                ~5 min
+     SLIDE 9 — DEMO 1: DEPENDENCY LAYER EXTRACTION         ~5 min
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="demo-shell">
   <div class="demo-icon">📦</div>
-  <h1 class="demo-title">Demo 2: Dependency Analysis &amp; Upgrade Planning</h1>
-  <p class="demo-subtitle">Use AppMod MCP to build a multi-layer dependency upgrade plan</p>
+  <h1 class="demo-title">Demo 1: Dependency Layer Extraction — Orchard CMS</h1>
+  <p class="demo-subtitle">Run the appmod-layer-planner skill against Orchard CMS (~88 projects)</p>
   <div class="demo-badge">🎬 ~5 minutes</div>
   <div class="demo-checklist">
-    <div class="demo-item"><span class="check">▸</span> Analyze the sample app's project dependency tree</div>
-    <div class="demo-item"><span class="check">▸</span> Generate a multi-layer upgrade plan (leaf-first)</div>
-    <div class="demo-item"><span class="check">▸</span> Show how each phase produces a reviewable PR</div>
-    <div class="demo-item"><span class="check">▸</span> Start modernizing a leaf project with AppMod MCP</div>
+    <div class="demo-item"><span class="check">▸</span> Run appmod-layer-planner skill against Orchard.sln</div>
+    <div class="demo-item"><span class="check">▸</span> Show generated layer-plan.md — Mermaid diagram, 15 phases</div>
+    <div class="demo-item"><span class="check">▸</span> Phase 0: SDK-style conversion (all 88 projects, gating step)</div>
+    <div class="demo-item"><span class="check">▸</span> Phase 2: Orchard.Framework — critical path bottleneck (1,682 story pts)</div>
+    <div class="demo-item"><span class="check">▸</span> Show how the layer plan feeds into build-fix and parallel execution</div>
   </div>
 </div>
 
 <!--
-DEMO SCRIPT — Dependency Analysis & Upgrade Planning (~5 min)
-═════════════════════════════════════════════════════════════
+DEMO SCRIPT — Dependency Layer Extraction (~5 min)
+═══════════════════════════════════════════════════
 
-SETUP: Sample .NET Framework solution open with multiple projects.
-AppMod MCP NuGet installed.
+SETUP: Orchard CMS repo with assessment from Demo 0 already generated.
 
-1. DEPENDENCY ANALYSIS (2 min)
-   - Chat: "Analyze the dependency tree of this solution and create a
-     multi-layer upgrade plan starting from leaf projects"
-   - Walk through the generated plan
-   - Point out: leaf identification, phase boundaries, PR scope
+1. RUN THE SKILL (2 min)
+   - Run the appmod-layer-planner skill against Orchard.sln
+   - Show the generated layer-plan.md with Mermaid dependency diagram
+   - Walk through: Phase 0 (SDK-style) → Phase 1 (5 leaf projects) →
+     Phase 2 (Orchard.Framework bottleneck) → Phases 4a/4b (20 modules)
 
-2. LEAF MODERNIZATION (2 min)
-   - Chat: "Modernize the utilities leaf project in Phase 1"
-   - Watch AppMod MCP handle the conversion
-   - Show the resulting changes are small and reviewable
+2. KEY FINDINGS (2 min)
+   - Phase 0: all 88 projects must convert to SDK-style first (gating step)
+   - Phase 1 foundation: NHibernate.Linq, WarmupStarter, CLI tools — parallelizable
+   - Phase 2: Orchard.Framework is the critical path (709 mandatory issues)
+   - Phase 15: integration tests as the final validation gate
 
 3. WRAP (1 min)
-   - "Each phase is a working app. Each PR is reviewable.
-     The AI handles the repetitive work, you handle the review."
+   - "This plan drives everything — which agents to launch, what skills to
+     build, how to parallelize. Without it, you're flying blind."
 -->
 
 ---
@@ -625,39 +516,239 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 12 — GO ASYNC                                   ~4 min
+     SLIDE 10 — SKILLS OVER PROMPTS                        ~5 min
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
+  <div class="slide-banner">
+    <h1>Skills Over Prompts — The Shift That Changed Everything</h1>
+  </div>
+  <div class="slide-body" style="flex-direction: column; gap: 0.35rem; align-items: stretch; padding: 0.3rem 1.8rem 0.6rem;">
+    <div style="display: flex; gap: 0.65rem; align-items: stretch; flex: 1;">
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.35rem;">
+        <div class="card" style="border-left: 3px solid var(--theme-accent); flex: 1;">
+          <h3>📈 The Workshop Arc</h3>
+          <p><strong>Day 1:</strong> Engineers build prompts (familiar, comfortable)</p>
+          <p><strong>Day 2:</strong> Prompts hit limits — skills emerge as better fit</p>
+          <p><strong>Day 3–4:</strong> Team becomes a "Skill &amp; Agent factory"</p>
+          <p><strong>End of week:</strong> 20+ skills, only ~2 prompts remain</p>
+        </div>
+        <div class="callout callout-teal" style="font-size: 0.82em;">
+          <strong>Key insight:</strong> "The tool is not to modernize the code — the tool is to help you build the <em>process</em> to modernize the code."
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+          <div class="card" style="flex: 1; border-color: #077769; border-width: 2px; font-size: 0.82em;">
+            <h3>🧩 Skills = Building Blocks</h3>
+            <p>Deterministic, portable, discoverable</p>
+            <p><a href="https://agentskills.io/" target="_blank">agentskills.io</a> open standard</p>
+          </div>
+          <div class="card" style="flex: 1; border-color: #5635a0; border-width: 2px; font-size: 0.82em;">
+            <h3>🏢 Org Marketplace</h3>
+            <p><a href="https://code.visualstudio.com/docs/copilot/customization/agent-plugins" target="_blank">Agent Plugins</a> for sharing</p>
+            <p>Private marketplace at scale</p>
+          </div>
+        </div>
+      </div>
+      <div style="flex: 0.85; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
+        <div class="pyramid-stack" style="width: 100%;">
+          <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/custom-instructions" target="_blank" style="margin: 0 0; background: linear-gradient(90deg, #0a2e4a, #103954); text-decoration: none; cursor: pointer;">
+            <span class="pyramid-num">1</span>
+            <span class="pyramid-name">Instructions</span>
+            <span class="pyramid-desc">Always-on repo/path conventions</span>
+          </a>
+          <a class="pyramid-layer pyramid-layer-faded" href="https://code.visualstudio.com/docs/copilot/customization/prompt-files" target="_blank" style="margin: 0 0.5rem; background: linear-gradient(90deg, #114D8B, #1a5ea8); text-decoration: none; cursor: pointer;">
+            <span class="pyramid-num">2</span>
+            <span class="pyramid-name">Prompts</span>
+            <span class="pyramid-desc">Fading away — convert to skills</span>
+          </a>
+          <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/mcp-servers" target="_blank" style="margin: 0 1.1rem; background: linear-gradient(90deg, #085f92, #0d83c0); text-decoration: none; cursor: pointer;">
+            <span class="pyramid-num">3</span>
+            <span class="pyramid-name">MCP</span>
+            <span class="pyramid-desc">AppMod MCP NuGet — core tooling</span>
+          </a>
+          <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/custom-agents" target="_blank" style="margin: 0 1.8rem; background: linear-gradient(90deg, #0c6484, #1088ac); text-decoration: none; cursor: pointer;">
+            <span class="pyramid-num">4</span>
+            <span class="pyramid-name">Agents</span>
+            <span class="pyramid-desc">Specialist personas with tool scopes</span>
+          </a>
+          <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/agent-skills" target="_blank" style="margin: 0 2.7rem; background: linear-gradient(90deg, #077769, #08a08d); text-decoration: none; cursor: pointer;">
+            <span class="pyramid-num">5</span>
+            <span class="pyramid-name">Skills</span>
+            <span class="pyramid-desc">★ 20+ built during workshop</span>
+          </a>
+          <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/hooks" target="_blank" style="margin: 0 3.7rem; background: linear-gradient(90deg, #0a7f59, #0da977); text-decoration: none; cursor: pointer;">
+            <span class="pyramid-num">6</span>
+            <span class="pyramid-name">Hooks</span>
+            <span class="pyramid-desc">Deterministic lifecycle commands</span>
+          </a>
+          <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/agent-plugins" target="_blank" style="margin: 0 4.8rem; background: linear-gradient(90deg, #5635a0, #7850c0); text-decoration: none; cursor: pointer;">
+            <span class="pyramid-num">7</span>
+            <span class="pyramid-name">Plugins</span>
+            <span class="pyramid-desc">Package &amp; share via org marketplace</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+This is the core operating model shift. Skills are deterministic, portable,
+discoverable. Prompts are throwaway. The workshop proved this over 4 days.
+
+Show the 7-layer customization stack but highlight where the workshop focused:
+Skills (layer 5) and MCP (layer 3) did 90% of the heavy lifting. Prompts
+(layer 2) faded. Plugins (layer 7) are how you share everything with your org.
+
+Key tools: Sensei for skill quality validation, Skill Creator for scaffolding,
+Prompt→Skill converter for migrating existing prompts.
+-->
+
+---
+transition: fade-out
+---
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 11 — DEMO 2: THE PROMPT→SKILL PIPELINE          ~5 min
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="demo-shell">
+  <div class="demo-icon">🔧</div>
+  <h1 class="demo-title">Demo 2: The Prompt→Skill Pipeline</h1>
+  <p class="demo-subtitle">Create, refine, and share skills — the workflow the team used every day</p>
+  <div class="demo-badge">🎬 ~5 minutes</div>
+  <div class="demo-checklist">
+    <div class="demo-item"><span class="check">▸</span> Create a skill using skill-creator (scaffold + validate with Sensei)</div>
+    <div class="demo-item"><span class="check">▸</span> Show the prompt→skill refinement loop: run → inspect → adjust → re-run</div>
+    <div class="demo-item"><span class="check">▸</span> Introduce Agent Plugins — package and share skills as installable units</div>
+    <div class="demo-item"><span class="check">▸</span> Show agent selecting the skill automatically</div>
+  </div>
+</div>
+
+<!--
+DEMO SCRIPT — The Prompt→Skill Pipeline (~5 min)
+═════════════════════════════════════════════════════════
+
+SETUP: VS Code Insiders with .github/skills/ configured, Sensei installed.
+
+1. CREATE A SKILL (2 min)
+   - Use skill-creator to scaffold a new skill
+   - Show the generated SKILL.md with frontmatter
+   - Run Sensei to validate — show before/after improvements
+   - The appmod-layer-planner was created this way
+
+2. REFINEMENT LOOP (1.5 min)
+   - Show how the layer planner evolved from a naive prompt into a skill
+   - Day 1: prompt choked — context window pressure, output too large
+   - Day 2: refined into incremental, loop-based skill
+   - "The little loop of create→test→refine is normal and expected"
+
+3. AGENT PLUGINS (1 min)
+   - Show Agent Plugins for packaging and sharing
+   - Show github/awesome-copilot — the community marketplace
+   - "Every org should create their own agent plugin repo"
+
+4. WRAP (30 sec)
+   - "By day 3, the team was a Skill & Agent factory.
+     Each skill amplified everyone."
+-->
+
+---
+transition: fade-out
+---
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 12 — THE BUILD-FIX LOOP & TESTING               ~4 min
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
+  <div class="slide-banner">
+    <h1>The Build-Fix Loop &amp; Testing</h1>
+  </div>
+  <div class="slide-body" style="flex-direction: column; gap: 0.5rem; align-items: stretch; padding: 0.4rem 1.8rem 0.7rem;">
+    <div class="flow-pipeline" style="justify-content: center; gap: 0.5rem;">
+      <div class="flow-step">🎯 Add Target</div>
+      <div class="flow-step">🔴 Build Fails</div>
+      <div class="flow-step">🤖 Agent Fixes</div>
+      <div class="flow-step">🟢 Build Clean</div>
+      <div class="flow-step">✅ Commit</div>
+      <div class="flow-step">➡️ Next Project</div>
+    </div>
+    <div style="display: flex; gap: 0.7rem; align-items: stretch; flex: 1;">
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.45rem;">
+        <div class="card" style="flex: 1; border-color: var(--theme-accent2); border-width: 2px;">
+          <h3>🔄 The Inner Engine</h3>
+          <p>Agents run <code>dotnet build</code>, observe failures, apply fixes, repeat until stable</p>
+          <p>Enable <strong>auto-approval</strong> for safe commands (e.g., <code>dotnet</code>) — let agents iterate without manual confirmation</p>
+          <p>Humans intervene at <strong>review and commit boundaries</strong>, not at every step</p>
+        </div>
+        <div class="callout" style="background: #fff0ec; border-left: 4px solid var(--theme-accent); font-size: 0.85em;">
+          <strong>Taylor Southwick:</strong> "Make changes that are required to get you to modern .NET. Don't do all sorts of nice fluffy things."
+        </div>
+      </div>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.45rem;">
+        <div class="card" style="flex: 1; border-left: 3px solid #0d6e6e;">
+          <h3>🧪 Testing Strategy</h3>
+          <p><strong>Testing is the primary constraint</strong> on safe modernization — many legacy projects lack sufficient tests</p>
+          <p>Focus on <strong>integration and end-to-end tests</strong> — validate behavioral parity, not internal implementation</p>
+          <p>Avoid refactoring solely to make code testable during migration — <strong>undermines baseline confidence</strong></p>
+        </div>
+        <div class="card" style="border-left: 3px solid #5635a0; font-size: 0.88em;">
+          <h3>🏗️ Orchard CMS Example</h3>
+          <p>Convert Orchard.Tags to SDK-style → build fails on NHibernate refs → agent resolves packages → builds clean → commit → next module</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+The build-fix loop is the inner engine of the migration. Once you trust it,
+agents can churn through dozens of projects. Scope it: one project at a time,
+commit at each boundary. Testing was repeatedly described as the primary
+constraint — don't chase unit coverage on legacy code, focus on behavioral
+parity at the integration level. The goal is confidence, not coverage metrics.
+-->
+
+---
+transition: fade-out
+---
+
+<!-- ═══════════════════════════════════════════════════════════
+     SLIDE 13 — GO ASYNC                                   ~3 min
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
   <div class="slide-banner">
     <h1>Go Async — Stop Watching Agents</h1>
   </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.6rem; align-items: stretch; padding: 0.5rem 1.8rem 0.8rem;">
-    <div style="display: flex; gap: 0.8rem; align-items: stretch; flex: 1;">
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
+  <div class="slide-body" style="flex-direction: column; gap: 0.5rem; align-items: stretch; padding: 0.4rem 1.8rem 0.7rem;">
+    <div class="callout" style="background: #e8f4fd; border-left: 4px solid var(--theme-accent2); padding: 0.5rem 1rem; font-size: 0.88em;">
+      <strong>💬 Jay Schmelzer:</strong> "Just shove it to the background. Let's go do something else, right?" and "You can't watch it."
+    </div>
+    <div style="display: flex; gap: 0.7rem; align-items: stretch; flex: 1;">
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.45rem;">
         <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent);">
           <h3>📈 The Confidence Curve</h3>
           <p><strong>Day 1–2:</strong> Engineers watched every agent step. Slow, cautious, serial.</p>
           <p><strong>Day 3:</strong> Confidence builds. First attempts at parallelization.</p>
           <p><strong>Day 4:</strong> Firing off parallel tasks, reviewing results async. <strong>Massive acceleration.</strong></p>
         </div>
-        <div class="callout callout-teal" style="font-size: 0.85em;">
-          <strong>Key insight:</strong> It took 2–3 days to build confidence around async execution. The other practices in this talk (skills, dependency layers, /troubleshoot) are what enabled that confidence.
+        <div class="callout callout-teal" style="font-size: 0.82em;">
+          <strong>Key insight:</strong> It took 2–3 days to build confidence. The other practices (skills, layers, /troubleshoot) are what enabled it.
         </div>
       </div>
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.45rem;">
         <div class="card" style="border-color: var(--theme-accent2); border-width: 2px;">
           <h3>⚡ Parallelization Tools</h3>
           <p><strong>Agent Panel</strong> — multiple agent conversations</p>
-          <p><strong>#runSubagent</strong> — delegate subtasks</p>
-          <p><strong>Fleets</strong> — parallel task execution</p>
-          <p><strong>Squads</strong> — coordinated multi-agent teams</p>
+          <p><strong>#runSubagent</strong> — delegate subtasks to isolated contexts</p>
+          <p><strong>Fleets / Squads</strong> — coordinated multi-agent teams</p>
         </div>
-        <div class="card" style="border-color: #5635a0; border-width: 2px;">
-          <h3>🏢 Agent Plugins</h3>
-          <p>Package agentic assets as <a href="https://code.visualstudio.com/docs/copilot/customization/agent-plugins" target="_blank">Agent Plugins</a></p>
-          <p>Create a <strong>private marketplace</strong> for your org</p>
-          <p>Discoverability &amp; sharing of capabilities at scale</p>
+        <div class="card" style="border-color: #16a34a; border-width: 2px;">
+          <h3>📦 Layer-Based Parallelization</h3>
+          <p>Dependency layers enable it: projects within the same layer can be modernized <strong>simultaneously</strong></p>
+          <p><strong>Orchard CMS:</strong> 5 leaf modules (Tags, AntiSpam, Markdown, Lucene, SysCache) — five agents, five independent PRs</p>
         </div>
       </div>
     </div>
@@ -668,7 +759,9 @@ transition: fade-out
 The acceleration from async execution was dramatic. But it didn't happen on
 day 1. Engineers needed the confidence that comes from skills (deterministic
 behavior), dependency layers (bounded scope), and /troubleshoot (diagnosis when
-things go wrong). Once those were in place, going async was natural.
+things go wrong). Once those were in place, going async was natural. The
+dependency layer plan is what makes parallelization possible — projects in
+the same layer have no inter-dependencies.
 -->
 
 ---
@@ -676,19 +769,20 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 13 — DEMO 3: Async Execution                   ~3 min
+     SLIDE 14 — DEMO 3: ASYNC PARALLEL EXECUTION           ~3 min
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="demo-shell">
   <div class="demo-icon">⚡</div>
-  <h1 class="demo-title">Demo 3: Async Parallel Execution</h1>
-  <p class="demo-subtitle">Fire off multiple AppMod tasks and stop watching — review results later</p>
+  <h1 class="demo-title">Demo 3: Async Parallel Execution — Orchard Modules</h1>
+  <p class="demo-subtitle">Fire off parallel AppMod tasks across Orchard CMS leaf modules</p>
   <div class="demo-badge">🎬 ~3 minutes</div>
   <div class="demo-checklist">
-    <div class="demo-item"><span class="check">▸</span> Open multiple Agent Panel conversations</div>
-    <div class="demo-item"><span class="check">▸</span> Fire off parallel leaf project modernizations</div>
-    <div class="demo-item"><span class="check">▸</span> Switch away — do other work while agents run</div>
-    <div class="demo-item"><span class="check">▸</span> Come back and review completed results</div>
+    <div class="demo-item"><span class="check">▸</span> Identify Phase 1 leaf projects from the layer plan</div>
+    <div class="demo-item"><span class="check">▸</span> Open multiple Agent Panels — one per leaf module</div>
+    <div class="demo-item"><span class="check">▸</span> Fire off parallel modernizations (NHibernate.Linq, WarmupStarter, Orchard CLI)</div>
+    <div class="demo-item"><span class="check">▸</span> Show context isolation — each agent works independently</div>
+    <div class="demo-item"><span class="check">▸</span> Review results — each produces an independent, reviewable PR</div>
   </div>
 </div>
 
@@ -696,19 +790,20 @@ transition: fade-out
 DEMO SCRIPT — Async Parallel Execution (~3 min)
 ═════════════════════════════════════════════════
 
-SETUP: Multiple leaf projects ready for modernization.
+SETUP: Orchard CMS with layer plan generated. Leaf modules identified.
 
 1. PARALLEL LAUNCH (1 min)
-   - Open 2-3 Agent Panel conversations
-   - In each: "Modernize leaf project X using the dependency upgrade plan"
-   - Point out: each agent runs independently with its own context
+   - Open 3 Agent Panel conversations
+   - Agent 1: "Modernize NHibernate.Linq to SDK-style for net10.0"
+   - Agent 2: "Modernize WarmupStarter to SDK-style for net10.0"
+   - Agent 3: "Modernize Orchard CLI to SDK-style for net10.0"
 
-2. ASYNC REVIEW (1.5 min)
-   - Switch to a different task or show another feature
-   - Come back and show all agents have completed
-   - Review results — each produced a small, focused change
+2. CONTEXT ISOLATION (1 min)
+   - Show that each agent runs independently
+   - No shared context pollution
+   - Each creates its own branch and commit
 
-3. WRAP (30 sec)
+3. WRAP (1 min)
    - "Day 4 looked like this. Fire and forget. Review and merge.
      The parallelization is where the 10× comes from."
 -->
@@ -718,53 +813,7 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 14 — TOOL WRANGLING & WORKSPACE MCP             ~3 min
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
-  <div class="slide-banner">
-    <h1>Tool Wrangling &amp; Workspace MCP</h1>
-  </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.6rem; align-items: stretch; padding: 0.5rem 1.8rem 0.8rem;">
-    <div class="callout" style="background: #fff0ec; border-left: 4px solid var(--theme-accent); padding: 0.6rem 1rem; font-size: 0.92em;">
-      <strong>‍✈️ Tool Wrangling is a thing.</strong> A lot of times when things went wrong, it was because tools had become disabled/enabled by different agents.
-    </div>
-    <div style="display: flex; gap: 0.8rem; align-items: stretch; flex: 1;">
-      <div class="card" style="flex: 1; border-left: 3px solid #dc2626;">
-        <h3>❌ What Goes Wrong</h3>
-        <p>Different agents enable/disable different tools</p>
-        <p>Agents get confused when too many tools are available</p>
-        <p>MCP servers with different names across team members break consistency</p>
-      </div>
-      <div class="card" style="flex: 1; border-left: 3px solid #16a34a;">
-        <h3>✅ How to Fix It</h3>
-        <p><strong>Rationalize tools:</strong> ensure agents have only what they need</p>
-        <p><strong>Workspace MCPs:</strong> use <code>mcp.json</code> for consistent naming</p>
-        <p><strong><a href="https://learn.microsoft.com/en-us/training/support/mcp" target="_blank">Microsoft Learn MCP</a></strong> is critical — but everyone must use the same server names</p>
-      </div>
-      <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent2);">
-        <h3>🔑 Practical Tips</h3>
-        <p>Commit <code>mcp.json</code> to the repo — workspace-level config</p>
-        <p>Remove all AppMod extensions — rely on NuGet MCP only</p>
-        <p>Check tool state before starting each session</p>
-        <p>Make tool wrangling a <strong>team discipline</strong></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--
-This is one of the "what doesn't work" items that catches even experienced
-teams. Tool wrangling is a real discipline. When things go wrong, check what
-tools are enabled before looking at anything else.
--->
-
----
-transition: fade-out
----
-
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 15 — OBSERVABILITY & THE 100× PATTERN           ~5 min
+     SLIDE 15 — OBSERVABILITY & THE 100× PATTERN           ~3 min
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
@@ -805,6 +854,7 @@ Build this progressively: /troubleshoot alone is 10× because you can diagnose.
 Adding "and update the skill" makes it 100× because the fix is permanent.
 Every time you close this loop, the system gets smarter. Over 4 days, the
 team closed dozens of these loops — the cumulative effect was extraordinary.
+Observability is essential for safe scaling — a prerequisite for agent autonomy.
 -->
 
 ---
@@ -812,7 +862,7 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 16 — DEMO 4: /troubleshoot & 100× Pattern      ~5 min
+     SLIDE 16 — DEMO 4: /troubleshoot & 100× PATTERN      ~5 min
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="demo-shell">
@@ -835,18 +885,17 @@ DEMO SCRIPT — /troubleshoot & The 100× Pattern (~5 min)
 SETUP: A skill that has a known edge case it handles incorrectly.
 
 1. TRIGGER THE MISTAKE (1 min)
-   - Run an AppMod task that hits the known edge case
+   - Run an AppMod task on an Orchard module that goes astray
+   - e.g., agent incorrectly rewrites NHibernate session management
    - Show the incorrect behavior in the output
-   - "This is a real mistake we saw during the workshop"
 
 2. DIAGNOSE WITH /TROUBLESHOOT (1.5 min)
    - Run: /troubleshoot why did you use X approach rather than Y?
    - Walk through the diagnosis output
-   - Point out: the skill's instructions led to this choice
+   - Show the Chat Debug view
 
 3. THE 100× FIX (2 min)
-   - Ask: "Update the AppMod skill so you use Y approach instead of X
-     for this type of case, and explain why in the skill"
+   - Ask: "Why did you do X rather than Y and update Skill Z"
    - Show the skill being updated with new instructions
    - Re-run the same task — show correct behavior
 
@@ -860,59 +909,54 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 17 — PARTNER PLAYBOOK                           ~3 min
+     SLIDE 17 — WHAT TO DO NOW                             ~2 min
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
   <div class="slide-banner">
-    <h1>What To Do Now — Partner Playbook</h1>
+    <h1>What To Do Now</h1>
   </div>
   <div class="slide-body" style="flex-direction: column; gap: 0.5rem; align-items: stretch; padding: 0.5rem 1.8rem 0.7rem;">
-    <div class="card-grid" style="grid-template-columns: repeat(2, 1fr); gap: 0.55rem; flex: 1;">
+    <div class="card-grid" style="grid-template-columns: repeat(3, 1fr); gap: 0.5rem; flex: 1;">
       <div class="card" style="border-left: 3px solid var(--theme-accent);">
-        <h3>💻 1. VS Code Insiders + Daily Updates</h3>
-        <p>Non-negotiable. Install today, update every morning.</p>
+        <h3>💻 1. VS Code Insiders + MCP</h3>
+        <p>Install <code>Microsoft.GitHubCopilot.AppModernization.Mcp</code> NuGet. Update daily. Remove competing extensions.</p>
       </div>
       <div class="card" style="border-left: 3px solid var(--theme-accent2);">
-        <h3>📦 2. Install AppMod MCP NuGet</h3>
-        <p><code>Microsoft.GitHubCopilot.AppModernization.Mcp</code> — remove competing extensions.</p>
+        <h3>📋 2. Workspace Config</h3>
+        <p>Configure <code>mcp.json</code> + <code>custom-instructions.md</code> for team consistency and repeatability.</p>
       </div>
       <div class="card" style="border-left: 3px solid #077769;">
-        <h3>🔧 3. Convert Prompts to Skills</h3>
-        <p>Start immediately. Use Sensei to validate. Build a skill library.</p>
+        <h3>🎯 3. Practice on Orchard CMS</h3>
+        <p>Start with <a href="https://github.com/OrchardCMS/Orchard" target="_blank">Orchard CMS</a> — experience the full workflow before a customer engagement.</p>
       </div>
       <div class="card" style="border-left: 3px solid #5635a0;">
-        <h3>📋 4. Dependency-Layer Plan First</h3>
-        <p>Build the upgrade plan before touching code. Leaf-first, small PRs.</p>
+        <h3>🔧 4. Convert Prompts to Skills</h3>
+        <p>Use <a href="https://github.com/spboyer/sensei" target="_blank">Sensei</a> to validate. Create an org plugin marketplace for sharing.</p>
       </div>
       <div class="card" style="border-left: 3px solid #0c6484;">
-        <h3>⚡ 5. Go Async</h3>
-        <p>Agent Panel, subagents, fleets — stop watching agents.</p>
+        <h3>📦 5. Dependency Plan First</h3>
+        <p>Build the layer plan before touching code. Add target → build → fix → commit → next.</p>
       </div>
       <div class="card" style="border-left: 3px solid #c2410c;">
-        <h3>🔍 6. Implement the 100× Pattern</h3>
-        <p>/troubleshoot → diagnose → update skill → permanent fix.</p>
+        <h3>🔍 6. Implement 100× Pattern</h3>
+        <p>/troubleshoot → diagnose → update skill → permanently fix. Close the feedback loop.</p>
       </div>
-      <div class="card" style="border-left: 3px solid #d97706;">
-        <h3>🏢 7. Build an Org Plugin Marketplace</h3>
-        <p>Share skills, agents, MCPs across your organization.</p>
-      </div>
-      <div class="card" style="border-left: 3px solid #db2777;">
-        <h3>🎓 8. Run This Workshop</h3>
-        <p>Run this format with your customers. Huge partner opportunity.</p>
-      </div>
+    </div>
+    <div class="callout" style="background: #e8f4fd; border-left: 4px solid var(--theme-accent2); font-size: 0.88em; text-align: center;">
+      Many customers claim AI Dev expertise but are <strong>months out of date</strong> — and in Agentic AI, <strong>months = years</strong>. Running workshops like this is a huge opportunity to differentiate.
     </div>
   </div>
 </div>
 
 <!--
-This is the actionable checklist. Each item maps to a section they just saw.
-Emphasize that this entire approach is teachable and repeatable — that's why
-item 8 is "run this workshop with your customers."
+Each action maps to a section they just saw. This entire approach is teachable
+and repeatable. Emphasize: many customers claim expertise but are months behind.
+Running workshops like this is the partner opportunity.
 -->
 
 ---
-transition: fade-out
+transition: slide-up
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
@@ -921,38 +965,46 @@ transition: fade-out
 
 <div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
   <div class="slide-banner">
-    <h1>Key Takeaways</h1>
+    <h1>Key Takeaways — Seven Principles</h1>
   </div>
-  <div class="slide-body" style="align-items: stretch; padding: 0.8rem 1.8rem;">
+  <div class="slide-body" style="align-items: stretch; padding: 0.5rem 1.8rem;">
     <div class="takeaway-grid" style="width: 100%; flex: 1;">
       <div v-click class="takeaway-item">
         <span class="takeaway-num">1</span>
-        <div class="takeaway-text"><strong>There is no single-click AppMod for real apps.</strong> Stop promising it. Start structuring it. Follow standard .NET AppMod, then automate with AI.</div>
+        <div class="takeaway-text"><strong>There is no single-click AppMod for real apps.</strong> Stop promising it. Start structuring it.</div>
       </div>
       <div v-click class="takeaway-item">
         <span class="takeaway-num">2</span>
-        <div class="takeaway-text"><strong>Skills &gt; Prompts.</strong> The team that builds skills accelerates the entire org. 20+ skills in 4 days. DevDiv expects prompts to fade away.</div>
+        <div class="takeaway-text"><strong>Skills &gt; Prompts.</strong> The team that builds skills accelerates the entire org.</div>
       </div>
       <div v-click class="takeaway-item">
         <span class="takeaway-num">3</span>
-        <div class="takeaway-text"><strong>Break the monster into layers.</strong> Leaf-first dependency planning. Small PRs. Always shippable. A 10K LOC PR will never get merged.</div>
+        <div class="takeaway-text"><strong>Break the monster into layers.</strong> Leaf-first, small PRs, always shippable.</div>
       </div>
       <div v-click class="takeaway-item">
         <span class="takeaway-num">4</span>
-        <div class="takeaway-text"><strong>Go async or go home.</strong> Parallelization is where the 10× comes from. It takes 2–3 days to build confidence — the other practices enable it.</div>
+        <div class="takeaway-text"><strong>SDK-style conversion is the hardest step.</strong> Plan for a large PR and get it done first.</div>
       </div>
       <div v-click class="takeaway-item">
         <span class="takeaway-num">5</span>
-        <div class="takeaway-text"><strong>Close the feedback loop.</strong> /troubleshoot + skill update = 100× compounding improvement. Every fix makes the system permanently smarter.</div>
+        <div class="takeaway-text"><strong>Strangler Fig for ASP.NET.</strong> Core in front, proxy back to Framework, shrink incrementally.</div>
+      </div>
+      <div v-click class="takeaway-item">
+        <span class="takeaway-num">6</span>
+        <div class="takeaway-text"><strong>Go async or go home.</strong> Parallelization is where the 10× comes from.</div>
+      </div>
+      <div v-click class="takeaway-item">
+        <span class="takeaway-num">7</span>
+        <div class="takeaway-text"><strong>Close the feedback loop.</strong> /troubleshoot + skill update = 100× compounding improvement.</div>
       </div>
     </div>
   </div>
 </div>
 
 <!--
-Progressive reveal — build each takeaway one click at a time.
-These five principles map directly to the workshop experience. They're
-battle-tested on a 10M LOC app with the Microsoft AppMod CAT team.
+Progressive reveal — build each principle one click at a time.
+These seven principles are battle-tested on a 10M LOC app with the Microsoft
+AppMod CAT team. They map directly to the workshop experience.
 -->
 
 ---
@@ -967,30 +1019,38 @@ transition: fade-out
   <div class="slide-banner">
     <h1>📸 Cheat Sheet — Photograph This!</h1>
   </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.6rem; padding: 0.8rem 1.5rem;">
-    <div class="two-col-grid" style="width: 100%; gap: 0.6rem; align-items: stretch;">
-      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+  <div class="slide-body" style="flex-direction: column; gap: 0.5rem; padding: 0.6rem 1.5rem;">
+    <div class="two-col-grid" style="width: 100%; gap: 0.5rem; align-items: stretch;">
+      <div style="display: flex; flex-direction: column; gap: 0.4rem;">
         <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent);">
           <h3>1. No magic single-click</h3>
-          <p>Standard .NET AppMod approach + AI automation. Break into phases, leaf-first, small PRs. <strong>Structure, not sizzle.</strong></p>
+          <p>Standard .NET AppMod + AI automation. Phases, leaf-first, small PRs. <strong>Structure, not sizzle.</strong></p>
         </div>
         <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent);">
           <h3>2. Skills &gt; Prompts</h3>
-          <p>Convert prompts to skills. Validate with Sensei. Build an org skill library. <strong>Deterministic, portable, discoverable.</strong></p>
+          <p>Convert prompts to skills. Validate with Sensei. Build an org skill library. <strong>Deterministic, portable.</strong></p>
         </div>
         <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent);">
           <h3>3. Dependency layers</h3>
-          <p>Multi-layer upgrade plan. Start at leaves. Each phase = working app + mergeable PR. <strong>Never a 10K LOC PR.</strong></p>
+          <p>Multi-layer upgrade plan. Start at leaves. Each phase = working app + mergeable PR.</p>
+        </div>
+        <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent);">
+          <h3>4. SDK-style first</h3>
+          <p>Mandatory gating step. Largest single PR. Once done, everything else gets easier.</p>
         </div>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+      <div style="display: flex; flex-direction: column; gap: 0.4rem;">
         <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent2);">
-          <h3>4. Go async</h3>
-          <p>Agent Panel, subagents, fleets. Stop watching. Confidence builds over days, not hours. <strong>Parallelization = 10×.</strong></p>
+          <h3>5. Strangler Fig</h3>
+          <p>Core in front, proxy to Framework, migrate incrementally. Never "turn it on and hope."</p>
         </div>
         <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent2);">
-          <h3>5. The 100× pattern</h3>
-          <p>/troubleshoot → diagnose → update skill → permanent fix. Every loop makes the system smarter. <strong>Compounding improvement.</strong></p>
+          <h3>6. Go async</h3>
+          <p>Agent Panel, subagents, fleets. Stop watching. <strong>Parallelization = 10×.</strong></p>
+        </div>
+        <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent2);">
+          <h3>7. The 100× pattern</h3>
+          <p>/troubleshoot → diagnose → update skill → permanent fix. <strong>Compounding improvement.</strong></p>
         </div>
         <div class="callout" style="font-size: 0.78em; margin: 0;">
           <strong>Start here: </strong>
@@ -1007,50 +1067,8 @@ transition: fade-out
 
 <!--
 This is the "photograph this" slide — pause here and let people take photos.
-Condensed reference card of the 5 principles plus key links. Everything they
+Condensed reference card of the 7 principles plus key links. Everything they
 need to get started after the session.
--->
-
----
-transition: fade-out
----
-
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 20 — THE PARTNER OPPORTUNITY                    ~2 min
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
-  <div class="slide-banner">
-    <h1>The Partner Opportunity</h1>
-  </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.6rem; align-items: stretch; padding: 0.6rem 1.8rem 0.8rem;">
-    <div class="callout" style="background: #e8f4fd; border-left: 4px solid var(--theme-accent2); padding: 0.7rem 1rem; font-size: 0.95em;">
-      <strong>I've seen many customers exclaim that they're experts and extremely capable with AI Dev</strong> — yet I've seen few of them implementing any of the above practices at scale. Their capabilities are often <strong>months out of date</strong> — and when it comes to the rate of Agentic AI change, <strong>months = years</strong>.
-    </div>
-    <div style="display: flex; gap: 0.8rem; align-items: stretch; flex: 1;">
-      <div class="card" style="flex: 1; border-color: #16a34a; border-width: 2px;">
-        <h3>🎓 Workshop-as-a-Service</h3>
-        <p>Run this workshop format with your customers</p>
-        <p>4-day format with the AppMod tools and techniques from this talk</p>
-        <p>Reusable skill libraries and demo apps included</p>
-        <p><strong>Huge differentiation opportunity for partners</strong></p>
-      </div>
-      <div class="card" style="flex: 1; border-color: var(--theme-accent2); border-width: 2px;">
-        <h3>📈 Customer Impact</h3>
-        <p>Level up customers from "months behind" to current best practices</p>
-        <p>Build organizational skill libraries that compound over time</p>
-        <p>Establish plugin marketplaces for enterprise-wide sharing</p>
-        <p><strong>AppMod-as-a-service using agentic tools</strong></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--
-The call to action for partners: this is your opportunity to differentiate.
-You can run this workshop format. The tools and skills are reusable. Your
-customers NEED this — most of them are months behind on agentic practices
-and don't know it.
 -->
 
 ---
@@ -1059,7 +1077,7 @@ class: text-center
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 21 — THANK YOU / Q&A                           ~5 min
+     SLIDE 20 — THANK YOU / Q&A                           ~5 min
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="thankyou-shell">
@@ -1081,6 +1099,7 @@ class: text-center
         <a href="https://agentskills.io/" target="_blank" style="color: rgba(255,255,255,0.85);">agentskills.io</a> ·
         <a href="https://code.visualstudio.com/docs/copilot/customization/agent-plugins" target="_blank" style="color: rgba(255,255,255,0.85);">Agent Plugins</a> ·
         <a href="https://learn.microsoft.com/en-us/training/support/mcp" target="_blank" style="color: rgba(255,255,255,0.85);">MS Learn MCP</a> ·
+        <a href="https://www.youtube.com/watch?v=umcl-Ooaay4" target="_blank" style="color: rgba(255,255,255,0.85);">Auckland .NET UG</a> ·
         <a href="https://github.com/PlagueHO/plagueho.learn" target="_blank" style="color: rgba(255,255,255,0.85);">Slides Source</a>
       </p>
     </div>
