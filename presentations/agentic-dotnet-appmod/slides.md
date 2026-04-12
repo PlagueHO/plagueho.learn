@@ -345,7 +345,7 @@ transition: fade-out
       </div>
       <div class="agent-pattern-card" style="flex: 1; border-top: 4px solid #0d6e6e;">
         <span class="agent-pattern-label" style="color: #0d6e6e; background: rgba(13,110,110,0.1);">📋 Workspace Config</span>
-        <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);">Commit <code>mcp.json</code>, shared prompts in <code>.github/prompts</code>, <code>custom-instructions.md</code></p>
+        <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);">Commit <code>mcp.json</code>, shared prompts in <code>.github/skills</code>, <code>.github/agents</code>, <code>custom-instructions.md</code></p>
         <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);"><strong>Repeatability across repos</strong>, not per-developer setup</p>
       </div>
     </div>
