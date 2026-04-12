@@ -680,7 +680,7 @@ transition: fade-out
       <span class="flow-arrow">→</span>
       <div class="flow-step">➡️ Next Project</div>
     </div>
-    <div class="iq-grid" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
+    <div class="iq-grid" style="grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch;">
       <div class="iq-pillar iq-work">
         <span class="iq-header-pill iq-header-work"><span class="iq-header-icon">🔄</span><span>The Inner Engine</span></span>
         <p class="iq-card-summary">Agents run <code>dotnet build</code>, observe failures, apply fixes, and repeat until stable.</p>
@@ -723,34 +723,37 @@ transition: fade-out
     <h1>Go Async — Stop Watching Agents</h1>
   </div>
   <div class="slide-body" style="flex-direction: column; gap: 0.5rem; align-items: stretch; padding: 0.4rem 1.8rem 0.7rem;">
-    <div class="callout" style="background: #e8f4fd; border-left: 4px solid var(--theme-accent2); padding: 0.5rem 1rem; font-size: 0.88em;">
+    <div class="callout" style="background: #e8f4fd; border-left: 4px solid var(--theme-accent2); padding: 0.5rem 1rem; font-size: 1.32em; margin-bottom: 0.3rem;">
       <strong>💬</strong> "Just shove it to the background. Let's go do something else, right?" and "You can't watch it."
     </div>
-    <div style="display: flex; gap: 0.7rem; align-items: stretch; flex: 1;">
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.45rem;">
-        <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent);">
-          <h3>📈 The Confidence Curve</h3>
-          <p><strong>Day 1–2:</strong> Engineers watched every agent step. Slow, cautious, serial.</p>
-          <p><strong>Day 3:</strong> Confidence builds. First attempts at parallelization.</p>
-          <p><strong>Day 4:</strong> Firing off parallel tasks, reviewing results async. <strong>Massive acceleration.</strong></p>
-        </div>
-        <div class="callout callout-teal" style="font-size: 0.82em;">
-          <strong>Key insight:</strong> It took 2–3 days to build confidence. The other practices (skills, layers, /troubleshoot) are what enabled it.
-        </div>
+    <div class="iq-grid" style="grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.6rem; align-items: stretch;">
+      <div class="iq-pillar iq-fabric">
+        <span class="iq-header-pill iq-header-fabric"><span class="iq-header-icon">📈</span><span style="font-size: 1.05rem;">The Confidence Curve</span></span>
+        <ul class="agent-pattern-list" style="margin-top: 0.2rem; font-size: 1.26rem;">
+          <li><strong>Day 1-2:</strong> Engineers watched every step.</li>
+          <li><strong>Day 3:</strong> First attempts at parallelization.</li>
+          <li><strong>Day 4:</strong> Async execution drove massive acceleration.</li>
+        </ul>
       </div>
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.45rem;">
-        <div class="card" style="border-color: var(--theme-accent2); border-width: 2px;">
-          <h3>⚡ Parallelization Tools</h3>
-          <p><strong>Agent Panel</strong> — multiple agent conversations</p>
-          <p><strong>#runSubagent</strong> — delegate subtasks to isolated contexts</p>
-          <p><strong>Fleets / Squads</strong> — coordinated multi-agent teams</p>
-        </div>
-        <div class="card" style="border-color: #16a34a; border-width: 2px;">
-          <h3>📦 Layer-Based Parallelization</h3>
-          <p>Dependency layers enable it: projects within the same layer can be modernized <strong>simultaneously</strong></p>
-          <p><strong>Orchard CMS:</strong> 5 leaf modules (Tags, AntiSpam, Markdown, Lucene, SysCache) — five agents, five independent PRs</p>
-        </div>
+      <div class="iq-pillar iq-foundry">
+        <span class="iq-header-pill iq-header-foundry"><span class="iq-header-icon">⚡</span><span style="font-size: 1.05rem;">Parallelization Tools</span></span>
+        <ul class="agent-pattern-list" style="margin-top: 0.2rem; font-size: 1.26rem;">
+          <li><strong>Agent Panel:</strong> multiple agent conversations.</li>
+          <li><strong>#runSubagent:</strong> delegate subtasks to isolated contexts.</li>
+          <li><strong>Fleets / Squads:</strong> coordinated multi-agent teams.</li>
+        </ul>
       </div>
+      <div class="iq-pillar iq-work">
+        <span class="iq-header-pill iq-header-work"><span class="iq-header-icon">📦</span><span style="font-size: 1.05rem;">Layer-Based Parallelization</span></span>
+        <ul class="agent-pattern-list" style="margin-top: 0.2rem; font-size: 1.26rem;">
+          <li>Dependency layers unlock safe concurrency.</li>
+          <li>Projects in the same layer can run in parallel.</li>
+          <li><strong>Orchard CMS:</strong> 5 leaf modules modernized as independent PRs.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout-teal callout" style="text-align:center; font-size: 1.32em;">
+      <strong>💡 Key insight:</strong> confidence took 2-3 days to build, enabled by skills, dependency layers, and /troubleshoot.
     </div>
   </div>
 </div>
@@ -820,31 +823,30 @@ transition: fade-out
   <div class="slide-banner">
     <h1>The 100× Pattern</h1>
   </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.5rem; align-items: stretch; padding: 0.4rem 1.8rem 0.7rem;">
-    <div style="display: flex; gap: 0.7rem; align-items: stretch;">
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
-        <div class="card" style="border-color: #c2410c; border-width: 2px;">
-          <h3>🔍 Chat Debug / /troubleshoot</h3>
-          <p>Started the week as the <strong>most useful tool</strong> for understanding when/why AppMod MCP and skills "go astray"</p>
-          <p>On day 4, VS Code Insiders enabled enhanced Chat Debug — <strong>game changing!</strong></p>
-        </div>
-        <div class="card" style="border-left: 3px solid var(--theme-accent2); flex: 1;">
-          <h3>🔍 10×: /troubleshoot</h3>
-          <p style="font-family: 'Cascadia Code', 'Consolas', monospace; font-size: 0.82em; background: #f0f6fc; padding: 0.5rem; border-radius: 6px;">/troubleshoot Why did you do X rather than Y?</p>
-          <p>Understand the agent's reasoning and diagnose mistakes</p>
-        </div>
+  <div class="slide-body" style="flex-direction:column;gap:0.5rem;align-items:stretch;justify-content:center;">
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.25rem;">
+      <div class="thought-bubble">
+        <span class="thought-bubble-emoji">🧠</span>
+        <span>When agents fail, how do we fix it <em>and ensure it never happens again?</em></span>
       </div>
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
-        <div class="card" style="border-color: #16a34a; border-width: 2px; flex: 1;">
-          <h3>🚀 100×: /troubleshoot + Update Skill</h3>
-          <p style="font-family: 'Cascadia Code', 'Consolas', monospace; font-size: 0.82em; background: #f0f6fc; padding: 0.5rem; border-radius: 6px;">/troubleshoot Why did you do X rather than Y<br/><strong>and then update Skill Z so you don't do that again?</strong></p>
-          <p>The feedback loop that <strong>permanently fixes behavior</strong>:</p>
-          <p><strong>Observe</strong> → <strong>Diagnose</strong> → <strong>Update Skill</strong> → <strong>Never happen again</strong></p>
-        </div>
-        <div class="callout callout-teal" style="font-size: 0.85em;">
-          <strong>This is the most important operational pattern from the entire workshop.</strong> The 100× comes from compounding — every fix makes the system permanently smarter.
-        </div>
+      <div class="thought-dots"><span></span><span></span><span></span></div>
+    </div>
+    <div class="highlight-strip">
+      <div class="highlight-pill" v-click="1">
+        <span class="iq-header-pill iq-header-work iq-header-pill-outline"><span class="iq-header-icon">🔍</span><span>Observe</span></span>
+        <span class="hl-desc"><strong>Chat Debug / /troubleshoot</strong> — Started the week as the <em>most useful tool</em> for understanding when/why AppMod MCP and skills "go astray". On day 4, VS Code Insiders enabled enhanced Chat Debug — <strong>game changing!</strong></span>
       </div>
+      <div class="highlight-pill" v-click="2">
+        <span class="iq-header-pill iq-header-foundry iq-header-pill-outline"><span class="iq-header-icon">🔧</span><span>Diagnose</span></span>
+        <span class="hl-desc"><strong>10×: /troubleshoot</strong> — Ask why:<br/><code>/troubleshoot Why did you do X rather than Y?</code><br/>Understand the agent's reasoning and pinpoint mistakes.</span>
+      </div>
+      <div class="highlight-pill" v-click="3">
+        <span class="iq-header-pill iq-header-fabric iq-header-pill-outline"><span class="iq-header-icon">⚡</span><span>Fix Permanently</span></span>
+        <span class="hl-desc"><strong>100×: /troubleshoot + Update Skill</strong> — Ask and fix:<br/><code>/troubleshoot Why did you do X rather than Y and then update Skill Z so you don't do that again?</code><br/>Feedback loop that <strong>permanently fixes behavior</strong>.</span>
+      </div>
+    </div>
+    <div class="callout-teal callout" style="text-align:center;" v-click="4">
+      <strong>This is the most important operational pattern from the entire workshop.</strong> The 100× comes from compounding — every fix makes the system permanently smarter.
     </div>
   </div>
 </div>
@@ -965,7 +967,7 @@ transition: slide-up
 
 <div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
   <div class="slide-banner">
-    <h1>Key Takeaways — Seven Principles</h1>
+    <h1>Key Takeaways — Seven Learnings</h1>
   </div>
   <div class="slide-body" style="align-items: stretch; padding: 0.5rem 1.8rem;">
     <div class="takeaway-grid" style="width: 100%; flex: 1;">
