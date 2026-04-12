@@ -919,30 +919,30 @@ transition: fade-out
     <h1>What To Do Now</h1>
   </div>
   <div class="slide-body" style="flex-direction: column; gap: 0.5rem; align-items: stretch; padding: 0.5rem 1.8rem 0.7rem;">
-    <div class="card-grid" style="grid-template-columns: repeat(3, 1fr); gap: 0.5rem; flex: 1;">
-      <div class="card" style="border-left: 3px solid var(--theme-accent);">
-        <h3>💻 1. VS Code Insiders + MCP</h3>
-        <p>Install <code>Microsoft.GitHubCopilot.AppModernization.Mcp</code> NuGet. Update daily. Remove competing extensions.</p>
+    <div class="card-grid" style="gap: 0.5rem; flex: 1;">
+      <div class="iq-pillar iq-work">
+        <span class="iq-header-pill iq-header-work"><span class="iq-header-icon">💻</span><span>1. VS Code Insiders + MCP</span></span>
+        <p class="iq-card-summary">Install <code>Microsoft.GitHubCopilot.AppModernization.Mcp</code> NuGet. Update daily. Remove competing extensions.</p>
       </div>
-      <div class="card" style="border-left: 3px solid var(--theme-accent2);">
-        <h3>📋 2. Workspace Config</h3>
-        <p>Configure <code>mcp.json</code> + <code>custom-instructions.md</code> for team consistency and repeatability.</p>
+      <div class="iq-pillar iq-fabric">
+        <span class="iq-header-pill iq-header-fabric"><span class="iq-header-icon">📋</span><span>2. Workspace Config</span></span>
+        <p class="iq-card-summary">Configure <code>mcp.json</code> + <code>custom-instructions.md</code> for team consistency and repeatability.</p>
       </div>
-      <div class="card" style="border-left: 3px solid #077769;">
-        <h3>🎯 3. Practice on Orchard CMS</h3>
-        <p>Start with <a href="https://github.com/OrchardCMS/Orchard" target="_blank">Orchard CMS</a> — experience the full workflow before a customer engagement.</p>
+      <div class="iq-pillar iq-foundry">
+        <span class="iq-header-pill iq-header-foundry"><span class="iq-header-icon">🎯</span><span>3. Practice on Orchard CMS</span></span>
+        <p class="iq-card-summary">Start with <a href="https://github.com/OrchardCMS/Orchard" target="_blank">Orchard CMS</a> — experience the full workflow before a customer engagement.</p>
       </div>
-      <div class="card" style="border-left: 3px solid #5635a0;">
-        <h3>🔧 4. Convert Prompts to Skills</h3>
-        <p>Use <a href="https://github.com/spboyer/sensei" target="_blank">Sensei</a> to validate. Create an org plugin marketplace for sharing.</p>
+      <div class="iq-pillar iq-foundry">
+        <span class="iq-header-pill iq-header-foundry"><span class="iq-header-icon">🔧</span><span>4. Convert Prompts to Skills</span></span>
+        <p class="iq-card-summary">Use <a href="https://github.com/spboyer/sensei" target="_blank">Sensei</a> to validate. Create an org plugin marketplace for sharing.</p>
       </div>
-      <div class="card" style="border-left: 3px solid #0c6484;">
-        <h3>📦 5. Dependency Plan First</h3>
-        <p>Build the layer plan before touching code. Add target → build → fix → commit → next.</p>
+      <div class="iq-pillar iq-work">
+        <span class="iq-header-pill iq-header-work"><span class="iq-header-icon">📦</span><span>5. Dependency Plan First</span></span>
+        <p class="iq-card-summary">Build the layer plan before touching code. Add target → build → fix → commit → next.</p>
       </div>
-      <div class="card" style="border-left: 3px solid #c2410c;">
-        <h3>🔍 6. Implement 100× Pattern</h3>
-        <p>/troubleshoot → diagnose → update skill → permanently fix. Close the feedback loop.</p>
+      <div class="iq-pillar iq-fabric">
+        <span class="iq-header-pill iq-header-fabric"><span class="iq-header-icon">🔍</span><span>6. Implement 100× Pattern</span></span>
+        <p class="iq-card-summary">/troubleshoot → diagnose → update skill → permanently fix. Close the feedback loop.</p>
       </div>
     </div>
     <div class="callout" style="background: #e8f4fd; border-left: 4px solid var(--theme-accent2); font-size: 0.88em; text-align: center;">

@@ -21,6 +21,12 @@
   --theme-demo-bg: #0d1117;
   --slidev-theme-primary: #114D8B;
   --slidev-theme-accent: #38A4DC;
+  --iq-work: #0078D4;
+  --iq-work-light: #2b9aed;
+  --iq-fabric: #117865;
+  --iq-fabric-light: #2AAC94;
+  --iq-foundry: #584ACF;
+  --iq-foundry-light: #7B6FE6;
 }
 
 /* ── Base ── */
@@ -390,7 +396,7 @@
 
 .card-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 0.7rem;
   flex: 1;
 }
@@ -398,10 +404,39 @@
 .card {
   background: var(--theme-surface);
   border-radius: 12px;
-  padding: 0.85rem;
+  padding: 1.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   border: 1px solid var(--theme-line);
   transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+
+.card-grid .iq-header-pill {
+  width: 100%;
+  justify-content: flex-start;
+  padding: 0.22rem 0.75rem;
+}
+
+.card-grid .iq-header-pill::before {
+  opacity: 0.85;
+}
+
+.card-grid .iq-header-work {
+  color: var(--iq-work);
+  -webkit-text-fill-color: var(--iq-work);
+  --pill-gradient: linear-gradient(135deg, var(--iq-work), var(--iq-work-light));
+}
+
+.card-grid .iq-header-fabric {
+  color: var(--iq-fabric);
+  -webkit-text-fill-color: var(--iq-fabric);
+  --pill-gradient: linear-gradient(135deg, var(--iq-fabric), var(--iq-fabric-light));
+}
+
+.card-grid .iq-header-foundry {
+  color: var(--iq-foundry);
+  -webkit-text-fill-color: var(--iq-foundry);
+  --pill-gradient: linear-gradient(135deg, var(--iq-foundry), var(--iq-foundry-light));
 }
 
 /* ── Clickable card links ── */
@@ -984,6 +1019,8 @@ a.card-link span {
   border-left: 5px solid var(--theme-accent2);
   box-shadow: 0 6px 20px rgba(17, 77, 139, 0.08);
   transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+  min-width: 0;
 }
 
 .iq-pillar:hover {
@@ -1050,9 +1087,9 @@ a.card-link span {
 .iq-header-foundry { color: color-mix(in srgb, var(--iq-foundry) 50%, #666); -webkit-text-fill-color: color-mix(in srgb, var(--iq-foundry) 50%, #666); --pill-gradient: linear-gradient(135deg, var(--iq-foundry), var(--iq-foundry-light)); }
 
 .iq-card-summary {
-  margin: 0.16rem 0 0;
-  font-size: 0.82rem;
-  line-height: 1.24;
+  margin: 0.24rem 0 0;
+  font-size: 1.23rem;
+  line-height: 1.35;
   color: var(--theme-muted);
 }
 
