@@ -220,9 +220,9 @@ transition: fade-out
       <div class="agent-pattern-card" style="border-top: 4px solid var(--theme-accent);">
         <span class="agent-pattern-label" style="color: var(--theme-accent); background: rgba(254,91,56,0.1);">🏢 Who</span>
         <ul class="agent-pattern-list">
-          <li><strong>Jay Schmelzer</strong> — Director, DevDiv CoreAI AppMod</li>
-          <li><strong>Taylor Southwick</strong> — Principal Engineer, AppMod</li>
-          <li><strong>Steve Hornblow</strong> &amp; <strong>DSR</strong> — Microsoft EPS hosts</li>
+          <li>Microsoft Director, DevDiv CoreAI AppMod</li>
+          <li>Microsoft Principal Engineer, AppMod</li>
+          <li>Microsoft EPS, Partner Solution Architects, Cloud and AI Apps</li>
         </ul>
       </div>
       <div class="agent-pattern-card" style="border-top: 4px solid var(--theme-accent2);">
@@ -244,13 +244,6 @@ transition: fade-out
     </div>
   </div>
 </div>
-
-<!--
-Establish credibility — this isn't theoretical. We did it with the actual
-Microsoft AppMod engineering team on a real 10M LOC application. Jay Schmelzer
-runs the AppMod org. Taylor Southwick is the principal engineer building the
-tooling. Everything in this talk comes from that week.
--->
 
 ---
 transition: fade-out
@@ -283,7 +276,7 @@ transition: fade-out
           <ul class="agent-pattern-list" style="font-size: 1.03rem; margin-top: 0.15rem;">
             <li>Follow <strong>standard .NET AppMod approach</strong> — then leverage AI to automate and make it repeatable</li>
             <li>AI is an acceleration mechanism, <strong>not a blind code-rewriter</strong></li>
-            <li>Jay on big PRs: <strong>"No one's gonna review that."</strong></li>
+            <li>On big PRs: <strong>"No one's gonna review that."</strong></li>
           </ul>
         </div>
       </div>
@@ -348,7 +341,7 @@ transition: fade-out
       <div class="agent-pattern-card" style="flex: 1; border-top: 4px solid #d97706;">
         <span class="agent-pattern-label" style="color: #b45309; background: rgba(217,119,6,0.1);">🔧 Tool Wrangling Is a Discipline</span>
         <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);">When things went wrong, tools had been disabled/enabled by different agents. <strong>Restrict tool surface area.</strong></p>
-        <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);">Taylor: <em>"I can review it and I don't understand it. It's too much."</em></p>
+        <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);">💭 <em>"I can review it and I don't understand it. It's too much."</em></p>
       </div>
       <div class="agent-pattern-card" style="flex: 1; border-top: 4px solid #0d6e6e;">
         <span class="agent-pattern-label" style="color: #0d6e6e; background: rgba(13,110,110,0.1);">📋 Workspace Config</span>
@@ -358,15 +351,6 @@ transition: fade-out
     </div>
   </div>
 </div>
-
-<!--
-This is practical, day-1 advice. Before you write a single line of code, get
-your toolchain right. Insiders + daily updates + AppMod MCP NuGet + remove
-competing extensions. Tool wrangling is a real discipline — when things went
-wrong, often tools had been disabled/enabled by different agents. Restrict
-which tools are enabled to reduce noise. Jay on blind trust in tools: "We don't
-just trust the stuff… You will be overwhelmed by what it did."
--->
 
 ---
 transition: fade-out
@@ -425,31 +409,31 @@ transition: fade-out
   <div class="slide-banner">
     <h1>Breaking Down the Monster — Dependency Layers</h1>
   </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.4rem; align-items: stretch; padding: 0.35rem 1.8rem 0.65rem;">
-    <div style="display: flex; gap: 0.8rem; align-items: stretch; flex: 1;">
+  <div class="slide-body" style="flex-direction: column; gap: 0.4rem; align-items: stretch; justify-content: center; padding: 0.35rem 1.8rem 0.65rem;">
+    <div style="display: flex; gap: 0.8rem; align-items: stretch;">
       <div style="flex: 1; display: flex; flex-direction: column; gap: 0.4rem;">
         <div class="callout" style="background: #fff0ec; border-left: 4px solid var(--theme-accent); font-size: 0.85em;">
           <strong>⚠️ A 10K LOC PR is unacceptable and will never get merged</strong> — AppMod stalls.
         </div>
-        <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent2);">
-          <h3>📋 The Approach</h3>
-          <p><strong>1.</strong> Build a <strong>dependency tree</strong>, identify leaf nodes</p>
-          <p><strong>2.</strong> Modernize leaves first — breadth-first layered traversal</p>
-          <p><strong>3.</strong> Each phase = <strong>working app + reviewable PR</strong></p>
-          <p><strong>4.</strong> Projects within the same layer can be modernized <strong>in parallel</strong></p>
+        <div class="agent-pattern-card" style="border-top: 4px solid var(--theme-accent2); padding: 0.5rem 0.65rem;">
+          <span class="agent-pattern-label">📋 The Approach</span>
+          <p style="margin: 0.15rem 0 0; font-size: 0.8rem; color: var(--theme-muted);"><strong>1.</strong> Build a <strong>dependency tree</strong>, identify leaf nodes</p>
+          <p style="margin: 0.1rem 0 0; font-size: 0.8rem; color: var(--theme-muted);"><strong>2.</strong> Modernize leaves first — breadth-first layered traversal</p>
+          <p style="margin: 0.1rem 0 0; font-size: 0.8rem; color: var(--theme-muted);"><strong>3.</strong> Each phase = <strong>working app + reviewable PR</strong></p>
+          <p style="margin: 0.1rem 0 0; font-size: 0.8rem; color: var(--theme-muted);"><strong>4.</strong> Projects within the same layer can be modernized <strong>in parallel</strong></p>
         </div>
-        <div class="card" style="border-left: 3px solid #d97706; font-size: 0.88em;">
-          <h3>🔄 SDK-Style Conversion First</h3>
-          <p>Convert to SDK-style + PackageReference is the <strong>mandatory gating step</strong></p>
-          <p>Often the largest single PR — mixing old/new format is "hit or miss"</p>
+        <div class="agent-pattern-card" style="border-top: 4px solid #d97706;">
+          <span class="agent-pattern-label" style="color: #b45309; background: rgba(217,119,6,0.1);">🔄 SDK-Style Conversion First</span>
+          <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);">Convert to SDK-style + PackageReference is the <strong>mandatory gating step</strong></p>
+          <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);">Often the largest single PR — mixing old/new format is "hit or miss"</p>
         </div>
-        <div class="card" style="border-left: 3px solid #0d6e6e; font-size: 0.88em;">
-          <h3>🌿 Strangler Fig for ASP.NET</h3>
-          <p>Core app sits in front, proxies unmigrated routes to legacy Framework app, migrate incrementally</p>
+        <div class="agent-pattern-card" style="border-top: 4px solid #0d6e6e;">
+          <span class="agent-pattern-label" style="color: #0d6e6e; background: rgba(13,110,110,0.1);">🌿 Strangler Fig for ASP.NET</span>
+          <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);">Core app sits in front, proxies unmigrated routes to legacy Framework app, migrate incrementally</p>
         </div>
       </div>
-      <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-        <div style="background: white; border-radius: 12px; padding: 0.8rem; border: 1px solid var(--theme-line); box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+      <div style="flex: 1; display: flex; align-items: stretch;">
+        <div style="background: white; border-radius: 12px; padding: 0.8rem; border: 1px solid var(--theme-line); box-shadow: 0 2px 8px rgba(0,0,0,0.05); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
 
 ```mermaid {theme: 'neutral', scale: 0.65}
 graph TD
@@ -539,32 +523,19 @@ transition: fade-out
     <h1>Skills Over Prompts — The Shift That Changed Everything</h1>
   </div>
   <div class="slide-body" style="flex-direction: column; gap: 0.35rem; align-items: stretch; padding: 0.3rem 1.8rem 0.6rem;">
-    <div style="display: flex; gap: 0.65rem; align-items: stretch; flex: 1;">
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.35rem;">
-        <div class="card" style="border-left: 3px solid var(--theme-accent); flex: 1;">
-          <h3>📈 The Workshop Arc</h3>
-          <p><strong>Day 1:</strong> Engineers build prompts (familiar, comfortable)</p>
-          <p><strong>Day 2:</strong> Prompts hit limits — skills emerge as better fit</p>
-          <p><strong>Day 3–4:</strong> Team becomes a "Skill &amp; Agent factory"</p>
-          <p><strong>End of week:</strong> 20+ skills, only ~2 prompts remain</p>
-        </div>
-        <div class="callout callout-teal" style="font-size: 0.82em;">
-          <strong>Key insight:</strong> "The tool is not to modernize the code — the tool is to help you build the <em>process</em> to modernize the code."
-        </div>
-        <div style="display: flex; gap: 0.5rem;">
-          <div class="card" style="flex: 1; border-color: #077769; border-width: 2px; font-size: 0.82em;">
-            <h3>🧩 Skills = Building Blocks</h3>
-            <p>Deterministic, portable, discoverable</p>
-            <p><a href="https://agentskills.io/" target="_blank">agentskills.io</a> open standard</p>
-          </div>
-          <div class="card" style="flex: 1; border-color: #5635a0; border-width: 2px; font-size: 0.82em;">
-            <h3>🏢 Org Marketplace</h3>
-            <p><a href="https://code.visualstudio.com/docs/copilot/customization/agent-plugins" target="_blank">Agent Plugins</a> for sharing</p>
-            <p>Private marketplace at scale</p>
-          </div>
+    <div style="display: flex; gap: 0.65rem; align-items: stretch;">
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 0;">
+        <div class="agent-pattern-card" style="border-top: 4px solid var(--theme-accent); padding: 0.45rem 0.65rem; height: 100%;">
+          <span class="agent-pattern-label" style="color: var(--theme-accent); background: rgba(254,91,56,0.1);">📈 The Workshop Arc</span>
+          <ul class="agent-pattern-list" style="font-size: 1.1rem; line-height: 1.35; margin-top: 0.1rem;">
+            <li><strong>Day 1:</strong> Engineers build prompts (familiar, comfortable)</li>
+            <li><strong>Day 2:</strong> Prompts hit limits — skills emerge as better fit</li>
+            <li><strong>Day 3-4:</strong> Team becomes a "Skill &amp; Agent factory"</li>
+            <li><strong>End of week:</strong> 20+ skills, only ~2 prompts remain</li>
+          </ul>
         </div>
       </div>
-      <div style="flex: 0.85; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
+      <div style="flex: 0.85; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 0.45rem;">
         <div class="pyramid-stack" style="width: 100%;">
           <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/custom-instructions" target="_blank" style="margin: 0 0; background: linear-gradient(90deg, #0a2e4a, #103954); text-decoration: none; cursor: pointer;">
             <span class="pyramid-num">1</span>
@@ -602,7 +573,22 @@ transition: fade-out
             <span class="pyramid-desc">Package &amp; share via org marketplace</span>
           </a>
         </div>
+        <div style="display: flex; gap: 0.5rem; width: 100%;">
+          <div class="agent-pattern-card" style="flex: 1; border-top: 4px solid #077769;">
+            <span class="agent-pattern-label" style="color: #077769; background: rgba(7,119,105,0.1);">🧩 Skills = Building Blocks</span>
+            <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);">Deterministic, portable, discoverable</p>
+            <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);"><a href="https://agentskills.io/" target="_blank">agentskills.io</a> open standard</p>
+          </div>
+          <div class="agent-pattern-card" style="flex: 1; border-top: 4px solid #5635a0;">
+            <span class="agent-pattern-label" style="color: #5635a0; background: rgba(86,53,160,0.1);">🏢 Org Marketplace</span>
+            <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);"><a href="https://code.visualstudio.com/docs/copilot/customization/agent-plugins" target="_blank">Agent Plugins</a> for sharing</p>
+            <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);">Private marketplace at scale</p>
+          </div>
+        </div>
       </div>
+    </div>
+    <div class="callout callout-teal" style="font-size: 0.82em;">
+      <strong>Key insight:</strong> "The tool is not to modernize the code — the tool is to help you build the <em>process</em> to modernize the code."
     </div>
   </div>
 </div>
@@ -680,39 +666,38 @@ transition: fade-out
   <div class="slide-banner">
     <h1>The Build-Fix Loop &amp; Testing</h1>
   </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.5rem; align-items: stretch; padding: 0.4rem 1.8rem 0.7rem;">
-    <div class="flow-pipeline" style="justify-content: center; gap: 0.5rem;">
+  <div class="slide-body" style="flex-direction:column;gap:0.6rem;align-items:stretch;justify-content:center;">
+    <div class="flow-pipeline" style="justify-content: center; gap: 0.6rem;">
       <div class="flow-step">🎯 Add Target</div>
+      <span class="flow-arrow">→</span>
       <div class="flow-step">🔴 Build Fails</div>
-      <div class="flow-step">🤖 Agent Fixes</div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step flow-step-active">🤖 Agent Fixes</div>
+      <span class="flow-arrow">→</span>
       <div class="flow-step">🟢 Build Clean</div>
+      <span class="flow-arrow">→</span>
       <div class="flow-step">✅ Commit</div>
+      <span class="flow-arrow">→</span>
       <div class="flow-step">➡️ Next Project</div>
     </div>
-    <div style="display: flex; gap: 0.7rem; align-items: stretch; flex: 1;">
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.45rem;">
-        <div class="card" style="flex: 1; border-color: var(--theme-accent2); border-width: 2px;">
-          <h3>🔄 The Inner Engine</h3>
-          <p>Agents run <code>dotnet build</code>, observe failures, apply fixes, repeat until stable</p>
-          <p>Enable <strong>auto-approval</strong> for safe commands (e.g., <code>dotnet</code>) — let agents iterate without manual confirmation</p>
-          <p>Humans intervene at <strong>review and commit boundaries</strong>, not at every step</p>
-        </div>
-        <div class="callout" style="background: #fff0ec; border-left: 4px solid var(--theme-accent); font-size: 0.85em;">
-          <strong>Taylor Southwick:</strong> "Make changes that are required to get you to modern .NET. Don't do all sorts of nice fluffy things."
-        </div>
+    <div class="iq-grid" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
+      <div class="iq-pillar iq-work">
+        <span class="iq-header-pill iq-header-work"><span class="iq-header-icon">🔄</span><span>The Inner Engine</span></span>
+        <p class="iq-card-summary">Agents run <code>dotnet build</code>, observe failures, apply fixes, and repeat until stable.</p>
+        <p class="iq-card-summary">Enable <strong>auto-approval</strong> for safe commands and intervene at <strong>review + commit boundaries</strong>.</p>
       </div>
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.45rem;">
-        <div class="card" style="flex: 1; border-left: 3px solid #0d6e6e;">
-          <h3>🧪 Testing Strategy</h3>
-          <p><strong>Testing is the primary constraint</strong> on safe modernization — many legacy projects lack sufficient tests</p>
-          <p>Focus on <strong>integration and end-to-end tests</strong> — validate behavioral parity, not internal implementation</p>
-          <p>Avoid refactoring solely to make code testable during migration — <strong>undermines baseline confidence</strong></p>
-        </div>
-        <div class="card" style="border-left: 3px solid #5635a0; font-size: 0.88em;">
-          <h3>🏗️ Orchard CMS Example</h3>
-          <p>Convert Orchard.Tags to SDK-style → build fails on NHibernate refs → agent resolves packages → builds clean → commit → next module</p>
-        </div>
+      <div class="iq-pillar iq-fabric">
+        <span class="iq-header-pill iq-header-fabric"><span class="iq-header-icon">🧪</span><span>Testing Strategy</span></span>
+        <p class="iq-card-summary"><strong>Testing is the primary constraint</strong> on safe modernization when legacy suites are thin.</p>
+        <p class="iq-card-summary">Prioritize <strong>integration and end-to-end tests</strong> for behavioral parity over implementation-level rewrites.</p>
       </div>
+      <div class="iq-pillar iq-foundry">
+        <span class="iq-header-pill iq-header-foundry"><span class="iq-header-icon">🏗️</span><span>Orchard CMS Example</span></span>
+        <p class="iq-card-summary">Convert Orchard.Tags to SDK-style, fix NHibernate package failures, build clean, commit, and move to the next module.</p>
+      </div>
+    </div>
+    <div class="callout-teal callout" style="text-align:center;">
+      <strong>💬</strong> "Make changes that are required to get you to modern .NET. Don't do all sorts of nice fluffy things."
     </div>
   </div>
 </div>
@@ -739,7 +724,7 @@ transition: fade-out
   </div>
   <div class="slide-body" style="flex-direction: column; gap: 0.5rem; align-items: stretch; padding: 0.4rem 1.8rem 0.7rem;">
     <div class="callout" style="background: #e8f4fd; border-left: 4px solid var(--theme-accent2); padding: 0.5rem 1rem; font-size: 0.88em;">
-      <strong>💬 Jay Schmelzer:</strong> "Just shove it to the background. Let's go do something else, right?" and "You can't watch it."
+      <strong>💬</strong> "Just shove it to the background. Let's go do something else, right?" and "You can't watch it."
     </div>
     <div style="display: flex; gap: 0.7rem; align-items: stretch; flex: 1;">
       <div style="flex: 1; display: flex; flex-direction: column; gap: 0.45rem;">

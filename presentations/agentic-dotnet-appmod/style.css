@@ -950,6 +950,95 @@ a.card-link span {
 }
 
 /* ══════════════════════════════════════════════════════════════
+   IQ PILLAR CARDS — Colored left border per IQ layer
+   ══════════════════════════════════════════════════════════════ */
+
+.iq-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+  align-items: stretch;
+}
+
+.iq-pillar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.7rem 1rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--theme-line);
+  border-left: 5px solid var(--theme-accent2);
+  box-shadow: 0 6px 20px rgba(17, 77, 139, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.iq-pillar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(17, 77, 139, 0.14);
+}
+
+.iq-pillar.iq-work { border-left-color: var(--iq-work); }
+.iq-pillar.iq-fabric { border-left-color: var(--iq-fabric); }
+.iq-pillar.iq-foundry { border-left-color: var(--iq-foundry); }
+
+.iq-header-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.96rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0.2rem 0.7rem;
+  border-radius: 8px;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  transition: filter 0.2s, transform 0.2s;
+  background: transparent;
+  position: relative;
+  z-index: 0;
+}
+
+.iq-header-pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--pill-gradient);
+  opacity: 0.5;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+.iq-header-pill:hover {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+}
+
+.iq-header-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.iq-header-work { color: color-mix(in srgb, var(--iq-work) 50%, #666); -webkit-text-fill-color: color-mix(in srgb, var(--iq-work) 50%, #666); --pill-gradient: linear-gradient(135deg, var(--iq-work), var(--iq-work-light)); }
+.iq-header-fabric { color: color-mix(in srgb, var(--iq-fabric) 50%, #666); -webkit-text-fill-color: color-mix(in srgb, var(--iq-fabric) 50%, #666); --pill-gradient: linear-gradient(135deg, var(--iq-fabric), var(--iq-fabric-light)); }
+.iq-header-foundry { color: color-mix(in srgb, var(--iq-foundry) 50%, #666); -webkit-text-fill-color: color-mix(in srgb, var(--iq-foundry) 50%, #666); --pill-gradient: linear-gradient(135deg, var(--iq-foundry), var(--iq-foundry-light)); }
+
+.iq-card-summary {
+  margin: 0.16rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.24;
+  color: var(--theme-muted);
+}
+
+/* ══════════════════════════════════════════════════════════════
    TAKEAWAY ITEMS
    ══════════════════════════════════════════════════════════════ */
 
