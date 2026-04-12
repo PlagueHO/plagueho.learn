@@ -216,24 +216,30 @@ transition: fade-out
     <div class="callout callout-teal" style="text-align: center; font-size: 1.1em; padding: 0.7rem 1.2rem;">
       <strong>"Completely game changing"</strong> — 4 days, all recorded, learnings we want every partner to have
     </div>
-    <div style="display: flex; gap: 0.8rem; align-items: stretch;">
-      <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent);">
-        <h3>🏢 Who</h3>
-        <p><strong>Jay Schmelzer</strong> — Director, DevDiv CoreAI AppMod</p>
-        <p><strong>Taylor Southwick</strong> — Principal Engineer, AppMod</p>
-        <p><strong>Steve Hornblow</strong> &amp; <strong>DSR</strong> — Microsoft EPS hosts</p>
+    <div class="agent-pattern-grid">
+      <div class="agent-pattern-card" style="border-top: 4px solid var(--theme-accent);">
+        <span class="agent-pattern-label" style="color: var(--theme-accent); background: rgba(254,91,56,0.1);">🏢 Who</span>
+        <ul class="agent-pattern-list">
+          <li><strong>Jay Schmelzer</strong> — Director, DevDiv CoreAI AppMod</li>
+          <li><strong>Taylor Southwick</strong> — Principal Engineer, AppMod</li>
+          <li><strong>Steve Hornblow</strong> &amp; <strong>DSR</strong> — Microsoft EPS hosts</li>
+        </ul>
       </div>
-      <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent2);">
-        <h3>🎯 What</h3>
-        <p>SDC engagement with partner a in New Zealand</p>
-        <p>Target: <strong>10M LOC, 30-year-old .NET application</strong></p>
-        <p>Goal: realistic AppMod at enterprise scale using AI</p>
+      <div class="agent-pattern-card" style="border-top: 4px solid var(--theme-accent2);">
+        <span class="agent-pattern-label">🎯 What</span>
+        <ul class="agent-pattern-list">
+          <li>SDC engagement with partner a in New Zealand</li>
+          <li>Target: <strong>10M LOC, 30-year-old .NET application</strong></li>
+          <li>Goal: realistic AppMod at enterprise scale using AI</li>
+        </ul>
       </div>
-      <div class="card" style="flex: 1; border-left: 3px solid #0d6e6e;">
-        <h3>💡 Why This Talk</h3>
-        <p>The AppMod CAT team brought techniques customers rarely see</p>
-        <p>We want <strong>every Agentic DevOps partner</strong> running workshops like this</p>
-        <p>These learnings are <strong>directly applicable</strong> to your customer engagements</p>
+      <div class="agent-pattern-card" style="border-top: 4px solid #0d6e6e;">
+        <span class="agent-pattern-label" style="color: #0d6e6e; background: rgba(13,110,110,0.1);">💡 Why This Talk</span>
+        <ul class="agent-pattern-list">
+          <li>The AppMod CAT team brought techniques customers rarely see</li>
+          <li>We want to enable any organization to run workshops like this</li>
+          <li>These learnings are <strong>directly applicable</strong> to any organization performing app modernization</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -260,24 +266,29 @@ transition: fade-out
   </div>
   <div class="slide-body" style="flex-direction: column; gap: 0.5rem; align-items: stretch; padding: 0.4rem 1.8rem 0.8rem;">
     <div class="callout" style="background: #fff0ec; border-left: 4px solid var(--theme-accent); padding: 0.5rem 1rem; font-size: 0.92em;">
-      <strong>⚠️ Jay Schmelzer:</strong> "Everybody wants push a button… but the reality is it's not for any large or complex applications."
+      <strong>⚠️</strong> "Everybody wants push a button… but the reality is it's not for any large or complex applications."
     </div>
     <div style="display: flex; gap: 0.8rem; align-items: stretch; flex: 1;">
       <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
-        <div class="card" style="flex: 1; border-left: 3px solid #dc2626;">
-          <h3>❌ What Doesn't Work</h3>
-          <p>"Single-click" AI AppMod for non-trivial apps</p>
-          <p>Problem isn't code conversion — it's package support, validation, tech debt</p>
-          <p>If your app is <strong>small enough for single-click</strong>, it's small enough to <strong>rebuild entirely with AI</strong></p>
+        <div class="agent-pattern-card" style="flex: 1; border-top: 4px solid #dc2626;">
+          <span class="agent-pattern-label" style="color: #b91c1c; background: rgba(220,38,38,0.1);">❌ What Doesn't Work</span>
+          <ul class="agent-pattern-list" style="font-size: 1.03rem; margin-top: 0.15rem;">
+            <li>"Single-click" AI AppMod for non-trivial apps</li>
+            <li>Problem isn't code conversion — it's package support, validation, tech debt</li>
+            <li>If your app is <strong>small enough for single-click</strong>, it's small enough to <strong>rebuild entirely with AI</strong></li>
+          </ul>
         </div>
-        <div class="card" style="flex: 1; border-left: 3px solid #16a34a;">
-          <h3>✅ What Does Work</h3>
-          <p>Follow <strong>standard .NET AppMod approach</strong> — then leverage AI to automate and make it repeatable</p>
-          <p>AI is an acceleration mechanism, <strong>not a blind code-rewriter</strong></p>
-          <p>Jay on big PRs: <strong>"No one's gonna review that."</strong></p>
+        <div class="agent-pattern-card" style="flex: 1; border-top: 4px solid #16a34a;">
+          <span class="agent-pattern-label" style="color: #15803d; background: rgba(22,163,74,0.1);">✅ What Does Work</span>
+          <ul class="agent-pattern-list" style="font-size: 1.03rem; margin-top: 0.15rem;">
+            <li>Follow <strong>standard .NET AppMod approach</strong> — then leverage AI to automate and make it repeatable</li>
+            <li>AI is an acceleration mechanism, <strong>not a blind code-rewriter</strong></li>
+            <li>Jay on big PRs: <strong>"No one's gonna review that."</strong></li>
+          </ul>
         </div>
       </div>
       <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem; align-items: center; justify-content: center;">
+        <span class="agent-pattern-label" style="align-self: flex-start;">🗺️ Upgrade process</span>
         <img src="./images/upgrade-process.png" alt=".NET upgrade process" style="max-width: 100%; border-radius: 10px; border: 1px solid var(--theme-line); box-shadow: 0 2px 8px rgba(0,0,0,0.08);" />
         <div class="callout callout-teal" style="font-size: 0.82em; width: 100%;">
           <strong>📺 Pre-requisite:</strong> You MUST understand standard .NET AppMod before starting.
@@ -308,37 +319,41 @@ transition: fade-out
     <h1>The Right Toolchain &amp; Tool Discipline</h1>
   </div>
   <div class="slide-body" style="flex-direction: column; gap: 0.45rem; align-items: stretch; padding: 0.35rem 1.8rem 0.7rem;">
-    <div class="callout" style="background: #e8f4fd; border-left: 4px solid var(--theme-accent2); padding: 0.45rem 1rem; font-size: 0.88em;">
-      <strong>💬 Jay Schmelzer:</strong> "Everyone in DevDiv uses Insiders, no one uses stable. We recommend all customers use Insiders."
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.2rem;">
+      <div class="thought-bubble" style="font-size:1.25rem;white-space:normal;max-width:100%;text-align:center;justify-content:center;">
+        <span class="thought-bubble-emoji" style="font-size:1.5rem;">💬</span>
+        <span>"Everyone in DevDiv uses Insiders, no one uses stable. We recommend all customers use Insiders if they can."</span>
+      </div>
+      <div class="thought-dots"><span></span><span></span><span></span></div>
     </div>
     <div style="display: flex; gap: 0.6rem; align-items: stretch;">
-      <div class="card" style="flex: 1; border-color: var(--theme-accent2); border-width: 2px;">
-        <h3>💻 VS Code Insiders</h3>
-        <p>AI Dev moves so fast that by the time a feature reaches Stable, <strong>the state of the art has moved on</strong></p>
+      <div class="agent-pattern-card" style="flex: 1; border-top: 4px solid var(--theme-accent2);">
+        <span class="agent-pattern-label">💻 VS Code Insiders</span>
+        <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);">AI Dev moves so fast that by the time a feature reaches Stable, <strong>the state of the art has moved on</strong></p>
       </div>
-      <div class="card" style="flex: 1; border-color: #16a34a; border-width: 2px;">
-        <h3>⬆️ Update Aggressively</h3>
-        <p>Every day we started with an update. Solutions to <strong>yesterday's problems</strong> often arrived in <strong>today's update</strong></p>
+      <div class="agent-pattern-card" style="flex: 1; border-top: 4px solid #16a34a;">
+        <span class="agent-pattern-label" style="color: #15803d; background: rgba(22,163,74,0.1);">⬆️ Update Aggressively</span>
+        <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);">Every day we started with an update. Solutions to <strong>yesterday's problems</strong> often arrived in <strong>today's update</strong></p>
       </div>
-      <div class="card" style="flex: 1; border-color: #5635a0; border-width: 2px;">
-        <h3>📦 AppMod MCP NuGet</h3>
-        <p>Use <code>Microsoft.GitHubCopilot.AppModernization.Mcp</code> — the official AppMod tools and agents</p>
+      <div class="agent-pattern-card" style="flex: 1; border-top: 4px solid #5635a0;">
+        <span class="agent-pattern-label" style="color: #5635a0; background: rgba(86,53,160,0.1);">📦 AppMod MCP NuGet</span>
+        <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);">Use <code>Microsoft.GitHubCopilot.AppModernization.Mcp</code> — the official AppMod tools and agents</p>
       </div>
     </div>
     <div style="display: flex; gap: 0.6rem; align-items: stretch;">
-      <div class="card" style="flex: 1; border-color: #dc2626; border-width: 2px;">
-        <h3>⚠️ Extension Hygiene</h3>
-        <p><strong>Remove all</strong> AppMod extensions. Use <strong>only</strong> the NuGet MCP package. Multiple competing extensions confuse agents.</p>
+      <div class="agent-pattern-card" style="flex: 1; border-top: 4px solid #dc2626;">
+        <span class="agent-pattern-label" style="color: #b91c1c; background: rgba(220,38,38,0.1);">⚠️ Extension Hygiene</span>
+        <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);"><strong>Remove all</strong> AppMod extensions. Use <strong>only</strong> the NuGet MCP package. Multiple competing extensions confuse agents.</p>
       </div>
-      <div class="card" style="flex: 1; border-left: 3px solid #d97706;">
-        <h3>🔧 Tool Wrangling Is a Discipline</h3>
-        <p>When things went wrong, tools had been disabled/enabled by different agents. <strong>Restrict tool surface area.</strong></p>
-        <p>Taylor: <em>"I can review it and I don't understand it. It's too much."</em></p>
+      <div class="agent-pattern-card" style="flex: 1; border-top: 4px solid #d97706;">
+        <span class="agent-pattern-label" style="color: #b45309; background: rgba(217,119,6,0.1);">🔧 Tool Wrangling Is a Discipline</span>
+        <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);">When things went wrong, tools had been disabled/enabled by different agents. <strong>Restrict tool surface area.</strong></p>
+        <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);">Taylor: <em>"I can review it and I don't understand it. It's too much."</em></p>
       </div>
-      <div class="card" style="flex: 1; border-left: 3px solid #0d6e6e;">
-        <h3>📋 Workspace Config</h3>
-        <p>Commit <code>mcp.json</code>, shared prompts in <code>.github/prompts</code>, <code>custom-instructions.md</code></p>
-        <p><strong>Repeatability across repos</strong>, not per-developer setup</p>
+      <div class="agent-pattern-card" style="flex: 1; border-top: 4px solid #0d6e6e;">
+        <span class="agent-pattern-label" style="color: #0d6e6e; background: rgba(13,110,110,0.1);">📋 Workspace Config</span>
+        <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);">Commit <code>mcp.json</code>, shared prompts in <code>.github/prompts</code>, <code>custom-instructions.md</code></p>
+        <p style="margin: 0.2rem 0 0; font-size: 0.82rem; color: var(--theme-muted);"><strong>Repeatability across repos</strong>, not per-developer setup</p>
       </div>
     </div>
   </div>
