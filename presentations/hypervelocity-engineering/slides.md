@@ -549,20 +549,20 @@ transition: fade-out
   <div class="slide-banner">
     <h1>Why RPI Works — The Core Insight</h1>
   </div>
-  <div class="slide-body" style="flex-direction:column;align-items:stretch;">
+  <div class="slide-body rpi-core-insight-slide" style="flex-direction:column;align-items:stretch;">
     <div class="comparison-grid" style="width:100%;">
-      <div class="comparison-col before">
+      <div class="comparison-col before" v-click>
         <span class="comparison-label before">Without RPI</span>
-        <ul class="dense-list" style="font-size: 0.8rem;">
-          <li v-click>"This looks like a reasonable variable name. I'll use <code>prefix</code>."</li>
-          <li v-click>Invents plausible patterns</li>
-          <li v-click>"The AI wrote it this way" — no traceability</li>
-          <li v-click>Frequent rework</li>
+        <ul class="dense-list">
+          <li>"This looks like a reasonable variable name. I'll use <code>prefix</code>."</li>
+          <li>Invents plausible patterns</li>
+          <li>"The AI wrote it this way" — no traceability</li>
+          <li>Frequent rework</li>
         </ul>
       </div>
       <div class="comparison-col after" v-click>
         <span class="comparison-label after">With RPI</span>
-        <ul class="dense-list" style="font-size: 0.8rem;">
+        <ul class="dense-list">
           <li>Task Researcher finds: <em>"12 existing modules use <code>resource_prefix</code>, not <code>prefix</code>. See <code>variables.tf#L47</code>."</em></li>
           <li>Uses verified existing patterns</li>
           <li>Every decision traced to files and line numbers</li>
@@ -570,13 +570,6 @@ transition: fade-out
         </ul>
       </div>
     </div>
-    <table style="width:100%;font-size:0.75rem;margin-top:0.4rem;" v-click>
-      <tr><th>Aspect</th><th>Without RPI</th><th>With RPI</th></tr>
-      <tr><td>Pattern matching</td><td>Invents plausible</td><td>Uses verified existing</td></tr>
-      <tr><td>Traceability</td><td>"The AI wrote it"</td><td>"Research cites lines 47-52"</td></tr>
-      <tr><td>Knowledge transfer</td><td>Tribal knowledge</td><td>Research docs anyone follows</td></tr>
-      <tr><td>Rework</td><td>Frequent</td><td>Rare</td></tr>
-    </table>
   </div>
 </div>
 
@@ -600,33 +593,33 @@ transition: fade-out
   </div>
   <div class="slide-body" style="flex-direction: column; gap: 0.6rem; align-items: stretch; padding: 0.6rem 1.8rem 0.8rem;">
     <div class="flow-pipeline" style="justify-content: center; gap: 0.5rem;">
-      <div class="flow-step" v-click>🔍 Research</div>
-      <span class="flow-arrow" style="color:var(--theme-accent);">/clear →</span>
-      <div class="flow-step" v-click>📋 Plan</div>
-      <span class="flow-arrow" style="color:var(--theme-accent);">/clear →</span>
-      <div class="flow-step flow-step-active" v-click>⚡ Implement</div>
-      <span class="flow-arrow" style="color:var(--theme-accent);">/clear →</span>
-      <div class="flow-step" v-click>✅ Review</div>
+      <div class="flow-step">🔍 Research</div>
+      <span class="flow-arrow" style="color:var(--theme-accent);" v-click="1">→ <code>/clear</code> →</span>
+      <div class="flow-step" v-click="2">📋 Plan</div>
+      <span class="flow-arrow" style="color:var(--theme-accent);" v-click="3">→ <code>/clear</code> →</span>
+      <div class="flow-step flow-step-active" v-click="4">⚡ Implement</div>
+      <span class="flow-arrow" style="color:var(--theme-accent);" v-click="5">→ <code>/clear</code> →</span>
+      <div class="flow-step" v-click="6">✅ Review</div>
     </div>
     <div style="display: flex; gap: 0.5rem; align-items: stretch;">
-      <div class="card" style="flex: 1;" v-click>
+      <div class="card" style="flex: 1;">
         <h3>🔍 Research</h3>
         <p style="font-size:0.78rem;">Task Researcher investigates codebase, APIs, docs. Documents with evidence. ONE recommended approach.<br><code>→ research.md</code></p>
       </div>
-      <div class="card" style="flex: 1;" v-click>
+      <div class="card" style="flex: 1;" v-click="2">
         <h3>📋 Plan</h3>
         <p style="font-size:0.78rem;">Task Planner creates phased checklist linked to research with line numbers.<br><code>→ plan.instructions.md + details.md</code></p>
       </div>
-      <div class="card" style="flex: 1;" v-click>
+      <div class="card" style="flex: 1;" v-click="4">
         <h3>⚡ Implement</h3>
         <p style="font-size:0.78rem;">Task Implementor executes plan task by task. Tracks changes. Stop controls for review.<br><code>→ code + changes.md</code></p>
       </div>
-      <div class="card" style="flex: 1;" v-click>
+      <div class="card" style="flex: 1;" v-click="6">
         <h3>✅ Review</h3>
         <p style="font-size:0.78rem;">Task Reviewer validates against specs. Runs lint/build/test. Identifies follow-up work.<br><code>→ review.md</code></p>
       </div>
     </div>
-    <div class="model-warning-callout" v-click>
+    <div class="model-warning-callout" v-click="7">
       <span class="model-warning-icon">⚠️</span>
       <span class="model-warning-text"><strong>Critical rule: Clear context between phases</strong> — <code>/clear</code> or new chat. Artifacts carry context through files, not chat history.</span>
     </div>

@@ -1306,6 +1306,27 @@ a.card-link p, a.card-link span { color: var(--theme-muted); }
   margin-top: 0.45rem;
 }
 
+.rpi-core-insight-slide .comparison-label {
+  font-size: 1.075rem;
+}
+
+.rpi-core-insight-slide .comparison-grid {
+  align-items: stretch;
+}
+
+.rpi-core-insight-slide .comparison-col {
+  height: 100%;
+}
+
+.rpi-core-insight-slide .dense-list {
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.rpi-core-insight-slide .dense-list li + li {
+  margin-top: 0.45rem;
+}
+
 .problem-scenario-banner {
   font-size: 2.2rem;
   line-height: 1.25;
