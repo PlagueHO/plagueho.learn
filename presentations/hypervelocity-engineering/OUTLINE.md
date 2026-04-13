@@ -201,58 +201,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Duration**: ~3 min
 - **Animations**: v-clicks on bullets
 
-### 11. Collections — Domain-Specific Artifact Bundles
-
-- **Template Slide**: 4 — Banner Content
-- **Layout**: Banner content with table
-- **Content**: Table of the 12 collections with status and artifact counts:
-
-  | Collection | Status | Artifacts | Purpose |
-  |---|---|---|---|
-  | hve-core | STABLE | 40 | RPI workflow, planning, implementation |
-  | coding-standards | STABLE | 22 | Language-specific conventions |
-  | github | STABLE | 13 | Issue backlogs and triage |
-  | project-planning | STABLE | 48 | ADRs, requirements, architecture |
-  | design-thinking | PREVIEW | 58 | AI-enhanced Design Thinking |
-  | security | EXPERIMENTAL | 48 | Security review and incident response |
-  | ado | STABLE | 21 | Azure DevOps integration |
-  | data-science | STABLE | 18 | Data specs and notebooks |
-  | rai-planning | EXPERIMENTAL | 12 | Responsible AI assessment |
-
-  - Callout: Collections are additive — HVE Core All is the superset.
-- **Speaker Notes**: Call out that the hve-core collection (40 artifacts) is the foundation — that's where RPI lives. The collections model means teams can adopt incrementally: start with hve-core for RPI, add github for backlog management, add security when ready. Don't try to adopt everything at once.
-- **Duration**: ~2 min
-- **Animations**: Table appears, callout last
-
-### 12. AI-Assisted Project Lifecycle
-
-- **Template Slide**: 11 — Workflow Pipeline
-- **Layout**: Horizontal process flow with supporting detail cards
-- **Content**:
-  - 9-stage lifecycle flow:
-    1. Setup → 2. Discovery → 3. Product Definition → 4. Decomposition → 5. Sprint Planning → 6. Implementation → 7. Review → 8. Delivery → 9. Operations
-  - Rework loops: Review → Implementation, Delivery → Implementation (next sprint), Operations → Discovery (next iteration)
-  - Stage 6 (Implementation) has 30 artifacts — 35% of all assignments — this is where RPI lives
-  - Each stage maps to specific agents, prompts, and role-specific guidance
-- **Speaker Notes**: The lifecycle is the structural backbone. Point out that Stage 6 (Implementation) is the largest concentration of tooling because that's where most AI-assisted work happens — and where the most can go wrong without structure. The rework loops are intentional: Review can send work back to Implementation, or all the way back to Discovery if fundamental assumptions are wrong.
-- **Duration**: ~3 min
-- **Animations**: Pipeline stages appear left-to-right, then rework loops overlay
-
-### 13. 10 Engineering Roles
-
-- **Template Slide**: 12 — 2×2 Overview Grid (adapted for role summary)
-- **Layout**: Overview grid showing role coverage
-- **Content**:
-  - HVE-Core provides curated agents, prompts, and workflows for 10 roles:
-    - Engineer, TPM, Tech Lead/Architect, Security Architect, Data Scientist
-    - SRE/Operations, Business Program Manager, New Contributor, UX Designer, Utility
-  - Each role has: recommended collections, stage walkthroughs, starter prompts, collaboration patterns
-  - Key point: *HVE isn't just for developers* — it's for the entire engineering team
-- **Speaker Notes**: Quick slide — don't dwell. The point is that HVE-Core's role model means a Security Architect gets different agents and workflows than an Engineer. The "Utility" role is the catch-all for general-purpose work. This is how HVE scales beyond individual developers to teams and organizations.
-- **Duration**: ~2 min
-- **Animations**: Role names appear in grid
-
-### 14. Transition to Part 2
+### 11. Transition to Part 2
 
 - **Template Slide**: 16 — Hero Quote
 - **Layout**: Quote emphasis
@@ -269,7 +218,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 
 ---
 
-### 15. Section Divider — RPI: Research → Plan → Implement → Review
+### 12. Section Divider — RPI: Research → Plan → Implement → Review
 
 - **Template Slide**: 16 — Hero Quote
 - **Layout**: Section transition
@@ -280,7 +229,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Duration**: ~0.5 min
 - **Animations**: Fade-in
 
-### 16. Why RPI Works — The Core Insight
+### 13. Why RPI Works — The Core Insight
 
 - **Template Slide**: 5 — Before/After Comparison
 - **Layout**: Two-column comparison
@@ -310,7 +259,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Duration**: ~4 min
 - **Animations**: v-clicks alternating columns, table last
 
-### 17. The Four Phases of RPI
+### 14. The Four Phases of RPI
 
 - **Template Slide**: 11 — Workflow Pipeline
 - **Layout**: Horizontal process flow with detail cards
@@ -326,7 +275,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Duration**: ~5 min
 - **Animations**: Pipeline flow left-to-right, detail cards on click
 
-### 18. Context Engineering — Why `/clear` Matters
+### 15. Context Engineering — Why `/clear` Matters
 
 - **Template Slide**: 19 — Mermaid Diagram
 - **Layout**: Diagram with supporting callout
@@ -351,7 +300,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Duration**: ~3 min
 - **Animations**: Diagram builds, then callout
 
-### 19. When to Use RPI
+### 16. When to Use RPI
 
 - **Template Slide**: 5 — Before/After Comparison
 - **Layout**: Two-column: "Use RPI" vs "Don't Need RPI"
@@ -376,7 +325,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Duration**: ~2 min
 - **Animations**: v-clicks on bullets
 
-### 20. Demo 1 Title — RPI Soup-to-Nuts: Building a Node.js CLI App
+### 17. Demo 1 Title — RPI Soup-to-Nuts: Building a Node.js CLI App
 
 - **Template Slide**: 13 — Demo Title Slide
 - **Layout**: Dramatic demo transition with checklist and timing
@@ -394,7 +343,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Duration**: ~1 min
 - **Animations**: Checklist items appear sequentially
 
-### 21. Demo 1 — Research Phase
+### 18. Demo 1 — Research Phase
 
 - **Template Slide**: 15 — Code and Terminal Panels
 - **Layout**: Side-by-side code and terminal
@@ -413,7 +362,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Animations**: None (live demo)
 - **Discussion / Thoughts**: If time is tight, pre-record this segment. Have a fallback research.md to show if the live demo has issues.
 
-### 22. Demo 1 — Plan Phase
+### 19. Demo 1 — Plan Phase
 
 - **Template Slide**: 15 — Code and Terminal Panels
 - **Layout**: Side-by-side
@@ -429,7 +378,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Duration**: ~4 min
 - **Animations**: None (live demo)
 
-### 23. Demo 1 — Implement Phase
+### 20. Demo 1 — Implement Phase
 
 - **Template Slide**: 15 — Code and Terminal Panels
 - **Layout**: Side-by-side
@@ -446,7 +395,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Duration**: ~6 min
 - **Animations**: None (live demo)
 
-### 24. Demo 1 — Review Phase
+### 21. Demo 1 — Review Phase
 
 - **Template Slide**: 15 — Code and Terminal Panels
 - **Layout**: Side-by-side
@@ -464,7 +413,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Duration**: ~4 min
 - **Animations**: None (live demo)
 
-### 25. RPI Recap — What Just Happened
+### 22. RPI Recap — What Just Happened
 
 - **Template Slide**: 11 — Workflow Pipeline
 - **Layout**: Pipeline summary
@@ -481,7 +430,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Duration**: ~2 min
 - **Animations**: v-clicks on each phase
 
-### 26. GitHub Backlog Manager
+### 23. GitHub Backlog Manager
 
 - **Template Slide**: 4 — Banner Content
 - **Layout**: Banner content
@@ -498,7 +447,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Duration**: ~5 min
 - **Animations**: v-clicks on each workflow
 
-### 27. GitHub Backlog Manager — When to Use
+### 24. GitHub Backlog Manager — When to Use
 
 - **Template Slide**: 5 — Before/After Comparison
 - **Layout**: Two-column fit/not-needed
@@ -517,7 +466,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Duration**: ~2 min
 - **Animations**: v-clicks
 
-### 28. Demo 2 Title — GitHub Backlog Manager in Action
+### 25. Demo 2 Title — GitHub Backlog Manager in Action
 
 - **Template Slide**: 13 — Demo Title Slide
 - **Layout**: Demo transition
@@ -533,7 +482,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Duration**: ~1 min
 - **Animations**: Checklist appears
 
-### 29. Demo 2 — GitHub Backlog Manager Live
+### 26. Demo 2 — GitHub Backlog Manager Live
 
 - **Template Slide**: 15 — Code and Terminal Panels
 - **Layout**: Side-by-side
@@ -550,7 +499,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Animations**: None (live demo)
 - **Discussion / Thoughts**: Have a pre-prepared repo with existing issues for the demo. If live GitHub access is unreliable, have screenshots/recording as fallback.
 
-### 30. Design Thinking Integration (Brief)
+### 27. Design Thinking Integration (Brief)
 
 - **Template Slide**: 11 — Workflow Pipeline
 - **Layout**: Pipeline showing DT → RPI connection
@@ -566,7 +515,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Duration**: ~2 min
 - **Animations**: v-clicks on exit points
 
-### 31. Getting Started — Your First 15 Minutes
+### 28. Getting Started — Your First 15 Minutes
 
 - **Template Slide**: 17 — Action Grid
 - **Layout**: Three action cards
@@ -587,7 +536,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Duration**: ~3 min
 - **Animations**: Action cards appear sequentially
 
-### 32. Scaling Adoption
+### 29. Scaling Adoption
 
 - **Template Slide**: 6 — Evolution Strip
 - **Layout**: Progression strip with maturity arrow
@@ -603,7 +552,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Duration**: ~3 min
 - **Animations**: Progression levels appear left-to-right
 
-### 33. Key Takeaways
+### 30. Key Takeaways
 
 - **Template Slide**: 18 — Key Takeaways
 - **Layout**: Numbered takeaway list with progressive reveal
@@ -617,7 +566,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Duration**: ~3 min
 - **Animations**: v-clicks on each takeaway
 
-### 34. Resources & Links
+### 31. Resources & Links
 
 - **Template Slide**: 10 — Tools and Resources Grid
 - **Layout**: Linkable resource cards
@@ -634,7 +583,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Duration**: ~1 min
 - **Animations**: Cards appear
 
-### 35. Thank You / Q&A
+### 32. Thank You / Q&A
 
 - **Template Slide**: 21 — Thank You / Q&A
 - **Layout**: Closing slide with links and call-to-action
@@ -654,8 +603,8 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 
 | # | Demo Title | Description | Slide Reference | Prep Required |
 |---|-----------|-------------|-----------------|---------------|
-| 1 | RPI Soup-to-Nuts: Node.js CLI App | Full Research → Plan → Implement → Review cycle building a GitHub repo stats CLI tool | Slides 20-24 | Node.js 18+ installed, HVE-Core extension, GitHub Copilot, empty project directory, GitHub token for API access. Pre-build a fallback version of each artifact (research.md, plan.md, working CLI) in case live demo has issues. |
-| 2 | GitHub Backlog Manager | Discovery → Triage → Sprint Planning → Quick Add workflows on a real GitHub repository | Slides 28-29 | A GitHub repo with 10+ existing issues of varying quality. Pre-label a few, leave most unlabeled. Ensure GitHub MCP server is configured. Have screenshots as fallback. |
+| 1 | RPI Soup-to-Nuts: Node.js CLI App | Full Research → Plan → Implement → Review cycle building a GitHub repo stats CLI tool | Slides 17-21 | Node.js 18+ installed, HVE-Core extension, GitHub Copilot, empty project directory, GitHub token for API access. Pre-build a fallback version of each artifact (research.md, plan.md, working CLI) in case live demo has issues. |
+| 2 | GitHub Backlog Manager | Discovery → Triage → Sprint Planning → Quick Add workflows on a real GitHub repository | Slides 25-26 | A GitHub repo with 10+ existing issues of varying quality. Pre-label a few, leave most unlabeled. Ensure GitHub MCP server is configured. Have screenshots as fallback. |
 
 ## Demo 1 — Detailed Script: RPI Soup-to-Nuts
 

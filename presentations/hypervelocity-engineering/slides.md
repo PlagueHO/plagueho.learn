@@ -54,7 +54,7 @@ shiki:
     </div>
     <div class="badge-card">
       <strong>🎬 Live Demos</strong>
-      <span>Soup-to-nuts app build</span>
+      <span>Real-world security fix</span>
     </div>
   </div>
 </div>
@@ -63,7 +63,7 @@ shiki:
 Welcome everyone. This is a 90-minute session split into two halves.
 First 30 minutes covers HVE as a concept — why it exists and what it means.
 Last 60 minutes is hands-on with HVE-Core: we'll do a full RPI workflow
-building a real app, then look at GitHub Backlog Manager.
+to fix a prompt injection vulnerability in Marginalia, then look at GitHub Backlog Manager.
 This is demo-heavy by design.
 -->
 
@@ -168,7 +168,7 @@ transition: slide-up
       <span class="agenda-demo-pulse"></span>
       <span class="agenda-demo-text">
         <span class="agenda-demo-num">🎬 Demo 1</span>
-        <span class="agenda-demo-desc">RPI Soup-to-Nuts — Build a Node.js CLI</span>
+        <span class="agenda-demo-desc">RPI on Marginalia — Prompt injection protection</span>
       </span>
     </a>
     <a href="/28" class="agenda-demo-pill">
@@ -227,30 +227,30 @@ transition: fade-out
     <h1>The AI Engineering Problem</h1>
   </div>
   <div class="slide-body" style="flex-direction:column;align-items:stretch;">
-    <div class="scenario-banner">
+    <div class="scenario-banner problem-scenario-banner">
       <span>The gap isn't model quality — it's process quality.</span>
     </div>
-    <div class="comparison-grid" style="width:100%;">
+    <div class="comparison-grid problem-comparison-grid" style="width:100%;">
       <div class="comparison-col before">
         <span class="comparison-label before">😰 Vibe Coding</span>
-        <ul class="dense-list" style="font-size: 0.82rem;">
+        <ul class="dense-list">
           <li v-click>AI writes first, thinks never</li>
           <li v-click>Invents <em>plausible</em> patterns instead of verified ones</li>
           <li v-click>No traceability — "the AI wrote it this way"</li>
           <li v-click>Tribal knowledge stays in your head</li>
           <li v-click>Frequent rework when assumptions fail</li>
-          <li v-click>Solving the wrong problem faster</li>
+          <li v-click>Solving the <strong>wrong</strong> problem faster</li>
         </ul>
       </div>
-      <div class="comparison-col after" v-click>
+      <div class="comparison-col after">
         <span class="comparison-label after">🎯 Disciplined AI Engineering</span>
-        <ul class="dense-list" style="font-size: 0.82rem;">
-          <li>Research before implementing</li>
-          <li>Uses verified existing patterns with file/line citations</li>
-          <li>Full traceability through research documents</li>
-          <li>Knowledge transfer through artifacts</li>
-          <li>Rare rework — assumptions are validated</li>
-          <li>Solving the <strong>right</strong> problems with confidence</li>
+        <ul class="dense-list">
+          <li v-click>Research before implementing</li>
+          <li v-click>Uses verified existing patterns with file/line citations</li>
+          <li v-click>Full traceability through research documents</li>
+          <li v-click>Knowledge transfer through artifacts</li>
+          <li v-click>Rare rework — assumptions are validated</li>
+          <li v-click>Solving the <strong>right</strong> problems with confidence</li>
         </ul>
       </div>
     </div>
@@ -276,9 +276,9 @@ transition: fade-out
   <div class="slide-banner">
     <h1>What is Hypervelocity Engineering?</h1>
   </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.55rem; align-items: stretch; padding: 0.4rem 1.8rem 0.8rem;">
-    <p style="font-size: 1.1rem; color: var(--theme-ink); margin: 0;">
-      A <strong>practical way of working</strong> to deliver high-value AI outcomes — not a product, not a framework, a set of principles and practices.
+  <div class="slide-body hve-what-slide" style="flex-direction: column; gap: 0.55rem; align-items: stretch; padding: 0.4rem 1.8rem 0.8rem;">
+    <p class="thought-bubble hve-what-intro">
+      <span>A <strong>practical way of working</strong> to deliver high-value AI outcomes — not a product, not a framework, a set of principles and practices.</span>
     </p>
     <ul class="dense-list">
       <li v-click>Focuses on <strong>right problems, right context, right people</strong>, and responsible AI</li>
@@ -311,7 +311,7 @@ transition: fade-out
   <div class="slide-banner">
     <h1>The Four Pillars of HVE</h1>
   </div>
-  <div class="slide-body" style="flex-direction:column;gap:0.4rem;align-items:stretch;">
+  <div class="slide-body pillars-slide" style="flex-direction:column;gap:0.4rem;align-items:stretch;">
     <div class="section-grid">
       <div class="section-card" v-click>
         <span class="section-number">01</span>
@@ -358,27 +358,23 @@ transition: fade-out
   <div class="slide-banner">
     <h1>Principles in Action</h1>
   </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.5rem; align-items: stretch; padding: 0.5rem 1.8rem 0.8rem;">
-    <div class="section-grid">
-      <div class="section-card" v-click>
-        <span class="section-number">🔄</span>
-        <h2>Iterate in Small Steps</h2>
-        <p>Small, verifiable increments. Each step produces a testable artifact. This is why RPI breaks work into separate phases.</p>
+  <div class="slide-body principles-slide" style="flex-direction: column; gap: 0.5rem; align-items: stretch; padding: 0.5rem 1.8rem 0.8rem;">
+    <div class="iq-grid" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
+      <div class="iq-pillar iq-work" v-click>
+        <div class="iq-header-wrap"><span class="iq-header-pill iq-header-work"><span class="iq-header-icon">🔄</span><span>Iterate in Small Steps</span></span></div>
+        <p class="iq-card-summary">Small, verifiable increments. Each step produces a testable artifact. This is why RPI breaks work into separate phases.</p>
       </div>
-      <div class="section-card" v-click>
-        <span class="section-number">✅</span>
-        <h2>Validate and Verify</h2>
-        <p>Don't assume AI output is correct. Check against reality. This is why the Task Reviewer exists as a separate agent.</p>
+      <div class="iq-pillar iq-fabric" v-click>
+        <div class="iq-header-wrap"><span class="iq-header-pill iq-header-fabric"><span class="iq-header-icon">✅</span><span>Validate and Verify</span></span></div>
+        <p class="iq-card-summary">Don't assume AI output is correct. Check against reality. This is why the Task Reviewer exists as a separate agent.</p>
       </div>
-      <div class="section-card" v-click>
-        <span class="section-number">💎</span>
-        <h2>Prioritize Business Value</h2>
-        <p>Every engineering decision ties back to a business outcome. Outcome-driven metrics from day one — not story points.</p>
+      <div class="iq-pillar iq-foundry" v-click>
+        <div class="iq-header-wrap"><span class="iq-header-pill iq-header-foundry"><span class="iq-header-icon">💎</span><span>Prioritize Business Value</span></span></div>
+        <p class="iq-card-summary">Every engineering decision ties back to a business outcome. Outcome-driven metrics from day one, not story points.</p>
       </div>
-      <div class="section-card" v-click>
-        <span class="section-number">🔒</span>
-        <h2>Embed Security &amp; Quality</h2>
-        <p>Not bolted on at the end. Security, observability, and responsible AI are woven into every phase of the lifecycle.</p>
+      <div class="iq-pillar iq-orange" v-click>
+        <div class="iq-header-wrap"><span class="iq-header-pill iq-header-orange"><span class="iq-header-icon">🔒</span><span>Embed Security &amp; Quality</span></span></div>
+        <p class="iq-card-summary">Not bolted on at the end. Security, observability, and responsible AI are woven into every phase of the lifecycle.</p>
       </div>
     </div>
     <p style="text-align:center;color:var(--theme-muted);font-size:0.85rem;margin:0;" v-click>
@@ -459,7 +455,7 @@ transition: fade-out
   <div class="slide-banner">
     <h1>HVE-Core: The Tooling Layer</h1>
   </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.55rem; align-items: stretch; padding: 0.4rem 1.8rem 0.8rem;">
+  <div class="slide-body tooling-layer-slide" style="flex-direction: column; gap: 0.55rem; align-items: stretch; padding: 0.4rem 1.8rem 0.8rem;">
     <p style="font-size: 1.1rem; color: var(--theme-ink); margin: 0;">
       <strong>AI-Driven Software Development Across the Full Lifecycle</strong>
     </p>
@@ -472,7 +468,7 @@ transition: fade-out
       <li v-click>Open source: <a href="https://github.com/microsoft/hve-core" target="_blank">github.com/microsoft/hve-core</a></li>
     </ul>
     <div class="callout" v-click>
-      Everything we've discussed as principles (HVE) is now operationalized as tooling (HVE-Core). It enhances GitHub Copilot with structured workflows — not a separate product.
+      Everything we've discussed as principles (HVE) is now operationalized as tooling (HVE-Core). It enhances GitHub Copilot with structured workflows — not a separate product. <strong>And it's built for the full team</strong>: engineers, architects, security, data, UX, and operations.
     </div>
   </div>
 </div>
@@ -488,137 +484,7 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 11 — COLLECTIONS
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
-  <div class="slide-banner">
-    <h1>Collections — Domain-Specific Bundles</h1>
-  </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.55rem; align-items: stretch; padding: 0.4rem 1.8rem 0.8rem;">
-    <table style="width:100%;font-size:0.8rem;">
-      <tr><th>Collection</th><th>Status</th><th>Artifacts</th><th>Purpose</th></tr>
-      <tr v-click><td><strong>hve-core</strong></td><td>🟢 STABLE</td><td>40</td><td>RPI workflow, planning, implementation</td></tr>
-      <tr v-click><td>coding-standards</td><td>🟢 STABLE</td><td>22</td><td>Language-specific conventions</td></tr>
-      <tr v-click><td>github</td><td>🟢 STABLE</td><td>13</td><td>Issue backlogs and triage</td></tr>
-      <tr v-click><td>project-planning</td><td>🟢 STABLE</td><td>48</td><td>ADRs, requirements, architecture</td></tr>
-      <tr v-click><td>design-thinking</td><td>🟡 PREVIEW</td><td>58</td><td>AI-enhanced Design Thinking</td></tr>
-      <tr v-click><td>security</td><td>🔬 EXPERIMENTAL</td><td>48</td><td>Security review &amp; incident response</td></tr>
-      <tr v-click><td>ado</td><td>🟢 STABLE</td><td>21</td><td>Azure DevOps integration</td></tr>
-      <tr v-click><td>data-science</td><td>🟢 STABLE</td><td>18</td><td>Data specs and notebooks</td></tr>
-      <tr v-click><td>rai-planning</td><td>🔬 EXPERIMENTAL</td><td>12</td><td>Responsible AI assessment</td></tr>
-    </table>
-    <div class="callout" v-click>
-      Collections are additive — start with <strong>hve-core</strong> for RPI, add <strong>github</strong> for backlog management, add <strong>security</strong> when ready. Don't adopt everything at once.
-    </div>
-  </div>
-</div>
-
-<!--
-hve-core (40 artifacts) is the foundation — that's where RPI lives.
-Collections let teams adopt incrementally.
--->
-
----
-transition: fade-out
----
-
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 12 — AI-ASSISTED PROJECT LIFECYCLE
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
-  <div class="slide-banner">
-    <h1>AI-Assisted Project Lifecycle</h1>
-  </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.8rem; align-items: stretch; padding: 0.6rem 1.8rem 0.8rem;">
-    <div class="flow-pipeline" style="justify-content: center; gap: 0.35rem; flex-wrap: wrap;">
-      <div class="flow-step" v-click>1️⃣ Setup</div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step" v-click>2️⃣ Discovery</div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step" v-click>3️⃣ Product Def</div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step" v-click>4️⃣ Decompose</div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step" v-click>5️⃣ Sprint Plan</div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step flow-step-active" v-click>6️⃣ Implement</div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step" v-click>7️⃣ Review</div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step" v-click>8️⃣ Delivery</div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step" v-click>9️⃣ Operations</div>
-    </div>
-    <div style="display: flex; gap: 0.65rem; align-items: stretch;">
-      <div class="card" style="flex: 1;" v-click>
-        <h3>Stage 6 — Implementation</h3>
-        <p>30 artifacts (35% of all assignments). This is where RPI lives — and where most AI-assisted work happens.</p>
-      </div>
-      <div class="card" style="flex: 1;" v-click>
-        <h3>Rework Loops</h3>
-        <p>Review → Implementation, Delivery → next sprint, Operations → Discovery. Built-in iteration paths.</p>
-      </div>
-      <div class="card" style="flex: 1;" v-click>
-        <h3>Each Stage Has Agents</h3>
-        <p>From task-researcher in Discovery to doc-ops in Operations. AI tooling spans the full lifecycle.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--
-The lifecycle is the structural backbone.
-Stage 6 (Implementation) is the largest concentration of tooling —
-that's where RPI lives and where the most can go wrong without structure.
--->
-
----
-transition: fade-out
----
-
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 13 — 10 ENGINEERING ROLES
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
-  <div class="slide-banner">
-    <h1>10 Engineering Roles</h1>
-  </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.55rem; align-items: stretch; padding: 0.4rem 1.8rem 0.8rem;">
-    <p style="font-size: 0.95rem; color: var(--theme-ink); margin: 0;">
-      Each role gets curated agents, prompts, stage walkthroughs, and collaboration patterns.
-    </p>
-    <div class="section-grid" style="grid-template-columns: repeat(5, minmax(0, 1fr));">
-      <div class="section-card" style="padding:0.6rem;" v-click><h2 style="font-size:0.9rem;">👨‍💻 Engineer</h2></div>
-      <div class="section-card" style="padding:0.6rem;" v-click><h2 style="font-size:0.9rem;">📋 TPM</h2></div>
-      <div class="section-card" style="padding:0.6rem;" v-click><h2 style="font-size:0.9rem;">🏗️ Tech Lead</h2></div>
-      <div class="section-card" style="padding:0.6rem;" v-click><h2 style="font-size:0.9rem;">🔐 Security Arch</h2></div>
-      <div class="section-card" style="padding:0.6rem;" v-click><h2 style="font-size:0.9rem;">📊 Data Scientist</h2></div>
-      <div class="section-card" style="padding:0.6rem;" v-click><h2 style="font-size:0.9rem;">⚙️ SRE/Ops</h2></div>
-      <div class="section-card" style="padding:0.6rem;" v-click><h2 style="font-size:0.9rem;">💼 Biz PM</h2></div>
-      <div class="section-card" style="padding:0.6rem;" v-click><h2 style="font-size:0.9rem;">🆕 New Contrib</h2></div>
-      <div class="section-card" style="padding:0.6rem;" v-click><h2 style="font-size:0.9rem;">🎨 UX Designer</h2></div>
-      <div class="section-card" style="padding:0.6rem;" v-click><h2 style="font-size:0.9rem;">🔧 Utility</h2></div>
-    </div>
-    <div class="callout" v-click>
-      <strong>HVE isn't just for developers</strong> — it's for the entire engineering team. A Security Architect gets different agents than an Engineer.
-    </div>
-  </div>
-</div>
-
-<!--
-Quick slide — don't dwell. The role model means each role
-gets different agents and workflows.
--->
-
----
-transition: fade-out
----
-
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 14 — TRANSITION TO PART 2
+     SLIDE 11 — TRANSITION TO PART 2
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="absolute inset-0 flex flex-col">
@@ -648,7 +514,7 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 15 — PART 2 SECTION DIVIDER: RPI
+  SLIDE 12 — PART 2 SECTION DIVIDER: RPI
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="absolute inset-0 flex flex-col">
@@ -884,30 +750,30 @@ transition: fade-out
 
 <div class="demo-shell">
   <div class="demo-icon">🔬</div>
-  <h1 class="demo-title">Demo: RPI Soup-to-Nuts</h1>
-  <p class="demo-subtitle">Build a Node.js CLI tool with the full Research → Plan → Implement → Review cycle</p>
+  <h1 class="demo-title">Demo: RPI on a Real Security Fix</h1>
+  <p class="demo-subtitle">Use the full Research → Plan → Implement → Review cycle to add prompt injection protection to Marginalia's analysis flow</p>
 
   <div class="demo-badge">🎬 ~20 minutes</div>
 
   <div class="demo-checklist">
-    <div class="demo-item"><span class="check">▸</span> Task Researcher investigates GitHub API, CLI frameworks, patterns</div>
-    <div class="demo-item"><span class="check">▸</span> /clear → Task Planner creates phased implementation plan</div>
-    <div class="demo-item"><span class="check">▸</span> /clear → Task Implementor builds the app following the plan</div>
-    <div class="demo-item"><span class="check">▸</span> /clear → Task Reviewer validates against research and plan</div>
+    <div class="demo-item"><span class="check">▸</span> Task Researcher maps Marginalia's analysis flow and identifies injection points</div>
+    <div class="demo-item"><span class="check">▸</span> /clear → Task Planner creates a phased mitigation plan with research traceability</div>
+    <div class="demo-item"><span class="check">▸</span> /clear → Task Implementor updates prompts, sanitization, and validation layers</div>
+    <div class="demo-item"><span class="check">▸</span> /clear → Task Reviewer validates against research, build, and test results</div>
   </div>
 
   <p style="color: rgba(255,255,255,0.4); font-size: 0.75rem; margin-top: 0.8rem;">
-    Building: <code>gh-repo-stats</code> — fetches GitHub repository statistics and displays in a formatted table
+    Fixing: <code>Marginalia</code> — protect Azure AI Foundry analysis prompts from prompt injection in user guidance and document text
   </p>
 </div>
 
 <!--
 DEMO SCRIPT:
-We're building a real (small) app from scratch using the full RPI cycle.
-Watch for: (1) how the Task Researcher discovers real patterns,
-(2) the quality of plan output with line references,
-(3) how the Implementor follows the plan systematically,
-(4) Review catching anything missed.
+We're fixing a real security issue in an existing app using the full RPI cycle.
+Watch for: (1) how the Task Researcher investigates the real codebase and external guidance,
+(2) the quality of the plan with line references back to research,
+(3) how the Implementor follows that plan across multiple layers,
+(4) Review checking the implementation against research and validation results.
 -->
 
 ---
@@ -933,11 +799,12 @@ transition: fade-out
 </div>
 
 ```bash
-/task-research Create a Node.js CLI tool that
-  fetches GitHub repo stats (stars, forks, issues,
-  top contributors) and displays them in a
-  formatted terminal table. Use GitHub REST API
-  without authentication for public repos.
+@task-researcher Research how to add prompt injection protection to the
+Marginalia analysis process. The app sends user-uploaded document text and
+user guidance directly to Azure AI Foundry via FoundrySuggestionService.
+Research the existing flow, OWASP LLM01 guidance, Azure AI Content Safety
+Prompt Shields, delimiter-based isolation, and recommend ONE balanced
+approach for this app.
 ```
 
 </div>
@@ -951,15 +818,15 @@ transition: fade-out
 
 ```markdown
 ## Recommended Approach
-- GitHub REST API: /repos/{owner}/{repo}
-- CLI framework: Commander.js (most adopted)
-- Table formatting: cli-table3
-- Rate limit: 60 req/hr unauthenticated
+- Input sanitization for known injection patterns
+- Delimiter-based isolation around untrusted content
+- Output validation for system prompt leakage
+- Prompt Shields as an optional future enhancement
 
 ## Evidence
-- Commander.js: 25K+ GitHub stars, active
-- cli-table3: Used in 12 existing projects
-- API response shape verified at...
+- FoundrySuggestionService builds system + user prompts
+- Structured Outputs constrain JSON shape, not field content
+- User guidance and paragraph text are both direct injection paths
 ```
 
 </div>
@@ -1003,7 +870,7 @@ transition: fade-out
 /clear
 
 # Step 2: Switch to Task Planner
-/task-plan
+@task-planner
 ```
 
 </div>
@@ -1016,20 +883,17 @@ transition: fade-out
 </div>
 
 ```markdown
-## Phase 1: Project Setup
-- [ ] Initialize npm project
-- [ ] Install commander, cli-table3, node-fetch
-  → See details.md#L12-L18
+## Phase 1: Input sanitization layer
+- [ ] Create IPromptSanitizer interface
+- [ ] Implement PromptSanitizer and register in DI
 
-## Phase 2: GitHub API Client
-- [ ] Create src/github-client.js
-  → See research.md#L24 for API shape
-- [ ] Implement fetchRepoStats()
-- [ ] Implement fetchContributors()
+## Phase 2: Prompt isolation
+- [ ] Update BuildSystemPrompt() with anti-injection preamble
+- [ ] Wrap paragraph content in clear delimiters
 
-## Phase 3: CLI Entry Point
-- [ ] Create cli.js with Commander
-  → See research.md#L31 for args
+## Phase 3: Output validation
+- [ ] Detect suspicious leakage in rationale/proposedChange
+- [ ] Add tests for sanitizer and prompt isolation
 ```
 
 </div>
@@ -1073,7 +937,7 @@ transition: fade-out
 /clear
 
 # Switch to Task Implementor
-/task-implement
+@task-implementor
 
 # Implementor reads plan phase by phase
 # Pauses at phase stops (phaseStop=true)
@@ -1083,24 +947,24 @@ transition: fade-out
 </div>
 
 <div style="position:absolute;top:150px;left:660px;right:50px;bottom:90px;">
-<div class="code-card-title">Run the Result</div>
+<div class="code-card-title">Tracked Changes</div>
 <div class="code-panel-header">
-  <span class="code-panel-lang">Terminal</span>
-  <span class="code-panel-file">~/gh-repo-stats</span>
+  <span class="code-panel-lang">Markdown</span>
+  <span class="code-panel-file">.copilot-tracking/changes/</span>
 </div>
 
-```bash
-$ node cli.js --repo microsoft/hve-core
+```markdown
+## Files changed
+- src/Domain/Interfaces/IPromptSanitizer.cs
+- src/Infrastructure/Services/PromptSanitizer.cs
+- src/Infrastructure/Services/FoundrySuggestionService.cs
+- src/Api/Program.cs
+- tests/unit/Services/PromptSanitizerTests.cs
 
-┌──────────────┬──────────┐
-│ Metric       │ Value    │
-├──────────────┼──────────┤
-│ ⭐ Stars     │ 1,247    │
-│ 🍴 Forks     │ 183      │
-│ 🐛 Issues    │ 42       │
-│ 👥 Contrib.  │ 28       │
-└──────────────┴──────────┘
-Top contributors: user1, user2, user3
+## Result
+- User guidance sanitized before prompt construction
+- Paragraph text isolated inside explicit delimiters
+- Suspicious model output filtered before returning suggestions
 ```
 
 </div>
@@ -1113,8 +977,8 @@ Top contributors: user1, user2, user3
 
 <!--
 LIVE DEMO: Key moment — the Implementor follows the plan rather than improvising.
-Point out the changes log. Show the working CLI tool.
-The code follows patterns identified in research, not invented ones.
+Point out the changes log and the multi-file nature of the fix.
+The implementation should match the mitigation patterns identified in research, not invent new ones.
 -->
 
 ---
@@ -1144,7 +1008,7 @@ transition: fade-out
 /clear
 
 # Switch to Task Reviewer
-/task-review
+@task-reviewer
 
 # Reviewer validates against:
 # - Research findings
@@ -1167,18 +1031,17 @@ transition: fade-out
 Status: ✅ COMPLETE
 
 ## Findings
-- [✅] API patterns match research#L24
-- [✅] Commander.js usage per research#L31
-- [✅] Error handling covers rate limits
-- [⚠️] Consider adding --format flag
-  (nice-to-have, not blocking)
+- [✅] Input sanitizer implemented per research
+- [✅] Prompt isolation added to system and user prompts
+- [✅] Output validation added for suspicious leakage
+- [⚠️] Prompt Shields remains a follow-up enhancement
 
 ## Iteration Path
-→ Complete — ready to commit
+→ Complete — ready for PR
 
 ## Handoff Options
-📋 Create follow-up plan for --format
-⚡ Commit changes
+📋 Create follow-up plan for Prompt Shields integration
+⚡ Prepare PR summary
 ```
 
 </div>
@@ -1223,7 +1086,7 @@ transition: fade-out
       </div>
       <div class="card" style="flex: 1;">
         <h3>Quick Start Commands</h3>
-        <p style="font-size:0.78rem;"><code>/task-research &lt;topic&gt;</code><br><code>/task-plan</code><br><code>/task-implement</code><br><code>/task-review</code></p>
+        <p style="font-size:0.78rem;"><code>@task-researcher &lt;topic&gt;</code><br><code>@task-planner</code><br><code>@task-implementor</code><br><code>@task-reviewer</code></p>
       </div>
       <div class="card" style="flex: 1;">
         <h3>Session Persistence</h3>

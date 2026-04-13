@@ -692,7 +692,7 @@ html.dark .slide-subtitle {
   gap: 0.75rem;
   position: relative;
   z-index: 1;
-  align-items: start;
+  align-items: stretch;
 }
 
 .agenda-card {
@@ -706,7 +706,7 @@ html.dark .slide-subtitle {
   border: 1px solid rgba(255, 255, 255, 0.11);
   backdrop-filter: blur(12px);
   overflow: hidden;
-  height: fit-content;
+  height: 100%;
   cursor: pointer;
   text-decoration: none !important;
   -webkit-text-fill-color: inherit;
@@ -1208,6 +1208,10 @@ a.card-link p, a.card-link span { color: var(--theme-muted); }
   -webkit-text-fill-color: var(--theme-accent2);
 }
 
+.pillars-slide .section-number { font-size: 0.85rem; }
+.pillars-slide .section-card h2 { font-size: 1.25rem; }
+.pillars-slide .section-card p { font-size: 1.1rem; }
+
 /* ══════════════════════════════════════════════════════════════
    COMPARISON GRID — Before / After two-column layout
    ══════════════════════════════════════════════════════════════ */
@@ -1260,6 +1264,63 @@ a.card-link p, a.card-link span { color: var(--theme-muted); }
 .comparison-label.after {
   color: var(--theme-accent5);
   background: rgba(56, 164, 220, 0.14);
+}
+
+.hve-what-slide .hve-what-intro {
+  font-size: 1.2rem !important;
+  padding: 0.65rem 1.2rem;
+  max-width: 100%;
+  margin-top: 0.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.hve-what-slide .dense-list {
+  font-size: 1.15rem;
+}
+
+.hve-what-slide .callout {
+  font-size: 1.1rem;
+}
+
+.problem-comparison-grid {
+  align-items: stretch;
+}
+
+.problem-comparison-grid .comparison-col {
+  gap: 0.35rem;
+  padding: 0.7rem 1rem 0.85rem;
+  height: auto;
+}
+
+.problem-comparison-grid .comparison-label {
+  margin-bottom: 0.3rem;
+  font-size: 1.075rem;
+}
+
+.problem-comparison-grid .dense-list {
+  font-size: 1.15rem;
+  line-height: 1.55;
+}
+
+.problem-comparison-grid .dense-list li + li {
+  margin-top: 0.45rem;
+}
+
+.problem-scenario-banner {
+  font-size: 2.2rem;
+  line-height: 1.25;
+}
+
+.tooling-layer-slide > p {
+  font-size: 1.375rem !important;
+}
+
+.tooling-layer-slide .dense-list {
+  font-size: 1.15rem;
+}
+
+.tooling-layer-slide .callout {
+  font-size: 1.1rem;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -1582,6 +1643,8 @@ a.card-link p, a.card-link span { color: var(--theme-muted); }
 .iq-pillar.iq-work    { border-left-color: var(--iq-work); }
 .iq-pillar.iq-fabric   { border-left-color: var(--iq-fabric); }
 .iq-pillar.iq-foundry  { border-left-color: var(--iq-foundry); }
+.iq-pillar.iq-security { border-left-color: #107C10; }
+.iq-pillar.iq-orange   { border-left-color: #D97706; }
 
 .iq-header-pill {
   display: inline-flex;
@@ -1622,10 +1685,24 @@ a.card-link p, a.card-link span { color: var(--theme-muted); }
 .iq-header-work    { color: color-mix(in srgb, var(--iq-work) 50%, #666);    -webkit-text-fill-color: color-mix(in srgb, var(--iq-work) 50%, #666);    --pill-gradient: linear-gradient(135deg, var(--iq-work), var(--iq-work-light)); }
 .iq-header-fabric  { color: color-mix(in srgb, var(--iq-fabric) 50%, #666);  -webkit-text-fill-color: color-mix(in srgb, var(--iq-fabric) 50%, #666);  --pill-gradient: linear-gradient(135deg, var(--iq-fabric), var(--iq-fabric-light)); }
 .iq-header-foundry { color: color-mix(in srgb, var(--iq-foundry) 50%, #666); -webkit-text-fill-color: color-mix(in srgb, var(--iq-foundry) 50%, #666); --pill-gradient: linear-gradient(135deg, var(--iq-foundry), var(--iq-foundry-light)); }
+.iq-header-security { color: color-mix(in srgb, #107C10 52%, #666);          -webkit-text-fill-color: color-mix(in srgb, #107C10 52%, #666);          --pill-gradient: linear-gradient(135deg, #107C10, #54B054); }
+.iq-header-orange   { color: color-mix(in srgb, #D97706 55%, #666);          -webkit-text-fill-color: color-mix(in srgb, #D97706 55%, #666);          --pill-gradient: linear-gradient(135deg, #D97706, #F6B84B); }
 .iq-header-mcp     { color: color-mix(in srgb, #546E7A 50%, #666);           -webkit-text-fill-color: color-mix(in srgb, #546E7A 50%, #666);           --pill-gradient: linear-gradient(135deg, #546E7A, #78909c); }
 .iq-header-diagram { color: color-mix(in srgb, var(--theme-accent5) 50%, #666); -webkit-text-fill-color: color-mix(in srgb, var(--theme-accent5) 50%, #666); --pill-gradient: linear-gradient(135deg, var(--theme-accent5), var(--theme-accent2)); }
 
 .iq-card-summary { margin: 0.16rem 0 0; font-size: 0.82rem; line-height: 1.24; color: var(--theme-muted); }
+
+.principles-slide .iq-header-pill {
+  font-size: 1.2rem;
+  width: 100%;
+  min-height: 3.8rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+.principles-slide .iq-card-summary { font-size: 1.025rem; }
+.principles-slide .iq-header-wrap { display: flex; }
 
 /* ══════════════════════════════════════════════════════════════
    SCENARIO BANNER — Full-width context strip
@@ -1660,6 +1737,11 @@ a.card-link p, a.card-link span { color: var(--theme-muted); }
   border-right: 1.5px solid rgba(21, 48, 71, 0.1);
   border-bottom: 1.5px solid rgba(21, 48, 71, 0.1);
   transform: rotate(45deg);
+}
+
+.scenario-banner.problem-scenario-banner {
+  font-size: 2.2rem;
+  line-height: 1.25;
 }
 
 /* ══════════════════════════════════════════════════════════════
