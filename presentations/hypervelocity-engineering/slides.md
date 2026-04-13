@@ -591,7 +591,7 @@ transition: fade-out
   <div class="slide-banner">
     <h1>The Four Phases of RPI</h1>
   </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.6rem; align-items: stretch; padding: 0.6rem 1.8rem 0.8rem;">
+  <div class="slide-body rpi-phases-slide" style="flex-direction: column; gap: 0.6rem; align-items: stretch; padding: 0.6rem 1.8rem 0.8rem;">
     <div class="flow-pipeline" style="justify-content: center; gap: 0.5rem;">
       <div class="flow-step">🔍 Research</div>
       <span class="flow-arrow" style="color:var(--theme-accent);" v-click="1">→ <code>/clear</code> →</span>
@@ -603,19 +603,19 @@ transition: fade-out
     </div>
     <div style="display: flex; gap: 0.5rem; align-items: stretch;">
       <div class="card" style="flex: 1;">
-        <h3>🔍 Research</h3>
+        <h3><span class="phase-icon">🔍</span><span class="phase-label">Research</span></h3>
         <p style="font-size:0.78rem;">Task Researcher investigates codebase, APIs, docs. Documents with evidence. ONE recommended approach.<br><code>→ research.md</code></p>
       </div>
       <div class="card" style="flex: 1;" v-click="2">
-        <h3>📋 Plan</h3>
+        <h3><span class="phase-icon">📋</span><span class="phase-label">Plan</span></h3>
         <p style="font-size:0.78rem;">Task Planner creates phased checklist linked to research with line numbers.<br><code>→ plan.instructions.md + details.md</code></p>
       </div>
       <div class="card" style="flex: 1;" v-click="4">
-        <h3>⚡ Implement</h3>
+        <h3><span class="phase-icon">⚡</span><span class="phase-label">Implement</span></h3>
         <p style="font-size:0.78rem;">Task Implementor executes plan task by task. Tracks changes. Stop controls for review.<br><code>→ code + changes.md</code></p>
       </div>
       <div class="card" style="flex: 1;" v-click="6">
-        <h3>✅ Review</h3>
+        <h3><span class="phase-icon">✅</span><span class="phase-label">Review</span></h3>
         <p style="font-size:0.78rem;">Task Reviewer validates against specs. Runs lint/build/test. Identifies follow-up work.<br><code>→ review.md</code></p>
       </div>
     </div>

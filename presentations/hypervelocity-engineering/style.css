@@ -1129,6 +1129,28 @@ a.card-link p, a.card-link span { color: var(--theme-muted); }
   font-weight: 700;
 }
 
+.rpi-phases-slide .card h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.rpi-phases-slide .card h3 .phase-icon {
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-text-fill-color: initial;
+  color: initial;
+  flex-shrink: 0;
+}
+
+.rpi-phases-slide .card h3 .phase-label {
+  background: linear-gradient(135deg, #0a2e4a 0%, #103954 40%, #1a6bb5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .card p {
   color: var(--theme-muted);
   font-size: 0.75em;
