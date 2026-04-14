@@ -203,9 +203,9 @@ transition: fade-out
       <span class="hero-quote-emoji">⚡</span>
       <span>The most dangerous outcome of AI-assisted engineering isn't bad code — it's <em>solving the wrong problem faster than ever before.</em></span>
     </div>
-    <p style="color: var(--theme-muted); font-size: 0.92rem; max-width: 40rem; text-align: center;">
-      30 minutes on the principles, pillars, and tooling foundation of Hypervelocity Engineering.
-    </p>
+    <v-click>
+      <Youtube id="7P0JM3h7IQk" width="560" height="315" />
+    </v-click>
   </div>
 </div>
 
@@ -334,9 +334,6 @@ transition: fade-out
         <p>AI across the full lifecycle — research, planning, implementation, review, backlog management, security assessment, documentation.</p>
       </div>
     </div>
-    <div class="callout-teal callout" style="text-align:center;" v-click>
-      Pillar 4 (AI tooling) only works because Pillars 1-3 provide the right team, problem, and starting point.
-    </div>
   </div>
 </div>
 
@@ -377,9 +374,6 @@ transition: fade-out
         <p class="iq-card-summary">Not bolted on at the end. Security, observability, and responsible AI are woven into every phase of the lifecycle.</p>
       </div>
     </div>
-    <p style="text-align:center;color:var(--theme-muted);font-size:0.85rem;margin:0;" v-click>
-      Also: <strong>Include users in the team</strong> · <strong>Leverage team expertise</strong>
-    </p>
   </div>
 </div>
 
@@ -390,11 +384,8 @@ when teams adopt AI tooling without discipline.
 
 ---
 transition: fade-out
+hide: true
 ---
-
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 9 — ENGINEERING FUNDAMENTALS & MEASURING SUCCESS
-     ═══════════════════════════════════════════════════════════ -->
 
 <div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
   <div class="slide-banner">
@@ -448,65 +439,28 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 10 — HVE-CORE: THE TOOLING LAYER
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
-  <div class="slide-banner">
-    <h1>HVE-Core: The Tooling Layer</h1>
-  </div>
-  <div class="slide-body tooling-layer-slide" style="flex-direction: column; gap: 0.55rem; align-items: stretch; padding: 0.4rem 1.8rem 0.8rem;">
-    <p style="font-size: 1.1rem; color: var(--theme-ink); margin: 0;">
-      <strong>AI-Driven Software Development Across the Full Lifecycle</strong>
-    </p>
-    <ul class="dense-list">
-      <li v-click>Production-ready <strong>agents, prompts, coding instructions, and skills</strong> for GitHub Copilot</li>
-      <li v-click>Structured workflows (<strong>RPI</strong>), schema-enforced quality gates, role-specific tooling</li>
-      <li v-click>Covers <strong>10 engineering roles</strong> across a <strong>9-stage project lifecycle</strong></li>
-      <li v-click>Install from VS Code Marketplace: <code>ise-hve-essentials.hve-core</code></li>
-      <li v-click>Two options: <strong>HVE Core All</strong> (221 artifacts) or <strong>HVE Installer</strong> (selective)</li>
-      <li v-click>Open source: <a href="https://github.com/microsoft/hve-core" target="_blank">github.com/microsoft/hve-core</a></li>
-    </ul>
-    <div class="callout" v-click>
-      Everything we've discussed as principles (HVE) is now operationalized as tooling (HVE-Core). It enhances GitHub Copilot with structured workflows — not a separate product. <strong>And it's built for the full team</strong>: engineers, architects, security, data, UX, and operations.
-    </div>
-  </div>
-</div>
-
-<!--
-This is the bridge slide. HVE principles become HVE-Core tooling.
-The extension installs agents, prompts, instructions, and skills
-directly into your GitHub Copilot environment.
--->
-
----
-transition: fade-out
----
-
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 11 — TRANSITION TO PART 2
+     SLIDE 10 — FROM METHODOLOGY TO ADOPTION
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="absolute inset-0 flex flex-col">
   <div class="slide-banner">
-    <h1>The Key Insight</h1>
+    <h1>From Methodology to Adoption</h1>
   </div>
   <div class="slide-body" style="flex-direction: column; gap: 1.2rem; align-items: center; justify-content: center;">
     <div class="hero-quote">
       <span class="hero-quote-emoji">🧠</span>
-      <span>The solution isn't teaching AI to be smarter. It's <em>preventing AI from doing certain things at certain times.</em></span>
+      <span>A methodology only matters if teams can <em>adopt it consistently and repeat it safely.</em></span>
     </div>
     <p style="color: var(--theme-muted); font-size: 0.92rem; max-width: 40rem; text-align: center;">
-      Part 2 — Let's see how this works in practice with RPI, live demos, and GitHub Backlog Manager.
+      Part 2 is about operationalizing HVE with HVE-Core, RPI, live demos, and GitHub Backlog Manager.
     </p>
   </div>
 </div>
 
 <!--
-The counterintuitive insight: you make AI better by giving it less freedom.
-When the Task Researcher knows it cannot implement, it stops optimizing for
-"plausible code" and starts optimizing for "verified truth."
-Now let's go hands-on.
+This is the handoff from abstract principles to practical adoption.
+Part 1 explained HVE as the way of working.
+Part 2 shows the enablement layer that helps teams practice it consistently inside GitHub Copilot.
 -->
 
 ---
@@ -514,17 +468,59 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-  SLIDE 12 — PART 2 SECTION DIVIDER: RPI
+     SLIDE 11 — INTRODUCING HVE-CORE
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
+  <div class="slide-banner">
+    <h1>Introducing HVE-Core</h1>
+  </div>
+  <div class="slide-body tooling-layer-slide" style="flex-direction: column; gap: 0.55rem; align-items: stretch; padding: 0.4rem 1.8rem 0.8rem;">
+    <p class="thought-bubble" style="margin: 0;">
+      <span><strong><a href="https://microsoft.github.io/hve-core/docs/hve-guide/" target="_blank" style="color: inherit; text-decoration: underline;">HVE</a> is the practice. <a href="https://microsoft.github.io/hve-core/docs/" target="_blank" style="color: inherit; text-decoration: underline;">HVE-Core</a> is the starter kit for practicing it in <a href="https://code.visualstudio.com/docs/copilot/overview" target="_blank" style="color: inherit; text-decoration: underline;">GitHub Copilot</a>.</strong></span>
+    </p>
+    <ul class="dense-list">
+      <li v-click>Curated <strong>agents, skills, prompts, and coding instructions</strong> for GitHub Copilot</li>
+      <li v-click>Encodes <strong><a href="https://microsoft.github.io/hve-core/docs/rpi/" target="_blank" style="color: inherit; text-decoration: underline;">RPI</a></strong>, role guidance, and quality guardrails into ready-to-use starting points</li>
+      <li v-click>Operationalizes two HVE pillars: <strong>Production-Ready Starting Points</strong> and <strong>AI Agents &amp; Tools</strong></li>
+      <li v-click>Supports <strong>10 roles</strong> across a <strong>9-stage lifecycle</strong></li>
+      <li v-click>Open source, runs in VS Code, install from Marketplace: <a href="https://marketplace.visualstudio.com/items?itemName=ise-hve-essentials.hve-core" target="_blank" style="color: inherit; text-decoration: underline;"><code>ise-hve-essentials.hve-core</code></a></li>
+      <li v-click>Choose <strong>HVE Core All</strong> or the selective <strong>HVE Installer</strong></li>
+    </ul>
+    <div class="callout" v-click>
+      <strong>Helpful analogy:</strong> If HVE is like DevOps, HVE-Core is the platform team's golden paths, templates, and automation for adopting it consistently.
+    </div>
+  </div>
+</div>
+
+<!--
+This is the bridge slide from methodology to adoption.
+Avoid framing HVE-Core as "the tool" or a separate product.
+GitHub Copilot in VS Code is the execution surface; HVE-Core is the curated starter kit inside that surface.
+The point is adoption speed and consistency: teams do not start from zero.
+-->
+
+---
+transition: fade-out
+---
+
+<!-- ═══════════════════════════════════════════════════════════
+  SLIDE 12 — RPI
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="absolute inset-0 flex flex-col">
   <div class="slide-banner">
-    <h1>Part 2 — RPI Deep Dive</h1>
+    <h1>RPI Deep Dive</h1>
   </div>
   <div class="slide-body" style="flex-direction: column; gap: 1.2rem; align-items: center; justify-content: center;">
     <div class="hero-quote">
       <span class="hero-quote-emoji">🔬</span>
-      <span>Research → Plan → Implement → Review</span>
+      <span>
+        <a href="https://microsoft.github.io/hve-core/docs/rpi/task-researcher" target="_blank" style="color: inherit; text-decoration: underline;">Research</a> →
+        <a href="https://microsoft.github.io/hve-core/docs/rpi/task-planner" target="_blank" style="color: inherit; text-decoration: underline;">Plan</a> →
+        <a href="https://microsoft.github.io/hve-core/docs/rpi/task-implementor" target="_blank" style="color: inherit; text-decoration: underline;">Implement</a> →
+        <a href="https://microsoft.github.io/hve-core/docs/rpi/task-reviewer" target="_blank" style="color: inherit; text-decoration: underline;">Review</a>
+      </span>
     </div>
     <p style="color: var(--theme-muted); font-size: 0.92rem; max-width: 40rem; text-align: center;">
       Transforming uncertainty into verified, traceable, production-quality code.
@@ -593,29 +589,29 @@ transition: fade-out
   </div>
   <div class="slide-body rpi-phases-slide" style="flex-direction: column; gap: 0.6rem; align-items: stretch; padding: 0.6rem 1.8rem 0.8rem;">
     <div class="flow-pipeline" style="justify-content: center; gap: 0.5rem;">
-      <div class="flow-step">🔍 Research</div>
+      <div class="flow-step">🔍 <a href="https://microsoft.github.io/hve-core/docs/rpi/task-researcher" target="_blank" style="color: inherit; text-decoration: underline;">Research</a></div>
       <span class="flow-arrow" style="color:var(--theme-accent);" v-click="1">→ <code>/clear</code> →</span>
-      <div class="flow-step" v-click="2">📋 Plan</div>
+      <div class="flow-step" v-click="2">📋 <a href="https://microsoft.github.io/hve-core/docs/rpi/task-planner" target="_blank" style="color: inherit; text-decoration: underline;">Plan</a></div>
       <span class="flow-arrow" style="color:var(--theme-accent);" v-click="3">→ <code>/clear</code> →</span>
-      <div class="flow-step flow-step-active" v-click="4">⚡ Implement</div>
+      <div class="flow-step flow-step-active" v-click="4">⚡ <a href="https://microsoft.github.io/hve-core/docs/rpi/task-implementor" target="_blank" style="color: inherit; text-decoration: underline;">Implement</a></div>
       <span class="flow-arrow" style="color:var(--theme-accent);" v-click="5">→ <code>/clear</code> →</span>
-      <div class="flow-step" v-click="6">✅ Review</div>
+      <div class="flow-step" v-click="6">✅ <a href="https://microsoft.github.io/hve-core/docs/rpi/task-reviewer" target="_blank" style="color: inherit; text-decoration: underline;">Review</a></div>
     </div>
     <div style="display: flex; gap: 0.5rem; align-items: stretch;">
       <div class="card" style="flex: 1;">
-        <h3><span class="phase-icon">🔍</span><span class="phase-label">Research</span></h3>
+        <h3><span class="phase-icon">🔍</span><a href="https://microsoft.github.io/hve-core/docs/rpi/task-researcher" target="_blank" style="color: inherit; text-decoration: underline;"><span class="phase-label">Research</span></a></h3>
         <p style="font-size:0.78rem;">Task Researcher investigates codebase, APIs, docs. Documents with evidence. ONE recommended approach.<br><code>→ research.md</code></p>
       </div>
       <div class="card" style="flex: 1;" v-click="2">
-        <h3><span class="phase-icon">📋</span><span class="phase-label">Plan</span></h3>
+        <h3><span class="phase-icon">📋</span><a href="https://microsoft.github.io/hve-core/docs/rpi/task-planner" target="_blank" style="color: inherit; text-decoration: underline;"><span class="phase-label">Plan</span></a></h3>
         <p style="font-size:0.78rem;">Task Planner creates phased checklist linked to research with line numbers.<br><code>→ plan.instructions.md + details.md</code></p>
       </div>
       <div class="card" style="flex: 1;" v-click="4">
-        <h3><span class="phase-icon">⚡</span><span class="phase-label">Implement</span></h3>
+        <h3><span class="phase-icon">⚡</span><a href="https://microsoft.github.io/hve-core/docs/rpi/task-implementor" target="_blank" style="color: inherit; text-decoration: underline;"><span class="phase-label">Implement</span></a></h3>
         <p style="font-size:0.78rem;">Task Implementor executes plan task by task. Tracks changes. Stop controls for review.<br><code>→ code + changes.md</code></p>
       </div>
       <div class="card" style="flex: 1;" v-click="6">
-        <h3><span class="phase-icon">✅</span><span class="phase-label">Review</span></h3>
+        <h3><span class="phase-icon">✅</span><a href="https://microsoft.github.io/hve-core/docs/rpi/task-reviewer" target="_blank" style="color: inherit; text-decoration: underline;"><span class="phase-label">Review</span></a></h3>
         <p style="font-size:0.78rem;">Task Reviewer validates against specs. Runs lint/build/test. Identifies follow-up work.<br><code>→ review.md</code></p>
       </div>
     </div>
@@ -640,39 +636,61 @@ transition: fade-out
      SLIDE 18 — CONTEXT ENGINEERING
      ═══════════════════════════════════════════════════════════ -->
 
-<div class="absolute inset-0 flex flex-col">
+<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
   <div class="slide-banner">
     <h1>Context Engineering — Why /clear Matters</h1>
   </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.6rem; align-items: center; justify-content: center;">
-
-```mermaid {theme: 'neutral', scale: 0.7}
-graph LR
-    A["Start: 3K prompt<br/>in 10K context<br/><strong>30% attention</strong>"] -->|"Full RPI cycle"| B["End: 3K prompt<br/>in 200K context<br/><strong>1.5% attention</strong>"]
-    B -->|"/clear"| C["Fresh: 3K prompt<br/>in 10K context<br/><strong>30% attention restored</strong>"]
-    style A fill:#28ca41,color:#fff
-    style B fill:#ff5f57,color:#fff
-    style C fill:#28ca41,color:#fff
-```
-
-  <div style="display: flex; gap: 0.65rem; max-width: 52rem;">
-    <div class="card" style="flex: 1;" v-click>
-      <h3>Signs of Degradation</h3>
-      <ul class="dense-list" style="font-size:0.78rem;">
-        <li>Agent skips phases</li>
-        <li>Ignores system prompt</li>
-        <li>Output quality drops</li>
-      </ul>
+  <div class="slide-body" style="flex-direction: column; gap: 0.8rem; align-items: stretch; padding: 0.6rem 1.8rem 0.8rem;">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem;">
+      <div class="card" style="flex: 1; text-align: center; border-color: #28ca41; border-width: 2px; padding: 0.9rem;">
+        <div style="font-size: 0.72rem; font-weight: 700; color: var(--theme-muted); text-transform: uppercase; letter-spacing: 0.06em;">Start</div>
+        <div style="font-size: 2.4rem; font-weight: 800; color: #28ca41; line-height: 1.1; margin: 0.3rem 0;">30%</div>
+        <div style="font-size: 0.8rem; color: var(--theme-muted);">attention on prompt</div>
+        <div style="font-size: 0.7rem; color: var(--theme-muted); margin-top: 0.5rem; opacity: 0.7;">3K prompt · 10K context</div>
+      </div>
+      <div style="text-align: center; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 0.15rem;">
+        <div style="font-size: 0.68rem; color: var(--theme-muted);">Full RPI cycle</div>
+        <div style="font-size: 1.6rem; color: var(--theme-accent);">→</div>
+      </div>
+      <div class="card" style="flex: 1; text-align: center; border-color: #ff5f57; border-width: 2px; padding: 0.9rem;">
+        <div style="font-size: 0.72rem; font-weight: 700; color: var(--theme-muted); text-transform: uppercase; letter-spacing: 0.06em;">End of Cycle</div>
+        <div style="font-size: 2.4rem; font-weight: 800; color: #ff5f57; line-height: 1.1; margin: 0.3rem 0;">1.5%</div>
+        <div style="font-size: 0.8rem; color: var(--theme-muted);">attention on prompt</div>
+        <div style="font-size: 0.7rem; color: var(--theme-muted); margin-top: 0.5rem; opacity: 0.7;">3K prompt · 200K context</div>
+      </div>
+      <div style="text-align: center; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 0.15rem;">
+        <div style="font-size: 0.85rem; font-weight: 800; color: #28ca41;"><code>/clear</code></div>
+        <div style="font-size: 1.6rem; color: var(--theme-accent);">→</div>
+      </div>
+      <div class="card" style="flex: 1; text-align: center; border-color: #28ca41; border-width: 2px; padding: 0.9rem;">
+        <div style="font-size: 0.72rem; font-weight: 700; color: var(--theme-muted); text-transform: uppercase; letter-spacing: 0.06em;">After /clear</div>
+        <div style="font-size: 2.4rem; font-weight: 800; color: #28ca41; line-height: 1.1; margin: 0.3rem 0;">30%</div>
+        <div style="font-size: 0.8rem; color: var(--theme-muted);">attention restored</div>
+        <div style="font-size: 0.7rem; color: var(--theme-muted); margin-top: 0.5rem; opacity: 0.7;">3K prompt · 10K context</div>
+      </div>
     </div>
-    <div class="card" style="flex: 1;" v-click>
-      <h3>/clear vs /compact</h3>
-      <ul class="dense-list" style="font-size:0.78rem;">
-        <li><code>/clear</code>: Between phases (always)</li>
-        <li><code>/compact</code>: Mid-phase when long</li>
-        <li>Artifacts persist on disk either way</li>
-      </ul>
+    <div style="display: flex; gap: 0.65rem; align-items: stretch;">
+      <div class="card" style="flex: 1;" v-click>
+        <h3>Signs of Degradation</h3>
+        <ul class="dense-list" style="font-size:0.78rem;">
+          <li>Agent skips phases</li>
+          <li>Ignores system prompt</li>
+          <li>Output quality drops</li>
+        </ul>
+      </div>
+      <div class="card" style="flex: 1;" v-click>
+        <h3>/clear vs /compact</h3>
+        <ul class="dense-list" style="font-size:0.78rem;">
+          <li><code>/clear</code>: Between phases (always)</li>
+          <li><code>/compact</code>: Mid-phase when long</li>
+          <li>Artifacts persist on disk either way</li>
+        </ul>
+      </div>
     </div>
-  </div>
+    <div class="model-warning-callout" v-click>
+      <span class="model-warning-icon">💡</span>
+      <span class="model-warning-text">The model gives less weight to system instructions as context grows. Clearing between phases restores each agent's instructions to full strength.</span>
+    </div>
   </div>
 </div>
 
@@ -695,35 +713,33 @@ transition: fade-out
     <h1>When to Use RPI</h1>
   </div>
   <div class="slide-body" style="flex-direction:column;align-items:stretch;">
-    <div class="comparison-grid" style="width:100%;">
-      <div class="comparison-col after">
-        <span class="comparison-label after">✅ Use RPI</span>
-        <ul class="dense-list" style="font-size: 0.82rem;">
-          <li v-click>Changes span multiple files</li>
-          <li v-click>Learning new patterns or APIs</li>
-          <li v-click>External dependencies involved</li>
-          <li v-click>Requirements are unclear</li>
-          <li v-click>Team needs knowledge transfer</li>
-        </ul>
-      </div>
+    <div class="scenario-banner problem-scenario-banner">
+      <span>Match the tool to the complexity — not every task needs the full ceremony.</span>
+    </div>
+    <div class="comparison-grid problem-comparison-grid" style="width:100%;">
       <div class="comparison-col before">
         <span class="comparison-label before">⏭️ Skip RPI</span>
-        <ul class="dense-list" style="font-size: 0.82rem;">
-          <li v-click>Fixing a typo</li>
+        <ul class="dense-list">
+          <li v-click>Fixing a typo or renaming a variable</li>
           <li v-click>Adding a log statement</li>
           <li v-click>Refactoring &lt; 50 lines</li>
           <li v-click>Change is obvious and self-contained</li>
         </ul>
       </div>
+      <div class="comparison-col after">
+        <span class="comparison-label after">✅ Use RPI</span>
+        <ul class="dense-list">
+          <li v-click>Changes span multiple files or modules</li>
+          <li v-click>Learning new patterns or APIs</li>
+          <li v-click>External dependencies involved</li>
+          <li v-click>Requirements are unclear or contested</li>
+          <li v-click>Team needs knowledge transfer</li>
+        </ul>
+      </div>
     </div>
-    <div class="callout" style="text-align:center;" v-click>
-      <strong>Rule of thumb:</strong> <em>"If you need to understand something before implementing, use RPI."</em>
-    </div>
-    <div class="card" style="margin-top:0.3rem;" v-click>
-      <h3>Strict RPI vs rpi-agent</h3>
-      <p style="font-size:0.8rem;"><strong>Strict RPI</strong>: Deep research, no context contamination, complete audit trail. Best for complex/team work.<br>
-      <strong>rpi-agent</strong>: Moderate research, inline, summary only. Best for simple/solo work.<br>
-      <em>Start with rpi-agent; escalate to strict when complexity appears.</em></p>
+    <div class="model-warning-callout" v-click>
+      <span class="model-warning-icon">💡</span>
+      <span class="model-warning-text"><strong>Rule of thumb:</strong> <em>"If you need to understand something before implementing, use RPI."</em> — Start with <strong>rpi-agent</strong> (inline, lightweight); escalate to <strong>strict RPI</strong> (deep research, full audit trail) when complexity or team scope demands it.</span>
     </div>
   </div>
 </div>

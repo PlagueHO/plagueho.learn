@@ -166,21 +166,21 @@ Two agents: dt-coach, dt-learning-tutor
 
 ## Source 3 — Key URLs
 
-- HVE-Core home: https://microsoft.github.io/hve-core/
-- HVE-Core docs: https://microsoft.github.io/hve-core/docs/
-- HVE Guide: https://microsoft.github.io/hve-core/docs/hve-guide/
-- RPI methodology: https://microsoft.github.io/hve-core/docs/rpi/
-- Why RPI works: https://microsoft.github.io/hve-core/docs/rpi/why-rpi
-- Context engineering: https://microsoft.github.io/hve-core/docs/rpi/context-engineering
-- Task Researcher: https://microsoft.github.io/hve-core/docs/rpi/task-researcher
-- Task Planner: https://microsoft.github.io/hve-core/docs/rpi/task-planner
-- Task Implementor: https://microsoft.github.io/hve-core/docs/rpi/task-implementor
-- Using RPI together: https://microsoft.github.io/hve-core/docs/rpi/using-together
-- GitHub Backlog Manager: https://microsoft.github.io/hve-core/docs/agents/github-backlog/
-- Getting started: https://microsoft.github.io/hve-core/docs/getting-started/
-- Installation: https://microsoft.github.io/hve-core/docs/getting-started/install
-- Collections: https://microsoft.github.io/hve-core/docs/getting-started/collections
-- Architecture: https://microsoft.github.io/hve-core/docs/architecture/
-- Design Thinking: https://microsoft.github.io/hve-core/docs/design-thinking/
-- GitHub repo: https://github.com/microsoft/hve-core
+- HVE-Core home: <https://microsoft.github.io/hve-core/>
+- HVE-Core docs: <https://microsoft.github.io/hve-core/docs/>
+- HVE Guide: <https://microsoft.github.io/hve-core/docs/hve-guide/>
+- RPI methodology: <https://microsoft.github.io/hve-core/docs/rpi/>
+- Why RPI works: <https://microsoft.github.io/hve-core/docs/rpi/why-rpi>
+- Context engineering: <https://microsoft.github.io/hve-core/docs/rpi/context-engineering>
+- Task Researcher: <https://microsoft.github.io/hve-core/docs/rpi/task-researcher>
+- Task Planner: <https://microsoft.github.io/hve-core/docs/rpi/task-planner>
+- Task Implementor: <https://microsoft.github.io/hve-core/docs/rpi/task-implementor>
+- Using RPI together: <https://microsoft.github.io/hve-core/docs/rpi/using-together>
+- GitHub Backlog Manager: <https://microsoft.github.io/hve-core/docs/agents/github-backlog/>
+- Getting started: <https://microsoft.github.io/hve-core/docs/getting-started/>
+- Installation: <https://microsoft.github.io/hve-core/docs/getting-started/install>
+- Collections: <https://microsoft.github.io/hve-core/docs/getting-started/collections>
+- Architecture: <https://microsoft.github.io/hve-core/docs/architecture/>
+- Design Thinking: <https://microsoft.github.io/hve-core/docs/design-thinking/>
+- GitHub repo: <https://github.com/microsoft/hve-core>
 - VS Code extension: `ise-hve-essentials.hve-core`

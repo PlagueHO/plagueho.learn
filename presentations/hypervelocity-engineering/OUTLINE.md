@@ -196,7 +196,7 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
   - Structured workflows (RPI), schema-enforced quality gates, role-specific tooling
   - Install from VS Code Marketplace: `ise-hve-essentials.hve-core`
   - Two options: **HVE Core All** (221 artifacts) or **HVE Installer** (selective)
-  - Open source: https://github.com/microsoft/hve-core
+  - Open source: <https://github.com/microsoft/hve-core>
 - **Speaker Notes**: This is the bridge slide. Everything we've discussed as principles (HVE) is now operationalized as tooling (HVE-Core). The extension installs agents, prompts, instructions, and skills directly into your GitHub Copilot environment. It's not a separate product — it enhances GitHub Copilot with structured workflows.
 - **Duration**: ~3 min
 - **Animations**: v-clicks on bullets
@@ -571,14 +571,14 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Template Slide**: 10 — Tools and Resources Grid
 - **Layout**: Linkable resource cards
 - **Content**:
-  - **HVE-Core Documentation**: https://microsoft.github.io/hve-core/docs/
-  - **HVE Guide**: https://microsoft.github.io/hve-core/docs/hve-guide/
-  - **RPI Methodology**: https://microsoft.github.io/hve-core/docs/rpi/
-  - **GitHub Backlog Manager**: https://microsoft.github.io/hve-core/docs/agents/github-backlog/
-  - **Getting Started**: https://microsoft.github.io/hve-core/docs/getting-started/
-  - **GitHub repo**: https://github.com/microsoft/hve-core
+  - **HVE-Core Documentation**: <https://microsoft.github.io/hve-core/docs/>
+  - **HVE Guide**: <https://microsoft.github.io/hve-core/docs/hve-guide/>
+  - **RPI Methodology**: <https://microsoft.github.io/hve-core/docs/rpi/>
+  - **GitHub Backlog Manager**: <https://microsoft.github.io/hve-core/docs/agents/github-backlog/>
+  - **Getting Started**: <https://microsoft.github.io/hve-core/docs/getting-started/>
+  - **GitHub repo**: <https://github.com/microsoft/hve-core>
   - **VS Code Extension**: `ise-hve-essentials.hve-core` (VS Code Marketplace)
-  - **Context Engineering**: https://microsoft.github.io/hve-core/docs/rpi/context-engineering
+  - **Context Engineering**: <https://microsoft.github.io/hve-core/docs/rpi/context-engineering>
 - **Speaker Notes**: Show the QR code or links slide. Encourage attendees to start with the Getting Started page — it has a 1-min → 5-min → 15-min progressive path.
 - **Duration**: ~1 min
 - **Animations**: Cards appear
@@ -667,6 +667,7 @@ Build a Node.js CLI tool (`gh-repo-stats`) that fetches GitHub repository statis
 ### Fallback Plan
 
 If the live demo fails at any phase:
+
 - Have pre-built artifacts (`research.md`, `plan.instructions.md`, `details.md`, `changes.md`, `review.md`) ready in a backup directory
 - Have a working version of `gh-repo-stats` pre-built to show the end result
 - Can switch to showing pre-recorded video segments
@@ -675,23 +676,23 @@ If the live demo fails at any phase:
 
 ## Resources & Links
 
-- HVE-Core home: https://microsoft.github.io/hve-core/
-- HVE-Core documentation: https://microsoft.github.io/hve-core/docs/
-- HVE Guide: https://microsoft.github.io/hve-core/docs/hve-guide/
-- RPI methodology: https://microsoft.github.io/hve-core/docs/rpi/
-- Why RPI works: https://microsoft.github.io/hve-core/docs/rpi/why-rpi
-- Context engineering: https://microsoft.github.io/hve-core/docs/rpi/context-engineering
-- Task Researcher: https://microsoft.github.io/hve-core/docs/rpi/task-researcher
-- Task Planner: https://microsoft.github.io/hve-core/docs/rpi/task-planner
-- Task Implementor: https://microsoft.github.io/hve-core/docs/rpi/task-implementor
-- Using RPI together: https://microsoft.github.io/hve-core/docs/rpi/using-together
-- GitHub Backlog Manager: https://microsoft.github.io/hve-core/docs/agents/github-backlog/
-- Getting started: https://microsoft.github.io/hve-core/docs/getting-started/
-- Installation: https://microsoft.github.io/hve-core/docs/getting-started/install
-- Collections: https://microsoft.github.io/hve-core/docs/getting-started/collections
-- Architecture: https://microsoft.github.io/hve-core/docs/architecture/
-- Design Thinking: https://microsoft.github.io/hve-core/docs/design-thinking/
-- GitHub repo: https://github.com/microsoft/hve-core
+- HVE-Core home: <https://microsoft.github.io/hve-core/>
+- HVE-Core documentation: <https://microsoft.github.io/hve-core/docs/>
+- HVE Guide: <https://microsoft.github.io/hve-core/docs/hve-guide/>
+- RPI methodology: <https://microsoft.github.io/hve-core/docs/rpi/>
+- Why RPI works: <https://microsoft.github.io/hve-core/docs/rpi/why-rpi>
+- Context engineering: <https://microsoft.github.io/hve-core/docs/rpi/context-engineering>
+- Task Researcher: <https://microsoft.github.io/hve-core/docs/rpi/task-researcher>
+- Task Planner: <https://microsoft.github.io/hve-core/docs/rpi/task-planner>
+- Task Implementor: <https://microsoft.github.io/hve-core/docs/rpi/task-implementor>
+- Using RPI together: <https://microsoft.github.io/hve-core/docs/rpi/using-together>
+- GitHub Backlog Manager: <https://microsoft.github.io/hve-core/docs/agents/github-backlog/>
+- Getting started: <https://microsoft.github.io/hve-core/docs/getting-started/>
+- Installation: <https://microsoft.github.io/hve-core/docs/getting-started/install>
+- Collections: <https://microsoft.github.io/hve-core/docs/getting-started/collections>
+- Architecture: <https://microsoft.github.io/hve-core/docs/architecture/>
+- Design Thinking: <https://microsoft.github.io/hve-core/docs/design-thinking/>
+- GitHub repo: <https://github.com/microsoft/hve-core>
 - VS Code extension: `ise-hve-essentials.hve-core` (Marketplace)
 - HVE Foundations (L100): Viva Learning course
 - HVE and FDE Essentials (L200): Viva Learning course

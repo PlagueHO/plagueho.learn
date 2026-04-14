@@ -1741,7 +1741,7 @@ a.card-link p, a.card-link span { color: var(--theme-muted); }
   min-height: 3.8rem;
   box-sizing: border-box;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   flex-wrap: nowrap;
 }
 .principles-slide .iq-card-summary { font-size: 1.025rem; }
