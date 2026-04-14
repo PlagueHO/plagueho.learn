@@ -4,6 +4,10 @@ title: Presentation Title
 info: |
   ## Presentation Title
   A presentation by Daniel Scott-Raynsford
+tags:
+  - tag 1
+  - tag 2
+duration: 10
 class: text-center
 drawings:
   persist: false

@@ -11,6 +11,7 @@ tags:
   - Spec Kit
   - AI
   - Spec-Driven Development
+duration: 40
 class: text-center
 drawings:
   persist: false

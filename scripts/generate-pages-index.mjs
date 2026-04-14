@@ -214,6 +214,17 @@ const html = `<!DOCTYPE html>
       color: var(--text-secondary);
       font-size: 1.1rem;
     }
+    header .author-role {
+      font-size: 0.9rem;
+      margin-top: 0.25rem;
+    }
+    header a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    header a:hover {
+      text-decoration: underline;
+    }
 
     /* ---- Grid ---- */
     .grid {
@@ -346,7 +357,8 @@ const html = `<!DOCTYPE html>
 <body>
   <header>
     <h1>Presentations</h1>
-    <p>Daniel Scott-Raynsford (PlagueHO)</p>
+    <p><a href="https://danielscottraynsford.com/">Daniel Scott-Raynsford</a> (DSR)</p>
+    <p class="author-role">Sr Partner Solution Architect | Azure, AI & Apps | Enterprise Partner Solutions | Microsoft</p>
   </header>
   <div class="grid">
 ${cardsHtml}
