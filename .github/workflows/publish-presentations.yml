@@ -52,7 +52,7 @@ jobs:
           fi
 
       - name: Create GitHub release with presentation assets
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: '*.zip'
           fail_on_unmatched_files: true
