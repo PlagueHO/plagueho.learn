@@ -6,6 +6,13 @@ info: |
   A 40-minute session by Daniel Scott-Raynsford on how GitHub Copilot,
   skills, agentic workflows, subagents, squads, and prototype-first workflows changed
   the Agentic engineering operating model.
+tags:
+  - GitHub Copilot
+  - Agentic
+  - Workflows
+  - Skills
+  - Subagents
+duration: 40
 class: text-center
 drawings:
   persist: false

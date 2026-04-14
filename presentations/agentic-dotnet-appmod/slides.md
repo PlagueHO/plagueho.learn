@@ -6,6 +6,12 @@ info: |
   A 45-minute unplugged session by Daniel Scott-Raynsford on lessons learned
   from a week with the Microsoft .NET AppMod CAT team modernizing a 10M LOC,
   30-year-old application at scale.
+tags:
+  - .NET
+  - Agentic
+  - App Modernization
+  - CAT
+duration: 45
 class: text-center
 drawings:
   persist: false

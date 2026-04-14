@@ -6,6 +6,12 @@ info: |
   A 90-minute deep dive into disciplined AI-assisted engineering —
   from the why of HVE to hands-on RPI workflows and GitHub Backlog Manager.
   A presentation by Daniel Scott-Raynsford.
+tags:
+  - HVE-Core
+  - AI Engineering
+  - RPI
+  - GitHub
+duration: 90
 class: text-center
 drawings:
   persist: false
@@ -712,7 +718,7 @@ transition: fade-out
   <div class="slide-banner">
     <h1>When to Use RPI</h1>
   </div>
-  <div class="slide-body" style="flex-direction:column;align-items:stretch;">
+  <div class="slide-body" style="flex-direction:column;align-items:stretch;justify-content:flex-start;">
     <div class="scenario-banner problem-scenario-banner">
       <span>Match the tool to the complexity — not every task needs the full ceremony.</span>
     </div>
@@ -737,7 +743,7 @@ transition: fade-out
         </ul>
       </div>
     </div>
-    <div class="model-warning-callout" v-click>
+    <div class="model-warning-callout" v-click style="margin-top:auto;">
       <span class="model-warning-icon">💡</span>
       <span class="model-warning-text"><strong>Rule of thumb:</strong> <em>"If you need to understand something before implementing, use RPI."</em> — Start with <strong>rpi-agent</strong> (inline, lightweight); escalate to <strong>strict RPI</strong> (deep research, full audit trail) when complexity or team scope demands it.</span>
     </div>
@@ -760,15 +766,14 @@ transition: fade-out
 <div class="demo-shell">
   <div class="demo-icon">🔬</div>
   <h1 class="demo-title">Demo: RPI on a Real Security Fix</h1>
-  <p class="demo-subtitle">Use the full Research → Plan → Implement → Review cycle to add prompt injection protection to Marginalia's analysis flow</p>
+  <p class="demo-subtitle">Following the HVE-Core Getting Started journey to fix a prompt injection vulnerability in Marginalia</p>
 
   <div class="demo-badge">🎬 ~20 minutes</div>
 
   <div class="demo-checklist">
-    <div class="demo-item"><span class="check">▸</span> Task Researcher maps Marginalia's analysis flow and identifies injection points</div>
-    <div class="demo-item"><span class="check">▸</span> /clear → Task Planner creates a phased mitigation plan with research traceability</div>
-    <div class="demo-item"><span class="check">▸</span> /clear → Task Implementor updates prompts, sanitization, and validation layers</div>
-    <div class="demo-item"><span class="check">▸</span> /clear → Task Reviewer validates against research, build, and test results</div>
+    <div class="demo-item"><span class="check">▸</span> Step 1: First Interaction — verify HVE-Core works with the memory agent</div>
+    <div class="demo-item"><span class="check">▸</span> Step 2: First Research — standalone investigation of the vulnerability</div>
+    <div class="demo-item"><span class="check">▸</span> Step 3: Full RPI — Research → /clear → Plan → /clear → Implement → /clear → Review</div>
   </div>
 
   <p style="color: rgba(255,255,255,0.4); font-size: 0.75rem; margin-top: 0.8rem;">
@@ -777,12 +782,11 @@ transition: fade-out
 </div>
 
 <!--
-DEMO SCRIPT:
-We're fixing a real security issue in an existing app using the full RPI cycle.
-Watch for: (1) how the Task Researcher investigates the real codebase and external guidance,
-(2) the quality of the plan with line references back to research,
-(3) how the Implementor follows that plan across multiple layers,
-(4) Review checking the implementation against research and validation results.
+DEMO SCRIPT (see DEMO.md for full details):
+Following the HVE-Core Getting Started journey to fix a real security issue.
+Step 1: Verify HVE-Core with the memory agent (~2 min).
+Step 2: Standalone research to investigate the vulnerability (~3 min).
+Step 3: Full RPI cycle — Research → Plan → Implement → Review (~15 min).
 -->
 
 ---
@@ -790,7 +794,146 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     SLIDE 21 — DEMO 1: RESEARCH PHASE
+     DEMO 1: FIRST INTERACTION
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
+  <div class="slide-banner">
+    <h1>Demo 1 — First Interaction</h1>
+  </div>
+  <p class="slide-subtitle">Verify HVE-Core: Talk to the Memory Agent</p>
+</div>
+
+<div style="position:absolute;top:150px;left:50px;right:660px;bottom:90px;">
+<div class="code-card-title">Store Demo Context</div>
+<div class="code-panel-header">
+  <span class="code-panel-lang">Copilot Chat</span>
+  <span class="code-panel-file">VS Code → memory agent</span>
+</div>
+
+```text
+@memory Remember that I am a senior software
+engineer demonstrating HVE-Core's RPI workflow
+using the Marginalia application. The demo feature
+is adding prompt injection protection to the
+analysis pipeline.
+```
+
+</div>
+
+<div style="position:absolute;top:150px;left:660px;right:50px;bottom:90px;">
+<div class="code-card-title">Verify Memory Persists</div>
+<div class="code-panel-header">
+  <span class="code-panel-lang">Copilot Chat</span>
+  <span class="code-panel-file">VS Code → new thread</span>
+</div>
+
+```text
+  Explain what this repository does and how it helps someone in my role?
+```
+
+<div style="margin-top:1rem; font-size: 0.82rem; color: var(--theme-muted);">
+<strong>Expected:</strong> Response references your role and demo context — without you repeating it.<br><br>
+<strong>This proves:</strong> HVE-Core installed ✓ Agents respond ✓ Memory persists ✓ Context carries across sessions ✓
+</div>
+
+</div>
+
+<div style="position:absolute;left:50px;right:50px;bottom:30px;">
+  <div class="callout" style="font-size: 0.82rem; padding: 0.55rem 0.9rem;">
+    Agents produce <strong>artifacts</strong> — files that persist — not just chat messages. The memory agent is the simplest example. Same pattern scales to research docs, plans, and change logs.
+  </div>
+</div>
+
+<!--
+Step 1 of the Getting Started journey.
+Quick verification that HVE-Core is working.
+Show the audience that agents create real files in the workspace.
+Open the memory file in the file explorer to show the audience.
+-->
+
+---
+transition: fade-out
+---
+
+<!-- ═══════════════════════════════════════════════════════════
+     DEMO 1: FIRST RESEARCH
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
+  <div class="slide-banner">
+    <h1>Demo 1 — First Research</h1>
+  </div>
+  <p class="slide-subtitle">Investigate the Vulnerability Before Fixing It</p>
+</div>
+
+<div style="position:absolute;top:150px;left:50px;right:660px;bottom:90px;">
+<div class="code-card-title">Standalone Research</div>
+<div class="code-panel-header">
+  <span class="code-panel-lang">Copilot Chat</span>
+  <span class="code-panel-file">VS Code → Task Researcher</span>
+</div>
+
+```text
+/task-research Research the analysis functionality in
+this codebase. How does user-supplied text flow from
+the the API into LLM? Identify wher untrusted input
+could enter prompt construction.
+```
+
+</div>
+
+<div style="position:absolute;top:150px;left:660px;right:50px;bottom:90px;">
+<div class="code-card-title">Output → research.md</div>
+<div class="code-panel-header">
+  <span class="code-panel-lang">Markdown</span>
+  <span class="code-panel-file">.copilot-tracking/research/</span>
+</div>
+
+```markdown
+...
+User-supplied text flows into LLM prompts through two primary channels:
+
+* Analysis guidance channel:
+  * API request fields are normalized in AnalysisRequest and CombineGuidance, then interpolated directly into the system prompt.
+* Document content channel:
+  * Pasted/uploaded/stored paragraph text (including re-analysis merged user edits and prior model output) is inserted directly into user prompt bodies.
+
+Untrusted input can enter prompt construction at:
+
+* AnalysisRequest guidance fields and legacy aliases.
+* Paste and upload ingestion paths.
+* Stored paragraph reload paths.
+* Re-analysis merge paths (userSteeringInput and accepted proposedChange).
+
+No dedicated prompt-injection hardening layer currently sits between these sources and prompt assembly.
+```
+
+<div style="margin-top:0.5rem; font-size: 0.82rem; color: var(--theme-muted);">
+Every fact cited with <strong>file paths and line numbers</strong>. Not guessing — searching, reading, citing.
+</div>
+
+</div>
+
+<div style="position:absolute;left:50px;right:50px;bottom:30px;">
+  <div class="callout" style="font-size: 0.82rem; padding: 0.55rem 0.9rem;">
+    RPI separates <strong>investigation</strong> from <strong>implementation</strong>. Research produces a real file — not chat history that vanishes when you close the window.
+  </div>
+</div>
+
+<!--
+Step 2 of the Getting Started journey — standalone research before the full RPI cycle.
+Key point: the agent investigates rather than implements.
+Point out file references with line numbers — this is verified truth.
+Open the research.md artifact to show the audience.
+-->
+
+---
+transition: fade-out
+---
+
+<!-- ═══════════════════════════════════════════════════════════
+     DEMO 1: FULL RPI — RESEARCH PHASE
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
@@ -807,13 +950,18 @@ transition: fade-out
   <span class="code-panel-file">VS Code</span>
 </div>
 
-```bash
-@task-researcher Research how to add prompt injection protection to the
-Marginalia analysis process. The app sends user-uploaded document text and
-user guidance directly to Azure AI Foundry via FoundrySuggestionService.
-Research the existing flow, OWASP LLM01 guidance, Azure AI Content Safety
-Prompt Shields, delimiter-based isolation, and recommend ONE balanced
-approach for this app.
+```text
+/task-research Research how to add prompt injection
+protection to Marginalia's analysis process.
+BuildSystemPrompt() and BuildChunkUserPrompt() embed
+untrusted input without sanitization.
+
+Research:
+1. Existing analysis flow in this codebase
+2. OWASP LLM Top 10 (LLM01) guidance
+3. Azure AI Content Safety Prompt Shields
+4. Delimiter-based isolation patterns
+5. Recommend ONE balanced approach for this app
 ```
 
 </div>
@@ -842,14 +990,16 @@ approach for this app.
 
 <div style="position:absolute;left:50px;right:50px;bottom:30px;">
   <div class="callout" style="font-size: 0.82rem; padding: 0.55rem 0.9rem;">
-    The researcher works <strong>autonomously for 20-60 minutes</strong> — investigating, documenting with evidence, and recommending ONE approach per scenario.
+    Task Researcher works <strong>autonomously for 2-5 minutes</strong> — investigating the codebase and external guidance (via MCP servers if configured), documenting with evidence, and recommending ONE approach.
   </div>
 </div>
 
 <!--
-LIVE DEMO: Let the audience see the researcher work.
-Point out specific line references and file citations.
+LIVE DEMO (Step 3, Phase 1): Let the audience see the researcher work.
+This is the full RPI research — broader than the First Research standalone exercise.
+Point out specific line references, file citations, and MCP-powered external research.
 Show the research.md artifact — this persists long after the chat ends.
+See DEMO.md "Phase 1: Research" for detailed prompts and expected output.
 -->
 
 ---
@@ -874,12 +1024,18 @@ transition: fade-out
   <span class="code-panel-file">VS Code (after /clear)</span>
 </div>
 
-```bash
-# Step 1: Clear context
+```text
 /clear
+@task-planner Create an implementation plan for
+adding prompt injection protection to Marginalia.
 
-# Step 2: Switch to Task Planner
-@task-planner
+Requirements from research:
+- Input sanitization for user guidance and doc text
+- Delimiter isolation in BuildSystemPrompt()
+- Output validation in ParseSuggestionsFromContent()
+- Anti-injection preamble in system prompt
+- Unit tests for all new components
+- DI registration in Program.cs
 ```
 
 </div>
@@ -914,9 +1070,10 @@ transition: fade-out
 </div>
 
 <!--
-LIVE DEMO: Point out that the planner validates research exists.
+LIVE DEMO (Step 3, Phase 2): Point out that the planner validates research exists.
 Show the checkbox structure — this is what the Implementor follows.
-The line references are the traceability chain.
+The line references back to research.md are the traceability chain: Plan → Research → Source.
+See DEMO.md "Phase 2: Plan" for detailed prompts and expected output.
 -->
 
 ---
@@ -941,16 +1098,17 @@ transition: fade-out
   <span class="code-panel-file">VS Code (after /clear)</span>
 </div>
 
-```bash
-# Clear context again
+```text
 /clear
-
-# Switch to Task Implementor
-@task-implementor
+@task-implementor Implement the plan for adding
+prompt injection protection to Marginalia.
+Follow the phased plan in
+.copilot-tracking/plans/plan.instructions.md.
 
 # Implementor reads plan phase by phase
-# Pauses at phase stops (phaseStop=true)
+# Pauses at phase stops for review
 # Tracks all changes in changes.md
+# Confirm each tool call when prompted
 ```
 
 </div>
@@ -985,9 +1143,11 @@ transition: fade-out
 </div>
 
 <!--
-LIVE DEMO: Key moment — the Implementor follows the plan rather than improvising.
+LIVE DEMO (Step 3, Phase 3): Key moment — the Implementor follows the plan rather than improvising.
 Point out the changes log and the multi-file nature of the fix.
-The implementation should match the mitigation patterns identified in research, not invent new ones.
+The implementation matches the mitigation patterns identified in research, not new inventions.
+Confirm each tool call when prompted.
+See DEMO.md "Phase 3: Implement" for detailed prompts and expected output.
 -->
 
 ---
@@ -1012,16 +1172,14 @@ transition: fade-out
   <span class="code-panel-file">VS Code (after /clear)</span>
 </div>
 
-```bash
-# Clear context one final time
+```text
 /clear
-
-# Switch to Task Reviewer
-@task-reviewer
+@task-reviewer Review the implementation of prompt
+injection protection for Marginalia.
 
 # Reviewer validates against:
-# - Research findings
-# - Plan specifications
+# - Research findings (research.md)
+# - Plan specifications (plan.instructions.md)
 # - Coding conventions
 # - Lint/build/test results
 ```
@@ -1062,8 +1220,10 @@ Status: ✅ COMPLETE
 </div>
 
 <!--
-LIVE DEMO: Show the reviewer checking against research findings.
+LIVE DEMO (Step 3, Phase 4): Show the reviewer checking against research findings.
 The handoff buttons make it easy to loop back if needed.
+Emphasize: review validates against actual research, not just "does it compile".
+See DEMO.md "Phase 4: Review" for detailed prompts and expected output.
 -->
 
 ---

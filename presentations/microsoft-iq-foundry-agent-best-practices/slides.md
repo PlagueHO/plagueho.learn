@@ -6,6 +6,13 @@ info: |
   A 20-minute session by Daniel Scott-Raynsford on the shift from chat to
   tool-using agents, the role of Work IQ, Fabric IQ and Foundry IQ intelligence layers, and why
   Foundry is the governed runtime for enterprise agent systems.
+tags:
+  - Microsoft IQ
+  - Foundry
+  - Agents
+  - Work IQ
+  - Fabric IQ
+duration: 20
 class: text-center
 transition: slide-left
 mdc: true

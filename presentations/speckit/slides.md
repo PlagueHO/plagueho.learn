@@ -4,6 +4,10 @@ title: "Spec-Driven Development with AI: Spec Kit"
 info: |
   ## Spec-Driven Development with AI: Spec Kit
   A presentation by Daniel Scott-Raynsford
+tags:
+  - Spec Kit
+  - AI
+  - Spec-Driven Development
 class: text-center
 drawings:
   persist: false
