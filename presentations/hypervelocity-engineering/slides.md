@@ -369,7 +369,7 @@ transition: fade-out
       </div>
       <div class="iq-pillar iq-fabric" v-click>
         <div class="iq-header-wrap"><span class="iq-header-pill iq-header-fabric"><span class="iq-header-icon">✅</span><span>Validate and Verify</span></span></div>
-        <p class="iq-card-summary">Don't assume AI output is correct. Check against reality. This is why the Task Reviewer exists as a separate agent.</p>
+        <p class="iq-card-summary">Don't assume AI output is correct. Check against reality. This is why the <a href="https://microsoft.github.io/hve-core/docs/rpi/task-reviewer" target="_blank">Task Reviewer</a> exists as a separate agent.</p>
       </div>
       <div class="iq-pillar iq-foundry" v-click>
         <div class="iq-header-wrap"><span class="iq-header-pill iq-header-foundry"><span class="iq-header-icon">💎</span><span>Prioritize Business Value</span></span></div>
@@ -565,7 +565,7 @@ transition: fade-out
       <div class="comparison-col after" v-click>
         <span class="comparison-label after">With RPI</span>
         <ul class="dense-list">
-          <li>Task Researcher finds: <em>"12 existing modules use <code>resource_prefix</code>, not <code>prefix</code>. See <code>variables.tf#L47</code>."</em></li>
+          <li><a href="https://microsoft.github.io/hve-core/docs/rpi/task-researcher" target="_blank">Task Researcher</a> finds: <em>"12 existing modules use <code>resource_prefix</code>, not <code>prefix</code>. See <code>variables.tf#L47</code>."</em></li>
           <li>Uses verified existing patterns</li>
           <li>Every decision traced to files and line numbers</li>
           <li>Rare rework</li>
@@ -606,19 +606,19 @@ transition: fade-out
     <div style="display: flex; gap: 0.5rem; align-items: stretch;">
       <div class="card" style="flex: 1;">
         <h3><span class="phase-icon">🔍</span><a href="https://microsoft.github.io/hve-core/docs/rpi/task-researcher" target="_blank" style="color: inherit; text-decoration: underline;"><span class="phase-label">Research</span></a></h3>
-        <p style="font-size:0.78rem;">Task Researcher investigates codebase, APIs, docs. Documents with evidence. ONE recommended approach.<br><code>→ research.md</code></p>
+        <p style="font-size:0.78rem;"><a href="https://microsoft.github.io/hve-core/docs/rpi/task-researcher" target="_blank">Task Researcher</a> investigates codebase, APIs, docs. Documents with evidence. ONE recommended approach.<br><code>→ research.md</code></p>
       </div>
       <div class="card" style="flex: 1;" v-click="2">
         <h3><span class="phase-icon">📋</span><a href="https://microsoft.github.io/hve-core/docs/rpi/task-planner" target="_blank" style="color: inherit; text-decoration: underline;"><span class="phase-label">Plan</span></a></h3>
-        <p style="font-size:0.78rem;">Task Planner creates phased checklist linked to research with line numbers.<br><code>→ plan.instructions.md + details.md</code></p>
+        <p style="font-size:0.78rem;"><a href="https://microsoft.github.io/hve-core/docs/rpi/task-planner" target="_blank">Task Planner</a> creates phased checklist linked to research with line numbers.<br><code>→ plan.instructions.md + details.md</code></p>
       </div>
       <div class="card" style="flex: 1;" v-click="4">
         <h3><span class="phase-icon">⚡</span><a href="https://microsoft.github.io/hve-core/docs/rpi/task-implementor" target="_blank" style="color: inherit; text-decoration: underline;"><span class="phase-label">Implement</span></a></h3>
-        <p style="font-size:0.78rem;">Task Implementor executes plan task by task. Tracks changes. Stop controls for review.<br><code>→ code + changes.md</code></p>
+        <p style="font-size:0.78rem;"><a href="https://microsoft.github.io/hve-core/docs/rpi/task-implementor" target="_blank">Task Implementor</a> executes plan task by task. Tracks changes. Stop controls for review.<br><code>→ code + changes.md</code></p>
       </div>
       <div class="card" style="flex: 1;" v-click="6">
         <h3><span class="phase-icon">✅</span><a href="https://microsoft.github.io/hve-core/docs/rpi/task-reviewer" target="_blank" style="color: inherit; text-decoration: underline;"><span class="phase-label">Review</span></a></h3>
-        <p style="font-size:0.78rem;">Task Reviewer validates against specs. Runs lint/build/test. Identifies follow-up work.<br><code>→ review.md</code></p>
+        <p style="font-size:0.78rem;"><a href="https://microsoft.github.io/hve-core/docs/rpi/task-reviewer" target="_blank">Task Reviewer</a> validates against specs. Runs lint/build/test. Identifies follow-up work.<br><code>→ review.md</code></p>
       </div>
     </div>
     <div class="model-warning-callout" v-click="7">
@@ -772,8 +772,9 @@ transition: fade-out
 
   <div class="demo-checklist">
     <div class="demo-item"><span class="check">▸</span> Step 1: First Interaction — verify HVE-Core works with the memory agent</div>
-    <div class="demo-item"><span class="check">▸</span> Step 2: First Research — standalone investigation of the vulnerability</div>
-    <div class="demo-item"><span class="check">▸</span> Step 3: Full RPI — Research → /clear → Plan → /clear → Implement → /clear → Review</div>
+    <div class="demo-item"><span class="check">▸</span> Step 2: Initial research — first research to investigate the vulnerability</div>
+    <div class="demo-item"><span class="check">▸</span> Step 3: Deeper research — deeper research to perform deeper investigation of issue</div>
+    <div class="demo-item"><span class="check">▸</span> Step 4: Full RPI — Research → /clear → Plan → /clear → Implement → /clear → Review</div>
   </div>
 
   <p style="color: rgba(255,255,255,0.4); font-size: 0.75rem; margin-top: 0.8rem;">
@@ -785,8 +786,9 @@ transition: fade-out
 DEMO SCRIPT (see DEMO.md for full details):
 Following the HVE-Core Getting Started journey to fix a real security issue.
 Step 1: Verify HVE-Core with the memory agent (~2 min).
-Step 2: Standalone research to investigate the vulnerability (~3 min).
-Step 3: Full RPI cycle — Research → Plan → Implement → Review (~15 min).
+Step 2: First research to investigate the vulnerability (~3 min).
+Step 3: Deeper research to perform deeper investigation of issue (~2 min).
+Step 4: Full RPI cycle — Research → Plan → Implement → Review (~15 min).
 -->
 
 ---
@@ -862,16 +864,16 @@ transition: fade-out
 
 <div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
   <div class="slide-banner">
-    <h1>Demo 1 — First Research</h1>
+    <h1>Demo 1 — Initial Research</h1>
   </div>
   <p class="slide-subtitle">Investigate the Vulnerability Before Fixing It</p>
 </div>
 
 <div style="position:absolute;top:150px;left:50px;right:660px;bottom:90px;">
-<div class="code-card-title">Standalone Research</div>
+<div class="code-card-title">Invoke <a href="https://microsoft.github.io/hve-core/docs/rpi/task-researcher" target="_blank">Task Researcher</a> for Initial Research</div>
 <div class="code-panel-header">
   <span class="code-panel-lang">Copilot Chat</span>
-  <span class="code-panel-file">VS Code → Task Researcher</span>
+  <span class="code-panel-file">VS Code → <a href="https://microsoft.github.io/hve-core/docs/rpi/task-researcher" target="_blank">Task Researcher</a></span>
 </div>
 
 ```text
@@ -933,18 +935,18 @@ transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
-     DEMO 1: FULL RPI — RESEARCH PHASE
+     DEMO 1: FULL RPI — DEEPER RESEARCH
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
   <div class="slide-banner">
-    <h1>Demo 1 — Research Phase</h1>
+    <h1>Demo 1 — Deeper Research</h1>
   </div>
-  <p class="slide-subtitle">Task Researcher: Investigating, Not Guessing</p>
+  <p class="slide-subtitle"><a href="https://microsoft.github.io/hve-core/docs/rpi/task-researcher" target="_blank">Task Researcher</a>: Investigating, Not Guessing</p>
 </div>
 
 <div style="position:absolute;top:150px;left:50px;right:660px;bottom:90px;">
-<div class="code-card-title">Invoke Task Researcher</div>
+<div class="code-card-title">Invoke <a href="https://microsoft.github.io/hve-core/docs/rpi/task-researcher" target="_blank">Task Researcher</a> for Deeper Research</div>
 <div class="code-panel-header">
   <span class="code-panel-lang">Copilot Chat</span>
   <span class="code-panel-file">VS Code</span>
@@ -952,9 +954,8 @@ transition: fade-out
 
 ```text
 /task-research Research how to add prompt injection
-protection to Marginalia's analysis process.
-BuildSystemPrompt() and BuildChunkUserPrompt() embed
-untrusted input without sanitization.
+protection to Marginalia's analysis process as determined
+by previous research.
 
 Research:
 1. Existing analysis flow in this codebase
@@ -974,29 +975,33 @@ Research:
 </div>
 
 ```markdown
-## Recommended Approach
-- Input sanitization for known injection patterns
-- Delimiter-based isolation around untrusted content
-- Output validation for system prompt leakage
-- Prompt Shields as an optional future enhancement
+**Requirements:**
 
-## Evidence
-- FoundrySuggestionService builds system + user prompts
-- Structured Outputs constrain JSON shape, not field content
-- User guidance and paragraph text are both direct injection paths
+* Close OWASP LLM01 Control gaps 1, 3, and 6 in the first increment.
+* Preserve existing API contracts and frontend compatibility.
+* Keep implementation localized and testable.
+* Provide a clear path for adding Azure Prompt Shields as a second increment.
+
+**Preferred Approach: Multi-Layer Prompt Hardening (First Increment)**
+
+This approach combines three defense layers in a single implementation increment:
+
+1. **Prompt template hardening** — Security meta-instructions + XML delimiter isolation in `FoundrySuggestionService`.
+2. **User guidance relocation** — Move untrusted guidance from system prompt to user message with `<untrusted_user_guidance>` tags.
+3. **Input boundary constraints** — Per-field length limits and control character normalization at the controller boundary.
 ```
 
 </div>
 
 <div style="position:absolute;left:50px;right:50px;bottom:30px;">
   <div class="callout" style="font-size: 0.82rem; padding: 0.55rem 0.9rem;">
-    Task Researcher works <strong>autonomously for 2-5 minutes</strong> — investigating the codebase and external guidance (via MCP servers if configured), documenting with evidence, and recommending ONE approach.
+    <a href="https://microsoft.github.io/hve-core/docs/rpi/task-researcher" target="_blank">Task Researcher</a> works <strong>autonomously for 2-5 minutes</strong> — investigating the codebase and external guidance (via MCP servers if configured), documenting with evidence, and recommending ONE approach.
   </div>
 </div>
 
 <!--
 LIVE DEMO (Step 3, Phase 1): Let the audience see the researcher work.
-This is the full RPI research — broader than the First Research standalone exercise.
+This is the full RPI research — broader than the Initial Research standalone exercise.
 Point out specific line references, file citations, and MCP-powered external research.
 Show the research.md artifact — this persists long after the chat ends.
 See DEMO.md "Phase 1: Research" for detailed prompts and expected output.
@@ -1014,11 +1019,11 @@ transition: fade-out
   <div class="slide-banner">
     <h1>Demo 1 — Plan Phase</h1>
   </div>
-  <p class="slide-subtitle">Task Planner: Sequencing, Not Improvising</p>
+  <p class="slide-subtitle"><a href="https://microsoft.github.io/hve-core/docs/rpi/task-planner" target="_blank">Task Planner</a>: Sequencing, Not Improvising</p>
 </div>
 
 <div style="position:absolute;top:150px;left:50px;right:660px;bottom:90px;">
-<div class="code-card-title">Invoke Task Planner</div>
+<div class="code-card-title">Invoke <a href="https://microsoft.github.io/hve-core/docs/rpi/task-planner" target="_blank">Task Planner</a></div>
 <div class="code-panel-header">
   <span class="code-panel-lang">Copilot Chat</span>
   <span class="code-panel-file">VS Code (after /clear)</span>
@@ -1026,16 +1031,20 @@ transition: fade-out
 
 ```text
 /clear
-@task-planner Create an implementation plan for
-adding prompt injection protection to Marginalia.
+```
 
-Requirements from research:
-- Input sanitization for user guidance and doc text
-- Delimiter isolation in BuildSystemPrompt()
-- Output validation in ParseSuggestionsFromContent()
-- Anti-injection preamble in system prompt
-- Unit tests for all new components
-- DI registration in Program.cs
+<div style="margin-top:0.6rem; font-size: 0.82rem; color: var(--theme-muted);">
+Open <code>research.md</code> in the editor — Task Planner auto-detects the research.
+</div>
+
+```text
+/task-plan
+Focus on:
+- The multi-layer prompt hardening approach
+  recommended in the research
+- Phased rollout: template hardening first,
+  then guidance relocation, then input constraints
+- Include unit tests in each phase
 ```
 
 </div>
@@ -1048,24 +1057,26 @@ Requirements from research:
 </div>
 
 ```markdown
-## Phase 1: Input sanitization layer
-- [ ] Create IPromptSanitizer interface
-- [ ] Implement PromptSanitizer and register in DI
+## Implementation Checklist
 
-## Phase 2: Prompt isolation
-- [ ] Update BuildSystemPrompt() with anti-injection preamble
-- [ ] Wrap paragraph content in clear delimiters
+### [ ] Implementation Phase 1: Prompt Template Hardening
 
-## Phase 3: Output validation
-- [ ] Detect suspicious leakage in rationale/proposedChange
-- [ ] Add tests for sanitizer and prompt isolation
+<!-- parallelizable: false -->
+
+* [ ] Step 1.1: Create PromptHardeningOptions configuration class
+  * Details: .copilot-tracking/details/2026-04-15/prompt-injection-protection-details.md (Lines 14-44)
+* [ ] Step 1.2: Register PromptHardeningOptions in Program.cs
+  * Details: .copilot-tracking/details/2026-04-15/prompt-injection-protection-details.md (Lines 46-68)
+* [ ] Step 1.3: Harden BuildSystemPrompt — add security policy, remove userGuidance parameter
+  * Details: .copilot-tracking/details/2026-04-15/prompt-injection-protection-details.md (Lines 70-131)
+...
 ```
 
 </div>
 
 <div style="position:absolute;left:50px;right:50px;bottom:30px;">
   <div class="callout" style="font-size: 0.82rem; padding: 0.55rem 0.9rem;">
-    The planner <strong>validates research exists</strong> before proceeding — it won't plan without evidence. Line references create the traceability chain: Plan → Research → Source.
+    The planner <strong>auto-detects research</strong> from the open editor tab and <strong>validates it exists</strong> before proceeding — it won't plan without evidence. Line references create the traceability chain: Plan → Research → Source.
   </div>
 </div>
 
@@ -1088,11 +1099,11 @@ transition: fade-out
   <div class="slide-banner">
     <h1>Demo 1 — Implement Phase</h1>
   </div>
-  <p class="slide-subtitle">Task Implementor: Following, Not Inventing</p>
+  <p class="slide-subtitle"><a href="https://microsoft.github.io/hve-core/docs/rpi/task-implementor" target="_blank">Task Implementor</a>: Following, Not Inventing</p>
 </div>
 
 <div style="position:absolute;top:150px;left:50px;right:660px;bottom:90px;">
-<div class="code-card-title">Invoke Task Implementor</div>
+<div class="code-card-title">Invoke <a href="https://microsoft.github.io/hve-core/docs/rpi/task-implementor" target="_blank">Task Implementor</a></div>
 <div class="code-panel-header">
   <span class="code-panel-lang">Copilot Chat</span>
   <span class="code-panel-file">VS Code (after /clear)</span>
@@ -1100,15 +1111,14 @@ transition: fade-out
 
 ```text
 /clear
-@task-implementor Implement the plan for adding
-prompt injection protection to Marginalia.
-Follow the phased plan in
-.copilot-tracking/plans/plan.instructions.md.
+```
 
-# Implementor reads plan phase by phase
-# Pauses at phase stops for review
-# Tracks all changes in changes.md
-# Confirm each tool call when prompted
+<div style="margin-top:0.6rem; font-size: 0.82rem; color: var(--theme-muted);">
+Open <code>plan.instructions.md</code> in the editor — Task Implementor auto-detects the plan.
+</div>
+
+```text
+/task-implement
 ```
 
 </div>
@@ -1121,24 +1131,29 @@ Follow the phased plan in
 </div>
 
 ```markdown
-## Files changed
-- src/Domain/Interfaces/IPromptSanitizer.cs
-- src/Infrastructure/Services/PromptSanitizer.cs
-- src/Infrastructure/Services/FoundrySuggestionService.cs
-- src/Api/Program.cs
-- tests/unit/Services/PromptSanitizerTests.cs
+# Release Changes: Prompt Injection Protection for Marginalia Analysis Pipeline
 
-## Result
-- User guidance sanitized before prompt construction
-- Paragraph text isolated inside explicit delimiters
-- Suspicious model output filtered before returning suggestions
+**Related Plan**: prompt-injection-protection-plan.instructions.md
+**Implementation Date**: 2026-04-15
+
+## Summary
+
+Harden the Marginalia editorial analysis pipeline against OWASP LLM01 prompt injection by adding security meta-instructions to system prompts, XML delimiter isolation for untrusted content, relocating user guidance from system to user messages, and enforcing input boundary constraints at the controller layer.
+
+## Changes
+
+### Added
+
+* marginalia-service/src/Domain/Configuration/PromptHardeningOptions.cs - New options class for prompt hardening configuration (MaxGuidanceLength default 2000)
+* marginalia-service/tests/unit/Infrastructure/Services/FoundrySuggestionServicePromptHardeningTests.cs - 12 unit tests for prompt hardening (security policy, XML delimiter isolation, adversarial wrapping)
+* marginalia-service/tests/unit/Api/Controllers/DocumentsControllerGuidanceValidationTests.cs - 5 unit tests for guidance length validation
 ```
 
 </div>
 
 <div style="position:absolute;left:50px;right:50px;bottom:30px;">
   <div class="callout" style="font-size: 0.82rem; padding: 0.55rem 0.9rem;">
-    The Implementor follows the plan <strong>systematically</strong> — no improvisation. Every change is tracked in <code>changes.md</code>. Phase stops provide governance checkpoints.
+    The Implementor <strong>auto-detects the plan</strong> from the open editor tab and follows it <strong>systematically</strong> — no improvisation. Every change is tracked in <code>changes.md</code>. Phase stops provide governance checkpoints.
   </div>
 </div>
 
@@ -1162,11 +1177,11 @@ transition: fade-out
   <div class="slide-banner">
     <h1>Demo 1 — Review Phase</h1>
   </div>
-  <p class="slide-subtitle">Task Reviewer: Validating, Not Assuming</p>
+  <p class="slide-subtitle"><a href="https://microsoft.github.io/hve-core/docs/rpi/task-reviewer" target="_blank">Task Reviewer</a>: Validating, Not Assuming</p>
 </div>
 
 <div style="position:absolute;top:150px;left:50px;right:660px;bottom:90px;">
-<div class="code-card-title">Invoke Task Reviewer</div>
+<div class="code-card-title">Invoke <a href="https://microsoft.github.io/hve-core/docs/rpi/task-reviewer" target="_blank">Task Reviewer</a></div>
 <div class="code-panel-header">
   <span class="code-panel-lang">Copilot Chat</span>
   <span class="code-panel-file">VS Code (after /clear)</span>
@@ -1174,14 +1189,16 @@ transition: fade-out
 
 ```text
 /clear
-@task-reviewer Review the implementation of prompt
-injection protection for Marginalia.
+```
 
-# Reviewer validates against:
-# - Research findings (research.md)
-# - Plan specifications (plan.instructions.md)
-# - Coding conventions
-# - Lint/build/test results
+<div style="margin-top:0.6rem; font-size: 0.82rem; color: var(--theme-muted);">
+Task Reviewer auto-locates research, plan, and changes artifacts.
+</div>
+
+```text
+/task-review
+Review the prompt injection protection
+implementation completed today.
 ```
 
 </div>
@@ -1190,32 +1207,35 @@ injection protection for Marginalia.
 <div class="code-card-title">Output → review.md</div>
 <div class="code-panel-header">
   <span class="code-panel-lang">Markdown</span>
-  <span class="code-panel-file">.copilot-tracking/changes/</span>
+  <span class="code-panel-file">.copilot-tracking/reviews/</span>
 </div>
 
 ```markdown
-## Review Summary
-Status: ✅ COMPLETE
+## Overall Status
 
-## Findings
-- [✅] Input sanitizer implemented per research
-- [✅] Prompt isolation added to system and user prompts
-- [✅] Output validation added for suspicious leakage
-- [⚠️] Prompt Shields remains a follow-up enhancement
+✅ **Complete** — All plan items verified. No critical or major findings introduced by this change.
 
-## Iteration Path
-→ Complete — ready for PR
+## Severity Counts
 
-## Handoff Options
-📋 Create follow-up plan for Prompt Shields integration
-⚡ Prepare PR summary
+| Severity | Count | Notes |
+|---|---|---|
+| Critical | 0 | |
+| Major | 1 | Pre-existing (not introduced by this change) |
+| Minor | 8 | 6 from quality review, 2 from RPI validation |
+
+## RPI Validation Findings
+
+### Phase 1: Prompt Template Hardening — ✅ Passed
+
+All 6 steps verified. Key outcomes:
+...
 ```
 
 </div>
 
 <div style="position:absolute;left:50px;right:50px;bottom:30px;">
   <div class="callout" style="font-size: 0.82rem; padding: 0.55rem 0.9rem;">
-    The Review phase checks against <strong>actual research findings</strong> — not just "does it work" but "does it match what we learned." Handoff buttons make iteration loops seamless.
+    The Reviewer <strong>auto-locates</strong> research, plan, and changes artifacts — then checks against <strong>actual research findings</strong>, not just "does it work" but "does it match what we learned." Handoff buttons make iteration loops seamless.
   </div>
 </div>
 
@@ -1500,15 +1520,15 @@ transition: fade-out
     <div style="display: flex; gap: 0.65rem; align-items: stretch;">
       <div class="card" style="flex: 1;" v-click>
         <h3>Exit 1 — After Method 3</h3>
-        <p style="font-size:0.78rem;">Input Synthesis → problem statement → Task Researcher</p>
+        <p style="font-size:0.78rem;">Input Synthesis → problem statement → <a href="https://microsoft.github.io/hve-core/docs/rpi/task-researcher" target="_blank">Task Researcher</a></p>
       </div>
       <div class="card" style="flex: 1;" v-click>
         <h3>Exit 2 — After Method 6</h3>
-        <p style="font-size:0.78rem;">Lo-Fi Prototypes → validated concept → Task Researcher</p>
+        <p style="font-size:0.78rem;">Lo-Fi Prototypes → validated concept → <a href="https://microsoft.github.io/hve-core/docs/rpi/task-researcher" target="_blank">Task Researcher</a></p>
       </div>
       <div class="card" style="flex: 1;" v-click>
         <h3>Exit 3 — After Method 9</h3>
-        <p style="font-size:0.78rem;">Iteration at Scale → implementation spec → Task Researcher</p>
+        <p style="font-size:0.78rem;">Iteration at Scale → implementation spec → <a href="https://microsoft.github.io/hve-core/docs/rpi/task-researcher" target="_blank">Task Researcher</a></p>
       </div>
     </div>
     <div class="callout" style="text-align:center;" v-click>
