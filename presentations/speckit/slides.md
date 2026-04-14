@@ -3,7 +3,11 @@ theme: default
 title: "Spec-Driven Development with AI: Spec Kit"
 info: |
   ## Spec-Driven Development with AI: Spec Kit
-  A presentation by Daniel Scott-Raynsford
+  A session on Spec-Driven Development (SDD) and the
+  open-source Spec Kit toolkit. Learn why shifting focus from code to executable
+  specifications produces better software faster, how Spec Kit commands guide you
+  from constitution through implementation, and see a live demo of the full
+  SDD lifecycle in action.
 tags:
   - Spec Kit
   - AI
