@@ -29,7 +29,7 @@ canvasHeight: 720
 <div class="hero-shell">
   <div class="hero-qr-block">
     <img src="./images/presentation-qr-code.png" class="hero-qr" alt="Presentation QR code" />
-    <a href="https://github.com/PlagueHO/plagueho.learn" target="_blank" class="hero-qr-url">github.com/PlagueHO/plagueho.learn</a>
+    <a href="https://danielscottraynsford.com/plagueho.learn/agentic-development-evolution" target="_blank" class="hero-qr-url">danielscottraynsford.com/plagueho.learn/agentic-development-evolution</a>
   </div>
   <p class="eyebrow">GitHub Copilot · Skills · SpecKit · Squads · Hypervelocity Engineering</p>
   <h1 class="hero-heading">Agentic<br>Development<br>Evolution</h1>
