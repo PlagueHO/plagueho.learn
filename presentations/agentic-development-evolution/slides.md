@@ -221,10 +221,10 @@ transition: fade-out
           <span class="pyramid-name">Instructions</span>
           <span class="pyramid-desc">Always-on repo/path conventions</span>
         </a>
-        <a class="pyramid-layer pyramid-layer-faded" href="https://code.visualstudio.com/docs/copilot/customization/prompt-files" target="_blank" style="margin: 0 0.5rem; background: linear-gradient(90deg, #114D8B, #1a5ea8); text-decoration: none; cursor: pointer;">
+        <a class="pyramid-layer pyramid-layer-faded" href="https://code.visualstudio.com/docs/copilot/customization/prompt-files" target="_blank" style="margin: 0 0.5rem; background: linear-gradient(90deg, #114D8B, #1a5ea8); text-decoration: none; cursor: pointer; position: relative;">
           <span class="pyramid-num">2</span>
           <span class="pyramid-name">Prompts</span>
-          <span class="pyramid-desc">Reusable task templates</span>
+          <span class="pyramid-desc">Reusable task templates — <span style="color: #f97316; font-weight: 700;">⚠️ Use Skills instead</span></span>
         </a>
         <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/mcp-servers" target="_blank" style="margin: 0 1.1rem; background: linear-gradient(90deg, #085f92, #0d83c0); text-decoration: none; cursor: pointer;">
           <span class="pyramid-num">3</span>
