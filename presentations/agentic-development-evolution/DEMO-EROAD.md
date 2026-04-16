@@ -87,7 +87,7 @@ The SKILL.md should include:
 After the skill is generated, run:
 
 ```text
-/troubleshoot why wasn't the skill-creator skill activated? How do I improve the skill-creator skill so that it more reliably activates?
+/troubleshoot why wasn't the skill-creator skill activated? Improve the skill-creator skill so that it more reliably activates based on this info.
 ```
 
 Walk through the JSONL event tree — show discovery, tool calls, and LLM
@@ -148,9 +148,7 @@ How do we measure impact during the hackathon demo?
 What's in for the 2-day sprint vs. future work?
 
 ## Project Idea
-Use this idea: "AI-Powered Fleet Safety Coach — a real-time driver coaching
-system that uses dashcam video analysis and telematics data to provide
-personalized safety recommendations and gamified safety scores."
+Use this idea: "Smart Dispatch Agent: Agentic AI that handles dispatch decisions — assigns drivers to jobs based on proximity, skill, HOS remaining, and vehicle capability. Learns dispatcher preferences."
 
 Generate the full PRD, then generate 6 GitHub Issues from it with labels
 and acceptance criteria.
@@ -164,32 +162,6 @@ and acceptance criteria.
 
 Save the generated PRD as `HACKATHON-PRD.md` in the demo repo — it will
 be used in Demo 2 and Demo 3.
-
----
-
-## 10 Hackathon Ideas for EROAD Teams
-
-These are AI-powered project ideas aligned to EROAD's fleet management
-business. Present these to the audience as inspiration:
-
-| # | Project Name | Description | AI Technology |
-|---|-------------|-------------|---------------|
-| 1 | **AI Fleet Safety Coach** | Real-time driver coaching using dashcam video + telematics. Personalized safety scores, gamified leaderboards, and proactive alerts before incidents happen. | Azure OpenAI GPT-4o + Azure AI Vision + EROAD dashcam feeds |
-| 2 | **Predictive Maintenance Oracle** | Analyze engine telemetry patterns from CoreHub to predict breakdowns before they happen. Auto-generate maintenance tickets with severity and cost estimates. | Azure ML anomaly detection + EROAD engine telemetry data |
-| 3 | **Smart Route Optimizer** | AI-powered route planning that factors in real-time traffic, fuel costs, weight restrictions, driver HOS limits, and delivery windows. Learns from historical trip data. | Azure OpenAI + Azure Maps + EROAD GPS/trip history |
-| 4 | **Cold Chain Guardian** | Intelligent reefer monitoring that predicts temperature excursions before they happen, auto-adjusts set points, and generates compliance-ready audit trails. | Azure Stream Analytics + Azure OpenAI + EROAD temp sensors |
-| 5 | **Natural Language Fleet Query** | "How many trucks were idle for more than 30 minutes in Auckland last week?" — a conversational interface over EROAD's billion data points using RAG. | Azure OpenAI + Azure AI Search + EROAD data lake |
-| 6 | **Automated Compliance Copilot** | AI assistant that monitors ELD data, flags potential HOS violations before they occur, auto-generates IFTA/IRP/WMT reports, and suggests corrective actions. | Azure OpenAI + EROAD ELD/compliance data |
-| 7 | **Video Incident Analyzer** | Auto-detect and classify safety events from dashcam footage (harsh braking, distracted driving, near-misses). Generate coaching summaries without manual review. | Azure AI Vision + Azure OpenAI + EROAD video telematics |
-| 8 | **Fleet Carbon Intelligence** | AI dashboard that tracks fleet emissions, models "what-if" scenarios for EV transitions, and generates sustainability reports aligned to ESG frameworks. | Azure OpenAI + Azure Digital Twins + EROAD fuel/emissions data |
-| 9 | **Smart Dispatch Agent** | Agentic AI that handles dispatch decisions — assigns drivers to jobs based on proximity, skill, HOS remaining, and vehicle capability. Learns dispatcher preferences. | Azure OpenAI Agents + EROAD driver/vehicle/location data |
-| 10 | **IoT Sensor Anomaly Detective** | Monitor all CoreHub-connected sensors (door alerts, drum rotations, moisture levels) and use AI to detect anomalies, predict failures, and auto-escalate to fleet managers. | Azure IoT Hub + Azure ML + EROAD CoreHub sensor data |
-
-> **Present these to the audience:** "Pick one, or invent your own.
-> The next two demos will show you how to go from idea to working code
-> using agentic tools."
-
----
 
 ## Demo 2: Squads & Fleets (~5 min)
 

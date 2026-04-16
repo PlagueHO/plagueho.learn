@@ -140,25 +140,25 @@ transition: slide-up
   </div>
 
   <div class="agenda-grid">
-    <a href="/4" class="agenda-card agenda-card-1">
+    <a href="/4" @click.prevent="$router.push('/4')" class="agenda-card agenda-card-1">
       <div class="agenda-card-accent"></div>
       <span class="agenda-num">01</span>
       <h2>Agentic Operating Model</h2>
       <p>Customization hierarchy, skills, MCP, the ecosystem</p>
     </a>
-    <a href="/6" class="agenda-card agenda-card-2">
+    <a href="/6" @click.prevent="$router.push('/6')" class="agenda-card agenda-card-2">
       <div class="agenda-card-accent"></div>
       <span class="agenda-num">02</span>
       <h2>Determinism &amp; Orchestration</h2>
       <p>/troubleshoot, Spec Kit, gh-aw, WorkIQ</p>
     </a>
-    <a href="/7" class="agenda-card agenda-card-3">
+    <a href="/7" @click.prevent="$router.push('/7')" class="agenda-card agenda-card-3">
       <div class="agenda-card-accent"></div>
       <span class="agenda-num">03</span>
       <h2>Scaling Intelligence Out</h2>
       <p>Subagents &rarr; Squads &rarr; Monitoring &amp; Memory</p>
     </a>
-    <a href="/9" class="agenda-card agenda-card-4">
+    <a href="/9" @click.prevent="$router.push('/9')" class="agenda-card agenda-card-4">
       <div class="agenda-card-accent"></div>
       <span class="agenda-num">04</span>
       <h2>Beyond Dev + Prototypes</h2>
@@ -167,21 +167,21 @@ transition: slide-up
   </div>
 
   <div class="agenda-demos">
-    <a href="/5" class="agenda-demo-pill">
+    <a href="/5" @click.prevent="$router.push('/5')" class="agenda-demo-pill">
       <span class="agenda-demo-pulse"></span>
       <span class="agenda-demo-text">
         <span class="agenda-demo-num">🎬 Demo 1</span>
         <span class="agenda-demo-desc">Insiders + Skills + /Troubleshoot</span>
       </span>
     </a>
-    <a href="/8" class="agenda-demo-pill">
+    <a href="/8" @click.prevent="$router.push('/8')" class="agenda-demo-pill">
       <span class="agenda-demo-pulse"></span>
       <span class="agenda-demo-text">
         <span class="agenda-demo-num">🎬 Demo 2</span>
         <span class="agenda-demo-desc">Squads &amp; Fleets</span>
       </span>
     </a>
-    <a href="/10" class="agenda-demo-pill">
+    <a href="/10" @click.prevent="$router.push('/10')" class="agenda-demo-pill">
       <span class="agenda-demo-pulse"></span>
       <span class="agenda-demo-text">
         <span class="agenda-demo-num">🎬 Demo 3</span>

@@ -143,25 +143,25 @@ transition: slide-up
   </div>
 
   <div class="agenda-grid">
-    <a href="/5" class="agenda-card agenda-card-1">
+    <a href="/5" @click.prevent="$router.push('/5')" class="agenda-card agenda-card-1">
       <div class="agenda-card-accent"></div>
       <span class="agenda-num">01</span>
       <h2>The AI Engineering Problem</h2>
       <p>Why speed without rigor is dangerous</p>
     </a>
-    <a href="/6" class="agenda-card agenda-card-2">
+    <a href="/6" @click.prevent="$router.push('/6')" class="agenda-card agenda-card-2">
       <div class="agenda-card-accent"></div>
       <span class="agenda-num">02</span>
       <h2>What is HVE?</h2>
       <p>Four pillars, principles, fundamentals</p>
     </a>
-    <a href="/10" class="agenda-card agenda-card-3">
+    <a href="/10" @click.prevent="$router.push('/10')" class="agenda-card agenda-card-3">
       <div class="agenda-card-accent"></div>
       <span class="agenda-num">03</span>
       <h2>HVE-Core Overview</h2>
       <p>Collections, lifecycle, roles, tooling</p>
     </a>
-    <a href="/16" class="agenda-card agenda-card-4">
+    <a href="/16" @click.prevent="$router.push('/16')" class="agenda-card agenda-card-4">
       <div class="agenda-card-accent"></div>
       <span class="agenda-num">04</span>
       <h2>RPI Deep Dive &amp; Demos</h2>
@@ -170,14 +170,14 @@ transition: slide-up
   </div>
 
   <div class="agenda-demos">
-    <a href="/20" class="agenda-demo-pill">
+    <a href="/20" @click.prevent="$router.push('/20')" class="agenda-demo-pill">
       <span class="agenda-demo-pulse"></span>
       <span class="agenda-demo-text">
         <span class="agenda-demo-num">🎬 Demo 1</span>
         <span class="agenda-demo-desc">RPI on Marginalia — Prompt injection protection</span>
       </span>
     </a>
-    <a href="/28" class="agenda-demo-pill">
+    <a href="/28" @click.prevent="$router.push('/28')" class="agenda-demo-pill">
       <span class="agenda-demo-pulse"></span>
       <span class="agenda-demo-text">
         <span class="agenda-demo-num">🎬 Demo 2</span>

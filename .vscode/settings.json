@@ -6,6 +6,7 @@
     ],
     "github.copilot.chat.codesearch.enabled": true,
     "chat.tools.terminal.autoApprove": {
-        "gh": true
+        "gh": true,
+        "pnpm": true
     }
 }

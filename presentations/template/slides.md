@@ -133,25 +133,25 @@ transition: slide-up
   </div>
 
   <div class="agenda-grid">
-    <a href="/4" class="agenda-card agenda-card-1">
+    <a href="/4" @click.prevent="$router.push('/4')" class="agenda-card agenda-card-1">
       <div class="agenda-card-accent"></div>
       <span class="agenda-num">01</span>
       <h2>Section Title</h2>
       <p>Brief description of this section</p>
     </a>
-    <a href="/5" class="agenda-card agenda-card-2">
+    <a href="/5" @click.prevent="$router.push('/5')" class="agenda-card agenda-card-2">
       <div class="agenda-card-accent"></div>
       <span class="agenda-num">02</span>
       <h2>Section Title</h2>
       <p>Brief description of this section</p>
     </a>
-    <a href="/6" class="agenda-card agenda-card-3">
+    <a href="/6" @click.prevent="$router.push('/6')" class="agenda-card agenda-card-3">
       <div class="agenda-card-accent"></div>
       <span class="agenda-num">03</span>
       <h2>Section Title</h2>
       <p>Brief description of this section</p>
     </a>
-    <a href="/7" class="agenda-card agenda-card-4">
+    <a href="/7" @click.prevent="$router.push('/7')" class="agenda-card agenda-card-4">
       <div class="agenda-card-accent"></div>
       <span class="agenda-num">04</span>
       <h2>Section Title</h2>
@@ -160,14 +160,14 @@ transition: slide-up
   </div>
 
   <div class="agenda-demos">
-    <a href="/8" class="agenda-demo-pill">
+    <a href="/8" @click.prevent="$router.push('/8')" class="agenda-demo-pill">
       <span class="agenda-demo-pulse"></span>
       <span class="agenda-demo-text">
         <span class="agenda-demo-num">🎬 Demo 1</span>
         <span class="agenda-demo-desc">Demo description</span>
       </span>
     </a>
-    <a href="/9" class="agenda-demo-pill">
+    <a href="/9" @click.prevent="$router.push('/9')" class="agenda-demo-pill">
       <span class="agenda-demo-pulse"></span>
       <span class="agenda-demo-text">
         <span class="agenda-demo-num">🎬 Demo 2</span>
