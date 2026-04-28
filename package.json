@@ -15,7 +15,7 @@
     "@slidev/cli": "^52.14.2",
     "@slidev/theme-default": "^0.25.0",
     "@slidev/theme-seriph": "^0.25.0",
-    "markdownlint-cli2": "^0.22.0"
+    "markdownlint-cli2": "^0.22.1"
   },
   "description": "Organizational assets repository for Daniel Scott-Raynsford (PlagueHO)",
   "repository": {
