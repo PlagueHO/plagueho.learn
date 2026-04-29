@@ -111,16 +111,136 @@
 			}
 		},
 		{
-			"label": "slidev: speckit preview",
+			"label": "slidev: dev agentic-development-evolution",
 			"type": "shell",
-			"command": "npx",
+			"command": "pnpm",
 			"args": [
 				"slidev",
-				"presentations/speckit/slides.md",
-				"--port",
-				"3030"
+				"presentations/agentic-development-evolution/slides.md"
 			],
-			"isBackground": true
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"isBackground": true,
+			"icon": {
+				"id": "play",
+				"color": "terminal.ansiCyan"
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			}
+		},
+		{
+			"label": "slidev: dev agentic-dotnet-appmod",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"slidev",
+				"presentations/agentic-dotnet-appmod/slides.md"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"isBackground": true,
+			"icon": {
+				"id": "play",
+				"color": "terminal.ansiCyan"
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			}
+		},
+		{
+			"label": "slidev: dev hypervelocity-engineering",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"slidev",
+				"presentations/hypervelocity-engineering/slides.md"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"isBackground": true,
+			"icon": {
+				"id": "play",
+				"color": "terminal.ansiCyan"
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			}
+		},
+		{
+			"label": "slidev: dev microsoft-iq-foundry-agent-best-practices",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"slidev",
+				"presentations/microsoft-iq-foundry-agent-best-practices/slides.md"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"isBackground": true,
+			"icon": {
+				"id": "play",
+				"color": "terminal.ansiCyan"
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			}
+		},
+		{
+			"label": "slidev: dev speckit",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"slidev",
+				"presentations/speckit/slides.md"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"isBackground": true,
+			"icon": {
+				"id": "play",
+				"color": "terminal.ansiCyan"
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			}
+		},
+		{
+			"label": "slidev: dev template",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"slidev",
+				"presentations/template/slides.md"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"isBackground": true,
+			"icon": {
+				"id": "play",
+				"color": "terminal.ansiCyan"
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			}
 		}
 	],
 	"inputs": [

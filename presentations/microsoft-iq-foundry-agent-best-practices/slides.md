@@ -200,22 +200,26 @@ transition: fade-out
         </div>
       </div>
       <div class="agent-pattern-card pattern-hosted" v-click>
-        <a href="https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents" target="_blank" class="agent-pattern-label agent-pattern-label-highlight" style="text-decoration:none;">Hosted Agent (preview)</a>
-        <p class="agent-pattern-subtitle">Your App calls Foundry Agent Service • Your App hosted in Agent Service • Tools called by Agent Service</p>
+        <a href="https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents" target="_blank" class="agent-pattern-label agent-pattern-label-highlight" style="text-decoration:none;">Hosted Agent (Public Preview)</a>
+        <p class="agent-pattern-subtitle">Called via 4 protocols (Responses · Invocations · Activity · A2A) • Your code hosted in Agent Service • Tools via Toolbox MCP</p>
         <div class="agent-pattern-diagram" style="gap:0.15rem;">
-          <span class="apd-box apd-config" style="font-size:0.63rem;padding:0.2rem 0.3rem;background:rgba(56,164,220,0.06);border-color:rgba(56,164,220,0.18);color:var(--theme-accent5);">Your App calls Hosted Agent</span>
+          <span class="apd-box apd-config" style="font-size:0.58rem;padding:0.2rem 0.3rem;background:rgba(56,164,220,0.06);border-color:rgba(56,164,220,0.18);color:var(--theme-accent5);">Your App · Teams · M365 · Webhooks · A2A</span>
           <span class="apd-arrow">↕</span>
           <span class="apd-box apd-agentsvc" style="border: 2px solid rgba(56, 164, 220, 0.3); padding: 0.3rem 0.35rem; flex-direction: column; gap: 0.1rem;">
             <strong style="font-size: 0.60rem; color: var(--theme-accent2);">Foundry Agent Service</strong>
-            <span class="apd-box apd-you" style="font-size: 0.60rem; width: 100%; padding: 0.2rem 0.3rem;">Hosted Agent (Container)
-              <div style="display:flex;flex-direction:column;align-items:center;gap:0.05rem;width:100%;margin-top:0.08rem;border-top:1px solid rgba(16,57,84,0.1);padding-top:0.08rem;">
-                <span class="apd-box apd-framework" style="margin:0;font-size:0.55rem;width:100%;padding:0.12rem;">Agent Framework</span>
-                <span class="apd-box" style="margin:0;font-size:0.55rem;width:100%;padding:0.12rem;background:rgba(91,95,199,0.06);border-color:rgba(91,95,199,0.15);color:var(--react-reason);">Hosting Adapter</span>
+            <span class="apd-box apd-you" style="font-size: 0.60rem; width: 100%; padding: 0.2rem 0.3rem; flex-direction: column; gap: 0.1rem;">
+              <strong style="font-size: 0.55rem; color: var(--theme-deep);">Hosted Agent (Container)</strong>
+              <div style="display:flex;gap:0.15rem;width:100%;align-items:stretch;">
+                <span class="apd-box" style="margin:0;font-size:0.50rem;flex:0 0 auto;width:3rem;padding:0.1rem;background:rgba(0,120,212,0.10);border-color:rgba(0,120,212,0.25);color:var(--theme-accent2);text-align:center;line-height:1.25;display:flex;align-items:center;justify-content:center;">🪪 Entra Agent Identity</span>
+                <div style="display:flex;flex-direction:column;gap:0.1rem;flex:1;min-width:0;">
+                  <span class="apd-box" style="margin:0;font-size:0.55rem;width:100%;padding:0.12rem;background:rgba(91,95,199,0.06);border-color:rgba(91,95,199,0.15);color:var(--react-reason);">Hosting Adapter (Responses / Invocations)</span>
+                  <span class="apd-box apd-framework" style="margin:0;font-size:0.55rem;width:100%;padding:0.12rem;">Agent Framework / LangGraph</span>
+                </div>
               </div>
             </span>
             <div style="display:flex;gap:0.15rem;width:100%;">
               <span class="apd-box apd-foundry" style="font-size:0.58rem;flex:1;padding:0.15rem;">Foundry Models</span>
-              <span class="apd-box apd-tools" style="font-size:0.58rem;flex:1;padding:0.15rem;">Foundry Tools</span>
+              <span class="apd-box apd-tools" style="font-size:0.58rem;flex:1;padding:0.15rem;">Foundry Toolbox (MCP)</span>
             </div>
           </span>
           <span class="apd-box apd-mcp" style="font-size:0.60rem;padding:0.2rem 0.4rem;width:100%;border:1.5px dashed rgba(56,164,220,0.3);">External Tools / MCP Servers<br/><span style="font-size:0.52rem;color:var(--theme-muted);">(Work IQ · Fabric IQ · Custom)</span></span>
@@ -223,11 +227,11 @@ transition: fade-out
         <div class="agent-pattern-traits">
           <ul>
             <li>Custom orchestration code — your logic runs inside Foundry Agent Service</li>
-            <li>Tool calling by Agent Service — Foundry tools + external tools / MCP</li>
-            <li>Foundry identity, scaling, and observability built-in</li>
-            <li>Publishable with versioned endpoints via Agent ID</li>
-            <li>You still manage orchestration code complexity and testing</li>
-            <li>Currently in preview — some features still evolving</li>
+            <li>Tool calling by your code — via Foundry Toolbox MCP + external MCP</li>
+            <li>Dedicated Entra agent identity, auto-scaling, and OpenTelemetry built-in</li>
+            <li>Publishable with versioned endpoints; canary/blue-green deploys</li>
+            <li>Session state persists ($HOME, /files) across idle periods (30-day lifetime)</li>
+            <li>Public Preview — Python &amp; C#; 4 regions</li>
           </ul>
         </div>
       </div>
@@ -235,11 +239,14 @@ transition: fade-out
         <a href="https://learn.microsoft.com/azure/foundry/agents/overview#prompt-agents" target="_blank" class="agent-pattern-label agent-pattern-label-governed" style="text-decoration:none;">Prompt Agent</a>
         <p class="agent-pattern-subtitle">Your App calls Foundry Agent Service • Fully hosted by Foundry • Tools called by Agent Service</p>
         <div class="agent-pattern-diagram" style="gap:0.15rem;">
-          <span class="apd-box apd-config" style="font-size:0.63rem;padding:0.2rem 0.3rem;">Your App calls Agent Service (Responses API)</span>
+          <span class="apd-box apd-config" style="font-size:0.58rem;padding:0.2rem 0.3rem;">Your App · Teams · M365 · Copilot Studio (Responses API)</span>
           <span class="apd-arrow">↕</span>
           <span class="apd-box apd-agentsvc" style="border: 2px solid rgba(16,124,16,0.3); padding: 0.3rem 0.35rem; flex-direction: column; gap: 0.1rem;">
             <strong style="font-size: 0.60rem; color: #0a5e0a;">Foundry Agent Service (Fully Managed)</strong>
-            <span class="apd-box" style="font-size:0.60rem;width:100%;padding:0.15rem;background:rgba(16,124,16,0.06);border-color:rgba(16,124,16,0.18);color:#0a5e0a;">Instructions + Model + Tools Config</span>
+            <div style="display:flex;gap:0.15rem;width:100%;align-items:stretch;">
+              <span class="apd-box" style="margin:0;font-size:0.50rem;flex:0 0 auto;width:3rem;padding:0.1rem;background:rgba(0,120,212,0.10);border-color:rgba(0,120,212,0.25);color:var(--theme-accent2);text-align:center;line-height:1.25;display:flex;align-items:center;justify-content:center;">🪪 Entra Agent Identity</span>
+              <span class="apd-box" style="margin:0;font-size:0.60rem;flex:1;padding:0.15rem;background:rgba(16,124,16,0.06);border-color:rgba(16,124,16,0.18);color:#0a5e0a;">Instructions + Model + Tools Config</span>
+            </div>
             <div style="display:flex;gap:0.15rem;width:100%;">
               <span class="apd-box apd-foundry" style="font-size:0.58rem;flex:1;padding:0.15rem;">Foundry Models</span>
               <span class="apd-box apd-tools" style="font-size:0.58rem;flex:1;padding:0.15rem;">Foundry Tools</span>
@@ -259,9 +266,6 @@ transition: fade-out
         </div>
       </div>
     </div>
-    <p style="margin:0;text-align:right;font-size:0.62rem;color:var(--theme-muted);position:absolute;bottom:0.5rem;right:1rem;">
-      * There is a 4th way: <a href="https://learn.microsoft.com/azure/foundry/agents/concepts/workflow" target="_blank">Workflow Agent (preview)</a>, but we aren't covering those in this session.
-    </p>
   </div>
 </div>
 
