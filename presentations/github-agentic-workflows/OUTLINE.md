@@ -30,6 +30,7 @@ for you."*
 **Title**: What we'll cover
 
 **Content** (numbered list):
+
 1. What are GitHub Agentic Workflows?
 2. How they work — the compilation model & security
 3. Practical examples — what you can build
@@ -55,6 +56,7 @@ logo, hands-on keyboard, link). No decorative clutter.
 > all with built-in security guardrails.
 
 Key points (bullet list):
+
 - Written in **Markdown**, not complex YAML
 - Triggered by **any GitHub Actions event** — schedule, issue opened, PR, `/command`, and more
 - Powered by **GitHub Copilot, Claude, or OpenAI Codex**
@@ -84,7 +86,7 @@ Workflows sit: *Custom Instructions → Prompt Files → Custom Agents → Agent
 
 **Central visual — horizontal 3-step flow**:
 
-```
+```text
 ┌──────────────────┐    gh aw compile    ┌────────────────────┐    GitHub Actions   ┌──────────────────┐
 │  workflow.md     │ ─────────────────→  │  workflow.lock.yml │ ─────────────────→  │  AI Agent Runs   │
 │  (Markdown)      │                     │  (Secure YAML)     │                     │  (Copilot, etc.) │
@@ -109,12 +111,14 @@ Workflows sit: *Custom Instructions → Prompt Files → Custom Agents → Agent
 ```
 
 **Annotations alongside flow**:
+
 - *Step 1*: The `.md` file is the human-editable source of truth. Only frontmatter changes need recompilation.
 - *Step 2*: `gh aw compile` validates schema, pins action SHAs, and enforces security policies.
 - *Step 3*: The agent runs **read-only**. All writes are buffered as artifacts, scanned, then applied by a separate scoped job.
 
 **Key security callout box** (right side):
 > **5 Security Layers**
+>
 > 1. Read-only agent token
 > 2. Zero secrets in agent process
 > 3. Network firewall (domain allowlist)
@@ -207,12 +211,13 @@ is a highlighted box at the bottom spanning full width.
 
 **Tips callout box**:
 > **Tips for success**
+>
 > - Be specific in your prompts — context improves agent output
 > - Read the generated workflow file — it helps you tune it
 > - Iterate — add constraints and re-run if needed
 > - Watch for new issues — that's where the agent posts its results
 
-**Workshop link**: `https://copilot-dev-days.github.io/agentic-workflows-workshop/`
+**Workshop link**: [copilot-dev-days.github.io/agentic-workflows-workshop](https://copilot-dev-days.github.io/agentic-workflows-workshop/)
 
 ---
 
@@ -226,19 +231,20 @@ is a highlighted box at the bottom spanning full width.
 
 | Resource | URL |
 |----------|-----|
-| 📖 Official Docs | https://github.github.com/gh-aw/ |
-| ⚡ Quick Start Guide | https://github.github.com/gh-aw/setup/quick-start/ |
-| 🔐 Security Architecture | https://github.github.com/gh-aw/introduction/architecture/ |
-| 🧩 Agentics Sample Collection | https://github.com/githubnext/agentics |
-| 📝 Frontmatter Reference | https://github.github.com/gh-aw/reference/frontmatter/ |
-| 🛡️ Safe Outputs Reference | https://github.github.com/gh-aw/reference/safe-outputs/ |
-| 📓 Peli's Agent Factory Blog | https://github.github.com/gh-aw/blog/2026-01-12-welcome-to-pelis-agent-factory/ |
-| 💬 GitHub Blog Announcement | https://github.blog/ai-and-ml/automate-repository-tasks-with-github-agentic-workflows/ |
-| 🗣️ Community Feedback | https://github.com/orgs/community/discussions/186451 |
-| 🏫 Copilot Academy | https://copilot-academy.github.io/workshops/copilot-customization/agentic_workflows |
+| 📖 Official Docs | [github.github.com/gh-aw](https://github.github.com/gh-aw/) |
+| ⚡ Quick Start Guide | [github.github.com/gh-aw/setup/quick-start](https://github.github.com/gh-aw/setup/quick-start/) |
+| 🔐 Security Architecture | [github.github.com/gh-aw/introduction/architecture](https://github.github.com/gh-aw/introduction/architecture/) |
+| 🧩 Agentics Sample Collection | [github.com/githubnext/agentics](https://github.com/githubnext/agentics) |
+| 📝 Frontmatter Reference | [github.github.com/gh-aw/reference/frontmatter](https://github.github.com/gh-aw/reference/frontmatter/) |
+| 🛡️ Safe Outputs Reference | [github.github.com/gh-aw/reference/safe-outputs](https://github.github.com/gh-aw/reference/safe-outputs/) |
+| 📓 Peli's Agent Factory Blog | [github.github.com/gh-aw/blog/2026-01-12-welcome-to-pelis-agent-factory](https://github.github.com/gh-aw/blog/2026-01-12-welcome-to-pelis-agent-factory/) |
+| 💬 GitHub Blog Announcement | [github.blog/ai-and-ml/automate-repository-tasks-with-github-agentic-workflows](https://github.blog/ai-and-ml/automate-repository-tasks-with-github-agentic-workflows/) |
+| 🗣️ Community Feedback | [github.com/orgs/community/discussions/186451](https://github.com/orgs/community/discussions/186451) |
+| 🏫 Copilot Academy | [copilot-academy.github.io/workshops/copilot-customization/agentic_workflows](https://copilot-academy.github.io/workshops/copilot-customization/agentic_workflows) |
 
 **Bottom action strip**:
 > **Get started in 3 steps:**
+>
 > 1. `gh extension install github/gh-aw`
 > 2. `gh aw init` in your repository
 > 3. `gh aw add-wizard githubnext/agentics/daily-repo-status`

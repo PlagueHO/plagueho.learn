@@ -12,6 +12,7 @@
   "ignores": [
     "**/node_modules/**",
     "**/.vscode/**",
+    ".research/**",
     ".github/skills/sensei/**",
     "presentations/**/slides.md",
     ".copilot/**",
