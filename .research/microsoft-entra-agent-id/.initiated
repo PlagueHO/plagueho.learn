@@ -1,0 +1,17 @@
+# .initiated
+
+initiated: true
+approved_by: user
+approved_at: 2026-05-29
+topic: Microsoft Entra Agent ID
+purpose: deep-guide
+areas:
+  - concepts
+  - sdk-sidecar
+  - foundry
+  - agent-framework
+  - auth-flows
+  - third-party-mcp
+  - security
+  - blueprint
+  - scenarios

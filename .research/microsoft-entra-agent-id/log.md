@@ -1,0 +1,53 @@
+# Research Log: Microsoft Entra Agent ID
+
+## Log
+
+- [2026-05-29] INITIATE: Research project started
+  - Topic: Microsoft Entra Agent ID
+  - Purpose: deep-guide
+  - Plan: APPROVED by user
+  - Areas: concepts, sdk-sidecar, foundry, agent-framework, auth-flows, third-party-mcp, security, blueprint, scenarios
+  - Output sections: 12
+  - User-provided sources: 5 URLs
+- [2026-05-29] SCAFFOLD: Folder structure created at .research/microsoft-entra-agent-id/
+  - Notes dirs: concepts, sdk-sidecar, foundry, agent-framework, auth-flows, third-party-mcp, security, blueprint, scenarios
+  - Output section placeholders: 01–12 + README.md
+  - .initiated marker: created
+- [2026-05-29] PHASE-2: Dispatching research-source-discovery subagent
+- [2026-05-29] PHASE-2-COMPLETE: Source discovery finished
+  - Total unique sources: 35
+  - concepts: 7 | sdk-sidecar: 5 | foundry: 4 | agent-framework: 5
+  - auth-flows: 6 | third-party-mcp: 6 | security: 7 | blueprint: 4 | scenarios: 5
+- [2026-05-29] PHASE-3: Dispatching research-deep-reader subagents (parallel, one per area)
+- [2026-05-29] PHASE-3-COMPLETE: Deep reading finished — all 9 areas extracted
+  - concepts: concepts-core.md (7 sources)
+  - sdk-sidecar: sdk-sidecar-notes.md (4 sources + linked refs)
+  - foundry: foundry-notes.md (4 sources)
+  - agent-framework: agent-framework-notes.md (4 sources)
+  - auth-flows: auth-flows-notes.md (5 sources)
+  - third-party-mcp: third-party-mcp-notes.md (5 sources)
+  - security: security-notes.md (7 sources)
+  - blueprint: blueprint-notes.md (4 sources)
+  - scenarios: scenarios-notes.md (5+ sources)
+- [2026-05-29] PHASE-4: Dispatching research-content-writer subagents (12 sections)
+- [2026-05-29] PHASE-4-COMPLETE: Content writing finished — all 12 sections at status: draft
+  - 01: What is Microsoft Entra Agent ID? (~500w)
+  - 02: The Agent Identity Model (~900w)
+  - 03: Agent Identity SDK & Sidecar (~950w)
+  - 04: Foundry Agent Service Integration (~950w)
+  - 05: Agent Framework Integration (~820w)
+  - 06: Authentication Patterns & OAuth Flows (~1150w)
+  - 07: 3rd Party MCP & Non-Entra IDP Scenarios (~1877w)
+  - 08: Agent Identity Blueprint (~2105w)
+  - 09: Real-World Scenarios & Diagrams (~2435w)
+  - 10: Security Best Practices (~1377w)
+  - 11: Getting Started (~1076w)
+  - 12: Resources & Further Reading (~808w)
+- [2026-05-29] PHASE-5: Dispatching research-quality-reviewer subagent
+- [2026-05-29] PHASE-5-COMPLETE: Quality review — PASS
+  - Verdict: PASS
+  - FC-1 fixed: Removed unsourced OIDC protocol reference from section 01
+  - FC-2 fixed: Corrected /AuthorizationHeader/{serviceName} endpoint in section 07
+  - Systematic gap noted (non-blocking): cross-section hyperlinks (plain text references present)
+- [2026-05-29] PHASE-6-COMPLETE: All 12 sections marked complete; README.md finalized
+  - Output: .research/microsoft-entra-agent-id/output/README.md
