@@ -16,12 +16,27 @@ ai_note: AI-assisted synthesis
 summary: Core architecture and deployment model for Microsoft Foundry Hosted Agents.
 post_date: 2026-05-11
 section_status: complete
+---
 
 ## Executive summary
 
 Microsoft Foundry Hosted Agents provide managed hosting for containerized agent code while preserving framework choice. You deploy your own container image, and Foundry manages identity provisioning, endpoint exposure, lifecycle operations, scale behavior, and observability. This model is well suited for teams that need custom agent runtime behavior but do not want to operate their own control plane.
 
-Preview caveat: Hosted Agents are in preview and runtime limits, region availability, and some behaviors can change. Reconfirm current constraints before production freeze. Source: https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/hosted-agents
+GA status: At Build 2026, Microsoft announced that hosted agents in Foundry Agent Service are reaching general availability within ~30 days of the announcement, graduating from preview as the managed runtime for production agents ([Build 2026 blog](https://devblogs.microsoft.com/foundry/agent-service-build2026/)). Treat hosted-agent hosting itself as GA-bound; genuinely preview capabilities (see *Build 2026 updates* below) retain preview caveats.
+
+Preview caveat: For features still in preview, runtime limits, region availability, and some behaviors can change. Reconfirm current constraints before production freeze. Source: https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/hosted-agents
+
+> Cross-reference: For publishing channels (Teams and Microsoft 365 Copilot), autopilot AI teammates, and Agent 365 governance, see [output/05-build2026-and-publishing-updates.md](05-build2026-and-publishing-updates.md).
+
+## Build 2026 updates
+
+Build 2026 confirmed several capabilities relevant to the hosting and deployment model ([Build 2026 blog](https://devblogs.microsoft.com/foundry/agent-service-build2026/)):
+
+- Framework-agnostic hosting: agents built with Microsoft Agent Framework, the GitHub Copilot SDK, LangGraph, or other SDKs deploy without rewrites ([Build 2026 blog](https://devblogs.microsoft.com/foundry/agent-service-build2026/)).
+- Two supported protocols are reaffirmed — the Responses API for OpenAI-compatible, stateful interactions, and the Invocations protocol for schema-free, pass-through scenarios where the developer controls request and response format ([Build 2026 blog](https://devblogs.microsoft.com/foundry/agent-service-build2026/)).
+- A new autopilot agent mode (public preview) joins hosted agents and prompt agents as a third agent mode ([Build 2026 blog](https://devblogs.microsoft.com/foundry/agent-service-build2026/)).
+- Routines (public preview) operationalize any agent on a timer or schedule and support long-running autonomous agents with durable state and filesystem access ([Build 2026 blog](https://devblogs.microsoft.com/foundry/agent-service-build2026/)).
+- Incoming A2A (public preview) lets you expose a Foundry agent as an A2A endpoint discoverable by other agents via its agent card; outbound A2A (calling remote agents as a tool) was already supported ([Build 2026 blog](https://devblogs.microsoft.com/foundry/agent-service-build2026/)).
 
 ## Hosting model in practice
 

@@ -8,3 +8,16 @@
 - [2026-05-11T13:45:00+12:00] REVIEW: Re-review passed for all 5 output sections after inline attribution and caveat updates
 - [2026-05-11T13:46:00+12:00] COMPLETE: Section statuses promoted to complete and output index finalized
 - [2026-05-11T14:07:42.6665943+12:00] REVIEW: 5 sections reviewed, 5 passed, 0 need work
+- [2026-06-04T00:00:00+12:00] NOTE: agent-365-ai-teammates/08-agent365-ai-teammates-notes — Foundry agents in Microsoft Agent 365 (https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/agent-365?view=foundry#create-ai-teammates)
+- [2026-06-04T00:00:00+12:00] NOTE: publishing-channels/07-publishing-channels-notes — Publish agents to Microsoft 365 Copilot and Microsoft Teams (https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/publish-copilot?view=foundry)
+- [2026-06-04T00:00:00+12:00] NOTE: build-2026-updates/06-build2026-updates-notes — Build and run agents at scale with Microsoft Foundry at Build 2026 (https://devblogs.microsoft.com/foundry/agent-service-build2026/)
+- [2026-06-04T12:00:00+12:00] WRITE: output/01-overview-and-deployment — augmented with Build 2026 GA, framework-agnostic hosting, protocols, autopilot mode, routines, incoming A2A; synthesized from 1 note
+- [2026-06-04T12:00:00+12:00] WRITE: output/03-scalability-and-operations — augmented with Build 2026 tracing/eval GA, agent optimizer, Voice Live, scale-to-zero, and validation caveat; synthesized from 1 note
+- [2026-06-04T12:30:00+12:00] WRITE: output/05-build2026-and-publishing-updates — new section: Build 2026 changelog plus publishing to M365 Copilot/Teams and Agent 365 autopilots; synthesized from 3 notes
+- [2026-06-04T12:10:00+12:00] WRITE: output/02-persistence-isolation-identity — augmented with three memory types (procedural +7-14% Tau-bench), publishing identity/RBAC, Azure AI User→Foundry User rename, Agent 365 Entra identity governance and Conditional Access GA; synthesized from 3 notes
+- [2026-06-04T12:10:00+12:00] WRITE: output/04-multiagent-multitenant-patterns — augmented with incoming A2A, autopilots as AI teammates, Agent 365 control plane, and Teams/M365 publishing distribution scopes; synthesized from 3 notes
+- [2026-06-04T13:00:00+12:00] WRITE: output/06-build-2026-change-log — new dedicated Build 2026 change log: new/changed capabilities table, RBAC role renames, not-specified gaps; synthesized from 3 notes
+- [2026-06-04T14:30:00+12:00] REVIEW: Build 2026 update cycle — 7 sections reviewed (01-06 + README), 6 passed, 1 needs work; 3 new source URLs spot-checked and accessible; promoted 05 and 06 to complete; flagged malformed Scalability dimensions table in 03 as blocking markdown defect
+- [2026-06-04T14:45:00+12:00] FIX: output/03-scalability-and-operations — added missing header row and blank line to Scalability dimensions table; resolved the blocking markdown defect
+- [2026-06-04T14:50:00+12:00] FIX: Normalized frontmatter on output/05 and output/06 from `status` to `section_status` to match existing sections; fixed missing frontmatter delimiter in output/01
+- [2026-06-04T14:55:00+12:00] COMPLETE: Build 2026 update cycle finished — Agent 365, publishing, and Build 2026 changes integrated across 01-06; dedicated change log (06) added; output index updated

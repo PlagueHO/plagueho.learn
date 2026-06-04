@@ -38,7 +38,6 @@ When an artifact is **rejected** by a Reviewer:
 ## Examples
 
 **Example 1: Reassign after rejection**
-
 1. Fenster writes authentication module
 2. Hockney (Tester) reviews → rejects: "Error handling is missing. Verbal should fix this."
 3. Coordinator: Fenster is now locked out of this artifact
@@ -48,7 +47,6 @@ When an artifact is **rejected** by a Reviewer:
 7. Lockout clears for next artifact
 
 **Example 2: Escalate for expertise**
-
 1. Edie writes TypeScript config
 2. Keaton (Lead) reviews → rejects: "Need someone with deeper TS knowledge. Escalate."
 3. Coordinator: Edie is now locked out
@@ -57,7 +55,6 @@ When an artifact is **rejected** by a Reviewer:
 6. Keaton reviews v2
 
 **Example 3: Deadlock handling**
-
 1. Fenster writes module → rejected
 2. Verbal revises → rejected
 3. Hockney revises → rejected
@@ -65,7 +62,6 @@ When an artifact is **rejected** by a Reviewer:
 5. Coordinator: "All eligible agents have been locked out. Escalating to user: [artifact details]"
 
 **Example 4: Reviewer accidentally names original author**
-
 1. Fenster writes module → rejected
 2. Hockney says: "Fenster should fix the error handling"
 3. Coordinator: "Fenster is locked out as the original author. Please name a different agent."

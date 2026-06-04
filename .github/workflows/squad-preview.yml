@@ -11,9 +11,9 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
 
@@ -27,7 +27,7 @@ jobs:
           echo "✅ Version $VERSION validated in CHANGELOG.md"
 
       - name: Run tests
-        run: node --test test/*.test.js
+        run: node --test test/*.test.cjs
 
       - name: Check no .ai-team/ or .squad/ files are tracked
         run: |
