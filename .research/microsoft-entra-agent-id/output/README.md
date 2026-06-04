@@ -4,6 +4,7 @@ topic: Microsoft Entra Agent ID
 purpose: deep-guide
 sections: 12
 completed_at: 2026-05-29
+last_refreshed: 2026-06-04
 ---
 
 # Microsoft Entra Agent ID — Research Output
@@ -46,3 +47,30 @@ completed_at: 2026-05-29
 - *35 sources* across 9 research areas
 - All sources are official Microsoft Learn documentation or GitHub samples
 - Reviewed and passed quality gate (2026-05-29)
+
+## Currency Refresh — Microsoft Build 2026 (2026-06-04)
+
+Iteration 1 refreshed the guide against the Microsoft Build 2026 (2026-06-02)
+announcements. Targeted, source-grounded edits were applied to sections **01,
+02, 04, 08, 10, 11, and 12**; all other sections were verified as still
+current. Key deltas incorporated:
+
+- *Conditional Access for agents* — **now GA** (sub-features "All agent users",
+  "Select agent users", and "Agent execution environments" remain preview)
+- *Identity Protection for agents* — **still preview**; new Microsoft Graph
+  collections `riskyAgents` and `agentRiskDetections`; OBO risk attributed to
+  the user
+- *Foundry hosted agents* — **public preview, GA expected early July 2026**;
+  dual-identity model (per-agent Entra identity + project managed identity);
+  Foundry RBAC role rename (Azure AI \* → Foundry \*, IDs/permissions unchanged)
+- *Microsoft Agent 365* — **GA (Commercial since 2026-05-01)**; convergence with
+  Entra Agent ID; Microsoft 365 Agents SDK (GA) registration path vs the Agent
+  365 SDK governance overlay (kept distinct)
+- *Autopilot agents* (public preview, blog-announced) — independent agents with
+  their own governed Entra Agent ID, mailbox, Teams presence, org-chart placement
+- *Windows 365 for Agents* + OS-enforced / Cloud PC-bound agent identity
+  (Learn-documented; GA blog-asserted; MXC on-device "local ID" blog-only preview)
+- *ACS, ASSERT, Agent Governance Toolkit* — open-source, blog-announced runtime
+  governance/evaluation tooling, noted as adjacent to (not part of) Entra Agent ID
+
+- Reviewed and passed quality gate (2026-06-04)

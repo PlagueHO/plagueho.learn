@@ -13,19 +13,58 @@ DeepSeek, and others). Foundry handles hosting, scaling, identity provisioning, 
 enterprise security — including automatic Entra Agent ID integration — so developers focus on agent
 logic rather than infrastructure plumbing.
 
-### Three agent types
+### Agent types
 
-Foundry supports three agent types, each with different identity implications:
+Foundry supports the following agent types, each with different identity implications:
 
 | Type | Code required | Hosting | Identity behaviour |
 |------|--------------|---------|-------------------|
 | **Prompt agent** (standard) | No | Fully managed | Shares project identity until published; receives distinct identity on publish |
 | **Workflow agent** | No (YAML optional) | Fully managed | Same shared/distinct pattern; supports A2A coordination |
-| **Hosted agent** | Yes | Container-based, Micro VMs | Code-first; developer controls orchestration; same publish identity lifecycle |
+| **Hosted agent** | Yes | Container-based, Micro VMs | Code-first; developer controls orchestration. Each hosted agent receives a per-agent Entra agent identity auto-created at deploy (see [Hosted agents](#hosted-agents-public-preview)) |
 
 Prompt and workflow agents are configured declaratively; hosted agents are code-based containers
-(Agent Framework, LangGraph, or custom code). All three types participate in the same Entra Agent
+(Agent Framework, LangGraph, or custom code). All types participate in the same Entra Agent
 ID lifecycle.
+
+> **Note (as of 2026-06-03):** The current
+> [Foundry agents overview](https://learn.microsoft.com/en-us/azure/foundry/agents/overview)
+> presents **prompt agents** and **hosted agents** as the two primary agent types. Workflow agents
+> remain available as a declarative configuration option rather than a top-level type, so the
+> workflow row above still applies.
+
+---
+
+### Hosted agents (public preview)
+
+Hosted agents in Foundry Agent Service are in **public preview** as of Build 2026, with **general
+availability expected early July 2026**
+([Hosted agents concepts](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/hosted-agents),
+updated 2026-06-03;
+[Foundry Build recap](https://aka.ms/FoundryBuildNews)). Do not treat hosted agents as GA until that
+milestone is confirmed.
+
+**Dual-identity model.** Each hosted agent uses two distinct identities
+([Hosted agents concepts](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/hosted-agents),
+updated 2026-06-03):
+
+| Identity | Lifecycle | Purpose |
+|----------|-----------|---------|
+| **Per-agent Entra agent identity** | Auto-created at deploy time | The runtime identity — used for model invocation, tool access, and downstream Azure service calls |
+| **Project managed identity** | System-assigned on the Foundry project | Infrastructure operations only (e.g., Container Registry pull). **Not** the agent's runtime identity |
+
+**Invocation modes.** A hosted agent authenticates differently depending on how it is invoked
+([Hosted agents concepts](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/hosted-agents),
+updated 2026-06-03):
+
+- **User-invoked / interactive:** when a user token is present, the agent calls downstream services
+  via OAuth 2.0 On-Behalf-Of (OBO), using the user's delegated permissions subject to Entra tenant
+  policies.
+- **Autonomous / background:** when no user token is available, the agent authenticates with its own
+  Entra agent identity (via managed identity) to access downstream services.
+
+In both modes the agent retains its dedicated Entra agent identity for authentication,
+authorization, and auditability.
 
 ---
 
@@ -79,9 +118,17 @@ application resource.
   required RBAC roles to the new distinct `agentIdentityId` after publishing.
 - **Locate in portal:** agent application resource → Overview → JSON View → copy `agentIdentityId`.
 
-> `azd` automatically assigns the **Foundry User** role to the shared project agent identity for
-> unpublished agents. Published agents require *manual* role assignment — `azd` does not configure
-> Container Registry, Application Insights, or custom resource permissions.
+> `azd` automatically assigns the **Foundry User** role at account scope to the shared project agent
+> identity for unpublished agents. Published agents require *manual* role assignment — `azd` does not
+> configure Container Registry, Application Insights, or custom resource permissions.
+>
+> **Foundry RBAC role rename (as of 2026-06-03):** **Foundry User / Foundry Owner / Foundry Account
+> Owner / Foundry Project Manager** were previously named **Azure AI User / Azure AI Owner / Azure AI
+> Account Owner / Azure AI Project Manager**. This is a rename only — the **role IDs and core
+> permissions are unchanged**, and the previous names may still appear in some places while the
+> rename rolls out
+> ([Hosted agents concepts](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/hosted-agents),
+> updated 2026-06-03).
 
 ---
 

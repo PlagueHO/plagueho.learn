@@ -1,7 +1,10 @@
 ---
-reviewed_at: 2026-05-29
+reviewed_at: 2026-06-04
 status: pass
 sections_reviewed: 12
+iteration_1_reviewed_at: 2026-06-04
+iteration_1_status: pass
+iteration_1_sections_reviewed: 7
 ---
 
 # Quality Review: Microsoft Entra Agent ID
@@ -318,6 +321,196 @@ to get a ready-to-use `Authorization` header: `GET /AuthorizationHeader?AgentIde
 path segment is required, not optional. Omitting it would result in a 404 in practice.
 
 **Recommended fix:** Update the endpoint example in section 07 to include `{serviceName}`.
+
+---
+
+## Iteration 1 — Build 2026 review
+
+**Reviewed:** 2026-06-04 · **Scope:** the 7 sections edited in the Build 2026
+currency refresh (01, 02, 04, 08, 10, 11, 12). **Notes basis:**
+`notes/{concepts,foundry,security,blueprint}/iteration-1-build2026.md` and
+`sources-iteration-1.md`.
+
+> **Source spot-check note:** All Build 2026 deltas were verified by the
+> deep-reader on 2026-06-04 (same day as this review) with explicit "no 404 / no
+> sign-in wall" confirmation against canonical Learn URLs and official blogs
+> (Learn MCP endpoint was unavailable; `fetch_webpage` fallback used). Because
+> source verification is same-day, no independent re-fetch was performed this
+> pass; attribution was checked against the recorded notes instead.
+
+### Summary
+
+- Sections reviewed: 7
+- Sections passing (incl. minor nits): 6 (01, 02, 04, 08, 10, 11)
+- Sections with a concern: 1 (12)
+- Overstated GA introduced: 0 blocking (1 minor wording in 12)
+- SDK conflation: 0
+- Preserved diagrams/tables verified intact: 7/7
+
+### Status-fidelity matrix (the focus of this iteration)
+
+| Build 2026 claim | Required status | Where labelled | Verdict |
+|---|---|---|---|
+| Conditional Access for agents | GA; sub-features (All/Select agent users, Agent execution environments) still Preview | 10 | PASS |
+| Identity Protection for agents | Still Preview; `riskyAgents` + `agentRiskDetections`; OBO risk → user | 10 | PASS |
+| Foundry hosted agents | Public preview; GA expected early July 2026 (not GA) | 04, 12 | PASS |
+| Microsoft Agent 365 | GA (Commercial since 2026-05-01) | 01, 12 | PASS |
+| Autopilot agents | Public preview; blog-announced | 01, 02, 12 | PASS |
+| Windows 365 for Agents GA + MXC "local ID" | Blog-asserted GA / blog-only preview (not Learn-confirmed GA) | 02, 10 PASS; **12 CONCERN** | MIXED |
+| ACS / ASSERT / AGT | Open-source, blog-announced, *adjacent* to (not part of) Entra Agent ID | 10, 12 | PASS |
+| SDK non-conflation (M365 Agents SDK vs Agent 365 SDK) | Kept distinct | 08, 10, 11, 12 | PASS |
+
+### Section results
+
+#### 01 — What is Microsoft Entra Agent ID? — **PASS**
+
+- *Status fidelity:* Microsoft Agent 365 correctly stated **GA** for Commercial
+  since 1 May 2026, cited to the Agent 365 overview Learn page. Autopilot agents
+  correctly **public preview** and **blog-announced** (Foundry + Project Lobster
+  blogs), with the underlying *agent's user account* primitive cited to Learn
+  (`agent-id/agent-users`). No overstated GA.
+- *Attribution:* Learn claims → Learn URLs; blog claims → blogs. Clean.
+- *Preservation:* Four-pillar/licensing tables and the "why not service
+  principals / user accounts" framing preserved; Build 2026 content is additive.
+- *Fixes:* None required.
+
+#### 02 — The Agent Identity Model — **PASS**
+
+- *Status fidelity:* Autopilot agents tied to the Learn-documented
+  agent's-user-account subtype (correctly noting the blogs do not name the
+  subtype); **public preview / blog-announced**. New "OS-enforced and Cloud
+  PC-bound agent identity" subsection cleanly separates the **Learn-documented**
+  Cloud PC-bound agent *user* identity from the **blog-only / not-yet-GA** MXC
+  on-device "local ID," and explicitly flags Windows 365 for Agents GA as a
+  *blog assertion* with no Learn GA badge. Exactly the required treatment.
+- *Attribution:* Correct Learn vs blog split throughout.
+- *Preservation:* Three-modes table, Mermaid object model, and the FIC credential
+  chain are intact; edits are additive.
+- *Fixes:* None required.
+
+#### 04 — Foundry Agent Service Integration — **PASS**
+
+- *Workflow type:* **Not deleted** — the Workflow row is retained in the agent
+  types table.
+- *2-vs-3 discrepancy:* Handled as a **dated note** ("Note (as of 2026-06-03)…")
+  that reconciles the overview's two top-level types with the retained workflow
+  row. Correct.
+- *Mermaid:* The 4-step token-exchange `sequenceDiagram` is **intact** and
+  unchanged.
+- *RBAC rename:* Updated to **Foundry User/Owner/Account Owner/Project Manager**
+  with the "**rename only — role IDs and core permissions unchanged**, previous
+  names may still appear" note, cited to the hosted-agents Learn page (2026-06-03).
+- *Status fidelity:* Hosted agents are **public preview, GA expected early July
+  2026**, with an explicit "do not treat as GA" caveat. Dual-identity (per-agent
+  Entra identity vs project managed identity) and OBO-vs-managed-identity
+  invocation modes are correct.
+- *Fixes:* None required.
+
+#### 08 — Agent Identity Blueprint — **PASS** (one minor link nit)
+
+- *SDK non-conflation:* Explicit — "Do not confuse this with the **Agent 365
+  SDK**, which is a governance overlay…". Wizard correctly still **Preview** with
+  "no announced GA date." Agent 365 registry registration path added (M365 Agents
+  SDK GA → CLI → raw Graph fallback). Object model, principal, pitfalls preserved.
+- *Minor fix (actionable):* The "**Microsoft 365 Agents SDK**" hyperlink points
+  to the `entra/agent-id/create-blueprint` page rather than the SDK home
+  (`learn.microsoft.com/en-us/microsoft-365/agents-sdk/`) recorded in the
+  blueprint note. Similarly the Agent 365 CLI "reference" link points to
+  `microsoft-agent-365/developer/` rather than the CLI setup reference. Re-point
+  these for precision. Non-blocking.
+
+#### 10 — Security Best Practices — **PASS** (one verification nit)
+
+- *Status fidelity:* CA for agents correctly **GA** with "All/Select agent
+  identities" GA and "All/Select agent users" + "Agent execution environments"
+  still **Preview**. Identity Protection correctly **Preview**, with
+  `riskyAgents` / `agentRiskDetections` and OBO-risk-attributed-to-the-user.
+  Windows 365 GA correctly **blog-asserted**; MXC "local ID" correctly
+  **blog-only preview, not on Learn**. Agent 365 SDK GA correctly marked
+  **blog-asserted**. ACS/ASSERT correctly framed as **adjacent, open-source,
+  blog-announced — not part of Entra Agent ID**.
+- *Attribution:* Learn vs blog split is correct on every Build 2026 claim.
+- *Verification nit (actionable):* The risk-detection table includes a
+  `riskyUserSignIn` row that is **not present** in the iteration-1 security note
+  (which lists `unfamiliarResourceAccess`, `signInSpike`, `failedAccessAttempt`,
+  `adminConfirmedAgentCompromised`, `threatIntelligenceAccount`). This row is
+  carried over from the original 2026-05-29 content, so it is *preserved*, not
+  *introduced* — but it was not re-confirmed against the 2026-05-12 page this
+  iteration. Confirm it still exists on `concept-risky-agents` or remove it.
+  Non-blocking.
+
+#### 11 — Getting Started — **PASS**
+
+- *SDK non-conflation:* Explicit callout — "**Microsoft 365 Agents SDK** (GA)
+  builds and provisions agents; the similarly named **Agent 365 SDK** does not
+  create or host agents… Do not conflate the two." On-ramp correctly reordered
+  (M365 Agents SDK GA → Agent 365 CLI → wizard **Preview** / raw Graph fallback).
+  Roles, licensing, and the troubleshooting table preserved. `azd` assigns
+  **Foundry User** (renamed role) consistently with section 04.
+- *Fixes:* None required.
+
+#### 12 — Resources & Further Reading — **CONCERN** (minor, consistency)
+
+- *What's right:* Agent 365 row correctly states **GA for Commercial**; hosted
+  agents row correctly **(preview)**; SDK row names the **Agent 365 SDK vs
+  Microsoft 365 Agents SDK** distinction; ACS/ASSERT/AGT correctly grouped under
+  "Build 2026 Announcements (Blog / Open Source)." New Build 2026 URLs added.
+- *Concern (actionable):* The **Windows 365 for Agents** row describes it as a
+  bare "**GA** Entra-joined, Intune-managed, pooled Cloud PCs," presenting GA as
+  established fact. Sections 02 and 10 deliberately label this GA as
+  **blog-asserted** (the Learn page carries no GA badge). This is an internal
+  **consistency** mismatch and a mild overstated-GA. **Fix:** qualify the row,
+  e.g. "Entra-joined, Intune-managed, pooled Cloud PCs (GA *blog-asserted*;
+  Learn page carries no GA badge)" to match the conservative framing used
+  elsewhere. This is a wording fix, not new research.
+
+### Gaps (would require another research iteration)
+
+1. **Windows 365 for Agents GA provenance.** The research is internally split:
+   `sources-iteration-1.md` (Delta 4) concludes "Learn docs confirm GA," while
+   the security deep-read found the Learn intro page carries **no GA badge** and
+   treats GA as blog-only. Resolving whether a Learn page *explicitly* asserts GA
+   would let section 12 state GA unqualified (or confirm it must stay
+   blog-asserted). Until resolved, the guide should use the conservative
+   blog-asserted framing everywhere (drives the section 12 fix above).
+2. **Canonical Agent 365 SDK GA page.** The Security blog's "Agent 365 SDK GA"
+   link resolves to the *Microsoft 365 Agents SDK* page (likely a mislink). No
+   Learn page independently substantiates an "Agent 365 SDK GA." The guide
+   correctly marks it **blog-asserted**, but a canonical Learn citation is still
+   missing. (Sections 10/11 currently handle this correctly, so this is
+   non-blocking.)
+3. **Autopilot agents canonical identity mapping.** The Foundry how-to
+   `azure/foundry/agents/how-to/agent-365#create-ai-teammates` was referenced but
+   not independently fetched; a future pass could confirm whether Autopilot
+   agents have a Learn-documented agent's-user-account mapping vs blog narrative.
+
+None of these gaps invalidate the current edits; they are forward-looking
+verifications. The guide's conservative labelling already absorbs the
+uncertainty.
+
+### Frontmatter status — current vs recommended
+
+| Section | Current | Verdict | Recommended | Action taken |
+|---|---|---|---|---|
+| 01 | complete | PASS | complete | unchanged |
+| 02 | draft | PASS | complete | **promoted draft → complete** |
+| 04 | draft | PASS | complete | **promoted draft → complete** |
+| 08 | complete | PASS (minor link nit) | complete | unchanged |
+| 10 | draft | PASS (verification nit) | complete | **promoted draft → complete** |
+| 11 | complete | PASS | complete | unchanged |
+| 12 | complete | CONCERN | draft until GA wording fixed | **returned complete → draft** |
+
+### Overall verdict — **PASS** (with one minor consistency fix outstanding)
+
+The Build 2026 refresh is accurate, conservatively labelled, and free of SDK
+conflation or overstated GA in the substantive sections. Status fidelity is
+correct across all seven required deltas. Section 04 was handled exactly as
+required (workflow retained, dated note, Mermaid intact, RBAC renamed with the
+unchanged-IDs note). The only blemish is the bare "GA" wording for Windows 365
+for Agents in section 12, which contradicts the blog-asserted framing in
+sections 02/10 — a one-line wording fix that does not require another research
+iteration. Sections 02, 04, and 10 are promoted to `complete`; section 12 is
+returned to `draft` pending that fix.
 
 ---
 

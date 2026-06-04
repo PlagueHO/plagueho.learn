@@ -259,6 +259,42 @@ Authorization: Bearer <token>
 }
 ```
 
+### Recommended Registration Path (Build 2026)
+
+> **Status:** As of the
+> [create-blueprint guidance](https://learn.microsoft.com/en-us/entra/agent-id/create-blueprint)
+> (updated 2026-05-09), after a blueprint exists it should be **registered in the
+> Agent 365 registry** so administrators can discover and govern the agent from
+> the Microsoft 365 admin center. The portal wizard itself remains in
+> **Preview** with no announced GA date.
+
+There are now three registration channels, in order of preference:
+
+1. **Microsoft 365 Agents SDK (GA — recommended).** The
+   [Microsoft 365 Agents SDK](https://learn.microsoft.com/en-us/entra/agent-id/create-blueprint)
+   is now generally available and is the recommended way to build and provision
+   agents. It handles agent identity creation and registration in the Agent 365
+   registry for you, so agent identities appear automatically with no extra code.
+   *(Do not confuse this with the **Agent 365 SDK**, which is a governance overlay
+   that enhances already-built agents — see the
+   [Agent 365 developer guidance](https://learn.microsoft.com/en-us/microsoft-agent-365/developer/).)*
+2. **Agent 365 CLI.** Run `a365 setup all` to create and register the agent. To
+   retry only the registration step, run
+   `a365 setup all --agent-registration-only`
+   ([reference](https://learn.microsoft.com/en-us/microsoft-agent-365/developer/)).
+3. **Raw Microsoft Graph (fallback).** If you create blueprints directly with the
+   Graph API (the programmatic workflow above), registration is **not** automatic
+   — you must make an explicit additional call to the Agent Registry API to
+   register the agent card after creating the blueprint.
+
+```bash
+# Recommended: create and register in one step
+a365 setup all
+
+# Retry only the Agent 365 registry registration
+a365 setup all --agent-registration-only
+```
+
 ---
 
 ## Common Pitfalls

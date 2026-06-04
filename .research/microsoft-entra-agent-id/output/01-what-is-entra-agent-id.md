@@ -53,6 +53,14 @@ Agent ID is available for all Microsoft Entra customers. Integration with **Micr
 which enables agents to operate across Microsoft 365 services and enterprise workflows — requires a
 Microsoft Agent 365 license per user.
 
+*Microsoft Agent 365 is now generally available* — GA for the Commercial segment on a per-user basis
+since 1 May 2026 ([Agent 365 overview](https://learn.microsoft.com/en-us/microsoft-agent-365/overview)).
+Agent 365 and Entra Agent ID *converge* rather than overlap: Agent 365 *discovers and inventories* all
+agents across the estate (via the Agent Registry in the Microsoft 365 admin center), while Entra Agent ID
+assigns each discovered agent a *first-class identity* and governs it at scale with the right permissions
+and protections. Agents found through Agent 365 can be promoted to a first-class identity in Entra Agent ID
+([Agent 365 — Entra capabilities](https://learn.microsoft.com/en-us/microsoft-agent-365/admin/capabilities-entra)).
+
 ### How it relates to Microsoft Entra
 
 Microsoft Entra Agent ID is not a separate product silo — it extends the existing Microsoft Entra
@@ -61,6 +69,16 @@ alongside humans and workloads. Conditional Access, Identity Protection, and Ide
 gain new agent-aware modes rather than being replaced by new tooling.
 
 Supported protocols include OAuth 2.0, Model Context Protocol (MCP), and Agent-to-Agent (A2A).
+
+Governed agent identity is already visible in real-world products. At Build 2026, Microsoft introduced
+***Autopilot agents*** (public preview) — always-on, independent agents that *each operate under their own
+governed Entra Agent ID, not a shared service principal*, with their own email address, Microsoft Teams
+presence, and placement in the org chart. **Microsoft Scout** is the first Autopilot agent. The Autopilot
+category is Build-2026 blog-announced ([Foundry agents](https://aka.ms/BuildFoundryAgents),
+[Project Lobster / Microsoft Scout](https://aka.ms/ProjectLobster-Blog)); the underlying identity primitive
+is the Learn-documented *agent's user account* (a "digital worker" identity)
+([agent users](https://learn.microsoft.com/en-us/entra/agent-id/agent-users)). The identity model is covered
+in depth in section 02.
 
 For non-Microsoft agents built on AWS Bedrock, n8n, or any platform supporting OAuth 2.0/OIDC, the
 **Microsoft Entra Auth SDK (sidecar)** or **workload identity federation** gives every agent a governed

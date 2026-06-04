@@ -43,8 +43,39 @@ identity, then uses a three-stage FIC chain to impersonate the paired user accou
 those specific resources. This pattern supports "digital worker" scenarios such as an AI sales
 representative with a real mailbox listed in the Global Address List.
 
+This digital-worker identity primitive — the agent's user account, a subtype of Entra user identity
+that receives tokens with claim `idtyp=user`
+([agent users](https://learn.microsoft.com/en-us/entra/agent-id/agent-users)) — underpins the new
+Build 2026 **Autopilot agents** (public preview), a third category of always-on, independent agents
+that act with their own Entra Agent ID, email address, Microsoft Teams presence, and place in the
+org chart
+([Foundry Build 2026 blog](https://aka.ms/BuildFoundryAgents), blog-announced). **Microsoft Scout**
+is Microsoft's first Autopilot agent
+([Project Lobster blog](https://aka.ms/ProjectLobster-Blog), blog-announced). The blogs do not name
+the agent's-user-account subtype explicitly, but it is the underlying Learn-documented identity model.
+
 Some agents need both autonomous and OBO modes — for example, a nightly background sync combined with
 a chat interface. Implement both OAuth flows and select the appropriate token based on the operation.
+
+#### OS-enforced and Cloud PC-bound agent identity
+
+Beyond cloud agent services, an agent identity can also be bound to a managed *execution
+environment*. **Windows 365 for Agents** binds each Cloud PC session to a dedicated Entra agent user
+identity (separate from any human user); all session activity is attributed to that identity and
+audited across Agent 365, Microsoft Entra sign-in logs, Microsoft Defender, and Microsoft Purview
+([Windows 365 for Agents identity security](https://learn.microsoft.com/en-us/windows-365/agents/identity-security)).
+The identity is bound to the session, not the device — agents check out a Cloud PC from a pool per
+task and check it back in; they never reuse or impersonate user credentials (same source). Windows
+365 for Agents general availability is currently a blog assertion
+([Build 2026 Windows Developer blog](https://aka.ms/Windows-Build2026)); the Learn pages document the
+capability without printing a GA badge.
+
+Separately, an OS-enforced *on-device* "local ID" — delivered via **Microsoft Execution Containers
+(MXC)**, where Windows attributes all activity from the container to the agent identity — was
+announced at Build 2026 in **early preview**
+([Build 2026 Windows Developer blog](https://aka.ms/Windows-Build2026)). This on-device local ID is
+blog-announced only and is **not yet documented on Learn** (not GA); only the cloud-provisioned Entra
+agent user identity for Cloud PC sessions is Learn-documented today.
 
 ---
 

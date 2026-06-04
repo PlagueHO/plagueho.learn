@@ -76,15 +76,49 @@ For agents built outside Azure (AWS Bedrock, n8n, custom containers) that need t
 The most common production scenario — a Foundry-hosted agent calling Azure services (Storage,
 Cosmos DB, Graph) via MCP tools.
 
-### Step 1: Create a Blueprint
+### Step 1: Create a Blueprint and Register the Agent
 
-**Admin center (recommended for first-time setup):**
+Agents created with a blueprint are registered in the **Agent 365 registry** so admins
+can discover and govern them from the Microsoft 365 admin center
+([Create a blueprint](https://learn.microsoft.com/en-us/entra/agent-id/create-blueprint),
+updated 2026-05-09). Choose your on-ramp:
+
+**Recommended — Microsoft 365 Agents SDK (GA):** the recommended way to build and provision
+agents. The SDK handles agent identity creation and registration in the Agent 365 registry
+for you, so your agent identities appear automatically with no extra code
+([Create a blueprint](https://learn.microsoft.com/en-us/entra/agent-id/create-blueprint),
+updated 2026-05-09).
+
+**Recommended — Agent 365 CLI:** runs the full setup including registration:
+
+```bash
+a365 setup all
+# retry only the registration step:
+a365 setup all --agent-registration-only
+```
+
+([Agent 365 developer guide](https://learn.microsoft.com/en-us/microsoft-agent-365/developer/),
+updated 2026-05-01.)
+
+> The **Microsoft 365 Agents SDK** (GA) builds and provisions agents; the similarly named
+> **Agent 365 SDK** does not create or host agents — it is a governance and observability
+> overlay that layers Entra-backed identity, governed tool access, and OpenTelemetry on
+> agents you have already built
+> ([Agent 365 developer guide](https://learn.microsoft.com/en-us/microsoft-agent-365/developer/),
+> updated 2026-05-01). Do not conflate the two.
+
+**Fallback — Admin center wizard (Preview):**
 
 1. Sign in to [entra.microsoft.com](https://entra.microsoft.com/).
 2. Go to **Entra ID > Agents > Agent blueprints > New agent blueprint (Preview)**.
 3. Enter a display name; assign at least one owner and one sponsor. Select **Create**.
 4. After creation, configure identifier URIs, OAuth permission scopes, and federated credentials
    in the blueprint's detail pages or via Graph API.
+
+**Fallback — Raw Graph API:** for existing identity-issuance workflows, create the blueprint
+with Graph, then make an explicit second call to the Agent Registry API to register the agent
+([Create a blueprint](https://learn.microsoft.com/en-us/entra/agent-id/create-blueprint),
+updated 2026-05-09).
 
 > Always include the `OData-Version: 4.0` header on all Graph API calls. Without it, the API
 > may silently create a standard app registration instead of an agent identity blueprint —

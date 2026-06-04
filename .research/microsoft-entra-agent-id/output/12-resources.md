@@ -8,6 +8,7 @@ areas: [all]
 # Resources & Further Reading
 
 All URLs were verified against research notes extracted on 2026-05-29.
+Build 2026 additions verified 2026-06-04.
 
 ## Microsoft Entra Agent ID Documentation
 
@@ -17,6 +18,7 @@ Core concepts, identity model, and blueprint management.
 |---|---|
 | [What is Microsoft Entra Agent ID?](https://learn.microsoft.com/en-us/entra/agent-id/what-is-microsoft-entra-agent-id) | Platform overview, licensing, and supported protocols |
 | [Agent identity types](https://learn.microsoft.com/en-us/entra/agent-id/what-are-agent-identities) | Agent identity, agent's user account, and why not service principals |
+| [The agent's user account in Microsoft Entra Agent ID](https://learn.microsoft.com/en-us/entra/agent-id/agent-users) | Digital-worker identity model: mailbox, chat, and org membership |
 | [The agent identity platform](https://learn.microsoft.com/en-us/entra/agent-id/what-is-agent-id-platform) | Architecture of the authentication and authorization service |
 | [Design patterns](https://learn.microsoft.com/en-us/entra/agent-id/concept-agent-id-design-patterns) | Architectural patterns for common agent scenarios |
 | [Plan agent identity architecture](https://learn.microsoft.com/en-us/entra/agent-id/how-to-plan-agent-identity-architecture) | Decision guide for choosing identity types and flows |
@@ -38,6 +40,23 @@ Core concepts, identity model, and blueprint management.
 | [Agent identity in Foundry](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/agent-identity) | How Foundry provisions blueprints and agent identities; shared vs distinct identity |
 | [MCP tool authentication](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/mcp-authentication) | All five auth methods for MCP tools; OAuth passthrough for non-Entra IDPs |
 | [Agent-to-agent authentication](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/agent-to-agent-authentication) | How A2A token exchange works in Foundry |
+| [What are hosted agents?](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/hosted-agents) | Managed runtime (preview); per-agent Entra agent identity plus project managed identity |
+
+## Microsoft Agent 365
+
+| Resource | Description |
+|---|---|
+| [Overview of Microsoft Agent 365](https://learn.microsoft.com/en-us/microsoft-agent-365/overview) | Platform overview; GA for Commercial, Entra Agent ID convergence |
+| [Microsoft Agent 365 SDK and CLI](https://learn.microsoft.com/en-us/microsoft-agent-365/developer/) | Developer docs for the GA SDK and CLI; Agent 365 SDK vs Microsoft 365 Agents SDK |
+| [Protect agent identities with Microsoft Entra](https://learn.microsoft.com/en-us/microsoft-agent-365/admin/capabilities-entra) | Admin guidance on Agent 365 ↔ Entra Agent ID identity controls |
+| [Secure AI agents at scale using Microsoft Agent 365](https://learn.microsoft.com/en-us/security/security-for-ai/agent-365-security) | Entra, Purview, and Defender control mapping for agents |
+
+## Windows 365 for Agents
+
+| Resource | Description |
+|---|---|
+| [What is Windows 365 for Agents?](https://learn.microsoft.com/en-us/windows-365/agents/introduction-windows-365-for-agents) | Entra-joined, Intune-managed, pooled Cloud PCs for computer-using agents (GA announced at Build 2026, blog-asserted) |
+| [Identity security for Windows 365 for Agents](https://learn.microsoft.com/en-us/windows-365/agents/identity-security) | Ties Cloud PC agent sessions to a dedicated Entra agent user identity with audit attribution |
 
 ## Microsoft Agent Framework Documentation
 
@@ -88,3 +107,16 @@ Core concepts, identity model, and blueprint management.
 | [Scenario: validate authorization header](https://learn.microsoft.com/en-us/entra/msidweb/agent-id-sdk/scenarios/validate-authorization-header) | Code walkthrough for inbound token validation via sidecar |
 | [Scenario: call downstream API](https://learn.microsoft.com/en-us/entra/msidweb/agent-id-sdk/scenarios/call-downstream-api) | Code walkthrough for outbound authenticated API calls via sidecar |
 | Sidecar container image | `mcr.microsoft.com/entra-sdk/auth-sidecar` — pull directly from MCR |
+
+## Build 2026 Announcements (Blog / Open Source)
+
+Non-Learn references announced at Microsoft Build 2026.
+
+| Resource | Description |
+|---|---|
+| [Microsoft Agent Platform — Foundry Agents](https://aka.ms/BuildFoundryAgents) | Build 2026 announcement; Autopilot agents (public preview) with Entra Agent ID |
+| [Microsoft Scout — first Autopilot agent](https://aka.ms/ProjectLobster-Blog) | Always-on autonomous agent; every agent runs under its own governed Entra identity |
+| [Microsoft Foundry — Build 2026 recap](https://aka.ms/FoundryBuildNews) | Recap including hosted agents in Foundry Agent Service (GA expected early July 2026) |
+| [Agent Control Specification (ACS)](https://commandline.microsoft.com/agent-control-specification-runtime-governance/) | Open specification for the agent runtime governance layer |
+| [ASSERT — Written Intent, Executable Evals](https://commandline.microsoft.com/assert-written-intent-executable-evals/) | Open-source spec-driven agent evaluation framework |
+| [Agent Governance Toolkit (AGT)](https://github.com/microsoft/agent-governance-toolkit) | Open-source toolkit hosting the ACS module and governance specs |

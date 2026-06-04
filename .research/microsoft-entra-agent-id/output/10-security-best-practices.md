@@ -30,6 +30,8 @@ Microsoft Entra Agent ID operationalizes Zero Trust across three pillars:
 
 ## Conditional Access for Agent Identities
 
+> *Generally available (status change 2026-06-04). Targeting agents acting as applications — **"All agent identities"** and **"Select agent identities"** — is GA, as are blueprint-level and custom-security-attribute-driven targeting. The following sub-features that target an agent's **user account** remain **Preview**: "All agent users", "Select agent users", and "Agent execution environments" (a condition that scopes policies to endpoint-based Cloud PC / Windows 365 for Agents sessions, enabling device-compliance and compliant-network controls). Requires Microsoft Entra ID P1 plus a Microsoft Agent 365 license per user. (Source: [Conditional Access for agents](https://learn.microsoft.com/en-us/entra/identity/conditional-access/agent-id), updated 2026-06-04.)*
+
 ### Organizing Agents at Scale
 
 Use **custom security attributes** (`AgentClassification`, `DataSensitivity`, `AgentOrigin`, `ForPublicUse`) to classify agents for attribute-driven CA policies. Apply CA policies to an **agent identity blueprint** to automatically cover all current and future derived identities — no per-instance configuration required.
@@ -40,7 +42,7 @@ Use **custom security attributes** (`AgentClassification`, `DataSensitivity`, `A
 |---|---|---|
 | OBO / delegated | Users or groups | Grant, deny, limit access, require step-up MFA from the user |
 | Application-only (client credentials) | Agent identities or blueprint | Block only — no interactive remediation for autonomous agents |
-| Agent's user account | Select "All agent users" | Block only |
+| Agent's user account | Select "All agent users" *(Preview)* | Block only |
 
 Human-centric controls (MFA, device compliance) deliberately do *not* apply to agent's user
 accounts — agents cannot satisfy interactive auth challenges and do not run from managed devices.
@@ -56,9 +58,9 @@ accounts — agents cannot satisfy interactive auth challenges and do not run fr
 
 ## Identity Protection for Agents
 
-> *Preview feature (2026-05-29). Requires Microsoft Entra ID P2. Roles: `Security Administrator`, `Security Operator`, or `Security Reader` for reports; `Conditional Access Administrator` for risk-based CA policies.*
+> *Preview feature (status unchanged; page updated 2026-05-12). Requires Microsoft Entra ID P2. Roles: `Security Administrator`, `Security Operator`, or `Security Reader` for reports; `Conditional Access Administrator` for risk-based CA policies. (Source: [ID Protection for agents](https://learn.microsoft.com/en-us/entra/id-protection/concept-risky-agents), updated 2026-05-12.)*
 
-All risk detections are currently **offline** (not real-time). Detected risk surfaces in the **Risky Agents** report on the ID Protection Dashboard.
+All risk detections are currently **offline** (not real-time). Detected risk surfaces in the **Risky Agents** report on the ID Protection Dashboard. Two Microsoft Graph collections expose this data — **`riskyAgents`** (current agent risk state) and **`agentRiskDetections`** (individual detections). Detections apply specifically to **autonomous** agent activity; in OBO flows the risky activity is attributed to the **user**, not the agent.
 
 | Detection | Signal |
 |---|---|
@@ -128,6 +130,23 @@ Global Secure Access (GSA) currently provides network controls for Microsoft Cop
 Enable per-environment in Power Platform Admin Center, then configure the baseline profile in GSA.
 Reference: [Configure network security for Copilot Studio agents](https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-secure-web-ai-gateway-agents)
 
+## Governed Execution Environments
+
+Autonomous agents can run inside a governed execution environment rather than ungoverned compute. **Windows 365 for Agents** provides isolated, Entra-joined, Intune-managed, policy-governed Cloud PCs: each session is bound to a dedicated Entra **agent user** identity (separate from any human user — agents never reuse or impersonate user credentials), and activity is audited across **Agent 365**, **Entra sign-in logs**, **Microsoft Defender**, and **Microsoft Purview**. Conditional Access evaluates the agent user identity like a human user before permitting session connection, and Intune pool assignment governs which agent identities can acquire a Cloud PC. (Sources: [Identity security overview (Windows 365 for Agents)](https://learn.microsoft.com/en-us/windows-365/agents/identity-security), updated 2026-06-03; [What is Windows 365 for Agents?](https://learn.microsoft.com/en-us/windows-365/agents/introduction-windows-365-for-agents), updated 2026-06-04.) Scope CA policies to these sessions with the **Agent execution environments** condition (Preview).
+
+> **Build 2026 (preview, blog-only):** An OS-enforced on-device agent identity ("local ID") delivered via **Microsoft Execution Containers (MXC)**, plus Agent 365 native integration bringing Defender / Entra / Intune / Purview controls to local agents, were announced in preview at Build 2026 — not yet documented on Learn ([Build 2026 announcement](https://aka.ms/Windows-Build2026)). The general availability of Windows 365 for Agents within Agent 365 is **blog-asserted**; the Learn pages describe the capability without printing an explicit GA badge.
+
+## Agent 365 Governance Surface
+
+At the platform level, Microsoft Entra, Microsoft Purview, and Microsoft Defender provide purpose-built controls for agents — access control and lifecycle governance (Entra), DSPM / DLP / auditing (Purview), and posture management plus real-time threat detection (Defender) — documented at [Secure AI agents at scale using Microsoft Agent 365](https://learn.microsoft.com/en-us/security/security-for-ai/agent-365-security) (updated 2026-05-01). The **Agent 365 SDK** lets developers build these controls (observability, access control, compliance) directly into custom agents so they compose with Agent 365 (Build 2026; GA [blog-asserted](https://aka.ms/BUILD_SecurityBlog)).
+
+## Adjacent Runtime-Governance and Evaluation Tooling
+
+> The following are open-source projects announced at Build 2026 with **no Learn documentation yet**. They are runtime-governance / evaluation tooling **adjacent to — not part of —** Entra Agent ID, and operate at the agent-runtime rather than the identity layer.
+
+- **[Agent Control Specification (ACS)](https://commandline.microsoft.com/agent-control-specification-runtime-governance/)** — an open, vendor-neutral runtime-governance specification defining portable policy interception points (allow / warn / deny / escalate verdicts); a module within the [Agent Governance Toolkit](https://github.com/microsoft/agent-governance-toolkit).
+- **[ASSERT](https://commandline.microsoft.com/assert-written-intent-executable-evals/)** — an open-source, spec-driven framework that turns natural-language behavior specifications into executable agent evaluations.
+
 ## Security Best Practices Checklist
 
 - [ ] Use **agent identities** — not service principals or regular user accounts — for all AI agents
@@ -141,4 +160,5 @@ Reference: [Configure network security for Copilot Studio agents](https://learn.
 - [ ] Export sign-in logs to Log Analytics, Event Hub, or a SIEM for retention beyond the 90-day default
 - [ ] Enable **prompt injection detection** in Global Secure Access for Copilot Studio agents
 - [ ] Separate dev, test, and production with distinct blueprints and credentials
+- [ ] Prefer a **governed execution environment** (e.g., Windows 365 for Agents Cloud PCs) for autonomous agents, and scope Conditional Access with the **Agent execution environments** condition
 - [ ] Use the blueprint **disable** action as an immediate kill-switch when an agent is suspected compromised
