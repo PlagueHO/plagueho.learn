@@ -46,7 +46,7 @@ canvasHeight: 720
         <p class="author-note">… recovering software engineer</p>
       </div>
     </div>
-    <p class="title-hero-date">November 26, 2025</p>
+    <p class="title-hero-date">June 30, 2026</p>
   </div>
   <div class="title-hero-right">
   </div>

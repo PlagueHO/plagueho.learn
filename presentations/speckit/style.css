@@ -416,10 +416,11 @@
 .takeaway-text {
   font-size: 0.82em;
   line-height: 1.45;
+  color: var(--theme-lt1);
 }
 
 .takeaway-text strong {
-  color: var(--theme-dk2);
+  color: var(--theme-accent5);
   font-family: 'Segoe Sans Display', 'Segoe UI Semibold', system-ui, sans-serif;
 }
 
