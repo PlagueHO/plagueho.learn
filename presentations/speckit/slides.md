@@ -271,12 +271,17 @@ transition: fade-out
           <div class="commands-row">
             <div class="commands-cell"><code>/speckit.clarify</code></div>
             <div class="commands-cell">Clarify underspecified areas through structured questioning</div>
-            <div class="commands-cell">Must run before /plan unless explicitly skipped</div>
+            <div class="commands-cell">Run before /plan to reduce requirement ambiguity</div>
           </div>
           <div class="commands-row">
             <div class="commands-cell"><code>/speckit.plan</code></div>
             <div class="commands-cell">Create technical implementation plans with chosen tech stack</div>
             <div class="commands-cell">Specify architecture, frameworks, and technical decisions</div>
+          </div>
+          <div class="commands-row">
+            <div class="commands-cell"><code>/speckit.checklist</code></div>
+            <div class="commands-cell">Generate quality checklists to validate requirements completeness and consistency</div>
+            <div class="commands-cell">Run after /plan, before /tasks</div>
           </div>
           <div class="commands-row">
             <div class="commands-cell"><code>/speckit.tasks</code></div>
@@ -293,8 +298,13 @@ transition: fade-out
             <div class="commands-cell">Execute all tasks to build the feature according to plan</div>
             <div class="commands-cell">Generates working code from specifications</div>
           </div>
+          <div class="commands-row">
+            <div class="commands-cell"><code>/speckit.converge</code></div>
+            <div class="commands-cell">Verify all planned work is complete; append tasks for any remaining gaps</div>
+            <div class="commands-cell">Run after /implement; repeat with /implement until fully converged</div>
+          </div>
         </div>
-        <p class="commands-note commands-selectable">Recently added: <code>/speckit.checklist</code> and <code>/speckit.taskstoissues</code></p>
+        <p class="commands-note commands-selectable">Full production workflow: <code>/speckit.constitution</code> → <code>/speckit.specify</code> → <code>/speckit.clarify</code> → <code>/speckit.plan</code> → <code>/speckit.checklist</code> → <code>/speckit.tasks</code> → <code>/speckit.analyze</code> → <code>/speckit.implement</code> → <code>/speckit.converge</code></p>
       </div>
       <div class="commands-flowchart-wrap">
         <img src="./images/slide7_img8.png" class="commands-flowchart" alt="Spec Kit command flow diagram" />
@@ -337,7 +347,7 @@ transition: fade-out
     </div>
     <div class="takeaway-item">
       <span class="takeaway-num">3</span>
-      <div class="takeaway-text"><strong>Accelerate feature delivery with structured automation.</strong> Use /speckit.* commands to generate PRDs, design docs, and technical specs—reducing manual documentation effort and keeping artifacts consistent.</div>
+      <div class="takeaway-text"><strong>Accelerate feature delivery with structured automation.</strong> Use /speckit.* commands to generate feature specifications, implementation plans, and task lists—reducing manual documentation effort and keeping all artifacts consistent.</div>
     </div>
     <div class="takeaway-item">
       <span class="takeaway-num">4</span>
@@ -353,7 +363,7 @@ transition: fade-out
     </div>
     <div class="takeaway-item">
       <span class="takeaway-num">7</span>
-      <div class="takeaway-text"><strong>Hands-on outcome: Production-ready workflow.</strong> Leave with a working project using the complete SDD lifecycle—immediately applicable to your team's real work.</div>
+      <div class="takeaway-text"><strong>Hands-on outcome: Production-ready workflow.</strong> Leave with a working project using the complete SDD lifecycle—from constitution through to converge—immediately applicable to your team's real work.</div>
     </div>
   </div>
 </div>
@@ -392,7 +402,7 @@ transition: fade-out
       <div class="thankyou-item">
         <span class="thankyou-num">2</span>
         <div class="text-base" style="color: #000;">
-          <strong>Try the workflow</strong> — Start with <code class="!bg-gray-200 !text-gray-900">/speckit.constitution</code> and work through the lifecycle
+          <strong>Try the workflow</strong> — Start with <code class="!bg-gray-200 !text-gray-900">/speckit.constitution</code>, work through the pipeline, and run <code class="!bg-gray-200 !text-gray-900">/speckit.converge</code> until complete
         </div>
       </div>
       <div class="thankyou-item">
