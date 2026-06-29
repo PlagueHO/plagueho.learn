@@ -20,6 +20,7 @@ transition: slide-left
 mdc: true
 canvasWidth: 1280
 canvasHeight: 720
+routerMode: hash
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
@@ -31,7 +32,7 @@ canvasHeight: 720
     <img src="./images/presentation-qr-code.png" class="hero-qr" alt="Presentation QR code" />
     <a href="https://danielscottraynsford.com/plagueho.learn/agentic-development-evolution" target="_blank" class="hero-qr-url">danielscottraynsford.com/plagueho.learn/agentic-development-evolution</a>
   </div>
-  <p class="eyebrow">GitHub Copilot · Skills · SpecKit · Squads · Hypervelocity Engineering</p>
+  <p class="eyebrow">GitHub Copilot · Skills · Spec Kit · Squads · Hypervelocity Engineering</p>
   <h1 class="hero-heading">Agentic<br>Development<br>Evolution</h1>
   <p class="hero-sub">
     A view of the last 6 months — how the workflow shifted from prompts and

@@ -1,6 +1,6 @@
 # Spec-Driven Development with AI: Spec Kit
 
-A 30-minute Slidev presentation by Daniel Scott-Raynsford covering an introduction to SpecKit.
+A 30-minute Slidev presentation by Daniel Scott-Raynsford covering an introduction to Spec Kit.
 
 **Audience:** Developers, engineering leads, architects, and AI automation practitioners.
 

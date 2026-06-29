@@ -15,6 +15,7 @@ transition: slide-left
 mdc: true
 canvasWidth: 1280
 canvasHeight: 720
+routerMode: hash
 codeCopy: true
 shiki:
   themes:
