@@ -56,7 +56,7 @@ jobs:
             fi
 
             echo "::group::Building $deck_name"
-            pnpm exec slidev build "$slides" --base "/${{ github.event.repository.name }}/${deck_name}/" --out "../../_site/${deck_name}"
+            pnpm exec slidev build "$slides" --base "./" --out "../../_site/${deck_name}"
             echo "::endgroup::"
             found=$((found + 1))
           done
