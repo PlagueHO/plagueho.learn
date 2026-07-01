@@ -180,7 +180,7 @@ With an unambiguous specification in hand, we now define the technology stack an
 **In the Copilot chat panel, paste:**
 
 ```text
-/speckit.plan Build using .NET 10 and C# 14. Structure the solution as a Clean Architecture solution with four class library projects and two test projects:
+/speckit.plan Build using .NET 10 and C# 13. Structure the solution as a Clean Architecture solution with four class library projects and two test projects:
 
 LawVu.AuditTrail.Domain — the innermost layer. Contains the AuditEvent entity, strongly-typed value objects (TenantId, EventId, EventHash), the HashChainService as a pure static class with no infrastructure dependencies, and the IAuditEventRepository interface. No NuGet dependencies beyond the .NET runtime.
 
