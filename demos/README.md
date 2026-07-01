@@ -11,12 +11,15 @@ Build-keynote-quality demos for Azure AI, GitHub Copilot, .NET, and SaaS.
 | .NET Aspire | [`dotnet-aspire/`](dotnet-aspire/) | Cloud-native, distributed apps, AI integration |
 | SaaS Multitenancy | [`saas-multitenancy/`](saas-multitenancy/) | Tenant isolation, Entra ID, ARB patterns |
 | Bleeding Edge | [`bleeding-edge/`](bleeding-edge/) | Preview features, experimental, just-announced |
+| Hypervelocity Engineering | [`hypervelocity-engineering/`](hypervelocity-engineering/) | HVE-Core, RPI workflow, GitHub Backlog Manager |
+| SpecKit | [`speckit/`](speckit/) | Spec-Driven Development workflows |
 
 ## Active Demos
 
 | Demo | Category | Status | Relevance |
 |------|----------|--------|-----------|
-| *Coming soon* | — | — | — |
+| [Marketplace Channel Adapter](hypervelocity-engineering/marketplace-channel-adapter/README.md) | Hypervelocity Engineering | Active | HVE-Core RPI end-to-end + GitHub Backlog Manager |
+| [Immutable Audit Trail](speckit/audit-trail/README.md) | SpecKit | Active | Spec-Driven Development end-to-end with SpecKit |
 
 ## Demo Quality Bar
 
