@@ -38,11 +38,16 @@ shiki:
       <span>Sr. Partner Solution Architect · Microsoft</span>
     </div>
   </div>
-  <div class="hero-session">
-    <LineIcon name="velocity" />
-    <strong>90 minutes</strong>
-    <span>Engineers &amp; architects · Demo-heavy</span>
-  </div>
+  <a
+    class="hero-qr-block"
+    href="https://danielscottraynsford.com/plagueho.learn/hypervelocity-engineering"
+    target="_blank"
+    rel="noreferrer"
+    aria-label="Open the Hypervelocity Engineering presentation online"
+  >
+    <img src="./images/presentation-qr-code.png" alt="QR code for the Hypervelocity Engineering presentation" class="hero-qr" />
+    <span class="hero-qr-url">Open the live deck ↗</span>
+  </a>
   <div class="hero-path" aria-label="Presentation route">
     <span>Understand HVE</span>
     <i></i>
