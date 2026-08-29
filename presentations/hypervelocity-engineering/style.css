@@ -243,8 +243,8 @@
 
 .hero-qr-block {
   position: absolute;
-  top: 1.2rem;
-  right: 1.5rem;
+  top: 108px;
+  right: 72px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1440,12 +1440,10 @@ a.card-link p, a.card-link span { color: var(--theme-muted); }
 }
 
 .callout-teal {
-  border-left-color: var(--theme-accent2);
   background: rgba(56, 164, 220, 0.08);
 }
 
 .callout-purple {
-  border-left-color: var(--theme-accent4);
   background: rgba(213, 157, 215, 0.1);
 }
 
@@ -1656,12 +1654,6 @@ a.card-link p, a.card-link span { color: var(--theme-muted); }
   transform: translateY(-2px);
   box-shadow: 0 12px 32px rgba(17, 77, 139, 0.14);
 }
-
-.iq-pillar.iq-work    { border-left-color: var(--iq-work); }
-.iq-pillar.iq-fabric   { border-left-color: var(--iq-fabric); }
-.iq-pillar.iq-foundry  { border-left-color: var(--iq-foundry); }
-.iq-pillar.iq-security { border-left-color: #107C10; }
-.iq-pillar.iq-orange   { border-left-color: #D97706; }
 
 .iq-header-pill {
   display: inline-flex;
