@@ -1,19 +1,17 @@
 ---
 theme: default
-title: "Agentic Development Evolution: A View of the Last 6 Months"
+title: "Agentic Development: From Code Completion to Hypervelocity"
 info: |
-  ## Agentic Development Evolution
-  A 40-minute session by Daniel Scott-Raynsford on how GitHub Copilot,
-  skills, agentic workflows, subagents, squads, and prototype-first workflows changed
-  the Agentic engineering operating model.
+  ## Agentic Development: From Code Completion to Hypervelocity
+  A visual adoption roadmap for moving from individual AI-assisted development
+  to governed, organization-wide engineering flow.
 tags:
   - GitHub Copilot
-  - Agentic
-  - Workflows
-  - Skills
-  - Subagents
-duration: 40
-class: text-center
+  - Agentic Development
+  - Agent Skills
+  - MCP
+  - Hypervelocity Engineering
+duration: 28
 drawings:
   persist: false
 transition: slide-left
@@ -23,997 +21,744 @@ canvasHeight: 720
 routerMode: hash
 ---
 
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 1 — TITLE HERO                                ~1 min
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="hero-shell">
-  <div class="hero-qr-block">
-    <img src="./images/presentation-qr-code.png" class="hero-qr" alt="Presentation QR code" />
-    <a href="https://danielscottraynsford.com/plagueho.learn/agentic-development-evolution" target="_blank" class="hero-qr-url">danielscottraynsford.com/plagueho.learn/agentic-development-evolution</a>
-  </div>
-  <p class="eyebrow">GitHub Copilot · Skills · Spec Kit · Squads · Hypervelocity Engineering</p>
-  <h1 class="hero-heading">Agentic<br>Development<br>Evolution</h1>
-  <p class="hero-sub">
-    A view of the last 6 months — how the workflow shifted from prompts and
-    chat assistance to <strong>governed skills</strong>, <strong>agent team coordination</strong>, and <strong>spec-driven determinism</strong>.
-  </p>
-
-  <div class="hero-meta">
-    <span>Daniel Scott-Raynsford (DSR)</span>
-    <span>Sr. Partner Solution Architect · Cloud & AI Apps · Microsoft EPS</span>
-    <span>40 minutes · demo-heavy</span>
-  </div>
-
-  <div class="hero-badge-grid">
-    <div class="badge-card">
-      <strong>🛠️ Skills over prompts</strong>
-      <span>Reusable, governed, portable behavior</span>
-    </div>
-    <div class="badge-card">
-      <strong>🧠 Memory compounds</strong>
-      <span>Teams get smarter every session</span>
-    </div>
-    <div class="badge-card">
-      <strong>📐 Determinism beats vibe</strong>
-      <span>Specs, guardrails, and observability</span>
-    </div>
-    <div class="badge-card">
-      <strong>🤖 Scale the work out</strong>
-      <span>Subagents → Squads → Fleets</span>
-    </div>
-  </div>
-</div>
-
 <!--
-Open with the thesis: the biggest change in the last 6 months is NOT better
-autocomplete. It's the move from isolated assistance to a governed operating
-model. Slides are signposts — demos carry the proof.
+THESIS: Agentic development is an adoption journey, not a feature list; this deck refuses dense dashboards of equal-weight cards.
+OWN-WORLD: Fluent-inspired application surfaces, cool neutral layers, precise blue and teal signals, thin strokes, and diagram-first composition.
+STORY: The audience sees the market shift, recognizes the frustration barrier, and leaves with a path from personal acceleration to governed flow.
+FIRST VIEWPORT: A dark horizon holds one decisive title, a short route line, presenter identity, and a quiet QR action.
+FORM: A visual roadmap staged as connected rails, layers, feedback loops, and operating surfaces.
 -->
 
----
-transition: fade-out
----
-
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 2 — ABOUT ME                                  ~1 min
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
-  <div class="slide-banner">
-    <h1>About Me</h1>
-    <img src="./images/github-copilot.png" class="banner-icon" alt="GitHub Copilot" />
-  </div>
-  <div style="flex:1;display:flex;align-items:stretch;padding:0.65rem 1.35rem 0.75rem;min-height:0;">
-    <div class="vscode-window">
-      <div class="vscode-titlebar">
-        <div class="vscode-dots">
-          <span class="dot dot-red"></span>
-          <span class="dot dot-yellow"></span>
-          <span class="dot dot-green"></span>
-        </div>
-        <span class="vscode-wintitle">daniel-scott-raynsford — Visual Studio Code Insiders</span>
-      </div>
-      <div class="vscode-tabbar">
-        <div class="vscode-tab vscode-tab-json"><span>📄</span> about.json</div>
-        <div style="flex:1;background:#252526;"></div>
-      </div>
-      <div class="vscode-editor-area">
-        <div class="vscode-editor-pane">
-          <div class="vscode-line-nums">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13</div>
-          <div class="vscode-code-content"><span class="type-line" style="--li:0;"><span class="j-brace">{</span></span><span class="type-line" style="--li:1;">  <span class="j-key">"👤 name"</span><span class="j-colon">:</span> <span class="j-str">"Daniel Scott-Raynsford"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:2;">  <span class="j-key">"🏷️ alias"</span><span class="j-colon">:</span> <span class="j-str">"PlagueHO"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:3;">  <span class="j-key">"💼 role"</span><span class="j-colon">:</span> <span class="j-str">"Partner Solution Architect"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:4;">  <span class="j-key">"🏢 team"</span><span class="j-colon">:</span> <span class="j-str">"Cloud &amp; AI Apps · Microsoft EPS"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:5;">  <span class="j-key">"💻 origin"</span><span class="j-colon">:</span> <span class="j-str">"Recovering software engineer"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:6;">  <span class="j-key">"🔗 links"</span><span class="j-colon">:</span> <span class="j-brace">{</span></span><span class="type-line" style="--li:7; padding-left: 2ch;">  <span class="j-key">"🌐 web"</span><span class="j-colon">:</span> <a href="https://danielscottraynsford.com" target="_blank" class="j-link">"danielscottraynsford.com"</a><span class="j-punc">,</span></span><span class="type-line" style="--li:8; padding-left: 2ch;">  <span class="j-key">"💼 linkedin"</span><span class="j-colon">:</span> <a href="https://www.linkedin.com/in/dscottraynsford/" target="_blank" class="j-link">"linkedin.com/in/dscottraynsford"</a><span class="j-punc">,</span></span><span class="type-line" style="--li:9; padding-left: 2ch;">  <span class="j-key">"🐙 github"</span><span class="j-colon">:</span> <a href="https://github.com/PlagueHO" target="_blank" class="j-link">"github.com/PlagueHO"</a></span><span class="type-line" style="--li:10;">  <span class="j-brace">}</span></span><span class="type-line" style="--li:11;"><span class="j-brace">}</span><span class="cs-cursor"></span></span></div>
-        </div>
-      </div>
-      <div class="vscode-statusbar">
-        <span>⎇ main</span>
-        <span>✓ GitHub Copilot</span>
-        <span style="margin-left:auto;">JSON</span>
-        <span>UTF-8</span>
-        <span>Ln 12, Col 1</span>
-      </div>
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-copy">
+    <h1>Agentic Development</h1>
+    <p class="hero-title-tail">From Code Completion to Hypervelocity</p>
+    <p class="hero-thesis">An adoption roadmap from individual acceleration to system-wide flow.</p>
+    <div class="hero-presenter">
+      <strong>Daniel Scott-Raynsford</strong>
+      <span>Sr. Partner Solution Architect · Microsoft</span>
     </div>
+  </div>
+  <a
+    class="hero-qr-link"
+    href="https://danielscottraynsford.com/plagueho.learn/agentic-development-evolution"
+    target="_blank"
+    aria-label="Open the presentation online"
+  >
+    <img src="./images/presentation-qr-code.png" alt="QR code for this presentation" />
+    <span>Open the live deck ↗</span>
+  </a>
+  <div class="hero-path" aria-hidden="true">
+    <span>Complete</span>
+    <i></i>
+    <span>Delegate</span>
+    <i></i>
+    <span>Orchestrate</span>
+    <i></i>
+    <span>Scale</span>
   </div>
 </div>
 
 <!--
-Keep this quick — 60 seconds max. The goal is to set expectations:
-short slides, frequent demos, and a focus on operating patterns not features.
+Open with the destination, not the tools. The story is how organizations move
+from faster typing to a delivery system where AI participation is repeatable,
+observable, governable, and shared across roles.
 -->
 
 ---
 transition: slide-up
 ---
 
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 3 — AGENDA                                  ~30 sec
-     ═══════════════════════════════════════════════════════════ -->
+<div class="agenda">
+  <header class="agenda-heading">
+    <h1>Four moves</h1>
+    <p>From personal productivity to organizational flow</p>
+  </header>
 
-<div class="agenda-shell">
-  <div class="agenda-orbs-layer">
-    <div class="agenda-orb agenda-orb-1"></div>
-    <div class="agenda-orb agenda-orb-2"></div>
-    <div class="agenda-orb agenda-orb-3"></div>
-  </div>
+  <nav class="agenda-route" aria-label="Presentation sections">
+    <a href="/3" @click.prevent="$router.push('/3')">
+      <span class="agenda-index">01</span>
+      <LineIcon name="velocity" />
+      <strong>See the shift</strong>
+      <small>Timeline + adoption journey</small>
+    </a>
+    <span class="agenda-connector" aria-hidden="true"></span>
+    <a href="/5" @click.prevent="$router.push('/5')">
+      <span class="agenda-index">02</span>
+      <LineIcon name="layers" />
+      <strong>Build repeatability</strong>
+      <small>Operating model + control loop</small>
+    </a>
+    <span class="agenda-connector" aria-hidden="true"></span>
+    <a href="/8" @click.prevent="$router.push('/8')">
+      <span class="agenda-index">03</span>
+      <LineIcon name="branch" />
+      <strong>Scale the system</strong>
+      <small>Subagents + squads + memory</small>
+    </a>
+    <span class="agenda-connector" aria-hidden="true"></span>
+    <a href="/12" @click.prevent="$router.push('/12')">
+      <span class="agenda-index">04</span>
+      <LineIcon name="flow" />
+      <strong>Move the whole system</strong>
+      <small>More roles + faster learning</small>
+    </a>
+  </nav>
+</div>
 
-  <div class="agenda-header">
-    <p class="agenda-eyebrow">40 MINUTES · 3 LIVE DEMOS</p>
-    <h1 class="agenda-title">Agenda</h1>
-  </div>
+---
+transition: fade-out
+---
 
-  <div class="agenda-grid">
-    <a href="/4" @click.prevent="$router.push('/4')" class="agenda-card agenda-card-1">
-      <div class="agenda-card-accent"></div>
-      <span class="agenda-num">01</span>
-      <h2>Agentic Operating Model</h2>
-      <p>Customization hierarchy, skills, MCP, the ecosystem</p>
-    </a>
-    <a href="/6" @click.prevent="$router.push('/6')" class="agenda-card agenda-card-2">
-      <div class="agenda-card-accent"></div>
-      <span class="agenda-num">02</span>
-      <h2>Determinism &amp; Orchestration</h2>
-      <p>/troubleshoot, Spec Kit, gh-aw, WorkIQ</p>
-    </a>
-    <a href="/7" @click.prevent="$router.push('/7')" class="agenda-card agenda-card-3">
-      <div class="agenda-card-accent"></div>
-      <span class="agenda-num">03</span>
-      <h2>Scaling Intelligence Out</h2>
-      <p>Subagents &rarr; Squads &rarr; Monitoring &amp; Memory</p>
-    </a>
-    <a href="/9" @click.prevent="$router.push('/9')" class="agenda-card agenda-card-4">
-      <div class="agenda-card-accent"></div>
-      <span class="agenda-num">04</span>
-      <h2>Beyond Dev + Prototypes</h2>
-      <p>HVE Core, RPI, Design Thinking, az&nbsp;prototype</p>
-    </a>
-  </div>
+<div class="app-slide timeline-slide">
+  <header class="app-bar">
+    <span class="app-mark"><LineIcon name="velocity" /></span>
+    <h1>How Agentic Development Evolved</h1>
+    <span class="app-context">2021 → 2026</span>
+  </header>
 
-  <div class="agenda-demos">
-    <a href="/5" @click.prevent="$router.push('/5')" class="agenda-demo-pill">
-      <span class="agenda-demo-pulse"></span>
-      <span class="agenda-demo-text">
-        <span class="agenda-demo-num">🎬 Demo 1</span>
-        <span class="agenda-demo-desc">Insiders + Skills + /Troubleshoot</span>
-      </span>
-    </a>
-    <a href="/8" @click.prevent="$router.push('/8')" class="agenda-demo-pill">
-      <span class="agenda-demo-pulse"></span>
-      <span class="agenda-demo-text">
-        <span class="agenda-demo-num">🎬 Demo 2</span>
-        <span class="agenda-demo-desc">Squads &amp; Fleets</span>
-      </span>
-    </a>
-    <a href="/10" @click.prevent="$router.push('/10')" class="agenda-demo-pill">
-      <span class="agenda-demo-pulse"></span>
-      <span class="agenda-demo-text">
-        <span class="agenda-demo-num">🎬 Demo 3</span>
-        <span class="agenda-demo-desc">az prototype</span>
-      </span>
-    </a>
-  </div>
+  <main class="timeline-content">
+    <div class="timeline-rail">
+      <a href="https://github.blog/2021-06-29-introducing-github-copilot-ai-pair-programmer/" target="_blank" class="timeline-node">
+        <span class="timeline-year">2021</span>
+        <span class="timeline-dot"><LineIcon name="code" /></span>
+        <strong>Complete</strong>
+        <small>GitHub Copilot technical preview</small>
+      </a>
+      <span v-click="1" class="timeline-connector" aria-hidden="true"></span>
+      <a v-click="1" href="https://github.blog/news-insights/product-news/universe-2023-copilot-transforms-github-into-the-ai-powered-developer-platform/" target="_blank" class="timeline-node">
+        <span class="timeline-year">2023</span>
+        <span class="timeline-dot"><LineIcon name="chat" /></span>
+        <strong>Converse</strong>
+        <small>GitHub Copilot Chat</small>
+      </a>
+      <span v-click="2" class="timeline-connector" aria-hidden="true"></span>
+      <a v-click="2" href="https://www.anthropic.com/news/model-context-protocol" target="_blank" class="timeline-node">
+        <span class="timeline-year">2024</span>
+        <span class="timeline-dot"><LineIcon name="plug" /></span>
+        <strong>Connect</strong>
+        <small>Model Context Protocol</small>
+      </a>
+      <span v-click="3" class="timeline-connector" aria-hidden="true"></span>
+      <a v-click="3" href="https://github.blog/changelog/2025-05-19-github-copilot-coding-agent-in-public-preview/" target="_blank" class="timeline-node">
+        <span class="timeline-year">2025</span>
+        <span class="timeline-dot"><LineIcon name="robot" /></span>
+        <strong>Delegate</strong>
+        <small>Copilot coding agent</small>
+      </a>
+      <span v-click="4" class="timeline-connector" aria-hidden="true"></span>
+      <a v-click="4" href="https://github.blog/changelog/2025-12-18-github-copilot-now-supports-agent-skills/" target="_blank" class="timeline-node">
+        <span class="timeline-year">2025</span>
+        <span class="timeline-dot"><LineIcon name="skills" /></span>
+        <strong>Standardize</strong>
+        <small>Agent Skills</small>
+      </a>
+      <span v-click="5" class="timeline-connector" aria-hidden="true"></span>
+      <a v-click="5" href="https://github.blog/news-insights/company-news/welcome-home-agents/" target="_blank" class="timeline-node">
+        <span class="timeline-year">2025</span>
+        <span class="timeline-dot"><LineIcon name="branch" /></span>
+        <strong>Scale</strong>
+        <small>Multi-agent orchestration</small>
+      </a>
+      <span v-click="6" class="timeline-connector" aria-hidden="true"></span>
+      <a v-click="6" href="https://microsoft.github.io/hve-core/" target="_blank" class="timeline-node">
+        <span class="timeline-year">2026</span>
+        <span class="timeline-dot"><LineIcon name="velocity" /></span>
+        <strong>Extend</strong>
+        <small>Hypervelocity engineering</small>
+      </a>
+    </div>
+  </main>
 </div>
 
 <!--
-Quick scan of the agenda — don't dwell. Point out the 3 demo markers so people
-know when to pay extra attention. "We'll be jumping out to live code 3 times."
+Sources:
+- GitHub Copilot technical preview, 29 June 2021:
+  https://github.blog/2021-06-29-introducing-github-copilot-ai-pair-programmer/
+- GitHub Copilot Chat announced, 8 November 2023:
+  https://github.blog/news-insights/product-news/universe-2023-copilot-transforms-github-into-the-ai-powered-developer-platform/
+- MCP announcement, 25 November 2024:
+  https://www.anthropic.com/news/model-context-protocol
+- Copilot coding agent public preview, 19 May 2025:
+  https://github.blog/changelog/2025-05-19-github-copilot-coding-agent-in-public-preview/
+- Agent Skills support, 18 December 2025:
+  https://github.blog/changelog/2025-12-18-github-copilot-now-supports-agent-skills/
+- GitHub Agent HQ, 2025:
+  https://github.blog/news-insights/company-news/welcome-home-agents/
+- Hypervelocity Engineering:
+  https://microsoft.github.io/hve-core/
+
+The point is not feature chronology. Each era increases the scope of work that
+can be delegated—and therefore the need for stronger operating controls.
+-->
+
+---
+transition: slide-left
+---
+
+<div class="journey-slide">
+  <header class="app-bar">
+    <span class="app-mark"><LineIcon name="branch" /></span>
+    <h1>Agentic Development: The Organizational Adoption Journey</h1>
+    <span class="app-context">constraint → capability</span>
+  </header>
+
+  <div class="journey-map">
+    <a href="/7" @click.prevent="$router.push('/7')" class="journey-stage stage-1" title="Coding agents accelerate code, tests, documentation, and daily developer tasks.">
+      <span class="journey-icon"><LineIcon name="person" /></span>
+      <strong>Individual<br>productivity</strong>
+    </a>
+    <a href="/6" @click.prevent="$router.push('/6')" class="journey-stage journey-barrier stage-2" title="Faster output does not guarantee the intended outcome.">
+      <span class="journey-icon"><LineIcon name="warning" /></span>
+      <strong>Frustration<br>barrier</strong>
+      <small>speed ≠ intent</small>
+    </a>
+    <a href="/7" @click.prevent="$router.push('/7')" class="journey-stage stage-3" title="Context engineering, MCP, specifications, hooks, and orchestration make outcomes repeatable.">
+      <span class="journey-icon"><LineIcon name="flow" /></span>
+      <strong>Context<br>engineering</strong>
+    </a>
+    <a href="/5" @click.prevent="$router.push('/5')" class="journey-stage stage-4" title="Repeatable processes become demand-loaded skills.">
+      <span class="journey-icon"><LineIcon name="skills" /></span>
+      <strong>Skill<br>development</strong>
+    </a>
+    <a href="/5" @click.prevent="$router.push('/5')" class="journey-stage stage-5" title="Plugins and marketplaces distribute proven AI development assets.">
+      <span class="journey-icon"><LineIcon name="store" /></span>
+      <strong>Plugins &amp;<br>marketplaces</strong>
+    </a>
+    <a href="/6" @click.prevent="$router.push('/6')" class="journey-stage stage-6" title="Paved workflows, evaluations, observability, security policy, ownership, and adoption measures enable team scale.">
+      <span class="journey-icon"><LineIcon name="shield" /></span>
+      <strong>Governed<br>team scale</strong>
+    </a>
+    <a href="/12" @click.prevent="$router.push('/12')" class="journey-stage journey-barrier stage-7" title="Business flow: product, operations, and security cannot keep pace. Customer outcomes: moving faster does not prove the team is building the right thing.">
+      <span class="journey-icon"><LineIcon name="target" /></span>
+      <strong>Business<br>barrier</strong>
+      <small>Business flow<br>Customer outcomes</small>
+    </a>
+    <a href="/9" @click.prevent="$router.push('/9')" class="journey-stage stage-8" title="AI extends across the delivery system and every role that shapes value.">
+      <span class="journey-icon"><LineIcon name="velocity" /></span>
+      <strong>Hypervelocity<br>engineering</strong>
+    </a>
+    <span class="journey-barrier-line journey-frustration-barrier-line" aria-hidden="true"></span>
+    <span class="journey-barrier-line journey-business-barrier-line" aria-hidden="true"></span>
+    <div class="journey-line" aria-hidden="true"></div>
+  </div>
+
+  <p class="journey-outcome"><span>Code faster</span><i></i><strong>Learn and deliver faster—together</strong></p>
+</div>
+
+<!--
+This is the core adoption model.
+
+1. Individual productivity creates enthusiasm.
+2. The frustration barrier appears when output is fast but wrong, inconsistent,
+   or hard to integrate.
+3. Context engineering and constraints make outcomes repeatable.
+4. Successful processes become skills.
+5. Skills and related assets become distributable plugins and marketplaces.
+6. Governed Team Scale is the missing bridge: paved workflows, evaluations,
+   observability, security policy, clear ownership, and adoption measures.
+7. The Business Barrier arrives when the wider organization cannot match delivery
+   pace or increasing output fails to improve customer outcomes.
+8. Hypervelocity Engineering extends AI across the whole delivery system.
+
+The maturity signal is not more generated code. It is shorter, safer feedback
+loops across more of the organization.
 -->
 
 ---
 transition: fade-out
 ---
 
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 4 — THE AGENTIC OPERATING MODEL               ~5 min
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
-  <div class="slide-banner">
+<div class="app-slide operating-slide">
+  <header class="app-bar">
+    <span class="app-mark"><LineIcon name="layers" /></span>
     <h1>The Agentic Operating Model</h1>
-    <img src="./images/vscode-insiders.png" class="banner-icon" alt="VS Code Insiders" />
-  </div>
-  <div style="padding: 0.3rem 1.8rem 0; display: flex; align-items: baseline; gap: 0.7rem;">
-    <span style="background: linear-gradient(135deg, #114D8B 0%, #38A4DC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.4rem; font-weight: 700; line-height: 1.3;">The baseline for all developers using Agentic Engineering: 7-Layer Customization Stack</span>
-  </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.35rem; align-items: stretch; padding: 0.3rem 1.8rem 0.5rem;">
-    <!-- Pyramid — full width, centred -->
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
-      <div class="pyramid-stack" style="width: 58%;">
-        <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/custom-instructions" target="_blank" style="margin: 0 0; background: linear-gradient(90deg, #0a2e4a, #103954); text-decoration: none; cursor: pointer;">
-          <span class="pyramid-num">1</span>
-          <span class="pyramid-name">Instructions</span>
-          <span class="pyramid-desc">Always-on repo/path conventions</span>
-        </a>
-        <a class="pyramid-layer pyramid-layer-faded" href="https://code.visualstudio.com/docs/copilot/customization/prompt-files" target="_blank" style="margin: 0 0.5rem; background: linear-gradient(90deg, #114D8B, #1a5ea8); text-decoration: none; cursor: pointer; position: relative;">
-          <span class="pyramid-num">2</span>
-          <span class="pyramid-name">Prompts</span>
-          <span class="pyramid-desc">Reusable task templates — <span style="color: #f97316; font-weight: 700;">⚠️ Use Skills instead</span></span>
-        </a>
-        <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/mcp-servers" target="_blank" style="margin: 0 1.1rem; background: linear-gradient(90deg, #085f92, #0d83c0); text-decoration: none; cursor: pointer;">
-          <span class="pyramid-num">3</span>
-          <span class="pyramid-name">MCP</span>
-          <span class="pyramid-desc">External tool & API surface (N+M)</span>
-        </a>
-        <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/custom-agents" target="_blank" style="margin: 0 1.8rem; background: linear-gradient(90deg, #0c6484, #1088ac); text-decoration: none; cursor: pointer;">
-          <span class="pyramid-num">4</span>
-          <span class="pyramid-name">Agents</span>
-          <span class="pyramid-desc">Specialist personas with tool scopes</span>
-        </a>
-        <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/agent-skills" target="_blank" style="margin: 0 2.7rem; background: linear-gradient(90deg, #077769, #08a08d); text-decoration: none; cursor: pointer;">
-          <span class="pyramid-num">5</span>
-          <span class="pyramid-name">Skills</span>
-          <span class="pyramid-desc">Demand-loaded expertise bundles</span>
-        </a>
-        <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/hooks" target="_blank" style="margin: 0 3.7rem; background: linear-gradient(90deg, #0a7f59, #0da977); text-decoration: none; cursor: pointer;">
-          <span class="pyramid-num">6</span>
-          <span class="pyramid-name">Hooks</span>
-          <span class="pyramid-desc">Deterministic lifecycle commands</span>
-        </a>
-        <a class="pyramid-layer" href="https://code.visualstudio.com/docs/copilot/customization/agent-plugins" target="_blank" style="margin: 0 4.8rem; background: linear-gradient(90deg, #5635a0, #7850c0); text-decoration: none; cursor: pointer;">
-          <span class="pyramid-num">7</span>
-          <span class="pyramid-name">Plugins</span>
-          <span class="pyramid-desc">Composable: agents, skills, hooks & MCPs</span>
-        </a>
-      </div>
-    </div>
-    <!-- /troubleshoot — full-width card -->
-    <div class="card" style="border-color: #c2410c; border-width: 2px; display: flex; align-items: center; gap: 0.6rem; padding: 0.45rem 0.85rem;">
-      <span style="font-size: 1.2em; flex-shrink: 0;">🔍</span>
-      <div>
-        <h3 style="background: linear-gradient(135deg, #c2410c 0%, #f97316 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 0.88em; margin: 0 0 0.1em; font-weight: 700;">/troubleshoot — Agent Chat Debug</h3>
-        <p style="margin: 0; font-size: 0.75em;">JSONL event tree: discovery → tool_calls → llm_request. <em>"Why did the AI do that?"</em></p>
-      </div>
-    </div>
-    <!-- 3 cards side-by-side below the pyramid -->
-    <div style="display: flex; gap: 0.7rem; align-items: stretch;">
-      <div class="card" style="flex: 1; border-color: var(--theme-accent2); border-width: 2px;">
-        <h3 style="background: linear-gradient(135deg, #114D8B 0%, #38A4DC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 0.95em; margin: 0 0 0.3em; font-weight: 700;">🧩 Skills Ecosystem</h3>
-        <p><a href="https://agentskills.io/" target="_blank">agentskills.io</a> — open standard adopted by 15+ agent products including GitHub Copilot.</p>
-      </div>
-      <div class="card" style="flex: 1; border-color: #5635a0; border-width: 2px;">
-        <h3 style="background: linear-gradient(135deg, #5635a0 0%, #9c79e0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 0.95em; margin: 0 0 0.3em; font-weight: 700;">🧩 Plugins = Team in a Box</h3>
-        <p>A composable bundle of agents, skills, hooks & MCPs. One install, full engineering culture for any domain.</p>
-      </div>
-      <div class="card" style="flex: 1; border-color: #0d6e6e; border-width: 2px;">
-        <h3 style="background: linear-gradient(135deg, #0d6e6e 0%, #14b8a6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 0.95em; margin: 0 0 0.3em; font-weight: 700;">🏢 Organizational Marketplace</h3>
-        <p>Common marketplaces: <a href="https://github.com/github/awesome-copilot" target="_blank">community</a>, <a href="https://github.com/dotnet/skills" target="_blank">vendor</a>, <a href="https://github.com/PlagueHO/plagueho.skills" target="_blank">personal</a> — or organizations create their own to share plugins, skills, and agents at scale.</p>
-      </div>
-    </div>
-  </div>
-</div>
+    <span class="app-context">7-layer customization stack</span>
+  </header>
 
-<!--
-Walk through the 7-layer stack top to bottom. Emphasize the spectrum from
-"always-on / low-detail" (instructions) to "on-demand / high-detail" (MCP).
-
-Key points:
-- Skills are demand-loaded — the agent reads the description and decides
-- agentskills.io is open, adopted by GitHub, Claude Code, Cursor, Codex, etc.
-- MCP reduces N×M integrations to N+M
-- This replaces hope-based prompting with governed behavior
-
-Point at the VS Code top committers chart: "Look who's writing the code now."
--->
-
----
-transition: fade-out
----
-
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 5 — DEMO 1: Insiders + Skills + /Troubleshoot  ~5 min
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="demo-shell">
-  <div class="demo-icon">🔬</div>
-  <h1 class="demo-title">Demo 1: Insiders + Skills + /Troubleshoot</h1>
-  <p class="demo-subtitle">See the customization stack in action — and observe why things happen</p>
-
-  <div class="demo-badge">🎬 ~5 minutes</div>
-
-  <div class="demo-checklist">
-    <div class="demo-item"><span class="check">▸</span> Show VS Code Insiders agent panel & skill discovery</div>
-    <div class="demo-item"><span class="check">▸</span> Trigger a skill via chat — watch demand-loading</div>
-    <div class="demo-item"><span class="check">▸</span> Run /troubleshoot — inspect tool calls & activation</div>
-    <div class="demo-item"><span class="check">▸</span> Show Sensei improving skill frontmatter quality</div>
-  </div>
-
-  <img src="./images/section-2-troubleshoot.jpg" style="position: absolute; bottom: 1.2rem; left: 50%; transform: translateX(-50%); height: 630px; border-radius: 14px; opacity: 0; box-shadow: 0 8px 32px rgba(0,0,0,0.5); animation: fade-in-delayed 1s ease 3s forwards;" alt="/troubleshoot meme" />
-</div>
-
-<!--
-DEMO SCRIPT — Insiders + Skills + /Troubleshoot (~5 min)
-═════════════════════════════════════════════════════════
-
-SETUP: VS Code Insiders open with a repo that has .github/skills/ configured.
-Pre-run a task that uses a skill so /troubleshoot has data.
-
-1. SKILL DISCOVERY (1 min)
-   - Open a repo with skills in .github/skills/
-   - Chat: "migrate this project to .NET 10"
-   - Point out: Copilot reads SKILL.md descriptions, picks the right skill
-   - Show the skill's YAML frontmatter — triggers, anti-triggers
-
-2. /TROUBLESHOOT (2 min)
-   - Run: /troubleshoot why did the migration skill activate?
-   - Walk through the JSONL event tree:
-     * discovery events — which files scanned, loaded, skipped
-     * tool_call events — what tools fired, args, results
-     * llm_request — which model, token count, time-to-first-token
-   - Key message: "This is the observability layer for the entire agentic stack"
-
-3. SENSEI (1.5 min)
-   - Run: "run sensei on my-skill-name"
-   - Show before/after frontmatter (vague → routed)
-   - Point out: triggers, anti-triggers, INVOKES declarations
-   - Key message: "Skill reliability is a frontmatter quality problem"
-
-4. WRAP (30 sec)
-   - "Skills replaced ad-hoc prompting. /troubleshoot tells you why.
-      Sensei makes the descriptions good enough for routing."
--->
-
----
-transition: fade-out
----
-
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 6 — DETERMINISM & ORCHESTRATION                ~4 min
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
-  <div class="slide-banner">
-    <h1>Determinism & Orchestration</h1>
-    <img src="./images/github-copilot.png" class="banner-icon" alt="GitHub Copilot" />
-  </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.55rem; align-items: stretch; padding: 0.4rem 1.8rem 0.8rem;">
-    <!-- 3 tools — horizontal: icon left, heading + text right -->
-    <div style="display: flex; gap: 0.65rem; align-items: stretch; flex: 1;">
-      <!-- Spec Kit -->
-      <a href="https://github.com/github/spec-kit" target="_blank" class="card card-link" style="flex: 1; display: flex; flex-direction: row; align-items: flex-start; gap: 0.9rem; padding: 0.95rem 1.1rem; border-color: #c2410c; border-width: 2px;">
-        <div class="icon-circle" style="flex-shrink: 0; margin: 0; align-self: flex-start; background: linear-gradient(135deg, #c2410c, #f97316);">📐</div>
-        <div>
-          <h3 style="background: linear-gradient(135deg, #c2410c 0%, #f97316 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 0.35em; font-size: 1.05em; font-weight: 700;">Spec Kit &amp; SDD</h3>
-          <p style="margin: 0; font-size: 0.88em;">Specifications become executable — code serves specs, not the other way around. 8 slash commands: <code>/speckit.specify</code> → <code>.plan</code> → <code>.implement</code>. "Unit tests for English."</p>
-        </div>
-        <span class="card-link-arrow">↗</span>
+  <main class="operating-content">
+    <p class="operating-intro">The stack that turns “not what I expected” into repeatable, more deterministic outcomes.</p>
+    <div class="layer-stack">
+      <a href="https://code.visualstudio.com/docs/copilot/customization/custom-instructions" target="_blank" class="layer layer-1">
+        <span>01</span><strong>Instructions</strong><small>Always-on intent</small>
       </a>
-      <!-- GitHub Agentic Workflows -->
-      <a href="https://github.com/github/gh-aw" target="_blank" class="card card-link" style="flex: 1; display: flex; flex-direction: row; align-items: flex-start; gap: 0.9rem; padding: 0.95rem 1.1rem; border-color: var(--theme-accent2); border-width: 2px;">
-        <div class="icon-circle" style="flex-shrink: 0; margin: 0; align-self: flex-start; background: linear-gradient(135deg, #085f92, #38A4DC);">⚙️</div>
-        <div>
-          <h3 style="background: linear-gradient(135deg, #085f92 0%, #38A4DC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 0.35em; font-size: 1.05em; font-weight: 700;">GitHub Agentic Workflows</h3>
-          <p style="margin: 0; font-size: 0.88em;">Write <code>.md</code> workflows, compile to guarded Actions with <code>gh aw compile</code>. Three-layer security: substrate, configuration, plan-level trust with SafeOutputs.</p>
-        </div>
-        <span class="card-link-arrow">↗</span>
+      <a href="https://code.visualstudio.com/docs/copilot/customization/prompt-files" target="_blank" class="layer layer-2">
+        <span>02</span><strong>Prompts</strong><small>Reusable entry points</small>
       </a>
-      <!-- WorkIQ -->
-      <a href="https://aka.ms/workiq" target="_blank" class="card card-link" style="flex: 1; display: flex; flex-direction: row; align-items: flex-start; gap: 0.9rem; padding: 0.95rem 1.1rem; border-color: #5635a0; border-width: 2px;">
-        <div class="icon-circle" style="flex-shrink: 0; margin: 0; align-self: flex-start; background: linear-gradient(135deg, #5635a0, #7850c0);">💼</div>
-        <div>
-          <h3 style="background: linear-gradient(135deg, #5635a0 0%, #9c79e0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 0.35em; font-size: 1.05em; font-weight: 700;">WorkIQ &amp; Enterprise Context</h3>
-          <p style="margin: 0; font-size: 0.88em;">MCP bridge to Microsoft 365 — meetings, emails, Teams. Makes prompts like "build me a demo from the Zava meeting" operational.</p>
-        </div>
-        <span class="card-link-arrow">↗</span>
+      <a href="https://code.visualstudio.com/docs/copilot/customization/mcp-servers" target="_blank" class="layer layer-3">
+        <span>03</span><strong>MCP</strong><small>Tools + context</small>
+      </a>
+      <a href="https://code.visualstudio.com/docs/copilot/customization/custom-agents" target="_blank" class="layer layer-4">
+        <span>04</span><strong>Agents</strong><small>Scoped specialists</small>
+      </a>
+      <a href="https://code.visualstudio.com/docs/copilot/customization/agent-skills" target="_blank" class="layer layer-5">
+        <span>05</span><strong>Skills</strong><small>Repeatable expertise</small>
+      </a>
+      <a href="https://code.visualstudio.com/docs/copilot/customization/hooks" target="_blank" class="layer layer-6">
+        <span>06</span><strong>Hooks</strong><small>Deterministic gates</small>
+      </a>
+      <a href="https://code.visualstudio.com/docs/copilot/customization/agent-plugins" target="_blank" class="layer layer-7">
+        <span>07</span><strong>Plugins</strong><small>Portable systems</small>
       </a>
     </div>
-    <!-- HVE Core — RPI Workflow + Design Thinking (two columns) -->
-    <a href="https://microsoft.github.io/hve-core/" target="_blank" class="card card-link" style="flex: 1.3; padding: 0.75rem 1rem; display: flex; flex-direction: column; gap: 0.5rem; border-color: var(--theme-accent5); border-width: 2px;">
-      <span class="card-link-arrow">↗</span>
-      <div style="display: flex; gap: 1rem; align-items: stretch; flex: 1;">
-        <!-- LEFT: RPI -->
-        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between;">
-          <h3 style="background: linear-gradient(135deg, #114D8B 0%, #38A4DC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 0.35rem; font-size: 1.05em; font-weight: 700;">HVE Core — RPI Workflow</h3>
-          <p style="font-size: 0.88em; color: var(--theme-muted); margin: 0 0 0.4rem;">&ldquo;AI can&rsquo;t tell the difference between investigating and implementing. The fix is <strong>preventing AI from doing certain things at certain times</strong>.&rdquo;</p>
-          <div class="flow-pipeline" style="justify-content: flex-start;">
-            <div class="flow-step">🔍 Research</div>
-            <span class="flow-arrow">→</span>
-            <div class="flow-step">📋 Plan</div>
-            <span class="flow-arrow">→</span>
-            <div class="flow-step flow-step-active">⚡ Implement</div>
-            <span class="flow-arrow">→</span>
-            <div class="flow-step">✅ Review</div>
-          </div>
-          <p style="font-size: 0.82em; color: var(--theme-muted); margin: 0.3rem 0 0; font-style: italic;">Each phase produces artifacts. Context cleared between phases.</p>
-        </div>
-        <!-- RIGHT: Design Thinking -->
-        <div style="flex: 1; min-width: 0; border-left: 1px solid rgba(88,138,220,0.2); padding-left: 0.85rem; display: flex; flex-direction: column; justify-content: space-between;">
-          <h3 style="background: linear-gradient(135deg, #077769 0%, #14b8a6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 0.35rem; font-size: 1.05em; font-weight: 700;">Design Thinking + 10 Roles</h3>
-          <div style="display: flex; gap: 0.4rem; margin-bottom: 0.4rem;">
-            <div style="padding: 0.35rem 0.5rem; border-radius: 6px; background: rgba(221,107,32,0.08); font-size: 0.82em; text-align: center; flex: 1;">
-              <strong>Problem</strong><br/>Scope · Research · Synthesize
-            </div>
-            <div style="padding: 0.35rem 0.5rem; border-radius: 6px; background: rgba(15,108,141,0.08); font-size: 0.82em; text-align: center; flex: 1;">
-              <strong>Solution</strong><br/>Brainstorm · Concept · Prototype
-            </div>
-            <div style="padding: 0.35rem 0.5rem; border-radius: 6px; background: rgba(232,185,49,0.12); font-size: 0.82em; text-align: center; flex: 1;">
-              <strong>Validation</strong><br/>Hi-Fi · Test · Scale
-            </div>
-          </div>
-          <div style="display: flex; flex-wrap: wrap; gap: 0.3rem;">
-            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">👨‍💻 Engineer</span>
-            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">📊 TPM</span>
-            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">🏗️ Architect</span>
-            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">🔒 Security</span>
-            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">📈 Data</span>
-            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">⚙️ SRE</span>
-            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">💼 BPM</span>
-            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">🆕 New</span>
-            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">🎨 UX</span>
-            <span style="padding: 0.2rem 0.45rem; border-radius: 5px; background: rgba(21,48,71,0.07); font-size: 0.75em;">🔧 Utility</span>
-          </div>
-        </div>
-      </div>
-    </a>
-    <!-- SDD vs. Vibe Coding tip -->
-    <a href="https://github.com/github/spec-kit" target="_blank" class="card card-link" style="display: flex; flex-direction: row; align-items: center; gap: 0.9rem; padding: 0.85rem 1.1rem; border-color: #0d6e6e; border-width: 2px;">
-      <div class="icon-circle" style="flex-shrink: 0; margin: 0; align-self: flex-start; background: linear-gradient(135deg, #0d6e6e, #14b8a6);">⚖️</div>
-      <div>
-        <h3 style="background: linear-gradient(135deg, #0d6e6e 0%, #14b8a6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 0.3em; font-size: 1.05em; font-weight: 700;">SDD vs. Vibe Coding</h3>
-        <p style="margin: 0; font-size: 0.88em;">Vibe: one-shot → code. No traceability. &nbsp;|&nbsp; SDD: spec → plan → tasks → code. Every step auditable, traceable, and reversible.</p>
-      </div>
-      <span class="card-link-arrow">↗</span>
-    </a>
-  </div>
-</div>
-
-<!--
-Four pillars of determinism. Don't try to cover everything — hit the thesis
-for each:
-
-- Spec Kit: "Specs generate code, not the other way around"
-- gh-aw: "Markdown → compiled Actions with security baked in"
-- /troubleshoot: "You covered this in the demo — just reference it"
-- WorkIQ: "Enterprise context makes prompts real, not hypothetical"
-
-Close with: "Better models helped. Better process helped more."
--->
-
----
-transition: fade-out
----
-
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 7 — SCALING INTELLIGENCE OUT                   ~4 min
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
-  <div class="slide-banner">
-    <h1>Scaling Intelligence Out</h1>
-    <img src="./images/github-copilot.png" class="banner-icon" alt="GitHub Copilot" />
-  </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.55rem; align-items: stretch; padding: 0.4rem 1.8rem 0.8rem;">
-    <!-- Two-column main content -->
-    <div style="display: flex; gap: 0.65rem; align-items: stretch; flex: 1;">
-      <!-- LEFT: From subagents to squads -->
-      <div style="flex: 1.15; display: flex; flex-direction: column; gap: 0.55rem;">
-        <span style="background: linear-gradient(135deg, #114D8B 0%, #38A4DC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.2rem; font-weight: 700; line-height: 1.3;">From Subagents to Squads</span>
-        <a href="https://docs.github.com/en/copilot/reference/customization-cheat-sheet" target="_blank" class="card card-link" style="flex: 1; border: 2px solid var(--theme-accent2); padding: 0.95rem 1.1rem; display: flex; flex-direction: row; align-items: flex-start; gap: 0.9rem;">
-          <div class="icon-circle" style="flex-shrink: 0; background: linear-gradient(135deg, #085f92, #38A4DC);">🔀</div>
-          <div>
-            <h3 style="background: linear-gradient(135deg, #085f92 0%, #38A4DC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 0.35em; font-size: 1.15em; font-weight: 700;">Subagents as a Primitive</h3>
-            <p style="margin: 0; font-size: 0.96em;">Three types: <code>search_subagent</code> (fast read-only), <code>execution_subagent</code> (command runner), <code>runSubagent</code> (general delegation). Each runs in its own context — parallel-safe, no contamination.</p>
-          </div>
-          <span class="card-link-arrow">↗</span>
-        </a>
-        <a href="https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli" target="_blank" class="card card-link" style="flex: 1; border: 2px solid #15803d; padding: 0.95rem 1.1rem; display: flex; flex-direction: row; align-items: flex-start; gap: 0.9rem;">
-          <div class="icon-circle" style="flex-shrink: 0; background: linear-gradient(135deg, #15803d, #22c55e);">🚀</div>
-          <div>
-            <h3 style="background: linear-gradient(135deg, #15803d 0%, #22c55e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 0.35em; font-size: 1.15em; font-weight: 700;">Copilot CLI — Fleet Mode</h3>
-            <p style="margin: 0; font-size: 0.96em;">Headless, scriptable agent: <code>copilot -p "..." --allow-all-tools</code>. Dispatch one task across many repos in parallel. <code>/yolo</code> enables full auto-approval — purpose-built for CI pipelines and mass repo operations.</p>
-          </div>
-          <span class="card-link-arrow">↗</span>
-        </a>
-        <a href="https://github.com/bradygaster/squad" target="_blank" class="card card-link" style="flex: 1; border: 2px solid var(--theme-accent); padding: 0.95rem 1.1rem; display: flex; flex-direction: row; align-items: flex-start; gap: 0.9rem;">
-          <div class="icon-circle" style="flex-shrink: 0; background: linear-gradient(135deg, #c2410c, #f97316);">📂</div>
-          <div>
-            <h3 style="background: linear-gradient(135deg, #c2410c 0%, #f97316 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 0.35em; font-size: 1.15em; font-weight: 700;">Squad — Durable Multi-Agent Teams</h3>
-            <p style="margin: 0; font-size: 0.96em;"><code>.squad/</code> lives in your repo: team.md, routing.md, decisions.md, agent charters + history. Parallel fan-out. Memory persists in git — the team gets smarter the more you use it.</p>
-          </div>
-          <span class="card-link-arrow">↗</span>
-        </a>
-      </div>
-      <!-- RIGHT: Monitoring, memory & recovery -->
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.55rem;">
-        <span style="background: linear-gradient(135deg, #114D8B 0%, #38A4DC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.2rem; font-weight: 700; line-height: 1.3;">Monitoring, Memory &amp; Recovery</span>
-        <div style="display: flex; gap: 0.55rem; flex: 1; align-items: stretch;">
-          <a href="https://github.com/bradygaster/squad" target="_blank" class="card card-link" style="flex: 1; text-align: center; border: 2px solid var(--theme-accent5); padding: 0.9rem 0.7rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4rem;">
-            <div class="icon-circle">📊</div>
-            <h3 style="font-size: 1.1em; margin: 0 0 0.25em; background: linear-gradient(135deg, #114D8B 0%, #38A4DC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Monitor</h3>
-            <p style="font-size: 0.9em; margin: 0;">Observe active, blocked, completed work. <code>/status</code>, <code>gh aw logs</code></p>
-            <span class="card-link-arrow">↗</span>
-          </a>
-          <a href="https://github.com/bradygaster/squad" target="_blank" class="card card-link" style="flex: 1; text-align: center; border: 2px solid #5635a0; padding: 0.9rem 0.7rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4rem;">
-            <div class="icon-circle" style="background: linear-gradient(135deg, #5635a0, #7850c0);">🧠</div>
-            <h3 style="font-size: 1.1em; margin: 0 0 0.25em; background: linear-gradient(135deg, #5635a0 0%, #9c79e0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Memory</h3>
-            <p style="font-size: 0.9em; margin: 0;">decisions.md, history.md, wisdom.md — all in git, all searchable</p>
-            <span class="card-link-arrow">↗</span>
-          </a>
-          <a href="https://github.com/bradygaster/squad" target="_blank" class="card card-link" style="flex: 1; text-align: center; border: 2px solid #077769; padding: 0.9rem 0.7rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4rem;">
-            <div class="icon-circle" style="background: linear-gradient(135deg, #077769, #14b8a6);">🔄</div>
-            <h3 style="font-size: 1.1em; margin: 0 0 0.25em; background: linear-gradient(135deg, #077769 0%, #14b8a6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Recovery</h3>
-            <p style="font-size: 0.9em; margin: 0;">Checkpoint resume, SafeOutputs rollback, session persistence</p>
-            <span class="card-link-arrow">↗</span>
-          </a>
-        </div>
-        <pre class="terminal-snippet" style="font-size: 0.86rem;">&#35; Squad parallel fan-out — You: "Team, build the login page"
-🏗️ Lead    — analyzing requirements
-⚛️ Frontend — building login form         all launched
-🔧 Backend  — setting up auth endpoints   in parallel
-🧪 Tester   — writing tests from spec
-📋 Scribe   — logging everything</pre>
-      </div>
+    <div class="operating-axis">
+      <span>Repository intent</span>
+      <i></i>
+      <span>Organization capability</span>
     </div>
-    <!-- Bottom: callout card -->
-    <div class="card" style="border: 2px solid #c2410c; padding: 0.85rem 1.1rem; background: rgba(254,91,56,0.04);">
-      <p style="margin: 0; font-size: 0.96em;"><strong>When does multi-agent pay off?</strong> When the context cost of one giant agent exceeds the coordination cost of several focused ones.</p>
-    </div>
-  </div>
+  </main>
 </div>
 
 <!--
-Two halves:
-LEFT — the progression from subagents to squads.
-  - Subagents: "One agent splits work into focused parallel tasks"
-  - Squad: "Persistent multi-agent team that lives in your repo"
-  - The key question: "Context cost vs. coordination cost"
+Keep this slide to the stack. Each layer is clickable.
 
-RIGHT — the three operational surfaces.
-  - Without these, multi-agent is academic
-  - With these, it's practical for real teams
-  - Point at the terminal snippet: "This is what 'team, build X' looks like"
+Instructions establish durable intent. MCP supplies tools and context. Agents
+scope responsibility. Skills capture repeatable process. Hooks enforce
+non-negotiable behavior. Plugins package the system for distribution.
 
-Transition: "Let me show you this live..."
--->
-
----
-transition: fade-out
----
-
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 8 — DEMO 2: Squads & Fleets                    ~5 min
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="demo-shell">
-  <div class="demo-icon">🤖</div>
-  <h1 class="demo-title">Demo 2: Squads & Fleets</h1>
-  <p class="demo-subtitle">Persistent multi-agent teams with parallel execution and memory</p>
-
-  <div class="demo-badge">🎬 ~5 minutes</div>
-
-  <div class="demo-checklist">
-    <div class="demo-item"><span class="check">▸</span> Init a Squad from scratch — roster, routing, casting</div>
-    <div class="demo-item"><span class="check">▸</span> Give a team task — watch parallel fan-out</div>
-    <div class="demo-item"><span class="check">▸</span> Inspect .squad/ — decisions.md, history.md, orchestration log</div>
-    <div class="demo-item"><span class="check">▸</span> Show memory persistence across sessions</div>
-  </div>
-</div>
-
-<!--
-DEMO SCRIPT — Squads & Fleets (~5 min)
-═══════════════════════════════════════
-
-SETUP: Fresh repo (or existing one without .squad/).
-Have Squad agent mode available in VS Code Insiders.
-
-1. SQUAD INIT (1.5 min)
-   - Switch to Squad mode in Copilot chat
-   - Say: "I'm building a Node.js REST API for a task manager"
-   - Watch: coordinator proposes 4-5 named agents + Scribe
-   - Confirm the roster → .squad/ directory created
-   - Quick tour: team.md, routing.md, ceremonies.md, agents/
-
-2. PARALLEL FAN-OUT (2 min)
-   - Say: "Team, set up the project structure with Express and tests"
-   - Watch: multiple agents spawn simultaneously
-   - Point out: each agent runs in its own context
-   - Show the launch table: who's working, what model, what task
-   - Wait for results — show coordinator synthesizing
-
-3. MEMORY & DECISIONS (1 min)
-   - Open .squad/decisions.md — team decisions recorded
-   - Open an agent's history.md — learnings about YOUR project
-   - Key message: "This is in git. Clone the repo, get the team."
-
-4. WRAP (30 sec)
-   - "Not a chatbot wearing hats. Each agent has its own context,
-      knowledge, and writes back what it learned."
--->
-
----
-transition: fade-out
----
-
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 9 — PROTOTYPE-FIRST WORKFLOWS                  ~3 min
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
-  <div class="slide-banner">
-    <h1>Prototype-First: Concept to Deploy</h1>
-    <img src="./images/azure.png" class="banner-icon" alt="Azure" />
-  </div>
-  <div style="padding: 0.2rem 1.8rem 0; display: flex; align-items: baseline; gap: 0.6rem;">
-    <strong style="font-size: 1.5rem; color: var(--theme-deep); font-weight: 700; letter-spacing: -0.02em;">az prototype</strong>
-    <span style="color: var(--theme-muted); font-size: 1.3rem; line-height: 1.3;">— AI-powered Azure prototype CLI &nbsp;·&nbsp;
-      <a href="https://learn.microsoft.com/cli/azure/prototype?view=azure-cli-latest" target="_blank" style="font-size: 1.3rem;">docs on Microsoft Learn ↗</a>
-    </span>
-  </div>
-  <div class="slide-body" style="align-items: stretch; padding: 0.4rem 1.8rem 0.5rem;">
-    <div class="content-panel" style="gap: 1rem; flex: 1; align-items: stretch;">
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem; min-width: 0;">
-        <div class="callout" style="font-size: 0.9em;">
-          <strong>A working app beats a beautiful mockup</strong> — because the cost of
-          generating the first useful slice is now lower than reviewing a slide deck.
-        </div>
-        <div class="terminal-snippet" style="font-size: 1.0rem; flex: 1; font-family: monospace; position: relative; overflow: auto;">
-          <div class="cli-line" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
-            <span class="cli-text">az extension add --name prototype</span>
-            <button class="copy-btn" onclick="navigator.clipboard.writeText('az extension add --name prototype')" title="Copy">⧉</button>
-          </div>
-          <div class="cli-line" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
-            <span class="cli-text">az prototype init --name retail-assistant --template ai-app</span>
-            <button class="copy-btn" onclick="navigator.clipboard.writeText('az prototype init --name retail-assistant --template ai-app')" title="Copy">⧉</button>
-          </div>
-          <div class="cli-line cli-comment" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
-            <span class="cli-text"># az prototype init --name retail-assistant --template ai-app --iac-tool bicep</span>
-            <button class="copy-btn" onclick="navigator.clipboard.writeText('az prototype init --name retail-assistant --template ai-app --iac-tool bicep')" title="Copy">⧉</button>
-          </div>
-          <div class="cli-line" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
-            <span class="cli-text">az prototype design --interactive</span>
-            <button class="copy-btn" onclick="navigator.clipboard.writeText('az prototype design --interactive')" title="Copy">⧉</button>
-          </div>
-          <div class="cli-line" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
-            <span class="cli-text">az prototype build</span>
-            <button class="copy-btn" onclick="navigator.clipboard.writeText('az prototype build')" title="Copy">⧉</button>
-          </div>
-          <div class="cli-line" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
-            <span class="cli-text">az prototype deploy</span>
-            <button class="copy-btn" onclick="navigator.clipboard.writeText('az prototype deploy')" title="Copy">⧉</button>
-          </div>
-          <div class="cli-line" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
-            <span class="cli-text">az prototype analyze costs        <span class="cli-dim"># T-shirt pricing (S/M/L)</span></span>
-            <button class="copy-btn" onclick="navigator.clipboard.writeText('az prototype analyze costs')" title="Copy">⧉</button>
-          </div>
-          <div class="cli-line" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
-            <span class="cli-text">az prototype analyze error        <span class="cli-dim"># Even accepts screenshots!</span></span>
-            <button class="copy-btn" onclick="navigator.clipboard.writeText('az prototype analyze error')" title="Copy">⧉</button>
-          </div>
-          <div class="cli-line" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
-            <span class="cli-text">az prototype generate speckit     <span class="cli-dim"># Bridge to SDD</span></span>
-            <button class="copy-btn" onclick="navigator.clipboard.writeText('az prototype generate speckit')" title="Copy">⧉</button>
-          </div>
-          <div class="cli-line" onmouseenter="this.querySelector('.copy-btn').style.opacity='1'" onmouseleave="this.querySelector('.copy-btn').style.opacity='0'">
-            <span class="cli-text">az prototype generate backlog     <span class="cli-dim"># to GitHub Issues</span></span>
-            <button class="copy-btn" onclick="navigator.clipboard.writeText('az prototype generate backlog')" title="Copy">⧉</button>
-          </div>
-        </div>
-      </div>
-      <div style="width: 33%; display: flex; flex-direction: column; gap: 0.3rem; min-width: 0;">
-        <div style="display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.85rem; border-radius: 10px; background: linear-gradient(135deg, var(--theme-accent5) 0%, var(--theme-accent2) 100%); margin-bottom: 0.35rem; box-shadow: 0 4px 14px rgba(17,77,139,0.3);">
-          <span style="font-size: 1.5rem; line-height: 1;">🤖</span>
-          <div style="display: flex; flex-direction: column; gap: 0.05rem;">
-            <span style="font-size: 1.1rem; font-weight: 700; color: white; letter-spacing: -0.01em; line-height: 1.2;">12 built-in agents</span>
-            <span style="font-size: 0.7rem; color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: 0.12em;">AI-powered specialists</span>
-          </div>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 0.12rem; font-size: 0.82em; flex: 1;">
-          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(221, 107, 32, 0.08);">
-            <span>📋</span><strong>biz-analyst</strong> — always engaged
-          </div>
-          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(21, 48, 71, 0.05);">
-            <span>🏗️</span><strong>cloud-architect</strong> — design
-          </div>
-          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(221, 107, 32, 0.08);">
-            <span>💰</span><strong>cost-analyst</strong> — pricing
-          </div>
-          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(21, 48, 71, 0.05);">
-            <span>🔒</span><strong>security-reviewer</strong>
-          </div>
-          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(221, 107, 32, 0.08);">
-            <span>👨‍💻</span><strong>app-developer</strong> — code
-          </div>
-          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(21, 48, 71, 0.05);">
-            <span>🧱</span><strong>terraform / bicep</strong> — IaC
-          </div>
-          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(221, 107, 32, 0.08);">
-            <span>🧪</span><strong>qa-engineer</strong> — testing
-          </div>
-          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(21, 48, 71, 0.05);">
-            <span>📝</span><strong>documentation</strong>
-          </div>
-          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(221, 107, 32, 0.08);">
-            <span>📡</span><strong>monitoring-agent</strong> — observability
-          </div>
-          <div style="display: flex; align-items: center; gap: 0.4rem; padding: 0.18rem 0.5rem; border-radius: 6px; background: rgba(88, 138, 220, 0.1);">
-            <span>🛡️</span><strong>governor</strong> — policy enforcement
-          </div>
-        </div>
-        <div class="callout callout-teal" style="font-size: 0.95em; margin: 0;">
-          <strong>Cross-role:</strong> PMs run <code>design</code>, finance runs <code>analyze costs</code>, anyone runs <code>generate backlog</code>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--
-Focus on two things:
-
-1. The 4-step flow: init → design → build → deploy
-   - Each stage re-entrant — you can go back
-   - design has --interactive for refinement loops
-   - Supporting commands extend it: costs, error analysis, speckit, backlog
-
-2. Cross-role participation:
-   - PM: "az prototype design" — gets architecture, no dev needed to start
-   - Finance: "az prototype analyze costs" — real Azure pricing before code
-   - Anyone: "az prototype generate backlog --provider github" — Issues with criteria
-   - The team can dry-run before committing resources
-
-Close with: "A working app beats a beautiful mockup."
--->
-
----
-transition: fade-out
----
-
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 12 — DEMO 3: az prototype                      ~4 min
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="demo-shell">
-  <div class="demo-icon">⚡</div>
-  <h1 class="demo-title">Demo 3: az prototype</h1>
-  <p class="demo-subtitle">From concept to deployed Azure resources in one iterative flow</p>
-
-  <div class="demo-badge">🎬 ~4 minutes</div>
-
-  <div class="demo-checklist">
-    <div class="demo-item"><span class="check">▸</span> az prototype init — scaffold with AI provider</div>
-    <div class="demo-item"><span class="check">▸</span> az prototype design --interactive — refine architecture</div>
-    <div class="demo-item"><span class="check">▸</span> az prototype analyze costs — T-shirt pricing</div>
-    <div class="demo-item"><span class="check">▸</span> az prototype build + deploy — staged output to Azure</div>
-  </div>
-</div>
-
-<!--
-DEMO SCRIPT — Demo 3: az prototype (~4 min)
-════════════════════════════════════
-
-SETUP: Azure CLI with prototype extension installed. Azure subscription
-ready. Have a concept in mind (e.g., "retail AI assistant").
-
-1. INIT (30 sec)
-   - Run: az prototype init --name retail-assistant --template ai-app
-   - Show: prototype.yaml created, project scaffolded
-   - Point out: AI provider choice (copilot, azure-openai, github-models)
-
-2. DESIGN (1.5 min)
-   - Run: az prototype design --interactive
-   - Watch: biz-analyst agent engages, asks clarifying questions
-   - Answer 2-3 questions to shape the architecture
-   - Show output: architecture documentation generated
-   - "A PM could do this without a developer"
-
-3. COSTS (30 sec)
-   - Run: az prototype analyze costs
-   - Show: three consumption tiers (S/M/L) with real Azure pricing
-   - "Finance gets this before any code exists"
-
-4. BUILD + DEPLOY (1 min)
-   - Run: az prototype build (show staged output, progress indicators)
-   - Run: az prototype deploy --dry-run (show preflight checks)
-   - If time: deploy for real, show slash commands (/status, /plan)
-   - "From concept to deployed Azure in under 5 minutes"
-
-5. WRAP (30 sec)
-   - "This is why prototypes beat mockups. The cost calculus changed."
+The next slide shows the improvement loop that makes the stack better over time;
+do not pull that material back onto this slide.
 -->
 
 ---
 transition: slide-up
 ---
 
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 13 — WHAT TO DO NOW                            ~2 min
-     ═══════════════════════════════════════════════════════════ -->
+<div class="barrier-slide">
+  <header class="app-bar">
+    <span class="app-mark"><LineIcon name="repeat" /></span>
+    <h1>The Agentic Development Improvement Loop</h1>
+    <span class="app-context">evidence → better outcomes</span>
+  </header>
 
-<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
-  <div class="slide-banner">
-    <h1>What To Do Now</h1>
-    <img src="./images/vscode-insiders.png" class="banner-icon" alt="VS Code Insiders" />
-  </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.7rem; align-items: stretch;">
-    <div class="action-grid" style="width: 100%; flex: 1;">
-      <div v-click class="action-card">
-        <img src="./images/vscode-insiders.png" class="action-icon" alt="VS Code Insiders" />
-        <span class="action-num">01</span>
-        <h3>🚀 Adopt Insiders + CLI</h3>
-        <p>When your team can handle preview cadence. Agent features land here weeks before stable.</p>
-      </div>
-      <div v-click class="action-card">
-        <img src="./images/agentskills.svg" class="action-icon" alt="agentskills.io" />
-        <span class="action-num">02</span>
-        <h3>🧩 Convert to Skills</h3>
-        <p>If you'll do it more than once and it needs determinism — make it a skill. Use agentskills.io for portability.</p>
-      </div>
-      <div v-click class="action-card">
-        <img src="./images/github-copilot.png" class="action-icon" alt="GitHub Copilot" />
-        <span class="action-num">03</span>
-        <h3>📐 Scale Deliberately</h3>
-        <p>Start with subagents. Move to squads only when persistent coordination beats one giant context window.</p>
-      </div>
-      <div v-click class="action-card">
-        <img src="./images/github-mark.png" class="action-icon" alt="GitHub" />
-        <span class="action-num">04</span>
-        <h3>👥 Include More Roles</h3>
-        <p>PMs, designers, analysts, business managers — into the same visible artifact chain. RPI and az prototype make this real.</p>
-      </div>
-      <div v-click class="action-card">
-        <img src="./images/azure.png" class="action-icon" alt="Azure" />
-        <span class="action-num">05</span>
-        <h3>🏗️ Build Demos of Everything</h3>
-        <p>A working slice teaches faster than a polished plan. <code>az prototype init</code> is the fastest path from concept to proof.</p>
-      </div>
+  <div class="improvement-flow">
+    <div class="improvement-node improvement-edge improvement-intent">
+      <span>Intent</span>
+      <strong>What outcome do we need?</strong>
     </div>
+    <span class="improvement-arrow" aria-hidden="true"></span>
+    <a href="https://code.visualstudio.com/docs/copilot/customization/prompt-files" target="_blank" class="improvement-node improvement-prompt">
+      <LineIcon name="chat" /><strong>Prompt</strong><small>start context engineering</small>
+    </a>
+    <span class="improvement-arrow" aria-hidden="true"></span>
+    <a href="https://modelcontextprotocol.io/" target="_blank" class="improvement-node">
+      <LineIcon name="link" /><strong>Connect</strong><small>MCP tools to get dynamic context</small>
+    </a>
+    <span class="improvement-arrow" aria-hidden="true"></span>
+    <a href="https://github.com/github/spec-kit" target="_blank" class="improvement-node">
+      <LineIcon name="plan" /><strong>Constrain</strong><small>Create specifications, use hooks</small>
+    </a>
+    <span class="improvement-arrow" aria-hidden="true"></span>
+    <a href="https://code.visualstudio.com/docs/copilot/chat/chat-debug-view" target="_blank" class="improvement-node">
+      <LineIcon name="eye" /><strong>Observe</strong><small>/troubleshoot</small>
+    </a>
+    <span class="improvement-arrow" aria-hidden="true"></span>
+    <a href="https://agentskills.io/" target="_blank" class="improvement-node">
+      <LineIcon name="repeat" /><strong>Reuse</strong><small>Build Skills, and Share with Plugins</small>
+    </a>
+    <span class="improvement-arrow" aria-hidden="true"></span>
+    <a href="https://docs.github.com/en/copilot/using-github-copilot/code-review/using-copilot-code-review" target="_blank" class="improvement-node">
+      <LineIcon name="shield" /><strong>Govern</strong><small>Adopt policies and automated reviews</small>
+    </a>
+    <span class="improvement-arrow" aria-hidden="true"></span>
+    <div class="improvement-node improvement-edge improvement-outcome">
+      <strong>Intended outcome</strong>
+      <span>Traceable · repeatable · improvable</span>
+    </div>
+    <svg class="improvement-feedback" viewBox="0 0 1120 76" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <defs>
+        <marker id="improvement-feedback-arrowhead" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M 0 0 L 12 6 L 0 12 z" />
+        </marker>
+      </defs>
+      <path d="M 1044 0 V 36 H 76 V 0" marker-end="url(#improvement-feedback-arrowhead)" />
+    </svg>
   </div>
+  <p class="improvement-evidence">Evidence from this run shapes the next one.</p>
 </div>
 
 <!--
-Concrete adoption checklist. Each item maps to a section they just saw:
-01 → Slide 4 (Operating Model)
-02 → Slide 4+5 (Skills + Demo)
-03 → Slide 7+8 (Scaling + Demo)
-04 → Slide 9+10 (Beyond Dev + Demo)
-05 → Slide 11+12 (Prototype-First + Demo)
+This is the operating response to frustration:
+
+- Prompt with the intended outcome and begin context engineering.
+- Observe why the agent acted.
+- Constrain work with specifications, phases, and deterministic hooks.
+- Connect only the tools and context required.
+- Reuse proven behavior through skills and plugins.
+- Govern access, evaluations, ownership, and change.
+
+The lower feedback arrow makes the point explicit: every intended outcome
+shapes the next intent.
 -->
 
 ---
 transition: fade-out
 ---
 
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 14 — KEY TAKEAWAYS                             ~2 min
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
-  <div class="slide-banner">
-    <h1>Key Takeaways</h1>
-    <img src="./images/github-copilot.png" class="banner-icon" alt="GitHub Copilot" />
-  </div>
-  <div class="slide-body" style="align-items: stretch; padding: 0.8rem 1.8rem;">
-    <div class="takeaway-grid" style="width: 100%; flex: 1;">
-      <div v-click class="takeaway-item">
-        <span class="takeaway-num">1</span>
-        <div class="takeaway-text"><strong>The constraint changes the goal.</strong> Preventing AI from doing everything at once makes each thing better. Squad constrains by role. gh-aw constrains by security. RPI constrains research from implementation.</div>
+<div class="app-slide">
+  <header class="app-bar">
+    <span class="app-mark"><LineIcon name="layers" /></span>
+    <h1>Context engineering</h1>
+    <span class="app-context">select → ground → guide</span>
+  </header>
+  <main class="context-balance-content">
+    <section class="context-balance" aria-label="Comparison of sufficient, insufficient, and excessive context">
+      <div class="context-bar-heading"><span><strong>Just enough context</strong><small>Grounded and focused</small></span><b>Target</b></div>
+      <div class="context-reference-bar">
+        <a class="context-segment context-segment-files" href="https://code.visualstudio.com/docs/copilot/chat/copilot-chat-context" target="_blank">
+          <LineIcon name="code" /><span><strong>Selected evidence</strong><small>Files · references · attachments</small></span>
+        </a>
+        <a class="context-segment context-segment-repository" href="https://github.com/github/spec-kit" target="_blank">
+          <LineIcon name="plan" /><span><strong>Repository knowledge</strong><small>Specifications · ADRs · plans</small></span>
+        </a>
+        <a class="context-segment context-segment-organization" href="https://docs.github.com/en/copilot/concepts/context/spaces" target="_blank">
+          <LineIcon name="shield" /><span><strong>Organizational knowledge</strong><small>Standards · security · guidelines</small></span>
+        </a>
+        <div class="context-segment context-segment-dynamic">
+          <LineIcon name="plug" /><span><strong>Dynamic grounding</strong><small><a href="https://learn.microsoft.com/en-us/training/support/mcp" target="_blank">Learn MCP</a> · <a href="https://aka.ms/workiq" target="_blank">WorkIQ</a></small></span>
+        </div>
       </div>
-      <div v-click class="takeaway-item">
-        <span class="takeaway-num">2</span>
-        <div class="takeaway-text"><strong>Governance must be in code, not prompts.</strong> Prompts can be ignored; code cannot. SDK hooks, compiled workflows, and the customization hierarchy enforce behavior.</div>
+      <div class="context-comparison-row">
+        <span class="context-comparison-label"><strong>Too little</strong><small>Assumptions fill the gaps</small></span>
+        <div class="context-quantity-bar context-too-little" aria-label="Sparse context with large gaps"><i></i><i></i></div>
       </div>
-      <div v-click class="takeaway-item">
-        <span class="takeaway-num">3</span>
-        <div class="takeaway-text"><strong>Memory makes teams compound.</strong> .squad/ is committed to git. Research documents accumulate. Skills persist organizational knowledge. The team gets smarter the more it works.</div>
+      <div class="context-comparison-row">
+        <span class="context-comparison-label"><strong>Too much</strong><small>Noise, cost, distraction</small></span>
+        <div class="context-quantity-bar context-too-much" aria-label="Overloaded context with repeated sources"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
       </div>
-      <div v-click class="takeaway-item">
-        <span class="takeaway-num">4</span>
-        <div class="takeaway-text"><strong>The workflow belongs to more roles than engineering.</strong> Research, planning, cost analysis, security review, and documentation are all first-class outputs.</div>
-      </div>
-      <div v-click class="takeaway-item">
-        <span class="takeaway-num">5</span>
-        <div class="takeaway-text"><strong>Standardization enables the ecosystem.</strong> MCP solves N x M. agentskills.io enables portability. Canonical layouts enable federated distribution.</div>
-      </div>
+    </section>
+    <div class="context-takeaway">
+      <p>The engineer's job is not to add all context. It is to select the right context.</p>
+      <small>Repository instructions such as <a class="context-file-link" href="https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions" target="_blank">AGENTS.md</a> and <a class="context-file-link" href="https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions" target="_blank">copilot-instructions.md</a> make the right context reusable.</small>
     </div>
-  </div>
+  </main>
 </div>
 
 <!--
-Progressive reveal — build each takeaway one click at a time.
-These connect ALL the sections:
-1. Constraint → Squad, gh-aw, RPI, Spec Kit
-2. Governance → Hooks, SDK, compiled workflows
-3. Memory → .squad/, research docs, skills
-4. More roles → HVE 10 roles, az prototype, Design Thinking
-5. Standards → MCP, agentskills.io, plugin layout
+Context engineering evolves through four expanding knowledge sources.
+
+Start by steering the agent to the files that matter. Preserve decisions,
+specifications, and plans in the repository so future prompts inherit durable
+knowledge. Bring in governed organizational standards through Copilot Spaces.
+Use MCP servers for knowledge that changes: Microsoft Learn for current product
+grounding and WorkIQ for evolving enterprise context.
+
+The goal is not maximum context. Too little forces assumptions; too much adds
+noise, cost, and distraction. Engineers learn to choose the smallest context
+set that can solve the problem well. Repository instructions make those choices
+reusable across prompts and developers.
 -->
 
 ---
 transition: fade-out
 ---
 
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 15 — CHEAT SHEET (photographable reference card)
-     ═══════════════════════════════════════════════════════════ -->
+<div class="scale-slide">
+  <header class="app-bar">
+    <span class="app-mark"><LineIcon name="branch" /></span>
+    <h1>Developer leverage compounds</h1>
+    <span class="app-context">serial → parallel → autonomous</span>
+  </header>
 
-<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
-  <div class="slide-banner">
-    <h1>📸 Cheat Sheet — Photograph This!</h1>
-    <img src="./images/github-copilot.png" class="banner-icon" alt="GitHub Copilot" />
+  <div class="scale-chart">
+    <span class="scale-y-label">Concurrent delivery capacity</span>
+    <span class="scale-x-start">Individual</span>
+    <span class="scale-x-label">Operating model maturity</span>
+    <span class="scale-x-end">Team-scale</span>
+    <svg class="scale-trajectory" viewBox="0 0 1060 420" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path d="M 90 340 C 200 340, 270 335, 310 330 C 410 322, 480 310, 530 295 C 640 265, 700 235, 760 210 C 855 165, 935 110, 980 80" />
+    </svg>
+    <div class="scale-level scale-level-1">
+      <div class="leverage-visual leverage-assist" aria-hidden="true">
+        <span class="leverage-actor leverage-developer"><LineIcon name="person" /></span>
+        <i></i>
+        <span class="leverage-actor leverage-agent"><LineIcon name="robot" /></span>
+      </div>
+      <strong>Assist</strong>
+      <small>1 task · 1 agent · serial</small>
+    </div>
+    <div class="scale-level scale-level-linked scale-level-2">
+      <div class="leverage-visual leverage-delegate" aria-hidden="true">
+        <span class="leverage-actor leverage-developer"><LineIcon name="person" /></span>
+        <span class="leverage-actor leverage-agent"><LineIcon name="robot" /></span>
+        <span class="leverage-actor leverage-agent"><LineIcon name="robot" /></span>
+        <span class="leverage-actor leverage-agent"><LineIcon name="robot" /></span>
+      </div>
+      <strong>Delegate</strong>
+      <small>1 task · serial agents</small>
+      <a class="scale-feature-link" href="https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-custom-agents" target="_blank">Custom agents ↗</a>
+    </div>
+    <div class="scale-level scale-level-linked scale-level-3">
+      <div class="leverage-visual leverage-parallel" aria-hidden="true">
+        <svg viewBox="0 0 130 78" preserveAspectRatio="none"><path d="M 32 39 H 54 M 54 39 C 70 39, 68 13, 94 13 M 54 39 H 94 M 54 39 C 70 39, 68 65, 94 65" /></svg>
+        <span class="leverage-actor leverage-developer"><LineIcon name="person" /></span>
+        <span class="leverage-actor leverage-agent"><LineIcon name="robot" /></span>
+        <span class="leverage-actor leverage-agent"><LineIcon name="robot" /></span>
+        <span class="leverage-actor leverage-agent"><LineIcon name="robot" /></span>
+      </div>
+      <strong>Parallelize</strong>
+      <small>1 task · parallel agents</small>
+      <span class="scale-feature-links">
+        <a href="https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-custom-agents#running-agents-as-subagents" target="_blank">Subagents ↗</a>
+        <a href="https://docs.github.com/en/copilot/concepts/agents/copilot-cli/fleet" target="_blank">Fleet ↗</a>
+      </span>
+    </div>
+    <div class="scale-level scale-level-linked scale-level-4">
+      <div class="leverage-visual leverage-orchestrate" aria-hidden="true">
+        <svg viewBox="0 0 130 78" preserveAspectRatio="none"><path d="M 32 39 H 57" /></svg>
+        <span class="leverage-actor leverage-developer"><LineIcon name="person" /></span>
+        <span class="leverage-squad">
+          <LineIcon name="branch" />
+          <i><LineIcon name="robot" /></i><i><LineIcon name="robot" /></i><i><LineIcon name="robot" /></i>
+        </span>
+      </div>
+      <strong>Orchestrate</strong>
+      <small>Autonomous Squad · task queue</small>
+      <a class="scale-feature-link" href="https://github.com/bradygaster/squad" target="_blank">Squad ↗</a>
+    </div>
+    <div class="scale-level scale-level-linked scale-level-5">
+      <div class="leverage-visual leverage-scale-out" aria-hidden="true">
+        <svg viewBox="0 0 130 78" preserveAspectRatio="none"><path d="M 32 39 H 48 M 48 39 C 57 39, 55 19, 66 19 M 48 39 C 57 39, 55 59, 66 59" /></svg>
+        <span class="leverage-actor leverage-developer"><LineIcon name="person" /></span>
+        <span class="leverage-team"><i></i><i></i><i></i></span>
+        <span class="leverage-team"><i></i><i></i><i></i></span>
+      </div>
+      <strong>Scale out</strong>
+      <small>Many Squads · many solutions</small>
+      <a class="scale-feature-link" href="https://github.com/copilot" target="_blank">Copilot app ↗</a>
+    </div>
   </div>
-  <div class="slide-body" style="flex-direction: column; gap: 0.6rem; padding: 0.8rem 1.5rem;">
-    <div class="two-col-grid" style="width: 100%; gap: 0.6rem; align-items: stretch;">
-      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-        <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent);">
-          <h3>1. The constraint changes the goal</h3>
-          <p>Prevent AI from doing everything at once. Squad constrains by role. gh-aw by security. RPI separates research from implementation. <strong>The constraint is the feature.</strong></p>
+
+  <p class="scale-rule">The developer moves from <strong>doing work</strong> to <strong>directing systems of work.</strong></p>
+</div>
+
+<!--
+The graph shows a repeatable five-stage adoption path.
+
+1. Assist: one developer and one agent work serially on one task.
+2. Delegate: one developer uses several agents serially on one task.
+3. Parallelize: one developer distributes work across agents concurrently.
+4. Orchestrate: a Squad operates autonomously through roles, routing, and memory.
+5. Scale out: one developer oversees multiple Squads across multiple solutions.
+-->
+
+---
+transition: fade-out
+---
+
+<div class="app-slide hve-intro-slide">
+  <header class="app-bar">
+    <span class="app-mark"><LineIcon name="velocity" /></span>
+    <h1>Hypervelocity Engineering</h1>
+    <span class="app-context">not the end state → the next evolution</span>
+  </header>
+  <main class="hve-intro-content">
+    <h2>Developer acceleration exposes the next constraint: <strong>the delivery system around it.</strong></h2>
+    <div class="hve-evolution">
+      <section class="hve-stage hve-agentic-stage">
+        <div class="hve-agentic-visual" aria-hidden="true">
+          <span><LineIcon name="person" /></span><i></i><span><LineIcon name="robot" /></span><span><LineIcon name="robot" /></span><span><LineIcon name="robot" /></span>
         </div>
-        <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent);">
-          <h3>2. Governance in code, not prompts</h3>
-          <p>Prompts can be ignored; code cannot. SDK hooks, compiled workflows, the 7-layer customization hierarchy. <strong>Enforce, don't suggest.</strong></p>
-        </div>
-        <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent);">
-          <h3>3. Memory makes teams compound</h3>
-          <p><code>.squad/</code> committed to git. Research docs accumulate. Skills persist org knowledge. <strong>The team gets smarter every session.</strong></p>
-        </div>
+        <strong>Agentic development</strong>
+        <small>Engineering accelerates</small>
+      </section>
+      <div class="hve-bridge">
+        <LineIcon name="warning" />
+        <strong>Business barrier</strong>
+        <span>Wrong problem</span>
+        <span>Slow decisions</span>
+        <span>Fragile delivery</span>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-        <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent2);">
-          <h3>4. More roles than engineering</h3>
-          <p>Research, planning, cost analysis, security review, and docs are first-class outputs. PMs, architects, analysts — same artifact chain. <strong>Not just code faster.</strong></p>
+      <a class="hve-stage hve-system-stage" href="https://medium.com/microsoft/from-idea-to-production-ea25827a4274" target="_blank">
+        <div class="hve-system-visual" aria-hidden="true">
+          <span><LineIcon name="person" /></span><span><LineIcon name="target" /></span><span class="hve-system-core"><LineIcon name="velocity" /></span><span><LineIcon name="shield" /></span><span><LineIcon name="flow" /></span>
         </div>
-        <div class="card" style="flex: 1; border-left: 3px solid var(--theme-accent2);">
-          <h3>5. Standards enable the ecosystem</h3>
-          <p>MCP solves N x M. agentskills.io enables portability. Canonical plugin layout enables federated distribution. <strong>Open standards are the foundation.</strong></p>
-        </div>
-        <div class="callout" style="font-size: 0.78em; margin: 0;">
-          <strong>Start here (links): </strong>
-          <a href="https://agentskills.io">agentskills.io</a> ·
-          <a href="https://github.com/github/spec-kit">Spec Kit</a> ·
-          <a href="https://github.com/bradygaster/squad">Squad</a> ·
-          <a href="https://github.com/dotnet/skills">dotnet/skills</a> ·
-          <a href="https://github.com/github/gh-aw">gh-aw</a> ·
-          <a href="https://microsoft.github.io/hve-core/">HVE Core</a> ·
-          <a href="https://learn.microsoft.com/en-us/cli/azure/prototype">az prototype</a>
-        </div>
-      </div>
+        <strong>Hypervelocity Engineering</strong>
+        <small>The whole delivery system accelerates</small>
+      </a>
+    </div>
+    <div class="hve-why">
+      <span><LineIcon name="shield" /><strong>Disciplined speed</strong><small>Engineering rigor scales what AI starts</small></span>
+      <span><LineIcon name="target" /><strong>Purpose</strong><small>Solve the right problem and create value</small></span>
+      <span><LineIcon name="link" /><strong>Trusted context</strong><small>Ground decisions in reliable knowledge</small></span>
+    </div>
+    <p class="hve-foundation"><span>Small expert teams</span><i></i><span>Design thinking</span><i></i><span>Production starting points</span><i></i><span>AI across the lifecycle</span></p>
+  </main>
+</div>
+
+<!--
+HVE is the next evolution, not the end state and not a product.
+
+Agentic development accelerates engineering work. That success exposes the next
+constraint: product decisions, domain understanding, security, operations, and
+delivery practices must accelerate together.
+
+HVE is a way of working that combines disciplined speed, business purpose, and
+trusted context. Small multidisciplinary teams use design thinking, proven
+production starting points, and AI across the lifecycle to deliver high-value
+outcomes continuously.
+
+Source:
+https://medium.com/microsoft/from-idea-to-production-ea25827a4274
+-->
+
+---
+transition: slide-up
+---
+
+<div class="action-slide">
+  <header class="app-bar">
+    <span class="app-mark"><LineIcon name="target" /></span>
+    <h1>Five things every organisation should do now</h1>
+    <span class="app-context">make adoption possible for every team</span>
+  </header>
+
+  <div class="action-ladder">
+    <div v-click><span>1</span><LineIcon name="layers" /><strong><a href="/5" @click.prevent="$router.push('/5')">Train every team in the Agentic Operating Model</a></strong><small>Give everyone a shared method for moving from instructions and context to repeatable, governed outcomes.</small></div>
+    <div v-click><span>2</span><LineIcon name="plan" /><strong>Standardise guidance in every repository</strong><small>Require maintained <a href="https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions" target="_blank">AGENTS.md</a> and <a href="https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions" target="_blank">copilot-instructions.md</a> files that align agents with organisational standards.</small></div>
+    <div v-click><span>3</span><LineIcon name="plug" /><strong>Govern access to organisational knowledge</strong><small>Offer approved <a href="https://docs.github.com/en/copilot/concepts/about-mcp" target="_blank">MCP servers</a> and <a href="https://docs.github.com/en/copilot/concepts/spaces" target="_blank">Copilot Spaces</a> for secure access to <a href="https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/workiq-overview" target="_blank">Work IQ</a> and other knowledge beyond the repository.</small></div>
+    <div v-click><span>4</span><LineIcon name="skills" /><strong>Empower every team to create reusable skills</strong><small>Give teams ownership to capture repeated work as <a href="https://docs.github.com/en/copilot/concepts/agents/about-agent-skills" target="_blank">skills</a>, improve them, and share them across team boundaries.</small></div>
+    <div v-click><span>5</span><LineIcon name="store" /><strong><a href="https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-marketplace" target="_blank">Create an organisational plugin marketplace</a></strong><small>Make approved <a href="https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-skills" target="_blank">skills</a>, <a href="https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-creating" target="_blank">plugins</a>, <a href="https://docs.github.com/en/copilot/tutorials/create-an-extension" target="_blank">extensions</a>, and <a href="https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/use-hooks" target="_blank">hooks</a> easy to find, trust, install, and reuse.</small></div>
+  </div>
+</div>
+
+<!--
+These are five organisational capabilities, not individual developer habits.
+
+Train every team in one shared operating model. Put maintained guidance in
+every repository. Provide secure, governed access to organisational knowledge.
+Empower teams to capture reusable skills. Then make all approved assets easy
+to discover and consume through an organisational marketplace.
+-->
+
+---
+transition: fade-out
+---
+
+<div class="diagnose-slide">
+  <header class="app-bar">
+    <span class="app-mark"><LineIcon name="plan" /></span>
+    <h1>What to reach for next</h1>
+    <span class="app-context">match the problem to the smallest useful fix</span>
+  </header>
+
+  <div class="diagnose-list">
+    <div v-click>
+      <p>“We keep typing the same instructions.”</p>
+      <i aria-hidden="true"></i>
+      <span><LineIcon name="repeat" /><strong><a href="https://agentskills.io/" target="_blank">Save it as a skill</a></strong><small>The agent calls it whenever that task comes up, so the steps run the same way every time.</small></span>
+    </div>
+    <div v-click>
+      <p>“The agent only knows what is in the repository.”</p>
+      <i aria-hidden="true"></i>
+      <span><LineIcon name="plug" /><strong><a href="https://docs.github.com/en/copilot/concepts/about-mcp" target="_blank">Open up your organisation’s data</a></strong><small>Live tools let the agent go and find the knowledge a task needs, wherever it lives.</small></span>
+    </div>
+    <div v-click>
+      <p>“We get a different answer every time.”</p>
+      <i aria-hidden="true"></i>
+      <span><LineIcon name="target" /><strong><a href="https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions" target="_blank">Constrain the agent</a></strong><small>Specifications and repository guidance stop it filling the gaps with assumptions.</small></span>
+    </div>
+    <div v-click>
+      <p>“We are trying to do too much in one go.”</p>
+      <i aria-hidden="true"></i>
+      <span><LineIcon name="flow" /><strong><a href="https://docs.github.com/en/copilot/tutorials/customization-library/custom-agents" target="_blank">Break the work down</a></strong><small>Smaller focused tasks, each with a purpose-built agent, are easier to steer and improve.</small></span>
+    </div>
+    <div v-click>
+      <p>“We are moving faster than we can check.”</p>
+      <i aria-hidden="true"></i>
+      <span><LineIcon name="shield" /><strong><a href="https://github.com/github/gh-aw" target="_blank">Automate everything you can</a></strong><small><a href="https://docs.github.com/en/copilot/concepts/code-review/code-review" target="_blank">Reviews</a>, <a href="https://docs.github.com/en/actions/how-tos/writing-workflows/building-and-testing" target="_blank">tests</a>, <a href="https://github.com/github/gh-aw" target="_blank">hooks and tech-debt fixes</a>, <a href="https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference" target="_blank">dependency updates</a>, even checking the <a href="https://github.com/github/spec-kit" target="_blank">specifications</a>.</small></span>
     </div>
   </div>
 </div>
 
 <!--
-This is the "photograph this" slide — pause here and let people take photos.
-It's a condensed reference card of the 5 cross-cutting principles plus the
-key links from the talk. Everything they need to get started after the session.
+Pause for photographs. Each line pairs a frustration teams recognise with the
+smallest useful next step, in plain language.
+
+A skill is for the agent as much as the person: once saved, the agent invokes
+it whenever the task recurs.
+
+Connecting tools is about reaching organisational knowledge beyond the
+repository, so the agent can discover what a scenario needs.
+
+Inconsistent output is an unconstrained agent. Specifications, AGENTS.md and
+copilot-instructions.md remove the need for it to guess.
+
+Organisation-wide flow problems are the Hypervelocity Engineering conversation
+from earlier, not a tooling fix.
 -->
 
 ---
-layout: center
-class: text-center
+transition: fade-out
 ---
 
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 16 — THANK YOU / Q&A                           ~3 min
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="thankyou-shell">
-  <h1 style="font-size: 2.8rem;">Thank You!</h1>
-  <p style="color: var(--theme-muted); font-size: 1.1rem; max-width: 32rem;">
-    Questions? Let's go deeper on anything you saw — or I can spin up a live demo on the spot.
-  </p>
-
-  <div class="thankyou-links">
-    <a href="https://github.com/PlagueHO" target="_blank">GitHub</a>
-    <a href="https://danielscottraynsford.com" target="_blank">Website</a>
-    <a href="https://github.com/PlagueHO/plagueho.learn" target="_blank">Slides Source</a>
+<div class="closing-slide">
+  <div class="closing-message">
+    <LineIcon name="velocity" />
+    <h1>The destination is not faster developers.<br>It is a faster organisation.</h1>
+    <p>Extend AI-enabled learning, decisions, and delivery across the whole value stream.</p>
   </div>
-
-  <div class="cta-box" style="max-width: 40rem; margin-top: 0.8rem;">
-    <div>
-      <p style="font-weight: 600;">Dive deeper — all the links</p>
-      <p style="font-size: 0.8em; opacity: 0.8;">
-        <a href="https://github.com/github/spec-kit" target="_blank" style="color: rgba(255,255,255,0.85);">Spec Kit</a> ·
-        <a href="https://github.com/bradygaster/squad" target="_blank" style="color: rgba(255,255,255,0.85);">Squad</a> ·
-        <a href="https://agentskills.io/" target="_blank" style="color: rgba(255,255,255,0.85);">agentskills.io</a> ·
-        <a href="https://github.com/dotnet/skills" target="_blank" style="color: rgba(255,255,255,0.85);">dotnet/skills</a> ·
-        <a href="https://github.com/PlagueHO/plagueho.skills" target="_blank" style="color: rgba(255,255,255,0.85);">plagueho.skills</a> ·
-        <a href="https://github.com/github/awesome-copilot" target="_blank" style="color: rgba(255,255,255,0.85);">awesome-copilot</a> ·
-        <a href="https://github.com/github/gh-aw" target="_blank" style="color: rgba(255,255,255,0.85);">gh-aw</a> ·
-        <a href="https://microsoft.github.io/hve-core/" target="_blank" style="color: rgba(255,255,255,0.85);">HVE Core</a> ·
-        <a href="https://learn.microsoft.com/en-us/cli/azure/prototype" target="_blank" style="color: rgba(255,255,255,0.85);">az prototype</a>
-      </p>
-    </div>
+  <div class="closing-wave" aria-label="AI-enabled capability expands from a developer to the whole organisation">
+    <span><LineIcon name="person" /><b>Developer</b></span>
+    <span><LineIcon name="skills" /><b>Team</b></span>
+    <span><LineIcon name="flow" /><b>Delivery system</b></span>
+    <span><LineIcon name="velocity" /><b>Organisation</b></span>
   </div>
+  <footer class="closing-next">
+    <span>Continue the journey</span>
+    <a href="https://plagueho.github.io/plagueho.learn/hypervelocity-engineering/" target="_blank">Explore the Hypervelocity Engineering presentation <b>→</b></a>
+  </footer>
 </div>
 
 <!--
-Open for questions. Offer to do another live demo if time allows.
-"Everything in this talk is in the repo — clone it, use it, extend it."
+Agentic development begins by making individual developers faster, but that is
+not the destination. Hypervelocity Engineering expands AI-enabled learning,
+decisions, and delivery across the whole value stream so the organisation can
+move together.
+
+Direct the audience to the dedicated Hypervelocity Engineering presentation
+for the operating practices that make this possible.
 -->
+
+---
+transition: fade-out
+---
+
+<div class="app-slide">
+  <header class="app-bar">
+    <span class="app-mark"><LineIcon name="person" /></span>
+    <h1>About Me</h1>
+    <span class="app-context">profile</span>
+  </header>
+
+  <main class="profile-layout">
+    <section class="profile-identity">
+      <div class="profile-avatar">DSR</div>
+      <div>
+        <h2>Daniel Scott-Raynsford</h2>
+        <p>Sr. Partner Solution Architect</p>
+        <p>Cloud &amp; AI Apps · Microsoft</p>
+      </div>
+    </section>
+    <section class="profile-focus">
+      <p class="profile-statement">I turn emerging platform capabilities into practical engineering systems.</p>
+      <div class="profile-tags" aria-label="Areas of focus">
+        <span>Agentic engineering</span>
+        <span>Azure</span>
+        <span>GitHub</span>
+      </div>
+    </section>
+    <nav class="profile-links" aria-label="Daniel Scott-Raynsford links">
+      <a href="https://danielscottraynsford.com" target="_blank">
+        <span>Website</span><strong>danielscottraynsford.com ↗</strong>
+      </a>
+      <a href="https://www.linkedin.com/in/dscottraynsford/" target="_blank">
+        <span>LinkedIn</span><strong>/in/dscottraynsford ↗</strong>
+      </a>
+      <a href="https://github.com/PlagueHO" target="_blank">
+        <span>GitHub</span><strong>@PlagueHO ↗</strong>
+      </a>
+    </nav>
+  </main>
+</div>
