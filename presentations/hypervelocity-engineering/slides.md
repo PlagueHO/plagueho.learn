@@ -27,42 +27,30 @@ shiki:
     dark: dracula
 ---
 
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 1 — TITLE HERO
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="hero-shell">
-  <p class="eyebrow">HVE · HVE-Core · RPI · GitHub Copilot</p>
-  <h1 class="hero-heading">Hypervelocity<br />Engineering</h1>
-  <p class="hero-sub">
-    From Concept to Code with <strong>HVE-Core</strong> — a 90-minute deep dive into disciplined
-    AI-assisted engineering, the <strong>RPI workflow</strong>, and practical tooling that turns
-    uncertainty into verified, traceable, production-quality outcomes.
-  </p>
-
-  <div class="hero-meta">
-    <span>Daniel Scott-Raynsford (DSR)</span>
-    <span>Sr. Partner Solution Architect · Cloud &amp; AI Apps · Microsoft EPS</span>
-    <span>90 min · Engineers &amp; Architects · Demo-heavy</span>
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-copy">
+    <h1>Hypervelocity Engineering</h1>
+    <p class="hero-title-tail">From Concept to Code with HVE-Core</p>
+    <p class="hero-thesis">Disciplined AI-assisted engineering that turns uncertainty into verified, traceable, production-quality outcomes.</p>
+    <div class="hero-presenter">
+      <strong>Daniel Scott-Raynsford</strong>
+      <span>Sr. Partner Solution Architect · Microsoft</span>
+    </div>
   </div>
-
-  <div class="hero-badge-grid">
-    <div class="badge-card">
-      <strong>🧠 HVE Concepts</strong>
-      <span>Principles &amp; pillars</span>
-    </div>
-    <div class="badge-card">
-      <strong>🛠️ HVE-Core</strong>
-      <span>Agents, collections, lifecycle</span>
-    </div>
-    <div class="badge-card">
-      <strong>🔬 RPI Workflow</strong>
-      <span>Research → Plan → Implement → Review</span>
-    </div>
-    <div class="badge-card">
-      <strong>🎬 Live Demos</strong>
-      <span>Real-world security fix</span>
-    </div>
+  <div class="hero-session">
+    <LineIcon name="velocity" />
+    <strong>90 minutes</strong>
+    <span>Engineers &amp; architects · Demo-heavy</span>
+  </div>
+  <div class="hero-path" aria-label="Presentation route">
+    <span>Understand HVE</span>
+    <i></i>
+    <span>Adopt HVE-Core</span>
+    <i></i>
+    <span>Practice RPI</span>
+    <i></i>
+    <span>Scale safely</span>
   </div>
 </div>
 
@@ -75,117 +63,47 @@ This is demo-heavy by design.
 -->
 
 ---
-transition: fade-out
----
-
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 2 — ABOUT ME (VS Code window)
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="absolute inset-0 flex flex-col" style="background: var(--theme-bg-cool);">
-  <div class="slide-banner">
-    <h1>About Me</h1>
-  </div>
-  <div style="flex:1;display:flex;align-items:stretch;padding:0.65rem 1.35rem 0.75rem;min-height:0;">
-    <div class="vscode-window">
-      <div class="vscode-titlebar">
-        <div class="vscode-dots">
-          <span class="dot dot-red"></span>
-          <span class="dot dot-yellow"></span>
-          <span class="dot dot-green"></span>
-        </div>
-        <span class="vscode-wintitle">daniel-scott-raynsford — Visual Studio Code Insiders</span>
-      </div>
-      <div class="vscode-tabbar">
-        <div class="vscode-tab vscode-tab-json"><span>📄</span> about.json</div>
-        <div style="flex:1;background:#252526;"></div>
-      </div>
-      <div class="vscode-editor-area">
-        <div class="vscode-editor-pane">
-          <div class="vscode-line-nums">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13</div>
-          <div class="vscode-code-content"><span class="type-line" style="--li:0;"><span class="j-brace">{</span></span><span class="type-line" style="--li:1;">  <span class="j-key">"👤 name"</span><span class="j-colon">:</span> <span class="j-str">"Daniel Scott-Raynsford"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:2;">  <span class="j-key">"🏷️ alias"</span><span class="j-colon">:</span> <span class="j-str">"PlagueHO"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:3;">  <span class="j-key">"💼 role"</span><span class="j-colon">:</span> <span class="j-str">"Partner Solution Architect"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:4;">  <span class="j-key">"🏢 team"</span><span class="j-colon">:</span> <span class="j-str">"Cloud &amp; AI Apps · Microsoft EPS"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:5;">  <span class="j-key">"💻 origin"</span><span class="j-colon">:</span> <span class="j-str">"Recovering software engineer"</span><span class="j-punc">,</span></span><span class="type-line" style="--li:6;">  <span class="j-key">"🔗 links"</span><span class="j-colon">:</span> <span class="j-brace">{</span></span><span class="type-line" style="--li:7; padding-left: 2ch;">  <span class="j-key">"🌐 web"</span><span class="j-colon">:</span> <a href="https://danielscottraynsford.com" target="_blank" class="j-link">"danielscottraynsford.com"</a><span class="j-punc">,</span></span><span class="type-line" style="--li:8; padding-left: 2ch;">  <span class="j-key">"💼 linkedin"</span><span class="j-colon">:</span> <a href="https://www.linkedin.com/in/dscottraynsford/" target="_blank" class="j-link">"linkedin.com/in/dscottraynsford"</a><span class="j-punc">,</span></span><span class="type-line" style="--li:9; padding-left: 2ch;">  <span class="j-key">"🐙 github"</span><span class="j-colon">:</span> <a href="https://github.com/PlagueHO" target="_blank" class="j-link">"github.com/PlagueHO"</a></span><span class="type-line" style="--li:10;">  <span class="j-brace">}</span></span><span class="type-line" style="--li:11;"><span class="j-brace">}</span><span class="cs-cursor"></span></span></div>
-        </div>
-      </div>
-      <div class="vscode-statusbar">
-        <span>⎇ main</span>
-        <span>✓ GitHub Copilot</span>
-        <span style="margin-left:auto;">JSON</span>
-        <span>UTF-8</span>
-        <span>Ln 12, Col 1</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--
-Quick intro — 60 seconds max.
-Recovering software engineer, now focused on helping engineering teams
-adopt AI-assisted practices at scale.
--->
-
----
 transition: slide-up
 ---
 
-<!-- ═══════════════════════════════════════════════════════════
-     SLIDE 3 — AGENDA
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="agenda-shell">
-  <div class="agenda-orbs-layer">
-    <div class="agenda-orb agenda-orb-1"></div>
-    <div class="agenda-orb agenda-orb-2"></div>
-    <div class="agenda-orb agenda-orb-3"></div>
-  </div>
-
-  <div class="agenda-header">
-    <p class="agenda-eyebrow">90 MINUTES · 2 LIVE DEMOS</p>
-    <h1 class="agenda-title">Agenda</h1>
-  </div>
-
-  <div class="agenda-grid">
-    <a href="/5" @click.prevent="$router.push('/5')" class="agenda-card agenda-card-1">
-      <div class="agenda-card-accent"></div>
-      <span class="agenda-num">01</span>
-      <h2>The AI Engineering Problem</h2>
-      <p>Why speed without rigor is dangerous</p>
+<div class="agenda">
+  <header class="agenda-heading">
+    <h1>Agenda</h1>
+    <p>90 minutes · Two live demos · From principles to practice</p>
+  </header>
+  <nav class="agenda-route" aria-label="Presentation sections">
+    <a href="/4" @click.prevent="$router.push('/4')">
+      <span class="agenda-index">01</span>
+      <LineIcon name="warning" />
+      <strong>The AI Engineering Problem</strong>
+      <small>Why speed without rigor is dangerous</small>
     </a>
-    <a href="/6" @click.prevent="$router.push('/6')" class="agenda-card agenda-card-2">
-      <div class="agenda-card-accent"></div>
-      <span class="agenda-num">02</span>
-      <h2>What is HVE?</h2>
-      <p>Four pillars, principles, fundamentals</p>
+    <span class="agenda-connector" aria-hidden="true"></span>
+    <a href="/5" @click.prevent="$router.push('/5')">
+      <span class="agenda-index">02</span>
+      <LineIcon name="target" />
+      <strong>What is HVE?</strong>
+      <small>Four pillars, principles, fundamentals</small>
     </a>
-    <a href="/10" @click.prevent="$router.push('/10')" class="agenda-card agenda-card-3">
-      <div class="agenda-card-accent"></div>
-      <span class="agenda-num">03</span>
-      <h2>HVE-Core Overview</h2>
-      <p>Collections, lifecycle, roles, tooling</p>
+    <span class="agenda-connector" aria-hidden="true"></span>
+    <a href="/10" @click.prevent="$router.push('/10')">
+      <span class="agenda-index">03</span>
+      <LineIcon name="layers" />
+      <strong>HVE-Core Overview</strong>
+      <small>Collections, lifecycle, roles, tooling</small>
     </a>
-    <a href="/16" @click.prevent="$router.push('/16')" class="agenda-card agenda-card-4">
-      <div class="agenda-card-accent"></div>
-      <span class="agenda-num">04</span>
-      <h2>RPI Deep Dive &amp; Demos</h2>
-      <p>The methodology that makes AI reliable</p>
+    <span class="agenda-connector" aria-hidden="true"></span>
+    <a href="/11" @click.prevent="$router.push('/11')">
+      <span class="agenda-index">04</span>
+      <LineIcon name="repeat" />
+      <strong>RPI Deep Dive</strong>
+      <small>The methodology that makes AI reliable</small>
     </a>
-  </div>
-
-  <div class="agenda-demos">
-    <a href="/20" @click.prevent="$router.push('/20')" class="agenda-demo-pill">
-      <span class="agenda-demo-pulse"></span>
-      <span class="agenda-demo-text">
-        <span class="agenda-demo-num">🎬 Demo 1</span>
-        <span class="agenda-demo-desc">RPI on Marginalia — Prompt injection protection</span>
-      </span>
-    </a>
-    <a href="/28" @click.prevent="$router.push('/28')" class="agenda-demo-pill">
-      <span class="agenda-demo-pulse"></span>
-      <span class="agenda-demo-text">
-        <span class="agenda-demo-num">🎬 Demo 2</span>
-        <span class="agenda-demo-desc">GitHub Backlog Manager in action</span>
-      </span>
-    </a>
-  </div>
+  </nav>
+  <footer class="agenda-demo-links">
+    <a href="/16" @click.prevent="$router.push('/16')"><LineIcon name="terminal" /><span><strong>Demo 1</strong>RPI on Marginalia</span></a>
+    <a href="/26" @click.prevent="$router.push('/26')"><LineIcon name="plan" /><span><strong>Demo 2</strong>GitHub Backlog Manager</span></a>
+  </footer>
 </div>
 
 <!--
@@ -1783,4 +1701,49 @@ class: text-center
 <!--
 Open for questions. Keep answers concise.
 Remind people of the install → try → scale path.
+-->
+
+---
+transition: fade-out
+---
+
+<div class="app-slide">
+  <header class="app-bar">
+    <span class="app-mark"><LineIcon name="person" /></span>
+    <h1>About Me</h1>
+    <span class="app-context">profile</span>
+  </header>
+  <main class="profile-layout">
+    <section class="profile-identity">
+      <div class="profile-avatar">DSR</div>
+      <div>
+        <h2>Daniel Scott-Raynsford</h2>
+        <p>Sr. Partner Solution Architect</p>
+        <p>Cloud &amp; AI Apps · Microsoft</p>
+      </div>
+    </section>
+    <section class="profile-focus">
+      <p class="profile-statement">I turn emerging platform capabilities into practical engineering systems.</p>
+      <div class="profile-tags" aria-label="Areas of focus">
+        <span>Agentic engineering</span>
+        <span>Azure</span>
+        <span>GitHub</span>
+      </div>
+    </section>
+    <nav class="profile-links" aria-label="Daniel Scott-Raynsford links">
+      <a href="https://danielscottraynsford.com" target="_blank">
+        <span>Website</span><strong>danielscottraynsford.com ↗</strong>
+      </a>
+      <a href="https://www.linkedin.com/in/dscottraynsford/" target="_blank">
+        <span>LinkedIn</span><strong>/in/dscottraynsford ↗</strong>
+      </a>
+      <a href="https://github.com/PlagueHO" target="_blank">
+        <span>GitHub</span><strong>@PlagueHO ↗</strong>
+      </a>
+    </nav>
+  </main>
+</div>
+
+<!--
+Close with a short introduction and leave contact details visible after Q&A.
 -->

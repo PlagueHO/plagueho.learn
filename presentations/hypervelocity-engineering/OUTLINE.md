@@ -33,6 +33,18 @@ The presentation follows a "concept → hands-on" arc split into two distinct ha
 
 The throughline: *"AI doesn't need to be smarter — it needs to be constrained. HVE-Core constrains AI at exactly the right moments to produce verified, traceable, production-quality outcomes."*
 
+## Visual direction
+
+This deck inherits the visual language established by the Agentic Development Evolution presentation:
+
+- Dark navy horizon compositions for the title, agenda, demo transitions, and close
+- Cool neutral application surfaces with restrained blue and teal signals
+- A consistent compact application header on standard content slides
+- Segoe typography, thin tonal strokes, soft elevation, and semantic line icons
+- Diagram-first layouts with clear hierarchy and no decorative underlines or emoji-led navigation
+
+This is a visual alignment only. The teaching sequence, technical content, demonstrations, links, and speaker notes remain unchanged. About Me moves from the opening sequence to the final slide after Q&A.
+
 ---
 
 ## Slide Outline
@@ -54,15 +66,6 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Speaker Notes**: Welcome everyone. This is a 90-minute session split into two halves. First 30 minutes covers HVE as a concept — why it exists and what it means. Last 60 minutes is hands-on with HVE-Core: we'll do a full RPI workflow building a real app, then look at GitHub Backlog Manager. This is demo-heavy by design.
 - **Duration**: ~1 min
 - **Animations**: None
-
-### 2. About Me
-
-- **Template Slide**: 2 — About Me (VS Code Card)
-- **Layout**: VS Code window-style presenter card
-- **Content**: Standard DSR bio in VS Code JSON format (reuse from template)
-- **Speaker Notes**: Quick intro — 60 seconds max. Mention background as a recovering software engineer, now focused on helping engineering teams adopt AI-assisted practices.
-- **Duration**: ~1 min
-- **Animations**: Typewriter effect on JSON lines
 
 ### 3. Agenda
 
@@ -596,6 +599,15 @@ The throughline: *"AI doesn't need to be smarter — it needs to be constrained.
 - **Speaker Notes**: Open for questions. Keep answers concise. For deep technical questions, offer to follow up offline. Remind people of the "install → try → scale" path.
 - **Duration**: ~5 min
 - **Animations**: Fade-in
+
+### 34. About Me
+
+- **Template Slide**: Agentic Development Evolution profile
+- **Layout**: Application header with identity, current focus, focus tags, and three contact links
+- **Content**: Standard Daniel Scott-Raynsford profile and public links
+- **Speaker Notes**: Close with the presenter's practical perspective and leave the contact details visible after Q&A.
+- **Duration**: ~1 min
+- **Animations**: None
 
 ---
 
