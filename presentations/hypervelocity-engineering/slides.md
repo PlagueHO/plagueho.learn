@@ -164,23 +164,23 @@ transition: fade-out
       <div class="comparison-col before">
         <span class="comparison-label before">😰 Vibe Coding</span>
         <ul class="dense-list">
-          <li v-click>AI writes first, thinks never</li>
-          <li v-click>Invents <em>plausible</em> patterns instead of verified ones</li>
-          <li v-click>No traceability — "the AI wrote it this way"</li>
-          <li v-click>Tribal knowledge stays in your head</li>
-          <li v-click>Frequent rework when assumptions fail</li>
-          <li v-click>Solving the <strong>wrong</strong> problem faster</li>
+          <li>AI writes first, thinks never</li>
+          <li>Invents <em>plausible</em> patterns instead of verified ones</li>
+          <li>No traceability — "the AI wrote it this way"</li>
+          <li>Tribal knowledge stays in your head</li>
+          <li>Frequent rework when assumptions fail</li>
+          <li>Solving the <strong>wrong</strong> problem faster</li>
         </ul>
       </div>
       <div class="comparison-col after">
         <span class="comparison-label after">🎯 Disciplined AI Engineering</span>
         <ul class="dense-list">
-          <li v-click>Research before implementing</li>
-          <li v-click>Uses verified existing patterns with file/line citations</li>
-          <li v-click>Full traceability through research documents</li>
-          <li v-click>Knowledge transfer through artifacts</li>
-          <li v-click>Rare rework — assumptions are validated</li>
-          <li v-click>Solving the <strong>right</strong> problems with confidence</li>
+          <li>Research before implementing</li>
+          <li>Uses verified existing patterns with file/line citations</li>
+          <li>Full traceability through research documents</li>
+          <li>Knowledge transfer through artifacts</li>
+          <li>Rare rework — assumptions are validated</li>
+          <li>Solving the <strong>right</strong> problems with confidence</li>
         </ul>
       </div>
     </div>
@@ -206,18 +206,20 @@ transition: fade-out
   <div class="slide-banner">
     <h1>What is Hypervelocity Engineering?</h1>
   </div>
-  <div class="slide-body hve-what-slide" style="flex-direction: column; gap: 0.55rem; align-items: stretch; padding: 0.4rem 1.8rem 0.8rem;">
-    <p class="thought-bubble hve-what-intro">
-      <span>A <strong>practical way of working</strong> to deliver high-value AI outcomes — not a product, not a framework, a set of principles and practices.</span>
-    </p>
-    <ul class="dense-list">
-      <li v-click>Focuses on <strong>right problems, right context, right people</strong>, and responsible AI</li>
-      <li v-click>Originated from Microsoft ISE (Industry Solutions Engineering) field experience</li>
-      <li v-click>Applies to <strong>any engineering team</strong>, not just FDE/ISE</li>
-      <li v-click>Not a replacement for existing processes — an evolution of how teams work with AI</li>
-      <li v-click>Key distinction: <strong>HVE = the methodology</strong>; <strong>HVE-Core = the tooling</strong> that operationalizes it</li>
-    </ul>
-    <div class="callout" v-click>
+  <div class="slide-body hve-what-slide">
+    <div class="hve-definition-layout">
+      <section class="hve-definition">
+        <p>A <strong>practical way of working</strong> to deliver <strong>high-value AI outcomes</strong> — not a product, not a framework, a set of principles and practices.</p>
+      </section>
+      <div class="hve-evidence-list">
+        <div class="hve-evidence-row"><span aria-hidden="true">01</span><p>Focuses on <strong>right problems, right context, right people</strong>, and responsible AI</p></div>
+        <div class="hve-evidence-row"><span aria-hidden="true">02</span><p>Originated from Microsoft ISE (Industry Solutions Engineering) field experience</p></div>
+        <div class="hve-evidence-row"><span aria-hidden="true">03</span><p>Applies to <strong>any engineering team</strong>, not just FDE/ISE</p></div>
+        <div class="hve-evidence-row"><span aria-hidden="true">04</span><p>Not a replacement for existing processes — an evolution of how teams work with AI</p></div>
+        <div class="hve-evidence-row"><span aria-hidden="true">05</span><p>Key distinction: <strong>HVE = the methodology</strong>; <strong>HVE-Core = the tooling</strong> that operationalizes it</p></div>
+      </div>
+    </div>
+    <div class="hve-conclusion">
       HVE is about disciplined speed — going fast <em>and</em> going right. The four pillars coming next are the structural foundation.
     </div>
   </div>
@@ -244,23 +246,31 @@ transition: fade-out
   <div class="slide-body pillars-slide" style="flex-direction:column;gap:0.4rem;align-items:stretch;">
     <div class="section-grid">
       <div class="section-card" v-click>
-        <span class="section-number">01</span>
-        <h2>Multidisciplinary Teams</h2>
+        <div class="section-card-bar">
+          <span class="section-number">01</span>
+          <h2>Multidisciplinary Teams</h2>
+        </div>
         <p>Tight teams with deep domain expertise — developers, designers, PMs, security architects, data scientists. The "crew model."</p>
       </div>
       <div class="section-card" v-click>
-        <span class="section-number">02</span>
-        <h2>Design Thinking</h2>
+        <div class="section-card-bar">
+          <span class="section-number">02</span>
+          <h2>Design Thinking</h2>
+        </div>
         <p>Focused on business value, not technology features. Understand the problem before building the solution. Human-centered design.</p>
       </div>
       <div class="section-card" v-click>
-        <span class="section-number">03</span>
-        <h2>Production-Ready Starting Points</h2>
+        <div class="section-card-bar">
+          <span class="section-number">03</span>
+          <h2>Production-Ready Starting Points</h2>
+        </div>
         <p>HVE Accelerators — proven, battle-tested templates and patterns. Don't start from scratch; start from something that works.</p>
       </div>
       <div class="section-card" v-click>
-        <span class="section-number">04</span>
-        <h2>AI Agents &amp; Tools</h2>
+        <div class="section-card-bar">
+          <span class="section-number">04</span>
+          <h2>AI Agents &amp; Tools</h2>
+        </div>
         <p>AI across the full lifecycle — research, planning, implementation, review, backlog management, security assessment, documentation.</p>
       </div>
     </div>
@@ -288,19 +298,19 @@ transition: fade-out
   <div class="slide-body principles-slide" style="flex-direction: column; gap: 0.5rem; align-items: stretch; padding: 0.5rem 1.8rem 0.8rem;">
     <div class="iq-grid" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
       <div class="iq-pillar iq-work" v-click>
-        <div class="iq-header-wrap"><span class="iq-header-pill iq-header-work"><span class="iq-header-icon">🔄</span><span>Iterate in Small Steps</span></span></div>
+        <div class="iq-header-wrap"><span class="iq-header-pill iq-header-work"><span>Iterate in Small Steps</span></span></div>
         <p class="iq-card-summary">Small, verifiable increments. Each step produces a testable artifact. This is why RPI breaks work into separate phases.</p>
       </div>
       <div class="iq-pillar iq-fabric" v-click>
-        <div class="iq-header-wrap"><span class="iq-header-pill iq-header-fabric"><span class="iq-header-icon">✅</span><span>Validate and Verify</span></span></div>
+        <div class="iq-header-wrap"><span class="iq-header-pill iq-header-fabric"><span>Validate and Verify</span></span></div>
         <p class="iq-card-summary">Don't assume AI output is correct. Check against reality. This is why the <a href="https://microsoft.github.io/hve-core/docs/rpi/task-reviewer" target="_blank">Task Reviewer</a> exists as a separate agent.</p>
       </div>
       <div class="iq-pillar iq-foundry" v-click>
-        <div class="iq-header-wrap"><span class="iq-header-pill iq-header-foundry"><span class="iq-header-icon">💎</span><span>Prioritize Business Value</span></span></div>
+        <div class="iq-header-wrap"><span class="iq-header-pill iq-header-foundry"><span>Prioritize Business Value</span></span></div>
         <p class="iq-card-summary">Every engineering decision ties back to a business outcome. Outcome-driven metrics from day one, not story points.</p>
       </div>
       <div class="iq-pillar iq-orange" v-click>
-        <div class="iq-header-wrap"><span class="iq-header-pill iq-header-orange"><span class="iq-header-icon">🔒</span><span>Embed Security &amp; Quality</span></span></div>
+        <div class="iq-header-wrap"><span class="iq-header-pill iq-header-orange"><span>Embed Security &amp; Quality</span></span></div>
         <p class="iq-card-summary">Not bolted on at the end. Security, observability, and responsible AI are woven into every phase of the lifecycle.</p>
       </div>
     </div>
@@ -405,19 +415,37 @@ transition: fade-out
   <div class="slide-banner">
     <h1>Introducing HVE-Core</h1>
   </div>
-  <div class="slide-body tooling-layer-slide" style="flex-direction: column; gap: 0.55rem; align-items: stretch; padding: 0.4rem 1.8rem 0.8rem;">
-    <p class="thought-bubble" style="margin: 0;">
-      <span><strong><a href="https://microsoft.github.io/hve-core/docs/hve-guide/" target="_blank" style="color: inherit; text-decoration: underline;">HVE</a> is the practice. <a href="https://microsoft.github.io/hve-core/docs/" target="_blank" style="color: inherit; text-decoration: underline;">HVE-Core</a> is the starter kit for practicing it in <a href="https://code.visualstudio.com/docs/copilot/overview" target="_blank" style="color: inherit; text-decoration: underline;">GitHub Copilot</a>.</strong></span>
-    </p>
-    <ul class="dense-list">
-      <li v-click>Curated <strong>agents, skills, prompts, and coding instructions</strong> for GitHub Copilot</li>
-      <li v-click>Encodes <strong><a href="https://microsoft.github.io/hve-core/docs/rpi/" target="_blank" style="color: inherit; text-decoration: underline;">RPI</a></strong>, role guidance, and quality guardrails into ready-to-use starting points</li>
-      <li v-click>Operationalizes two HVE pillars: <strong>Production-Ready Starting Points</strong> and <strong>AI Agents &amp; Tools</strong></li>
-      <li v-click>Supports <strong>10 roles</strong> across a <strong>9-stage lifecycle</strong></li>
-      <li v-click>Open source, runs in VS Code, install from Marketplace: <a href="https://marketplace.visualstudio.com/items?itemName=ise-hve-essentials.hve-core" target="_blank" style="color: inherit; text-decoration: underline;"><code>ise-hve-essentials.hve-core</code></a></li>
-      <li v-click>Choose <strong>HVE Core All</strong> or the selective <strong>HVE Installer</strong></li>
-    </ul>
-    <div class="callout" v-click>
+  <div class="slide-body tooling-layer-slide hve-core-stack">
+    <div class="hve-core-relationship">
+      <div class="hve-core-route" aria-hidden="true">
+        <span>HVE practice</span><b>→</b><span>HVE-Core starter kit</span><b>→</b><span>GitHub Copilot</span>
+      </div>
+      <p><strong><a href="https://microsoft.github.io/hve-core/docs/hve-guide/" target="_blank">HVE</a> is the practice. <a href="https://microsoft.github.io/hve-core/docs/" target="_blank">HVE-Core</a> is the starter kit for practicing it in <a href="https://code.visualstudio.com/docs/copilot/overview" target="_blank">GitHub Copilot</a>.</strong></p>
+    </div>
+    <div class="hve-core-bands">
+      <section class="hve-core-band">
+        <h2>What it contains</h2>
+        <div class="hve-core-band-content">
+          <p v-click>Curated <strong>agents, skills, prompts, and coding instructions</strong> for GitHub Copilot</p>
+          <p v-click>Encodes <strong><a href="https://microsoft.github.io/hve-core/docs/rpi/" target="_blank">RPI</a></strong>, role guidance, and quality guardrails into ready-to-use starting points</p>
+        </div>
+      </section>
+      <section class="hve-core-band">
+        <h2>What it operationalizes</h2>
+        <div class="hve-core-band-content">
+          <p v-click>Operationalizes two HVE pillars: <strong>Production-Ready Starting Points</strong> and <strong>AI Agents &amp; Tools</strong></p>
+          <p v-click>Supports <strong>10 roles</strong> across a <strong>9-stage lifecycle</strong></p>
+        </div>
+      </section>
+      <section class="hve-core-band">
+        <h2>How teams adopt it</h2>
+        <div class="hve-core-band-content">
+          <p v-click>Open source, runs in VS Code, install from Marketplace: <a href="https://marketplace.visualstudio.com/items?itemName=ise-hve-essentials.hve-core" target="_blank"><code>ise-hve-essentials.hve-core</code></a></p>
+          <p v-click>Choose <strong>HVE Core All</strong> or the selective <strong>HVE Installer</strong></p>
+        </div>
+      </section>
+    </div>
+    <div class="hve-core-analogy" v-click>
       <strong>Helpful analogy:</strong> If HVE is like DevOps, HVE-Core is the platform team's golden paths, templates, and automation for adopting it consistently.
     </div>
   </div>
@@ -1672,35 +1700,29 @@ Encourage attendees to start with the Getting Started page.
 -->
 
 ---
-layout: center
-class: text-center
+transition: fade-out
 ---
 
 <!-- ═══════════════════════════════════════════════════════════
      SLIDE 35 — THANK YOU / Q&A
      ═══════════════════════════════════════════════════════════ -->
 
-<div class="thankyou-shell">
-  <h1 style="font-size: 2.8rem;">Thank You!</h1>
-  <p style="color: var(--theme-muted); font-size: 1.1rem; max-width: 32rem;">
-    Questions? Let's go deeper on anything you saw — or I can spin up a live demo on the spot.
-  </p>
-
-  <div class="thankyou-links">
-    <a href="https://github.com/PlagueHO" target="_blank">GitHub</a>
-    <a href="https://danielscottraynsford.com" target="_blank">Website</a>
-    <a href="https://www.linkedin.com/in/dscottraynsford/" target="_blank">LinkedIn</a>
+<div class="closing-slide">
+  <div class="closing-message">
+    <LineIcon name="velocity" />
+    <h1>The first RPI cycle feels slower.<br>By the third, it is how you work.</h1>
+    <p>Install HVE-Core, run one real task through Research → Plan → Implement → Review, then scale it.</p>
   </div>
-
-  <div class="cta-box" style="max-width: 40rem; margin-top: 0.8rem;">
-    <div>
-      <p><strong>Install HVE-Core today. Try RPI on your next task. See the difference.</strong></p>
-      <p>The first workflow feels slower. By the third feature, it's natural. The value compounds over time.</p>
-    </div>
-    <div class="cta-link">
-      <a href="https://microsoft.github.io/hve-core/docs/getting-started/" target="_blank">microsoft.github.io/hve-core/docs/getting-started</a>
-    </div>
+  <div class="closing-wave" aria-label="Adoption compounds from installing the extension to scaling across an organisation">
+    <span><LineIcon name="terminal" /><b>Install</b></span>
+    <span><LineIcon name="repeat" /><b>One RPI cycle</b></span>
+    <span><LineIcon name="layers" /><b>Team</b></span>
+    <span><LineIcon name="velocity" /><b>Organisation</b></span>
   </div>
+  <footer class="closing-next">
+    <span>Questions — or a live demo on the spot</span>
+    <a href="https://microsoft.github.io/hve-core/docs/getting-started/" target="_blank">Get started with HVE-Core <b>→</b></a>
+  </footer>
 </div>
 
 <!--
