@@ -1,186 +1,102 @@
 # Hypervelocity Engineering — Research Notes
 
-Collected 2026-04-13. Sources: WorkIQ Loop document, HVE-Core public docs.
+Research refreshed 2026-08-30. This file distinguishes public Microsoft guidance from internal-experience material supplied for the presentation.
 
-## Source 1 — WorkIQ: "HVE-Core Training Materials Search"
+## Scope
 
-### What is HVE (from Loop doc)
+The presentation teaches Hypervelocity Engineering as an engineering operating model. Forward Deployed Engineering is deliberately out of scope. HVE-Core and RPI appear only as practical examples of the “AI agents and tools across the full lifecycle” ingredient.
 
-- A practical way of working to deliver high-value AI outcomes
-- Focuses on right problems, context, people, and responsible AI
-- Applies to FDE and non-FDE teams alike
+## Public Microsoft evidence
 
-### Four Pillars of HVE
-
-1. Tight multidisciplinary teams with deep domain expertise
-2. Design thinking focused on business value
-3. Proven, production-ready starting points (HVE Accelerators)
-4. AI agents and tools across the full lifecycle
-
-### Principles in Action
-
-- Iterate in small steps
-- Validate and verify
-- Include users in the team
-- Prioritize business value
-- Embed security and quality
-- Leverage team expertise
-
-### Engineering Fundamentals
-
-- Security, observability, and responsible AI embedded throughout
-- Automated testing, monitoring, and governance
-- AI + accelerators drastically reduce cost of fundamentals
-
-### Challenges of the AI Engineering Age
-
-- Risks of low-rigor vibe coding
-- Solving the wrong problem faster
-- Using AI without reliable context or data
-
-### Measuring Success & Avoiding Pitfalls
-
-- Outcome-driven metrics from day one
-- Avoid activity without impact
-- Rebuild processes, don't just bolt AI onto Scrum
-
----
-
-## Source 2 — HVE-Core Public Documentation
-
-### What is HVE-Core
-
-AI-Driven Software Development Across the Full Lifecycle. Gives teams production-ready agents, reusable prompts, coding instructions, and executable skills for GitHub Copilot. Provides structured workflows (Research → Plan → Implement), schema-enforced quality gates, and role-specific tooling across 10 engineering disciplines.
-
-### Installation
-
-- VS Code Marketplace extension: `ise-hve-essentials.hve-core`
-- Two options: HVE Core All (221 artifacts) or HVE Installer (selective)
-- Add `.copilot-tracking/` to `.gitignore`
-
-### Collections (12 domain-specific bundles)
-
-| Collection | Status | Artifacts |
+| Topic | Supported use in the presentation | Primary source |
 |---|---|---|
-| ado | STABLE | 21 |
-| coding-standards | STABLE | 22 |
-| data-science | STABLE | 18 |
-| design-thinking | PREVIEW | 58 |
-| experimental | EXPERIMENTAL | 8 |
-| github | STABLE | 13 |
-| gitlab | EXPERIMENTAL | 2 |
-| hve-core | STABLE | 40 |
-| jira | EXPERIMENTAL | 13 |
-| project-planning | STABLE | 48 |
-| rai-planning | EXPERIMENTAL | 12 |
-| security | EXPERIMENTAL | 48 |
+| Proven starting points | The HVE Accelerators Hub provides proven starting points for AI-driven development. | [Microsoft HVE Accelerators Hub](https://learn.microsoft.com/en-us/industry/playbook/) |
+| HVE-Core | Reusable agents, skills, prompts, instructions, and workflow patterns for GitHub Copilot. | [HVE-Core repository](https://github.com/microsoft/hve-core) and [documentation](https://microsoft.github.io/hve-core/docs/) |
+| HVE lifecycle | AI support can span setup, discovery, product definition, decomposition, planning, implementation, review, delivery, and operations. | [HVE guide](https://microsoft.github.io/hve-core/docs/hve-guide/) |
+| Design thinking | A three-space, nine-method approach connects problem evidence, solution validation, and implementation learning. | [HVE-Core Design Thinking](https://microsoft.github.io/hve-core/docs/design-thinking/) |
+| RPI | Research, Plan, Implement, and Review separate investigation from execution and produce durable artifacts. | [HVE-Core RPI](https://microsoft.github.io/hve-core/docs/rpi/) |
+| RPI rationale | Constraining research from implementation changes the goal from plausible code to verified truth. | [Why RPI works](https://microsoft.github.io/hve-core/docs/rpi/why-rpi/) |
+| Responsible AI | Fairness, reliability and safety, privacy and security, inclusiveness, transparency, and accountability guide AI system design. | [Microsoft Responsible AI](https://www.microsoft.com/ai/responsible-ai) |
+| HVE-Core limitations | HVE-Core has intended uses, limitations, and a responsibility boundary with its host platform. | [HVE-Core Transparency Note](https://github.com/microsoft/hve-core/blob/main/TRANSPARENCY-NOTE.md) |
 
-### 10 Engineering Roles
+## HVE operating-model synthesis
 
-Engineer, TPM, Tech Lead/Architect, Security Architect, Data Scientist, SRE/Operations, Business Program Manager, New Contributor, UX Designer, Utility
+The supplied Frontier Transformation training organizes HVE around four ingredients:
 
-### AI-Assisted Project Lifecycle — 9 Stages
+1. Tight multidisciplinary teams with deep domain expertise.
+1. Design thinking methods that create business value.
+1. Proven, mission-critical, production starting points.
+1. AI agents and tools across the full lifecycle.
 
-1. Setup — hve-core-installer
-2. Discovery — task-researcher, brd-builder, security-planner, dt-coach
-3. Product Definition — prd-builder, adr-creation, arch-diagram-builder
-4. Decomposition — ado-prd-to-wit, github-backlog-manager
-5. Sprint Planning — github-backlog-manager, agile-coach
-6. Implementation — RPI agents, prompt-builder, coding-standards (35% of all assignments)
-7. Review — task-reviewer, pr-review
-8. Delivery — git-merge (prompts/instructions only, zero agents)
-9. Operations — doc-ops, incident-response
+The public sources support each underlying element, but the four-ingredient framing should be presented as Microsoft training language rather than an external industry standard.
 
-### RPI Methodology (Research → Plan → Implement → Review)
+## Claims retained as internal experience
 
-**Core insight**: AI writes first and thinks never. RPI solves this by preventing AI from doing certain things at certain times.
+| Claim | Presentation treatment |
+|---|---|
+| 2–3× velocity increase | Label as indicative Microsoft internal engineering experience. Do not present as a guaranteed target. |
+| 3–4 experts versus teams of 10+ | Use to illustrate reduced coordination latency, not as a universal staffing prescription. |
+| 50%+ team reduction | Express through the 3–4 versus 10+ comparison; avoid implying headcount reduction is the goal. |
+| 30%+ code written by AI | Use as a signal that implementation mechanics are shifting; explicitly state that code volume is not the success measure. |
 
-**Four phases:**
+The slide caveat is:
 
-1. **Research** (Task Researcher) — Investigates codebase, external APIs, docs. Documents findings with evidence and sources. Creates ONE recommended approach. Output: `research.md`
-2. **Plan** (Task Planner) — Creates coordinated planning files with checkboxes and details. Links specs to research with line numbers. Output: `plan.instructions.md` + `details.md`
-3. **Implement** (Task Implementor) — Executes plan task by task with verification. Tracks changes. Supports stop controls. Output: working code + `changes.md`
-4. **Review** (Task Reviewer) — Validates implementation against research and plan. Checks convention compliance. Runs lint/build/test. Output: `review.md`
+> Indicative Microsoft internal engineering experience. Outcomes vary by product, risk, team capability, and organizational context; these figures are not universal benchmarks.
 
-**Critical rule**: Clear context between phases (`/clear` or new chat).
+## Claims intentionally removed or qualified
 
-**Why it works**: Without RPI, AI invents plausible patterns. With RPI, AI uses verified existing patterns because it's constrained. The Task Researcher finds "12 existing modules use `resource_prefix`, not `prefix`" because it's in research-only mode.
+- Remove the previous “30% attention at 10K tokens / 1.5% at 200K tokens” visualization. Context-window ratios do not measure model attention.
+- Present “context quality bounds output quality” as an engineering principle, not a direct Microsoft quotation.
+- Avoid fixed HVE-Core artifact, collection, or role counts because the project is rapidly evolving and the inventory does not advance the HVE narrative.
+- Describe HVE-Core as an opinionated, rapidly evolving source of patterns and learning, not a stable platform or mandatory implementation.
+- Do not use the Marginalia demonstration as evidence of organization-wide velocity gains.
+- Do not call the factory-maintenance scenario a public customer case study. Present it as an anonymized internal engagement example supplied by Microsoft training.
 
-### Quality comparison
+## Factory-maintenance scenario
 
-| Aspect | Without RPI | With RPI |
-|---|---|---|
-| Pattern matching | Invents plausible patterns | Uses verified existing patterns |
-| Traceability | "The AI wrote it" | "Research cites lines 47-52" |
-| Knowledge transfer | Tribal knowledge | Research docs anyone can follow |
-| Rework | Frequent | Rare |
+The scenario demonstrates why backlog generation cannot substitute for direct user evidence:
 
-### Context Engineering
+- Factory workers may have greasy fingers or wear gloves, invalidating keyboard or touch-first assumptions.
+- The agent may not answer the questions workers actually ask; observation and interviews reveal the real language and workflow.
+- Undisclosed repair manuals create hidden knowledge gaps.
+- A working prototype must be timed and costed against the existing maintenance process.
 
-- LLM recency bias: 3K system prompt dominates at start, drowns at 50K-200K tokens
-- `/clear` eliminates accumulated context, restores system prompt dominance
-- Artifacts carry context through files on disk, not chat history
-- `/compact` summarizes mid-phase; `/clear` between phases
-- Signs of degradation: skipped phases, ignored instructions, shallow analysis
+The teaching point is not the final interface. It is that design research changes problem framing, solution criteria, and backlog priorities before engineering scales the wrong assumptions.
 
-### Strict RPI vs rpi-agent
+## Responsible AI interpretation for HVE
 
-| Aspect | Strict RPI | rpi-agent |
-|---|---|---|
-| Research depth | Deep, verified, cited | Moderate, inline |
-| Context contamination | Eliminated via /clear | Possible |
-| Audit trail | Complete artifacts | Summary only |
-| Best for | Complex, unfamiliar, team | Simple, familiar, solo |
+The presentation translates public Microsoft principles into five engineering decisions:
 
-### GitHub Backlog Manager
+1. **Intentional use**: Define where AI adds value and where human judgment remains required.
+1. **Transparency**: Make recommendations, evidence, and actions understandable.
+1. **Risk controls**: Address bias, hallucination, leakage, misuse, and failure modes with layered controls.
+1. **Outcome quality**: Optimize for user and business impact rather than novelty or AI usage.
+1. **Production readiness**: Build systems that are secure, observable, auditable, maintainable, and able to evolve.
 
-Automates issue lifecycle with five workflows:
+These five decisions are a presentation synthesis, not a replacement for Microsoft’s six Responsible AI principles.
 
-1. **Discovery** — Finds/categorizes issues from multiple sources
-2. **Triage** — 17-label taxonomy, priority assessment, duplicate detection
-3. **Sprint Planning** — Milestones with capacity awareness
-4. **Execution** — Creates/updates/closes issues via handoff files
-5. **Quick Add** — Single-issue shortcut
+## Measurement model
 
-Autonomy levels: Full, Partial (default), Manual
+HVE success should be discussed as a balanced system:
 
-### Design Thinking Integration
+| Dimension | Example measures |
+|---|---|
+| Value | User task success, business outcome, adoption, avoided cost |
+| Speed | Idea-to-evidence, evidence-to-production, feedback latency |
+| Quality | Escaped defects, rework, reliability, maintainability |
+| Trust | Security findings, explainability, control effectiveness, auditability |
+| Learning | Assumptions validated, knowledge captured, starting points improved |
 
-9-method, 3-space framework: Problem → Solution → Validation
-Three exit points to RPI at methods 3, 6, and 9
-Two agents: dt-coach, dt-learning-tutor
+AI-generated code percentage is an input signal, not an outcome measure.
 
-### Agent Systems
+## Current reference links
 
-- RPI Orchestration: 5 agents
-- Code Review: 3 agents
-- GitHub Backlog: 1 agent
-- ADO Backlog: 1 agent
-- Project Planning: 5 agents
-- Security Planning: 2 agents
-- RAI Planning: 1 agent
-- Design Thinking: 2 agents
-- Utility: 1 agent
-
----
-
-## Source 3 — Key URLs
-
-- HVE-Core home: <https://microsoft.github.io/hve-core/>
-- HVE-Core docs: <https://microsoft.github.io/hve-core/docs/>
-- HVE Guide: <https://microsoft.github.io/hve-core/docs/hve-guide/>
-- RPI methodology: <https://microsoft.github.io/hve-core/docs/rpi/>
-- Why RPI works: <https://microsoft.github.io/hve-core/docs/rpi/why-rpi>
-- Context engineering: <https://microsoft.github.io/hve-core/docs/rpi/context-engineering>
-- Task Researcher: <https://microsoft.github.io/hve-core/docs/rpi/task-researcher>
-- Task Planner: <https://microsoft.github.io/hve-core/docs/rpi/task-planner>
-- Task Implementor: <https://microsoft.github.io/hve-core/docs/rpi/task-implementor>
-- Using RPI together: <https://microsoft.github.io/hve-core/docs/rpi/using-together>
-- GitHub Backlog Manager: <https://microsoft.github.io/hve-core/docs/agents/github-backlog/>
-- Getting started: <https://microsoft.github.io/hve-core/docs/getting-started/>
-- Installation: <https://microsoft.github.io/hve-core/docs/getting-started/install>
-- Collections: <https://microsoft.github.io/hve-core/docs/getting-started/collections>
-- Architecture: <https://microsoft.github.io/hve-core/docs/architecture/>
-- Design Thinking: <https://microsoft.github.io/hve-core/docs/design-thinking/>
-- GitHub repo: <https://github.com/microsoft/hve-core>
-- VS Code extension: `ise-hve-essentials.hve-core`
+- [HVE Accelerators Hub](https://learn.microsoft.com/en-us/industry/playbook/)
+- [HVE-Core](https://github.com/microsoft/hve-core)
+- [HVE-Core documentation](https://microsoft.github.io/hve-core/docs/)
+- [HVE guide](https://microsoft.github.io/hve-core/docs/hve-guide/)
+- [Design Thinking](https://microsoft.github.io/hve-core/docs/design-thinking/)
+- [RPI](https://microsoft.github.io/hve-core/docs/rpi/)
+- [Why RPI works](https://microsoft.github.io/hve-core/docs/rpi/why-rpi/)
+- [Microsoft Responsible AI](https://www.microsoft.com/ai/responsible-ai)
+- [HVE-Core Transparency Note](https://github.com/microsoft/hve-core/blob/main/TRANSPARENCY-NOTE.md)
