@@ -1,0 +1,8 @@
+{
+  "chat.instructionsFilesLocations": {
+    "../hve-core/.github/instructions/lab": true
+  },
+  "chat.agentFilesLocations": {
+    "../hve-core/.github/agents/lab": true
+  }
+}

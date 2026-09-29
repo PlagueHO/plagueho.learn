@@ -305,6 +305,19 @@ package-lock.json
 # Slidev build output
 presentations/**/dist/
 
+# Generated hands-on labs site content
+.copilot-tracking/
+_site/
+labs-site/index.md
+labs-site/*/
+!labs-site/.vitepress/
+!labs-site/.vitepress/config.ts
+!labs-site/.vitepress/theme/
+!labs-site/.vitepress/theme/**
+labs-site/.vitepress/cache/
+labs-site/.vitepress/dist/
+labs-site/.vitepress/labs-sidebar.ts
+
 # Visual Studio 6 build log
 *.plg
 

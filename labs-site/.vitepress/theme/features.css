@@ -1,0 +1,98 @@
+.vp-doc .task-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.vp-doc .task-list-item {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 1fr);
+  column-gap: 0.75rem;
+  align-items: start;
+  margin-block: 0;
+  padding-block: 0.75rem;
+  border-bottom: 1px solid var(--labs-rule);
+}
+
+.vp-doc .task-list-item-checkbox {
+  appearance: none;
+  inline-size: 1.125rem;
+  block-size: 1.125rem;
+  margin: 0.2rem 0 0;
+  border: 2px solid var(--labs-control-border);
+  border-radius: 0.125rem;
+  background: var(--labs-control-surface);
+  cursor: pointer;
+}
+
+.vp-doc .task-list-item-checkbox:checked {
+  border-color: var(--labs-signal);
+  background-color: var(--labs-signal);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%230b1713' stroke-linecap='square' stroke-linejoin='miter' stroke-width='2.2' d='m3 8 3 3 7-7'/%3E%3C/svg%3E");
+}
+
+.vp-doc .task-list-item-checkbox:focus-visible {
+  outline: 3px solid var(--labs-focus);
+  outline-offset: 3px;
+}
+
+.vp-doc .task-list-item:has(.task-list-item-checkbox:checked) {
+  color: var(--labs-complete-text);
+}
+
+.vp-doc .custom-block {
+  border: 1px solid var(--labs-rule-strong);
+  border-radius: 0.25rem;
+  background: var(--labs-panel);
+}
+
+.vp-doc .custom-block-title {
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.vp-doc .screenshot-expander {
+  margin-block: 1.75rem;
+  border-block: 1px solid var(--labs-rule-strong);
+  background: var(--labs-panel);
+}
+
+.vp-doc .screenshot-expander summary {
+  padding: 0.875rem 1rem;
+  color: var(--labs-heading);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.vp-doc .screenshot-expander summary:hover {
+  background: var(--labs-hover);
+}
+
+.vp-doc .screenshot-expander summary:focus-visible {
+  outline: 3px solid var(--labs-focus);
+  outline-offset: -3px;
+}
+
+.vp-doc .screenshot-expander img {
+  display: block;
+  max-block-size: 75vh;
+  margin: 0 auto;
+  border: 1px solid var(--labs-rule-strong);
+  cursor: zoom-in;
+}
+
+.vp-doc .screenshot-expander img:focus-visible {
+  outline: 3px solid var(--labs-focus);
+  outline-offset: 4px;
+}
+
+.medium-zoom-overlay,
+.medium-zoom-image--opened {
+  z-index: 100;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .medium-zoom-image,
+  .medium-zoom-overlay {
+    transition: none !important;
+  }
+}
