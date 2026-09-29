@@ -1,9 +1,10 @@
 /**
  * generate-pages-index.mjs
  *
- * Scans the built _site directory for presentation subdirectories and generates
- * an index.html page that links to each one. Presentation metadata (title, info,
- * tags, duration) is extracted from the original slides.md frontmatter.
+ * Scans the built _site directory for source-backed presentation directories
+ * and generates an index.html page that links to each one and the labs site.
+ * Presentation metadata (title, info, tags, duration) is extracted from the
+ * original slides.md frontmatter.
  *
  * Usage: node scripts/generate-pages-index.mjs <siteDir>
  */
@@ -94,15 +95,16 @@ const gradients = [
   ['#8b5cf6', '#ec4899'], // violet → pink
 ];
 
-// Discover built presentations by scanning _site subdirectories
+// Discover only built directories backed by a presentation source file.
 const entries = readdirSync(siteDir)
   .filter(name => {
     const full = join(siteDir, name);
-    return statSync(full).isDirectory();
+    const slidesPath = join(presentationsDir, name, 'slides.md');
+    return statSync(full).isDirectory() && existsSync(slidesPath);
   })
   .map(name => {
     const slidesPath = join(presentationsDir, name, 'slides.md');
-    const fm = existsSync(slidesPath) ? extractFrontmatter(slidesPath) : {};
+    const fm = extractFrontmatter(slidesPath);
 
     // Clean description: strip leading "## Heading" from info block.
     // Multiline YAML joins with spaces, so it looks like "## Title A 45-minute..."
@@ -134,7 +136,25 @@ const slidesIcon = `<svg class="card-icon" viewBox="0 0 24 24" fill="none" strok
 
 const clockIcon = `<svg class="clock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`;
 
-const cardsHtml = entries.map((e, i) => {
+const labsIcon = `<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"/><path d="M10 3v6.5L4.5 19a1.3 1.3 0 0 0 1.1 2h12.8a1.3 1.3 0 0 0 1.1-2L14 9.5V3"/><path d="M7.5 15h9"/></svg>`;
+
+const labsCardHtml = `
+      <a class="card labs-card" href="./labs/" style="--g1:#22c55e;--g2:#06b6d4">
+        <div class="card-header">
+          ${labsIcon}
+          <h2>Hands-on Labs</h2>
+        </div>
+        <p class="card-desc">Build practical skills with guided exercises, persistent task tracking, and supporting solutions.</p>
+        <div class="card-footer">
+          <div class="tags">
+            <span class="tag">Guided learning</span>
+            <span class="tag">Practical exercises</span>
+          </div>
+          <span class="card-cta">Explore labs →</span>
+        </div>
+      </a>`;
+
+const presentationCardsHtml = entries.map((e, i) => {
   const [g1, g2] = gradients[i % gradients.length];
   const tagsHtml = e.tags.map(t =>
     `<span class="tag">${escapeHtml(t)}</span>`
@@ -155,6 +175,8 @@ const cardsHtml = entries.map((e, i) => {
         </div>
       </a>`;
 }).join('\n');
+
+const cardsHtml = `${labsCardHtml}\n${presentationCardsHtml}`;
 
 const html = `<!DOCTYPE html>
 <html lang="en">
@@ -265,6 +287,10 @@ const html = `<!DOCTYPE html>
       transform: translateY(-2px);
       background: var(--surface-hover);
     }
+    .labs-card {
+      border-color: color-mix(in srgb, var(--g1) 45%, var(--border));
+      background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 8%, var(--surface)), var(--surface));
+    }
 
     /* Card header with icon */
     .card-header {
@@ -335,6 +361,12 @@ const html = `<!DOCTYPE html>
     .clock-icon {
       width: 14px;
       height: 14px;
+    }
+    .card-cta {
+      color: color-mix(in srgb, var(--g2) 75%, #fff);
+      font-size: 0.78rem;
+      font-weight: 600;
+      white-space: nowrap;
     }
 
     /* ---- Footer ---- */

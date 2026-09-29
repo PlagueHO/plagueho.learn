@@ -19,7 +19,10 @@
     ".github/agents/**",
     ".github/skills/**",
     ".squad/**",
-    "presentations/**/dotnet-version-upgrade/**"
+    "presentations/**/dotnet-version-upgrade/**",
+    "labs-site/index.md",
+    "labs-site/lab-steps/**",
+    "labs-site/labs/**"
   ],
   // Output formatting
   "outputFormatters": [

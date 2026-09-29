@@ -9,13 +9,21 @@
     "lint:md:ci": "markdownlint-cli2",
     "slidev": "slidev --open",
     "slidev:build": "slidev build",
-    "slidev:export": "slidev export"
+    "slidev:export": "slidev export",
+    "labs:generate": "node scripts/generate-vitepress-labs.mjs",
+    "labs:dev": "pnpm run labs:generate && vitepress dev labs-site",
+    "labs:build": "pnpm run labs:generate && vitepress build labs-site",
+    "labs:preview": "pnpm run labs:generate && vitepress preview labs-site",
+    "validate:lab-frontmatter": "node scripts/validate-lab-frontmatter.mjs",
+    "test:lab-scripts": "node --test scripts/generate-vitepress-labs.test.mjs scripts/validate-lab-frontmatter.test.mjs"
   },
   "devDependencies": {
     "@slidev/cli": "^52.19.1",
     "@slidev/theme-default": "^0.25.0",
     "@slidev/theme-seriph": "^0.25.0",
-    "markdownlint-cli2": "^0.23.2"
+    "markdownlint-cli2": "^0.23.2",
+    "medium-zoom": "^1.1.0",
+    "vitepress": "^1.6.4"
   },
   "description": "Organizational assets repository for Daniel Scott-Raynsford (PlagueHO)",
   "repository": {
