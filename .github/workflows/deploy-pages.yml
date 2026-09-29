@@ -68,7 +68,7 @@ jobs:
           echo "Successfully built $found presentation(s)."
 
       - name: Build hands-on labs
-        run: pnpm labs:build -- --outDir ../_site/labs
+        run: pnpm labs:build:production -- --outDir _site/labs
 
       - name: Generate index page
         run: |
