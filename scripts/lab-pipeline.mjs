@@ -22,7 +22,9 @@ export const RESERVED_PAGE_SLUGS = new Set([
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const MODULE_DIRECTORY_PATTERN = /^(\d{2,})-(.+)$/;
+const MODULE_LIKE_DIRECTORY_PATTERN = /^\d+-/;
 const EXTERNAL_LINK_PATTERN = /^(?:[a-z][a-z\d+.-]*:|\/\/|\/|#)/i;
+const PUBLICATION_BLOCKER_PATTERN = /(?:TODO-SCREENSHOT|PUBLICATION-BLOCKER:)/;
 
 function parseScalar(value, file, lineNumber) {
   const trimmed = value.trim();
@@ -288,6 +290,41 @@ async function readMarkdownPage(root, absolutePath) {
   }
 }
 
+async function findMarkdownFiles(directory) {
+  const files = [];
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const target = path.join(directory, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...await findMarkdownFiles(target));
+    } else if (entry.isFile() && entry.name.endsWith('.md')) {
+      files.push(target);
+    }
+  }
+  return files;
+}
+
+async function validatePublicationReadiness(lab, root, errors) {
+  if (lab.metadata.status !== 'published') return;
+
+  for (const module of lab.modules) {
+    if (module.metadata.status !== 'published') {
+      errors.push(
+        `${module.relativePath}: module status must be "published" when lab "${lab.slug}" is published`,
+      );
+    }
+  }
+
+  for (const file of await findMarkdownFiles(lab.root)) {
+    const source = await readFile(file, 'utf8');
+    if (PUBLICATION_BLOCKER_PATTERN.test(source)) {
+      errors.push(
+        `${toPosix(path.relative(root, file))}: published lab content contains an unresolved ` +
+        'screenshot or verification publication blocker',
+      );
+    }
+  }
+}
+
 export async function discoverWorkspace(root) {
   const labsRoot = path.join(root, 'labs');
   const presentationsRoot = path.join(root, 'presentations');
@@ -354,7 +391,15 @@ export async function discoverWorkspace(root) {
     for (const moduleEntry of labEntries) {
       if (moduleEntry.name === 'assets') continue;
       const directoryMatch = MODULE_DIRECTORY_PATTERN.exec(moduleEntry.name);
-      if (!directoryMatch) continue;
+      if (!directoryMatch) {
+        if (MODULE_LIKE_DIRECTORY_PATTERN.test(moduleEntry.name)) {
+          errors.push(
+            `${toPosix(path.relative(root, path.join(labRoot, moduleEntry.name)))}: ` +
+            'module-like directory must use a zero-padded number such as "01-module-name"',
+          );
+        }
+        continue;
+      }
       const moduleReadme = path.join(labRoot, moduleEntry.name, 'README.md');
       if (!(await pathExists(moduleReadme))) {
         errors.push(`${toPosix(path.relative(root, moduleReadme))}: required module README.md is missing`);
@@ -399,6 +444,7 @@ export async function discoverWorkspace(root) {
         }
       }
     }
+    await validatePublicationReadiness(lab, root, errors);
     labs.push(lab);
   }
 

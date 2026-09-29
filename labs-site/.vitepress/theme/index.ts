@@ -47,10 +47,12 @@ export default {
         });
       }
 
-      function disposeZoom(): void {
+      async function disposeZoom(): Promise<void> {
         if (!zoom) return;
-        zoom.detach();
+        const activeZoom = zoom;
         zoom = undefined;
+        await activeZoom.close();
+        activeZoom.detach();
         document.querySelectorAll<HTMLElement>('[data-labs-zoom]').forEach((image) => {
           image.removeAttribute('data-labs-zoom');
           image.removeAttribute('tabindex');
@@ -58,8 +60,8 @@ export default {
         });
       }
 
-      function bindZoom(): void {
-        disposeZoom();
+      async function bindZoom(): Promise<void> {
+        await disposeZoom();
         const screenshots = Array.from(
           document.querySelectorAll<HTMLImageElement>(screenshotSelector),
         );
@@ -93,7 +95,7 @@ export default {
       async function bindPageFeatures(): Promise<void> {
         await nextTick();
         hydrateTasks();
-        bindZoom();
+        await bindZoom();
       }
 
       onMounted(() => {
@@ -102,15 +104,15 @@ export default {
         void bindPageFeatures();
       });
 
-      watch(() => route.path, () => {
-        disposeZoom();
-        void bindPageFeatures();
+      watch(() => route.path, async () => {
+        await disposeZoom();
+        await bindPageFeatures();
       });
 
       onUnmounted(() => {
         document.removeEventListener('change', handleChange);
         document.removeEventListener('keydown', handleKeydown);
-        disposeZoom();
+        void disposeZoom();
       });
 
       return () => h(DefaultTheme.Layout);

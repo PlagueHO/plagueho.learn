@@ -306,6 +306,7 @@ input {
 }
 
 .vp-doc div[class*='language-'] {
+  margin-inline: 0;
   margin-block: 1.5rem;
   border: 1px solid var(--labs-rule-strong);
   border-radius: 0.1875rem;
@@ -413,14 +414,14 @@ input {
   background: color-mix(in srgb, var(--labs-hover) 62%, transparent);
 }
 
-.vp-doc .task-list-item-checkbox {
+.vp-doc .task-control-mark {
   border-radius: 0.0625rem;
   transition:
     border-color 150ms ease-out,
     background-color 150ms ease-out;
 }
 
-.vp-doc .task-list-item-checkbox:checked {
+.vp-doc .task-list-item-checkbox:checked + .task-control-mark {
   border-color: var(--labs-signal);
   background-color: var(--labs-signal);
 }
@@ -624,6 +625,20 @@ input {
     font-size: clamp(2.15rem, 12vw, 3.25rem);
   }
 
+  .VPNavBarTitle,
+  .VPNavBarTitle .title,
+  .VPNavBar .content {
+    min-width: 0;
+  }
+
+  .VPNavBarTitle .title {
+    overflow-wrap: anywhere;
+  }
+
+  .vp-doc {
+    overflow-wrap: anywhere;
+  }
+
   .vp-doc h1 + p {
     margin-bottom: 2rem;
   }
@@ -692,7 +707,7 @@ input {
     background: Highlight;
   }
 
-  .vp-doc .task-list-item-checkbox {
+  .vp-doc .task-control-mark {
     forced-color-adjust: none;
   }
 }

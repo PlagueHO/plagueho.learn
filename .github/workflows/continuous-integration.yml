@@ -45,13 +45,16 @@ jobs:
           node-version: '22'
 
       - name: Install pnpm
-        run: npm install -g pnpm
+        uses: pnpm/action-setup@v4
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Validate lab frontmatter
         run: pnpm validate:lab-frontmatter
+
+      - name: Test lab scripts
+        run: pnpm test:lab-scripts
 
       - name: Build hands-on labs
         run: pnpm labs:build
@@ -78,10 +81,10 @@ jobs:
           node-version: '22'
 
       - name: Install pnpm
-        run: npm install -g pnpm
+        uses: pnpm/action-setup@v4
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build Slidev presentations
         run: |

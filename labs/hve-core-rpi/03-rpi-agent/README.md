@@ -19,7 +19,7 @@ technologies:
 tags:
   - autonomous-rpi
   - issue-05
-status: published
+status: draft
 contentType: lab
 ---
 <!-- markdownlint-disable-next-line MD025 -->
@@ -50,6 +50,14 @@ git switch -c feature/careers-summary
 
 The 3.2.2 agent moves through five phases: Research, Plan, Implement, Review, and Discover.
 
+| Phase | Inspect this exact path | Handoff |
+|-------|-------------------------|---------|
+| Research | `.copilot-tracking/research/{date}/{issue-05-research-file}.md` | Review the evidence, then choose the numbered Plan action. |
+| Plan | `.copilot-tracking/plans/{date}/{issue-05-plan}-plan.instructions.md` and `.copilot-tracking/details/{date}/{issue-05-details}.md` | Confirm scope and validation, then choose the numbered Implement action. |
+| Implement | `.copilot-tracking/changes/{date}/{issue-05-changes}.md` | Compare source and test results with the plan, then choose the numbered Review action. |
+| Review | `.copilot-tracking/reviews/{date}/{issue-05-review}.md` | Resolve material findings, then choose the numbered Discover action. |
+| Discover | The follow-on section in `.copilot-tracking/reviews/{date}/{issue-05-review}.md` | Keep useful next work separate from issue 05, then stop or save a checkpoint. |
+
 - [ ] At each boundary, inspect the proposed work and artifact before continuing.
 - [ ] Use the numbered **1️⃣**, **2️⃣**, or **3️⃣** handoff to choose a bounded next action.
 - [ ] Use **▶️ All** only when the proposed sequence and scope are correct.
@@ -75,7 +83,8 @@ Capture guidance is recorded in the [screenshot inventory](../assets/screenshots
 
 ## Verify the result
 
-- [ ] Inspect the Research, Plan, Implement, Review, and Discover evidence produced under `.copilot-tracking/`.
+- [ ] Inspect each exact Research, Plan, Details, Changes, and Review path from the phase table.
+- [ ] Confirm that Discover recorded follow-on work in the review artifact without expanding issue 05.
 - [ ] Confirm that the implementation remains issue 05, careers summary.
 - [ ] Run the required unit tests:
 

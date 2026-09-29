@@ -20,7 +20,7 @@ async function write(file, content) {
   await writeFile(file, content, 'utf8');
 }
 
-function lab(title, deck = 'deck') {
+function lab(title, deck = 'deck', status = 'published') {
   return `---
 title: '${title}'
 summary: 'Summary.'
@@ -32,7 +32,7 @@ relatedPresentations:
   - deck: '${deck}'
     slides: '1-2'
     note: 'Read first.'
-status: published
+status: ${status}
 ---
 # ${title}
 `;
@@ -91,6 +91,29 @@ test('discovers and validates future labs without code changes', async (t) => {
   await addLab(root, 'future-lab', 'Future Lab');
   const result = await runValidator(root);
   assert.match(result.stdout, /Validated 2 labs successfully/);
+});
+
+test('blocks published labs with unresolved publication markers but allows drafts', async (t) => {
+  const publishedRoot = await createWorkspace();
+  const draftRoot = await createWorkspace();
+  t.after(() => Promise.all([
+    rm(publishedRoot, { recursive: true, force: true }),
+    rm(draftRoot, { recursive: true, force: true }),
+  ]));
+  await addLab(publishedRoot, 'published-lab', 'Published Lab');
+  await write(
+    path.join(publishedRoot, 'labs', 'published-lab', '01-step', 'solution', 'blocker.md'),
+    '# Blocker\n\nTODO-SCREENSHOT: pending.png\n',
+  );
+  await assert.rejects(runValidator(publishedRoot), /unresolved screenshot or verification publication blocker/i);
+
+  await addLab(draftRoot, 'draft-lab', 'Draft Lab');
+  await write(
+    path.join(draftRoot, 'labs', 'draft-lab', 'README.md'),
+    `${lab('Draft Lab', 'deck', 'draft')}\nPUBLICATION-BLOCKER: verify the client flow.\n`,
+  );
+  const result = await runValidator(draftRoot);
+  assert.match(result.stdout, /Validated 1 lab successfully/);
 });
 
 test('aggregates schema, path, date, H1, and missing-deck failures', async (t) => {

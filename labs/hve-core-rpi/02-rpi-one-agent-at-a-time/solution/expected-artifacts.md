@@ -11,3 +11,14 @@ Use these checks to recover from an incomplete agent run. Filenames vary with th
 | Review | `.copilot-tracking/reviews/{date}/` | Plan conformance, defects, regression risk, and follow-on actions |
 
 The completed feature should search role titles, preserve the existing job data flow, include required Vitest coverage for matching and nonmatching searches, and pass browser verification. Playwright remains optional.
+
+Use the representative recovery set when an attendee run is incomplete:
+
+- [Research artifact](./recovery/research.md)
+- [Plan artifact](./recovery/plan.md)
+- [Changes artifact](./recovery/changes.md)
+- [Review artifact](./recovery/review.md)
+- [`search-roles.ts`](./recovery/search-roles.ts)
+- [`search-roles.test.ts`](./recovery/search-roles.test.ts)
+
+The TypeScript files form a working, framework-independent reference for title filtering. Integrate the function through the starter application's existing job-loading path rather than replacing that path.

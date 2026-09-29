@@ -11,6 +11,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { promisify } from 'node:util';
 import test from 'node:test';
+import { normalizeTaskText } from './lab-task-text.mjs';
 
 const execFileAsync = promisify(execFile);
 const script = path.resolve('scripts/generate-vitepress-labs.mjs');
@@ -107,6 +108,10 @@ drawings:
     path.join(root, 'labs', 'example-lab', '01-first-step', 'solution', 'answer.txt'),
     'answer',
   );
+  await writeFileEnsuringDirectory(
+    path.join(root, 'labs', 'example-lab', '01-first-step', 'solution', 'recovery.md'),
+    '# Recovery\n\n[Back to module](../README.md)\n[Diagram](../../assets/diagram.png)\n',
+  );
   return root;
 }
 
@@ -152,6 +157,15 @@ test('generates deterministic canonical pages and rewrites every supported link 
   assert.ok(await readFile(
     path.join(root, 'labs-site', 'example-lab', 'first-step', 'solution', 'answer.txt'),
   ));
+  assert.equal(
+    await readFile(
+      path.join(root, 'labs-site', 'example-lab', 'first-step', 'solution', 'recovery.md'),
+      'utf8',
+    ),
+    '# Recovery\n\n[Back to module](../../first-step)\n[Diagram](../../assets/diagram.png)\n',
+  );
+  assert.match(first.sidebar, /"link": "\/plagueho\.learn\/labs\/example-lab\/"/);
+  assert.match(first.sidebar, /"link": "\/plagueho\.learn\/labs\/example-lab\/first-step"/);
   const beforeIndex = first.sidebar.indexOf('before-you-start');
   const moduleIndex = first.sidebar.indexOf('first-step');
   const facilitatorIndex = first.sidebar.indexOf('facilitator-notes');
@@ -166,6 +180,17 @@ test('generates deterministic canonical pages and rewrites every supported link 
       sidebar: await readFile(sidebarPath, 'utf8'),
     },
     first,
+  );
+});
+
+test('normalizes linked task text without inserting spaces before punctuation', () => {
+  assert.equal(
+    normalizeTaskText([
+      { content: '[ ] Read ' },
+      { content: 'the guide' },
+      { content: ', then continue.' },
+    ]),
+    'Read the guide, then continue.',
   );
 });
 
@@ -203,6 +228,13 @@ test('fails for duplicate routes and missing required source files', async (t) =
   await expectFailure(duplicateRoot, /duplicate route.*first-step/i);
   await mkdir(path.join(missingRoot, 'labs', 'example-lab', '02-missing'), { recursive: true });
   await expectFailure(missingRoot, /02-missing\/README\.md: required module README\.md is missing/i);
+});
+
+test('fails for module-like directories without zero-padded numbers', async (t) => {
+  const root = await createWorkspace();
+  t.after(() => rm(root, { recursive: true, force: true }));
+  await mkdir(path.join(root, 'labs', 'example-lab', '1-ignored'), { recursive: true });
+  await expectFailure(root, /1-ignored.*must use a zero-padded number/i);
 });
 
 test('fails for unsupported and unmappable relative links', async (t) => {
