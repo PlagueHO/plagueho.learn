@@ -65,7 +65,7 @@ This exercise uses the [peer-directory clone workflow](https://microsoft.github.
   Use hve-builder with mode=create, targets=.github/instructions/lab/coding-standards.instructions.md, and requirements="Require TSDoc for exported functions, document component Props, preserve repository patterns, and apply only to TypeScript and Astro files."
   ```
 
-Use the [supplied instruction](./solution/.github/instructions/lab/coding-standards.instructions.md) for recovery or comparison.
+Use the [supplied instruction](https://github.com/PlagueHO/plagueho.learn/blob/main/labs/hve-core-rpi/06-extra-credit-fork-and-customize/solution/.github/instructions/lab/coding-standards.instructions.md) for recovery or comparison.
 
 ## Add the Standards Coach
 
@@ -75,7 +75,7 @@ Use the [supplied instruction](./solution/.github/instructions/lab/coding-standa
   Use hve-builder with mode=create, targets=.github/agents/lab/standards-coach.agent.md, and requirements="Review a selected file against the lab coding standards. Report actionable, evidence-based findings with file locations. Do not edit files or report unrelated findings."
   ```
 
-Use the [supplied agent](./solution/.github/agents/lab/standards-coach.agent.md) for recovery or comparison.
+Use the [supplied agent](https://github.com/PlagueHO/plagueho.learn/blob/main/labs/hve-core-rpi/06-extra-credit-fork-and-customize/solution/.github/agents/lab/standards-coach.agent.md) for recovery or comparison.
 
 ## Review the custom files
 

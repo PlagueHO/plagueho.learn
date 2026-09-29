@@ -193,7 +193,7 @@ The newer workflow writes review logs to a different location. Use `.copilot-tra
 <details class="screenshot-expander">
 <summary>📸 Screenshot: artifacts created by RPI</summary>
 
-![Artifacts created by RPI](manual-rpi-artifacts.png)
+![Artifacts created by RPI](../assets/screenshots/manual-rpi-artifacts.png)
 
 </details>
 
