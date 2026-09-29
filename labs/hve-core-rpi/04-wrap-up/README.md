@@ -3,7 +3,7 @@ title: 'Wrap up and choose an adoption path'
 description: 'Review the lab evidence, connect outcomes to HVE principles, and select a responsible next step.'
 lastUpdated: '2026-09-29'
 track: hve-core-rpi
-module: 5
+module: 4
 slug: wrap-up
 estimatedTimeMinutes: 10
 difficulty: beginner
@@ -55,17 +55,11 @@ Use the final ten minutes to verify the evidence and decide what to try next. Ad
   npm run test:unit
   ```
 
-- [ ] Verify the implemented feature in the browser.
-- [ ] Record any optional Playwright or PR Review work separately from the required result.
+- [ ] If the development server is not already running, start it from the attendee `caldova-careers` repository root. Leave the terminal running, then open `http://localhost:4321` and verify the implemented feature.
 
-<details class="screenshot-expander">
-<summary>📸 Screenshot: final Vitest result</summary>
-
-`TODO-SCREENSHOT: vitest-final-pass.png`
-
-Capture guidance is recorded in the [screenshot inventory](../assets/screenshots/CAPTURE-LIST.md).
-
-</details>
+  ```powershell
+  npm run dev
+  ```
 
 ## Map the work to HVE
 
@@ -90,7 +84,8 @@ Use the [adoption worksheet](./solution/adoption-worksheet.md) to record the dec
 
 ## Continue learning
 
-- Try the optional [Security and Design Thinking plugins](../06-extra-credit-security-and-design-thinking/README.md).
+- Try the extra-credit [Security and Design Thinking plugins](../05-extra-credit-security-and-design-thinking/README.md).
+- Try extra-credit [Fork and customize HVE-Core](../06-extra-credit-fork-and-customize/README.md).
 - Review the date-sensitive [Copilot CLI and Copilot app appendix](../07-appendix-copilot-cli-and-app/README.md).
 - Revisit [Hypervelocity Engineering slides 1 through 12](https://plagueho.github.io/plagueho.learn/hypervelocity-engineering/#/1).
 

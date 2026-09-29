@@ -1,7 +1,7 @@
 ---
 title: 'Hypervelocity Engineering with HVE-Core'
 summary: 'Practice Research, Plan, Implement, and Review with HVE-Core 3.2.2 in a realistic TypeScript application.'
-durationMinutes: 120
+durationMinutes: 100
 difficulty: intermediate
 technologies:
   - GitHub Copilot
@@ -41,12 +41,12 @@ By the end of the lab, you can:
 - Use the four HVE-Core 3.2.2 Task agents to implement issue 01.
 - Use the HVE-Core 3.2.2 RPI Agent to implement issue 05.
 - Inspect the exact `.copilot-tracking/` evidence produced by each phase.
-- Add organization-specific instructions and an agent to an HVE-Core fork.
+- Choose whether to add organization-specific instructions and an agent to an HVE-Core fork.
 - Choose a practical HVE-Core adoption path for your team.
 
 ## Core agenda
 
-The six core modules total exactly 120 minutes. Optional modules are not included in that total.
+The five core modules total exactly 100 minutes. Extra-credit modules are not included in that total.
 
 | Module | Topic | Time |
 |--------|-------|-----:|
@@ -54,13 +54,13 @@ The six core modules total exactly 120 minutes. Optional modules are not include
 | 01 | [Install HVE-Core and inspect its components](./01-install-and-components/README.md) | 10 minutes |
 | 02 | [Run RPI one agent at a time](./02-rpi-one-agent-at-a-time/README.md) | 40 minutes |
 | 03 | [Run the autonomous RPI Agent](./03-rpi-agent/README.md) | 25 minutes |
-| 04 | [Fork and customize HVE-Core](./04-fork-and-customize/README.md) | 20 minutes |
-| 05 | [Wrap up and choose an adoption path](./05-wrap-up/README.md) | 10 minutes |
-|  | **Core total** | **120 minutes** |
+| 04 | [Wrap up and choose an adoption path](./04-wrap-up/README.md) | 10 minutes |
+|  | **Core total** | **100 minutes** |
 
-## Optional modules
+## Extra-credit modules
 
-- [Security and Design Thinking plugins](./06-extra-credit-security-and-design-thinking/README.md)
+- [Security and Design Thinking plugins](./05-extra-credit-security-and-design-thinking/README.md)
+- [Fork and customize HVE-Core](./06-extra-credit-fork-and-customize/README.md)
 - [Copilot CLI and Copilot app appendix](./07-appendix-copilot-cli-and-app/README.md)
 
 ## Start the lab

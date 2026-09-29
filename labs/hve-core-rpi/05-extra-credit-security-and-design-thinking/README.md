@@ -3,12 +3,12 @@ title: 'Optional Security and Design Thinking plugins'
 description: 'Explore pinned HVE-Core 3.2.2 CLI plugins for security review and problem framing.'
 lastUpdated: '2026-09-29'
 track: hve-core-rpi
-module: 6
+module: 5
 slug: extra-credit-security-and-design-thinking
 estimatedTimeMinutes: 20
 difficulty: advanced
 prerequisites:
-  - Core 120-minute lab complete
+  - Core 100-minute lab complete
   - Copilot CLI available
 audience:
   - software developers
@@ -26,7 +26,7 @@ contentType: lab
 <!-- markdownlint-disable-next-line MD025 -->
 # Optional Security and Design Thinking plugins
 
-This optional module is excluded from the 120-minute core total. The HVE-Core 3.2.2 VS Code extension does not include the Security or Design Thinking components. They are separate Copilot CLI plugins at the pinned source.
+This extra-credit module is excluded from the 100-minute core total. The HVE-Core 3.2.2 VS Code extension does not include the Security or Design Thinking components. They are separate Copilot CLI plugins at the pinned source.
 
 > [!WARNING]
 > CLI plugin commands and behavior are date-sensitive. As of 2026-09-29, the source and package names below are pinned from HVE-Core 3.2.2, but this lab has not independently confirmed the commands against every current CLI build. Verify them in a disposable environment before delivery.
