@@ -18,7 +18,7 @@ technologies:
 tags:
   - methodology
   - rpi
-status: published
+status: draft
 contentType: lab
 ---
 <!-- markdownlint-disable-next-line MD025 -->
@@ -29,7 +29,7 @@ HVE is the methodology. HVE-Core is tooling that provides one proven, opinionate
 ## Connect the presentation to the lab
 
 - [ ] Open rendered slides [1 through 12](https://plagueho.github.io/plagueho.learn/hypervelocity-engineering/#/1).
-- [ ] Identify the four HVE pillars described in the presentation.
+- [ ] Identify the four HVE pillars described in the presentation: Multidisciplinary Teams, Design Thinking, Production-Ready Starting Points, and AI Agents & Tools.
 - [ ] On slide 12, name the four phases in order: Research, Plan, Implement, Review.
 - [ ] Discuss where human intent, evidence, and validation appear in the cycle.
 
@@ -44,16 +44,16 @@ Capture guidance is recorded in the [screenshot inventory](../assets/screenshots
 
 ## Apply the principles
 
-Use this working interpretation throughout the exercises:
+The four canonical HVE principles describe how the pillars guide daily engineering:
 
 | Principle | Lab behavior |
 |-----------|--------------|
-| Start with evidence | Research the repository and issue before proposing a change. |
-| Make intent explicit | Record acceptance criteria, scope, and decisions in the plan. |
-| Work in bounded increments | Give each agent one phase and an explicit stop condition. |
-| Preserve traceability | Inspect date-scoped artifacts under `.copilot-tracking/`. |
-| Validate outcomes | Require Vitest unit tests and browser verification after implementation. |
-| Learn from review | Compare the result with the plan and feed findings into the next cycle. |
+| Iterate in Small Steps | Work in bounded, verifiable increments. Give each agent one phase and an explicit stop condition. |
+| Validate and Verify | Check AI output against repository evidence, Vitest results, and browser behavior. |
+| Prioritize Business Value | Keep issue acceptance criteria and user outcomes ahead of technology novelty. |
+| Embed Security & Quality | Treat tests, review, security, observability, and responsible AI as lifecycle work rather than final checks. |
+
+Use all four pillars together. Multidisciplinary Teams bring the right expertise, Design Thinking keeps work tied to a valuable problem, Production-Ready Starting Points reduce reinvention, and AI Agents & Tools accelerate the full lifecycle without removing human accountability.
 
 - [ ] Explain to a partner why a generated answer is not evidence until it has been checked against the repository.
 - [ ] Name one decision that should remain human-owned during the manual RPI exercise.
@@ -61,7 +61,7 @@ Use this working interpretation throughout the exercises:
 
 ## Prepare for the tooling
 
-In module 01 you will inspect the HVE-Core components that operationalize this cycle. The tooling is not the methodology itself. You can adapt the delivery mechanism while preserving the evidence, intent, bounded work, traceability, validation, and learning loop.
+In module 01 you will inspect the HVE-Core components that operationalize this cycle. The tooling is not the methodology itself. You can adapt the delivery mechanism while preserving small-step iteration, validation, business value, and embedded security and quality.
 
 If you need a concise recap, compare your notes with [the principles map](./solution/principles-map.md).
 

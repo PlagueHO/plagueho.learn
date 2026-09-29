@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { defineConfig, type PageData } from 'vitepress';
 import type MarkdownIt from 'markdown-it';
 import type Token from 'markdown-it/lib/token.mjs';
+import { normalizeTaskText } from '../../scripts/lab-task-text.mjs';
 import labsSidebar from './labs-sidebar';
 
 const productionBase = '/plagueho.learn/labs/';
@@ -24,15 +25,6 @@ function normalizeSidebarLinks(items: SidebarItem[]): SidebarItem[] {
     ...(item.link ? { link: siteRelativeLink(item.link) } : {}),
     ...(item.items ? { items: normalizeSidebarLinks(item.items) } : {}),
   }));
-}
-
-function normalizeTaskText(children: Token[]): string {
-  return children
-    .map((child) => child.content)
-    .join(' ')
-    .replace(/^\s*\[[ xX]\]\s*/, '')
-    .replace(/\s+/g, ' ')
-    .trim();
 }
 
 function taskId(sourcePath: string, normalizedText: string, duplicateOrdinal: number): string {
@@ -77,12 +69,15 @@ function configureTaskLists(md: MarkdownIt): void {
       const checked = marker[1].toLocaleLowerCase('en') === 'x' ? ' checked' : '';
       const label = md.utils.escapeHtml(normalizedText || 'Lab task');
       input.content = [
+        '<label class="task-control">',
         '<input',
         ' class="task-list-item-checkbox"',
         ' type="checkbox"',
         ` aria-label="${label}"`,
         ` data-task-id="${taskId(sourcePath, normalizedText, duplicateOrdinal)}"`,
-        `${checked}> `,
+        `${checked}>`,
+        '<span class="task-control-mark" aria-hidden="true"></span>',
+        '</label> ',
       ].join('');
       inline.children.unshift(input);
 

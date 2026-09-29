@@ -21,8 +21,7 @@
     ".squad/**",
     "presentations/**/dotnet-version-upgrade/**",
     "labs-site/index.md",
-    "labs-site/lab-steps/**",
-    "labs-site/labs/**"
+    "labs-site/!(.vitepress)/**"
   ],
   // Output formatting
   "outputFormatters": [

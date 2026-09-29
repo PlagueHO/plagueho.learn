@@ -201,6 +201,46 @@ async function copyResources(lab, siteRoot) {
   }
 }
 
+async function collectSolutionMarkdown(lab, pageMap, errors) {
+  const resources = [];
+
+  async function visit(directory, module) {
+    for (const entry of await readdir(directory, { withFileTypes: true })) {
+      const source = path.join(directory, entry.name);
+      if (entry.isDirectory()) {
+        await visit(source, module);
+        continue;
+      }
+      if (!entry.isFile() || !entry.name.endsWith('.md')) continue;
+
+      const outputRelative = path.join(
+        lab.slug,
+        module.metadata.slug,
+        'solution',
+        path.relative(path.join(module.root, 'solution'), source),
+      );
+      const body = await readFile(source, 'utf8');
+      resources.push({
+        outputRelative,
+        content: await rewriteMarkdownLinks(body, {
+          lab,
+          pageMap,
+          sourceFile: source,
+          sourceRelative: toPosix(path.relative(lab.root, source)),
+          outputRelative,
+          errors,
+        }),
+      });
+    }
+  }
+
+  for (const module of lab.modules) {
+    const solutionRoot = path.join(module.root, 'solution');
+    if (await pathExists(solutionRoot)) await visit(solutionRoot, module);
+  }
+  return resources;
+}
+
 export async function generateLabs(root) {
   const workspace = await discoverWorkspace(root);
   if (workspace.errors.length > 0) {
@@ -210,6 +250,7 @@ export async function generateLabs(root) {
   const siteRoot = path.join(root, 'labs-site');
   const pageMap = buildPageMap(workspace);
   const generatedPages = [];
+  const rewrittenSolutionMarkdown = [];
   const linkErrors = [];
 
   for (const lab of workspace.labs) {
@@ -230,6 +271,9 @@ export async function generateLabs(root) {
         content: renderGeneratedPage(page, body),
       });
     }
+    rewrittenSolutionMarkdown.push(
+      ...await collectSolutionMarkdown(lab, pageMap, linkErrors),
+    );
   }
 
   if (linkErrors.length > 0) {
@@ -243,6 +287,9 @@ export async function generateLabs(root) {
     await writeFile(page.output, page.content, 'utf8');
   }
   for (const lab of workspace.labs) await copyResources(lab, siteRoot);
+  for (const resource of rewrittenSolutionMarkdown) {
+    await writeFile(path.join(siteRoot, resource.outputRelative), resource.content, 'utf8');
+  }
   await writeFile(path.join(siteRoot, 'index.md'), renderCatalogue(workspace.labs), 'utf8');
   await writeFile(
     path.join(siteRoot, '.vitepress', 'labs-sidebar.ts'),

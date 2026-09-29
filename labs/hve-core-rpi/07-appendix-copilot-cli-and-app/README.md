@@ -19,7 +19,7 @@ tags:
   - optional
   - cli
   - copilot-app
-status: published
+status: draft
 contentType: lab
 ---
 <!-- markdownlint-disable-next-line MD025 -->

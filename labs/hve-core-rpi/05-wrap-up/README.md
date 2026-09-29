@@ -19,7 +19,7 @@ technologies:
 tags:
   - adoption
   - retrospective
-status: published
+status: draft
 contentType: lab
 ---
 <!-- markdownlint-disable-next-line MD025 -->

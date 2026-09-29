@@ -25,16 +25,27 @@ Use the **Auto** model unless your facilitator directs otherwise. Keep tasks foc
 
 - [ ] Open the [`github-samples/caldova-careers`](https://github.com/github-samples/caldova-careers) template.
 - [ ] Select **Use this template**, create your own public repository, and clone it.
-- [ ] Verify that the template issues have been created. You will use issue 01 and issue 05.
-- [ ] Confirm that your starting commit is `51f8bd21ca4b5b272bc004781d3ca87fb7a8a79a`.
-
-Run:
+- [ ] Push the template-created `main` branch once to trigger the repository bootstrap workflow.
 
 ```powershell
-git rev-parse HEAD
+git push -u origin main
 ```
 
-If the value differs, stop and ask the facilitator whether the template has changed. Do not silently continue with a different baseline.
+- [ ] Wait for the bootstrap workflow to finish, then verify that issue 01 and issue 05 exist.
+- [ ] Verify that the attendee repository's starting tree matches the pinned template tree.
+
+GitHub creates a new commit when you use a template, so commit hashes will differ even when the file content is correct. Fetch the pinned source commit and compare Git trees instead:
+
+```powershell
+git remote add template-source https://github.com/github-samples/caldova-careers.git
+git fetch --depth 1 template-source 51f8bd21ca4b5b272bc004781d3ca87fb7a8a79a
+git diff --quiet 'FETCH_HEAD^{tree}' 'HEAD^{tree}'
+if ($LASTEXITCODE -ne 0) {
+    throw 'The attendee repository content does not match the pinned template baseline.'
+}
+```
+
+If the tree comparison fails, stop and ask the facilitator whether the template has changed. Do not silently continue with a different baseline.
 
 ## Prepare and verify the application
 
@@ -71,7 +82,7 @@ npm run test:e2e:install
 
 ## Optional Codespaces path
 
-If local installation is restricted, create a Codespace from your attendee repository. Wait for the dev container setup to finish, verify the pinned commit, run the unit tests, and confirm the application at the forwarded port. Editor extension availability and organizational policy can differ in Codespaces, so verify that HVE-Core 3.2.2 is available before the timed session.
+If local installation is restricted, create a Codespace from your attendee repository. Wait for the dev container setup to finish, compare the repository tree with the pinned baseline, run the unit tests, and confirm the application at the forwarded port. Editor extension availability and organizational policy can differ in Codespaces, so verify that HVE-Core 3.2.2 is available before the timed session.
 
 ## Version transition
 

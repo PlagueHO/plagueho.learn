@@ -5,32 +5,49 @@
 
 .vp-doc .task-list-item {
   display: grid;
-  grid-template-columns: 1.25rem minmax(0, 1fr);
-  column-gap: 0.75rem;
+  grid-template-columns: 2.75rem minmax(0, 1fr);
+  column-gap: 0.5rem;
   align-items: start;
   margin-block: 0;
   padding-block: 0.75rem;
   border-bottom: 1px solid var(--labs-rule);
 }
 
-.vp-doc .task-list-item-checkbox {
-  appearance: none;
-  inline-size: 1.125rem;
-  block-size: 1.125rem;
-  margin: 0.2rem 0 0;
-  border: 2px solid var(--labs-control-border);
-  border-radius: 0.125rem;
-  background: var(--labs-control-surface);
+.vp-doc .task-control {
+  position: relative;
+  display: grid;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  place-items: center;
+  margin: -0.6rem 0;
   cursor: pointer;
 }
 
-.vp-doc .task-list-item-checkbox:checked {
+.vp-doc .task-list-item-checkbox {
+  position: absolute;
+  inline-size: 100%;
+  block-size: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.vp-doc .task-control-mark {
+  inline-size: 1.125rem;
+  block-size: 1.125rem;
+  border: 2px solid var(--labs-control-border);
+  border-radius: 0.125rem;
+  background: var(--labs-control-surface);
+  pointer-events: none;
+}
+
+.vp-doc .task-list-item-checkbox:checked + .task-control-mark {
   border-color: var(--labs-signal);
   background-color: var(--labs-signal);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%230b1713' stroke-linecap='square' stroke-linejoin='miter' stroke-width='2.2' d='m3 8 3 3 7-7'/%3E%3C/svg%3E");
 }
 
-.vp-doc .task-list-item-checkbox:focus-visible {
+.vp-doc .task-control:has(.task-list-item-checkbox:focus-visible) {
   outline: 3px solid var(--labs-focus);
   outline-offset: 3px;
 }

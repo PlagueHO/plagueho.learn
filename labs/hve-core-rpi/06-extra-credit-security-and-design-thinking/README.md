@@ -20,7 +20,7 @@ tags:
   - optional
   - security
   - design-thinking
-status: published
+status: draft
 contentType: lab
 ---
 <!-- markdownlint-disable-next-line MD025 -->
