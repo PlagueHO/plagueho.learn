@@ -51,10 +51,10 @@ Implement the GitHub issue **Add a careers summary** in your attendee repository
 - [ ] Open GitHub Copilot Chat.
 - [ ] Recommend setting the model to `Auto`, `Balance`.
 - [ ] Select **RPI Agent**.
-- [ ] Run the command in the RPI Agent.
+- [ ] Run the command in the RPI Agent, replacing `{issue-number}` with the number you recorded above.
 
   ```text
-  Implement GitHub issue #5, Add a careers summary."
+  Implement GitHub issue {issue-number}, Add a careers summary.
   ```
 
 The 3.2.2 agent moves through five phases: Research, Plan, Implement, Review, and Discover.

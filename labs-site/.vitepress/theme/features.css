@@ -1,10 +1,10 @@
 .vp-doc .task-list {
   padding-left: 0;
-  list-style: none;
 }
 
 .vp-doc .task-list-item {
   display: grid;
+  list-style: none;
   grid-template-columns: 2.75rem minmax(0, 1fr);
   column-gap: 0.5rem;
   align-items: start;

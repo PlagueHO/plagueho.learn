@@ -2333,7 +2333,7 @@ transition: fade-out
   <p class="close-thesis">Pick one important workflow. Form a small expert crew. Start from production. Apply AI across the lifecycle. Measure speed <strong>and</strong> trust.</p>
   <div class="close-action"><strong>Do not add AI to the old process.</strong><span>Build a better engineering system.</span></div>
   <nav class="close-links" aria-label="Presentation resources">
-    <a href="https://plagueho.github.io/plagueho.learn/labs/hve-core-rpi/" target="_blank">Hands-on lab ↗</a>
+    <a href="https://github.com/PlagueHO/plagueho.learn/tree/main/labs/hve-core-rpi" target="_blank">Hands-on lab draft ↗</a>
     <a href="https://learn.microsoft.com/en-us/industry/playbook/" target="_blank">HVE Accelerators Hub ↗</a>
     <a href="https://microsoft.github.io/hve-core/docs/" target="_blank">HVE-Core guidance ↗</a>
     <a href="https://www.microsoft.com/ai/responsible-ai" target="_blank">Responsible AI ↗</a>
