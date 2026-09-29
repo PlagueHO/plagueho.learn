@@ -136,7 +136,12 @@ The newer skill writes `*-plan.md`; HVE-Core 3.2.2 writes `*-plan.instructions.m
   npm run test:unit
   ```
 
-- [ ] Start the application, search for a role title at `http://localhost:4321`, and verify matching and nonmatching states.
+- [ ] Start the application with the following command, then search for a role title at `http://localhost:4321` and verify matching and nonmatching states:
+
+  ```powershell
+  npm run dev
+  ```
+
 - [ ] Observe the **✅ Review** handoff.
 
 <details>

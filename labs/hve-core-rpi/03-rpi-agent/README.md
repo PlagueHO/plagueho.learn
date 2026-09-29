@@ -39,7 +39,7 @@ Implement the GitHub issue **Add a careers summary** in your attendee repository
   git switch -c feature/careers-summary
   ```
 
-- [ ] In the **Issues** tab of your attendee `caldova-careers` repository on GitHub, open the issue titled **Add a careers summary** (starter issue 05). Read its description and acceptance criteria, note its assigned issue number, and keep the issue open while you work.
+- [ ] In the **Issues** tab of your attendee `caldova-careers` repository on GitHub, open the issue titled **Add a careers summary** (starter issue 5). Read its description and acceptance criteria, note its assigned issue number, and keep the issue open while you work.
 
   The issue number can differ in your attendee repository, so find the issue by title.
 
@@ -51,10 +51,13 @@ Implement the GitHub issue **Add a careers summary** in your attendee repository
 - [ ] Open GitHub Copilot Chat.
 - [ ] Recommend setting the model to `Auto`, `Balance`.
 - [ ] Select **RPI Agent**.
-- [ ] Run the command in the RPI Agent, replacing `{issue-number}` with the number you recorded above.
+- [ ] Run the command in the RPI Agent to begin work.
+
+> [!NOTE]
+> The RPI Agent will try to determine if the issue is simple enough that a complete RPI workflow is not needed, in which case it won't initiate all five phases. So, to demonstrate this we will force the RPI workflow.
 
   ```text
-  Implement GitHub issue {issue-number}, Add a careers summary.
+  Begin work on GitHub Issue #5. But pretend this issue is not trivial and will require a full RPI workflow.
   ```
 
 The 3.2.2 agent moves through five phases: Research, Plan, Implement, Review, and Discover.
@@ -67,22 +70,7 @@ The 3.2.2 agent moves through five phases: Research, Plan, Implement, Review, an
 | Review | `.copilot-tracking/reviews/{date}/{issue-05-review}.md` | Resolve material findings, then choose the numbered Discover action. |
 | Discover | The follow-on section in `.copilot-tracking/reviews/{date}/{issue-05-review}.md` | Keep useful next work separate from issue 05, then stop or save a checkpoint. |
 
-> [!TIP]
-> If you are unsure what to do at a handoff, ask the RPI Agent, "What is the next step?" Review its recommendation before choosing a numbered action.
-
-- [ ] At each boundary, inspect the proposed work and artifact before continuing.
-- [ ] Use the numbered **1️⃣**, **2️⃣**, or **3️⃣** handoff to choose a bounded next action.
-- [ ] Use **▶️ All** only when the proposed sequence and scope are correct.
-- [ ] Use **🔄 Suggest** if the available choices do not fit the issue.
-- [ ] Use **💾 Save** (`/checkpoint`) before a risky or lengthy transition.
-- [ ] Use **Compact** when context needs to be reduced without losing the recorded state.
-
-<details>
-<summary>🔮 Coming soon: newer autonomous RPI handoff</summary>
-
-HVE-Core 3.2.2 does not have a Full Auto input. Newer releases expose Research, Plan, Implement, Review, and Full Auto handoffs around the same `/rpi task=...` entry point. Do not describe Full Auto as a confirmed 3.2.2 capability.
-
-</details>
+Once the RPI agent has completed the work, it will have produced all the artifacts listed in the phase table, including Research, Plan, Details, Changes, and Review files, along with any follow-on work recorded in the Discover phase.
 
 ## Verify the result
 
@@ -95,8 +83,11 @@ HVE-Core 3.2.2 does not have a Full Auto input. Newer releases expose Research, 
   npm run test:unit
   ```
 
-- [ ] Start the application and verify the careers summary in the browser at `http://localhost:4321`.
-- [ ] If the issue's optional Playwright coverage was implemented, run it after the required unit tests.
+- [ ] Start the application with the following command, then verify the careers summary in the browser at `http://localhost:4321`:
+
+  ```powershell
+  npm run dev
+  ```
 
 ## Compare manual and autonomous RPI
 
@@ -104,11 +95,8 @@ HVE-Core 3.2.2 does not have a Full Auto input. Newer releases expose Research, 
 |----------|--------------------|-----------|
 | Who starts each phase? | You select and invoke each specialist. | The orchestrator presents phase handoffs. |
 | How is context transferred? | You pass exact artifact paths. | The orchestrator maintains the workflow context. |
-| Where can you intervene? | Before every agent invocation. | At every handoff and proposed action. |
+| Where can you intervene? | Before every agent invocation. | At every handoff and proposed action if the RPI Agent decides they are needed. |
 | What must still be verified? | Artifacts, source changes, tests, and browser behavior. | The same artifacts, source changes, tests, and browser behavior. |
-
-- [ ] Record one situation where manual control is preferable.
-- [ ] Record one situation where orchestrated flow is preferable.
 
 ## Optional PR Review
 

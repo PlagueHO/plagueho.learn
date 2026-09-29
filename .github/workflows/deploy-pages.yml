@@ -33,7 +33,7 @@ jobs:
           node-version: '22'
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        run: npm install --global pnpm@12.5.1
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
