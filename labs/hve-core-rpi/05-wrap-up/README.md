@@ -29,6 +29,15 @@ Use the final ten minutes to verify the evidence and decide what to try next. Ad
 
 ## Tour the evidence
 
+- [ ] Return to the attendee `caldova-careers` repository if your terminal is still in the sibling `hve-core` fork:
+
+  ```powershell
+  Set-Location ../caldova-careers
+  git rev-parse --show-toplevel
+  ```
+
+  The last command must print your attendee repository, not the HVE-Core fork. If you are already in `caldova-careers`, do not run `Set-Location` again.
+
 - [ ] Locate the manual issue 01 research under `.copilot-tracking/research/{date}/`.
 - [ ] Locate its plan under `.copilot-tracking/plans/{date}/*-plan.instructions.md`.
 - [ ] Locate its details under `.copilot-tracking/details/{date}/`.
@@ -39,11 +48,12 @@ Use the final ten minutes to verify the evidence and decide what to try next. Ad
 
 ## Run final verification
 
-- [ ] Run the required Vitest suite from the relevant completed feature branch:
+- [ ] Confirm that the current branch is the completed feature you intend to check, then run the required Vitest suite:
 
-```powershell
-npm run test:unit
-```
+  ```powershell
+  git branch --show-current
+  npm run test:unit
+  ```
 
 - [ ] Verify the implemented feature in the browser.
 - [ ] Record any optional Playwright or PR Review work separately from the required result.

@@ -15,9 +15,15 @@
 
 .vp-doc .task-list-item > .task-text,
 .vp-doc .task-list-item > ul,
-.vp-doc .task-list-item > ol {
+.vp-doc .task-list-item > ol,
+.vp-doc .task-list-item > p:not(:first-child),
+.vp-doc .task-list-item > [class^="language-"] {
   grid-column: 2;
   min-inline-size: 0;
+}
+
+.vp-doc .task-list-item > p:first-child {
+  display: contents;
 }
 
 .vp-doc .task-control {
