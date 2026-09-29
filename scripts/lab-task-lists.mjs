@@ -14,9 +14,18 @@ function taskId(sourcePath, normalizedText, duplicateOrdinal) {
     .slice(0, 16);
 }
 
+function addClass(token, className) {
+  const classes = new Set(
+    (token.attrGet('class') ?? '').split(/\s+/).filter(Boolean),
+  );
+  classes.add(className);
+  token.attrSet('class', [...classes].join(' '));
+}
+
 export function configureTaskLists(md) {
   md.core.ruler.after('inline', 'labs-task-lists', (state) => {
     const duplicateCounts = new Map();
+    const listStack = [];
     const sourcePath = String(
       state.env.frontmatter?.sourcePath
         ?? state.env.relativePath
@@ -24,8 +33,22 @@ export function configureTaskLists(md) {
         ?? 'unknown-page',
     ).replaceAll('\\', '/');
 
-    for (let index = 2; index < state.tokens.length; index += 1) {
+    for (let index = 0; index < state.tokens.length; index += 1) {
       const inline = state.tokens[index];
+      if (
+        inline.type === 'bullet_list_open'
+        || inline.type === 'ordered_list_open'
+      ) {
+        listStack.push(inline);
+        continue;
+      }
+      if (
+        inline.type === 'bullet_list_close'
+        || inline.type === 'ordered_list_close'
+      ) {
+        listStack.pop();
+        continue;
+      }
       if (
         inline.type !== 'inline'
         || state.tokens[index - 1]?.type !== 'paragraph_open'
@@ -65,13 +88,8 @@ export function configureTaskLists(md) {
       inline.children.unshift(input);
       inline.children.push(close);
 
-      state.tokens[index - 2].attrJoin('class', 'task-list-item');
-      for (let parentIndex = index - 3; parentIndex >= 0; parentIndex -= 1) {
-        if (state.tokens[parentIndex].type === 'bullet_list_open') {
-          state.tokens[parentIndex].attrJoin('class', 'task-list');
-          break;
-        }
-      }
+      addClass(state.tokens[index - 2], 'task-list-item');
+      addClass(listStack.at(-1), 'task-list');
     }
   });
 }

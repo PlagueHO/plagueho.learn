@@ -49,11 +49,51 @@ test('renders accessible persistent task controls without flattening task conten
   );
   assert.match(
     html,
-    /<li class="task-list-item">.*?<span class="task-text">Read .*?<\/span>\s*<ul class="task-list task-list">\s*<li class="task-list-item">/s,
+    /<li class="task-list-item">.*?<span class="task-text">Read .*?<\/span>\s*<ul class="task-list">\s*<li class="task-list-item">/s,
   );
   assert.match(
     html,
     /<span class="task-text">Verify <a href="https:\/\/example\.com"[^>]*>the result<\/a>\.<\/span>/,
   );
-  assert.doesNotMatch(html, /<span class="task-text">.*?<ul class="task-list">/s);
+  assert.doesNotMatch(html, /class="task-list task-list"/);
+});
+
+test('classifies the actual bullet and ordered lists without changing unrelated lists', async () => {
+  const renderer = await createMarkdownRenderer(
+    path.resolve('labs-site'),
+    { config: configureTaskLists },
+    '/',
+  );
+  const markdown = `- Plain unrelated item
+  - Also plain
+
+Plain separator.
+
+- Plain outer item
+  - [ ] Nested task
+- [ ] Outer task
+  - Plain nested item
+
+1. [ ] Ordered task
+1. Plain ordered item
+`;
+  const html = await renderer.render(markdown, {
+    frontmatter: { sourcePath: 'labs/example/02-lists/README.md' },
+  });
+
+  assert.equal((html.match(/<ul class="task-list">/g) ?? []).length, 2);
+  assert.equal((html.match(/<ol class="task-list">/g) ?? []).length, 1);
+  assert.equal((html.match(/class="task-list-item"/g) ?? []).length, 3);
+  assert.match(html, /^<ul>\s*<li>Plain unrelated item\s*<ul>/);
+  assert.match(html, /<\/ul>\s*<p>Plain separator\.<\/p>\s*<ul class="task-list">/);
+  assert.match(html, /<li class="task-list-item">.*?Nested task.*?<\/li>/s);
+  assert.match(
+    html,
+    /<li class="task-list-item">.*?Outer task.*?<\/span>\s*<ul>\s*<li>Plain nested item/s,
+  );
+  assert.match(
+    html,
+    /<ol class="task-list">\s*<li class="task-list-item">.*?Ordered task/s,
+  );
+  assert.doesNotMatch(html, /class="task-list task-list"/);
 });
