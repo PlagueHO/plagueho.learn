@@ -36,9 +36,7 @@ HVE is the methodology. HVE-Core is tooling that provides one proven, opinionate
 <details class="screenshot-expander">
 <summary>📸 Screenshot: the RPI cycle</summary>
 
-`TODO-SCREENSHOT: hve-rpi-slide.png`
-
-Capture guidance is recorded in the [screenshot inventory](../assets/screenshots/CAPTURE-LIST.md).
+![Diagram naming Research, Plan, Implement, and Review as a continuous cycle](../assets/screenshots/hve-rpi-slide.png)
 
 </details>
 

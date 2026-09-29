@@ -56,9 +56,7 @@ code --install-extension ise-hve-essentials.hve-core
 <details class="screenshot-expander">
 <summary>📸 Screenshot: HVE-Core 3.2.2 agents</summary>
 
-`TODO-SCREENSHOT: hve-core-agent-picker.png`
-
-Capture guidance is recorded in the [screenshot inventory](../assets/screenshots/CAPTURE-LIST.md).
+![Agent picker listing Task Researcher, Task Planner, Task Implementor, Task Reviewer, PR Review, and RPI Agent](../assets/screenshots/hve-core-agent-picker.png)
 
 </details>
 
