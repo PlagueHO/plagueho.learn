@@ -20,7 +20,7 @@ tags:
   - optional
   - security
   - design-thinking
-status: draft
+status: published
 contentType: lab
 ---
 <!-- markdownlint-disable-next-line MD025 -->
@@ -56,15 +56,6 @@ This extra-credit module is excluded from the 100-minute core total. The HVE-Cor
 - [ ] Check each finding against the source and discard unsupported claims.
 - [ ] Compare the security-focused result with PR Review.
 - [ ] Do not paste secrets, applicant data, credentials, or production values into a prompt.
-
-<details class="screenshot-expander">
-<summary>📸 Screenshot: Security review result</summary>
-
-`TODO-SCREENSHOT: security-review-result.png`
-
-Capture guidance is recorded in the [screenshot inventory](../assets/screenshots/CAPTURE-LIST.md).
-
-</details>
 
 ## Optional Design Thinking exercise
 

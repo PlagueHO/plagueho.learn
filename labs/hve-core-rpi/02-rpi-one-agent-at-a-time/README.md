@@ -20,7 +20,7 @@ technologies:
 tags:
   - manual-rpi
   - issue-01
-status: draft
+status: published
 contentType: lab
 ---
 <!-- markdownlint-disable-next-line MD025 -->

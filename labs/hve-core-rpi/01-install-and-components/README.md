@@ -18,7 +18,7 @@ technologies:
 tags:
   - installation
   - components
-status: draft
+status: published
 contentType: lab
 ---
 <!-- markdownlint-disable-next-line MD025 -->

@@ -46,7 +46,7 @@ function applySourceMetadata(pageData: PageData): void {
 }
 
 export default defineConfig({
-  title: 'PlagueHO Lab Runbooks',
+  title: 'Hands-on Labs',
   description: 'Practical, guided runbooks for hands-on technical learning.',
   base: productionBase,
   cleanUrls: true,

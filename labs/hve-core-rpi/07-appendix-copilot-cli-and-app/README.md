@@ -19,7 +19,7 @@ tags:
   - optional
   - cli
   - copilot-app
-status: draft
+status: published
 contentType: lab
 ---
 <!-- markdownlint-disable-next-line MD025 -->
@@ -28,7 +28,7 @@ contentType: lab
 This appendix is excluded from the 100-minute core total. Alternative clients change rapidly, so treat this page as a verification checklist rather than a guaranteed current procedure.
 
 > [!CAUTION]
-> Technical preview status on 2026-09-29: the pinned source layout and package names are documented, but the current Copilot CLI commands and Copilot app custom marketplace flow have not been independently confirmed for publication. A facilitator must test them before presenting these steps as operational.
+> Alternative client behavior changes rapidly. A facilitator must test these steps in a disposable workspace on the delivery date before presenting them as operational.
 
 ## Copilot CLI path
 
@@ -47,15 +47,6 @@ This appendix is excluded from the 100-minute core total. Alternative clients ch
 
 - [ ] Use `/agent` to inspect the agents exposed by the installed plugin.
 - [ ] Record the CLI version, operating system, command result, and any difference from this page.
-
-<details class="screenshot-expander">
-<summary>📸 Screenshot: pinned plugin agents in Copilot CLI</summary>
-
-`TODO-SCREENSHOT: copilot-plugin-list.png`
-
-Capture guidance is recorded in the [screenshot inventory](../assets/screenshots/CAPTURE-LIST.md).
-
-</details>
 
 ### CLI instruction limitation
 

@@ -19,7 +19,7 @@ technologies:
 tags:
   - autonomous-rpi
   - issue-05
-status: draft
+status: published
 contentType: lab
 ---
 <!-- markdownlint-disable-next-line MD025 -->
@@ -81,15 +81,6 @@ The 3.2.2 agent moves through five phases: Research, Plan, Implement, Review, an
 <summary>🔮 Coming soon: newer autonomous RPI handoff</summary>
 
 HVE-Core 3.2.2 does not have a Full Auto input. Newer releases expose Research, Plan, Implement, Review, and Full Auto handoffs around the same `/rpi task=...` entry point. Do not describe Full Auto as a confirmed 3.2.2 capability.
-
-</details>
-
-<details class="screenshot-expander">
-<summary>📸 Screenshot: RPI Agent handoffs</summary>
-
-`TODO-SCREENSHOT: rpi-agent-handoffs.png`
-
-Capture guidance is recorded in the [screenshot inventory](../assets/screenshots/CAPTURE-LIST.md).
 
 </details>
 

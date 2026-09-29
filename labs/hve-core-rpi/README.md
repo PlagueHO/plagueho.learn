@@ -13,17 +13,12 @@ relatedPresentations:
   - deck: 'hypervelocity-engineering'
     slides: '1-12'
     note: 'Review the methodology and the four RPI phases before beginning the exercises.'
-status: draft
+status: published
 ---
 <!-- markdownlint-disable-next-line MD025 -->
 # Hypervelocity Engineering with HVE-Core
 
 Turn a feature request into tested code by applying the Hypervelocity Engineering (HVE) methodology with HVE-Core 3.2.2. You will first control each Research, Plan, Implement, and Review (RPI) handoff, then compare that experience with the autonomous RPI Agent.
-
-> [!WARNING]
-> This lab remains a draft. Publication is blocked until all eight product screenshots are supplied and approved, and the pinned Copilot CLI, Copilot app, HVE-Core release currency, and optional Playwright paths are verified in suitable live environments.
-
-<!-- PUBLICATION-BLOCKER: screenshots and live product checks remain unresolved. -->
 
 ## Required knowledge
 

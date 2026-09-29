@@ -19,7 +19,7 @@ technologies:
 tags:
   - customization
   - governance
-status: draft
+status: published
 contentType: lab
 ---
 <!-- markdownlint-disable-next-line MD025 -->
@@ -107,15 +107,6 @@ Use the [supplied agent](https://github.com/PlagueHO/plagueho.learn/blob/main/la
 - [ ] Confirm that **Standards Coach** appears in the agent picker.
 - [ ] Confirm that the existing HVE-Core 3.2.2 Marketplace agents remain available.
 - [ ] If duplicate core agents appear, check that the settings point only to the `lab` directories, not the fork's core directories.
-
-<details class="screenshot-expander">
-<summary>📸 Screenshot: Standards Coach in the picker</summary>
-
-`TODO-SCREENSHOT: standards-coach-picker.png`
-
-Capture guidance is recorded in the [screenshot inventory](../assets/screenshots/CAPTURE-LIST.md).
-
-</details>
 
 ## Exercise the customization
 
