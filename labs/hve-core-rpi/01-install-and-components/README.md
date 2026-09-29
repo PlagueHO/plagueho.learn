@@ -33,13 +33,13 @@ This lab uses the stable HVE-Core 3.2.2 extension, not the current source tree.
   For VS Code Insiders:
 
   ```powershell
-  code-insiders --install-extension ise-hve-essentials.hve-core
+  code-insiders --install-extension ise-hve-essentials.hve-core@3.2.2
   ```
 
   For VS Code Stable:
 
   ```powershell
-  code --install-extension ise-hve-essentials.hve-core
+  code --install-extension ise-hve-essentials.hve-core@3.2.2
   ```
 
 - [ ] From the attendee `caldova-careers` repository root, start the same editor edition where you installed HVE-Core:

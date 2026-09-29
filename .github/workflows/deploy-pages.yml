@@ -68,7 +68,7 @@ jobs:
           echo "Successfully built $found presentation(s)."
 
       - name: Build hands-on labs
-        run: pnpm labs:build:production -- --outDir _site/labs
+        run: pnpm run labs:generate:production && pnpm exec vitepress build labs-site --outDir _site/labs
 
       - name: Generate index page
         run: |

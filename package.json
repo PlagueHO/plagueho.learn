@@ -16,7 +16,7 @@
     "labs:dev": "pnpm run labs:generate && vitepress dev labs-site",
     "labs:build": "pnpm run labs:generate && vitepress build labs-site",
     "labs:build:production": "pnpm run labs:generate:production && vitepress build labs-site",
-    "labs:preview": "pnpm run labs:generate && vitepress preview labs-site",
+    "labs:preview": "pnpm run labs:build && vitepress preview labs-site",
     "validate:lab-frontmatter": "node scripts/validate-lab-frontmatter.mjs",
     "test:lab-scripts": "node --test scripts/generate-vitepress-labs.test.mjs scripts/lab-task-lists.test.mjs scripts/validate-lab-frontmatter.test.mjs"
   },

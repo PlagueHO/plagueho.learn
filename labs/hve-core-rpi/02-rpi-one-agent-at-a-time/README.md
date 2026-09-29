@@ -52,10 +52,10 @@ Implement the GitHub issue **Search roles by title** in your attendee repository
 - [ ] Open GitHub Copilot Chat.
 - [ ] Recommend setting the model to `Auto`, `Balance`.
 - [ ] Select the `Task Researcher` agent.
-- [ ] Run the research command in the Task Researcher agent.
+- [ ] Run the research command in the Task Researcher agent, replacing `{issue-number}` with the number you recorded above.
 
   ```text
-  Research GitHub issue #1, search roles by title
+  Research GitHub issue {issue-number}, search roles by title
   ```
 
 > [!NOTE]
@@ -71,10 +71,10 @@ Implement the GitHub issue **Search roles by title** in your attendee repository
 An update to HVE-Core is in development that replaces Task Researcher with a skill. The equivalent shape is:
 
 ```text
-/rpi-research topic="Research GitHub issue #1, search roles by title" posture=balanced
+/rpi-research topic="Research GitHub issue {issue-number}, search roles by title" posture=balanced
 ```
 
-But for simplicty of this lab we will use the Task Researcher flow for HVE-Core 3.2.2.
+But for simplicity of this lab we will use the Task Researcher flow for HVE-Core 3.2.2.
 You can switch to the `/rpi-research` skills by using one of the other [installation methods](https://microsoft.github.io/hve-core/docs/getting-started/install).
 
 </details>
