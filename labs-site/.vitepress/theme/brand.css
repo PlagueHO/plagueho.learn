@@ -4,12 +4,14 @@
   --labs-canvas: #f4f1e8;
   --labs-panel: #e8e4d9;
   --labs-panel-raised: #fffdf7;
+  --labs-sidebar: #e9e1d2;
   --labs-board: #17201d;
   --labs-board-ink: #f7f4e9;
   --labs-rule: #c3c5bc;
   --labs-rule-strong: #68736e;
   --labs-signal: #008552;
   --labs-signal-ink: #ffffff;
+  --labs-marker: #b65f2a;
   --labs-focus: #005fcc;
   --labs-link: #18201d;
   --labs-link-hover: #00513a;
@@ -20,6 +22,9 @@
   --labs-complete-text: #56645d;
   --labs-hover: #dcded5;
   --labs-heading: #101714;
+  --labs-tip-surface: #e0ece3;
+  --labs-warning-surface: #f3e5c4;
+  --labs-danger-surface: #f2d8d4;
   --labs-zoom-backdrop: rgba(8, 13, 11, 0.96);
   --labs-reading-measure: 72ch;
   --labs-wide-measure: 82ch;
@@ -54,12 +59,14 @@
   --labs-canvas: #0c1210;
   --labs-panel: #141d19;
   --labs-panel-raised: #1b2621;
+  --labs-sidebar: #111a16;
   --labs-board: #050908;
   --labs-board-ink: #f2f5f1;
   --labs-rule: #34413b;
   --labs-rule-strong: #77827c;
   --labs-signal: #45d99a;
   --labs-signal-ink: #07140e;
+  --labs-marker: #f0a06c;
   --labs-focus: #7dbaff;
   --labs-link: #edf2ee;
   --labs-link-hover: #72e0ad;
@@ -70,6 +77,9 @@
   --labs-complete-text: #aab6af;
   --labs-hover: #223029;
   --labs-heading: #f6faf7;
+  --labs-tip-surface: #152a20;
+  --labs-warning-surface: #302719;
+  --labs-danger-surface: #321d1d;
   --labs-zoom-backdrop: rgba(2, 5, 4, 0.97);
 }
 
@@ -117,34 +127,32 @@ input {
 
 .VPNavBarTitle .title {
   color: var(--labs-board-ink);
-  font-size: 0.875rem;
-  font-weight: 800;
-  letter-spacing: 0.035em;
-  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 750;
+  letter-spacing: -0.015em;
 }
 
 .VPNavBarTitle .title:hover {
   color: var(--labs-board-ink);
 }
 
-.VPNavBarMenuLink,
-.VPNavBarMenuGroup .text,
-.VPNavBarSearchButton,
-.VPNavBarAppearance .VPSwitchAppearance,
-.VPSocialLink {
-  color: color-mix(in srgb, var(--labs-board-ink) 82%, transparent);
+.VPNav .VPNavBarMenuLink,
+.VPNav .VPNavBarMenuGroup .text,
+.VPNav .VPNavBarSearchButton,
+.VPNav .VPNavBarAppearance .VPSwitchAppearance,
+.VPNav .VPSocialLink {
+  color: var(--labs-board-ink);
 }
 
 .VPNavBarMenuLink {
   border-bottom: 2px solid transparent;
-  font-size: 0.75rem;
-  font-weight: 750;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 0.9375rem;
+  font-weight: 650;
+  letter-spacing: -0.005em;
 }
 
-.VPNavBarMenuLink:hover,
-.VPNavBarMenuLink.active {
+.VPNav .VPNavBarMenuLink:hover,
+.VPNav .VPNavBarMenuLink.active {
   color: var(--labs-board-ink);
 }
 
@@ -165,24 +173,24 @@ input {
 
 .VPSidebar {
   border-right: 1px solid var(--labs-rule);
-  background: var(--labs-canvas);
+  background: var(--labs-sidebar);
 }
 
 .VPSidebarItem .text {
   color: var(--labs-ink-muted);
-  line-height: 1.35;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .VPSidebarItem.level-0 > .item > .text {
   color: var(--labs-heading);
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.055em;
-  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .VPSidebarItem.level-1 .text {
-  font-size: 0.8125rem;
+  font-size: 1rem;
   font-variant-numeric: tabular-nums;
 }
 
@@ -243,7 +251,11 @@ input {
   margin-top: 4rem;
   margin-bottom: 1rem;
   padding-top: 0.875rem;
-  border-top: 1px solid var(--labs-rule-strong);
+  border-top: 1px solid color-mix(
+    in srgb,
+    var(--labs-marker) 55%,
+    var(--labs-rule-strong)
+  );
   font-size: clamp(1.55rem, 2.5vw, 2rem);
   font-weight: 800;
   letter-spacing: -0.025em;
@@ -328,6 +340,10 @@ input {
   font-variant-ligatures: none;
 }
 
+html:not(.dark) .vp-doc .vp-code span {
+  color: var(--shiki-dark, var(--labs-code-ink));
+}
+
 .vp-doc table {
   width: 100%;
   margin-block: 2rem;
@@ -386,14 +402,17 @@ input {
 
 .vp-doc .custom-block.tip {
   border-color: var(--labs-rule-strong);
+  background: var(--labs-tip-surface);
 }
 
 .vp-doc .custom-block.warning {
   border-color: #9b6a00;
+  background: var(--labs-warning-surface);
 }
 
 .vp-doc .custom-block.danger {
   border-color: #a43b3b;
+  background: var(--labs-danger-surface);
 }
 
 .vp-doc .task-list {
@@ -494,7 +513,7 @@ input {
 
 .vp-doc:has(> h1:first-child + h2) > h2::before {
   content: counter(catalogue-run, decimal-leading-zero);
-  color: var(--labs-ink-muted);
+  color: var(--labs-marker);
   font-family: var(--labs-data-font);
   font-size: 0.8125rem;
   font-weight: 700;
@@ -550,16 +569,15 @@ input {
 
 .VPDocAside .outline-title {
   color: var(--labs-heading);
-  font-size: 0.6875rem;
-  font-weight: 850;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 0.875rem;
+  font-weight: 750;
+  letter-spacing: -0.005em;
 }
 
 .VPDocAsideOutline .outline-link {
   color: var(--labs-ink-muted);
-  font-size: 0.75rem;
-  line-height: 1.45;
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
 .VPDocAsideOutline .outline-link.active {
@@ -619,6 +637,15 @@ input {
     --labs-reading-measure: 100%;
   }
 
+  .VPDoc,
+  .VPDoc .container,
+  .VPDoc .content,
+  .VPDoc .content-container,
+  .vp-doc {
+    min-width: 0;
+    max-width: 100%;
+  }
+
   .vp-doc h1 {
     max-width: 14ch;
     margin-top: 0.5rem;
@@ -637,6 +664,17 @@ input {
 
   .vp-doc {
     overflow-wrap: anywhere;
+  }
+
+  .vp-doc p,
+  .vp-doc li,
+  .vp-doc a,
+  .pager-link,
+  .pager-link .title {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    white-space: normal;
   }
 
   .vp-doc h1 + p {

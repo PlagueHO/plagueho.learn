@@ -10,8 +10,10 @@ The approved identity is a race pit-wall runbook: operational, evidence-led, and
 Keep these defining choices:
 
 - Dark pit-wall navigation against a warm canvas
+- Natural-case navigation and full-size sidebar typography for sustained reading
 - Dense, ruled runbook structure with clear operational hierarchy
 - Green signal color for completion and active state
+- Copper markers and tinted operational panels that add warmth without weakening contrast
 - Square, low-radius controls and panels
 - Tabular numerals for sequence and measurement
 - Generous reading space without card-based page scaffolding
