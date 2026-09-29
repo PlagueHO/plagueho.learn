@@ -8,7 +8,7 @@ slug: appendix-copilot-cli-and-app
 estimatedTimeMinutes: 15
 difficulty: intermediate
 prerequisites:
-  - Core 120-minute lab complete
+  - Core 100-minute lab complete
 audience:
   - software developers
 technologies:
@@ -25,7 +25,7 @@ contentType: lab
 <!-- markdownlint-disable-next-line MD025 -->
 # Optional Copilot CLI and Copilot app appendix
 
-This appendix is excluded from the 120-minute core total. Alternative clients change rapidly, so treat this page as a verification checklist rather than a guaranteed current procedure.
+This appendix is excluded from the 100-minute core total. Alternative clients change rapidly, so treat this page as a verification checklist rather than a guaranteed current procedure.
 
 > [!CAUTION]
 > Technical preview status on 2026-09-29: the pinned source layout and package names are documented, but the current Copilot CLI commands and Copilot app custom marketplace flow have not been independently confirmed for publication. A facilitator must test them before presenting these steps as operational.

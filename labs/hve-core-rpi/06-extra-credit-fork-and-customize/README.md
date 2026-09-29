@@ -1,10 +1,10 @@
 ---
-title: 'Fork and customize HVE-Core'
+title: 'Extra credit: Fork and customize HVE-Core'
 description: 'Add organization-specific coding standards and a Standards Coach agent in an isolated lab namespace.'
 lastUpdated: '2026-09-29'
 track: hve-core-rpi
-module: 4
-slug: fork-and-customize
+module: 6
+slug: extra-credit-fork-and-customize
 estimatedTimeMinutes: 20
 difficulty: intermediate
 prerequisites:
@@ -23,7 +23,7 @@ status: draft
 contentType: lab
 ---
 <!-- markdownlint-disable-next-line MD025 -->
-# Fork and customize HVE-Core
+# Extra credit: Fork and customize HVE-Core
 
 Use in-place customization for repo-specific instructions and agents. Fork only when that is insufficient: to replace core components, change packaging or plugin membership, enforce structural governance, integrate internal systems, or maintain a private distribution. For `caldova-careers`-only changes, add files there instead. See [the customization guide](https://microsoft.github.io/hve-core/docs/customization/).
 
@@ -65,7 +65,7 @@ This exercise uses the [peer-directory clone workflow](https://microsoft.github.
   Use hve-builder with mode=create, targets=.github/instructions/lab/coding-standards.instructions.md, and requirements="Require TSDoc for exported functions, document component Props, preserve repository patterns, and apply only to TypeScript and Astro files."
   ```
 
-Use the [supplied instruction](https://github.com/PlagueHO/plagueho.learn/blob/main/labs/hve-core-rpi/04-fork-and-customize/solution/.github/instructions/lab/coding-standards.instructions.md) for recovery or comparison.
+Use the [supplied instruction](./solution/.github/instructions/lab/coding-standards.instructions.md) for recovery or comparison.
 
 ## Add the Standards Coach
 
@@ -75,7 +75,7 @@ Use the [supplied instruction](https://github.com/PlagueHO/plagueho.learn/blob/m
   Use hve-builder with mode=create, targets=.github/agents/lab/standards-coach.agent.md, and requirements="Review a selected file against the lab coding standards. Report actionable, evidence-based findings with file locations. Do not edit files or report unrelated findings."
   ```
 
-Use the [supplied agent](https://github.com/PlagueHO/plagueho.learn/blob/main/labs/hve-core-rpi/04-fork-and-customize/solution/.github/agents/lab/standards-coach.agent.md) for recovery or comparison.
+Use the [supplied agent](./solution/.github/agents/lab/standards-coach.agent.md) for recovery or comparison.
 
 ## Review the custom files
 
@@ -101,7 +101,7 @@ Use the [supplied agent](https://github.com/PlagueHO/plagueho.learn/blob/main/la
   }
   ```
 
-  The [solution settings file](https://github.com/PlagueHO/plagueho.learn/blob/main/labs/hve-core-rpi/04-fork-and-customize/solution/.vscode/settings.json) contains the same values.
+  The [solution settings file](./solution/.vscode/settings.json) contains the same values.
 
 - [ ] Reload the VS Code window.
 - [ ] Confirm that **Standards Coach** appears in the agent picker.

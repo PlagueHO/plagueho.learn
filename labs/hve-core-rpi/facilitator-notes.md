@@ -6,7 +6,7 @@ lastUpdated: '2026-09-29'
 <!-- markdownlint-disable-next-line MD025 -->
 # Facilitator notes
 
-Use these notes to keep the core experience within 120 minutes while preserving participant control over agent decisions.
+Use these notes to keep the core experience within 100 minutes while preserving participant control over agent decisions.
 
 ## Timing checkpoints
 
@@ -16,8 +16,9 @@ Use these notes to keep the core experience within 120 minutes while preserving 
 | 25 minutes | HVE-Core 3.2.2 verified | Pair attendees and use the component checklist. |
 | 65 minutes | Manual RPI complete | Use representative artifacts, then verify the implementation. |
 | 90 minutes | Autonomous RPI complete | Stop after unit tests and compare the workflows verbally. |
-| 110 minutes | Fork customization complete | Demonstrate the supplied solution files. |
-| 120 minutes | Adoption plan recorded | Move optional modules to follow-up work. |
+| 100 minutes | Adoption plan recorded | Move extra-credit modules to follow-up work. |
+
+Offer the extra-credit modules after the 100-minute core when time allows.
 
 ## Protect the learning decisions
 
