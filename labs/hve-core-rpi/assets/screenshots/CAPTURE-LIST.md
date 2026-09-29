@@ -4,8 +4,6 @@ Do not replace these entries with synthetic or illustrative images. Capture appr
 
 | Filename | Required UI state | Source step | Descriptive alt-text intent |
 |----------|-------------------|-------------|-----------------------------|
-| `hve-rpi-slide.png` | Hypervelocity Engineering presentation showing the four RPI phases on rendered slide 12 | Module 00, connect the methodology | Diagram naming Research, Plan, Implement, and Review as a continuous cycle |
-| `hve-core-agent-picker.png` | VS Code agent picker showing all six HVE-Core 3.2.2 agents | Module 01, verify agents | Agent picker listing Task Researcher, Task Planner, Task Implementor, Task Reviewer, PR Review, and RPI Agent |
 | `manual-rpi-artifacts.png` | Explorer view showing the issue 01 research, plan, details, changes, and review artifacts under `.copilot-tracking/` | Module 02, inspect evidence | File tree with the exact manual RPI artifact directories and date-scoped files |
 | `rpi-agent-handoffs.png` | RPI Agent response showing numbered, All, Suggest, Save, and Compact handoffs | Module 03, observe orchestration | HVE-Core 3.2.2 RPI Agent handoff controls after completing a phase |
 | `standards-coach-picker.png` | VS Code agent picker showing Standards Coach loaded from the fork's `lab` namespace | Module 04, reload and verify | Agent picker with the custom Standards Coach available beside Marketplace agents |

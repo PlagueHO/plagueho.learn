@@ -35,15 +35,15 @@ This appendix is excluded from the 120-minute core total. Alternative clients ch
 - [ ] Install Copilot CLI through an approved current channel, such as npm, WinGet, or Homebrew. Use the current official installation guidance for the exact command.
 - [ ] In a disposable workspace, add the pinned marketplace:
 
-```text
-copilot plugin marketplace add microsoft/hve-core#hve-core-v3.2.2
-```
+  ```text
+  copilot plugin marketplace add microsoft/hve-core#hve-core-v3.2.2
+  ```
 
 - [ ] Install the core plugin:
 
-```text
-copilot plugin install hve-core@hve-core
-```
+  ```text
+  copilot plugin install hve-core@hve-core
+  ```
 
 - [ ] Use `/agent` to inspect the agents exposed by the installed plugin.
 - [ ] Record the CLI version, operating system, command result, and any difference from this page.

@@ -97,3 +97,30 @@ Plain separator.
   );
   assert.doesNotMatch(html, /class="task-list task-list"/);
 });
+
+test('keeps a task command and its guidance inside the same list item', async () => {
+  const renderer = await createMarkdownRenderer(
+    path.resolve('labs-site'),
+    { config: configureTaskLists },
+    '/',
+  );
+  const markdown = `- [ ] Start the development server.
+
+  \`\`\`powershell
+  npm run dev
+  \`\`\`
+
+  Keep this terminal running.
+
+- [ ] Open the site.
+`;
+  const html = await renderer.render(markdown, {
+    frontmatter: { sourcePath: 'labs/example/before-you-start.md' },
+  });
+
+  assert.match(
+    html,
+    /<li class="task-list-item">\s*<p>.*?Start the development server\..*?<\/p>\s*<div class="language-powershell[^"]*">.*?npm run dev.*?<\/div><p>Keep this terminal running\.<\/p>\s*<\/li>/s,
+  );
+  assert.doesNotMatch(html, /<hr(?:\s|>)/);
+});

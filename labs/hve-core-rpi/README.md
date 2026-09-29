@@ -25,6 +25,13 @@ Turn a feature request into tested code by applying the Hypervelocity Engineerin
 
 <!-- PUBLICATION-BLOCKER: screenshots and live product checks remain unresolved. -->
 
+## Required knowledge
+
+This lab assumes you have an intermediate understanding of VS Code, GitHub
+Copilot, and agentic development. You should be comfortable working in VS Code
+workspaces, using GitHub Copilot directing agents as they inspect a repository,
+use tools, and make changes.
+
 ## Learning outcomes
 
 By the end of the lab, you can:
@@ -66,8 +73,10 @@ This lab deliberately uses:
 
 - HVE-Core **3.2.2**.
 - The [`github-samples/caldova-careers`](https://github.com/github-samples/caldova-careers) template at commit `51f8bd21ca4b5b272bc004781d3ca87fb7a8a79a`.
-- Starter issue 01 for the manual RPI exercise.
-- Starter issue 05 for the autonomous RPI exercise.
+- Starter GitHub issue 01 for the manual RPI exercise.
+- Starter GitHub issue 05 for the autonomous RPI exercise.
+
+These starter labels identify the template's issue definitions. In your attendee repository, find **Search roles by title** and **Add a careers summary** by title in the GitHub **Issues** tab; their assigned issue numbers may differ.
 
 The pin makes the agent names, prompts, handoffs, and generated artifact paths reproducible. HVE-Core evolves rapidly, so do not substitute current `main` documentation for the 3.2.2 workflow during this lab.
 

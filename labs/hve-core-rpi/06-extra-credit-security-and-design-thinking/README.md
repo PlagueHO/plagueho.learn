@@ -36,18 +36,18 @@ This optional module is excluded from the 120-minute core total. The HVE-Core 3.
 - [ ] Confirm with the facilitator that current CLI behavior has been verified.
 - [ ] Add the exact pinned source:
 
-```text
-copilot plugin marketplace add microsoft/hve-core#hve-core-v3.2.2
-```
+  ```text
+  copilot plugin marketplace add microsoft/hve-core#hve-core-v3.2.2
+  ```
 
 - [ ] Install the Security and Design Thinking plugins:
 
-```text
-copilot plugin install security@hve-core
-copilot plugin install design-thinking@hve-core
-```
+  ```text
+  copilot plugin install security@hve-core
+  copilot plugin install design-thinking@hve-core
+  ```
 
-Do not replace `microsoft/hve-core#hve-core-v3.2.2` with `main` or an unpinned tag.
+  Do not replace `microsoft/hve-core#hve-core-v3.2.2` with `main` or an unpinned tag.
 
 ## Optional Security exercise
 

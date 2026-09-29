@@ -51,7 +51,7 @@ Confirm the sibling layout, exact `.vscode/settings.json` keys, and the `lab` na
 
 ## Models, billing, and pacing
 
-Copilot usage may consume premium requests or AI credits, depending on the participant's plan. Do not quote fixed request counts. Recommend Auto, small tasks, `/clear` between manual phases, and one autonomous RPI attempt per feature. Participants should stop or switch to representative artifacts if their plan limits further agent work.
+Copilot usage may consume AI Credits. Do not quote fixed credit amounts. Recommend Auto, small tasks, `/clear` between manual phases, and one autonomous RPI attempt per feature. Participants should stop or switch to representative artifacts if their plan limits further agent work.
 
 ## Publication checks
 

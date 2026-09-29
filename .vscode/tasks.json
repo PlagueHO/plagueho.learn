@@ -43,6 +43,158 @@
 			}
 		},
 		{
+			"label": "labs: generate",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"run",
+				"labs:generate"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"icon": {
+				"id": "references",
+				"color": "terminal.ansiCyan"
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "labs: validate",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"run",
+				"validate:lab-frontmatter"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"group": "test",
+			"icon": {
+				"id": "check",
+				"color": "terminal.ansiGreen"
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "labs: test",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"run",
+				"test:lab-scripts"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"group": "test",
+			"icon": {
+				"id": "beaker",
+				"color": "terminal.ansiGreen"
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "labs: build",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"run",
+				"labs:build"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"group": "build",
+			"icon": {
+				"id": "package",
+				"color": "terminal.ansiGreen"
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "labs: build production",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"run",
+				"labs:build:production"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"icon": {
+				"id": "package",
+				"color": "terminal.ansiGreen"
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "labs: dev",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"run",
+				"labs:dev"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"isBackground": true,
+			"icon": {
+				"id": "play",
+				"color": "terminal.ansiCyan"
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			}
+		},
+		{
+			"label": "labs: preview",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"run",
+				"labs:preview"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"isBackground": true,
+			"icon": {
+				"id": "play",
+				"color": "terminal.ansiCyan"
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			}
+		},
+		{
 			"label": "whitespace: fix trailing",
 			"type": "shell",
 			"command": "Get-ChildItem -Recurse -File -Include *.md,*.yml,*.yaml,*.json,*.ps1,*.py,*.sh | Where-Object { $_.FullName -notmatch '[/\\\\]\\.git[/\\\\]' -and $_.FullName -notmatch '[/\\\\]node_modules[/\\\\]' } | ForEach-Object { $content = [System.IO.File]::ReadAllText($_.FullName); $fixed = ($content -replace '[ \\t]+(?=\\r?\\n)', ''); if ($content -ne $fixed) { [System.IO.File]::WriteAllText($_.FullName, $fixed); Write-Host \"Fixed: $($_.FullName)\" } }; Write-Host 'Done.'",

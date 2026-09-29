@@ -12,8 +12,9 @@ Complete this preparation before the timed lab begins.
 
 You need:
 
-- A paid GitHub Copilot plan. Agent work may consume premium requests or AI credits, depending on your plan.
+- A paid GitHub Copilot plan. Agent work may consume AI Credits.
 - Git and a GitHub account that can create a public repository from a template.
+- GitHub CLI (`gh`). Follow the [official installation instructions](https://cli.github.com/manual/installation) and [authentication guide](https://docs.github.com/en/github-cli/github-cli-authentication).
 - VS Code Insiders or VS Code Stable version 1.106.1 or later. Stable can be preferable in regulated environments.
 - Node.js 24.16 or later, or Node.js 22.22.3 or later.
 - npm, which is included with Node.js.
@@ -23,51 +24,73 @@ Use the **Auto** model unless your facilitator directs otherwise. Keep tasks foc
 
 ## Create the attendee repository
 
+- [ ] Confirm that the GitHub CLI is installed and authenticated to GitHub.com:
+
+  ```powershell
+  gh --version
+  gh auth status --hostname github.com
+  ```
+
+  If you are not authenticated, run `gh auth login --hostname github.com` and follow the prompts. Then repeat `gh auth status --hostname github.com`.
+
 - [ ] Open the [`github-samples/caldova-careers`](https://github.com/github-samples/caldova-careers) template.
-- [ ] Select **Use this template**, create your own public repository, and clone it.
-- [ ] Push the template-created `main` branch once to trigger the repository bootstrap workflow.
+- [ ] Select **Use this template** and create your own public repository. Use `caldova-careers` as the repository name so the paths in this lab match your workspace.
+- [ ] Replace `YOUR-ACCOUNT` with your GitHub username or organization, clone your new repository, and change into its directory:
 
-```powershell
-git push -u origin main
-```
+  ```powershell
+  git clone https://github.com/YOUR-ACCOUNT/caldova-careers.git
+  Set-Location caldova-careers
+  git rev-parse --show-toplevel
+  ```
 
-- [ ] Wait for the bootstrap workflow to finish, then verify that issue 01 and issue 05 exist.
-- [ ] Verify that the attendee repository's starting tree matches the pinned template tree.
+  Check that the last command prints the path to your *attendee* `caldova-careers` repository. Run the remaining Git and npm commands from this directory unless a module tells you to switch to the HVE-Core fork.
 
-GitHub creates a new commit when you use a template, so commit hashes will differ even when the file content is correct. Fetch the pinned source commit and compare Git trees instead:
+- [ ] Push `main` from the cloned repository to trigger the issue bootstrap workflow:
 
-```powershell
-git remote add template-source https://github.com/github-samples/caldova-careers.git
-git fetch --depth 1 template-source 51f8bd21ca4b5b272bc004781d3ca87fb7a8a79a
-git diff --quiet 'FETCH_HEAD^{tree}' 'HEAD^{tree}'
-if ($LASTEXITCODE -ne 0) {
-    throw 'The attendee repository content does not match the pinned template baseline.'
-}
-```
+  ```powershell
+  git push -u origin main
+  ```
 
-If the tree comparison fails, stop and ask the facilitator whether the template has changed. Do not silently continue with a different baseline.
+  If Git reports `Everything up-to-date`, no push event was created. In your new repository's **Actions** tab, check whether **Bootstrap issues** has already run or is running. If it has not, enable Actions if prompted, then select **Run workflow** on `main` and wait for it to succeed. Do not rerun a successful workflow.
+
+- [ ] In your new `YOUR-ACCOUNT/caldova-careers` repository on GitHub, open **Actions** and wait for **Bootstrap issues** to show a green success check.
+- [ ] In the same repository, open **Issues** and find **Search roles by title** (starter issue 01) and **Add a careers summary** (starter issue 05). If either issue is missing after the workflow succeeds, ask the facilitator before continuing.
+
+  GitHub assigns issue numbers in your repository, so find these issues by title rather than assuming they are numbered 1 and 5.
+
+- [ ] Back in the terminal in your cloned `caldova-careers` directory, bring down the workflow's cleanup commit:
+
+  ```powershell
+  git pull --ff-only origin main
+  ```
 
 ## Prepare and verify the application
 
 - [ ] Install dependencies.
 
-```powershell
-npm ci
-```
+  ```powershell
+  npm ci
+  ```
 
 - [ ] Run the required Vitest unit test suite.
 
-```powershell
-npm run test:unit
-```
+  ```powershell
+  npm run test:unit
+  ```
 
-- [ ] Start the development server and open `http://localhost:4321`.
+- [ ] Start the development server and open `http://localhost:4321`. Leave this terminal running; use a second terminal for the remaining commands.
 
-```powershell
-npm run dev
-```
+  ```powershell
+  npm run dev
+  ```
 
-- [ ] Add `.copilot-tracking/` to the attendee repository's `.gitignore`.
+- [ ] Add `.copilot-tracking/` to the attendee repository's `.gitignore` and commit the change on `main` so both feature branches inherit it:
+
+  ```powershell
+  Add-Content .gitignore '.copilot-tracking/'
+  git add .gitignore
+  git commit -m "chore: ignore local RPI artifacts"
+  ```
 
 The lab treats Vitest unit tests as required for both features. Playwright is optional. To prepare Chromium for the optional browser tests, run:
 
@@ -82,17 +105,19 @@ npm run test:e2e:install
 
 ## Optional Codespaces path
 
-If local installation is restricted, create a Codespace from your attendee repository. Wait for the dev container setup to finish, compare the repository tree with the pinned baseline, run the unit tests, and confirm the application at the forwarded port. Editor extension availability and organizational policy can differ in Codespaces, so verify that HVE-Core 3.2.2 is available before the timed session.
+If local installation is restricted, create a Codespace from your attendee repository. Wait for the dev container setup to finish, run the unit tests, and confirm the application at the forwarded port. Editor extension availability and organizational policy can differ in Codespaces, so verify that HVE-Core 3.2.2 is available before the timed session.
 
 ## Version transition
 
 > [!IMPORTANT]
-> This lab is pinned to HVE-Core 3.2.2, whose stable extension provides the Task Researcher, Task Planner, Task Implementor, Task Reviewer, PR Review, and RPI Agent. Newer HVE-Core source has moved the separate Task agents to `/rpi-*` skills. Each legacy Task agent exercise includes a collapsed future equivalent. As of 2026-09-29, follow the 3.2.2 instructions for the timed lab.
+> This lab is pinned to HVE-Core 3.2.2, whose agent picker includes Memory, PR Review, Prompt Builder, RPI Agent, Task Implementor, Task Planner, Task Researcher, and Task Reviewer. Newer HVE-Core source has moved the separate Task agents to `/rpi-*` skills. Each legacy Task agent exercise includes a collapsed future equivalent. As of 2026-09-29, follow the 3.2.2 instructions for the timed lab.
 
 ## Ready check
 
 - [ ] The application starts at `http://localhost:4321`.
 - [ ] All baseline Vitest unit tests pass.
-- [ ] The attendee repository has issues 01 and 05.
+- [ ] The **Issues** tab of your attendee repository has **Search roles by title** and **Add a careers summary**.
 - [ ] `.copilot-tracking/` is ignored.
+- [ ] The GitHub CLI is installed; `gh --version` prints a version in the terminal.
+- [ ] `gh auth status --hostname github.com` confirms that you are authenticated.
 - [ ] Your editor meets the HVE-Core extension requirement.

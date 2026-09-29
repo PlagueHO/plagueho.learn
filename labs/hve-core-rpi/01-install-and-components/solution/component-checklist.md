@@ -2,14 +2,16 @@
 
 Expected agents:
 
-- Task Researcher
-- Task Planner
-- Task Implementor
-- Task Reviewer
+- Memory
 - PR Review
+- Prompt Builder
 - RPI Agent
+- Task Implementor
+- Task Planner
+- Task Researcher
+- Task Reviewer
 
-Expected slash commands:
+Prompts used in later modules:
 
 - `/rpi`
 - `/task-research`

@@ -28,10 +28,9 @@ HVE is the methodology. HVE-Core is tooling that provides one proven, opinionate
 
 ## Connect the presentation to the lab
 
-- [ ] Open rendered slides [1 through 12](https://plagueho.github.io/plagueho.learn/hypervelocity-engineering/#/1).
+- [ ] Have your presenter cover the principles of Hypervelocity Engineering from slides [1 through 12](https://plagueho.github.io/plagueho.learn/hypervelocity-engineering/#/1), or review these on your own.
 - [ ] Identify the four HVE pillars described in the presentation: Multidisciplinary Teams, Design Thinking, Production-Ready Starting Points, and AI Agents & Tools.
-- [ ] On slide 12, name the four phases in order: Research, Plan, Implement, Review.
-- [ ] Discuss where human intent, evidence, and validation appear in the cycle.
+- [ ] Make sure you can name the four phases of RPI in order.
 
 <details class="screenshot-expander">
 <summary>📸 Screenshot: the RPI cycle</summary>
@@ -53,10 +52,6 @@ The four canonical HVE principles describe how the pillars guide daily engineeri
 
 Use all four pillars together. Multidisciplinary Teams bring the right expertise, Design Thinking keeps work tied to a valuable problem, Production-Ready Starting Points reduce reinvention, and AI Agents & Tools accelerate the full lifecycle without removing human accountability.
 
-- [ ] Explain to a partner why a generated answer is not evidence until it has been checked against the repository.
-- [ ] Name one decision that should remain human-owned during the manual RPI exercise.
-- [ ] Record the principle you most want to introduce to your team.
-
 ## Prepare for the tooling
 
 In module 01 you will inspect the HVE-Core components that operationalize this cycle. The tooling is not the methodology itself. You can adapt the delivery mechanism while preserving small-step iteration, validation, business value, and embedded security and quality.
@@ -67,4 +62,3 @@ If you need a concise recap, compare your notes with [the principles map](./solu
 
 - [ ] You can distinguish HVE from HVE-Core.
 - [ ] You can describe all four RPI phases.
-- [ ] You have identified a human decision point and a validation point.
