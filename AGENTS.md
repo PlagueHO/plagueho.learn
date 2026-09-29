@@ -62,6 +62,9 @@ pnpm labs:generate
 # Generate and build the labs site
 pnpm labs:build
 
+# Build the production labs site with published labs only
+pnpm labs:build:production
+
 # Generate and run the labs development server
 pnpm labs:dev
 
@@ -113,6 +116,7 @@ PR merges to `main` require the **Continuous Integration** workflow to pass:
 - **JSON validation**: fails if any `.json` file has invalid syntax
 - **Lab metadata validation** (`pnpm validate:lab-frontmatter`): fails for schema, route, or related-deck errors
 - **Hands-on labs build** (`pnpm labs:build`): fails for generation, dead-link, or VitePress build errors
+- **Pages labs build** (`pnpm labs:build:production`): publishes only labs with `status: published`
 - **Markdown lint** (`pnpm lint:md`): fails on any markdownlint rule violation
 - **Slidev build**: builds all `presentations/*/slides.md`; fails on build errors
 

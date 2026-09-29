@@ -6,7 +6,7 @@
 
 import assert from 'node:assert/strict';
 import { execFile } from 'node:child_process';
-import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { promisify } from 'node:util';
@@ -64,6 +64,8 @@ contentType: lab
 [Prerequisites](../before-you-start.md)
 [Facilitator](../facilitator-notes.md)
 [Solution](./solution/answer.txt)
+[Assets directory](../assets/)
+[Solution directory](./solution/)
 ${extra}`;
 }
 
@@ -115,8 +117,29 @@ drawings:
   return root;
 }
 
-async function runGenerator(root) {
-  return execFileAsync(process.execPath, [script, '--root', root], { windowsHide: true });
+async function cloneLab(root, slug, status) {
+  const source = path.join(root, 'labs', 'example-lab');
+  const target = path.join(root, 'labs', slug);
+  const title = slug.split('-').map((part) => `${part[0].toUpperCase()}${part.slice(1)}`).join(' ');
+  await cp(source, target, { recursive: true });
+  const readmePath = path.join(target, 'README.md');
+  const readme = (await readFile(readmePath, 'utf8'))
+    .replace("title: 'Example Lab'", `title: '${title}'`)
+    .replace('status: published', `status: ${status}`)
+    .replace('# Example Lab', `# ${title}`);
+  await writeFile(readmePath, readme, 'utf8');
+  const modulePath = path.join(target, '01-first-step', 'README.md');
+  const module = (await readFile(modulePath, 'utf8'))
+    .replace('track: example-lab', `track: ${slug}`);
+  await writeFile(modulePath, module, 'utf8');
+}
+
+async function runGenerator(root, ...argumentsList) {
+  return execFileAsync(
+    process.execPath,
+    [script, '--root', root, ...argumentsList],
+    { windowsHide: true },
+  );
 }
 
 async function expectFailure(root, pattern) {
@@ -153,6 +176,8 @@ test('generates deterministic canonical pages and rewrites every supported link 
   assert.match(first.module, /\[Prerequisites\]\(\.\/before-you-start\)/);
   assert.match(first.module, /\[Facilitator\]\(\.\/facilitator-notes\)/);
   assert.match(first.module, /\[Solution\]\(\.\/first-step\/solution\/answer\.txt\)/);
+  assert.match(first.module, /\[Assets directory\]\(\.\/assets\)/);
+  assert.match(first.module, /\[Solution directory\]\(\.\/first-step\/solution\)/);
   assert.ok(await readFile(path.join(root, 'labs-site', 'example-lab', 'assets', 'diagram.png')));
   assert.ok(await readFile(
     path.join(root, 'labs-site', 'example-lab', 'first-step', 'solution', 'answer.txt'),
@@ -181,6 +206,35 @@ test('generates deterministic canonical pages and rewrites every supported link 
     },
     first,
   );
+});
+
+test('production generation includes only published labs and removes stale non-published output', async (t) => {
+  const root = await createWorkspace();
+  t.after(() => rm(root, { recursive: true, force: true }));
+  await cloneLab(root, 'draft-lab', 'draft');
+  await cloneLab(root, 'archived-lab', 'archived');
+
+  const localResult = await runGenerator(root);
+  assert.match(localResult.stdout, /Generated VitePress content for 3 labs\./);
+  assert.ok(await readFile(path.join(root, 'labs-site', 'draft-lab', 'index.md'), 'utf8'));
+  assert.ok(await readFile(path.join(root, 'labs-site', 'archived-lab', 'index.md'), 'utf8'));
+
+  const productionResult = await runGenerator(root, '--production');
+  assert.match(productionResult.stdout, /Generated VitePress content for 1 lab\./);
+  const catalogue = await readFile(path.join(root, 'labs-site', 'index.md'), 'utf8');
+  const sidebar = await readFile(
+    path.join(root, 'labs-site', '.vitepress', 'labs-sidebar.ts'),
+    'utf8',
+  );
+  assert.match(catalogue, /\/example-lab\//);
+  assert.doesNotMatch(catalogue, /\/(?:draft|archived)-lab\//);
+  assert.match(sidebar, /\/example-lab\//);
+  assert.doesNotMatch(sidebar, /\/(?:draft|archived)-lab\//);
+  await assert.rejects(readFile(path.join(root, 'labs-site', 'draft-lab', 'index.md'), 'utf8'));
+  await assert.rejects(readFile(path.join(root, 'labs-site', 'draft-lab', 'assets', 'diagram.png')));
+  await assert.rejects(readFile(
+    path.join(root, 'labs-site', 'archived-lab', 'first-step', 'solution', 'answer.txt'),
+  ));
 });
 
 test('normalizes linked task text without inserting spaces before punctuation', () => {
@@ -255,4 +309,29 @@ test('fails for unsupported and unmappable relative links', async (t) => {
     moduleSource({ extra: '[Missing](./missing.txt)\n' }),
   );
   await expectFailure(missingRoot, /cannot map missing link.*missing\.txt/i);
+});
+
+test('fails with source and target diagnostics for missing copied-resource links', async (t) => {
+  const missingAssetRoot = await createWorkspace();
+  const missingSolutionRoot = await createWorkspace();
+  t.after(() => Promise.all([
+    rm(missingAssetRoot, { recursive: true, force: true }),
+    rm(missingSolutionRoot, { recursive: true, force: true }),
+  ]));
+  await writeFile(
+    path.join(missingAssetRoot, 'labs', 'example-lab', '01-first-step', 'README.md'),
+    moduleSource({ extra: '![Missing asset](../assets/missing.png)\n' }),
+  );
+  await expectFailure(
+    missingAssetRoot,
+    /01-first-step\/README\.md: copied-resource link "\.\.\/assets\/missing\.png" targets missing source "assets\/missing\.png"/i,
+  );
+  await writeFile(
+    path.join(missingSolutionRoot, 'labs', 'example-lab', '01-first-step', 'README.md'),
+    moduleSource({ extra: '[Missing recovery](./solution/nested/missing.md)\n' }),
+  );
+  await expectFailure(
+    missingSolutionRoot,
+    /01-first-step\/README\.md: copied-resource link "\.\/solution\/nested\/missing\.md" targets missing source "01-first-step\/solution\/nested\/missing\.md"/i,
+  );
 });

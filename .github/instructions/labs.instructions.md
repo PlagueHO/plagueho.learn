@@ -145,6 +145,8 @@ pnpm lint:md
 pnpm labs:build
 ```
 
+Use `pnpm labs:build:production` for deployment validation. Production generation includes only labs with `status: published`; ordinary generation and builds retain draft and archived labs for local review.
+
 Use these commands during authoring:
 
 ```powershell

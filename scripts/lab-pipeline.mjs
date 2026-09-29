@@ -540,7 +540,16 @@ async function rewriteTarget(target, context) {
 
   const page = context.pageMap.get(linkedSource);
   let outputRelative = page?.outputRelative;
-  if (!outputRelative) outputRelative = outputPathForCopiedSource(context.lab, linkedSource);
+  if (!outputRelative) {
+    outputRelative = outputPathForCopiedSource(context.lab, linkedSource);
+    if (outputRelative && !(await pathExists(linkedSource))) {
+      context.errors.push(
+        `${context.sourceRelative}: copied-resource link "${target}" targets missing source ` +
+        `"${toPosix(path.relative(context.lab.root, linkedSource))}"`,
+      );
+      return target;
+    }
+  }
   if (!outputRelative) {
     const exists = await pathExists(linkedSource);
     context.errors.push(

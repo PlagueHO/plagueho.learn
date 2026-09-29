@@ -1,7 +1,7 @@
 /**
  * Purpose: Generate deterministic VitePress lab pages, copied resources, catalogue, and sidebar.
- * Parameters: Optional --root <path> selects a repository-shaped workspace; defaults to the current directory.
- * Usage: node scripts/generate-vitepress-labs.mjs [--root <path>]
+ * Parameters: Optional --root <path> selects a workspace; --production includes only published labs.
+ * Usage: node scripts/generate-vitepress-labs.mjs [--root <path>] [--production]
  */
 
 import { cp, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
@@ -241,19 +241,23 @@ async function collectSolutionMarkdown(lab, pageMap, errors) {
   return resources;
 }
 
-export async function generateLabs(root) {
+export async function generateLabs(root, { production = false } = {}) {
   const workspace = await discoverWorkspace(root);
   if (workspace.errors.length > 0) {
     throw new Error(formatErrors(workspace.errors, 'Lab generation'));
   }
 
+  const labs = production
+    ? workspace.labs.filter((lab) => lab.metadata.status === 'published')
+    : workspace.labs;
+  const generationWorkspace = { ...workspace, labs };
   const siteRoot = path.join(root, 'labs-site');
-  const pageMap = buildPageMap(workspace);
+  const pageMap = buildPageMap(generationWorkspace);
   const generatedPages = [];
   const rewrittenSolutionMarkdown = [];
   const linkErrors = [];
 
-  for (const lab of workspace.labs) {
+  for (const lab of labs) {
     const pages = [lab, ...lab.supportingPages, ...lab.modules];
     for (const page of pages) {
       const mapping = pageMap.get(path.normalize(page.absolutePath));
@@ -286,22 +290,38 @@ export async function generateLabs(root) {
     await mkdir(path.dirname(page.output), { recursive: true });
     await writeFile(page.output, page.content, 'utf8');
   }
-  for (const lab of workspace.labs) await copyResources(lab, siteRoot);
+  for (const lab of labs) await copyResources(lab, siteRoot);
   for (const resource of rewrittenSolutionMarkdown) {
     await writeFile(path.join(siteRoot, resource.outputRelative), resource.content, 'utf8');
   }
-  await writeFile(path.join(siteRoot, 'index.md'), renderCatalogue(workspace.labs), 'utf8');
+  await writeFile(path.join(siteRoot, 'index.md'), renderCatalogue(labs), 'utf8');
   await writeFile(
     path.join(siteRoot, '.vitepress', 'labs-sidebar.ts'),
-    renderSidebar(workspace.labs),
+    renderSidebar(labs),
     'utf8',
   );
-  return workspace.labs.length;
+  return labs.length;
+}
+
+function parseGenerationArguments(argumentsList) {
+  const rootArguments = [];
+  let production = false;
+  for (const argument of argumentsList) {
+    if (argument === '--production') {
+      production = true;
+    } else {
+      rootArguments.push(argument);
+    }
+  }
+  return {
+    root: parseRootArgument(rootArguments),
+    production,
+  };
 }
 
 async function main() {
-  const root = parseRootArgument(process.argv.slice(2));
-  const count = await generateLabs(root);
+  const { root, production } = parseGenerationArguments(process.argv.slice(2));
+  const count = await generateLabs(root, { production });
   console.log(`Generated VitePress content for ${count} lab${count === 1 ? '' : 's'}.`);
 }
 
