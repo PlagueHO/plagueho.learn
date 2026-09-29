@@ -77,9 +77,13 @@ function configureTaskLists(md: MarkdownIt): void {
         ` data-task-id="${taskId(sourcePath, normalizedText, duplicateOrdinal)}"`,
         `${checked}>`,
         '<span class="task-control-mark" aria-hidden="true"></span>',
-        '</label> ',
+        '</label>',
+        '<span class="task-text">',
       ].join('');
+      const close = new state.Token('html_inline', '', 0);
+      close.content = '</span>';
       inline.children.unshift(input);
+      inline.children.push(close);
 
       state.tokens[index - 2].attrJoin('class', 'task-list-item');
       for (let parentIndex = index - 3; parentIndex >= 0; parentIndex -= 1) {

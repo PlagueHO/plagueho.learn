@@ -13,6 +13,13 @@
   border-bottom: 1px solid var(--labs-rule);
 }
 
+.vp-doc .task-list-item > .task-text,
+.vp-doc .task-list-item > ul,
+.vp-doc .task-list-item > ol {
+  grid-column: 2;
+  min-inline-size: 0;
+}
+
 .vp-doc .task-control {
   position: relative;
   display: grid;
