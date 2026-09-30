@@ -1,4 +1,4 @@
-# Optional plugin exercise notes
+# Optional Copilot CLI exercise notes
 
 Useful Security output should:
 

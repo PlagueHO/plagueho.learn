@@ -1,7 +1,7 @@
 ---
-title: 'Optional Security and Design Thinking plugins'
-description: 'Explore pinned HVE-Core 3.2.2 CLI plugins for security review and problem framing.'
-lastUpdated: '2026-09-29'
+title: 'Demonstrate HVE in Copilot CLI'
+description: 'Install the HVE Core plugin to demonstrate HVE workflows in Copilot CLI.'
+lastUpdated: '2026-09-30'
 track: hve-core-rpi
 module: 5
 slug: extra-credit-security-and-design-thinking
@@ -24,56 +24,81 @@ status: published
 contentType: lab
 ---
 <!-- markdownlint-disable-next-line MD025 -->
-# Optional Security and Design Thinking plugins
+# Demonstrate HVE in Copilot CLI
 
-This extra-credit module is excluded from the 100-minute core total. The HVE-Core 3.2.2 VS Code extension does not include the Security or Design Thinking components. They are separate Copilot CLI plugins at the pinned source.
+This extra-credit module is excluded from the 100-minute core total. It demonstrates how the HVE Core plugin exposes Core, Security, and Design Thinking workflows in another GitHub Copilot tool.
 
-> [!WARNING]
-> CLI plugin commands and behavior are date-sensitive. As of 2026-09-29, the source and package names below are pinned from HVE-Core 3.2.2, but this lab has not independently confirmed the commands against every current CLI build. Verify them in a disposable environment before delivery.
+> [!CAUTION]
+> Copilot CLI plugin commands and behavior are date-sensitive. A facilitator must test these steps in a disposable workspace on the delivery date before presenting them as operational.
 
-## Add the pinned marketplace
+## Add the latest marketplace
 
-- [ ] Confirm with the facilitator that current CLI behavior has been verified.
-- [ ] Add the exact pinned source:
-
-  ```text
-  copilot plugin marketplace add microsoft/hve-core#hve-core-v3.2.2
-  ```
-
-- [ ] Install the Security and Design Thinking plugins:
+- [ ] Confirm with the facilitator that the current Copilot CLI behavior has been verified.
+- [ ] From a disposable workspace, add the latest HVE-Core marketplace content:
 
   ```text
-  copilot plugin install security@hve-core
-  copilot plugin install design-thinking@hve-core
+  copilot plugin marketplace add microsoft/hve-core
   ```
 
-  Do not replace `microsoft/hve-core#hve-core-v3.2.2` with `main` or an unpinned tag.
+- [ ] Install the HVE Core plugin. Its bundled agents include the Security and Design Thinking workflows:
+
+  ```text
+  copilot plugin install hve-core@hve-core
+  ```
+
+- [ ] When the marketplace has already been registered, refresh it before updating the plugins:
+
+  ```text
+  copilot plugin marketplace update hve-core
+  copilot plugin update hve-core@hve-core
+  ```
+
+## Explore the HVE plugins
+
+- [ ] Start Copilot CLI from the attendee `caldova-careers` repository root.
+- [ ] Confirm that the HVE Core plugin exposes the `/hve-core:security-review` skill.
+- [ ] Use `/agent` to confirm that the HVE Core plugin exposes the **hve-core:dt-coach** agent.
+- [ ] Note how the same HVE workflow assets can be delivered through VS Code or Copilot CLI.
 
 ## Optional Security exercise
 
-- [ ] Review `src/pages/api/apply.ts` before invoking any agent.
-- [ ] Run `/security-review` against that small, known scope.
+- [ ] Review `src/pages/api/apply.ts` before invoking the skill.
+- [ ] Run the HVE Core Security Review skill against that file:
+
+  ```text
+  /hve-core:security-review @src/pages/api/apply.ts
+  ```
+
 - [ ] Check each finding against the source and discard unsupported claims.
 - [ ] Compare the security-focused result with PR Review.
 - [ ] Do not paste secrets, applicant data, credentials, or production values into a prompt.
 
 ## Optional Design Thinking exercise
 
-- [ ] Select DT Coach from the Design Thinking plugin.
-- [ ] Start with the vague request: `Build a careers dashboard`.
-- [ ] Ask the coach to reframe the request through user needs, desired outcomes, assumptions, and evidence.
-- [ ] Record a focused problem statement.
-- [ ] Hand the refined problem to Research rather than asking Design Thinking to implement it.
+- [ ] Activate the Design Thinking coach:
 
-## Instruction limitation
+  ```text
+  /agent hve-core:dt-coach
+  ```
 
-Copilot CLI plugin instructions may not apply automatically through `applyTo`. Reference a required instruction with `#file:` or copy an approved instruction into the target repository's `.github/instructions/` directory.
+- [ ] Prompt the active agent with this intentionally vague request:
+
+  ```text
+  Build a careers dashboard
+  ```
+
+- [ ] Follow the Design Thinking coach's instructions as it guides the conversation and recommends the next steps.
+
+## CLI instruction limitation
+
+Plugin instructions may not apply automatically through `applyTo` in Copilot CLI. Reference a required instruction explicitly with `#file:` or copy an approved instruction into the target repository's `.github/instructions/` directory.
 
 ## Completion check
 
-- [ ] Both plugins came from `microsoft/hve-core#hve-core-v3.2.2`.
+- [ ] The HVE Core plugin came from the latest `microsoft/hve-core` marketplace content.
+- [ ] HVE Core exposes the `/hve-core:security-review` skill and **hve-core:dt-coach** agent in Copilot CLI.
 - [ ] Security findings were checked against source evidence.
-- [ ] The Design Thinking result reframed the problem before RPI.
-- [ ] You recorded any CLI discrepancy for publication review.
+- [ ] You followed the Design Thinking coach's guidance through the exercise.
+- [ ] You recorded any Copilot CLI discrepancy for publication review.
 
 Compare your observations with [the optional exercise notes](./solution/exercise-notes.md).

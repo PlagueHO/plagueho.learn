@@ -54,7 +54,7 @@ The five core modules total exactly 100 minutes. Extra-credit modules are not in
 
 ## Extra-credit modules
 
-- [Security and Design Thinking plugins](./05-extra-credit-security-and-design-thinking/README.md)
+- [Demonstrate HVE in Copilot CLI](./05-extra-credit-security-and-design-thinking/README.md)
 - [Fork and customize HVE-Core](./06-extra-credit-fork-and-customize/README.md)
 - [Copilot CLI and Copilot app appendix](./07-appendix-copilot-cli-and-app/README.md)
 
