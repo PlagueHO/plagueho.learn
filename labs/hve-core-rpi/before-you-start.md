@@ -14,7 +14,7 @@ You need:
 
 - A paid GitHub Copilot plan. Agent work may consume AI Credits.
 - Git and a GitHub account that can create a public repository from a template.
-- GitHub CLI (`gh`). Follow the [official installation instructions](https://cli.github.com/manual/installation) and [authentication guide](https://docs.github.com/en/github-cli/github-cli-authentication).
+- GitHub CLI (`gh`). Follow the [official installation instructions](https://github.com/cli/cli#installation) and [authentication guide](https://docs.github.com/en/github-cli/github-cli-authentication).
 - VS Code Insiders or VS Code Stable version 1.106.1 or later. Stable can be preferable in regulated environments.
 - Node.js 24.16 or later, or Node.js 22.22.3 or later.
 - npm, which is included with Node.js.
