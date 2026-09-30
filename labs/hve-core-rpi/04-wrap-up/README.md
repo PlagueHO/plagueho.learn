@@ -86,7 +86,7 @@ Use the [adoption worksheet](./solution/adoption-worksheet.md) to record the dec
 
 - Try the extra-credit [Demonstrate HVE in Copilot CLI](../05-extra-credit-security-and-design-thinking/README.md).
 - Try extra-credit [Fork and customize HVE-Core](../06-extra-credit-fork-and-customize/README.md).
-- Review the date-sensitive [Copilot CLI and Copilot app appendix](../07-appendix-copilot-cli-and-app/README.md).
+- Run the extra-credit [RPI process in Copilot CLI](../07-rpi-in-copilot-cli/README.md).
 - Revisit [Hypervelocity Engineering slides 1 through 12](https://plagueho.github.io/plagueho.learn/hypervelocity-engineering/#/1).
 
 ## Completion check
