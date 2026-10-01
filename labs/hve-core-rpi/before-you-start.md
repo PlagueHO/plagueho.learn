@@ -45,18 +45,7 @@ Use the **Auto** model unless your facilitator directs otherwise. Keep tasks foc
 
   Check that the last command prints the path to your *attendee* `caldova-careers` repository. Run the remaining Git and npm commands from this directory unless a module tells you to switch to the HVE-Core fork.
 
-- [ ] Push `main` from the cloned repository to trigger the issue bootstrap workflow:
-
-  ```powershell
-  git push -u origin main
-  ```
-
-  If Git reports `Everything up-to-date`, no push event was created. In your new repository's **Actions** tab, check whether **Bootstrap issues** has already run or is running. If it has not, enable Actions if prompted, then select **Run workflow** on `main` and wait for it to succeed. Do not rerun a successful workflow.
-
-- [ ] In your new `YOUR-ACCOUNT/caldova-careers` repository on GitHub, open **Actions** and wait for **Bootstrap issues** to show a green success check.
-
-> [!NOTE]
-> The Actions run will be automatically deleted once it is completed, so you can just check that the **Issues** have been created.
+- [ ] In your new `YOUR-ACCOUNT/caldova-careers` repository on GitHub, open **Actions** and wait for **Initial Commit** > *Bootstrap issues* to show a green success check.
 
 - [ ] In the same repository, open **Issues** and find **Search roles by title** (starter issue 01) and **Add a careers summary** (starter issue 05). If either issue is missing after the workflow succeeds, ask the facilitator before continuing.
 
