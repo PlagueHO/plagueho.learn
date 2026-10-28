@@ -1,2 +1,5 @@
 allowBuilds:
   esbuild: true
+overrides:
+  # 66.10.5 corrupts Slidev CSS when removing empty rules after directive expansion.
+  '@unocss/transformer-directives': 66.11.0
