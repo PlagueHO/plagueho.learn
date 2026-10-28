@@ -61,4 +61,4 @@ Before delivering this lab after 2026-09-29:
 - Recheck that 3.2.2 remains the intended stable teaching version.
 - Verify current Copilot CLI plugin commands in a disposable environment.
 - Verify the `rpi-*` skill names and artifact paths used in module 07.
-- Capture and review every item in [the screenshot inventory](./assets/screenshots/CAPTURE-LIST.md).
+- Review the lab screenshots for accuracy before delivery.
