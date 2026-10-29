@@ -39,6 +39,15 @@ Content under [`labs/`](labs/) is authored source. The VitePress pages under `la
 
 Reusable development patterns with explanations of when and how to apply them.
 
+## Presentations ([`presentations/`](presentations/))
+
+Most presentations use Slidev. HVE also has a separate Reveal.js edition so the two versions can be developed side by side.
+
+| Presentation | Format | Source |
+|---|---|---|
+| Original Hypervelocity Engineering | Slidev | [Original deck](presentations/hypervelocity-engineering/slides.md) |
+| Hypervelocity Engineering — leadership and optional HVE-Core | Reveal.js | [New deck and run instructions](presentations/hypervelocity-engineering-reveal/README.md) |
+
 ## Repository Structure
 
 ```text
@@ -61,7 +70,7 @@ plagueho.learn/
 ├── labs-site/                  # VitePress shell and generated lab pages
 ├── learning-pathways/          # Curated learning pathways
 ├── patterns/                   # Reusable development patterns
-├── presentations/              # Slidev presentation source
+├── presentations/              # Slidev decks and standalone presentations
 ├── scripts/                    # Utility scripts
 └── README.md
 ```

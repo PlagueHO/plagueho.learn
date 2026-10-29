@@ -1,0 +1,96 @@
+## Hypervelocity Engineering — Reveal.js edition
+
+An independent presentation for technical leaders, engineering managers, and senior engineers. This deck sits beside the unchanged [original Slidev presentation](../hypervelocity-engineering/slides.md). It is not a Slidev conversion.
+
+The talk has 20 leadership slides for 30 minutes, 10 optional HVE-Core slides for 30 minutes, and five separate demo support slides. Demo and Q&A time are not assigned. See [OUTLINE.md](./OUTLINE.md) and [RESEARCH-NOTES.md](./RESEARCH-NOTES.md).
+
+HVE is an engineering operating model, not simply faster coding with AI. A small expert crew and the customer work through a continuous idea, validation, engineering, and feedback loop. The four pillars support that loop: multidisciplinary teams, Design Thinking, production-ready accelerators, and AI throughout the lifecycle.
+
+The recurring loop puts the customer inside the crew. Expert validation and built-in security, observability, testing, and CI/CD remain essential. The aim is shorter time toward production value, not a fixed delivery promise or a claim that a prototype is production-ready.
+
+## Run locally
+
+Use Node.js 22.12 or later. Run these commands from this folder:
+
+```shell
+npm ci
+npm start
+```
+
+Open `http://127.0.0.1:3043`. To use another port:
+
+```shell
+npm run preview -- 3044
+```
+
+`npm start` builds once and starts a loopback-only server. It does not watch files. After an edit, run `npm run build` in another terminal and reload the page.
+
+## Build and check
+
+```shell
+npm run build
+npm test
+```
+
+Run `npm run lint:md` from the repository root to check Markdown.
+
+The build copies the pinned Reveal.js runtime, notes plugin, and license into `dist/vendor/`. It does not load a CDN, remote font, or remote script. The package source comes from the developer's npm configuration. The lockfile records the version and integrity without a registry URL.
+
+This deck has its own package and lockfile. It does not change the root pnpm package or the Slidev toolchain.
+
+## Present
+
+| Action | Control |
+|---|---|
+| Next or previous slide | Arrow keys or navigation arrows |
+| Slide overview | Escape or Overview |
+| Speaker view with notes and timer | S or Speaker notes |
+| Pause for questions | B or the questions button |
+| Resume | B, Escape, or the resume button |
+| Full screen | F |
+| Jump between sections | Persistent footer links |
+| Browser print layout | Append `?print-pdf` before the URL hash |
+
+Speaker view needs HTTP and permission to open a popup. The notes contain public sources and presenter guidance. They ship with the public deck; do not put private information in them.
+
+For PDF export, open `http://127.0.0.1:3043/?print-pdf`, wait for the slides to load, then use the browser's Print command. Enable background graphics. See the [Reveal.js PDF guide](https://revealjs.com/pdf-export/).
+
+The leadership close includes public resources and routes to questions, the optional deep dive, or demos. The demo recap does not claim that a system reached production.
+
+## Edit
+
+| File | Purpose |
+|---|---|
+| `deck.mjs` | Slide content, original diagrams, timing, notes, and public sources |
+| `index.html` | Accessible presentation shell and build insertion marker |
+| `theme.css` | Independent light theme and slide layouts |
+| `presentation.mjs` | Reveal.js settings, section state, and controls |
+| `build.mjs` | Static build with local runtime assets |
+| `serve.mjs` | Local preview server |
+| `deck.test.mjs` | Structure, timing, content, asset, route, and server checks |
+
+The light canvas, large headings, restrained purple accents, horizontal pillars, and recurring customer-and-crew loop follow the visual brief. The text and diagrams are original. Private photos, transcripts, and the supplied internal-source guide are not included. No unsupported coding-time percentages, staffing ratios, or internal customer results are used.
+
+## Publish
+
+Build the deck and copy the *contents* of `dist/` to a static host. All runtime paths are relative, so a repository subpath is supported.
+
+The current repository publishing workflows discover Slidev `slides.md` files. They do not publish this standalone deck. CI and GitHub Pages integration is a separate change; do not add a dummy `slides.md` file to trigger the Slidev builder.
+
+## Demo preparation still required
+
+- Assign separate demo and Q&A time.
+- Verify exact interactive `/plugin marketplace` syntax against the installed CLI.
+- Prepare labelled manufacturing tutorial evidence and fallback artifacts.
+- Use the *Problem Statement Complete* handoff after DT Methods 1–3.
+- Select a bounded implementation outcome after reviewing the problem and research.
+- Rehearse installation, DT Coach, handoff, RPI, checks, and acceptance.
+
+Support slides do not establish that the live demo is ready. The original deck's Marginalia script is not this demo route.
+
+## Framework references
+
+- [Reveal.js installation](https://revealjs.com/installation/)
+- [Reveal.js configuration](https://revealjs.com/config/)
+- [Reveal.js speaker view](https://revealjs.com/speaker-view/)
+- [Reveal.js 6.0.2 release](https://github.com/hakimel/reveal.js/releases/tag/6.0.2)
