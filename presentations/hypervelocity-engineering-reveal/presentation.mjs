@@ -1,10 +1,11 @@
 /**
- * Reveal.js initialization and in-slide action buttons.
+ * Reveal.js initialization, in-slide action buttons, and presentation tools.
  * Parameters: browser URL; append ?print-pdf before the hash for PDF layout.
  * Usage: load the built index.html from a local or static HTTP server.
  */
 import Reveal from './vendor/reveal.mjs';
 import Notes from './vendor/plugin/notes.mjs';
+import { setupAnnotations } from './annotations.mjs';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const deck = new Reveal(document.querySelector('.reveal'), {
@@ -29,6 +30,7 @@ const deck = new Reveal(document.querySelector('.reveal'), {
 
 await deck.initialize();
 document.body.classList.add('deck-ready');
+setupAnnotations(deck);
 
 let speakerWindow = null;
 let notesPanel = null;

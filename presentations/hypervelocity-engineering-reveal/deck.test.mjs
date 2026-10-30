@@ -9,6 +9,7 @@ import { readFile } from 'node:fs/promises';
 import { once } from 'node:events';
 import { slides, sources, renderSlides, escapeHtml } from './deck.mjs';
 import { createPreviewServer } from './serve.mjs';
+import { normalizeRect, toSlidePoint } from './annotations.mjs';
 
 const text = html => html.replace(/<[^>]+>/g, ' ').replace(/&\w+;/g, ' ').trim();
 const byId = Object.fromEntries(slides.map(slide => [slide.id, slide]));
@@ -112,12 +113,18 @@ test('speaker notes escape text and the build uses local runtime assets', async 
   const html = await readFile(new URL('./dist/index.html', import.meta.url), 'utf8');
   assert.equal((html.match(/<section id=/g) ?? []).length, 39);
   assert.doesNotMatch(html, /<!-- SLIDES -->|<script[^>]+src="https?:|<link[^>]+href="https?:/);
-  for (const asset of ['vendor/reveal.mjs', 'vendor/reveal.css', 'vendor/plugin/notes.mjs', 'vendor/LICENSE', 'theme.css', 'presentation.mjs']) {
+  for (const asset of ['vendor/reveal.mjs', 'vendor/reveal.css', 'vendor/plugin/notes.mjs', 'vendor/LICENSE', 'theme.css', 'presentation.mjs', 'annotations.mjs']) {
     assert.ok((await readFile(new URL(`./dist/${asset}`, import.meta.url))).length > 0, asset);
   }
   const lock = JSON.parse(await readFile(new URL('./package-lock.json', import.meta.url), 'utf8'));
   assert.equal(lock.packages['node_modules/reveal.js'].version, '6.0.2');
   assert.ok(Object.values(lock.packages).every(pkg => !('resolved' in pkg)));
+});
+
+test('presentation tools map pointer positions to slide units at any scale', () => {
+  assert.deepEqual(toSlidePoint(960, 540, { left: 0, top: 0, width: 1920, height: 1080 }), { x: 640, y: 360 });
+  assert.deepEqual(toSlidePoint(420, 230, { left: 100, top: 50, width: 640, height: 360 }), { x: 640, y: 360 });
+  assert.deepEqual(normalizeRect({ x: 50, y: 90 }, { x: 10, y: 20 }), { x: 10, y: 20, width: 40, height: 70 });
 });
 
 test('preview serves HTML and modules, rejects missing files, bad URLs, and writes', async t => {

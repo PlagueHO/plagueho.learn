@@ -50,8 +50,18 @@ This deck has its own package and lockfile. It does not change the root pnpm pac
 | Pause for questions | B, or the Pause for questions and Questions buttons on slides 24 and 39 |
 | Resume | B, Escape, or the resume button |
 | Full screen | F |
+| Laser pointer | L |
+| Draw a red box | R |
+| Draw red freehand | D |
+| Undo the last drawing | Ctrl+Z |
+| Clear all drawings | X |
+| Leave the drawing tools | Escape |
 | Jump between sections | Part links in the slide footer |
 | Browser print layout | Append `?print-pdf` before the URL hash |
+
+Move the pointer to the top edge of the window to show the presentation tools bar. It also shows when you press L, R, or D, or when you tab to it. It hides itself after a short pause. L, R, and D switch a tool on or off.
+
+Drawings and the laser use slide coordinates, so they stay aligned in any window size. Drawings clear when you change slide, when you press X or Escape, and when the overview opens. The first Escape press leaves the tools; the next one opens the overview. L no longer moves to the next slide; use the arrow keys or Space.
 
 Speaker view needs HTTP and permission to open a popup. If the browser blocks the popup, the deck shows the notes in an inline panel at the bottom of the slide. Press S or select Close to hide the panel. The notes contain public sources and presenter guidance. They ship with the public deck; do not put private information in them.
 
@@ -75,6 +85,7 @@ The leadership close includes public resources and routes to questions, the opti
 | `index.html` | Accessible presentation shell and build insertion marker |
 | `theme.css` | Light theme, 1280 by 720 layout grid, diagram styles, and print rules |
 | `presentation.mjs` | Reveal.js settings and footer button actions |
+| `annotations.mjs` | Presentation tools: laser pointer, red box, red freehand, undo, and clear |
 | `build.mjs` | Static build with local runtime assets |
 | `serve.mjs` | Local preview server |
 | `deck.test.mjs` | Structure, timing, content, asset, route, and server checks |

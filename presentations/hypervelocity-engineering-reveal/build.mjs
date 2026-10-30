@@ -18,7 +18,7 @@ const marker = '<!-- SLIDES -->';
 if (template.split(marker).length !== 2) throw new Error('Expected exactly one slide insertion marker.');
 await writeFile(join(output, 'index.html'), template.replace(marker, renderSlides()), 'utf8');
 await Promise.all([
-  ...['theme.css', 'presentation.mjs'].map(file => cp(join(root, file), join(output, file))),
+  ...['theme.css', 'presentation.mjs', 'annotations.mjs'].map(file => cp(join(root, file), join(output, file))),
   cp(join(revealRoot, 'dist'), join(output, 'vendor'), { recursive: true }),
   cp(join(revealRoot, 'LICENSE'), join(output, 'vendor', 'LICENSE')),
 ]);

@@ -659,6 +659,89 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .startup-message,
 #startup-error { padding: 20px; background: #fff0e8; color: #7d301d; }
 
+/* Presentation tools: laser, red box, red freehand, undo, clear. Red is a tool colour, not a theme colour. */
+.annotation-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  touch-action: none;
+}
+.annotation-layer[data-tool='rectangle'],
+.annotation-layer[data-tool='draw'] { pointer-events: auto; cursor: crosshair; }
+.reveal.overview .annotation-layer { display: none; }
+.reveal[data-annotation-tool='laser'] { cursor: none; }
+.annotation-mark {
+  fill: none;
+  stroke: #e00000;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.laser-point {
+  fill: #ff1d25;
+  stroke: rgba(255, 255, 255, 0.9);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 7px rgba(255, 29, 37, 0.85));
+}
+.annotation-toolbar {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px;
+  border: 1.5px solid var(--edge);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: var(--shadow), 0 10px 28px rgba(26, 20, 41, 0.12);
+  opacity: 0;
+  transform: translate(-50%, -10px);
+  pointer-events: none;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+.annotation-toolbar.is-visible,
+.annotation-toolbar:has(:focus-visible) { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+.annotation-toolbar button {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--purple);
+}
+.annotation-toolbar button:hover { background: var(--purple-tint); }
+.annotation-toolbar button:focus-visible { outline-offset: 2px; }
+.annotation-toolbar button[aria-pressed='true'] { background: var(--purple); color: #ffffff; }
+.annotation-toolbar button[aria-disabled='true'] { opacity: 0.35; cursor: default; }
+.annotation-toolbar button[aria-disabled='true']:hover { background: transparent; }
+.annotation-toolbar svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.annotation-divider { width: 1.5px; height: 24px; margin: 0 4px; background: var(--rule); }
+.annotation-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 body:not(.deck-ready) .reveal { height: auto; }
 body:not(.deck-ready) .slides { position: static; width: auto; height: auto; transform: none; }
 body:not(.deck-ready) .slides > section { display: block; position: relative; width: 1280px; margin: 70px auto; }
@@ -668,6 +751,7 @@ body:not(.deck-ready) .notes { display: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 @media print {
-  .chrome-bottom nav, .chrome-bottom button, .skip-link, #startup-error, .notes-panel { display: none !important; }
+  .chrome-bottom nav, .chrome-bottom button, .skip-link, #startup-error, .notes-panel,
+  .annotation-layer, .annotation-toolbar, .annotation-status { display: none !important; }
   .chrome-bottom { justify-content: flex-end; }
 }
