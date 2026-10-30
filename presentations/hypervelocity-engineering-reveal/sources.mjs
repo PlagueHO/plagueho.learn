@@ -5,6 +5,7 @@
  */
 
 export const sources = {
+  apex: ['Apex Dynamics Response Systems demo repository', 'https://github.com/PlagueHO/Apex-Dynamics-Response-Systems'],
   fde: ['Microsoft FDE perspective', 'https://commandline.microsoft.com/thinking-about-the-evolution-of-forward-deployed-engineers-over-the-last-24-months/'],
   frontier: ['Microsoft Frontier Company', 'https://www.microsoft.com/en-us/frontier-company'],
   engineering: ['Engineering Fundamentals Playbook', 'https://microsoft.github.io/code-with-engineering-playbook/'],

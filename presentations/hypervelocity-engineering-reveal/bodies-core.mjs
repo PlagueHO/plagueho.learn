@@ -22,10 +22,10 @@ function mapRow(left, right, rightCls = '') {
 }
 
 const stops = [
-  ['DT Coach', 'Problem evidence'],
-  ['Handoff', 'Reviewed framing'],
-  ['RPI', 'Controlled change'],
-  ['Review', 'Next decision'],
+  ['Install', 'HVE-Core ready'],
+  ['DT Coach', 'Problem + handoff'],
+  ['PRD', 'Short · no BRD'],
+  ['RPI', 'One reviewed change'],
 ];
 
 export const coreBodies = {
@@ -98,39 +98,40 @@ export const coreBodies = {
 
   'demo-route': fig('Demo route from problem evidence to the next decision', `
     <div class="route">${stops.map(([title, detail], index) => `<div class="stop"><b>${index + 1}</b><strong>${title}</strong><span>${detail}</span></div>`).join('')}</div>
-    ${ret('Return when evidence changes', 4)}`) + takeaway('One labelled teaching scenario. Return when evidence changes.'),
+    ${ret('Return when evidence changes', 4)}`) + takeaway('One small change on a mocked app. Return when evidence changes.'),
 
   'demo-install': fig('Marketplace registration, installation, and confirmation', `
-    <div class="command"><span class="live">Live demo</span><code>/plugin</code><span>Interactive marketplace route</span></div>
+    <div class="command"><span class="live">Live demo</span><code>/plugin</code><span>Recommended route, even for VS Code users</span></div>
     ${chain([
       node('Register', '<code>microsoft/hve-core</code>'),
-      node('Browse + install', '<code>hve-core@hve-core</code>'),
-      node('Confirm', 'Agents + skills', 'tint'),
+      node('Install', '<code>hve-core@hve-core</code>'),
+      node('Confirm', 'DT Coach · PRD Builder · RPI', 'tint'),
     ])}`) + takeaway('Show what loads. Explain what does not.'),
 
-  'demo-discovery': fig('A request reframed as a knowledge question', `<div class="duo">
-    <div class="col"><div class="quote">“We need a real-time quality dashboard.”</div>${arrow('d')}${node('What knowledge is lost between shifts?', '', 'warm')}</div>
+  'demo-discovery': fig('A coin-flip decision reframed as an accountability question', `<div class="duo">
+    <div class="col"><div class="quote">“The agent picks a city. No reason given.”</div>${arrow('d')}${node('Who can defend that choice?', '', 'warm')}</div>
     <div class="col"><em>DT Coach methods 1–3</em>${['Scope Conversations', 'Design Research', 'Input Synthesis'].map((item, index) => `<div class="node row compact"><b class="num">${index + 1}</b><div><strong>${item}</strong></div></div>`).join('')}</div>
-  </div>`) + takeaway('Use labelled tutorial evidence. Do not invent interviews.'),
+  </div>`) + takeaway('Two rounds. Fictional stakeholder notes, not customer research.'),
 
-  'demo-handoff': fig('Evidence and confidence crossing the handoff', `
+  'demo-handoff': fig('Evidence and confidence crossing the handoff into a short PRD', `
     ${chain([
-      node('DT evidence', 'Stakeholders + themes'),
-      node('Human review', 'Problem Statement Complete', 'purple'),
-      node('Research', 'Options + feasibility', 'tint'),
+      node('DT handoff', 'Problem Statement Complete'),
+      node('Human review', 'Gaps marked', 'purple'),
+      node('PRD Builder', 'No BRD · short Q&A', 'tint'),
+      node('PRD', 'Scope · success · exclusions'),
     ])}
     ${confidence()}`) + takeaway('Evidence and confidence cross the handoff together.'),
 
-  'demo-rpi': fig('One bounded increment through research, plan, implement, and review', rpiChain([
-    ['Research', 'Resolve actual gaps', 'Evidence'],
-    ['Plan', 'Critique + approve', 'Bounded increment'],
-    ['Implement', 'Change + check', 'Actual results'],
-    ['Review', 'Accept or route back', 'Remaining work'],
+  'demo-rpi': fig('One bounded phase through research, plan, implement, and review', rpiChain([
+    ['Research', 'Existing code + gaps', 'Evidence'],
+    ['Plan', 'Phases + decisions', 'Approved scope'],
+    ['Implement', 'Phase 1 only', 'Tests + diff'],
+    ['Review', 'Findings', 'Phase 2 still open', 'flag'],
   ])) + takeaway('Completed execution ≠ accepted work.'),
 
   recap: fig('The loop with what the demo established and what stays open', `<div class="split-loop recap">
     ${loop({ scale: 0.85 })}
-    <div class="col">${inode('check', 'Established evidence', 'Only what the run showed', 'tint')}${inode('question', 'Open decisions', 'Validation · adoption · readiness', 'warm')}${inode('flag', 'Next increment', 'Smallest useful test')}</div>
+    <div class="col">${inode('check', 'Established evidence', 'Only what the run showed', 'tint')}${inode('question', 'Open decisions', 'Validation · adoption · readiness', 'warm')}${inode('flag', 'Next increment', 'Confirm or override gate')}</div>
   </div>`)
     + routes([
       '<a href="#/leadership-close">Leadership close + resources</a>',

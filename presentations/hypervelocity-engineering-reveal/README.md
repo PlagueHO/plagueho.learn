@@ -70,6 +70,7 @@ The leadership close includes public resources and routes to questions, the opti
 | `bodies-core.mjs` | Body markup for the optional HVE-Core and demo slides |
 | `diagrams.mjs` | Shared diagram parts: nodes, chains, loops, lanes, bands, return paths, and icons |
 | `sources.mjs` | Public sources for each slide |
+| `DEMO-SCRIPT.md` | Live demo runbook for slides 35-39: time plan, commands, prompts, and fallbacks |
 | `waves.mjs` | Soft-serve ribbon backgrounds |
 | `index.html` | Accessible presentation shell and build insertion marker |
 | `theme.css` | Light theme, 1280 by 720 layout grid, diagram styles, and print rules |
@@ -88,14 +89,17 @@ Build the deck and copy the *contents* of `dist/` to a static host. All runtime 
 
 The current repository publishing workflows discover Slidev `slides.md` files. They do not publish this standalone deck. CI and GitHub Pages integration is a separate change; do not add a dummy `slides.md` file to trigger the Slidev builder.
 
-## Demo preparation still required
+## Demo preparation
 
-- Assign separate demo and Q&A time.
-- Verify exact interactive `/plugin marketplace` syntax against the installed CLI.
-- Prepare labelled manufacturing tutorial evidence and fallback artifacts.
-- Use the *Problem Statement Complete* handoff after DT Methods 1–3.
-- Select a bounded implementation outcome after reviewing the problem and research.
-- Rehearse installation, DT Coach, handoff, RPI, checks, and acceptance.
+The live demo runs on the public [Apex Dynamics Response Systems](https://github.com/PlagueHO/Apex-Dynamics-Response-Systems) repository. [DEMO-SCRIPT.md](./DEMO-SCRIPT.md) holds the time plan, commands, prompts, and prepared fallbacks. It is presenter support, not a slide.
+
+Still required before live delivery:
+
+- Assign separate Q&A time. The demo has a 30 minute budget.
+- Rehearse the whole flow twice and save the prepared fallback artifacts.
+- Verify the CLI plugin syntax and the cross-tool install claim on the demo machine.
+- Confirm the phase ID in the generated plan before running `rpi-implement`.
+- Fill the recap callouts from the rehearsal or the actual run.
 
 Support slides do not establish that the live demo is ready. The original deck's Marginalia script is not this demo route.
 

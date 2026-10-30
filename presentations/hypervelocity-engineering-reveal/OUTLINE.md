@@ -10,7 +10,7 @@
 | Audience | Technical leaders, engineering managers, and senior engineers |
 | Format | Standalone leadership section, optional HVE-Core deep dive, then separate demos |
 | Content duration | 30 minutes leadership + 30 minutes optional deep dive |
-| Demo and Q&A duration | Separate allocations; not yet set |
+| Demo and Q&A duration | 30 minutes live demo; Q&A allocation not yet set |
 | Last updated | 2026-10-30 |
 | Status | ISE-aligned narrative and per-slide visual plans implemented in the independent Reveal.js deck |
 
@@ -91,8 +91,8 @@ FDE remains supporting context and needs no separate leadership slide. Capabilit
 |---|---|---:|---|
 | A: HVE leadership section | 1-24 | 30 min | Complete leadership argument, worked pillar examples, and commitments for one measured delivery experiment |
 | B: optional HVE-Core deep dive | 25-34 | 30 min | Practical concepts understood before live work |
-| C: separate demos | 35-39 | Not yet set | Installation, problem understanding, handoff, RPI, and recap |
-| Questions and reference material | Separate route | Not yet set | Does not consume the two content allocations |
+| C: separate demos | 35-39 | 30 min | Installation, problem understanding, handoff, PRD, one bounded RPI pass, and recap |
+| Questions and reference material | Separate route | Not yet set | Does not consume the content or demo allocations |
 
 Introduce HVE-Core by name only at the leadership close. Its specific capabilities, setup, commands, and demonstrations follow in the optional section. A presenter can stop after slide 24 with a complete leadership message. No installation is required to understand or adopt the operating model.
 
@@ -249,7 +249,7 @@ The 10 slides total 30 minutes. This is our practical extension, not a reconstru
 | 31 | Build controls into the workflow | Apply slides 8 and 19: involve relevant specialists early, generate reviewable evidence, and use deterministic checks. Match review depth to uncertainty and risk. Requirements, tests, specialist review, and human acceptance have different jobs. | Uncertainty to controls, review evidence, and an accountable decision | 3 |
 | 32 | Check whether the mechanism improved delivery | Apply slide 22: compare the delivery experiment's outcome, quality, waiting, rework, human time, and AI cost. Include time spent managing tool limits. Use available evidence, not a universal token budget or an adoption percentage. | Task-level cost, human effort, and delivery outcome view | 3 |
 | 33 | Install and maintain the CLI plugin correctly | Explain marketplace registration and installation. The documented plugin tracks main. Its instruction files are not automatically applied by path. | Marketplace to plugin to verified capabilities | 3 |
-| 34 | From problem understanding to implementation | Introduce the demo route through artifacts, reviewers, and decisions. Completing the workflow does not establish customer validation, organizational adoption, production readiness, or improved delivery. State fallback and return paths. | Four connected demo stages with review and decision points | 2 |
+| 34 | From problem understanding to implementation | Introduce the demo route through artifacts, reviewers, and decisions. The route is install, DT Coach, a short PRD with no BRD, then one bounded RPI pass. Completing the workflow does not establish customer validation, organizational adoption, production readiness, or improved delivery. State fallback and return paths. | Four connected demo stages with review and decision points | 2 |
 
 Use the current [HVE-Core documentation](https://microsoft.github.io/hve-core/docs/) for capability names. Use the [CLI plugin guide](https://microsoft.github.io/hve-core/docs/getting-started/methods/cli-plugins/) for installation behavior. Explain that marketplace refresh and plugin update are separate actions.
 
@@ -266,33 +266,38 @@ End this section by returning to the same loop. The demo shows one pass with rev
 
 ## Part C: separate demos
 
-Use one continuous [public manufacturing tutorial scenario](https://microsoft.github.io/hve-core/docs/design-thinking/using-together/) for DT Coach, the handoff, and RPI. Start from the quality-dashboard request and examine knowledge loss across shifts.
+Use the public [Apex Dynamics Response Systems](https://github.com/PlagueHO/Apex-Dynamics-Response-Systems) repository for all five demo stages. It is a fully mocked React Kaiju Defense Network dashboard.
 
-Label the material as a teaching scenario, not a customer case study. Supplied observations and prepared artifacts do not represent new interviews or live user validation.
+The recurring manufacturing scenario on slides 6, 28, and 29 stays as the teaching case. The demo uses a separate, small scenario. [DEMO-SCRIPT.md](./DEMO-SCRIPT.md) holds the time plan, commands, prompts, and fallbacks.
+
+The demo scenario is the application's single-save decision. A coin flip picks the city that the AI agent saves, with no reason given. The demo asks who can defend that choice. It uses the fictional stakeholder documents in the repository as evidence. Label them as teaching material, not customer research, new interviews, or live user validation.
+
+The route is a 30 minute pass: install, DT Coach, PRD Builder with no BRD, then one bounded RPI phase. A BRD is the right artifact when a business case is needed. The demo skips it to save time.
 
 | Slide | Demo stage | Action | Evidence to show |
 |---|---|---|---|
-| 35 | Install HVE-Core through the CLI marketplace | Register the official marketplace, browse, install, and confirm the required agents and skills are available. | Discoverable capabilities and the limits of plugin instruction loading |
-| 36 | Understand the problem with DT Coach | Work through Scope Conversations, Design Research, and Input Synthesis using labelled tutorial evidence. | Reviewed problem statement, stakeholders, constraints, themes, and assumptions |
-| 37 | Hand off the problem statement to RPI | Use the Problem Statement Complete exit after Methods 1-3. Review the handoff and pass the research-topic artifact into `rpi-research`. | Confidence markers, evidence gaps, and clear research targets |
-| 38 | Follow the RPI process | Research remaining questions, plan and critique, obtain the implementation decision, implement a bounded increment, review, and route follow-up. | Traceable artifacts, actual checks, and accepted versus remaining work |
+| 35 | Install HVE-Core through the CLI marketplace | Register `microsoft/hve-core`, install `hve-core@hve-core`, and confirm DT Coach, PRD Builder, and the RPI skills load. Recommend this route even for VS Code users. | Discoverable capabilities and the limits of plugin instruction loading |
+| 36 | Understand the problem with DT Coach | Start a project in plain language. Run two short rounds: who relies on the decision, then the stakeholder evidence in the repository. Stop at Method 3. | Reviewed problem statement, stakeholders, and open gaps |
+| 37 | Hand off, then write a short PRD | Ask for the Problem Statement Complete handoff and review it. Run PRD Builder from the handoff with no BRD. | Confidence markers, marked gaps, and a PRD with scope, success criteria, and exclusions |
+| 38 | Follow the RPI process | Research, plan with an approval point, implement the first phase only, then review. Name what phase two still needs. | Traceable artifacts, actual diff and test results, and open work |
 | 39 | What did the evidence establish? | Return to the opening question and pillars. Explain what was checked and what still needs a decision. Separate demonstrated process support from unproven customer validation, organizational adoption, production readiness, and delivery gains. | Practical evidence, limits, and next decisions; no transformation or readiness guarantee |
 
 The [handoff tutorial](https://microsoft.github.io/hve-core/docs/design-thinking/tutorial-handoff-to-rpi/) illustrates the later implementation-space exit. Use the [integration reference](https://microsoft.github.io/hve-core/docs/design-thinking/dt-rpi-integration/) for the selected Methods 1-3 exit. Do not imply that concept validation, prototype testing, or Methods 4-9 have occurred.
 
-The handoff enters research with broad questions about solution approaches, technology options, and feasibility. It does not predetermine a voice interface or authorize production implementation. If research invalidates the framing, return to DT rather than force progress.
+The handoff enters PRD Builder and then research with broad questions about the design. It does not authorize production implementation. If research invalidates the framing, return to DT rather than force progress.
 
-Show this route as one pass through the continuous HVE loop, not a one-way delivery pipeline. Pause at the problem statement, research decision, and increment review for a labelled customer decision or supplied scenario response. Do not invent live customer validation. Return new evidence to the next problem or plan.
+Show this route as one pass through the continuous HVE loop, not a one-way delivery pipeline. Pause at the problem statement, the PRD, and the plan approval. Do not invent live customer validation. Return new evidence to the next problem or plan.
 
 ### Installation demonstration
 
-Use the supported interactive `/plugin` marketplace route. Verify the exact `/plugin marketplace` syntax against the installed CLI help during preparation. Do not assume shell and slash commands have identical syntax.
+Recommend the Copilot CLI `/plugin` marketplace route for every surface, including VS Code and VS Code Insiders. The stated rationale is that one plugin install makes HVE-Core available in Copilot CLI, the Copilot app, and VS Code.
 
-The public guide documents these shell equivalents:
+The public docs do not state this cross-tool behavior, and they name the VS Code extension as the main VS Code route. Verify the claim on the demo machine. Soften it if it does not hold. The slide says only that this is the recommended route.
+
+Verify the exact `/plugin marketplace` syntax against the installed CLI help during preparation. Do not assume shell and slash commands have identical syntax. The shell equivalents are:
 
 ```text
 copilot plugin marketplace add microsoft/hve-core
-copilot plugin marketplace browse hve-core
 copilot plugin install hve-core@hve-core
 ```
 
@@ -302,15 +307,16 @@ The documented registration tracks `main`, without a release gate or release att
 
 Follow the current [RPI guide](https://microsoft.github.io/hve-core/docs/rpi/). Explain research readiness, planning and critique, approved implementation, review, and follow-up. Reuse adequate evidence instead of repeating research.
 
-Use fresh context when needed to keep the task clear. Durable artifacts carry evidence forward. Do not teach a universal reset rule or make every task execute every lifecycle stage. This demonstration deliberately shows the full process.
+The live demo implements the first plan phase only. Phase two is a human confirm or override gate. It stays open and is named in the recap. This demonstration deliberately shows the full process. Do not teach a universal reset rule or make every task execute every lifecycle stage.
 
 ### Preparation still required
 
-- Set the separate demo and Q&A allocations.
-- Select a bounded implementation outcome after reviewing the tutorial handoff and research questions.
-- Prepare clearly labelled tutorial evidence and fallback artifacts for each live stage.
-- Verify current CLI syntax, plugin contents, agent names, and phase entry points.
-- Prepare a new runbook for this deck before live delivery. The original deck's demo script is not this route.
+- Set the Q&A allocation. The demo has a 30 minute budget.
+- Rehearse the whole flow twice and save labelled fallback artifacts for each live stage.
+- Verify the CLI syntax, the plugin contents, the agent names, and the cross-tool install claim.
+- Confirm the phase ID in the generated plan before running `rpi-implement`.
+- Fill the recap callouts from the rehearsal or the actual run.
+- Use [DEMO-SCRIPT.md](./DEMO-SCRIPT.md) as the runbook. The original deck's demo script is not this route.
 
 Marginalia, the memory-agent walkthrough, and the separate backlog demonstration are outside this route. Keep long prompts and output excerpts in presenter support or fallback material, not dense main-path slides.
 
@@ -446,16 +452,16 @@ Reuse these compositions rather than introduce a new visual language on every sl
 | 31 | Static diagram. Different controls answer different questions; fast tests cannot replace specialist or customer judgment. | Reuse slide 19's evidence-to-decision map. Add a risk-and-uncertainty input that selects suitable checks, specialist review, and customer acceptance. Keep required independent assurance visible. Each branch states what it can establish. | No animation. Show controls in parallel, not as interchangeable green gates. Use no fictional risk score or implied automatic acceptance. |
 | 32 | Static visual. Evaluation needs real evidence, not a new visualization with invented data. | Reuse slide 22's baseline-versus-experiment brief. Add human review effort, rework, AI spend, and time managing tool limits to total cost. Connect cost to the same user outcome and quality evidence. Label missing data explicitly. | No diagram or animation. Use an evidence table, not a token counter or an unsupported cost curve. Only add a chart later if actual comparable measurements justify it. |
 | 33 | Static diagram. Installation and maintenance relationships are clearer together than as animated command output. | Show marketplace registration -> selected plugin installation -> verified agents and skills. Use a separate maintenance branch for marketplace refresh and installed-plugin update. Add a short instruction-loading limit: explicit references, not automatic path application. | No animation. Do not simulate a terminal or mark installation complete. State the main-tracking limit; verify exact commands during demo preparation. |
-| 34 | Static diagram. Give the audience a route map before switching to live work. | Four stages: install -> understand problem -> reviewed handoff -> bounded RPI work. Place the expected artifact and human checkpoint under each relevant stage. Include a research-to-DT return and a clearly labelled prepared-fallback route. | No animation. Use the same compact route marker on slides 35-38, with only the current stage marked. Completing the route must not be drawn as a production-readiness badge. |
+| 34 | Static diagram. Give the audience a route map before switching to live work. | Four stages: install -> DT Coach problem -> PRD with no BRD -> one bounded RPI phase. Place the expected artifact and human checkpoint under each stage. Include a research-to-DT return and a clearly labelled prepared-fallback route. | No animation. Use the same compact route marker on slides 35-38, with only the current stage marked. Completing the route must not be drawn as a production-readiness badge. |
 
 ### Demo visual plan: slides 35-39
 
 | Slide | Decision and reason | Required composition | Build and static treatment |
 |---|---|---|---|
-| 35 | Live demo. Real discovery and installation are clearer than a second diagram of the steps. | Full-size CLI view and the small route marker from slide 34. Show actual marketplace actions and capability discovery. Keep instruction-loading and update limits in a short visible note or presenter explanation. | No added diagram or animation. If the live path fails, use clearly labelled prepared capture and output. Do not present the capture as a successful live install. |
-| 36 | Live demo. Reviewing the evidence and framing is the visual explanation. | DT Coach interaction and a readable artifact excerpt for Methods 1-3. Keep source labels, stakeholder coverage, and confidence markers visible. Show one question and its evidence at a time rather than dense chat history. | No added diagram or animation. The route marker shows the current stage. Prepared evidence remains labelled teaching material, not new interviews or live customer validation. |
-| 37 | Live demo. The actual handoff shows what carries forward better than an animated file transfer. | Readable Problem Statement Complete handoff beside the `rpi-research` entry being used. Inspect confidence markers, evidence gaps, and research targets. Keep the selected exit clear; do not display later-method artifacts as completed work. | No added diagram or animation. Use a labelled prepared handoff if needed. Do not animate a transfer or show acceptance ticks before the real review. |
-| 38 | Live demo. The artifact and checks, not a progress animation, establish what happened. | Show one current RPI artifact or check result at a time. Make the implementation decision, actual change, review findings, and remaining work readable. Use the existing small route marker rather than a second workflow diagram. | No added diagram or animation. Show actual results and failures. Label fallback artifacts and incomplete work; do not run a simulated success sequence behind the live tool. |
+| 35 | Live demo. Real discovery and installation are clearer than a second diagram of the steps. | Full-size CLI view and the small route marker from slide 34. Show the marketplace registration, the plugin install, and capability discovery. Keep the recommended-route note short and visible. | No added diagram or animation. If the live path fails, use clearly labelled prepared capture and output. Do not present the capture as a successful live install. |
+| 36 | Live demo. Reviewing the evidence and framing is the visual explanation. | DT Coach interaction for two short rounds. Show the coin-flip quote and the stakeholder evidence one at a time. Keep source labels and open gaps visible. | No added diagram or animation. The route marker shows the current stage. The stakeholder documents are fictional teaching material, not new interviews or live customer validation. |
+| 37 | Live demo. The actual handoff and PRD show what carries forward better than an animated file transfer. | Readable Problem Statement Complete handoff beside the PRD Builder entry. Inspect confidence markers and marked gaps. Show the PRD scope, success criteria, and exclusions. | No added diagram or animation. Use a labelled prepared handoff or PRD if needed. Do not animate a transfer or show acceptance ticks before the real review. |
+| 38 | Live demo. The artifact and checks, not a progress animation, establish what happened. | Show one current RPI artifact or check result at a time. Make the plan approval, the phase one diff, the test results, the review findings, and the open phase two readable. | No added diagram or animation. Show actual results and failures. Label fallback artifacts and incomplete work; do not run a simulated success sequence behind the live tool. |
 | 39 | Static diagram. Return to the opening model while keeping demonstrated evidence and unproven claims distinct. | Reuse the customer-and-crew loop. Attach a few concise evidence callouts from the actual demonstration and a separate remaining-decisions area. Leave customer validation, organizational adoption, production readiness, and delivery gains unproven unless evidence establishes them. | No animation. Keep evidence and limits visible together for questions. Fill callouts only after rehearsal or the actual run; do not use decorative completion ticks. |
 
 ## Evidence and publication policy
@@ -480,6 +486,7 @@ Use [RESEARCH-NOTES.md](./RESEARCH-NOTES.md) for the claim-to-source map and cur
 | 2026-10-30 | Refined narrative flow across slides 5-6, 10, 12, 14, 19-23, 26, and 29 | Introduce the manufacturing scenario before the pillar vignettes, fix the slide 12/14 chronology, align Act 2 constraints 1-to-1 with Act 3 pillars, sharpen slides 19-23, and define RPI before the handoff slide |
 | 2026-10-30 | Implemented the approved 39-slide outline and locked Quantum Wave 8-S2 visual direction | Align the standalone Reveal.js deck to the leadership story and optional practical section while keeping the original Slidev deck unchanged |
 | 2026-10-30 | Redesigned the layout and diagrams for all 39 slides on a shared 1280 x 720 grid with in-slide header and footer, shared diagram parts, and one takeaway line per slide | The first build had weak alignment, uneven spacing, and diagrams that did not follow the visual plan; palette, titles, notes, and sources are unchanged |
+| 2026-10-30 | Moved the demo (slides 34-39) to the public Apex Dynamics Response Systems repository with a 30 minute route: install, DT Coach, PRD Builder with no BRD, one bounded RPI phase; added DEMO-SCRIPT.md | The demo needs a small app, a short DT round, and a tested prompt flow; the recurring manufacturing scenario on slides 6, 28, and 29 is unchanged |
 
 ## Draft status
 
@@ -489,4 +496,4 @@ The audience, 30 + 30 minute format, optional toolkit boundary, and agreed demo 
 
 All 39 slides have an explicit diagram, animation, static-visual, or live-demo decision. The deck uses original diagrams and a restrained, static 8-S2 wave background. Slides that the plan marks as animated currently ship in the specified static version, with every state visible at once. The presenter-controlled builds are not yet implemented.
 
-The demo support slides do not establish that a live demo is ready. A new demo runbook, labelled live artifacts, and rehearsal remain future preparation. This work is local and uncommitted.
+The demo support slides do not establish that a live demo is ready. The demo route and prompts are in [DEMO-SCRIPT.md](./DEMO-SCRIPT.md). Rehearsal, labelled fallback artifacts, and the open verification items remain future preparation. This work is local and uncommitted.

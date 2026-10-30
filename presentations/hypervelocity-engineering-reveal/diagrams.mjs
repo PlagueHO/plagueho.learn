@@ -130,7 +130,7 @@ export function loop({ scale = 1, fragile = false } = {}) {
 
 /* Research, plan, implement, review chain used by slides 30 and 38. */
 export function rpiChain(items) {
-  const columns = items.map(([title, artifact, decision]) => `<div class="node rpi"><strong>${title}</strong><span>${artifact}</span><em>${icon('check')}${decision}</em></div>`);
+  const columns = items.map(([title, artifact, decision, mark = 'check']) => `<div class="node rpi"><strong>${title}</strong><span>${artifact}</span><em>${icon(mark)}${decision}</em></div>`);
   return chain(columns, 'rpi-chain');
 }
 
