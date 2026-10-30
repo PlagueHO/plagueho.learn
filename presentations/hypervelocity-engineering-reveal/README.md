@@ -63,7 +63,9 @@ Move the pointer to the top edge of the window to show the presentation tools ba
 
 Drawings and the laser use slide coordinates, so they stay aligned in any window size. Drawings clear when you change slide, when you press X or Escape, and when the overview opens. The first Escape press leaves the tools; the next one opens the overview. L no longer moves to the next slide; use the arrow keys or Space.
 
-Speaker view needs HTTP and permission to open a popup. If the browser blocks the popup, the deck shows the notes in an inline panel at the bottom of the slide. Press S or select Close to hide the panel. The notes contain public sources and presenter guidance. They ship with the public deck; do not put private information in them.
+Speaker view needs HTTP and permission to open a popup. The notes window keeps its initial position relative to the deck as the deck moves. Browser or desktop restrictions can prevent scripts from moving a popup; if that happens, the popup may not follow the deck.
+
+If the browser blocks the popup, the deck shows the notes in an inline panel at the bottom of the slide. Press S or select Close to hide the panel. The notes contain public sources and presenter guidance. They ship with the public deck; do not put private information in them. See [MDN's `Window.moveTo()` reference](https://developer.mozilla.org/en-US/docs/Web/API/Window/moveTo) for browser limits.
 
 For PDF export, open `http://127.0.0.1:3043/?print-pdf`, wait for the slides to load, then use the browser's Print command. Enable background graphics. See the [Reveal.js PDF guide](https://revealjs.com/pdf-export/).
 
