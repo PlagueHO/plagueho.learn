@@ -100,7 +100,9 @@ The light canvas, large headings, purple and tangerine accents, subtle content-a
 
 Build the deck and copy the *contents* of `dist/` to a static host. All runtime paths are relative, so a repository subpath is supported.
 
-The current repository publishing workflows discover Slidev `slides.md` files. They do not publish this standalone deck. CI and GitHub Pages integration is a separate change; do not add a dummy `slides.md` file to trigger the Slidev builder.
+The Deploy GitHub Pages workflow builds and tests this deck, then publishes it at [hypervelocity-engineering-ai-sdlc-is-not-enough](https://plagueho.github.io/plagueho.learn/hypervelocity-engineering-ai-sdlc-is-not-enough/). The [Presentations index](https://plagueho.github.io/plagueho.learn/) reads the deck's `presentation` metadata from `package.json`.
+
+The tag-based release workflow still packages only Slidev presentations. Do not add a dummy `slides.md` file to trigger the Slidev builder.
 
 ## Demo preparation
 

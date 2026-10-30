@@ -1,6 +1,6 @@
 ## Visual style catalog for Hypervelocity Engineering
 
-This document records the 10 visual style variations created for the Reveal.js Hypervelocity Engineering presentation (`presentations/hypervelocity-engineering-reveal/`).
+This document records the 10 visual style variations created for the Reveal.js Hypervelocity Engineering presentation (`presentations/hypervelocity-engineering-ai-sdlc-is-not-enough/`).
 
 **Selected direction:** **Variation 8 — Quantum Wave, refined as 8-S2 Dual-Swirl Twist** (locked).
 

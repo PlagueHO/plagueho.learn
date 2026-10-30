@@ -67,6 +67,19 @@ jobs:
           fi
           echo "Successfully built $found presentation(s)."
 
+      - name: Build and test standalone HVE presentation
+        working-directory: presentations/hypervelocity-engineering-ai-sdlc-is-not-enough
+        run: |
+          set -e
+          npm ci
+          npm run build
+          npm test
+          mkdir -p ../../_site/hypervelocity-engineering-ai-sdlc-is-not-enough
+          cp -R dist/. ../../_site/hypervelocity-engineering-ai-sdlc-is-not-enough/
+
+      - name: Test index generation
+        run: node --test scripts/generate-pages-index.test.mjs
+
       - name: Build hands-on labs
         run: pnpm run labs:generate:production && pnpm exec vitepress build labs-site --outDir _site/labs
 

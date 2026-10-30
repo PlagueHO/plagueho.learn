@@ -4,7 +4,8 @@
  * Scans the built _site directory for source-backed presentation directories
  * and generates an index.html page that links to each one and the labs site.
  * Presentation metadata (title, info, tags, duration) is extracted from the
- * original slides.md frontmatter.
+ * original slides.md frontmatter or a standalone deck's package.json
+ * `presentation` object, which uses the same metadata fields.
  *
  * Usage: node scripts/generate-pages-index.mjs <siteDir>
  */
@@ -85,6 +86,25 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
+function extractStandaloneMetadata(packagePath) {
+  const pkg = JSON.parse(readFileSync(packagePath, 'utf-8'));
+  if (!Object.hasOwn(pkg, 'presentation')) return null;
+
+  const fm = pkg.presentation;
+  if (!fm || typeof fm !== 'object' || Array.isArray(fm) ||
+      typeof fm.title !== 'string' || !fm.title.trim() ||
+      (fm.info !== undefined && typeof fm.info !== 'string') ||
+      (fm.tags !== undefined && (!Array.isArray(fm.tags) ||
+        fm.tags.some(tag => typeof tag !== 'string' || !tag.trim()))) ||
+      (fm.duration !== undefined && (!Number.isFinite(fm.duration) || fm.duration <= 0))) {
+    throw new Error(
+      `Invalid presentation metadata in ${packagePath}: expected a title, optional info string, ` +
+      'tags array of nonempty strings, and positive numeric duration.',
+    );
+  }
+  return fm;
+}
+
 // Gradient pairs for card top-borders — cycles through entries
 const gradients = [
   ['#6366f1', '#8b5cf6'], // indigo → violet
@@ -95,16 +115,19 @@ const gradients = [
   ['#8b5cf6', '#ec4899'], // violet → pink
 ];
 
-// Discover only built directories backed by a presentation source file.
+// Discover only built entry points backed by presentation source metadata.
 const entries = readdirSync(siteDir)
   .filter(name => {
     const full = join(siteDir, name);
-    const slidesPath = join(presentationsDir, name, 'slides.md');
-    return statSync(full).isDirectory() && existsSync(slidesPath);
+    return statSync(full).isDirectory() && existsSync(join(full, 'index.html'));
   })
-  .map(name => {
+  .flatMap(name => {
     const slidesPath = join(presentationsDir, name, 'slides.md');
-    const fm = extractFrontmatter(slidesPath);
+    const packagePath = join(presentationsDir, name, 'package.json');
+    const fm = existsSync(slidesPath)
+      ? extractFrontmatter(slidesPath)
+      : existsSync(packagePath) ? extractStandaloneMetadata(packagePath) : null;
+    if (!fm) return [];
 
     // Clean description: strip leading "## Heading" from info block.
     // Multiline YAML joins with spaces, so it looks like "## Title A 45-minute..."
@@ -117,13 +140,13 @@ const entries = readdirSync(siteDir)
       description = '';
     }
 
-    return {
+    return [{
       name,
       title: fm.title || name.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
       description,
       tags: Array.isArray(fm.tags) ? fm.tags : [],
       duration: fm.duration || null,
-    };
+    }];
   })
   .sort((a, b) => a.title.localeCompare(b.title));
 
