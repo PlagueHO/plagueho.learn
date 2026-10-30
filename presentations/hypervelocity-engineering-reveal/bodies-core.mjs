@@ -127,7 +127,7 @@ export const coreBodies = {
     ['Plan', 'Phases + decisions', 'Approved scope'],
     ['Implement', 'Phase 1 only', 'Tests + diff'],
     ['Review', 'Findings', 'Phase 2 still open', 'flag'],
-  ])) + takeaway('Completed execution ≠ accepted work.'),
+  ], { clear: true })) + takeaway('Completed execution ≠ accepted work.'),
 
   recap: fig('The loop with what the demo established and what stays open', `<div class="split-loop recap">
     ${loop({ scale: 0.85 })}

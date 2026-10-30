@@ -195,6 +195,8 @@ Fallback at 0:15: copy the prepared `project-planning` folder into `docs\` and s
 
 RPI works through artifacts. Each phase writes a file. The next phase reads it.
 
+Run `/clear` between every stage: research, plan, implement, and review. Slide 38 shows this. Say why: the next stage must read the file, not the chat history. Pass each stage the file path from the previous stage, because `/clear` removes the chat.
+
 #### 4a: Research (3 minutes)
 
 Run `/clear`, then:
@@ -230,10 +232,10 @@ Fallback at 0:21: copy the prepared plan and say it is prepared.
 
 #### 4c: Implement one phase (4 minutes)
 
-Stay in the same thread. Bound the work to the first phase. Check the phase ID in the plan.
+Run `/clear`. Bound the work to the first phase. Check the phase ID in the plan. Pass the plan path.
 
 ```text
-/rpi-implement phase=P01
+/rpi-implement plan=.copilot-tracking/plans/<date>/<slug>-plan.md phase=P01
 ```
 
 If the agent marks work done without evidence, steer it:
@@ -248,10 +250,10 @@ Fallback at 0:25: restore the rehearsal code with `git checkout demo/rehearsal -
 
 #### 4d: Review, then run the app (3 minutes)
 
-Stay in the same thread:
+Run `/clear`. Pass the plan path and the changes file path from the implement stage:
 
 ```text
-/rpi-review
+/rpi-review plan=.copilot-tracking/plans/<date>/<slug>-plan.md changes=.copilot-tracking/changes/<date>/<slug>-changes.md
 ```
 
 Then, in a second terminal:
@@ -307,7 +309,9 @@ Never present a prepared artifact as a live result.
 - Confirm the cross-tool install claim (Copilot CLI, Copilot app, and VS Code) on a clean machine profile.
 - Confirm the exact `/plugin` and `copilot plugin` syntax in the installed CLI version.
 - Confirm that DT Coach writes the handoff from the plain-language request. Adjust the wording if it does not.
-- Confirm the phase ID in the generated plan before you run `/rpi-implement phase=P01`.
+- Confirm the phase ID in the generated plan before you run `/rpi-implement`.
+- Confirm the real plan and changes file names and folders. The paths in steps 4b to 4d are placeholders.
+- Confirm that each stage works after `/clear` when you pass only the file paths.
 - Time the whole flow twice. Cut a round of DT or the plan critique if it runs over.
 
 ### Sources

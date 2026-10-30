@@ -64,8 +64,8 @@ export function grid(columns, items, cls = '') {
   return `<div class="grid${cls ? ` ${cls}` : ''}" style="grid-template-columns:${columns}">${items.join('')}</div>`;
 }
 
-export function chain(items, cls = '') {
-  return `<div class="chain${cls ? ` ${cls}` : ''}">${items.join(arrow())}</div>`;
+export function chain(items, cls = '', joiner = arrow()) {
+  return `<div class="chain${cls ? ` ${cls}` : ''}">${items.join(joiner)}</div>`;
 }
 
 /** Return path under a chain of `count` equal nodes. */
@@ -128,10 +128,11 @@ export function loop({ scale = 1, fragile = false } = {}) {
   </div>`;
 }
 
-/* Research, plan, implement, review chain used by slides 30 and 38. */
-export function rpiChain(items) {
+/* Research, plan, implement, review chain used by slides 30 and 38. With `clear`, each hop carries a /clear command. */
+export function rpiChain(items, { clear = false } = {}) {
   const columns = items.map(([title, artifact, decision, mark = 'check']) => `<div class="node rpi"><strong>${title}</strong><span>${artifact}</span><em>${icon(mark)}${decision}</em></div>`);
-  return chain(columns, 'rpi-chain');
+  const joiner = clear ? `<div class="clear-hop"><code>/clear</code>${arrow()}</div>` : arrow();
+  return chain(columns, `rpi-chain${clear ? ' with-clear' : ''}`, joiner);
 }
 
 /* Evidence table with dashed "Not measured" cells. */
