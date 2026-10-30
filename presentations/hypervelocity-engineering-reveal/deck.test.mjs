@@ -39,7 +39,9 @@ test('slide order follows the approved narrative and pillar examples', () => {
     'handoff-contract', 'rpi', 'review', 'cost', 'plugin-model', 'demo-route', 'demo-install',
     'demo-discovery', 'demo-handoff', 'demo-rpi', 'recap',
   ]);
-  assert.match(text(byId.hve.title), /what must change/);
+  assert.match(text(byId.hve.title), /^Hypervelocity Engineering\s*Why adding AI to the SDLC is not enough$/);
+  assert.match(text(byId.hve.body), /When code moves faster,\s*what must change\?/);
+  assert.doesNotMatch(text(byId.hve.body), /own, validate, and deliver/);
   assert.match(text(byId['dashboard-request'].body), /quality dashboard/);
   assert.match(text(byId['team-example'].body), /shift handover/);
   assert.match(text(byId['design-example'].body), /Compare options/);

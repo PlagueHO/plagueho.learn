@@ -22,8 +22,8 @@ const directRoute = [['Question', 1.2, 'work'], ['Customer decision owner', 2.0,
 const lateAssurance = [['Start', 1.0, 'work'], ['Build', 3.4, 'impl'], ['Release', 1.6, 'work']];
 const earlyAssurance = [['Start', 1.0, 'work'], ['Build', 3.4, 'impl'], ['Release', 1.6, 'check', 'Required review']];
 
-function panel(iconName, caption, big, sub, cls = '') {
-  return `<div class="panel${cls ? ` ${cls}` : ''}">${icon(iconName)}<em>${caption}</em><strong>${big}</strong><span>${sub}</span></div>`;
+function panel(iconName, caption, big, status, state, cls = '') {
+  return `<div class="panel${cls ? ` ${cls}` : ''}">${icon(iconName)}<em>${caption}</em><strong>${big}</strong><b class="status ${state}">${icon(state === 'met' ? 'check' : 'question')}${status}</b></div>`;
 }
 
 function bar(columns, row, title, detail, cls = '') {
@@ -54,9 +54,7 @@ const commitments = [
 ];
 
 export const leadershipBodies = {
-  hve: `<div class="cover-copy"><p class="cover-lead">Hypervelocity Engineering</p>
-    <p class="cover-sub">Why adding AI to the SDLC is not enough</p>
-    <p class="cover-prompt">The challenge is how we own, validate, and deliver the work.</p></div>`,
+  hve: `<p class="cover-sub">When code moves faster,<br>what must change?</p>`,
 
   'delivery-eras': fig('Delivery eras, overlapping over time', `<div class="gantt">
     ${bar('1 / 8', 1, 'Packaged software', 'Planned releases', 'tint')}
@@ -80,12 +78,13 @@ export const leadershipBodies = {
     + laneGroup('After AI-assisted coding', lane(flowSaved), under(flowSaved, [[6, 4, 'warm', 'Unchanged: access · review queues · testing · documentation · operations']]))
     + legend(['work', 'hop', 'wait'])) + takeaway('The constraint moves. It does not disappear.'),
 
-  'dashboard-request': fig('A working dashboard beside an operator question',
+  'dashboard-request': fig('A delivered dashboard request beside the operator need it does not answer',
     grid('1fr 96px 1fr', [
-      panel('dashboard', 'Request', '“We need a quality dashboard.”', 'Working software can satisfy the request.'),
-      '<div class="gap-link" aria-hidden="true"><i></i><b>?</b><i></i></div>',
-      panel('person', 'User question', 'Which procedure applies at shift handover?', 'Knowledge access may be the need to investigate.', 'warm'),
-    ], 'panels')) + takeaway('More prototypes do not supply user evidence or evaluation criteria.'),
+      panel('dashboard', 'What was asked', '“We need a quality dashboard.”', 'Delivered. Works as specified.', 'met'),
+      '<div class="gap-link" aria-hidden="true"><i></i><b>≠</b><i></i></div>',
+      panel('person', 'At shift handover, operators ask', '“What did the last shift already try?”', 'Still unanswered', 'open', 'warm'),
+    ], 'panels')
+    + legend([], 'Illustrative scenario, not a customer case')) + takeaway('A delivered request is not a solved problem.'),
 
   'feedback-window': fig('Two routes to a customer decision',
     laneGroup('Meeting-only route', lane(meetingRoute)) + laneGroup('Direct route', lane(directRoute))
