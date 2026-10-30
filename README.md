@@ -43,10 +43,12 @@ Reusable development patterns with explanations of when and how to apply them.
 
 Most presentations use Slidev. HVE also has a separate Reveal.js edition so the two versions can be developed side by side.
 
+Browse the [published Presentations index](https://plagueho.github.io/plagueho.learn/).
+
 | Presentation | Format | Source |
 |---|---|---|
 | Original Hypervelocity Engineering | Slidev | [Original deck](presentations/hypervelocity-engineering/slides.md) |
-| Hypervelocity Engineering — leadership and optional HVE-Core | Reveal.js | [New deck and run instructions](presentations/hypervelocity-engineering-reveal/README.md) |
+| Hypervelocity Engineering: Why adding AI to the SDLC is not enough | Reveal.js | [Source and run instructions](presentations/hypervelocity-engineering-ai-sdlc-is-not-enough/README.md) · [Published deck](https://plagueho.github.io/plagueho.learn/hypervelocity-engineering-ai-sdlc-is-not-enough/) |
 
 ## Repository Structure
 
