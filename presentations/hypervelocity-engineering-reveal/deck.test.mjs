@@ -10,6 +10,7 @@ import { once } from 'node:events';
 import { slides, sources, renderSlides, escapeHtml } from './deck.mjs';
 import { createPreviewServer } from './serve.mjs';
 import { normalizeRect, toSlidePoint } from './annotations.mjs';
+import { trackRelativeWindowPosition } from './speaker-window.mjs';
 
 const text = html => html.replace(/<[^>]+>/g, ' ').replace(/&\w+;/g, ' ').trim();
 const byId = Object.fromEntries(slides.map(slide => [slide.id, slide]));
@@ -115,12 +116,84 @@ test('speaker notes escape text and the build uses local runtime assets', async 
   const html = await readFile(new URL('./dist/index.html', import.meta.url), 'utf8');
   assert.equal((html.match(/<section id=/g) ?? []).length, 40);
   assert.doesNotMatch(html, /<!-- SLIDES -->|<script[^>]+src="https?:|<link[^>]+href="https?:/);
-  for (const asset of ['vendor/reveal.mjs', 'vendor/reveal.css', 'vendor/plugin/notes.mjs', 'vendor/LICENSE', 'theme.css', 'presentation.mjs', 'annotations.mjs']) {
+  const assets = [
+    'vendor/reveal.mjs',
+    'vendor/reveal.css',
+    'vendor/plugin/notes.mjs',
+    'vendor/LICENSE',
+    'theme.css',
+    'presentation.mjs',
+    'annotations.mjs',
+    'speaker-window.mjs',
+  ];
+  for (const asset of assets) {
     assert.ok((await readFile(new URL(`./dist/${asset}`, import.meta.url))).length > 0, asset);
   }
+  const presentation = await readFile(new URL('./presentation.mjs', import.meta.url), 'utf8');
+  assert.match(presentation, /trackRelativeWindowPosition\(window, speakerWindow\)/);
+  assert.match(presentation, /if \(!speakerWindow\) \{\s+toggleNotesPanel\(true\)/);
   const lock = JSON.parse(await readFile(new URL('./package-lock.json', import.meta.url), 'utf8'));
   assert.equal(lock.packages['node_modules/reveal.js'].version, '6.0.2');
   assert.ok(Object.values(lock.packages).every(pkg => !('resolved' in pkg)));
+});
+
+test('speaker popup follows deck movement and preserves its initial offset', () => {
+  const sourceWindow = { screenX: 100, screenY: 70, closed: false };
+  const moves = [];
+  const speakerWindow = {
+    screenX: 420,
+    screenY: 90,
+    closed: false,
+    moveTo: (x, y) => moves.push([x, y]),
+  };
+  let tick;
+  let timerId;
+  let cancelledTimerId;
+  const stop = trackRelativeWindowPosition(sourceWindow, speakerWindow, (callback, delay) => {
+    assert.equal(delay, 100);
+    tick = callback;
+    timerId = 7;
+    return timerId;
+  }, id => {
+    cancelledTimerId = id;
+  });
+
+  tick();
+  assert.deepEqual(moves, []);
+  sourceWindow.screenX = 160;
+  sourceWindow.screenY = 95;
+  tick();
+  assert.deepEqual(moves, [[480, 115]]);
+  tick();
+  assert.deepEqual(moves, [[480, 115]]);
+  stop();
+  assert.equal(cancelledTimerId, timerId);
+});
+
+test('speaker popup tracking stops when either window closes', () => {
+  for (const closedWindow of ['sourceWindow', 'speakerWindow']) {
+    const sourceWindow = { screenX: 0, screenY: 0, closed: false };
+    const speakerWindow = {
+      screenX: 10,
+      screenY: 10,
+      closed: false,
+      moveTo() { assert.fail('closed window must not move'); },
+    };
+    let tick;
+    let cancelled = false;
+    const windows = { sourceWindow, speakerWindow };
+    const stop = trackRelativeWindowPosition(sourceWindow, speakerWindow, callback => {
+      tick = callback;
+      return 1;
+    }, () => {
+      cancelled = true;
+    });
+
+    windows[closedWindow].closed = true;
+    tick();
+    assert.equal(cancelled, true);
+    stop();
+  }
 });
 
 test('presentation tools map pointer positions to slide units at any scale', () => {

@@ -6,6 +6,7 @@
 import Reveal from './vendor/reveal.mjs';
 import Notes from './vendor/plugin/notes.mjs';
 import { setupAnnotations } from './annotations.mjs';
+import { trackRelativeWindowPosition } from './speaker-window.mjs';
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const deck = new Reveal(document.querySelector('.reveal'), {
@@ -33,6 +34,7 @@ document.body.classList.add('deck-ready');
 setupAnnotations(deck);
 
 let speakerWindow = null;
+let stopSpeakerWindowTracking = null;
 let notesPanel = null;
 
 function renderNotesPanel() {
@@ -68,6 +70,8 @@ function openSpeakerNotes() {
     toggleNotesPanel(false);
     return;
   }
+  stopSpeakerWindowTracking?.();
+  stopSpeakerWindowTracking = null;
   const nativeOpen = window.open;
   window.open = (...args) => (speakerWindow = nativeOpen.apply(window, args));
   try {
@@ -77,7 +81,11 @@ function openSpeakerNotes() {
   } finally {
     window.open = nativeOpen;
   }
-  if (!speakerWindow) toggleNotesPanel(true);
+  if (!speakerWindow) {
+    toggleNotesPanel(true);
+  } else {
+    stopSpeakerWindowTracking = trackRelativeWindowPosition(window, speakerWindow);
+  }
 }
 
 deck.addKeyBinding({ keyCode: 83, key: 'S', description: 'Speaker notes' }, openSpeakerNotes);
