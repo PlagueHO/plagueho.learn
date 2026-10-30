@@ -97,7 +97,7 @@ test('standalone metadata is escaped and optional fields can be omitted', async 
   await standalone(root, 'escaped', {
     presentation: {
       title: 'A <deck> & "title"',
-      info: '<script>alert("unsafe")</script>',
+      info: '<script>alert("unsafe")</script> <SCRIPT>alert("unsafe")</SCRIPT>',
       tags: ['<AI> & "tools"'],
       duration: 30,
     },
@@ -108,8 +108,9 @@ test('standalone metadata is escaped and optional fields can be omitted', async 
   const html = await generate(root);
   assert.match(html, /A &lt;deck&gt; &amp; &quot;title&quot;/);
   assert.match(html, /&lt;script&gt;alert\(&quot;unsafe&quot;\)&lt;\/script&gt;/);
+  assert.match(html, /&lt;SCRIPT&gt;alert\(&quot;unsafe&quot;\)&lt;\/SCRIPT&gt;/);
   assert.match(html, /&lt;AI&gt; &amp; &quot;tools&quot;/);
-  assert.doesNotMatch(html, /<script>/);
+  assert.doesNotMatch(html, /<script>/i);
   assert.match(html, /href="\.\/minimal\/"/);
   assert.ok(html.indexOf('href="./escaped/"') < html.indexOf('href="./minimal/"'));
 });
