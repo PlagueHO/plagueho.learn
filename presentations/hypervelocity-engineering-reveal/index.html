@@ -13,24 +13,11 @@
   <a class="skip-link" href="#presentation">Skip to presentation</a>
   <div id="startup-error" role="alert" hidden></div>
   <noscript><p class="startup-message">JavaScript is off. All slides are shown below. Enable JavaScript for presentation controls.</p></noscript>
-  <header class="deck-header">
-    <a href="#/hve" class="wordmark" aria-label="Hypervelocity Engineering title">HVE<span> / </span>Expert teams. Shared outcomes.</a>
-    <span id="part-label">Leadership · 30 minutes</span>
-  </header>
   <main class="reveal" id="presentation" aria-label="Hypervelocity Engineering presentation">
     <div class="slides">
       <!-- SLIDES -->
     </div>
   </main>
-  <footer class="deck-footer">
-    <nav aria-label="Presentation sections">
-      <a href="#/hve" data-part-link="leadership">HVE</a>
-      <a href="#/deep-dive" data-part-link="deep-dive">Optional HVE-Core</a>
-      <a href="#/demo-install" data-part-link="demos">Demos</a>
-    </nav>
-    <button type="button" data-action="overview" aria-label="Show slide overview">Overview</button>
-    <button type="button" data-action="notes" aria-label="Open speaker notes">Speaker notes</button>
-  </footer>
   <script type="module">
     import('./presentation.mjs').catch(error => {
       console.error('The HVE presentation could not start.', error);

@@ -2,7 +2,9 @@
 
 An independent presentation for technical leaders, engineering managers, and senior engineers. This deck sits beside the unchanged [original Slidev presentation](../hypervelocity-engineering/slides.md). It is not a Slidev conversion.
 
-The talk has 20 leadership slides for 30 minutes, 10 optional HVE-Core slides for 30 minutes, and five separate demo support slides. Demo and Q&A time are not assigned. See [OUTLINE.md](./OUTLINE.md) and [RESEARCH-NOTES.md](./RESEARCH-NOTES.md).
+The deck has 24 leadership slides for 30 minutes, 10 optional HVE-Core slides for 30 minutes, and five separate demo support slides. Demo and Q&A time are not assigned. See [OUTLINE.md](./OUTLINE.md) and [RESEARCH-NOTES.md](./RESEARCH-NOTES.md).
+
+The approved outline uses the subtitle *Why adding AI to the SDLC is not enough*. It centers on ownership, value validation, specialist participation, and customer capability. Each pillar has a practice slide and a worked example. The selected Quantum Wave 8-S2 visual style uses 50% lighter, content-aligned soft-serve swirls. Both sections remain 30 minutes.
 
 HVE is an engineering operating model, not simply faster coding with AI. A small expert crew and the customer work through a continuous idea, validation, engineering, and feedback loop. The four pillars support that loop: multidisciplinary teams, Design Thinking, production-ready accelerators, and AI throughout the lifecycle.
 
@@ -42,16 +44,16 @@ This deck has its own package and lockfile. It does not change the root pnpm pac
 
 | Action | Control |
 |---|---|
-| Next or previous slide | Arrow keys or navigation arrows |
-| Slide overview | Escape or Overview |
-| Speaker view with notes and timer | S or Speaker notes |
-| Pause for questions | B or the questions button |
+| Next or previous slide | Arrow keys, Space, or Page Up and Page Down |
+| Slide overview | Escape or the Overview link in the slide footer |
+| Speaker view with notes and timer | S or the Notes link in the slide footer |
+| Pause for questions | B, or the Pause for questions and Questions buttons on slides 24 and 39 |
 | Resume | B, Escape, or the resume button |
 | Full screen | F |
-| Jump between sections | Persistent footer links |
+| Jump between sections | Part links in the slide footer |
 | Browser print layout | Append `?print-pdf` before the URL hash |
 
-Speaker view needs HTTP and permission to open a popup. The notes contain public sources and presenter guidance. They ship with the public deck; do not put private information in them.
+Speaker view needs HTTP and permission to open a popup. If the browser blocks the popup, the deck shows the notes in an inline panel at the bottom of the slide. Press S or select Close to hide the panel. The notes contain public sources and presenter guidance. They ship with the public deck; do not put private information in them.
 
 For PDF export, open `http://127.0.0.1:3043/?print-pdf`, wait for the slides to load, then use the browser's Print command. Enable background graphics. See the [Reveal.js PDF guide](https://revealjs.com/pdf-export/).
 
@@ -61,15 +63,24 @@ The leadership close includes public resources and routes to questions, the opti
 
 | File | Purpose |
 |---|---|
-| `deck.mjs` | Slide content, original diagrams, timing, notes, and public sources |
+| `deck.mjs` | Slide renderer: in-slide header and footer, wave background, title, body, and notes |
+| `slides.mjs` | Merges slide metadata with slide bodies and keeps the order |
+| `slide-meta.mjs` | Slide IDs, parts, timing, titles, speaker notes, and wave presets |
+| `bodies-leadership.mjs` | Body markup for the 24 leadership slides |
+| `bodies-core.mjs` | Body markup for the optional HVE-Core and demo slides |
+| `diagrams.mjs` | Shared diagram parts: nodes, chains, loops, lanes, bands, return paths, and icons |
+| `sources.mjs` | Public sources for each slide |
+| `waves.mjs` | Soft-serve ribbon backgrounds |
 | `index.html` | Accessible presentation shell and build insertion marker |
-| `theme.css` | Independent light theme and slide layouts |
-| `presentation.mjs` | Reveal.js settings, section state, and controls |
+| `theme.css` | Light theme, 1280 by 720 layout grid, diagram styles, and print rules |
+| `presentation.mjs` | Reveal.js settings and footer button actions |
 | `build.mjs` | Static build with local runtime assets |
 | `serve.mjs` | Local preview server |
 | `deck.test.mjs` | Structure, timing, content, asset, route, and server checks |
 
-The light canvas, large headings, restrained purple accents, horizontal pillars, and recurring customer-and-crew loop follow the visual brief. The text and diagrams are original. Private photos, transcripts, and the supplied internal-source guide are not included. No unsupported coding-time percentages, staffing ratios, or internal customer results are used.
+Every slide uses the same grid: header at the top, title at a fixed position, a content area for one diagram, one takeaway line, and a footer with the part links and the slide number. Diagrams are built from the shared parts in `diagrams.mjs`, so spacing, arrows, and return paths stay consistent. Conceptual flows carry the label "Illustrative, not to scale". The deck uses no automatic motion.
+
+The light canvas, large headings, purple and tangerine accents, subtle content-aligned swirls, horizontal pillars, and recurring customer-and-crew loop follow the selected visual direction. All text and diagrams are original. Private photos, transcripts, and the supplied internal-source guide are not included. The deck avoids unsupported productivity claims and private customer results.
 
 ## Publish
 

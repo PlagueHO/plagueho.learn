@@ -1,5 +1,5 @@
 /**
- * Reveal.js initialization and section navigation.
+ * Reveal.js initialization and in-slide action buttons.
  * Parameters: browser URL; append ?print-pdf before the hash for PDF layout.
  * Usage: load the built index.html from a local or static HTTP server.
  */
@@ -10,14 +10,14 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matc
 const deck = new Reveal(document.querySelector('.reveal'), {
   width: 1280,
   height: 720,
-  margin: 0.06,
+  margin: 0,
   center: false,
   hash: true,
   history: true,
-  controls: true,
+  controls: false,
   controlsTutorial: false,
   progress: true,
-  slideNumber: 'c/t',
+  slideNumber: false,
   transition: reducedMotion ? 'none' : 'fade',
   transitionSpeed: 'fast',
   backgroundTransition: 'none',
@@ -30,30 +30,63 @@ const deck = new Reveal(document.querySelector('.reveal'), {
 await deck.initialize();
 document.body.classList.add('deck-ready');
 
-const sectionLabels = {
-  leadership: 'Leadership · 30 minutes',
-  'deep-dive': 'Optional HVE-Core · 30 minutes',
-  demos: 'Demo support · Public teaching scenario',
-};
+let speakerWindow = null;
+let notesPanel = null;
 
-function updateSection() {
-  const part = deck.getCurrentSlide().dataset.part;
-  document.querySelector('#part-label').textContent = sectionLabels[part];
-  for (const link of document.querySelectorAll('[data-part-link]')) {
-    if (link.dataset.partLink === part) link.setAttribute('aria-current', 'location');
-    else link.removeAttribute('aria-current');
-  }
+function renderNotesPanel() {
+  if (!notesPanel) return;
+  const slide = deck.getCurrentSlide();
+  const number = deck.getSlides().indexOf(slide) + 1;
+  const title = slide.querySelector('h2')?.innerText.replace(/\s+/g, ' ').trim() ?? '';
+  notesPanel.querySelector('.notes-title').textContent = `Speaker notes · ${number} / ${deck.getTotalSlides()} · ${title}`;
+  notesPanel.querySelector('.notes-body').innerHTML = [...slide.querySelectorAll('aside.notes')].map(note => note.innerHTML).join('');
 }
 
-deck.on('slidechanged', updateSection);
-updateSection();
+function toggleNotesPanel(show) {
+  if (!notesPanel) {
+    notesPanel = document.createElement('section');
+    notesPanel.className = 'notes-panel';
+    notesPanel.setAttribute('role', 'region');
+    notesPanel.setAttribute('aria-label', 'Speaker notes');
+    notesPanel.innerHTML = '<header><strong class="notes-title"></strong><button type="button" data-action="notes-close">Close</button></header><div class="notes-body"></div>';
+    document.body.append(notesPanel);
+    deck.on('slidechanged', renderNotesPanel);
+  }
+  notesPanel.hidden = !show;
+  if (show) renderNotesPanel();
+}
+
+// The speaker view needs a popup. When the browser blocks it, show the notes in the page instead.
+function openSpeakerNotes() {
+  if (speakerWindow && !speakerWindow.closed) {
+    speakerWindow.focus();
+    return;
+  }
+  if (notesPanel && !notesPanel.hidden) {
+    toggleNotesPanel(false);
+    return;
+  }
+  const nativeOpen = window.open;
+  window.open = (...args) => (speakerWindow = nativeOpen.apply(window, args));
+  try {
+    deck.getPlugin('notes').open();
+  } catch {
+    speakerWindow = null;
+  } finally {
+    window.open = nativeOpen;
+  }
+  if (!speakerWindow) toggleNotesPanel(true);
+}
+
+deck.addKeyBinding({ keyCode: 83, key: 'S', description: 'Speaker notes' }, openSpeakerNotes);
 
 document.addEventListener('click', event => {
   const button = event.target.closest('button[data-action]');
   if (!button) return;
   switch (button.dataset.action) {
     case 'overview': deck.toggleOverview(); break;
-    case 'notes': deck.getPlugin('notes').open(); break;
+    case 'notes': openSpeakerNotes(); break;
+    case 'notes-close': toggleNotesPanel(false); break;
     case 'pause': deck.togglePause(); break;
     default: throw new Error(`Unknown presentation action: ${button.dataset.action}`);
   }

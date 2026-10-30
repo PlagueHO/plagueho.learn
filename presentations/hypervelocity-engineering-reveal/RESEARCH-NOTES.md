@@ -1,6 +1,6 @@
 ## Hypervelocity Engineering research notes
 
-Public sources checked on 2026-10-29. These notes support the [presentation outline](./OUTLINE.md) and the separate Reveal.js deck. A live demo runbook is not yet prepared.
+Public sources checked on 2026-10-29, with focused narrative checks on 2026-10-30. These notes support the [proposed presentation outline](./OUTLINE.md) and the separate Reveal.js draft. The slides have not yet been changed to implement the new proposal. A live demo runbook is not yet prepared.
 
 ## Scope and source boundary
 
@@ -12,28 +12,34 @@ Distinguish public source statements from presentation synthesis. The four-pilla
 
 ## Narrative alignment revision
 
-The first outline covered themes without preserving their argument. The next revision restored the history but delayed the central definition. The user's latest direction establishes the operating model and its continuous customer-and-engineering loop as the thesis. History explains the need for change; it is not the thesis itself.
+The outline now incorporates the ISE transcript comparison. Its subtitle is *Why adding AI to the SDLC is not enough*. The target is adding AI while ownership, customer participation, decisions, specialist engagement, and governance remain unchanged. Do not reduce AI SDLC to coding or dismiss approaches that already include these organizational changes.
+
+The committed draft remains unchanged. The revised outline retains proven engineering discipline and co-engineering, gives waiting and missing business value equal weight, and makes changed responsibilities visible in each pillar. A measured delivery experiment then supports wider organizational action. HVE remains the operating-model response, not simply a faster coding workflow.
 
 The revised outline follows this progression:
 
-1. Define HVE as an operating model, not simply faster coding with AI.
-1. Show idea -> validation -> engineering -> feedback as a continuous loop, with the customer inside it.
-1. Briefly explain the software evolution, shared playbook, co-engineering, and capability-transfer background.
-1. Explain why new AI capabilities exposed existing delivery weaknesses and why coding-only improvement is insufficient.
-1. Connect experimentation and the four pillars to those delivery problems.
-1. Explain how a small expert crew, Design Thinking, production-ready accelerators, and lifecycle-wide AI shorten the shared loop.
-1. Preserve the expertise needed to review and validate generated outputs; AI amplifies people rather than replacing engineering discipline.
-1. Keep security, observability, testing, and continuous integration/deployment in the starting point.
-1. Use frequent customer decisions, small increments, and measured outcomes to shorten time toward production value.
-1. Separate the enduring operating model from its changing enabling technology.
+1. Ask what must change when code moves faster than decisions, validation, and delivery.
+1. Briefly connect packaged releases and cloud delivery with overlapping Agile and DevOps practices, co-engineering, and retained customer capability.
+1. Show the familiar work, waiting, handoff, and decision flow, then shorten only its implementation segment.
+1. Explain why faster output can amplify waiting and wrong assumptions; working software alone does not establish business value.
+1. Define HVE as a whole-delivery operating-model response, not simply faster coding.
+1. Connect constraints to changed practices through inspect -> compare -> adapt, then explain each pillar through shared ownership, value validation, maintained foundations, and expert-led assistance.
+1. Reassemble the idea -> validation -> engineering -> feedback loop with the customer and expert crew inside it.
+1. Keep expert validation and built-in security, observability, testing, and CI/CD explicit.
+1. Test changed responsibilities and practices, expose cross-team constraints, identify owners, and seek sponsored changes while retaining assurance.
+1. Establish owned mechanisms and retained customer capability, then introduce HVE-Core as optional process support alongside existing tools.
 
 This is a planning synthesis in original wording. It is not a public account of private experiments or their results. Use the public sources below for publishable claims; the private references establish the requested narrative emphasis, not permission to publish their content.
 
-The revised leadership section has 20 sparse slides over 30 minutes. The optional practical section has 10 slides over 30 minutes, followed by five demo support slides. Context management now has a leadership slide; the practical section applies it instead of introducing it for the first time.
+The proposed leadership section has 24 sparse slides over 30 minutes. Act 3 receives 16 minutes, including two slides and three minutes per pillar. The optional practical section retains 10 slides over 30 minutes, followed by five demo support slides. Detailed context mechanics stay in the practical section. FDE remains supporting context rather than a separate main-path slide.
 
-The optional DT Coach, DT-to-RPI, installation, and manufacturing demo sequence is our agreed extension. Do not imply that it reconstructs the speakers' presentation. The 35-slide Reveal.js draft implements the revised operating-model narrative, with the customer-and-expert-crew loop repeated across the leadership story and demo recap.
+The pillar examples reuse the public manufacturing thread. The tutorial supplies the dashboard request and knowledge-accessibility theme. The proposed team decisions, evaluation criteria, foundation contents, and assisted outputs are illustrative extensions, not published findings or completed demo evidence. Label them accordingly; do not predetermine the solution or imply that user testing occurred.
 
-The Q&A supplies qualifications rather than a second main narrative: selective toolkit adoption, instruction freshness, review responsibility, organizational constraints, capability transfer, cost visibility, and uses beyond code. Do not convert an unanswered evaluation question into an assurance that the toolkit meets a standard.
+The optional DT Coach, DT-to-RPI, installation, and manufacturing demo sequence remains our agreed extension. Do not imply that it reconstructs the speakers' presentation. The committed 35-slide Reveal.js draft implements the previous operating-model-first narrative. The proposed constraint-first outline awaits review before any slide changes.
+
+The main talk supports shared team duties, distributed specialist knowledge, co-engineering, experimentation, and customer capability. The Q&A makes executive sponsorship and organizational constraints explicit. Bringing these themes forward adapts the story for leaders; it does not reconstruct the original opening. An unanswered toolkit-evaluation question does not establish assurance.
+
+Use concrete commitments rather than a general call for a new mindset. The crew and customer co-own the outcome. Specialists shape work early. Evidence can change or stop work. Customer engineers maintain practices after the engagement. Decision rights and protected customer time are our practical interpretation, not a universal organization design established by the transcript.
 
 ### Use of the supplied guide
 
@@ -57,6 +63,10 @@ Keep the recurring loop in the optional DT-to-RPI route. It is one pass with rev
 
 ### Quantitative cautions
 
+Do not claim that coding was universally the slowest part of delivery for 30 years. The source talk itself emphasizes substantial non-coding work. Explain the changed constraint without rewriting industry history. Likewise, "six sprints in a few hours" is not a verified public result or a comparison of equal production scope.
+
+Agile and DevOps already support short feedback loops, shared ownership, and continuous delivery. They overlap with cloud adoption rather than following it in a fixed sequence. The problem is waiting and poor coordination in a specific implementation, not a requirement of Agile, DevOps, or a two-week planning period.
+
 Preserve the whole-system and cumulative-error lessons without copying unsupported figures or incorrect arithmetic. Amdahl's law needs explicit workload assumptions for a numerical example. Multiplying stage success probabilities needs a defined success condition and suitable dependency assumptions. Neither calculation establishes real project performance.
 
 Do not repeat a universal exponential context-cost claim, a guaranteed first-pass success claim, or the suggestion that passing tests proves production correctness. Explain relevant context, executable checks, and human review as controls, not guarantees.
@@ -68,8 +78,10 @@ Do not repeat a universal exponential context-cost claim, a guaranteed first-pas
 | Microsoft FDE delivery model | Experts embedded with customers to co-design, deploy, and improve systems tied to business outcomes | [Microsoft Frontier Company](https://www.microsoft.com/en-us/frontier-company) |
 | FDE teams and capability transfer | Multidisciplinary delivery, operational responsibility, co-engineering, and customer capability transfer; attribute as Microsoft's perspective | [Microsoft FDE perspective](https://commandline.microsoft.com/thinking-about-the-evolution-of-forward-deployed-engineers-over-the-last-24-months/) |
 | Engineering fundamentals | Shared context, high quality, incremental customer value, and collective ownership | [ISE Engineering Fundamentals Playbook](https://microsoft.github.io/code-with-engineering-playbook/) |
+| Code productivity versus delivery performance | DORA 2024 reports individual productivity benefits alongside delivery stability and throughput tradeoffs; use as a dated finding, not a universal causal rule | [DORA 2024 findings](https://dora.dev/research/2024/dora-report/) |
 | Reusable production starts | Proven starting points for AI-driven development | [HVE Accelerators Hub](https://learn.microsoft.com/en-us/industry/playbook/) |
 | Current HVE-Core toolkit | Agents, executable skills, instructions, and structured workflows; do not copy old prompt inventories | [HVE-Core documentation](https://microsoft.github.io/hve-core/docs/) |
+| Toolkit limits and human judgment | Current README retains human responsibility and describes a rapidly changing framework to evaluate as patterns and learning, not a stable platform or production dependency | [HVE-Core README](https://github.com/microsoft/hve-core#readme) |
 | Lifecycle and roles | Assistance across delivery stages and team responsibilities | [HVE guide](https://microsoft.github.io/hve-core/docs/hve-guide/) |
 | CLI plugin behavior | Marketplace registration, installation, updates, discovery, and instruction-loading limits | [CLI plugin guide](https://microsoft.github.io/hve-core/docs/getting-started/methods/cli-plugins/) |
 | Design Thinking | Three spaces, nine methods, DT Coach, and supported handoffs | [Design Thinking guide](https://microsoft.github.io/hve-core/docs/design-thinking/) |
@@ -81,6 +93,10 @@ Do not repeat a universal exponential context-cost claim, a guaranteed first-pas
 | Delivery measurement | Throughput and instability measures interpreted at application or service level | [DORA metrics](https://dora.dev/guides/dora-metrics/) |
 
 The FDE sources support the delivery relationship, not an exclusive claim that FDE requires this particular toolkit. The HVE-Core sources describe a current implementation, not a fixed platform that defines the method.
+
+The public findings support the whole-system argument. They do not prove the full historical narrative, the independent effect of each pillar, or a necessary-and-sufficient formula. These remain teaching synthesis. HVE-Core can accelerate processes; that does not make it a production solution foundation. Installing it does not supply infrastructure, customer evidence, authority, or readiness.
+
+The leadership experiment tests changed responsibilities and practices, not tool access alone. Identify an actual wait and its owner before seeking a change in participation, capacity, escalation, or policy. Some organizations already review quickly. Keep the manufacturing illustration separate from evidence of organizational transformation; no public change case or measured result is asserted here.
 
 ## Four-pillar teaching synthesis
 
