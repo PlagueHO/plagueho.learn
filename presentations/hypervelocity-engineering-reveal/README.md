@@ -2,7 +2,7 @@
 
 An independent presentation for technical leaders, engineering managers, and senior engineers. This deck sits beside the unchanged [original Slidev presentation](../hypervelocity-engineering/slides.md). It is not a Slidev conversion.
 
-The deck has 24 leadership slides for 30 minutes, 10 optional HVE-Core slides for 30 minutes, and five separate demo support slides. Demo and Q&A time are not assigned. See [OUTLINE.md](./OUTLINE.md) and [RESEARCH-NOTES.md](./RESEARCH-NOTES.md).
+The deck has 25 leadership slides for 30 minutes, 10 optional HVE-Core slides for 30 minutes, and five separate demo support slides. Demo and Q&A time are not assigned. See [OUTLINE.md](./OUTLINE.md) and [RESEARCH-NOTES.md](./RESEARCH-NOTES.md).
 
 The approved outline uses the subtitle *Why adding AI to the SDLC is not enough*. It centers on ownership, value validation, specialist participation, and customer capability. Each pillar has a practice slide and a worked example. The selected Quantum Wave 8-S2 visual style uses 50% lighter, content-aligned soft-serve swirls. Both sections remain 30 minutes.
 
@@ -47,7 +47,7 @@ This deck has its own package and lockfile. It does not change the root pnpm pac
 | Next or previous slide | Arrow keys, Space, or Page Up and Page Down |
 | Slide overview | Escape or the Overview link in the slide footer |
 | Speaker view with notes and timer | S or the Notes link in the slide footer |
-| Pause for questions | B, or the Pause for questions and Questions buttons on slides 24 and 39 |
+| Pause for questions | B, or the Pause for questions and Questions buttons on slides 25 and 40 |
 | Resume | B, Escape, or the resume button |
 | Full screen | F |
 | Laser pointer | L |
@@ -76,11 +76,11 @@ The leadership close includes public resources and routes to questions, the opti
 | `deck.mjs` | Slide renderer: in-slide header and footer, wave background, title, body, and notes |
 | `slides.mjs` | Merges slide metadata with slide bodies and keeps the order |
 | `slide-meta.mjs` | Slide IDs, parts, timing, titles, speaker notes, and wave presets |
-| `bodies-leadership.mjs` | Body markup for the 24 leadership slides |
+| `bodies-leadership.mjs` | Body markup for the 25 leadership slides |
 | `bodies-core.mjs` | Body markup for the optional HVE-Core and demo slides |
 | `diagrams.mjs` | Shared diagram parts: nodes, chains, loops, lanes, bands, return paths, and icons |
 | `sources.mjs` | Public sources for each slide |
-| `DEMO-SCRIPT.md` | Live demo runbook for slides 35-39: time plan, commands, prompts, and fallbacks |
+| `DEMO-SCRIPT.md` | Live demo runbook for slides 36-40: time plan, commands, prompts, and fallbacks |
 | `waves.mjs` | Soft-serve ribbon backgrounds |
 | `index.html` | Accessible presentation shell and build insertion marker |
 | `theme.css` | Light theme, 1280 by 720 layout grid, diagram styles, and print rules |

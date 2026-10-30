@@ -1,10 +1,10 @@
 /**
- * Leadership section slide bodies (slides 1 to 24).
+ * Leadership section slide bodies (slides 1 to 25).
  * Parameters: none. Each key is a slide id; each value is the slide body HTML.
  * Usage: import { leadershipBodies } from './bodies-leadership.mjs'.
  */
 import {
-  arrow, node, inode, chip, band, fig, takeaway, grid, chain, ret, icon,
+  arrow, node, inode, chip, band, fig, takeaway, grid, chain, ret, icon, crack,
   HOP, lane, under, laneGroup, legend, loop, evidenceTable,
 } from './diagrams.mjs';
 
@@ -46,6 +46,8 @@ function routes(items) {
   return `<nav class="routes">${items.join('')}</nav>`;
 }
 
+const crackLabels = ['Handoffs', 'Waiting', 'Wrong value', 'Late feedback', 'Late assurance'];
+
 const commitments = [
   ['team', 'Customer time', 'Participation + evidence'],
   ['person', 'Decision ownership', 'Crew + specialist + sponsor'],
@@ -63,6 +65,14 @@ export const leadershipBodies = {
     ${bar('7 / 14', 4, 'Co-engineering', 'Customer learning + capability', 'purple')}
     ${bar('1 / 14', 5, 'Engineering fundamentals', '+ shared customer capability', 'ghost')}
   </div>${legend([], 'Overlapping eras, not to scale')}`) + takeaway('Keep the engineering discipline. Keep learning with customers.'),
+
+  'agentic-cracks': fig('Agentic SDLC and Forward Deployed Engineering above a delivery process that starts to crack', `<div class="bigwords">
+    <div class="bigword">${icon('spark')}<span>Agentic SDLC</span></div>
+    <div class="bigword">${icon('team')}<span>Forward Deployed Engineering</span></div>
+  </div>
+  <div class="slab"><span>Delivery process</span></div>
+  ${grid('repeat(5, 1fr)', crackLabels.map((label, i) => `<div class="crack-col">${crack(i)}<span class="mark warm">${label}</span></div>`), 'cracks')}
+  ${legend([], 'General framing, not to scale')}`) + takeaway('New names do not fix the process. They expose it.'),
 
   handoffs: fig('Delivery flow with handoffs and required checks',
     lane(flow, { tall: true })

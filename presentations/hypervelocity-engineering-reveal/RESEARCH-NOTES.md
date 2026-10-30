@@ -31,7 +31,7 @@ The revised outline follows this progression:
 
 This is a planning synthesis in original wording. It is not a public account of private experiments or their results. Use the public sources below for publishable claims; the private references establish the requested narrative emphasis, not permission to publish their content.
 
-The proposed leadership section has 24 sparse slides over 30 minutes. Act 3 receives 16 minutes, including two slides and three minutes per pillar. The optional practical section retains 10 slides over 30 minutes, followed by five demo support slides. Detailed context mechanics stay in the practical section. FDE remains supporting context rather than a separate main-path slide.
+The proposed leadership section has 25 sparse slides over 30 minutes. Act 3 receives 16 minutes, including two slides and three minutes per pillar. The optional practical section retains 10 slides over 30 minutes, followed by five demo support slides. Detailed context mechanics stay in the practical section. FDE remains supporting context rather than a separate main-path slide.
 
 The pillar examples reuse the public manufacturing thread. The tutorial supplies the dashboard request and knowledge-accessibility theme. The proposed team decisions, evaluation criteria, foundation contents, and assisted outputs are illustrative extensions, not published findings or completed demo evidence. Label them accordingly; do not predetermine the solution or imply that user testing occurred.
 

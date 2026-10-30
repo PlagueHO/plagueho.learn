@@ -1,5 +1,5 @@
 /**
- * Optional HVE-Core and demo slide bodies (slides 25 to 39).
+ * Optional HVE-Core and demo slide bodies (slides 26 to 40).
  * Parameters: none. Each key is a slide id; each value is the slide body HTML.
  * Usage: import { coreBodies } from './bodies-core.mjs'.
  */

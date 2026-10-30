@@ -61,6 +61,6 @@ export function renderSlides() {
     ${topChrome(slide.part)}
     <h2>${slide.title}</h2><div class="slide-content">${slide.body}</div>
     ${bottomChrome(slide.part, index + 1, slides.length)}
-    <aside class="notes"><p>${escapeHtml(slide.notes)}</p>${links(slide.sources)}</aside>
+    <aside class="notes">${slide.notes.split('\n').map(line => `<p>${escapeHtml(line.trim())}</p>`).join('')}${links(slide.sources)}</aside>
     </section>`).join('\n');
 }

@@ -14,24 +14,24 @@ import { normalizeRect, toSlidePoint } from './annotations.mjs';
 const text = html => html.replace(/<[^>]+>/g, ' ').replace(/&\w+;/g, ' ').trim();
 const byId = Object.fromEntries(slides.map(slide => [slide.id, slide]));
 
-test('39 slides preserve the 30 + 30 minute structure', () => {
-  assert.equal(slides.length, 39);
-  assert.equal(new Set(slides.map(slide => slide.id)).size, 39);
-  for (const [part, count] of [['leadership', 24], ['deep-dive', 10], ['demos', 5]]) {
+test('40 slides preserve the 30 + 30 minute structure', () => {
+  assert.equal(slides.length, 40);
+  assert.equal(new Set(slides.map(slide => slide.id)).size, 40);
+  for (const [part, count] of [['leadership', 25], ['deep-dive', 10], ['demos', 5]]) {
     const section = slides.filter(slide => slide.part === part);
     assert.equal(section.length, count);
     if (part !== 'demos') assert.equal(section.reduce((sum, item) => sum + item.minutes, 0), 30);
     else assert.ok(section.every(item => item.minutes === undefined));
   }
-  assert.equal(slides[23].id, 'leadership-close');
-  assert.equal(slides[24].id, 'deep-dive');
-  assert.equal(slides[34].id, 'demo-install');
-  assert.equal(slides[38].id, 'recap');
+  assert.equal(slides[24].id, 'leadership-close');
+  assert.equal(slides[25].id, 'deep-dive');
+  assert.equal(slides[35].id, 'demo-install');
+  assert.equal(slides[39].id, 'recap');
 });
 
 test('slide order follows the approved narrative and pillar examples', () => {
   assert.deepEqual(slides.map(item => item.id), [
-    'hve', 'delivery-eras', 'handoffs', 'ai-implementation', 'outcome-waiting', 'dashboard-request',
+    'hve', 'delivery-eras', 'agentic-cracks', 'handoffs', 'ai-implementation', 'outcome-waiting', 'dashboard-request',
     'feedback-window', 'production-early', 'hve-model', 'constraints-pillars', 'teams', 'team-example',
     'design-thinking', 'design-example', 'accelerators', 'accelerator-example', 'lifecycle-ai',
     'lifecycle-example', 'evidence-judgment', 'supported-loop', 'organization-boundary', 'experiment',
@@ -88,7 +88,7 @@ test('visible content is concise and every slide has notes and public sources', 
     for (const key of item.sources) assert.ok(sources[key]?.[1].startsWith('https://'));
   }
   assert.doesNotMatch(renderedContent(), /youtube|simpsons|vibe.?cod|OneDrive|20261006_|pasted-text/i);
-  assert.equal((renderSlides().match(/<aside class="notes">/g) ?? []).length, 39);
+  assert.equal((renderSlides().match(/<aside class="notes">/g) ?? []).length, 40);
 });
 
 function renderedContent() {
@@ -113,7 +113,7 @@ test('internal routes resolve to actual slides', () => {
 test('speaker notes escape text and the build uses local runtime assets', async () => {
   assert.equal(escapeHtml('<&"\'>'), '&lt;&amp;&quot;&#39;&gt;');
   const html = await readFile(new URL('./dist/index.html', import.meta.url), 'utf8');
-  assert.equal((html.match(/<section id=/g) ?? []).length, 39);
+  assert.equal((html.match(/<section id=/g) ?? []).length, 40);
   assert.doesNotMatch(html, /<!-- SLIDES -->|<script[^>]+src="https?:|<link[^>]+href="https?:/);
   for (const asset of ['vendor/reveal.mjs', 'vendor/reveal.css', 'vendor/plugin/notes.mjs', 'vendor/LICENSE', 'theme.css', 'presentation.mjs', 'annotations.mjs']) {
     assert.ok((await readFile(new URL(`./dist/${asset}`, import.meta.url))).length > 0, asset);

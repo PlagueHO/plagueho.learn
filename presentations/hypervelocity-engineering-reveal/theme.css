@@ -377,7 +377,41 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .bar.purple span { color: #e9defa; }
 .bar.ghost { border-style: dashed; border-color: var(--dash); background: rgba(255, 255, 255, 0.6); }
 
-/* Slide 6: delivered request against unmet need */
+/* Slide 3: new names above a cracking process */
+.bigwords { display: flex; justify-content: center; gap: 20px; }
+.bigword {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  height: 76px;
+  padding: 0 32px;
+  border-radius: 16px;
+  background: var(--purple);
+  color: #ffffff;
+  font-size: 38px;
+  font-weight: 650;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+.bigword .ico { width: 40px; height: 40px; color: #ffffff; }
+.slab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  border: 1.5px solid var(--edge);
+  border-radius: 12px;
+  background: var(--purple-tint);
+  font-size: 24px;
+  font-weight: 650;
+}
+.grid.cracks { column-gap: 12px; align-items: start; margin-top: -12px; }
+.crack-col { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; }
+.crack { flex: none; width: 46px; height: 82px; overflow: visible; fill: none; stroke: var(--warm); stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
+.crack-col .mark { align-self: stretch; min-height: 56px; font-size: 22px; }
+
+/* Slide 7: delivered request against unmet need */
 .panel {
   display: flex;
   flex-direction: column;

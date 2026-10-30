@@ -1,6 +1,6 @@
 ## Demo script: HVE-Core on the Kaiju Defense Network
 
-This script is the live demo runbook for slides 35-39. It is presenter support, not a slide. The presenter explains each step. The script gives the commands, the prompts, the time budget, and the fallbacks.
+This script is the live demo runbook for slides 36-40. It is presenter support, not a slide. The presenter explains each step. The script gives the commands, the prompts, the time budget, and the fallbacks.
 
 ### The demo in one paragraph
 
@@ -16,14 +16,14 @@ This is teaching material on a mocked application. It is not a customer case stu
 
 | Step | Slide | What happens | Minutes | Cut-off |
 |---|---:|---|---:|---|
-| 1 | 35 | Install HVE-Core with the Copilot CLI plugin route | 3 | 0:03 |
-| 2 | 36 | DT Coach: two rounds, then a handoff | 7 | 0:10 |
-| 3 | 37 | PRD Builder: no BRD, short Q&A | 5 | 0:15 |
-| 4a | 38 | `/rpi-research` | 3 | 0:18 |
-| 4b | 38 | `/rpi-plan` | 3 | 0:21 |
-| 4c | 38 | `/rpi-implement phase=P01` | 4 | 0:25 |
-| 4d | 38 | `/rpi-review`, then run the app | 3 | 0:28 |
-| 5 | 39 | Recap: what the evidence shows, and what it does not | 2 | 0:30 |
+| 1 | 36 | Install HVE-Core with the Copilot CLI plugin route | 3 | 0:03 |
+| 2 | 37 | DT Coach: two rounds, then a handoff | 7 | 0:10 |
+| 3 | 38 | PRD Builder: no BRD, short Q&A | 5 | 0:15 |
+| 4a | 39 | `/rpi-research` | 3 | 0:18 |
+| 4b | 39 | `/rpi-plan` | 3 | 0:21 |
+| 4c | 39 | `/rpi-implement phase=P01` | 4 | 0:25 |
+| 4d | 39 | `/rpi-review`, then run the app | 3 | 0:28 |
+| 5 | 40 | Recap: what the evidence shows, and what it does not | 2 | 0:30 |
 
 Start every long agent step, then talk while it runs. Never wait in silence. At each cut-off, switch to the prepared fallback if the live step is not done. Label every prepared artifact as prepared.
 
@@ -76,7 +76,7 @@ Do these steps the day before. Then do a full rehearsal.
 1. Decide how to handle tool approvals. Approval prompts cost time. Approve tools for this demo repository only.
 1. Open these in advance: the terminal in the repository folder, the browser at `http://localhost:5173/` (start the dev server only at step 4d), and the fallback folder.
 
-### Step 1: Install HVE-Core (3 minutes, slide 35)
+### Step 1: Install HVE-Core (3 minutes, slide 36)
 
 Recommend the **GitHub Copilot CLI plugin route**, even for people who work in VS Code or VS Code Insiders.
 
@@ -107,7 +107,7 @@ Say it, do not skip it:
 
 Fallback: show the prepared capture of the `/agent` list. Say that it is a capture.
 
-### Step 2: Understand the problem with DT Coach (7 minutes, slide 36)
+### Step 2: Understand the problem with DT Coach (7 minutes, slide 37)
 
 Select DT Coach with `/agent`. Its qualified name is `hve-core:dt-coach`. Describe the project in plain language. The old `/dt-start-project` and `/dt-handoff-problem-space` slash commands no longer exist. The coach starts and hands off from natural-language requests.
 
@@ -166,7 +166,7 @@ If the coach does something else:
 
 Fallback at 0:10: copy the prepared `copilot-tracking\dt` folder into `.copilot-tracking\` and say it is prepared.
 
-### Step 3: Write the PRD (5 minutes, slide 37)
+### Step 3: Write the PRD (5 minutes, slide 38)
 
 There is no BRD in this demo. The PRD Builder starts from the DT handoff. Say this: *a BRD is the right artifact when a business case is needed. This demo skips it to save time.*
 
@@ -191,11 +191,11 @@ The PRD goes to `docs/project-planning/<name>.md`. Note the exact file name. You
 
 Fallback at 0:15: copy the prepared `project-planning` folder into `docs\` and say it is prepared.
 
-### Step 4: RPI (13 minutes, slide 38)
+### Step 4: RPI (13 minutes, slide 39)
 
 RPI works through artifacts. Each phase writes a file. The next phase reads it.
 
-Run `/clear` between every stage: research, plan, implement, and review. Slide 38 shows this. Say why: the next stage must read the file, not the chat history. Pass each stage the file path from the previous stage, because `/clear` removes the chat.
+Run `/clear` between every stage: research, plan, implement, and review. Slide 39 shows this. Say why: the next stage must read the file, not the chat history. Pass each stage the file path from the previous stage, because `/clear` removes the chat.
 
 #### 4a: Research (3 minutes)
 
@@ -269,7 +269,7 @@ Open `http://localhost:5173/`. Click **RE-RUN** on the Single-Save Decision pane
 
 Show the review findings. Say what Phase 2 (the confirm gate) still needs. Do not claim it is done.
 
-### Step 5: Recap (2 minutes, slide 39)
+### Step 5: Recap (2 minutes, slide 40)
 
 Return to the opening question: is adding AI to the SDLC enough?
 

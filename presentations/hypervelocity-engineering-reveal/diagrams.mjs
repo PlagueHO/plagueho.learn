@@ -73,6 +73,17 @@ export function ret(label, count = 4) {
   return `<div class="ret" style="--n:${count}"><span>${label}</span></div>`;
 }
 
+const CRACKS = [
+  '<path d="M20 0L13 16L25 28L12 42L22 54L17 70"/><path d="M25 28L33 36"/>',
+  '<path d="M20 0L27 14L15 26L26 38L17 50L23 70"/><path d="M15 26L7 32"/>',
+  '<path d="M20 0L12 18L23 30L14 44L24 56L19 70"/><path d="M23 30L31 40L29 50"/>',
+];
+
+/** Jagged crack glyph that hangs from a surface. `variant` picks one of three shapes. */
+export function crack(variant = 0) {
+  return `<svg class="crack" viewBox="0 0 40 72" aria-hidden="true">${CRACKS[variant % CRACKS.length]}</svg>`;
+}
+
 /* Delivery lanes. Each segment is [text, fraction, kind, sub?]. A hop is a fixed 36px column. */
 export const HOP = ['', 0, 'hop'];
 
@@ -128,7 +139,7 @@ export function loop({ scale = 1, fragile = false } = {}) {
   </div>`;
 }
 
-/* Research, plan, implement, review chain used by slides 30 and 38. With `clear`, each hop carries a /clear command. */
+/* Research, plan, implement, review chain used by slides 31 and 39. With `clear`, each hop carries a /clear command. */
 export function rpiChain(items, { clear = false } = {}) {
   const columns = items.map(([title, artifact, decision, mark = 'check']) => `<div class="node rpi"><strong>${title}</strong><span>${artifact}</span><em>${icon(mark)}${decision}</em></div>`);
   const joiner = clear ? `<div class="clear-hop"><code>/clear</code>${arrow()}</div>` : arrow();
