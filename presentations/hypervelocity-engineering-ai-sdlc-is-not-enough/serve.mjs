@@ -28,7 +28,7 @@ export function createPreviewServer() {
     }
     let pathname;
     try {
-      pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
+      pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname).replaceAll('\\', '/');
     } catch (error) {
       console.error('Invalid preview request URL:', error.message);
       response.writeHead(400).end('Invalid URL');

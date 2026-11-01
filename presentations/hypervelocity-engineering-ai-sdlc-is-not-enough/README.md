@@ -27,6 +27,8 @@ npm run preview -- 3044
 
 `npm start` builds once and starts a loopback-only server. It does not watch files. After an edit, run `npm run build` in another terminal and reload the page.
 
+The preview server treats decoded forward slashes and backslashes as path separators on both Windows and Linux. Requests that resolve outside `dist/` return HTTP `403`. Missing files inside `dist/` return HTTP `404`.
+
 ## Build and check
 
 ```shell
@@ -39,6 +41,8 @@ Run `npm run lint:md` from the repository root to check Markdown.
 The build copies the pinned Reveal.js runtime, notes plugin, and license into `dist/vendor/`. It does not load a CDN, remote font, or remote script. The package source comes from the developer's npm configuration. The lockfile records the version and integrity without a registry URL.
 
 This deck has its own package and lockfile. It does not change the root pnpm package or the Slidev toolchain.
+
+The Continuous Integration workflow builds and tests this deck on Ubuntu for pull requests and pushes to `main`. It uses the same `npm ci`, `npm run build`, and `npm test` commands as the Deploy GitHub Pages workflow.
 
 ## Present
 

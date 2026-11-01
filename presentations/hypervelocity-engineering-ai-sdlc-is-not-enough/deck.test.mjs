@@ -217,8 +217,29 @@ test('preview serves HTML and modules, rejects missing files, bad URLs, and writ
   const module = await fetch(`${base}/vendor/reveal.mjs`);
   assert.equal(module.status, 200);
   assert.match(module.headers.get('content-type'), /javascript/);
+  for (const path of ['/vendor%2freveal.mjs', '/vendor%5creveal.mjs']) {
+    const asset = await fetch(`${base}${path}`);
+    assert.equal(asset.status, 200, path);
+    assert.match(asset.headers.get('content-type'), /javascript/);
+    assert.equal(await asset.text(), await readFile(new URL('./dist/vendor/reveal.mjs', import.meta.url), 'utf8'));
+    const head = await fetch(`${base}${path}`, { method: 'HEAD' });
+    assert.equal(head.status, 200, path);
+    assert.match(head.headers.get('content-type'), /javascript/);
+    assert.equal(await head.text(), '');
+  }
   assert.equal((await fetch(`${base}/missing-file`)).status, 404);
   assert.equal((await fetch(`${base}/`, { method: 'POST' })).status, 405);
   assert.equal((await fetch(`${base}/%zz`)).status, 400);
-  assert.equal((await fetch(`${base}/..%5cpackage.json`)).status, 403);
+  for (const path of [
+    '/..%5cpackage.json',
+    '/..%2fpackage.json',
+    '/vendor%5c..%2f..%5cpackage.json',
+    '/..%2fdist-sibling%2findex.html',
+  ]) {
+    for (const method of ['GET', 'HEAD']) {
+      const response = await fetch(`${base}${path}`, { method });
+      assert.equal(response.status, 403, `${method} ${path}`);
+      assert.equal(await response.text(), method === 'HEAD' ? '' : 'Path is outside the presentation');
+    }
+  }
 });

@@ -110,6 +110,14 @@ jobs:
             echo "Successfully built and packaged $found presentation(s)."
           fi
 
+      - name: Build and test standalone HVE presentation
+        working-directory: presentations/hypervelocity-engineering-ai-sdlc-is-not-enough
+        run: |
+          set -e
+          npm ci
+          npm run build
+          npm test
+
       - name: Upload presentation artifacts
         uses: actions/upload-artifact@v7
         with:
