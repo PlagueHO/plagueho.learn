@@ -148,7 +148,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 /* Cover and part break */
 .opening h2 { top: 150px; width: 1120px; font-size: 84px; line-height: 1.04; }
-.opening h2 em { display: block; margin-top: 16px; font-size: 46px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.12; }
+.opening h2 em { display: block; margin-top: 16px; font-size: 46px; font-weight: 600; font-style: italic; letter-spacing: -0.02em; line-height: 1.12; }
 .opening .slide-content { top: 360px; justify-content: flex-start; }
 .reveal .cover-sub { margin: 0; color: var(--warm); font-size: 40px; font-weight: 600; line-height: 1.2; }
 

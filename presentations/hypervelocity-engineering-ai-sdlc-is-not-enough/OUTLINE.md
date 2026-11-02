@@ -4,7 +4,7 @@
 
 | Field | Value |
 |---|---|
-| Title | Hypervelocity Engineering |
+| Title | Hypervelocity Engineering - *Why adding AI to the SDLC is not enough* |
 | Subtitle | Why adding AI to the SDLC is not enough |
 | Presenter | Daniel Scott-Raynsford |
 | Audience | Technical leaders, engineering managers, and senior engineers |
@@ -160,7 +160,7 @@ The 25 slides total 30 minutes, including transitions. A separate Q&A slot is no
 
 | Slide | Title | Main message and narrative role | Visual | Minutes |
 |---|---|---|---|---:|
-| 1 | Hypervelocity Engineering: Why adding AI to the SDLC is not enough | Open with the title and the line *Why adding AI to the SDLC is not enough*. The subtitle asks the organizational question: *When code moves faster, what must change?* The subject is organizational delivery, not tool proficiency. Adding AI without changing how people own, validate, and decide work is the challenge. | Typography-led opening: title, second line, and question subtitle; no diagram or animation | 1 |
+| 1 | Hypervelocity Engineering - *Why adding AI to the SDLC is not enough* | Open with the title and the line *Why adding AI to the SDLC is not enough*. The subtitle asks the organizational question: *When code moves faster, what must change?* The subject is organizational delivery, not tool proficiency. Adding AI without changing how people own, validate, and decide work is the challenge. | Typography-led opening: title, second line, and question subtitle; no diagram or animation | 1 |
 | 2 | Each delivery era changed how we worked | Connect packaged software, cloud, and overlapping Agile and DevOps practices. Include co-engineering and leaving customer capability behind. Technology changed, but engineering fundamentals and learning with customers remain valuable. | Delivery eras over a retained engineering foundation and shared customer capability | 0.75 |
 | 3 | New words arrive. The cracks start to show. | Agentic SDLC and Forward Deployed Engineering become common labels. They name a direction; they do not change the delivery process by themselves. As delivery speeds up, cracks appear in handoffs, waiting, delivered value, feedback, and assurance. Slides 4-9 take each crack in turn. Do not claim that these approaches cause the cracks, and do not claim that no organization has already addressed them. | Two large label badges above one delivery-process slab. Five jagged cracks fall from the slab to short labels: handoffs, waiting, wrong value, late feedback, late assurance | 0.75 |
 | 4 | Keep the fundamentals. Change the handoffs. | Retain the successful discipline. Show where serial responsibility, lost context, or fixed review windows now constrain the work. Change how people coordinate around fundamentals rather than reject Agile, DevOps, or necessary controls. | Same delivery flow with retained checks and handoffs marked for redesign | 0.75 |

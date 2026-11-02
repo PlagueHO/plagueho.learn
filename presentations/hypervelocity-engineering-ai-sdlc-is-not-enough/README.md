@@ -1,4 +1,4 @@
-## Hypervelocity Engineering — Reveal.js edition
+## Hypervelocity Engineering - *Why adding AI to the SDLC is not enough*
 
 An independent presentation for technical leaders, engineering managers, and senior engineers. This deck sits beside the unchanged [original Slidev presentation](../hypervelocity-engineering/slides.md). It is not a Slidev conversion.
 
