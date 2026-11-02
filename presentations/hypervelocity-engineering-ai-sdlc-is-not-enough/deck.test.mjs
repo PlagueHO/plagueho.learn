@@ -40,7 +40,7 @@ test('slide order follows the approved narrative and pillar examples', () => {
     'handoff-contract', 'rpi', 'review', 'cost', 'plugin-model', 'demo-route', 'demo-install',
     'demo-discovery', 'demo-handoff', 'demo-rpi', 'recap',
   ]);
-  assert.match(text(byId.hve.title), /^Hypervelocity Engineering\s*Why adding AI to the SDLC is not enough$/);
+  assert.equal(byId.hve.title, 'Hypervelocity Engineering - <em>Why adding AI to the SDLC is not enough</em>');
   assert.match(text(byId.hve.body), /When code moves faster,\s*what must change\?/);
   assert.doesNotMatch(text(byId.hve.body), /own, validate, and deliver/);
   assert.match(text(byId['dashboard-request'].body), /quality dashboard/);
@@ -48,6 +48,22 @@ test('slide order follows the approved narrative and pillar examples', () => {
   assert.match(text(byId['design-example'].body), /Compare options/);
   assert.match(text(byId['accelerator-example'].body), /Still verify/);
   assert.match(text(byId['lifecycle-ai'].body), /AI-powered product/);
+});
+
+test('presentation titles match the requested wording across source and build', async () => {
+  const title = 'Hypervelocity Engineering - Why adding AI to the SDLC is not enough';
+  const pkg = JSON.parse(await readFile(new URL('./package.json', import.meta.url), 'utf8'));
+  assert.equal(pkg.presentation.title, title);
+  assert.equal(text(byId.hve.title).replace(/\s+/g, ' '), title);
+  const theme = await readFile(new URL('./theme.css', import.meta.url), 'utf8');
+  assert.match(theme, /\.opening h2 em\s*\{[^}]*font-style:\s*italic;/);
+  const heading = `<h2>${byId.hve.title}</h2>`;
+  assert.ok(renderSlides().includes(heading));
+  for (const file of ['./index.html', './dist/index.html']) {
+    const html = await readFile(new URL(file, import.meta.url), 'utf8');
+    assert.equal(html.match(/<title>([^<]+)<\/title>/)?.[1], title, file);
+    if (file === './dist/index.html') assert.ok(html.includes(heading));
+  }
 });
 
 test('the customer stays inside the loop and the leadership close works alone', () => {

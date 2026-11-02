@@ -48,7 +48,7 @@ Browse the [published Presentations index](https://plagueho.github.io/plagueho.l
 | Presentation | Format | Source |
 |---|---|---|
 | Original Hypervelocity Engineering | Slidev | [Original deck](presentations/hypervelocity-engineering/slides.md) |
-| Hypervelocity Engineering: Why adding AI to the SDLC is not enough | Reveal.js | [Source and run instructions](presentations/hypervelocity-engineering-ai-sdlc-is-not-enough/README.md) · [Published deck](https://plagueho.github.io/plagueho.learn/hypervelocity-engineering-ai-sdlc-is-not-enough/) |
+| Hypervelocity Engineering - *Why adding AI to the SDLC is not enough* | Reveal.js | [Source and run instructions](presentations/hypervelocity-engineering-ai-sdlc-is-not-enough/README.md) · [Published deck](https://plagueho.github.io/plagueho.learn/hypervelocity-engineering-ai-sdlc-is-not-enough/) |
 
 ## Repository Structure
 

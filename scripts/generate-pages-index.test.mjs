@@ -62,7 +62,9 @@ duration: 45
   await build(root, 'labs');
   const html = await generate(root);
   assert.equal((html.match(new RegExp(`href="\\./${renamedDeck}/"`, 'g')) ?? []).length, 1);
-  assert.ok(html.includes(deckPackage.presentation.title));
+  const title = 'Hypervelocity Engineering - Why adding AI to the SDLC is not enough';
+  assert.equal(deckPackage.presentation.title, title);
+  assert.ok(html.includes(`<h2>${title}</h2>`));
   assert.ok(html.includes(deckPackage.presentation.info.replaceAll('&', '&amp;')));
   assert.match(html, /60 min/);
   assert.match(html, /href="\.\/original\/"/);
