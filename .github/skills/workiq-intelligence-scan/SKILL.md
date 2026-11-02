@@ -95,19 +95,16 @@ Each issue must include:
 2. **Proposed demo** — title, category, description, wow moment, audience.
 3. **Acceptance criteria** — specific, testable criteria for the demo.
 
-### Step 5 — Summarize and Update Focus
+### Step 5 — Summarize
 
 1. Present a summary table of all signals with strength ratings and
    proposed actions.
-2. If `.squad/identity/now.md` exists, update it with the latest
-   intelligence summary. If it does not exist, skip this step.
 
 ## Output Format
 
 1. **Signal summary table** — all signals with strength and status.
 2. **GitHub issues** — one per Hot or Warm signal, using the intelligence
    brief template.
-3. **Focus update** — updated `.squad/identity/now.md` (if it exists).
 
 ## Edge Cases
 

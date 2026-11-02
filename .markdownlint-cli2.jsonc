@@ -15,10 +15,9 @@
     ".research/**",
     ".github/skills/sensei/**",
     "presentations/**/slides.md",
-    ".copilot/**",
     ".github/agents/**",
     ".github/skills/**",
-    ".squad/**",
+    "vendor/impeccable/**",
     "presentations/**/dotnet-version-upgrade/**",
     "labs-site/index.md",
     "labs-site/!(.vitepress)/**"
