@@ -44,6 +44,13 @@ plagueho.learn/
 # Bootstrap
 pnpm install
 
+# Initialize pinned external skills and restore the Impeccable link
+git submodule update --init --recursive
+node scripts/link-impeccable.mjs
+
+# Test external skill setup and shell-free Slidev execution
+node --test scripts/link-impeccable.test.mjs scripts/slidev-process.test.mjs
+
 # Lint all Markdown
 pnpm lint:md
 

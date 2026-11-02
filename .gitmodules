@@ -1,4 +1,6 @@
 [submodule ".github/skills/sensei"]
 	path = .github/skills/sensei
 	url = https://github.com/spboyer/sensei
-	ignore = all
+[submodule "vendor/impeccable"]
+	path = vendor/impeccable
+	url = https://github.com/pbakaus/impeccable

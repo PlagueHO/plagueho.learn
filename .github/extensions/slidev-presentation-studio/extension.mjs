@@ -3,11 +3,11 @@
 // Usage: Open the "Slidev Presentation Studio" canvas and select a presentation to build or preview.
 
 import { createServer } from "node:http";
-import { spawn } from "node:child_process";
 import { createConnection } from "node:net";
 import { readdir } from "node:fs/promises";
 import { join, relative, sep } from "node:path";
 import { createCanvas, CanvasError, joinSession } from "@github/copilot-sdk/extension";
+import { runSlidev, spawnSlidev } from "./slidev-process.mjs";
 
 const workspaceRoot = process.cwd();
 const presentationsDirectory = join(workspaceRoot, "presentations");
@@ -66,57 +66,11 @@ async function resolveDeck(deckId) {
     return deck;
 }
 
-function spawnPnpm(argumentsList) {
-    if (process.platform === "win32") {
-        const command = ["pnpm.cmd", ...argumentsList].join(" ");
-        return spawn(process.env.ComSpec ?? "cmd.exe", ["/d", "/s", "/c", command], {
-            cwd: workspaceRoot,
-            windowsHide: true,
-        });
-    }
-
-    return spawn("pnpm", argumentsList, { cwd: workspaceRoot });
-}
-
-function runPnpm(argumentsList, timeoutMilliseconds = 120_000) {
-    return new Promise((resolve) => {
-        const child = spawnPnpm(argumentsList);
-        let output = "";
-        let timedOut = false;
-
-        const appendOutput = (chunk) => {
-            output = `${output}${chunk}`.slice(-maxCommandOutputLength);
-        };
-
-        child.stdout.on("data", appendOutput);
-        child.stderr.on("data", appendOutput);
-
-        const timeout = setTimeout(() => {
-            timedOut = true;
-            child.kill();
-        }, timeoutMilliseconds);
-
-        child.on("error", (error) => {
-            clearTimeout(timeout);
-            resolve({ success: false, output: error.message });
-        });
-
-        child.on("close", (code) => {
-            clearTimeout(timeout);
-            resolve({
-                success: code === 0 && !timedOut,
-                output: output.trim(),
-                timedOut,
-            });
-        });
-    });
-}
-
 async function findFreePort() {
     return new Promise((resolve, reject) => {
         const server = createServer();
         server.once("error", reject);
-        server.listen(0, "127.0.0.1", () => {
+        server.listen(0, "localhost", () => {
             const address = server.address();
             const port = typeof address === "object" && address ? address.port : undefined;
             server.close((error) => (error ? reject(error) : resolve(port)));
@@ -126,7 +80,7 @@ async function findFreePort() {
 
 async function isPortOpen(port) {
     return new Promise((resolve) => {
-        const socket = createConnection({ host: "127.0.0.1", port });
+        const socket = createConnection({ host: "localhost", port });
         const complete = (isOpen) => {
             socket.destroy();
             resolve(isOpen);
@@ -158,8 +112,9 @@ async function startPreview(deckId) {
     }
 
     const port = await findFreePort();
-    const processHandle = spawnPnpm(
-        ["exec", "slidev", deckPath(deckId), "--port", String(port), "--open", "false"],
+    const processHandle = spawnSlidev(
+        [deckPath(deckId), "--port", String(port), "--open", "false"],
+        workspaceRoot,
     );
     let output = "";
 
@@ -167,13 +122,16 @@ async function startPreview(deckId) {
         output = `${output}${chunk}`.slice(-maxCommandOutputLength);
     };
 
+    processHandle.once("error", (error) => {
+        output = error.message;
+    });
     processHandle.stdout.on("data", appendOutput);
     processHandle.stderr.on("data", appendOutput);
 
     const preview = {
         process: processHandle,
         port,
-        url: `http://127.0.0.1:${port}/`,
+        url: `http://localhost:${port}/`,
         getOutput: () => output.trim(),
     };
     previewProcesses.set(deckId, preview);
@@ -409,7 +367,7 @@ async function handleRequest(request, response) {
         if (request.method === "POST" && url.pathname === "/api/build") {
             const { deckId } = await parseBody(request);
             const deck = await resolveDeck(deckId);
-            const result = await runPnpm(["exec", "slidev", "build", deck.path]);
+            const result = await runSlidev(["build", deck.path], workspaceRoot);
             if (!result.success) {
                 sendJson(response, 500, { error: result.timedOut ? "Build timed out." : result.output });
                 return;
@@ -471,7 +429,7 @@ const session = await joinSession({
                 },
                 {
                     name: "build_presentation",
-                    description: "Build a selected Slidev presentation using the repository's pnpm command.",
+                    description: "Build a selected presentation using the repository's installed Slidev CLI.",
                     inputSchema: {
                         type: "object",
                         properties: { deckId: { type: "string", pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$" } },
@@ -480,7 +438,7 @@ const session = await joinSession({
                     },
                     handler: async (ctx) => {
                         const deck = await resolveDeck(ctx.input.deckId);
-                        const result = await runPnpm(["exec", "slidev", "build", deck.path]);
+                        const result = await runSlidev(["build", deck.path], workspaceRoot);
                         if (!result.success) {
                             throw new CanvasError("build_failed", result.timedOut ? "Build timed out." : result.output);
                         }

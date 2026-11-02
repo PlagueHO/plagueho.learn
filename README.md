@@ -84,6 +84,34 @@ plagueho.learn/
 | [PlagueHO/plagueho.os](https://github.com/PlagueHO/plagueho.os) | Agentic workflow automation, Copilot agents, prompts |
 | [PlagueHO/skills](https://github.com/PlagueHO/skills) | Agent plugin marketplace |
 
+## External development tools
+
+Sensei and Impeccable are pinned Git submodules. Do not copy their source files into this repository or edit their source here. Fix external tool issues in the upstream project, then review and update the pin.
+
+| Tool | Submodule | Upstream |
+|---|---|---|
+| Sensei | `.github/skills/sensei` | [spboyer/sensei](https://github.com/spboyer/sensei) |
+| Impeccable | `vendor/impeccable` | [pbakaus/impeccable](https://github.com/pbakaus/impeccable) |
+
+After cloning, initialize the pinned tools and restore the Impeccable skill link:
+
+```sh
+git submodule update --init --recursive
+node scripts/link-impeccable.mjs
+```
+
+Impeccable documents a [submodule installation with tool-specific links](https://github.com/pbakaus/impeccable#installation). The committed `.github/skills/impeccable` link points to its GitHub Copilot build. The setup script restores that relative symbolic link on Linux and macOS. On Windows, it uses a directory junction without administrator permission.
+
+Git can show the Windows junction as a local deletion of the symbolic link. Do not stage that deletion or replace the committed relative link with an absolute junction target.
+
+To restore the normal Git placeholder before staging, remove only the junction with `node -e "require('node:fs').rmdirSync('.github/skills/impeccable')"`, then run `git restore -- .github/skills/impeccable`. Run the setup script again when you need the skill.
+
+The existing Impeccable post-edit hook runs the pinned launcher under `vendor/impeccable`. Linking does not install or approve additional hooks. Review the hook before use. The launcher downloads its pinned engine when needed and verifies it against the submodule's checksum manifest.
+
+To update a tool, select a reviewed upstream commit in that submodule, stage its changed pin, and run the setup script again. Do not use a moving branch during builds. Keep the four Impeccable agent definitions in `.github/agents` compatible with the selected pin. A submodule migration changes source ownership; it does not fix upstream vulnerabilities.
+
+Squad runtime files, generated skills, agents, and workflows are not part of this repository. Authored learning content can still discuss Squad.
+
 ## License
 
 [MIT License](LICENSE)
