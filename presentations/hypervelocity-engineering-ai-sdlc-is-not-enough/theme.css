@@ -139,6 +139,27 @@ button { font: inherit; color: inherit; cursor: pointer; }
   background: var(--warm);
 }
 
+/* Four structural pillars, revealed one complete challenge-to-practice column at a time. */
+#constraints-pillars .pillar-figure { gap: 0; }
+#constraints-pillars .pillar-columns { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; height: 306px; }
+#constraints-pillars .pillar-column { display: grid; grid-template-rows: 72px 40px 170px; gap: 12px; text-align: center; transition: opacity 180ms ease-out; }
+#constraints-pillars .pillar-challenge { display: flex; align-items: center; justify-content: center; color: var(--warm-ink); font-size: 25px; font-weight: 600; line-height: 1.2; }
+#constraints-pillars .pillar-direction { display: flex; align-items: center; justify-content: center; }
+#constraints-pillars .pillar-direction .arr { width: 24px; height: 40px; }
+#constraints-pillars .pillar-practice { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 20px 24px; border-block: 6px solid var(--purple); background: var(--purple-tint); }
+#constraints-pillars .pillar-practice::before,
+#constraints-pillars .pillar-practice::after { content: ""; position: absolute; top: 0; bottom: 0; width: 0; border-left: 1px dashed var(--edge); }
+#constraints-pillars .pillar-practice::before { left: 16px; }
+#constraints-pillars .pillar-practice::after { right: 16px; }
+#constraints-pillars .pillar-practice .ico { width: 34px; height: 34px; color: var(--purple); }
+#constraints-pillars .pillar-practice strong { color: var(--purple); font-size: 27px; font-weight: 650; line-height: 1.13; }
+body:not(.deck-ready) #constraints-pillars .pillar-column.fragment,
+.reveal.overview #constraints-pillars .pillar-column.fragment,
+html.print-pdf #constraints-pillars .pillar-column.fragment { opacity: 1; visibility: visible; transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  #constraints-pillars .pillar-column.fragment { transition: none; }
+}
+
 /* Cover and part break */
 .opening h2 { top: 154px; width: 1120px; font-size: 80px; line-height: 1.04; }
 .opening h2 em { display: block; margin-top: 24px; font-size: 36px; font-weight: 500; font-style: normal; letter-spacing: -0.02em; line-height: 1.2; }

@@ -251,6 +251,42 @@ test('slide 10 uses the selected large circular model and keeps assurance in not
   assert.doesNotMatch(theme, /\.operating-model \.model-sweep/);
 });
 
+test('slide 11 reveals four unnumbered structural pillars without the extra improvement flow', async () => {
+  const slide = byId['constraints-pillars'];
+  assert.equal(slide.title, 'Four pillars address<br><em>the challenges exposed by AI-accelerated delivery.</em>');
+  assert.equal(slide.minutes, 1.25);
+  assert.equal((slide.body.match(/class="pillar-column fragment"/g) ?? []).length, 4);
+  assert.deepEqual([...slide.body.matchAll(/data-fragment-index="(\d)"/g)].map(match => Number(match[1])), [0, 1, 2, 3]);
+  assert.equal((slide.body.match(/class="pillar-practice"/g) ?? []).length, 4);
+  assert.doesNotMatch(slide.body, /column-number|pillar-number|class="grid pair"/);
+  for (const pillar of ['Multidisciplinary teams', 'Design Thinking', 'Reusable accelerators', 'AI throughout']) {
+    assert.ok(text(slide.body).includes(pillar));
+  }
+  assert.doesNotMatch(slide.body, /Inspect|Compare practices|Adapt|Then inspect again|class="strip"/);
+  const theme = await readFile(new URL('./theme.css', import.meta.url), 'utf8');
+  assert.match(theme, /#constraints-pillars \.pillar-practice strong \{[^}]*font-size: 27px/);
+  assert.match(theme, /#constraints-pillars \.pillar-practice \{[^}]*padding: 20px 24px/);
+  assert.match(theme, /border-left: 1px dashed var\(--edge\)/);
+  assert.match(theme, /body:not\(\.deck-ready\) #constraints-pillars \.pillar-column.fragment/);
+  assert.match(theme, /\.reveal.overview #constraints-pillars \.pillar-column.fragment/);
+  assert.match(theme, /html.print-pdf #constraints-pillars \.pillar-column.fragment \{ opacity: 1; visibility: visible; transition: none;/);
+  assert.match(slide.notes, /Advance four times/);
+  assert.doesNotMatch(slide.title, /constraints/i);
+  assert.match(slide.body, /Established practices, refined through Microsoft ISE delivery/);
+  assert.match(slide.body, /customer co-engineering and Forward Deployed Engineering experience/);
+  assert.doesNotMatch(slide.body, /proven|guaranteed/i);
+  const talkTrack = slide.notes.split('Presenter guidance:\n')[0];
+  assert.ok(talkTrack.trim().split(/\s+/).length <= 70);
+  assert.match(talkTrack, /Microsoft Industry Solutions Engineering \(ISE\)/);
+  assert.match(talkTrack, /Forward Deployed Engineering over recent years/);
+  assert.match(talkTrack, /short customer-and-crew learning loop/);
+  assert.doesNotMatch(talkTrack, /Multidisciplinary|Design Thinking|accelerators|AI assistance/);
+  assert.match(slide.notes, /not an exclusive one-to-one mapping/);
+  assert.match(slide.notes, /required independent review/);
+  assert.match(slide.notes, /not that AI creates every challenge/);
+  assert.ok(slide.sources.includes('fde'));
+});
+
 test('delivery shifts connect technology changes to responsibility and outcome ownership', () => {
   const slide = byId['delivery-eras'];
   assert.equal(slide.title, 'Software delivery changed.<br><em>So did responsibility.</em>');
