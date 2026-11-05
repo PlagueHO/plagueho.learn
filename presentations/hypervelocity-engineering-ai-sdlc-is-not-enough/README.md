@@ -94,6 +94,38 @@ Motion pauses when the page is hidden or the deck is paused. It stops when the s
 
 Old `#/ai-implementation` and `#/outcome-waiting` links open the corresponding phases of `#/handoffs`. Security, quality, operations, and required independent review remain.
 
+Slide 6 uses selected A under the broader title "Delivering software faster. But not delivering the outcome." The business requests a chatbot to reduce order calls. The carrier moves delivery from Friday to Monday, but the order record and chatbot still say Friday. No team owns the update. The customer needs a trustworthy revised date and clear next action.
+
+The two-panel comparison stays. Speaker notes explain the whole scenario and distinguish a shipped feature from a solved customer problem. This Friday-to-Monday case is the baseline for later leadership examples. The teaching boundary stays in notes; there is no visible scenario label.
+
+The failure predates AI. Faster implementation can let more unvalidated requests reach delivery while the customer problem remains unsolved. The response is to use that speed for learning and to own the customer outcome, not slow development. Later leadership examples will adopt this thread as they are reviewed.
+
+Slide 7 uses two wheels from slide 5's visual language. The PM/SME/customer stays in the slower design/planning loop while the agent makes an assumption. Each fast turn copies the same unvalidated rule into behaviour, tests, and later increments. A curved return arc shows that rule becoming the starting point for more work.
+
+"More decisions. Validation lags." explains the pressure. When decision demand exceeds business validation capacity, more gaps can be filled with assumptions. Reuse then spreads each assumption's consequences. The animation follows one assumption; the copies are dependent uses, not a count of distinct new assumptions.
+
+The six-second sequence accumulates three copies in each output, then freezes. Implementation makes three turns while planning makes a quarter turn. These are conceptual cues, not measured speeds or completed outcomes. Replay and pause controls use the slide footer. Hidden pages and deck pause freeze the active time budget; slide exit stops it.
+
+Overview, reduced motion, print, and script failure show the complete static meaning. Passing tests does not remove the unvalidated-rule tag. The slide stays general and does not revisit the order-status case.
+
+The takeaway is "The question is still open. The product already contains an answer." Notes explain the impact of a decision made by default, distinguish it from legitimate technical choices, and leave the response for the next section. There is no scale label.
+
+Slide 8 uses a fast implementation wheel, a growing feature backlog, and a slower production-readiness wheel. The last wheel names acceptance tests, assurance checks, and release readiness, not teams. One marker enters readiness while more arrive. A straight return line with equal rounded corners shows late rework.
+
+The three headings share one row. Three short captions share another. The return line joins the bottom centre of each wheel and runs behind the lower labels. "Late rework" is centred on the horizontal section.
+
+The title is "Features arrive faster. Production readiness falls behind." The takeaway is "More finished code. More unfinished readiness work." The slide explains the problem; it does not show a solution lane or recommend removing assurance.
+
+The six-second sequence ends with seven waiting markers. Counts and speeds are conceptual, not measured throughput or released features. Replay, pause, hidden-page, overview, reduced-motion, print, and script-failure behavior match slide 7. Both sequences share their bounded-motion lifecycle.
+
+Notes include a roughly 75-second talk track. The later response shifts suitable work left and runs it continuously, including security-agent support during design, planning, and coding. Prepared foundations do not replace expert judgment, operational ownership, or required independent review.
+
+Slide 10 introduces "Hypervelocity Engineering" with the subtitle "How we change the delivery operating model". Advance once to replace serial handoffs with a circular idea, validation, engineering, and feedback loop. The larger centre keeps the customer and expert crew readable. Product, design, engineering, testing, security, operations, release, and service work support the short feedback cycle.
+
+The circle is static. Four purple arrowheads at its top, right, bottom, and left show the clockwise sequence. Overview, reduced motion, print, and script failure show both models. Static modes do not add an invisible fragment step. The visual has no assurance caption. Required independent review and continuous assurance remain in the notes.
+
+Its roughly 30-second talk track connects customer needs, decisions, and readiness work to shared ownership and learning. The wider production model is a proposal to test, not a fixed formula or a production-readiness guarantee. A POC or MVP still needs suitable operational and assurance work. Detailed pillars and toolkit features remain on later slides.
+
 The leadership close includes public resources and routes to questions, the optional deep dive, or demos. The demo recap does not claim that a system reached production.
 
 ## Edit
@@ -102,6 +134,10 @@ The leadership close includes public resources and routes to questions, the opti
 |---|---|
 | `deck.mjs` | Slide renderer: in-slide header and footer, wave background, title, body, and notes |
 | `slides.mjs` | Merges slide metadata with slide bodies and keeps the order |
+| `amplification.mjs` | Slide-7 wheel motion, rule propagation, reuse, and static viewing states |
+| `readiness.mjs` | Slide-8 feature arrivals, readiness backlog, and rework motion |
+| `finite-motion.mjs` | Shared bounded-motion lifecycle and SVG token positioning for slides 7 and 8 |
+| `operating-model.mjs` | Slide-10 single-advance model replacement and complete static viewing states |
 | `slide-meta.mjs` | Slide IDs, parts, timing, titles, speaker notes, and wave presets |
 | `bodies-leadership.mjs` | Body markup for the 25 leadership slides; section separators have empty bodies |
 | `bodies-core.mjs` | Body markup for the optional HVE-Core and demo slides |
