@@ -130,6 +130,8 @@ Slide 11 uses selected B: four structural pillars without numbers. Advance four 
 
 The title and ISE/FDE credit stay visible. Overview, print, and script failure show all four pillars. Reduced motion keeps the click sequence without a fade. The brief notes credit delivery experience rather than explain each pillar. The associations are not exclusive one-to-one solutions.
 
+Slides 12-19 carry a faint bottom-left pillar number above the swirl and below all content. Each pair uses the same number: 1, 1, 2, 2, 3, 3, 4, 4. The numeral is 585px at 7% opacity and is hidden from accessibility reading. Slides 12, 14, 16, and 18 use "Pillar n: Title." with a subtitle on the next line. Example-slide headings stay separate.
+
 The leadership close includes public resources and routes to questions, the optional deep dive, or demos. The demo recap does not claim that a system reached production.
 
 ## Edit
