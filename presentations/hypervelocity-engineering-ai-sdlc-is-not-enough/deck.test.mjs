@@ -247,6 +247,7 @@ test('slide 10 uses the selected large circular model and keeps assurance in not
   assert.match(theme, /\.operating-model \.learning-centre \{[^}]*width: 220px; height: 220px;/);
   assert.match(theme, /#hve-model h2 em \{ font-size: 36px; font-weight: 500;/);
   assert.match(theme, /\.operating-model \.model-arrowhead \{ stroke: var\(--purple\); stroke-width: 4;/);
+  assert.match(theme, /\.operating-model \.learning-stage\.validation \{[^}]*background: transparent;/);
   assert.doesNotMatch(theme, /\.operating-model \.model-sweep/);
 });
 
