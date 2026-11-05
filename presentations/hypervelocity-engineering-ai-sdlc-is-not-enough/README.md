@@ -126,6 +126,10 @@ The circle is static. Four purple arrowheads at its top, right, bottom, and left
 
 Its roughly 30-second talk track connects customer needs, decisions, and readiness work to shared ownership and learning. The wider production model is a proposal to test, not a fixed formula or a production-readiness guarantee. A POC or MVP still needs suitable operational and assurance work. Detailed pillars and toolkit features remain on later slides.
 
+Slide 11 uses selected B: four structural pillars without numbers. Advance four times with Right Arrow or Space to reveal one complete challenge, arrow, and practice column per step. Left Arrow reverses the sequence. The lower labels use 27px type with space inside the dashed edges.
+
+The title and ISE/FDE credit stay visible. Overview, print, and script failure show all four pillars. Reduced motion keeps the click sequence without a fade. The brief notes credit delivery experience rather than explain each pillar. The associations are not exclusive one-to-one solutions.
+
 The leadership close includes public resources and routes to questions, the optional deep dive, or demos. The demo recap does not claim that a system reached production.
 
 ## Edit

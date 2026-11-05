@@ -23,7 +23,7 @@ The revised outline follows this progression:
 1. Show the familiar work, waiting, handoff, and decision flow, then shorten only its implementation segment.
 1. Explain why faster output can amplify waiting and wrong assumptions; working software alone does not establish business value.
 1. Define HVE as a whole-delivery operating-model response, not simply faster coding.
-1. Connect constraints to changed practices through inspect -> compare -> adapt, then explain each pillar through shared ownership, value validation, maintained foundations, and expert-led assistance.
+1. Connect delivery challenges to four practices that work together: shared ownership, value validation, maintained foundations, and expert-led assistance. Slide 11 has no separate improvement cycle; do not attribute one to the HVE white paper.
 1. Reassemble the idea -> validation -> engineering -> feedback loop with the customer and expert crew inside it.
 1. Keep expert validation and built-in security, observability, testing, and CI/CD explicit.
 1. Test changed responsibilities and practices, expose cross-team constraints, identify owners, and seek sponsored changes while retaining assurance.
@@ -93,6 +93,8 @@ Do not repeat a universal exponential context-cost claim, a guaranteed first-pas
 | Delivery measurement | Throughput and instability measures interpreted at application or service level | [DORA metrics](https://dora.dev/guides/dora-metrics/) |
 
 The FDE sources support the delivery relationship, not an exclusive claim that FDE requires this particular toolkit. The HVE-Core sources describe a current implementation, not a fixed platform that defines the method.
+
+Slide 11 credits established practices refined through Microsoft ISE delivery and FDE experience. The ISE playbook records shared engineering practice; the FDE perspective describes customer co-engineering and multidisciplinary delivery over recent years. This supports an experience-based introduction, not a claim that ISE invented every practice or proved this four-pillar grouping guarantees outcomes.
 
 The public findings support the whole-system argument. They do not prove the full historical narrative, the independent effect of each pillar, or a necessary-and-sufficient formula. These remain teaching synthesis. HVE-Core can accelerate processes; that does not make it a production solution foundation. Installing it does not supply infrastructure, customer evidence, authority, or readiness.
 

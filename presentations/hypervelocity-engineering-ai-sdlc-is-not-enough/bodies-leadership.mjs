@@ -228,14 +228,18 @@ export const leadershipBodies = {
     </div></div></div>`, 'operating-figure') +
     takeaway('Optimize for the right outcome, not maximum code output.'),
 
-  'constraints-pillars': fig('Four constraints and the four pillars that answer them', `
-    ${[
-      ['Handoffs + decision waits', 'team', 'Multidisciplinary teams'],
-      ['Unvalidated requests', 'search', 'Design Thinking'],
-      ['Repeated setup + late assurance', 'layers', 'Reusable accelerators'],
-      ['Non-coding lifecycle work', 'spark', 'AI throughout'],
-    ].map(([constraint, iconName, pillar]) => grid('1fr 56px 1fr', [node(constraint, '', 'warm compact'), arrow(), inode(iconName, pillar, '', 'tint compact')], 'pair')).join('')}
-    <div class="strip">${chain([node('Inspect', '', 'compact'), node('Compare practices', '', 'compact'), node('Adapt', '', 'compact')])}${ret('Then inspect again', 3)}</div>`),
+  'constraints-pillars': fig('Delivery challenges and four connected practices that help address them', `
+    <div class="pillar-columns">${[
+      ['Handoffs +<br>decision waits', 'team', 'Multidisciplinary<br>teams'],
+      ['Unvalidated<br>requests', 'search', 'Design<br>Thinking'],
+      ['Repeated setup +<br>late assurance', 'layers', 'Reusable<br>accelerators'],
+      ['Non-coding<br>lifecycle work', 'spark', 'AI<br>throughout'],
+    ].map(([challenge, iconName, pillar], index) => `<div class="pillar-column fragment" data-fragment-index="${index}">
+      <div class="pillar-challenge">${challenge}</div>
+      <div class="pillar-direction">${arrow('d')}</div>
+      <div class="pillar-practice">${icon(iconName)}<strong>${pillar}</strong></div>
+    </div>`).join('')}</div>`, 'pillar-figure') +
+    takeaway('Established practices, refined through Microsoft ISE delivery.<br>Built on customer co-engineering and Forward Deployed Engineering experience.'),
 
   teams: fig('One team with distributed expertise around one outcome', `
     <div class="boundary">${grid('1fr 230px 1fr', [
