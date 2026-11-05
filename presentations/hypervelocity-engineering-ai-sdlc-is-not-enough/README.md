@@ -98,7 +98,9 @@ Slide 6 uses selected A under the broader title "Delivering software faster. But
 
 The two-panel comparison stays. Speaker notes explain the whole scenario and distinguish a shipped feature from a solved customer problem. This Friday-to-Monday case is the baseline for later leadership examples. The teaching boundary stays in notes; there is no visible scenario label.
 
-The failure predates AI. Faster implementation can let more unvalidated requests reach delivery while the customer problem remains unsolved. The response is to use that speed for learning and to own the customer outcome, not slow development. Later leadership examples will adopt this thread as they are reviewed.
+The failure predates AI. Faster implementation can let more unvalidated requests reach delivery while the customer problem remains unsolved. The response is to use that speed for learning and to own the customer outcome, not slow development.
+
+Slides 13, 15, 17, and 19 use this same Friday-to-Monday case. They show proposed update-path ownership, customer-success tests, a carrier-update increment on reused controls, and AI-assisted drafts checked by support, product, engineering, and operations. No customer research, completed integration, review result, or measured gain is claimed. The optional manufacturing tutorial stays separate.
 
 Slide 7 uses two wheels from slide 5's visual language. The PM/SME/customer stays in the slower design/planning loop while the agent makes an assumption. Each fast turn copies the same unvalidated rule into behaviour, tests, and later increments. A curved return arc shows that rule becoming the starting point for more work.
 

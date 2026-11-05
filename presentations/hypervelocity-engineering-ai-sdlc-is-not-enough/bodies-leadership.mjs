@@ -253,13 +253,13 @@ export const leadershipBodies = {
       `<div class="col reach"><i class="drop dashed"></i>${node('Independent assurance', '', 'ghost compact')}</div>`,
     ])}`) + takeaway('Distributed expertise. Not separate queues.'),
 
-  'team-example': fig('A dashboard request resolved by the crew', `
+  'team-example': fig('The crew owns the carrier update from Friday to Monday', `
     <div class="cols4">
       <em>Trigger</em><span></span><em>Crew checks</em><span></span><em>Decision</em><span></span><em>Record</em>
-      ${node('Dashboard request', '', 'ghost tall')}${arrow()}
-      <div class="col">${node('Operator', '', 'compact')}${node('Domain expert', '', 'compact')}${node('Product owner', '', 'compact')}${node('Security / Responsible AI champion', '', 'ghost compact')}</div>${arrow()}
-      ${node('Investigate shift handover', '', 'warm tall')}${arrow()}
-      <div class="record"><strong>Decision record</strong><ul><li>Initial evidence</li><li>Customer co-owner</li><li>Decision needed</li><li>Open questions</li></ul></div>
+      ${node('Build an AI chatbot', 'Reduce order calls', 'ghost tall')}${arrow()}
+      <div class="col">${node('Customer + support', '', 'compact')}${node('Carrier + order team', '', 'compact')}${node('Product + engineering', '', 'compact')}${node('Security champion', '', 'ghost compact')}</div>${arrow()}
+      ${node('Own the carrier update path', 'Friday becomes Monday', 'warm tall')}${arrow()}
+      <div class="record"><strong>Proposed decision</strong><ul><li>Owner: order team</li><li>Trace the stale date</li><li>Confirm next action</li><li>Record open questions</li></ul></div>
     </div>`),
 
   'design-thinking': fig('Design Thinking spaces with the crew alongside', `
@@ -273,10 +273,10 @@ export const leadershipBodies = {
     ${band('Evidence links the spaces', 'tint')}
     ${ret('Feedback can reopen any decision', 3)}`) + takeaway('A request is not proof of value.'),
 
-  'design-example': fig('From a dashboard request to compared options', `<div class="example">
-    <div class="col wide">${node('Dashboard request', '', 'ghost compact')}${arrow('d')}${node('Investigate shift-handover knowledge', '', 'tint')}${arrow('d')}${node('Define user success', 'Proposed: find the right procedure; know when to escalate')}</div>
+  'design-example': fig('Test the delivery-update problem before choosing an interface', `<div class="example">
+    <div class="col wide">${node('Build an AI chatbot', '', 'ghost compact')}${arrow('d')}${node('Friday becomes Monday', 'The order record still says Friday', 'tint')}${arrow('d')}${node('Define customer success', 'Proposed: trustworthy revised date + clear next action')}</div>
     ${arrow('r', 'arr-big')}
-    <div class="col">${node('Compare options', '', 'purple compact')}<div class="quad">${['Test', 'Change', 'Investigate', 'Stop'].map(item => node(item, '', 'compact')).join('')}</div></div>
+    <div class="col">${node('Compare options', 'Update path + tracking view, notification, or chatbot', 'purple compact')}<div class="quad">${['Test', 'Change', 'Investigate', 'Stop'].map(item => node(item, '', 'compact')).join('')}</div></div>
   </div>`),
 
   accelerators: fig('Reusable foundations beneath business-specific work', `<div class="cutaway">
@@ -285,9 +285,9 @@ export const leadershipBodies = {
     <div class="owner"><svg viewBox="0 0 28 100" preserveAspectRatio="none" aria-hidden="true"><path d="M4 2H20V98H4" vector-effect="non-scaling-stroke"/></svg>${node('Named owner maintains the foundation', '', 'ghost')}</div>
   </div>`) + takeaway('A starting point is not a finished or certified solution.'),
 
-  'accelerator-example': fig('A changed increment on a reused foundation', `<div class="outline-box">
-    <span class="tab">Still verify: access · deployment · operation · recovery</span>
-    ${node('Changed: business-specific increment', '', 'warm wide')}
+  'accelerator-example': fig('The carrier-update increment on a reused foundation', `<div class="outline-box">
+    <span class="tab">Still verify: late updates · access · operation · recovery</span>
+    ${node('Changed: carrier update to order record', 'Friday becomes Monday; confirm the next action', 'warm wide')}
     ${layer('Reused', ['Approved environment', 'Identity', 'Logging', 'CI/CD'])}
   </div>`) + takeaway('Separate inherited controls, changed behavior, and remaining assurance.'),
 
@@ -301,12 +301,12 @@ export const leadershipBodies = {
     ${ret('Gaps return to the crew', 5)}
     <div class="contrast">${node('AI-assisted delivery', '', 'tint compact')}<b aria-hidden="true">≠</b>${node('AI-powered product', '', 'ghost compact')}<p>The delivered solution need not contain AI.</p></div>`),
 
-  'lifecycle-example': fig('Outputs carried through expert review', `<div class="cols7">
-    <em class="span7">AI-assisted drafts</em>
-    ${node('Evidence synthesis', '', 'compact')}${arrow()}${node('Acceptance criteria', '', 'compact')}${arrow()}${node('Increment + tests', '', 'compact')}${arrow()}${node('Operating guidance', '', 'compact')}
+  'lifecycle-example': fig('Friday-to-Monday evidence carried through expert review', `<div class="cols7">
+    <em class="span7">AI-assisted drafts: Friday becomes Monday</em>
+    ${node('Trace carrier update', '', 'compact')}${arrow()}${node('Date + next action', '', 'compact')}${arrow()}${node('Update path + tests', '', 'compact')}${arrow()}${node('Late-update runbook', '', 'compact')}
     ${['<i class="drop"></i>', '<span></span>', '<i class="drop"></i>', '<span></span>', '<i class="drop"></i>', '<span></span>', '<i class="drop"></i>'].join('')}
     <em class="span7">Expert review</em>
-    ${[['Domain expert', 'checks meaning'], ['Product owner', 'checks value'], ['Engineer', 'checks behavior'], ['Operations', 'checks readiness']].map(([who, check], index) => `${index ? '<span></span>' : ''}${inode('check', who, check, 'tint')}`).join('')}
+    ${[['Support lead', 'checks evidence'], ['Product owner', 'checks customer need'], ['Engineer', 'checks update rules'], ['Operations', 'checks recovery']].map(([who, check], index) => `${index ? '<span></span>' : ''}${inode('check', who, check, 'tint')}`).join('')}
   </div>${ret('Unresolved assumption → back to the crew', 4)}`),
 
   'evidence-judgment': fig('Evidence converging on an owner decision', `<div class="converge">

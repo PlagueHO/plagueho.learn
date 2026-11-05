@@ -52,10 +52,37 @@ test('slide order follows the approved narrative and pillar examples', () => {
   assert.doesNotMatch(byId.hve.body, /cover-sub|cover-scope/);
   assert.match(byId.hve.notes, /when building becomes faster than deciding/);
   assert.match(text(byId['dashboard-request'].body), /Reduce order calls\.\s+Build an AI chatbot/);
-  assert.match(text(byId['team-example'].body), /shift handover/);
+  assert.match(text(byId['team-example'].body), /Own the carrier update path/);
   assert.match(text(byId['design-example'].body), /Compare options/);
   assert.match(text(byId['accelerator-example'].body), /Still verify/);
   assert.match(text(byId['lifecycle-ai'].body), /AI-powered product/);
+});
+
+test('pillar examples carry the same order-status case into distinct reviewed practices', () => {
+  for (const id of ['team-example', 'design-example', 'accelerator-example', 'lifecycle-example']) {
+    const slide = byId[id];
+    assert.match(text(slide.body), /Friday becomes Monday/);
+    assert.match(slide.notes, /Friday/);
+    assert.match(slide.notes, /Monday/);
+    assert.doesNotMatch(`${slide.title} ${slide.body} ${slide.notes}`, /dashboard|shift.handov|plant|voice interface/i);
+    assert.doesNotMatch(slide.body, /fragment|completed|certified/i);
+    assert.equal(slide.minutes, 1.5);
+    assert.ok(!slide.sources.includes('tutorial'));
+  }
+  assert.match(text(byId['team-example'].body), /Owner: order team/);
+  assert.match(byId['team-example'].notes, /ownership must be agreed/);
+  assert.match(byId['design-example'].title, /chatbot is a request/);
+  assert.match(text(byId['design-example'].body), /trustworthy revised date \+ clear next action/);
+  assert.match(byId['design-example'].notes, /no user tests have occurred/i);
+  assert.match(byId['design-example'].notes, /not a hallucination or coding defect/);
+  assert.match(text(byId['accelerator-example'].body), /Changed: carrier update to order record/);
+  assert.match(text(byId['accelerator-example'].body), /Reused.*Approved environment.*Identity.*Logging.*CI\/CD/);
+  assert.match(byId['accelerator-example'].notes, /Foundation controls do not make a stale delivery date correct/);
+  for (const role of ['Support lead', 'Product owner', 'Engineer', 'Operations']) {
+    assert.ok(text(byId['lifecycle-example'].body).includes(role));
+  }
+  assert.match(byId['lifecycle-example'].notes, /AI does not validate its own work/);
+  assert.match(byId['lifecycle-example'].notes, /Passing tests alone does not prove customer value/);
 });
 
 test('section breaks preserve the approved output-to-outcome titles and selected C treatment', async () => {
