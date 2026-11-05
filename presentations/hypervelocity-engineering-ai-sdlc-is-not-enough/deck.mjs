@@ -51,10 +51,15 @@ function topChrome({ id, part }) {
 
 function bottomChrome(part, number, total, id) {
   const items = partLinks.map(([key, href, label]) => `<a href="${href}"${key === part ? ' aria-current="location"' : ''}>${label}</a>`);
+  const motion = {
+    handoffs: 'cadence',
+    'feedback-window': 'amplification',
+    'production-early': 'readiness',
+  }[id];
   return `<footer class="chrome-bottom">
       <nav aria-label="Presentation sections">${items.join('')}</nav>
-      ${id === 'handoffs' ? `<button type="button" data-cadence-action="replay" hidden>Replay motion</button>
-      <button type="button" data-cadence-action="pause" aria-pressed="false" disabled hidden>Pause motion</button>` : ''}
+      ${motion ? `<button type="button" data-${motion}-action="replay" hidden>Replay motion</button>
+      <button type="button" data-${motion}-action="pause" aria-pressed="false" disabled hidden>Pause motion</button>` : ''}
       <button type="button" data-action="overview" aria-label="Show slide overview">Overview</button>
       <button type="button" data-action="notes" aria-label="Open speaker notes">Notes</button>
       <span class="slide-count" aria-label="Slide ${number} of ${total}">${String(number).padStart(2, '0')} / ${total}</span>

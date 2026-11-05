@@ -8,6 +8,9 @@ import Notes from './vendor/plugin/notes.mjs';
 import { setupAnnotations } from './annotations.mjs';
 import { trackRelativeWindowPosition } from './speaker-window.mjs';
 import { mergedSlideHash, setupCadence } from './cadence.mjs';
+import { setupAmplification } from './amplification.mjs';
+import { setupReadiness } from './readiness.mjs';
+import { setupOperatingModel } from './operating-model.mjs';
 
 function canonicalizeHash() {
   const hash = mergedSlideHash(window.location.hash);
@@ -44,6 +47,9 @@ await deck.initialize();
 document.body.classList.add('deck-ready');
 setupAnnotations(deck);
 setupCadence(deck);
+setupAmplification(deck);
+setupReadiness(deck);
+setupOperatingModel(deck);
 
 let speakerWindow = null;
 let stopSpeakerWindowTracking = null;

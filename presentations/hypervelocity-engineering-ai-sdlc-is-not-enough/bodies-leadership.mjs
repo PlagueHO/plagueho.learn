@@ -8,13 +8,6 @@ import {
   lane, under, laneGroup, legend, loop, evidenceTable,
 } from './diagrams.mjs';
 
-const meetingRoute = [['Question', 1.2, 'work'], ['Waits for the next planning ceremony', 3.6, 'wait'], ['Decision', 1.2, 'work']];
-const directRoute = [['Question', 1.2, 'work'], ['Customer decision owner', 2.0, 'key', 'time + authority'],
-  ['Decision', 1.2, 'work'], ['', 1.6, 'space']];
-
-const lateAssurance = [['Start', 1.0, 'work'], ['Build', 3.4, 'impl'], ['Release', 1.6, 'work']];
-const earlyAssurance = [['Start', 1.0, 'work'], ['Build', 3.4, 'impl'], ['Release', 1.6, 'check', 'Required review']];
-
 function panel(iconName, caption, big, status, state, cls = '') {
   return `<div class="panel${cls ? ` ${cls}` : ''}">${icon(iconName)}<em>${caption}</em><strong>${big}</strong><b class="status ${state}">${icon(state === 'met' ? 'check' : 'question')}${status}</b></div>`;
 }
@@ -148,28 +141,92 @@ export const leadershipBodies = {
     <div class="cadence-notes"><span>Security, quality, and operations checks stay.</span><span>Illustrative rhythms, not measured durations.</span></div>
   </div>` + takeaway('Faster implementation needs faster learning and decisions, not fewer checks.'),
 
-  'dashboard-request': fig('A delivered dashboard request beside the operator need it does not answer',
+  'dashboard-request': fig('A delivered chatbot still uses an unchanged order record and misses the carrier update from Friday to Monday',
     grid('1fr 96px 1fr', [
-      panel('dashboard', 'What was asked', '“We need a quality dashboard.”', 'Delivered. Works as specified.', 'met'),
+      panel('spark', 'The requested solution', '“Reduce order calls.<br>Build an AI chatbot.”', 'Chatbot shipped. Same order record.', 'met'),
       '<div class="gap-link" aria-hidden="true"><i></i><b>≠</b><i></i></div>',
-      panel('person', 'At shift handover, operators ask', '“What did the last shift already try?”', 'Still unanswered', 'open', 'warm'),
-    ], 'panels')
-    + legend([], 'Illustrative scenario, not a customer case')) + takeaway('A delivered request is not a solved problem.'),
+      panel('person', 'The unresolved customer problem', 'Carrier: now Monday.<br>Chatbot: still Friday.', 'Missing update. No owner.', 'open', 'warm'),
+    ], 'panels')) + takeaway('Faster implementation can multiply solutions to the wrong problem.<br>The outcome: customers know the revised date and what to do next.'),
 
-  'feedback-window': fig('Two routes to a customer decision',
-    laneGroup('Meeting-only route', lane(meetingRoute)) + laneGroup('Direct route', lane(directRoute))
-    + legend(['work', 'wait'])) + takeaway('Keep useful ceremonies. Add a direct route to decisions.'),
+  'feedback-window': fig('More delivery decisions outpace business validation. An agent makes an assumption in the fast implementation loop. The same unvalidated business rule accumulates in behaviour, tests, and later increments, then returns on a curved arc as the starting point for more work.',
+    `<div class="amplification-diagram" data-amplification data-copies="3">
+      <svg class="amplification-links" viewBox="0 0 1152 332" aria-hidden="true">
+        <path class="pending-route" d="M294 160H454"/>
+        <path class="pending-stop" d="M454 146V174"/>
+        <path class="rule-branch" d="M652 160H802V76H858"/>
+        <path class="rule-branch" d="M652 160H858"/>
+        <path class="rule-branch" d="M652 160H802V244H858"/>
+        <path class="rule-heads" d="M850 68L858 76L850 84M850 152L858 160L850 168M850 236L858 244L850 252"/>
+        <path class="rule-return" d="M1136 284C1136 328 930 324 790 324C762 324 766 198 646 198"/>
+        <path class="rule-heads" d="M656 192L646 198L656 204"/>
+        ${[0, 1, 2].map(() => '<path class="rule-token" d="M0 -6L6 0L0 6L-6 0Z"/>').join('')}
+        <path class="return-token" d="M0 -6L6 0L0 6L-6 0Z"/>
+      </svg>
+      ${cadenceRing('plan', 'Design + planning')}
+      ${cadenceRing('build', 'Implementation + testing')}
+      <div class="business-question"><strong>Business question</strong><span>Still open</span></div>
+      <span class="business-roles">PM / SME / customer</span>
+      <span class="pending-label">More decisions.<br>Validation lags.</span>
+      <div class="choice-actor"><strong>Developer<br>/ agent</strong></div>
+      <div class="rule-choice"><strong>Agent makes an assumption</strong><span class="rule-tag">Unvalidated rule</span></div>
+      <span class="rule-stream-label">Business rule<br>in code</span>
+      <span class="propagation-heading">Same assumption spreads</span>
+      ${['Product behaviour', 'Tests', 'Later increments'].map((label, index) =>
+        `<div class="rule-output" style="top:${36 + index * 84}px"><strong>${label}</strong><span class="rule-tag">Unvalidated rule</span>
+          <span class="copy-stack" aria-hidden="true">${[1, 2, 3].map(pass => `<i class="rule-copy" data-pass="${pass}"></i>`).join('')}</span></div>`).join('')}
+      <span class="return-label">Reused as the starting point</span>
+    </div>`, 'amplification-figure') +
+    takeaway('The question is still open.<br>The product already contains an answer.'),
 
-  'production-early': fig('Assurance only at the end compared with assurance throughout',
-    laneGroup('Late-only involvement', lane(lateAssurance), under(lateAssurance, [[3, 1, 'check', 'Security · data · operations']]))
-    + laneGroup('Involved from the start', lane(earlyAssurance), under(earlyAssurance, [[1, 3, 'check', 'Security · data · operations participate throughout']]))
-    + legend([])) + takeaway('Shift assurance earlier. Keep independent reviews where required.'),
+  'production-early': fig('Features arrive faster than late production-readiness work can absorb them. A backlog grows between implementation and acceptance tests, assurance checks, and release readiness. Late findings create rework; release and customer value wait.',
+    `<div class="readiness-diagram" data-readiness data-pending="7">
+      <svg class="readiness-links" viewBox="0 0 1152 332" aria-hidden="true">
+        <path class="feature-arrival" d="M262 150H388"/>
+        <path class="readiness-route" d="M678 150H802"/>
+        <path class="readiness-heads" d="M380 142L388 150L380 158M794 142L802 150L794 158"/>
+        <rect class="backlog-boundary" x="388" y="94" width="290" height="112" rx="12"/>
+        ${Array.from({ length: 7 }, (_, index) =>
+          `<rect class="queued-feature" x="${424 + index % 4 * 58}" y="${116 + Math.floor(index / 4) * 44}" width="44" height="24" rx="4"/>`).join('')}
+        <path class="readiness-return" d="M920 260V300Q920 320 900 320H204Q184 320 184 300V226"/>
+        <path class="rework-head" d="M178 236L184 226L190 236"/>
+        <path class="arrival-token" d="M-9 -6H9V6H-9Z"/>
+        <path class="readiness-token" d="M-9 -6H9V6H-9Z"/>
+        <path class="rework-token" d="M0 -6L6 0L0 6L-6 0Z"/>
+      </svg>
+      ${cadenceRing('build', 'Implementation')}
+      ${cadenceRing('review', 'Production readiness')}
+      <div class="feature-centre"><strong>Build + test</strong></div>
+      <strong class="backlog-heading">Waiting features</strong>
+      <div class="readiness-centre"><strong>Acceptance tests<br>Assurance checks<br>Release readiness</strong></div>
+      <strong class="feature-caption"><span>Faster arrivals</span></strong>
+      <strong class="backlog-caption">Value waits</strong>
+      <strong class="readiness-caption"><span>Work still arrives late</span></strong>
+      <span class="rework-caption">Late rework</span>
+    </div>`, 'readiness-figure') +
+    takeaway('More finished code.<br>More unfinished readiness work.'),
 
   'outcomes-response': '',
 
-  'hve-model': fig('From serial handoffs to a customer-and-crew loop', `<div class="model">
+  'hve-model': fig('From serial handoffs to a short circular learning loop around the customer and expert crew, supported by delivery functions', `<div class="model operating-model" data-operating-model data-stage="complete">
+    <span class="model-step fragment" data-fragment-index="0" aria-hidden="true"></span>
     <div class="serial"><em>Serial handoffs</em>${['Request', 'Build', 'Review', 'Reveal'].map((item, index) => `${index ? arrow('d') : ''}${node(item, '', 'ghost compact')}`).join('')}</div>
-    ${arrow('r', 'arr-big')}${loop({ scale: 0.9 })}</div>`) + takeaway('Optimize for the right outcome, not maximum code output.'),
+    ${arrow('r', 'arr-big model-change')}<div class="model-learning"><div class="circular-model">
+      <svg class="model-route" viewBox="0 0 1152 364" aria-hidden="true">
+        <path class="delivery-links" d="M310 123H421M731 123H842M310 245H422M730 245H842"/>
+        <circle class="learning-circle" cx="576" cy="182" r="166"/>
+        ${[0, 90, 180, 270].map(angle => `<path class="model-arrowhead" d="M566 6L576 16L566 26" transform="rotate(${angle} 576 182)"/>`).join('')}
+      </svg>
+      <div class="learning-centre"><strong>Customer +<br>expert crew</strong><span>Short feedback<br>cycles</span></div>
+      <div class="learning-stage idea"><strong>Idea</strong><span>Business need</span></div>
+      <div class="learning-stage validation"><strong>Validation</strong><span>Customer evidence</span></div>
+      <div class="learning-stage engineering"><strong>Engineering</strong><span>Working increment</span></div>
+      <div class="learning-stage feedback"><strong>Feedback</strong><span>Learn + decide</span></div>
+      <strong class="delivery-function product">Product + design</strong>
+      <strong class="delivery-function build">Engineering + testing</strong>
+      <strong class="delivery-function assurance">Security + operations</strong>
+      <strong class="delivery-function release">Release + service</strong>
+    </div></div></div>`, 'operating-figure') +
+    takeaway('Optimize for the right outcome, not maximum code output.'),
 
   'constraints-pillars': fig('Four constraints and the four pillars that answer them', `
     ${[
