@@ -139,7 +139,7 @@ export function loop({ scale = 1, fragile = false } = {}) {
   </div>`;
 }
 
-/* Research, plan, implement, review chain used by slides 31 and 39. With `clear`, each hop carries a /clear command. */
+/* Research, plan, implement, review chain used by slides 29 and 37. With `clear`, each hop carries a /clear command. */
 export function rpiChain(items, { clear = false } = {}) {
   const columns = items.map(([title, artifact, decision, mark = 'check']) => `<div class="node rpi"><strong>${title}</strong><span>${artifact}</span><em>${icon(mark)}${decision}</em></div>`);
   const joiner = clear ? `<div class="clear-hop"><code>/clear</code>${arrow()}</div>` : arrow();

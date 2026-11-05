@@ -11,7 +11,7 @@ const bodies = { ...leadershipBodies, ...coreBodies };
 
 export const slides = slideMeta.map(meta => {
   const body = bodies[meta.id];
-  if (!body) throw new Error(`Missing body for slide: ${meta.id}`);
+  if (typeof body !== 'string') throw new Error(`Missing body for slide: ${meta.id}`);
   return { ...meta, body };
 });
 

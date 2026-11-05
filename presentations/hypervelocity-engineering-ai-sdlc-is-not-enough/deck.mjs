@@ -36,17 +36,25 @@ const partLinks = [
   ['demos', '#/demo-install', 'Demos'],
 ];
 
-function topChrome(part) {
+function topChrome({ id, part }) {
+  if (id === 'hve') return `<header class="cover-brand" role="img" aria-label="Microsoft">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path fill="#F25022" d="M0 0h15v15H0z"/><path fill="#7FBA00" d="M17 0h15v15H17z"/>
+        <path fill="#00A4EF" d="M0 17h15v15H0z"/><path fill="#FFB900" d="M17 17h15v15H17z"/>
+      </svg><span aria-hidden="true">Microsoft</span>
+    </header>`;
   return `<header class="chrome-top">
       <a class="wordmark" href="#/hve" aria-label="Hypervelocity Engineering title">HVE<span> · </span>Expert teams. Shared outcomes.</a>
       <span class="part-label">${partLabels[part]}</span>
     </header>`;
 }
 
-function bottomChrome(part, number, total) {
+function bottomChrome(part, number, total, id) {
   const items = partLinks.map(([key, href, label]) => `<a href="${href}"${key === part ? ' aria-current="location"' : ''}>${label}</a>`);
   return `<footer class="chrome-bottom">
       <nav aria-label="Presentation sections">${items.join('')}</nav>
+      ${id === 'handoffs' ? `<button type="button" data-cadence-action="replay" hidden>Replay motion</button>
+      <button type="button" data-cadence-action="pause" aria-pressed="false" disabled hidden>Pause motion</button>` : ''}
       <button type="button" data-action="overview" aria-label="Show slide overview">Overview</button>
       <button type="button" data-action="notes" aria-label="Open speaker notes">Notes</button>
       <span class="slide-count" aria-label="Slide ${number} of ${total}">${String(number).padStart(2, '0')} / ${total}</span>
@@ -57,10 +65,10 @@ export function renderSlides() {
   return slides.map((slide, index) => `<section id="${slide.id}" data-part="${slide.part}"
     ${slide.minutes ? `data-timing="${slide.minutes * 60}"` : ''}
     class="${slide.className ?? ''}" aria-label="${escapeHtml(slide.title.replace(/<[^>]+>/g, ' '))}">
-    ${slide.wave ? waveBackground(slide.wave) : ''}
-    ${topChrome(slide.part)}
+    ${waveBackground(slide.wave || 'cover-cradle', slide.id)}
+    ${topChrome(slide)}
     <h2>${slide.title}</h2><div class="slide-content">${slide.body}</div>
-    ${bottomChrome(slide.part, index + 1, slides.length)}
+    ${bottomChrome(slide.part, index + 1, slides.length, slide.id)}
     <aside class="notes">${slide.notes.split('\n').map(line => `<p>${escapeHtml(line.trim())}</p>`).join('')}${links(slide.sources)}</aside>
     </section>`).join('\n');
 }

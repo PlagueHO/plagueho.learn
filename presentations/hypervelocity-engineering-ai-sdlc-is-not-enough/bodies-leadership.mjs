@@ -5,15 +5,8 @@
  */
 import {
   arrow, node, inode, chip, band, fig, takeaway, grid, chain, ret, icon, crack,
-  HOP, lane, under, laneGroup, legend, loop, evidenceTable,
+  lane, under, laneGroup, legend, loop, evidenceTable,
 } from './diagrams.mjs';
-
-const flow = [['Request', 1.1, 'work'], HOP, ['Implement', 3.4, 'impl'], HOP, ['Review', 1.3, 'work'],
-  ['Wait', 0.9, 'wait'], ['Release', 1.1, 'work'], ['Feedback', 1.2, 'work']];
-const flowWithAi = [['Request', 1.1, 'work'], HOP, ['Implement', 1.1, 'impl'], HOP, ['Review', 1.3, 'work'],
-  ['Wait', 0.9, 'wait'], ['Release', 1.1, 'work'], ['Feedback', 1.2, 'work'], ['', 2.3, 'space']];
-const flowSaved = [['Request', 1.1, 'work'], HOP, ['Implement', 1.1, 'fast'], ['Time saved', 2.3, 'gap'], HOP,
-  ['Review', 1.3, 'work'], ['Wait', 0.9, 'wait'], ['Release', 1.1, 'work'], ['Feedback', 1.2, 'work']];
 
 const meetingRoute = [['Question', 1.2, 'work'], ['Waits for the next planning ceremony', 3.6, 'wait'], ['Decision', 1.2, 'work']];
 const directRoute = [['Question', 1.2, 'work'], ['Customer decision owner', 2.0, 'key', 'time + authority'],
@@ -26,12 +19,63 @@ function panel(iconName, caption, big, status, state, cls = '') {
   return `<div class="panel${cls ? ` ${cls}` : ''}">${icon(iconName)}<em>${caption}</em><strong>${big}</strong><b class="status ${state}">${icon(state === 'met' ? 'check' : 'question')}${status}</b></div>`;
 }
 
-function bar(columns, row, title, detail, cls = '') {
-  return `<div class="bar${cls ? ` ${cls}` : ''}" style="grid-column:${columns};grid-row:${row}"><strong>${title}</strong><span>${detail}</span></div>`;
+function deliveryTimeline() {
+  const start = 1970;
+  const end = 2026;
+  const duration = 3600;
+  const milestones = [
+    { year: 1970, date: '~1970', title: 'Packaged software', duty: 'Coordinate releases',
+      side: 'above', offset: 0, width: 256 },
+    { year: 2001, date: '2001', title: 'Agile', duty: 'Own delivery + feedback',
+      side: 'above', offset: -210, width: 248 },
+    { year: 2006, date: '2006', title: 'Cloud services', duty: 'Own the running service',
+      side: 'below', offset: -170, width: 248 },
+    { year: 2009, title: 'DevOps 2009', secondary: true },
+    { year: 2015, date: '~2015', title: 'Co-engineering', duty: 'Own the outcome with customers',
+      side: 'above', offset: -100, width: 264 },
+    { year: 2023, date: '~2023', title: 'AI SDLC emerges', duty: 'Assist across delivery',
+      side: 'below', offset: -90, width: 180, kind: 'ai' },
+  ];
+  const events = milestones.map(milestone => {
+    const fraction = (milestone.year - start) / (end - start);
+    const position = `left:${fraction * 100}%;--delay:${fraction * duration}ms`;
+    if (milestone.secondary) {
+      return `<li class="milestone-secondary" data-year="${milestone.year}" style="${position}">${milestone.title}</li>`;
+    }
+    return `<li class="milestone-item ${milestone.side}${milestone.kind ? ` ${milestone.kind}` : ''}"
+      data-year="${milestone.year}" style="${position};--label-offset:${milestone.offset}px;--label-width:${milestone.width}px">
+      <span class="milestone-stem" aria-hidden="true"></span><span class="milestone-point" aria-hidden="true"></span>
+      <div class="milestone-copy"><span class="milestone-date">${milestone.date}</span>
+        <strong>${milestone.title}</strong><span class="milestone-duty">${milestone.duty}</span></div>
+    </li>`;
+  });
+  return `<div class="milestone-timeline" data-start="${start}" data-end="${end}" style="--duration:${duration}ms">
+    <svg class="milestone-arrow" viewBox="0 0 1088 28" preserveAspectRatio="none" aria-hidden="true">
+      <path class="milestone-shaft" d="M0 8H1072V20H0Z"/>
+      <path class="milestone-tip" d="M1072 0L1088 14L1072 28Z"/>
+    </svg>
+    <ol class="milestone-events" aria-label="Delivery milestones spaced by year; earlier practices continue">${events.join('')}</ol>
+    <span class="milestone-end" style="--delay:${duration}ms" aria-hidden="true">${end}</span>
+  </div>
+  <div class="time-foundation"><strong>Engineering fundamentals</strong><span>Quality · security · customer learning</span></div>`;
 }
 
 function stackNode(iconName, title, detail = '', cls = '') {
   return `<div class="node stack${cls ? ` ${cls}` : ''}">${icon(iconName)}<strong>${title}</strong>${detail ? `<span>${detail}</span>` : ''}</div>`;
+}
+
+function cadenceRing(kind, label) {
+  return `<div class="cadence-loop loop-${kind}" data-loop="${kind}">
+    ${kind === 'build' ? `<svg class="former-disc" viewBox="0 0 300 300" aria-hidden="true">
+      <circle cx="150" cy="150" r="140"/></svg>` : ''}
+    <div class="loop-disc"><svg viewBox="0 0 300 300" aria-hidden="true">
+      <circle class="cycle-track" cx="150" cy="150" r="140"/>
+      <g class="cycle-runner">
+        <circle class="cycle-sweep" cx="150" cy="150" r="140" pathLength="100"/>
+        <circle class="cycle-marker" cx="150" cy="10" r="8"/>
+      </g>
+    </svg></div>
+  </div><strong class="loop-name name-${kind}">${label}</strong>`;
 }
 
 function layer(caption, cells, cls = '') {
@@ -46,7 +90,7 @@ function routes(items) {
   return `<nav class="routes">${items.join('')}</nav>`;
 }
 
-const crackLabels = ['Handoffs', 'Waiting', 'Wrong value', 'Late feedback', 'Late assurance'];
+const crackLabels = ['Handoffs', 'Decision waits', 'Wrong problem', 'Late feedback', 'Late assurance'];
 
 const commitments = [
   ['team', 'Customer time', 'Participation + evidence'],
@@ -56,37 +100,53 @@ const commitments = [
 ];
 
 export const leadershipBodies = {
-  hve: `<p class="cover-sub">When code moves faster,<br>what must change?</p>`,
+  hve: `<div class="cover-presenter" role="group" aria-label="Presenter">
+    <img class="cover-photo" src="./images/daniel-scott-raynsford.jpg" alt="Daniel Scott-Raynsford">
+    <div class="presenter-copy"><strong>Daniel Scott-Raynsford</strong><span>Sr. Partner Solution Architect • AI &amp; Apps • Microsoft EPS</span></div>
+  </div>`,
 
-  'delivery-eras': fig('Delivery eras, overlapping over time', `<div class="gantt">
-    ${bar('1 / 8', 1, 'Packaged software', 'Planned releases', 'tint')}
-    ${bar('3 / 14', 2, 'Cloud services', 'Continuous operation', 'tint')}
-    ${bar('5 / 14', 3, 'Agile + DevOps', 'Shorter feedback; shared responsibility', 'tint')}
-    ${bar('7 / 14', 4, 'Co-engineering', 'Customer learning + capability', 'purple')}
-    ${bar('1 / 14', 5, 'Engineering fundamentals', '+ shared customer capability', 'ghost')}
-  </div>${legend([], 'Overlapping eras, not to scale')}`) + takeaway('Keep the engineering discipline. Keep learning with customers.'),
+  'delivery-eras': fig('Delivery changes and responsibilities on a timeline from 1970 to 2026',
+    deliveryTimeline(), 'milestone-figure') +
+    takeaway('AI is not just the next tool rollout. Revisit who owns the outcome.'),
 
-  'agentic-cracks': fig('Agentic SDLC and Forward Deployed Engineering above a delivery process that starts to crack', `<div class="bigwords">
-    <div class="bigword">${icon('spark')}<span>Agentic SDLC</span></div>
-    <div class="bigword">${icon('team')}<span>Forward Deployed Engineering</span></div>
-  </div>
-  <div class="slab"><span>Delivery process</span></div>
-  ${grid('repeat(5, 1fr)', crackLabels.map((label, i) => `<div class="crack-col">${crack(i)}<span class="mark warm">${label}</span></div>`), 'cracks')}
-  ${legend([], 'General framing, not to scale')}`) + takeaway('New names do not fix the process. They expose it.'),
+  'outcomes-question': '',
 
-  handoffs: fig('Delivery flow with handoffs and required checks',
-    lane(flow, { tall: true })
-    + under(flow, [[1, 8, 'check', 'Required checks stay: security · quality · operations']])
-    + legend(['work', 'hop', 'wait', 'check'])) + takeaway('Redesign coordination around the work. Keep necessary checks.'),
+  'agentic-cracks': fig('More output above an unchanged delivery model with five unresolved gaps',
+    `<div class="cracks-composition">
+      <div class="output-copy"><span>${icon('code')}More code</span><span>${icon('layers')}More prototypes</span></div>
+      <div class="model-rule">Same delivery model
+        <svg class="fault-beam" viewBox="0 0 1152 20" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 10H100l10 -7 10 14 10 -7H331l10 -7 10 14 10 -7H561l10 -7 10 14 10 -7H791l10 -7 10 14 10 -7H1022l10 -7 10 14 10 -7H1152"/>
+        </svg>
+      </div>
+      <div class="fracture-row">${crackLabels.map((label, i) =>
+        `<div class="fracture">${crack(i)}<strong class="fracture-label">${label}</strong></div>`).join('')}</div>
+    </div>`) +
+    takeaway('More code and prototypes do not guarantee better outcomes.<br>Evidence and clear decision ownership are required.'),
 
-  'ai-implementation': fig('Delivery flow before and after AI-assisted coding',
-    laneGroup('Before', lane(flow)) + laneGroup('With AI-assisted coding', lane(flowWithAi)) + legend([])) +
-    takeaway('Some bounded tasks can change dramatically. The whole lifecycle has not disappeared.'),
-
-  'outcome-waiting': fig('Delivery flow where only implementation time changes',
-    laneGroup('Before', lane(flow))
-    + laneGroup('After AI-assisted coding', lane(flowSaved), under(flowSaved, [[6, 4, 'warm', 'Unchanged: access · review queues · testing · documentation · operations']]))
-    + legend(['work', 'hop', 'wait'])) + takeaway('The constraint moves. It does not disappear.'),
+  handoffs: `<div class="fig cadence-figure" data-cadence data-phase="2" role="group"
+    aria-label="Implementation shrinks and accelerates while planning, decisions, review, and human handoffs keep their old pace. The dashed ring shows the earlier implementation cycle.">
+    <span class="fragment custom cadence-step" data-fragment-index="0" data-cadence-phase="1" aria-hidden="true"></span>
+    <span class="fragment custom cadence-step" data-fragment-index="1" data-cadence-phase="2" aria-hidden="true"></span>
+    <p class="phase-caption" role="status" aria-live="polite"><strong>Decision waits, review queues, and handoff overhead</strong> now set the pace.</p>
+    <div class="cadence-diagram">
+      <svg class="handoff-links" viewBox="0 0 1152 310" aria-hidden="true">
+        <path class="handoff-path" d="M258 124H430M420 116L430 124L420 132M722 124H896M886 116L896 124L886 132"/>
+        <path class="handoff-gate" d="M344 114L354 124L344 134L334 124ZM810 114L820 124L810 134L800 124Z"/>
+        <g class="increment-queue">
+          <rect class="increment" x="746" y="118" width="12" height="12" rx="2" style="--arrival:0ms"/>
+          <rect class="increment" x="764" y="118" width="12" height="12" rx="2" style="--arrival:350ms"/>
+          <rect class="increment" x="782" y="118" width="12" height="12" rx="2" style="--arrival:700ms"/>
+        </g>
+      </svg>
+      <span class="handoff-label handoff-first">Human handoff<small class="handoff-constraint">Decision wait</small></span>
+      <span class="handoff-label handoff-second">Human handoff<small class="handoff-constraint">Review queue</small></span>
+      ${cadenceRing('plan', 'Planning<br>+ decisions')}
+      ${cadenceRing('build', 'Implementation<br>+ testing')}
+      ${cadenceRing('review', 'Review<br>+ learning')}
+    </div>
+    <div class="cadence-notes"><span>Security, quality, and operations checks stay.</span><span>Illustrative rhythms, not measured durations.</span></div>
+  </div>` + takeaway('Faster implementation needs faster learning and decisions, not fewer checks.'),
 
   'dashboard-request': fig('A delivered dashboard request beside the operator need it does not answer',
     grid('1fr 96px 1fr', [
@@ -104,6 +164,8 @@ export const leadershipBodies = {
     laneGroup('Late-only involvement', lane(lateAssurance), under(lateAssurance, [[3, 1, 'check', 'Security · data · operations']]))
     + laneGroup('Involved from the start', lane(earlyAssurance), under(earlyAssurance, [[1, 3, 'check', 'Security · data · operations participate throughout']]))
     + legend([])) + takeaway('Shift assurance earlier. Keep independent reviews where required.'),
+
+  'outcomes-response': '',
 
   'hve-model': fig('From serial handoffs to a customer-and-crew loop', `<div class="model">
     <div class="serial"><em>Serial handoffs</em>${['Request', 'Build', 'Review', 'Reveal'].map((item, index) => `${index ? arrow('d') : ''}${node(item, '', 'ghost compact')}`).join('')}</div>

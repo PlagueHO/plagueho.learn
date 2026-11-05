@@ -19,4 +19,10 @@ export const sources = {
   plugin: ['CLI plugin guide', 'https://microsoft.github.io/hve-core/docs/getting-started/methods/cli-plugins/'],
   rai: ['Microsoft Responsible AI', 'https://www.microsoft.com/ai/responsible-ai'],
   dora: ['DORA delivery metrics', 'https://dora.dev/guides/dora-metrics/'],
+  cics: ['IBM CICS history: 1969 reference', 'https://uk.newsroom.ibm.com/IBM-research?item=30015'],
+  agile: ['Agile Manifesto history: 2001', 'https://agilemanifesto.org/history.html'],
+  devops: ['First DevOpsDays: 2009', 'https://legacy.devopsdays.org/events/2009-ghent/'],
+  cloud: ['AWS origins: 2006 launch', 'https://aws.amazon.com/about-aws/our-origins/'],
+  coengineering: ['Microsoft customer engineering example: 2015', 'https://devblogs.microsoft.com/ise/processing-time-series-data-with-hdinsight-storm/'],
+  copilotx: ['GitHub Copilot X lifecycle vision: 2023', 'https://github.blog/news-insights/product-news/github-copilot-x-the-ai-powered-developer-experience/'],
 };
