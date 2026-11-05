@@ -33,7 +33,9 @@ This is a planning synthesis in original wording. It is not a public account of 
 
 The proposed leadership section has 25 sparse slides over 30 minutes. Act 3 receives 16 minutes, including two slides and three minutes per pillar. The optional practical section retains 10 slides over 30 minutes, followed by five demo support slides. Detailed context mechanics stay in the practical section. FDE remains supporting context rather than a separate main-path slide.
 
-The pillar examples reuse the public manufacturing thread. The tutorial supplies the dashboard request and knowledge-accessibility theme. The proposed team decisions, evaluation criteria, foundation contents, and assisted outputs are illustrative extensions, not published findings or completed demo evidence. Label them accordingly; do not predetermine the solution or imply that user testing occurred.
+The leadership pillar examples now reuse slide 6's order-status teaching case. The carrier changes Friday to Monday, but the order record and chatbot retain Friday. Slides 13, 15, 17, and 19 propose ownership, customer tests, a prepared foundation, and reviewed AI assistance. These are teaching extensions, not published findings, completed discovery, or measured results.
+
+The manufacturing tutorial remains separate in the optional section. Do not predetermine an interface or imply that user testing occurred. The proposed order-team owner must be agreed. A reused foundation does not make delivery data correct, and AI-generated tests do not establish customer value.
 
 The optional DT Coach, DT-to-RPI, installation, and manufacturing demo sequence remains our agreed extension. Do not imply that it reconstructs the speakers' presentation. The committed 35-slide Reveal.js draft implements the previous operating-model-first narrative. The proposed constraint-first outline awaits review before any slide changes.
 
