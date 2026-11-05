@@ -7,6 +7,17 @@ import Reveal from './vendor/reveal.mjs';
 import Notes from './vendor/plugin/notes.mjs';
 import { setupAnnotations } from './annotations.mjs';
 import { trackRelativeWindowPosition } from './speaker-window.mjs';
+import { mergedSlideHash, setupCadence } from './cadence.mjs';
+
+function canonicalizeHash() {
+  const hash = mergedSlideHash(window.location.hash);
+  if (hash !== window.location.hash) {
+    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}${hash}`);
+  }
+}
+
+canonicalizeHash();
+window.addEventListener('hashchange', canonicalizeHash);
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const deck = new Reveal(document.querySelector('.reveal'), {
@@ -32,6 +43,7 @@ const deck = new Reveal(document.querySelector('.reveal'), {
 await deck.initialize();
 document.body.classList.add('deck-ready');
 setupAnnotations(deck);
+setupCadence(deck);
 
 let speakerWindow = null;
 let stopSpeakerWindowTracking = null;

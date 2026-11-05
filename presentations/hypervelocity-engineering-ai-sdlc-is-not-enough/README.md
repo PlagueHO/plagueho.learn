@@ -2,9 +2,11 @@
 
 An independent presentation for technical leaders, engineering managers, and senior engineers. This deck sits beside the unchanged [original Slidev presentation](../hypervelocity-engineering/slides.md). It is not a Slidev conversion.
 
-The deck has 25 leadership slides for 30 minutes, 10 optional HVE-Core slides for 30 minutes, and five separate demo support slides. Demo and Q&A time are not assigned. See [OUTLINE.md](./OUTLINE.md) and [RESEARCH-NOTES.md](./RESEARCH-NOTES.md).
+The deck has 25 leadership slides for 30 minutes, 10 optional HVE-Core slides for 30 minutes, and five separate demo support slides. The live demo has a separate 30-minute budget. Q&A time is not assigned. See [OUTLINE.md](./OUTLINE.md) and [RESEARCH-NOTES.md](./RESEARCH-NOTES.md).
 
-The approved outline uses the subtitle *Why adding AI to the SDLC is not enough*. It centers on ownership, value validation, specialist participation, and customer capability. Each pillar has a practice slide and a worked example. The selected Quantum Wave 8-S2 visual style uses 50% lighter, content-aligned soft-serve swirls. Both sections remain 30 minutes.
+The executive revision is being reviewed one slide at a time. The opening uses a wide title, one plain executive subtitle, and presenter details. Speaker notes ask how the business must change when building becomes faster than deciding. Each pillar keeps its practice/example pair. Both timed sections remain 30 minutes.
+
+The selected *Flowing blend* background adds lavender, peach, and rose haze, pale bands, and fine lines across all 40 slides. The approved cover, timeline, and fault line are now slides 1, 2, and 4. Slides 3 and 9 use approved titles and selected C: Warm key phrase. Slide 5 uses selected A: Sweeping arcs. Later copy, the order-status thread, and numbered pillars remain under revision.
 
 HVE is an engineering operating model, not simply faster coding with AI. A small expert crew and the customer work through a continuous idea, validation, engineering, and feedback loop. The four pillars support that loop: multidisciplinary teams, Design Thinking, production-ready accelerators, and AI throughout the lifecycle.
 
@@ -48,7 +50,8 @@ The Continuous Integration workflow builds and tests this deck on Ubuntu for pul
 
 | Action | Control |
 |---|---|
-| Next or previous slide | Arrow keys, Space, or Page Up and Page Down |
+| Next or previous slide or phase | Arrow keys, Space, or Page Up and Page Down |
+| Replay or pause slide 5 motion | Replay motion and Pause motion in its footer; replay keeps the current phase |
 | Slide overview | Escape or the Overview link in the slide footer |
 | Speaker view with notes and timer | S or the Notes link in the slide footer |
 | Pause for questions | B, or the Pause for questions and Questions buttons on slides 25 and 40 |
@@ -73,6 +76,24 @@ If the browser blocks the popup, the deck shows the notes in an inline panel at 
 
 For PDF export, open `http://127.0.0.1:3043/?print-pdf`, wait for the slides to load, then use the browser's Print command. Enable background graphics. See the [Reveal.js PDF guide](https://revealjs.com/pdf-export/).
 
+Slide 2 animates the selected timeline arrow over 3.6 seconds. Milestones slide in from above or below as the tip reaches their year. The sequence completes in about four seconds and repeats on re-entry. Overview, reduced-motion, print, and script-failure views show the complete static timeline. Date sources and limits remain in speaker notes.
+
+The `~2023` date and its caption are centered under the orange timeline marker.
+
+Slides 3 and 9 are matching section separators. They show one centered line on the current background, with warm emphasis on outcomes. The first asks, "We’re delivering code faster. Are we delivering better outcomes?" The second introduces the response: "From faster code delivery to better business outcomes."
+
+Headers and footers are hidden on these slides. Keyboard navigation, Escape for overview, and S for notes remain available.
+
+Slide 4 uses the selected box-free fault-line diagram. It shows delivery gaps without statistics.
+
+Slide 5 combines the former slides 4-6. Use two presenter advances to show long cycles, faster implementation, then unchanged process constraints. Only implementation shrinks and rotates faster. Labels stay fixed. Its dashed former outline and human handoffs stay visible. The final phase adds decision and review waits. Each phase settles within six seconds. Sizes and speeds are illustrative.
+
+The changing caption uses selected B: warm key phrases, muted supporting text, and a short fade on phase changes. It matches the takeaway's 26px semibold type. There is no phase counter. Extra space separates the caption from the cycles without changing their size.
+
+Motion pauses when the page is hidden or the deck is paused. It stops when the slide is left. Overview, reduced-motion, print, and script-failure views show the complete static comparison. Reduced-motion navigation skips the two animation steps.
+
+Old `#/ai-implementation` and `#/outcome-waiting` links open the corresponding phases of `#/handoffs`. Security, quality, operations, and required independent review remain.
+
 The leadership close includes public resources and routes to questions, the optional deep dive, or demos. The demo recap does not claim that a system reached production.
 
 ## Edit
@@ -82,23 +103,29 @@ The leadership close includes public resources and routes to questions, the opti
 | `deck.mjs` | Slide renderer: in-slide header and footer, wave background, title, body, and notes |
 | `slides.mjs` | Merges slide metadata with slide bodies and keeps the order |
 | `slide-meta.mjs` | Slide IDs, parts, timing, titles, speaker notes, and wave presets |
-| `bodies-leadership.mjs` | Body markup for the 25 leadership slides |
+| `bodies-leadership.mjs` | Body markup for the 25 leadership slides; section separators have empty bodies |
 | `bodies-core.mjs` | Body markup for the optional HVE-Core and demo slides |
 | `diagrams.mjs` | Shared diagram parts: nodes, chains, loops, lanes, bands, return paths, and icons |
 | `sources.mjs` | Public sources for each slide |
 | `DEMO-SCRIPT.md` | Live demo runbook for slides 36-40: time plan, commands, prompts, and fallbacks |
-| `waves.mjs` | Soft-serve ribbon backgrounds |
+| `waves.mjs` | Static Flowing blend background with slide-scoped SVG definitions |
+| `images/` | Local presenter photo, copied into the build |
 | `index.html` | Accessible presentation shell and build insertion marker |
 | `theme.css` | Light theme, 1280 by 720 layout grid, diagram styles, and print rules |
 | `presentation.mjs` | Reveal.js settings and footer button actions |
+| `cadence.mjs` | Slide 5 phases, bounded motion, static views, and merged-slide link aliases |
 | `annotations.mjs` | Presentation tools: laser pointer, red box, red freehand, undo, and clear |
 | `build.mjs` | Static build with local runtime assets |
 | `serve.mjs` | Local preview server |
 | `deck.test.mjs` | Structure, timing, content, asset, route, and server checks |
 
-Every slide uses the same grid: header at the top, title at a fixed position, a content area for one diagram, one takeaway line, and a footer with the part links and the slide number. Diagrams are built from the shared parts in `diagrams.mjs`, so spacing, arrows, and return paths stay consistent. Conceptual flows carry the label "Illustrative, not to scale". The deck uses no automatic motion.
+Content slides use a shared grid: header, title, diagram, takeaway, and footer. Section separators show only the centered title and background. Diagrams use shared parts in `diagrams.mjs`, with slide-specific layouts where needed. Conceptual flows are labelled as illustrative.
 
-The light canvas, large headings, purple and tangerine accents, subtle content-aligned swirls, horizontal pillars, and recurring customer-and-crew loop follow the selected visual direction. All text and diagrams are original. Private photos, transcripts, and the supplied internal-source guide are not included. The deck avoids unsupported productivity claims and private customer results.
+Slide 2 has a scaled timeline entry animation. Slide 5 has bounded sweeping arcs and native Reveal.js fragment phases. Other planned animated diagrams retain their static versions.
+
+The light canvas, large headings, purple and tangerine accents, static Flowing blend background, horizontal pillars, and recurring customer-and-crew loop follow the selected visual direction. All text and diagrams are original. Private photos, transcripts, and the supplied internal-source guide are not included. The deck avoids unsupported productivity claims and private customer results.
+
+The cover uses Daniel Scott-Raynsford's public [GitHub profile photo](https://github.com/PlagueHO), saved in `images/` at his request. It loads from the built site, not GitHub. The Microsoft mark follows the four-colour treatment already used in the repository's Spec Kit presentation.
 
 ## Publish
 

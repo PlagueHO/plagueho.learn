@@ -1,47 +1,62 @@
-// Slide background waves. Six presets share one gradient and filter set.
+/**
+ * Render the selected Flowing blend background: diffuse haze, pale bands, and fine ribbons.
+ * Parameters: existing preset key and an optional unique slide id for SVG definitions.
+ * Usage: waveBackground(slide.wave, slide.id). Preset keys preserve existing slide metadata.
+ */
+const wavePresets = new Set([
+  'cover-cradle', 'split-diagonal', 'stream-progression',
+  'center-halo', 'dual-column-contrast', 'rising-twist',
+]);
 
-export function waveBackground(preset) {
+export function waveBackground(preset, instanceId = preset) {
+  if (!wavePresets.has(preset)) throw new Error(`Unknown wave preset: ${preset}`);
+  if (typeof instanceId !== 'string' || !/^[a-z][a-z0-9-]*$/.test(instanceId)) {
+    throw new Error('Wave instance id must use lowercase letters, digits, and hyphens, starting with a letter.');
+  }
+  const prefix = `wave-${instanceId}`;
   const defs = `<defs>
-    <linearGradient id="wave-warm" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#FFF7F0" stop-opacity=".38"/>
-      <stop offset=".52" stop-color="#FDE5D2" stop-opacity=".33"/>
-      <stop offset="1" stop-color="#F9CFB0" stop-opacity=".24"/>
+    <linearGradient id="${prefix}-cool" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#faf8ff" stop-opacity=".2"/>
+      <stop offset=".45" stop-color="#c9b3ed" stop-opacity=".36"/>
+      <stop offset=".72" stop-color="#e6d9fc" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#fbf8ff" stop-opacity=".1"/>
     </linearGradient>
-    <linearGradient id="wave-rose" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#FFF2EB" stop-opacity=".34"/>
-      <stop offset=".56" stop-color="#FCDAD0" stop-opacity=".28"/>
-      <stop offset="1" stop-color="#F5C2B8" stop-opacity=".22"/>
+    <linearGradient id="${prefix}-warm" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#fff5ec" stop-opacity=".1"/>
+      <stop offset=".5" stop-color="#f8c49c" stop-opacity=".36"/>
+      <stop offset="1" stop-color="#f9ddd5" stop-opacity=".1"/>
     </linearGradient>
-    <linearGradient id="wave-cool" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#F6F1FF" stop-opacity=".38"/>
-      <stop offset=".52" stop-color="#E7DBFC" stop-opacity=".33"/>
-      <stop offset="1" stop-color="#D7C4F8" stop-opacity=".24"/>
+    <linearGradient id="${prefix}-rose">
+      <stop stop-color="#f7e1ed" stop-opacity=".1"/>
+      <stop offset=".55" stop-color="#ecc5d8" stop-opacity=".36"/>
+      <stop offset="1" stop-color="#e9ddfa" stop-opacity=".15"/>
     </linearGradient>
-    <linearGradient id="wave-orchid" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#F3F0FF" stop-opacity=".34"/>
-      <stop offset=".56" stop-color="#E1DCFE" stop-opacity=".28"/>
-      <stop offset="1" stop-color="#CCC5FA" stop-opacity=".22"/>
+    <linearGradient id="${prefix}-line">
+      <stop stop-color="#d9b7d4" stop-opacity=".12"/>
+      <stop offset=".5" stop-color="#a98ac8" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#efc1a8" stop-opacity=".2"/>
     </linearGradient>
-    <filter id="wave-shadow" x="-15%" y="-15%" width="130%" height="130%">
-      <feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#5C2D91" flood-opacity=".045"/>
+    <filter id="${prefix}-soft" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur stdDeviation="30"/>
     </filter>
   </defs>`;
-  const contents = {
-    'cover-cradle': `<g filter="url(#wave-shadow)"><path d="M730 -20 C900 70 1110 135 1320 285 L1320 -20Z" fill="url(#wave-warm)"/><path d="M835 -20 C980 48 1150 92 1320 205 L1320 -20Z" fill="url(#wave-rose)"/></g><g filter="url(#wave-shadow)"><path d="M-40 500 C180 470 405 590 680 740 L-40 740Z" fill="url(#wave-cool)"/><path d="M-40 590 C145 568 320 650 500 740 L-40 740Z" fill="url(#wave-orchid)"/></g>`,
-    'split-diagonal': `<g filter="url(#wave-shadow)"><path d="M770 -20 C940 70 1095 118 1320 275 L1320 -20Z" fill="url(#wave-warm)"/><path d="M-40 445 C140 465 310 565 520 740 L-40 740Z" fill="url(#wave-cool)"/><path d="M-40 555 C110 570 245 635 390 740 L-40 740Z" fill="url(#wave-orchid)"/></g>`,
-    'stream-progression': `<g filter="url(#wave-shadow)"><path d="M-40 305 C300 220 650 450 1320 305 L1320 405 C650 550 300 320 -40 405Z" fill="url(#wave-cool)"/><path d="M-40 390 C300 305 650 535 1320 390 L1320 480 C650 625 300 395 -40 480Z" fill="url(#wave-warm)"/></g>`,
-    'center-halo': `<g filter="url(#wave-shadow)"><path d="M-40 -20 H480 C350 80 165 150 -40 235Z" fill="url(#wave-cool)"/><path d="M1320 495 C1090 555 900 640 735 740 H1320Z" fill="url(#wave-warm)"/><path d="M1320 600 C1155 640 1045 685 940 740 H1320Z" fill="url(#wave-rose)"/></g>`,
-    'dual-column-contrast': `<g filter="url(#wave-shadow)"><path d="M-40 440 C145 410 360 505 580 740 H-40Z" fill="url(#wave-cool)"/><path d="M680 740 C890 505 1100 410 1320 440 V740Z" fill="url(#wave-warm)"/></g>`,
-    'rising-twist': `<g filter="url(#wave-shadow)"><path d="M635 740 C820 485 990 225 1165 -20 H1320 V740Z" fill="url(#wave-cool)"/><path d="M810 740 C980 515 1130 270 1320 25 V740Z" fill="url(#wave-warm)"/><path d="M965 740 C1090 545 1215 365 1320 220 V740Z" fill="url(#wave-rose)"/></g>`,
-  };
-  const highlights = {
-    'cover-cradle': `<path d="M730 -20 C900 70 1110 135 1320 285 M835 -20 C980 48 1150 92 1320 205 M-40 500 C180 470 405 590 680 740 M-40 590 C145 568 320 650 500 740"/>`,
-    'split-diagonal': `<path d="M770 -20 C940 70 1095 118 1320 275 M-40 445 C140 465 310 565 520 740 M-40 555 C110 570 245 635 390 740"/>`,
-    'stream-progression': `<path d="M-40 305 C300 220 650 450 1320 305 M-40 390 C300 305 650 535 1320 390"/>`,
-    'center-halo': `<path d="M-40 -20 H480 C350 80 165 150 -40 235 M1320 495 C1090 555 900 640 735 740 M1320 600 C1155 640 1045 685 940 740"/>`,
-    'dual-column-contrast': `<path d="M-40 440 C145 410 360 505 580 740 M680 740 C890 505 1100 410 1320 440"/>`,
-    'rising-twist': `<path d="M635 740 C820 485 990 225 1165 -20 M810 740 C980 515 1130 270 1320 25 M965 740 C1090 545 1215 365 1320 220"/>`,
-  };
-  if (!contents[preset]) throw new Error(`Unknown wave preset: ${preset}`);
-  return `<svg class="slide-wave" data-wave="${preset}" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true">${defs}${contents[preset]}<g class="wave-highlights">${highlights[preset]}</g></svg>`;
+  const haze = `<g filter="url(#${prefix}-soft)">
+    <path d="M880 -120C1380 -120 1580 250 1210 390C1040 440 1180 80 810 180"
+      fill="none" stroke="url(#${prefix}-cool)" stroke-width="150"/>
+    <path d="M-170 480C170 320 60 850 590 730" fill="none" stroke="url(#${prefix}-warm)" stroke-width="180"/>
+    <path d="M1050 740C1450 520 1560 850 1040 880" fill="none" stroke="url(#${prefix}-rose)" stroke-width="115"/>
+  </g>`;
+  const bands = `<g opacity=".4">
+    <path d="M-200 580C140 250 90 900 620 710S1080 450 1430 630"
+      fill="none" stroke="url(#${prefix}-warm)" stroke-width="130"/>
+    <path d="M820 -120C580 80 1330 -30 1140 260S1500 220 1410 470"
+      fill="none" stroke="url(#${prefix}-cool)" stroke-width="110"/>
+  </g>`;
+  const lines = `<g fill="none" stroke="url(#${prefix}-line)" stroke-width="1.5" opacity=".95">
+    ${Array.from({ length: 10 }, (_, i) =>
+      `<path d="M-120 ${485 + i * 12}C210 ${280 + i * 12} 60 ${845 + i * 8} 670 ${676 + i * 8}S1170 ${440 + i * 9} 1410 ${580 + i * 11}"/>`
+      + `<path d="M${750 + i * 14} -80C${580 + i * 12} 120 1350 ${-80 + i * 12} 1190 ${210 + i * 10}"/>`).join('')}
+  </g>`;
+  return `<svg class="slide-wave" data-wave="${preset}" data-style="flowing-blend" viewBox="0 0 1280 720"
+    preserveAspectRatio="none" aria-hidden="true">${defs}${haze}${bands}${lines}</svg>`;
 }

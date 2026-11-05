@@ -23,8 +23,10 @@ await Promise.all([
     'presentation.mjs',
     'annotations.mjs',
     'speaker-window.mjs',
+    'cadence.mjs',
   ].map(file => cp(join(root, file), join(output, file))),
   cp(join(revealRoot, 'dist'), join(output, 'vendor'), { recursive: true }),
   cp(join(revealRoot, 'LICENSE'), join(output, 'vendor', 'LICENSE')),
+  cp(join(root, 'images'), join(output, 'images'), { recursive: true }),
 ]);
 console.log(`Built ${slides.length} HVE slides with local Reveal.js assets in dist.`);
