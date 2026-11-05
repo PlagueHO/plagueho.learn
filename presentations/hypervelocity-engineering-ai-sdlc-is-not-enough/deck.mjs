@@ -36,6 +36,13 @@ const partLinks = [
   ['demos', '#/demo-install', 'Demos'],
 ];
 
+const pillarNumbers = {
+  teams: 1, 'team-example': 1,
+  'design-thinking': 2, 'design-example': 2,
+  accelerators: 3, 'accelerator-example': 3,
+  'lifecycle-ai': 4, 'lifecycle-example': 4,
+};
+
 function topChrome({ id, part }) {
   if (id === 'hve') return `<header class="cover-brand" role="img" aria-label="Microsoft">
       <svg viewBox="0 0 32 32" aria-hidden="true">
@@ -71,6 +78,7 @@ export function renderSlides() {
     ${slide.minutes ? `data-timing="${slide.minutes * 60}"` : ''}
     class="${slide.className ?? ''}" aria-label="${escapeHtml(slide.title.replace(/<[^>]+>/g, ' '))}">
     ${waveBackground(slide.wave || 'cover-cradle', slide.id)}
+    ${pillarNumbers[slide.id] ? `<svg class="pillar-backdrop" viewBox="0 0 1280 720" aria-hidden="true" focusable="false"><text x="64" y="700" text-anchor="start" font-size="585" font-weight="650">${pillarNumbers[slide.id]}</text></svg>` : ''}
     ${topChrome(slide)}
     <h2>${slide.title}</h2><div class="slide-content">${slide.body}</div>
     ${bottomChrome(slide.part, index + 1, slides.length, slide.id)}

@@ -384,7 +384,7 @@ Slides 3 and 9 use selected *C: Warm key phrase* as matching section separators.
 
 Slide 5 uses selected B for its changing caption. Keep the warm key phrases and muted supporting text. Match the takeaway's 26px semibold type. Omit the phase counter. Leave at least 24px between the caption and the cycles. Fade the caption once over 260ms when the phase changes; keep the text fixed and visible. Show static text for reduced-motion and print views.
 
-Slide 11 uses four unnumbered structural pillars. Number the four pillars 1, 2, 3, and 4 in the close. On slides 12-19, pair a clear pillar label with a large, faint numeral on the right, behind the content. The numeral is decorative and hidden from accessibility reading. Apply these markers when reviewing those slides; selecting the style does not approve their sample copy.
+Slide 11 uses four unnumbered structural pillars. Slides 12-19 use a bottom-left numeral: 585px at 7% opacity, above the swirl and below all content. Each pair shares its pillar number. The numeral is decorative and hidden from accessibility reading. Slides 12, 14, 16, and 18 use "Pillar n: Title." and a second-line subtitle. Number the four pillars in the close when reviewed.
 
 - Use one clear message per slide and consistent markers for the four pillars.
 - Start with the three working loops on slide 5. Shrink and accelerate implementation, then expose unchanged human handoffs and waits. Later introduce the shared customer-and-crew loop.

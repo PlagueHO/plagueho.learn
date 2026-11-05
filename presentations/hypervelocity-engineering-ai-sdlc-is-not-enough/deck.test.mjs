@@ -287,6 +287,27 @@ test('slide 11 reveals four unnumbered structural pillars without the extra impr
   assert.ok(slide.sources.includes('fde'));
 });
 
+test('pillar details share the approved bottom-left number and numbered introduction headings', async () => {
+  const html = renderSlides();
+  const ids = ['teams', 'team-example', 'design-thinking', 'design-example',
+    'accelerators', 'accelerator-example', 'lifecycle-ai', 'lifecycle-example'];
+  assert.equal((html.match(/class="pillar-backdrop"/g) ?? []).length, 8);
+  for (const [index, id] of ids.entries()) {
+    const section = html.match(new RegExp(`<section id="${id}"[\\s\\S]*?</section>`))[0];
+    const number = Math.floor(index / 2) + 1;
+    assert.match(section, new RegExp(`font-size="585" font-weight="650">${number}</text>`));
+    assert.match(section, /class="pillar-backdrop"[^>]*aria-hidden="true" focusable="false"/);
+    assert.match(section, /x="64" y="700" text-anchor="start"/);
+    assert.ok(section.indexOf('class="slide-wave"') < section.indexOf('class="pillar-backdrop"'));
+    assert.ok(section.indexOf('class="pillar-backdrop"') < section.indexOf('<h2>'));
+    if (index % 2 === 0) assert.match(byId[id].title, new RegExp(`^Pillar ${number}: [^<]+\\.<br><em>[^<]+\\.</em>$`));
+    else assert.match(byId[id].title, /^Example:/);
+  }
+  const theme = await readFile(new URL('./theme.css', import.meta.url), 'utf8');
+  assert.match(theme, /\.pillar-backdrop \{[^}]*z-index: 1;[^}]*opacity: 0.07;[^}]*pointer-events: none;/);
+  assert.match(theme, /\.pillar-backdrop ~ \.slide-content \{ z-index: 2; \}/);
+});
+
 test('delivery shifts connect technology changes to responsibility and outcome ownership', () => {
   const slide = byId['delivery-eras'];
   assert.equal(slide.title, 'Software delivery changed.<br><em>So did responsibility.</em>');
