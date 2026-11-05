@@ -688,7 +688,7 @@ html:not(.print-pdf) body.deck-ready .reveal:not(.overview) #delivery-eras.prese
 .operating-model .learning-stage strong { font-size: 24px; font-weight: 650; line-height: 1.15; }
 .operating-model .learning-stage span { color: var(--muted); font-size: 18px; line-height: 1.2; }
 .operating-model .learning-stage.idea { top: 26px; right: 740px; text-align: right; }
-.operating-model .learning-stage.validation { top: 26px; left: 740px; }
+.operating-model .learning-stage.validation { top: 26px; left: 740px; background: transparent; }
 .operating-model .learning-stage.engineering { top: 282px; left: 740px; }
 .operating-model .learning-stage.feedback { top: 282px; right: 740px; text-align: right; }
 .operating-model .delivery-function {
