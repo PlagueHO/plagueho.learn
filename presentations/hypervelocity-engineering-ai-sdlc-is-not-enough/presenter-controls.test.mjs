@@ -8,7 +8,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import {
   dismissPresenterState, isInteractive, keyboardAllowed, navigationState,
-  presenterMarkup, themeFromUrl, themeUrl, zoomOffset,
+  observeToolbarLayout, presenterMarkup, themeFromUrl, themeUrl, zoomOffset,
 } from './presenter-controls.mjs';
 import {
   ANNOTATION_COLOURS, ANNOTATION_TOOLS, ANNOTATION_WIDTHS, DEFAULT_ANNOTATION_WIDTH, arrowPath, toSlidePoint,
@@ -130,6 +130,86 @@ test('hidden toolbar controls do not override Reveal slide visibility in overvie
   assert.match(controls, /\.presenter-toolbar \[hidden\]\s*\{\s*display:\s*none\s*!important;\s*\}/);
 });
 
+test('toolbar height changes schedule one layout after observation without resize feedback loops', t => {
+  const saved = new Map(['ResizeObserver', 'requestAnimationFrame']
+    .map(name => [name, Object.getOwnPropertyDescriptor(globalThis, name)]));
+  t.after(() => {
+    for (const [name, descriptor] of saved) {
+      if (descriptor) Object.defineProperty(globalThis, name, descriptor);
+      else delete globalThis[name];
+    }
+  });
+  let observed;
+  let onResize;
+  let height = 52.5;
+  let layouts = 0;
+  const frames = [];
+  const writes = [];
+  const toolbar = {
+    getBoundingClientRect: () => ({ height }),
+    ownerDocument: { body: { style: { setProperty: (...args) => writes.push(args) } } },
+  };
+  globalThis.ResizeObserver = class {
+    constructor(callback) { onResize = callback; }
+    observe(target) { observed = target; }
+  };
+  globalThis.requestAnimationFrame = callback => frames.push(callback);
+  const scheduleLayout = observeToolbarLayout({ layout: () => { layouts += 1; onResize(); } }, toolbar);
+  assert.equal(observed, toolbar);
+  assert.deepEqual(writes, [['--presenter-toolbar-height', '53px']]);
+  assert.equal(layouts, 0, 'Reveal must not write synchronously in ResizeObserver delivery');
+  onResize();
+  scheduleLayout();
+  assert.equal(frames.length, 1, 'initial observation and mode changes share one animation frame');
+  frames.shift()();
+  assert.equal(layouts, 1);
+  assert.equal(frames.length, 0, 'Reveal layout must not start an unchanged-height observer loop');
+  for (const nextHeight of [97, 142, 52.5]) {
+    height = nextHeight;
+    onResize();
+    onResize();
+    assert.deepEqual(writes.at(-1), ['--presenter-toolbar-height', `${Math.ceil(height)}px`]);
+    assert.equal(frames.length, 1, 'wrapping and contextual motion controls each request one refresh');
+    frames.shift()();
+    assert.equal(frames.length, 0);
+  }
+  assert.equal(layouts, 4);
+  assert.equal(writes.length, 4);
+  scheduleLayout();
+  scheduleLayout();
+  assert.equal(frames.length, 1, 'Present mode and viewport resize refresh even with unchanged toolbar height');
+  frames.shift()();
+  assert.equal(layouts, 5);
+  assert.equal(writes.length, 4);
+});
+
+test('normal mode reserves the measured toolbar while Present, scroll, print, and startup keep their layouts', async () => {
+  const css = await readFile(new URL('./presenter-controls.css', import.meta.url), 'utf8');
+  const source = await readFile(new URL('./presenter-controls.mjs', import.meta.url), 'utf8');
+  assert.match(css, /@media screen\s*\{\s*html:not\(\.print-pdf\) body\.deck-ready:has\(\.presenter-toolbar\)\s*\{\s*height: calc\(100dvh - var\(--presenter-toolbar-height, 0px\) - max\(12px, env\(safe-area-inset-bottom\)\) - 12px\);/);
+  assert.match(css, /body\.deck-ready\.is-presenting:has\(\.presenter-toolbar\)\s*\{\s*height: 100dvh;/);
+  assert.match(css, /\.presenter-zoom-surface > \.reveal\s*\{\s*height: 100%;/);
+  assert.match(css, /body\.deck-ready\.reveal-scroll\s*\{\s*overflow-y: auto;/);
+  assert.match(css, /@media print\s*\{[\s\S]*?\.presenter-zoom-surface\s*\{[^}]*height: auto;/);
+  assert.match(source, /if \(deck\.isPrintView\(\)\) return null;/);
+  assert.match(source, /function setPresent\(value\)\s*\{[\s\S]*?scheduleLayout\(\);/);
+  assert.match(source, /window\.addEventListener\('resize', \(\) => \{ setZoom\(false\); scheduleLayout\(\); \}\);/);
+});
+
+test('pointer-only focus release includes relocated motion buttons without data-player', async () => {
+  const source = await readFile(new URL('./presenter-controls.mjs', import.meta.url), 'utf8');
+  const click = source.match(/toolbar\.addEventListener\('click', event => \{([\s\S]*?)\n  \}\);/)[1];
+  assert.match(click, /const target = event\.target\.closest\('button'\);/);
+  assert.match(click, /if \(target && actions\[target\.dataset\.player\]\) \{[\s\S]*?\r?\n    \}\r?\n    if \(target && event\.detail > 0\) target\.blur\(\);/);
+  assert.doesNotMatch(click, /button\[data-player\]/);
+  assert.match(click, /closePopover\(event\.detail === 0\)/);
+});
+
+test('outside-panel dismissal captures pointerdown before drawing can stop bubbling', async () => {
+  const source = await readFile(new URL('./presenter-controls.mjs', import.meta.url), 'utf8');
+  assert.match(source, /document\.addEventListener\('pointerdown', event => \{[^}]*if \(!toolbar\.contains\(event\.target\)\) closePopover\(\);\s*\}, true\);/);
+});
+
 test('focused native controls and modifier chords do not reach Reveal shortcuts', () => {
   assert.equal(keyboardAllowed({ target: {} }), true);
   for (const name of ['input', 'textarea', 'select', 'button', 'a', 'summary', '[contenteditable]', '[role="button"]']) {
@@ -202,13 +282,19 @@ test('Escape dismisses exactly one state, in priority order, before native deck 
   }
 });
 
-test('2x pointer panning stays bounded and annotations use the transformed slide bounds', () => {
+test('2x pointer panning stays bounded and annotations use the transformed slide bounds', async () => {
+  const source = await readFile(new URL('./presenter-controls.mjs', import.meta.url), 'utf8');
+  assert.ok(source.includes('`translate(${-surface.clientWidth / 2}px, ${-surface.clientHeight / 2}px) scale(2)`'));
+  assert.match(source, /zoomOffset\(event\.clientX, event\.clientY, surface\.clientWidth, surface\.clientHeight\)/);
   assert.deepEqual(zoomOffset(-100, -30, 1280, 720), { x: -0, y: -0 });
   assert.deepEqual(zoomOffset(2000, 900, 1280, 720), { x: -1280, y: -720 });
   assert.deepEqual(zoomOffset(640, 360, 1280, 720), { x: -640, y: -360 });
-  for (const [width, height] of [[1280, 720], [640, 360], [320, 180]]) {
+  assert.deepEqual(zoomOffset(844, 390, 844, 269), { x: -844, y: -269 });
+  for (const [width, height] of [[1280, 720], [844, 390], [844, 269], [640, 360], [320, 180]]) {
     for (const [panX, panY] of [[0, 0], [width / 2, height / 2], [width, height]]) {
       const bounds = { left: -panX, top: -panY, width: width * 2, height: height * 2 };
+      assert.ok(bounds.left <= 0 && bounds.top <= 0);
+      assert.ok(bounds.left + bounds.width >= width && bounds.top + bounds.height >= height);
       const client = { x: bounds.left + bounds.width * .4, y: bounds.top + bounds.height * .6 };
       assert.deepEqual(toSlidePoint(client.x, client.y, bounds), { x: 512, y: 432 });
     }

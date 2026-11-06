@@ -27,7 +27,7 @@
 :root[data-theme="flowing-dark"] :is(.hdr-bar, .kicker-bar) u.on { background: var(--purple); }
 :root[data-theme="flowing-dark"] .cover-brand { color: var(--muted); }
 :root[data-theme="flowing-dark"] .skip-link { background: var(--control-surface); }
-:root[data-theme="flowing-dark"] .reveal :is(
+:root[data-theme="flowing-dark"] .reveal :where(
   .node, .chip, .ret > span, .cell.work, .rule-output, .rule-tag, .sw-work,
   .panel, .panel .status.open, .gap-link b, .loop .step, .record,
   .routes a, .routes button, .command, .quote, .clear-hop code

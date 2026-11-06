@@ -156,6 +156,29 @@ export function dismissPresenterState({ closePopover, closeNotes, annotations, z
   return true;
 }
 
+export function observeToolbarLayout(deck, toolbar) {
+  let height = -1;
+  let frame = null;
+  function scheduleLayout() {
+    if (frame !== null) return;
+    frame = requestAnimationFrame(() => {
+      frame = null;
+      deck.layout();
+    });
+  }
+  function measure() {
+    const nextHeight = Math.ceil(toolbar.getBoundingClientRect().height);
+    if (nextHeight === height) return;
+    height = nextHeight;
+    toolbar.ownerDocument.body.style.setProperty('--presenter-toolbar-height', `${height}px`);
+    // Defer Reveal's writes until after observer delivery, and ignore unchanged heights.
+    scheduleLayout();
+  }
+  new ResizeObserver(measure).observe(toolbar);
+  measure();
+  return scheduleLayout;
+}
+
 export function setupPresenterControls(deck, { openNotes, closeNotes }) {
   if (deck.isPrintView()) return null;
   const toolbar = document.createElement('div');
@@ -200,6 +223,7 @@ export function setupPresenterControls(deck, { openNotes, closeNotes }) {
   }
   new MutationObserver(syncMotionLabels).observe(motion, { childList: true, subtree: true });
   syncMotionLabels();
+  const scheduleLayout = observeToolbarLayout(deck, toolbar);
 
   function showNotice(message, error) {
     notice.hidden = false;
@@ -267,13 +291,14 @@ export function setupPresenterControls(deck, { openNotes, closeNotes }) {
     zoomed = value && !deck.isOverview() && !deck.isPaused();
     control('zoom').setAttribute('aria-pressed', String(zoomed));
     surface.style.transform = zoomed
-      ? `translate(${-window.innerWidth / 2}px, ${-window.innerHeight / 2}px) scale(2)` : '';
+      ? `translate(${-surface.clientWidth / 2}px, ${-surface.clientHeight / 2}px) scale(2)` : '';
   }
   function setPresent(value) {
     presenting = value;
     document.body.classList.toggle('is-presenting', value);
     control('present').setAttribute('aria-pressed', String(value));
     if (!value) setZoom(false);
+    scheduleLayout();
     revealToolbar();
   }
   async function toggleFullscreen() {
@@ -318,11 +343,11 @@ export function setupPresenterControls(deck, { openNotes, closeNotes }) {
     widths: () => togglePopover('widths'),
   };
   toolbar.addEventListener('click', event => {
-    const target = event.target.closest('button[data-player]');
+    const target = event.target.closest('button');
     if (target && actions[target.dataset.player]) {
       actions[target.dataset.player]();
-      if (event.detail > 0) target.blur();
     }
+    if (target && event.detail > 0) target.blur();
     if (event.target.closest('a')) closePopover();
     if (event.target.closest('[data-annotation-colour], [data-annotation-width]')) closePopover(event.detail === 0);
     revealToolbar();
@@ -352,11 +377,11 @@ export function setupPresenterControls(deck, { openNotes, closeNotes }) {
   document.addEventListener('pointerdown', event => {
     if (event.clientY >= window.innerHeight - 96) revealToolbar();
     if (!toolbar.contains(event.target)) closePopover();
-  });
+  }, true);
   document.addEventListener('pointermove', event => {
     if (event.clientY >= window.innerHeight - 96) revealToolbar();
     if (!zoomed || annotations.hasActive() || toolbar.contains(event.target)) return;
-    const offset = zoomOffset(event.clientX, event.clientY, window.innerWidth, window.innerHeight);
+    const offset = zoomOffset(event.clientX, event.clientY, surface.clientWidth, surface.clientHeight);
     surface.style.transform = `translate(${offset.x}px, ${offset.y}px) scale(2)`;
   });
   document.addEventListener('keydown', event => {
@@ -386,7 +411,7 @@ export function setupPresenterControls(deck, { openNotes, closeNotes }) {
     deck.on(event, sync);
   }
   deck.on('slidechanged', () => { setZoom(false); closePopover(); });
-  window.addEventListener('resize', () => setZoom(false));
+  window.addEventListener('resize', () => { setZoom(false); scheduleLayout(); });
   window.addEventListener('beforeprint', () => setZoom(false));
   document.addEventListener('fullscreenchange', () => {
     control('fullscreen').setAttribute('aria-pressed', String(Boolean(document.fullscreenElement)));
