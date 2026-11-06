@@ -398,7 +398,11 @@ test('section breaks preserve the approved output-to-outcome titles and selected
     assert.equal(slides[index].id, id);
     assert.equal(slide.title.replace(/<[^>]+>/g, ''), title);
     assert.equal(slide.className, 'section-divider');
-    assert.equal(slide.body, '');
+    if (id === 'outcomes-question') {
+      assert.match(slide.body, /class="section-divider-art"[^>]+good-news\.png/);
+    } else {
+      assert.equal(slide.body, '');
+    }
     assert.equal(slide.minutes, 0.25);
     assert.match(slide.title, /<strong>better (?:business )?outcomes[?.]<\/strong>/);
     assert.doesNotMatch(slide.title, /<br|fragment/);
@@ -1607,12 +1611,29 @@ test('the three chapters label every leadership header and mark each divider', (
 test('the chapter header, kicker, and wrap slide styles ship in the theme', async () => {
   const theme = await readFile(new URL('./theme.css', import.meta.url), 'utf8');
   for (const selector of ['.hdr-bar', '.hdr-bar u.on', '.section-divider .kicker', '.kicker-bar', '.kicker-bar u.on',
-    '#hve-core-open .wr-scene', '#hve-core-open .wr-qr', '#hve-core-open .wr-code svg', '#hve-core-open .wr-facts',
-    '#team-pass .close-scene']) {
+    '#outcomes-question .slide-content', '#outcomes-question .section-divider-art', '#hve-core-open .wr-scene',
+    '#hve-core-open .wr-qr', '#hve-core-open .wr-code svg', '#hve-core-open .wr-facts', '#team-pass .close-scene']) {
     assert.ok(theme.includes(selector), `theme defines ${selector}`);
   }
   assert.doesNotMatch(theme, /leadership-close/);
   assert.match(theme, /\.chrome-top\s*\{[^}]*font-size:\s*14px;/);
+});
+
+test('slide 3 centers the full good-news image below its chapter title', async () => {
+  const slide = byId['outcomes-question'];
+  assert.equal(slides[2].id, slide.id);
+  assert.equal(slide.className, 'section-divider');
+  assert.match(slide.body,
+    /<img class="section-divider-art" src="\.\/images\/good-news\.png" width="1536" height="1024"\s+alt="[^"]+">/);
+  const theme = await readFile(new URL('./theme.css', import.meta.url), 'utf8');
+  assert.match(theme, /#outcomes-question h2,\s*#outcomes-question \.kicker\s*\{\s*top:\s*35%;\s*\}/);
+  assert.match(theme, /#outcomes-question \.section-divider-art\s*\{[^}]*bottom:\s*20px;[^}]*left:\s*50%;[^}]*width:\s*560px;/);
+  assert.match(theme, /#outcomes-question \.section-divider-art\s*\{[^}]*transform:\s*translateX\(-50%\);/);
+  const image = await readFile(new URL('./images/good-news.png', import.meta.url));
+  assert.deepEqual(image.subarray(0, 8), Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
+  assert.equal(image.readUInt32BE(16), 1536);
+  assert.equal(image.readUInt32BE(20), 1024);
+  assert.deepEqual(await readFile(new URL('./dist/images/good-news.png', import.meta.url)), image);
 });
 
 test('slide 23 wraps up for leaders with two QR codes and three facts about HVE-Core', () => {
