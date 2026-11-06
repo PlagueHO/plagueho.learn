@@ -42,7 +42,7 @@ The Continuous Integration workflow builds and tests this deck on Ubuntu for pul
 
 ## Present
 
-The shared header reads "Hypervelocity Engineering • Why adding AI to the SDLC is not enough" and links to the title slide. Beside it, each leadership slide shows its chapter ("Chapter 2 of 3 · How HVE changes the work"). Slides in the deeper section show "Diving deeper into HVE-Core", and demo slides show "Demos". The Microsoft cover branding and hidden headers on section separators remain unchanged.
+The shared header links to the title slide. The footer names the first section "Introduction to HVE". Each slide in that section shows its chapter. The deeper section and demos keep their own links. Microsoft cover branding and hidden section-separator headers remain unchanged.
 
 | Action | Control |
 |---|---|

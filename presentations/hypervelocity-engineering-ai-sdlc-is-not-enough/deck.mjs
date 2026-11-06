@@ -32,7 +32,7 @@ const partLabels = {
 };
 
 const partLinks = [
-  ['leadership', '#/hve', 'Leadership'],
+  ['leadership', '#/hve', 'Introduction to HVE'],
   ['deep-dive', '#/deep-dive', 'Diving deeper into HVE-Core'],
   ['demos', '#/demo-install', 'Demos'],
 ];

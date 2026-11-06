@@ -907,7 +907,7 @@ html.print-pdf #constraints-pillars .pillar-column.fragment { opacity: 1; visibi
 }
 .amplification-diagram .pending-route { stroke: var(--dash); stroke-width: 2.5; stroke-dasharray: 6 6; }
 .amplification-diagram .pending-stop { stroke: var(--dash); stroke-width: 2.5; }
-.amplification-diagram :is(.rule-branch, .rule-heads, .rule-return) { stroke: var(--warm); stroke-width: 2.5; }
+.amplification-diagram :is(.rule-branch, .rule-heads, .rule-return, .rule-return-branches) { stroke: var(--warm); stroke-width: 2.5; }
 .amplification-diagram :is(.rule-token, .return-token) { fill: var(--warm); stroke: var(--paper); stroke-width: 1; opacity: 0; }
 .amplification-diagram .cadence-loop { top: 160px; }
 .amplification-diagram .loop-plan { left: 174px; --diameter: 236px; }
@@ -942,8 +942,8 @@ html.print-pdf #constraints-pillars .pillar-column.fragment { opacity: 1; visibi
 .amplification-diagram .pending-label { left: 288px; top: 108px; width: 172px; color: var(--purple); }
 .amplification-diagram .rule-stream-label { left: 660px; top: 108px; width: 134px; color: var(--warm-ink); }
 .amplification-diagram .choice-actor { left: 510px; top: 122px; width: 128px; height: 76px; color: var(--warm-ink); }
-.amplification-diagram .rule-choice { left: 414px; top: 246px; width: 320px; height: 64px; color: var(--warm-ink); }
-.amplification-diagram .rule-output { left: 866px; width: 286px; height: 80px; padding: 8px 42px 8px 12px; border: 1.5px solid var(--edge); border-radius: 12px; background: #ffffff; }
+.amplification-diagram .rule-choice { left: 414px; top: 246px; z-index: 1; width: 320px; height: 64px; color: var(--warm-ink); background: var(--paper); }
+.amplification-diagram .rule-output { left: 866px; width: 276px; height: 80px; padding: 8px 42px 8px 12px; border: 1.5px solid var(--edge); border-radius: 12px; background: #ffffff; }
 .amplification-diagram .rule-tag {
   display: inline-flex;
   padding: 1px 8px;
@@ -1043,10 +1043,6 @@ html.print-pdf #constraints-pillars .pillar-column.fragment { opacity: 1; visibi
 .milestone-secondary { position: absolute; top: 166px; padding-left: 10px; font-size: 15px; line-height: 1.2; color: var(--muted); --arrival-y: 28px; }
 .milestone-secondary::before { content: ""; position: absolute; top: -16px; left: 0; width: 1px; height: 28px; background: var(--dash); }
 .milestone-end { position: absolute; top: 128px; right: -2px; font-size: 16px; line-height: 1.2; color: var(--muted); }
-.time-foundation { display: flex; align-items: center; gap: 16px; height: 30px; padding: 0 12px; border: 1px dashed var(--dash); border-radius: 6px; }
-.time-foundation strong { font-size: 21px; font-weight: 650; }
-.time-foundation span { font-size: 20px; color: var(--muted); }
-
 html:not(.print-pdf) body.deck-ready .reveal:not(.overview) #delivery-eras.present .milestone-shaft {
   animation: hve-timeline-shaft var(--duration) linear both;
 }

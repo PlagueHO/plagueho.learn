@@ -465,9 +465,11 @@ test('slide 7 shows business decisions made by default and carried through imple
   assert.match(slide.body, /class="pending-stop"/);
   assert.equal((slide.body.match(/class="rule-branch"/g) ?? []).length, 3);
   assert.match(slide.body, /class="rule-return"/);
+  const returnBranches = slide.body.match(/class="rule-return-branches" d="([^"]+)"/)[1];
+  assert.equal((returnBranches.match(/M/g) ?? []).length, 3);
   const returnPath = slide.body.match(/class="rule-return" d="([^"]+)"/)[1];
-  assert.equal((returnPath.match(/C/g) ?? []).length, 2);
-  assert.doesNotMatch(returnPath, /[HLV]/);
+  assert.equal((returnPath.match(/Q/g) ?? []).length, 2);
+  assert.match(returnPath, /M1148 76V284Q1148 324 1108 324H692Q652 324 652 284V238/);
   assert.match(slide.body, /data-amplification data-copies="3"/);
   assert.doesNotMatch(slide.body, /choice-icon|lane-row|decision-transfer|Chooses a default/);
   assert.doesNotMatch(slide.body, /Illustrative|not to scale|Keep useful ceremonies|Direct route|Customer decision owner|time \+ authority|fragment|Friday|Monday|chatbot|carrier/i);
@@ -651,8 +653,8 @@ test('delivery shifts connect technology changes to responsibility and outcome o
   assert.match(content, /Cloud services\s+Own the running service/);
   assert.match(content, /Agile\s+Own delivery \+ feedback/);
   assert.match(content, /Co-engineering\s+Own the outcome with customers/);
-  assert.match(content, /Quality · security · customer learning/);
-  assert.match(content, /AI is not just the next tool rollout\. Revisit who owns the outcome\./);
+  assert.doesNotMatch(content, /Engineering fundamentals|Quality · security · customer learning/);
+  assert.match(content, /AI is more than a tool rollout\. Like earlier shifts in software delivery, it asks us to rethink how teams organize and deliver outcomes\./);
   assert.match(content, /AI SDLC emerges\s+Assist across delivery/);
   assert.doesNotMatch(content, /Approximate milestones|Overlapping eras|not to scale/);
   assert.match(slide.notes, /Responsible coding-tool use and token value matter/);
@@ -1558,6 +1560,8 @@ test('the customer stays inside the loop and the team pass works alone', () => {
 test('the three chapters label every leadership header and mark each divider', () => {
   assert.deepEqual(chapters, ['The outcome gap', 'How HVE changes the work', 'Making it real']);
   const rendered = renderSlides();
+  assert.equal((rendered.match(/<a href="#\/hve"[^>]*>Introduction to HVE<\/a>/g) ?? []).length, slides.length);
+  assert.doesNotMatch(rendered, /href="#\/hve"[^>]*>Leadership<\/a>/);
   const section = id => rendered.match(new RegExp(`<section id="${id}"[\\s\\S]*?</section>`))[0];
   const chapterOf = new Map();
   slides.slice(1, 8).forEach(slide => chapterOf.set(slide.id, 1));
