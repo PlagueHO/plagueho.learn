@@ -1,29 +1,43 @@
 /**
- * Presentation tools for the HVE Reveal deck: laser pointer, red box, red freehand, undo, and clear.
- * Parameters: `setupAnnotations(deck)` takes the initialized Reveal instance.
- * Usage: L laser, R box, D freehand, Ctrl+Z undo, X clear, Esc leaves the tools. Marks clear on slide change.
+ * Presentation tools for the HVE Reveal deck: laser pointer, coloured boxes, arrows, freehand, undo, and clear.
+ * Parameters: `setupAnnotations(deck, toolbar)` takes the initialized Reveal instance and shared toolbar.
+ * Usage: L laser, R box, A arrow, D freehand, Ctrl+Z undo, X clear, Esc leaves the tools.
+ * Marks clear on slide change.
  */
 
 const SLIDE_WIDTH = 1280;
 const SLIDE_HEIGHT = 720;
 const SVG_NS = 'http://www.w3.org/2000/svg';
-const EDGE_ZONE = 96;
-const HIDE_DELAY = 1800;
 const MIN_MARK_SIZE = 4;
 
-const ICONS = {
-  laser: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3m-17-7 2 2m12 12 2 2m0-16-2 2M7 17l-2 2"/>',
-  rectangle: '<rect x="4" y="5" width="16" height="14" rx="1"/>',
-  draw: '<path d="m4 17 4-1 9-9-3-3-9 9-1 4Zm8-11 3 3"/>',
-  undo: '<path d="M9 14 4 9l5-5"/><path d="M4 9h9a7 7 0 0 1 0 14h-2"/>',
-  clear: '<path d="M4 7h16m-10 4v7m4-7v7M6 7l1 14h10l1-14M9 7V4h6v3"/>',
-};
-
-const TOOLS = [
+export const ANNOTATION_TOOLS = [
   { id: 'laser', label: 'Laser pointer', key: 'L', keyCode: 76 },
-  { id: 'rectangle', label: 'Draw red box', key: 'R', keyCode: 82 },
-  { id: 'draw', label: 'Draw red freehand', key: 'D', keyCode: 68 },
+  { id: 'rectangle', label: 'Draw box', key: 'R', keyCode: 82 },
+  { id: 'arrow', label: 'Draw arrow', key: 'A', keyCode: 65 },
+  { id: 'draw', label: 'Draw freehand', key: 'D', keyCode: 68 },
 ];
+
+export const ANNOTATION_COLOURS = [
+  { label: 'Red', value: '#e00000' },
+  { label: 'Orange', value: '#f97316' },
+  { label: 'Yellow', value: '#facc15' },
+  { label: 'Green', value: '#16a34a' },
+  { label: 'Cyan', value: '#06b6d4' },
+  { label: 'Blue', value: '#2563eb' },
+  { label: 'Purple', value: '#9333ea' },
+  { label: 'Pink', value: '#ec4899' },
+  { label: 'Brown', value: '#92400e' },
+  { label: 'Black', value: '#111111' },
+  { label: 'Grey', value: '#6b7280' },
+  { label: 'White', value: '#ffffff' },
+];
+
+export const ANNOTATION_WIDTHS = [
+  { label: 'Thin', value: 3 },
+  { label: 'Medium', value: 6 },
+  { label: 'Thick', value: 10 },
+];
+export const DEFAULT_ANNOTATION_WIDTH = 6;
 
 /** Map a pointer position to 1280 by 720 slide units, whatever the display scale. */
 export function toSlidePoint(clientX, clientY, bounds) {
@@ -41,25 +55,17 @@ export function normalizeRect(a, b) {
 const clamp = (value, max) => Math.min(Math.max(value, 0), max);
 const round = value => Math.round(value * 10) / 10;
 
-function toolbarButton({ attributes, label, shortcut, ariaShortcut, icon }) {
-  return `<button type="button" ${attributes} title="${label} (${shortcut})" aria-label="${label} (${shortcut})" aria-keyshortcuts="${ariaShortcut}">
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">${icon}</svg></button>`;
-}
-
-function createToolbar() {
-  const toolButtons = TOOLS.map(({ id, label, key }) => toolbarButton({
-    attributes: `data-annotation-tool="${id}" aria-pressed="false"`, label, shortcut: key, ariaShortcut: key, icon: ICONS[id],
-  }));
-  const commandButtons = [
-    { attributes: 'data-annotation-command="undo" aria-disabled="true"', label: 'Undo last drawing', shortcut: 'Ctrl+Z', ariaShortcut: 'Control+Z', icon: ICONS.undo },
-    { attributes: 'data-annotation-command="clear" aria-disabled="true"', label: 'Clear all drawings', shortcut: 'X', ariaShortcut: 'X', icon: ICONS.clear },
-  ].map(toolbarButton);
-  const toolbar = document.createElement('div');
-  toolbar.className = 'annotation-toolbar';
-  toolbar.setAttribute('role', 'toolbar');
-  toolbar.setAttribute('aria-label', 'Presentation tools');
-  toolbar.innerHTML = `${toolButtons.join('')}<span class="annotation-divider" aria-hidden="true"></span>${commandButtons.join('')}`;
-  return toolbar;
+/** Draw a shaft and open arrowhead pointing from the drag origin to its endpoint. */
+export function arrowPath(start, end) {
+  const angle = Math.atan2(end.y - start.y, end.x - start.x);
+  const head = Math.min(24, Math.hypot(end.x - start.x, end.y - start.y) * .4);
+  const point = value => `${round(value.x)} ${round(value.y)}`;
+  const wing = offset => ({
+    x: end.x - head * Math.cos(angle + offset),
+    y: end.y - head * Math.sin(angle + offset),
+  });
+  return `M ${point(start)} L ${point(end)} M ${point(wing(-Math.PI / 6))}`
+    + ` L ${point(end)} L ${point(wing(Math.PI / 6))}`;
 }
 
 function createLayer() {
@@ -73,12 +79,11 @@ function createLayer() {
   return layer;
 }
 
-export function setupAnnotations(deck) {
+export function setupAnnotations(deck, toolbar) {
   if (deck.isPrintView()) return null;
 
   const reveal = deck.getRevealElement();
   const layer = createLayer();
-  const toolbar = createToolbar();
   const status = document.createElement('p');
   status.className = 'annotation-status';
   status.setAttribute('role', 'status');
@@ -86,14 +91,20 @@ export function setupAnnotations(deck) {
   const laser = layer.querySelector('.laser-point');
   const toolButtons = [...toolbar.querySelectorAll('[data-annotation-tool]')];
   const commandButtons = [...toolbar.querySelectorAll('[data-annotation-command]')];
+  const colourButtons = [...toolbar.querySelectorAll('[data-annotation-colour]')];
+  const colourTrigger = toolbar.querySelector('[data-player="colours"]');
+  const widthButtons = [...toolbar.querySelectorAll('[data-annotation-width]')];
+  const widthTrigger = toolbar.querySelector('[data-player="widths"]');
 
   let tool = null;
+  let colour = ANNOTATION_COLOURS[0].value;
+  let width = DEFAULT_ANNOTATION_WIDTH;
   let activeMark = null;
   let origin = null;
-  let hideTimer = 0;
+  let endpoint = null;
 
   deck.getSlidesElement().append(layer);
-  document.body.append(toolbar, status);
+  document.body.append(status);
 
   const drawingPoint = event => {
     const point = toSlidePoint(event.clientX, event.clientY, layer.getBoundingClientRect());
@@ -102,13 +113,10 @@ export function setupAnnotations(deck) {
 
   function syncCommands() {
     const empty = marks.childElementCount === 0;
-    for (const button of commandButtons) button.setAttribute('aria-disabled', String(empty));
-  }
-
-  function showToolbar(duration = HIDE_DELAY) {
-    clearTimeout(hideTimer);
-    toolbar.classList.add('is-visible');
-    hideTimer = setTimeout(() => toolbar.classList.remove('is-visible'), duration);
+    for (const button of commandButtons) {
+      button.setAttribute('aria-disabled', String(empty));
+      button.disabled = empty;
+    }
   }
 
   function hideLaser() {
@@ -121,7 +129,7 @@ export function setupAnnotations(deck) {
     reveal.dataset.annotationTool = tool ?? 'none';
     for (const button of toolButtons) button.setAttribute('aria-pressed', String(button.dataset.annotationTool === tool));
     hideLaser();
-    status.textContent = tool ? `${TOOLS.find(item => item.id === tool).label} on` : 'Presentation tools off';
+    status.textContent = tool ? `${ANNOTATION_TOOLS.find(item => item.id === tool).label} on` : 'Presentation tools off';
   }
 
   function undo() {
@@ -157,10 +165,11 @@ export function setupAnnotations(deck) {
   }
 
   function startMark(event) {
-    if (!event.isPrimary || event.button !== 0 || (tool !== 'rectangle' && tool !== 'draw')) return;
+    if (!event.isPrimary || event.button !== 0 || !['rectangle', 'arrow', 'draw'].includes(tool)) return;
     event.preventDefault();
     event.stopPropagation();
     origin = drawingPoint(event);
+    endpoint = origin;
     if (tool === 'rectangle') {
       activeMark = document.createElementNS(SVG_NS, 'rect');
       Object.entries({ x: origin.x, y: origin.y, width: 0, height: 0 }).forEach(([name, value]) => activeMark.setAttribute(name, value));
@@ -169,6 +178,8 @@ export function setupAnnotations(deck) {
       activeMark.setAttribute('d', `M ${round(origin.x)} ${round(origin.y)}`);
     }
     activeMark.setAttribute('class', `annotation-mark annotation-${tool}`);
+    activeMark.style.stroke = colour;
+    activeMark.style.strokeWidth = String(width);
     marks.append(activeMark);
     layer.setPointerCapture(event.pointerId);
   }
@@ -176,9 +187,12 @@ export function setupAnnotations(deck) {
   function extendMark(event) {
     if (!activeMark) return;
     const point = drawingPoint(event);
+    endpoint = point;
     if (activeMark.localName === 'rect') {
       const rect = normalizeRect(origin, point);
       Object.entries(rect).forEach(([name, value]) => activeMark.setAttribute(name, round(value)));
+    } else if (activeMark.classList.contains('annotation-arrow')) {
+      activeMark.setAttribute('d', arrowPath(origin, point));
     } else {
       activeMark.setAttribute('d', `${activeMark.getAttribute('d')} L ${round(point.x)} ${round(point.y)}`);
     }
@@ -187,12 +201,15 @@ export function setupAnnotations(deck) {
   function finishMark(event) {
     if (!activeMark) return;
     if (layer.hasPointerCapture(event.pointerId)) layer.releasePointerCapture(event.pointerId);
-    const tooSmall = activeMark.localName === 'rect'
-      ? activeMark.getAttribute('width') < MIN_MARK_SIZE && activeMark.getAttribute('height') < MIN_MARK_SIZE
-      : !activeMark.getAttribute('d').includes('L');
+    const tooSmall = activeMark.classList.contains('annotation-arrow')
+      ? Math.hypot(endpoint.x - origin.x, endpoint.y - origin.y) < MIN_MARK_SIZE
+      : activeMark.localName === 'rect'
+        ? activeMark.getAttribute('width') < MIN_MARK_SIZE && activeMark.getAttribute('height') < MIN_MARK_SIZE
+        : !activeMark.getAttribute('d').includes('L');
     if (tooSmall) activeMark.remove();
     activeMark = null;
     origin = null;
+    endpoint = null;
     syncCommands();
   }
 
@@ -204,48 +221,77 @@ export function setupAnnotations(deck) {
   for (const type of ['touchstart', 'touchmove', 'touchend']) layer.addEventListener(type, event => event.stopPropagation(), { passive: true });
 
   document.addEventListener('pointermove', event => {
-    if (event.clientY <= EDGE_ZONE) showToolbar();
     if (tool === 'laser') moveLaser(event);
   });
   document.documentElement.addEventListener('pointerleave', hideLaser);
-  toolbar.addEventListener('pointerenter', () => {
-    clearTimeout(hideTimer);
-    toolbar.classList.add('is-visible');
-  });
-  toolbar.addEventListener('pointerleave', () => showToolbar(HIDE_DELAY / 2));
+
+  function selectColour(value) {
+    const next = ANNOTATION_COLOURS.find(item => item.value === value);
+    if (!next) {
+      status.textContent = 'Unknown drawing colour. Select one of the listed colours.';
+      console.error(status.textContent);
+      return;
+    }
+    colour = next.value;
+    colourTrigger.style.setProperty('--drawing-colour', colour);
+    const label = `Drawing colour: ${next.label}`;
+    colourTrigger.setAttribute('aria-label', label);
+    colourTrigger.title = label;
+    for (const button of colourButtons) {
+      button.setAttribute('aria-pressed', String(button.dataset.annotationColour === colour));
+    }
+    status.textContent = `${next.label} drawing colour selected`;
+  }
+
+  function selectWidth(value) {
+    const next = ANNOTATION_WIDTHS.find(item => String(item.value) === value);
+    if (!next) {
+      status.textContent = 'Unknown line thickness. Select Thin, Medium, or Thick.';
+      console.error(status.textContent);
+      return;
+    }
+    width = next.value;
+    const label = `Line thickness: ${next.label}`;
+    widthTrigger.setAttribute('aria-label', label);
+    widthTrigger.title = label;
+    for (const button of widthButtons) {
+      button.setAttribute('aria-pressed', String(button.dataset.annotationWidth === value));
+    }
+    status.textContent = `${next.label} line thickness selected`;
+  }
 
   toolbar.addEventListener('click', event => {
     const button = event.target.closest('button');
-    if (!button) return;
-    const { annotationTool, annotationCommand } = button.dataset;
-    if (annotationTool) setTool(annotationTool);
+    if (!button || !button.matches(
+      '[data-annotation-tool], [data-annotation-command], [data-annotation-colour], [data-annotation-width]',
+    )) return;
+    const { annotationTool, annotationCommand, annotationColour, annotationWidth } = button.dataset;
+    if (button.hasAttribute('data-annotation-colour')) selectColour(annotationColour);
+    else if (button.hasAttribute('data-annotation-width')) selectWidth(annotationWidth);
+    else if (annotationTool) setTool(annotationTool);
     else if (button.getAttribute('aria-disabled') !== 'true') (annotationCommand === 'undo' ? undo : clear)();
     // A mouse click must not keep the toolbar open. Keyboard use (detail 0) keeps focus.
     if (event.detail > 0) button.blur();
   });
 
-  // Capture phase, so Reveal never sees these keys: Ctrl+Z is undo and Esc leaves the tools before it opens the overview.
+  // Capture undo before Reveal. The player owns Escape ordering.
   document.addEventListener('keydown', event => {
-    const editable = event.target.closest?.('input, textarea, select, [contenteditable]') || event.target.isContentEditable;
+    const editable = event.target.closest?.('input, textarea, select, button, a, summary, [contenteditable]') || event.target.isContentEditable;
     if (editable || deck.isOverlayOpen() || deck.isPaused() || deck.isOverview()) return;
     const isUndo = (event.ctrlKey || event.metaKey) && !event.shiftKey && !event.altKey && event.key.toLowerCase() === 'z';
     if (isUndo && !activeMark && marks.childElementCount > 0) {
       event.preventDefault();
       event.stopImmediatePropagation();
       undo();
-    } else if (event.key === 'Escape' && (tool || marks.childElementCount > 0)) {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      reset();
     }
   }, true);
 
   const keyboardReady = () => !deck.isOverview() && !deck.isPaused();
-  for (const { id, label, key, keyCode } of TOOLS) {
+  for (const { id, label, key, keyCode } of ANNOTATION_TOOLS) {
     deck.addKeyBinding({ keyCode, key, description: label }, () => {
       if (!keyboardReady()) return;
       setTool(id);
-      showToolbar();
+      toolbar.dispatchEvent(new Event('presenter-reveal'));
     });
   }
   deck.addKeyBinding({ keyCode: 88, key: 'X', description: 'Clear all drawings' }, () => keyboardReady() && clear());
@@ -261,5 +307,6 @@ export function setupAnnotations(deck) {
   deck.on('slidechanged', clear);
   deck.on('overviewshown', reset);
 
-  return { setTool, undo, clear, reset };
+  syncCommands();
+  return { reset, hasActive: () => Boolean(tool || marks.childElementCount > 0) };
 }

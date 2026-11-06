@@ -42,29 +42,57 @@ The Continuous Integration workflow builds and tests this deck on Ubuntu for pul
 
 ## Present
 
-The shared header links to the title slide. The footer names the first section "Introduction to HVE". Each slide in that section shows its chapter. The deeper section and demos keep their own links. Microsoft cover branding and hidden section-separator headers remain unchanged.
+One floating icon toolbar sits at the bottom of the window. It contains section navigation, slide controls, notes, drawing tools, slide motion, themes, and presentation settings. Each slide keeps its chapter header, branding, and slide count. Microsoft cover branding and hidden section-separator headers remain unchanged.
 
 | Action | Control |
 |---|---|
 | Next or previous slide or phase | Arrow keys, Space, or Page Up and Page Down |
-| Replay or pause slide 5 motion | Replay motion and Pause motion in its footer; replay keeps the current phase |
-| Slide overview | Escape or the Overview link in the slide footer |
-| Speaker view with notes and timer | S or the Notes link in the slide footer |
-| Pause for questions | B, or the Pause for questions and Questions buttons on slides 23, 35, and 41 |
+| First or last slide | Home or End |
+| Replay or pause motion on slides 5, 7, and 8 | Contextual Replay motion and Pause motion toolbar buttons; replay keeps the current phase |
+| Slide overview | Escape or the Overview toolbar button |
+| Speaker view with notes and timer | S or the Notes toolbar button |
+| Pause for questions | B, the Pause toolbar button, or the existing question buttons on slides 23, 35, and 41 |
 | Resume | B, Escape, or the resume button |
-| Full screen | F |
+| Present mode | P or the Present toolbar button |
+| Fullscreen | F or the Fullscreen toolbar button |
+| Zoom 2x | Z or the Zoom toolbar button; move the pointer to pan |
 | Laser pointer | L |
-| Draw a red box | R |
-| Draw red freehand | D |
+| Draw a box | R |
+| Draw an arrow | A; drag from the tail to the arrowhead |
+| Draw freehand | D |
+| Select the colour for new boxes, arrows, and freehand marks | Swatch button in the Drawing group opens a 12-colour palette |
+| Set the line thickness for new boxes, arrows, and freehand marks | Line thickness button opens Thin, Medium, and Thick presets with line previews |
 | Undo the last drawing | Ctrl+Z |
 | Clear all drawings | X |
 | Leave the drawing tools | Escape |
-| Jump between sections | Part links in the slide footer |
+| Jump between sections | Section menu in the toolbar |
+| Select a theme | Theme selector in the toolbar |
+| Show keyboard help | Keys toolbar button |
 | Browser print layout | Append `?print-pdf` before the URL hash |
 
-Move the pointer to the top edge of the window to show the presentation tools bar. It also shows when you press L, R, or D, or when you tab to it. It hides itself after a short pause. L, R, and D switch a tool on or off.
+The toolbar stays visible in normal mode. Present mode hides the slide headers and footers and hides the toolbar after a short pause. Move the pointer to the bottom edge to show it. Keyboard focus, an open toolbar panel, or the pointer over the toolbar keeps it visible. The groups wrap in narrow windows. Hover or focus shows each icon's label.
 
-Drawings and the laser use slide coordinates, so they stay aligned in any window size. Drawings clear when you change slide, when you press X or Escape, and when the overview opens. The first Escape press leaves the tools; the next one opens the overview. L no longer moves to the next slide; use the arrow keys or Space.
+Present mode does not start browser fullscreen. Fullscreen needs browser permission. If the browser rejects it, a visible notice gives a recovery action. Browser Escape can exit fullscreen before the deck receives the key.
+
+Zoom applies one transform to the slides and drawings. Pointer panning stops while a drawing tool or existing marks are active, so the canvas does not move under the pen. Clear the marks and leave the tool to pan again. Zoom resets on Tab, slide changes, resize, fullscreen changes, overview, pause, print, and exit from Present mode.
+
+L, R, A, and D switch a tool on or off. Drawings and the laser use slide coordinates, so they stay aligned in any window size and at 2x zoom. Drawings clear when you change slide, when you press X or Escape, and when the overview opens. L no longer moves to the next slide; use the arrow keys or Space.
+
+Red is the default drawing colour. The swatch palette also offers Orange, Yellow, Green, Cyan, Blue, Purple, Pink, Brown, Black, Grey, and White. A check mark identifies the selected swatch. Names appear on hover and are available to screen readers.
+
+Line thickness has three presets: Thin (3), Medium (6), and Thick (10), measured on the 1280 by 720 slide canvas. Medium keeps the previous line thickness. A line preview and check mark identify each preset and the selected one.
+
+Colour and thickness settings affect new boxes, arrows, and freehand marks without changing existing marks. Both settings stay active across slides until you reload the page. The laser pointer stays red and keeps its fixed size.
+
+Escape closes one active state at a time: an open toolbar panel, inline notes, drawing tools and marks, zoom, then Present mode. After those states close, Reveal handles Escape for pause or overview.
+
+Arrow keys move focus between toolbar buttons. In the swatch palette, Left and Right move one swatch; Up and Down move one row. In the thickness panel, arrow keys move one preset. Home and End reach the first and last choices. Enter or Space selects a choice and closes the panel. Escape closes it without changing the selection.
+
+Tab also reaches the swatches, thickness presets, theme selector, and section links. Native controls keep their normal keyboard behavior. Shortcuts do not advance the deck while a button, link, input, or selector has focus.
+
+Flowing blend is the default light theme. Select Flowing dark for a dark canvas. Theme URLs use `?theme=flowing-blend` or `?theme=flowing-dark` before the slide hash. For example, `?theme=flowing-dark#/handoffs/1` opens the dark theme at slide 5's final phase.
+
+Theme changes apply without reloading and preserve the current slide and phase. Reload, Back, and Forward keep the selected theme. Other query parameters, including `print-pdf`, stay in the URL.
 
 Speaker view needs HTTP and permission to open a popup. The notes window keeps its initial position relative to the deck as the deck moves. Browser or desktop restrictions can prevent scripts from moving a popup; if that happens, the popup may not follow the deck.
 
@@ -95,12 +123,16 @@ Slide-specific content and visual intent are in [OUTLINE.md](./OUTLINE.md). Keep
 | `images/` | Local presenter photo, presenter-supplied team and Design Thinking PNGs, and earlier original illustrations, copied into the build |
 | `index.html` | Accessible presentation shell and build insertion marker |
 | `theme.css` | Light theme, 1280 by 720 layout grid, diagram styles, and print rules |
-| `presentation.mjs` | Reveal.js settings and footer button actions |
+| `presentation.mjs` | Reveal.js settings, speaker notes, and in-slide question actions |
+| `presenter-controls.mjs` | Shared toolbar, keyboard safety, navigation, zoom, themes, Present mode, and fullscreen |
+| `presenter-controls.css` | Bottom toolbar, responsive groups, focus, panels, and Present-mode visibility |
+| `flowing-dark.css` | Dark palette and diagram overrides; original images and brand marks stay unchanged |
 | `cadence.mjs` | Slide 5 phases, bounded motion, static views, and merged-slide link aliases |
-| `annotations.mjs` | Presentation tools: laser pointer, red box, red freehand, undo, and clear |
+| `annotations.mjs` | Presentation tools: red laser pointer, boxes, arrows, freehand, 12 drawing colours, undo, and clear |
 | `build.mjs` | Static build with local runtime assets |
 | `serve.mjs` | Local preview server |
 | `deck.test.mjs` | Structure, timing, content, asset, route, and server checks |
+| `presenter-controls.test.mjs` | Toolbar, drawing palette, arrow geometry, keyboard ownership, navigation boundaries, theme URLs, Escape order, and zoom geometry |
 
 Content slides use a shared grid: header, title, diagram, takeaway, and footer. Section separators show only the centered title and background. Diagrams use shared parts in `diagrams.mjs`, with slide-specific layouts where needed. Conceptual flows are labelled as illustrative.
 

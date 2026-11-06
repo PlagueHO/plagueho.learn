@@ -18,6 +18,7 @@ import { mergedSlideHash, setupCadence } from './cadence.mjs';
 import { amplificationFrame, setupAmplification } from './amplification.mjs';
 import { readinessFrame, setupReadiness } from './readiness.mjs';
 import { setupOperatingModel } from './operating-model.mjs';
+import { presenterMarkup } from './presenter-controls.mjs';
 
 const text = html => html.replace(/<[^>]+>/g, ' ').replace(/&\w+;/g, ' ').trim();
 const byId = Object.fromEntries(slides.map(slide => [slide.id, slide]));
@@ -1568,7 +1569,8 @@ test('the customer stays inside the loop and the team pass works alone', () => {
 test('chapter labels mark leadership dividers and open the HVE-Core section', () => {
   assert.deepEqual(chapters, ['The outcome gap', 'How HVE changes the work', 'Making it real']);
   const rendered = renderSlides();
-  assert.equal((rendered.match(/<a href="#\/hve"[^>]*>Introduction to HVE<\/a>/g) ?? []).length, slides.length);
+  assert.equal((presenterMarkup().match(/<a href="#\/hve"[^>]*>Introduction to HVE<\/a>/g) ?? []).length, 1);
+  assert.doesNotMatch(rendered, /<nav aria-label="Presentation sections">/);
   assert.doesNotMatch(rendered, /href="#\/hve"[^>]*>Leadership<\/a>/);
   const section = id => rendered.match(new RegExp(`<section id="${id}"[\\s\\S]*?</section>`))[0];
   const chapterOf = new Map();
@@ -1616,7 +1618,7 @@ test('chapter labels mark leadership dividers and open the HVE-Core section', ()
   }
   assert.match(section('hve'), /class="cover-brand"/);
   assert.doesNotMatch(section('hve'), /class="chrome-top"|class="kicker"/);
-  assert.match(rendered, /<a href="#\/deep-dive"[^>]*>Diving deeper into HVE-Core<\/a>/);
+  assert.match(presenterMarkup(), /<a href="#\/deep-dive"[^>]*>Diving deeper into HVE-Core<\/a>/);
   assert.doesNotMatch(rendered, /Optional HVE-Core/);
 });
 
@@ -1836,6 +1838,9 @@ test('speaker notes escape text and the build uses local runtime assets', async 
     'vendor/plugin/notes.mjs',
     'vendor/LICENSE',
     'theme.css',
+    'presenter-controls.css',
+    'flowing-dark.css',
+    'presenter-controls.mjs',
     'presentation.mjs',
     'annotations.mjs',
     'speaker-window.mjs',
