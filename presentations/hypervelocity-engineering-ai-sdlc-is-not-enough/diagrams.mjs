@@ -23,6 +23,7 @@ const ICONS = {
   pencil: '<path d="M4 16.5L15.5 5a2.1 2.1 0 0 1 3 3L7 19.5 3.5 21zM13.5 7l3 3"/>',
   plus: '<path d="M12 5v14M5 12h14"/><circle cx="12" cy="12" r="10"/>',
   book: '<path d="M12 5Q8 2 3 4v15q5-2 9 2 4-4 9-2V4q-5-2-9 1z"/><path d="M12 5v16M6 8l3 .5M6 12l3 .5M15 8.5l3-.5M15 12.5l3-.5"/>',
+  coins: '<ellipse cx="12" cy="6.5" rx="7" ry="3"/><path d="M5 6.5v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5M5 11.5v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/>',
 };
 
 export function icon(name, cls = '') {
@@ -126,8 +127,8 @@ export function legend(kinds, note = 'Illustrative, not to scale') {
 }
 
 /* Customer-and-crew delivery loop. The base box is 720 by 380 and scales with zoom. */
-export function loop({ scale = 1, fragile = false } = {}) {
-  return `<div class="loop${fragile ? ' fragile' : ''}" data-hve-loop style="--s:${scale}" role="group" aria-label="Delivery loop: idea, validation, engineering, feedback, with the customer and expert crew at the center">
+export function loop({ scale = 1 } = {}) {
+  return `<div class="loop" data-hve-loop style="--s:${scale}" role="group" aria-label="Delivery loop: idea, validation, engineering, feedback, with the customer and expert crew at the center">
     <svg class="arrows" viewBox="0 0 720 380" aria-hidden="true">
       <path d="M274 66H446M436 57L446 66L436 75"/>
       <path d="M576 122V256M567 246L576 256L585 246"/>
@@ -142,7 +143,7 @@ export function loop({ scale = 1, fragile = false } = {}) {
   </div>`;
 }
 
-/* Research, plan, implement, review chain used by slides 29 and 37. With `clear`, each hop carries a /clear command. */
+/* Research, plan, implement, review chain used by the rpi and demo-rpi slides. With `clear`, each hop carries a /clear command. */
 export function rpiChain(items, { clear = false } = {}) {
   const columns = items.map(([title, artifact, decision, mark = 'check']) => `<div class="node rpi"><strong>${title}</strong><span>${artifact}</span><em>${icon(mark)}${decision}</em></div>`);
   const joiner = clear ? `<div class="clear-hop"><code>/clear</code>${arrow()}</div>` : arrow();
