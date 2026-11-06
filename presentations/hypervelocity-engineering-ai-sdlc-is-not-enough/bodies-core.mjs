@@ -9,10 +9,6 @@ import {
 } from './diagrams.mjs';
 import { sources } from './sources.mjs';
 
-function stackNode(iconName, title, detail = '', cls = '') {
-  return `<div class="node stack${cls ? ` ${cls}` : ''}">${icon(iconName)}<strong>${title}</strong>${detail ? `<span>${detail}</span>` : ''}</div>`;
-}
-
 function routes(items) {
   return `<nav class="routes">${items.join('')}</nav>`;
 }

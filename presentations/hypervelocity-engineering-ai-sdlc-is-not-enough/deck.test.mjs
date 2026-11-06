@@ -1768,7 +1768,7 @@ function renderedContent() {
 
 test('slide timings match the approved outline allocations', async () => {
   const outline = await readFile(new URL('./OUTLINE.md', import.meta.url), 'utf8');
-  const currentOutline = outline.split('## Evolution log')[0];
+  const currentOutline = outline.split('## Current status')[0];
   const numberedRows = [...currentOutline.matchAll(/^\| (\d+) \|/gm)].map(([, number]) => Number(number));
   const slideNumbers = slides.map((_, index) => index + 1);
   assert.deepEqual(numberedRows, [...slideNumbers, ...slideNumbers]);

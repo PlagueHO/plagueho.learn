@@ -1,16 +1,10 @@
 ## Hypervelocity Engineering - *Why adding AI to the SDLC is not enough*
 
-An independent presentation for technical leaders, engineering managers, and senior engineers. This deck sits beside the unchanged [original Slidev presentation](../hypervelocity-engineering/slides.md). It is not a Slidev conversion.
+An independent Reveal.js presentation for technical leaders, engineering managers, and senior engineers. It sits beside the unchanged [original Slidev presentation](../hypervelocity-engineering/slides.md).
 
-The deck has 23 leadership slides for 27 minutes, 13 slides for diving deeper into HVE-Core for 34.5 minutes, and five separate demo support slides. The live demo has a separate 30-minute budget. Q&A time is not assigned. See [OUTLINE.md](./OUTLINE.md) and [RESEARCH-NOTES.md](./RESEARCH-NOTES.md).
+The deck has 41 slides: 23 leadership slides (27 minutes), 13 deeper HVE-Core slides (34.5 minutes), and five demo support slides. The live demo has a separate 30-minute budget. See [OUTLINE.md](./OUTLINE.md) for the approved narrative, slide order, and visual plan.
 
-The executive revision is being reviewed one slide at a time. The opening uses a wide title, one plain executive subtitle, and presenter details. Speaker notes ask how the business must change when building becomes faster than deciding. Each pillar keeps its practice/example pair. The leadership section takes 27 minutes. The deeper HVE-Core section takes 34.5 minutes.
-
-The selected *Flowing blend* background adds lavender, peach, and rose haze, pale bands, and fine lines across all 41 slides. The approved cover, timeline, and fault line are now slides 1, 2, and 4. Slides 3, 9, and 20 are the three chapter dividers, with approved titles and selected D. Slide 5 uses selected A: Sweeping arcs. Later copy, the order-status thread, and numbered pillars remain under revision.
-
-HVE is an engineering operating model, not simply faster coding with AI. A small expert crew and the customer work through a continuous idea, validation, engineering, and feedback loop. The four pillars support that loop: multidisciplinary teams, Design Thinking, production-ready accelerators, and AI throughout the lifecycle.
-
-The recurring loop puts the customer inside the crew. Expert validation and built-in security, observability, testing, and CI/CD remain essential. The aim is shorter time toward production value, not a fixed delivery promise or a claim that a prototype is production-ready.
+Use [RESEARCH-NOTES.md](./RESEARCH-NOTES.md) for public evidence, claim boundaries, and version-sensitive HVE-Core behavior. Use [DEMO-SCRIPT.md](./DEMO-SCRIPT.md) as the live demo runbook. Slide-specific speaker notes stay in `slide-meta.mjs`.
 
 ## Run locally
 
@@ -78,85 +72,7 @@ If the browser blocks the popup, the deck shows the notes in an inline panel at 
 
 For PDF export, open `http://127.0.0.1:3043/?print-pdf`, wait for the slides to load, then use the browser's Print command. Enable background graphics. See the [Reveal.js PDF guide](https://revealjs.com/pdf-export/).
 
-Slide 2 animates the selected timeline arrow over 3.6 seconds. Milestones slide in from above or below as the tip reaches their year. The sequence completes in about four seconds and repeats on re-entry. Overview, reduced-motion, print, and script-failure views show the complete static timeline. Date sources and limits remain in speaker notes.
-
-The `~2023` date and its caption are centered under the orange timeline marker.
-
-Slides 3 and 9 are matching section separators. They show one centered line on the current background, with warm emphasis on outcomes. The first asks, "We’re delivering code faster. Are we delivering better outcomes?" The second introduces the response: "From faster code delivery to better business outcomes."
-
-Headers and footers are hidden on these slides. Keyboard navigation, Escape for overview, and S for notes remain available.
-
-Slide 4 uses the selected box-free fault-line diagram. It shows delivery gaps without statistics.
-
-Slide 5 combines the former slides 4-6. Use two presenter advances to show long cycles, faster implementation, then unchanged process constraints. Only implementation shrinks and rotates faster. Labels stay fixed. Its dashed former outline and human handoffs stay visible. The final phase adds decision and review waits. Each phase settles within six seconds. Sizes and speeds are illustrative.
-
-The changing caption uses selected B: warm key phrases, muted supporting text, and a short fade on phase changes. It matches the takeaway's 26px semibold type. There is no phase counter. Extra space separates the caption from the cycles without changing their size.
-
-Motion pauses when the page is hidden or the deck is paused. It stops when the slide is left. Overview, reduced-motion, print, and script-failure views show the complete static comparison. Reduced-motion navigation skips the two animation steps.
-
-Old `#/ai-implementation` and `#/outcome-waiting` links open the corresponding phases of `#/handoffs`. Security, quality, operations, and required independent review remain.
-
-Slide 6 uses selected A under the broader title "Delivering software faster. But not delivering the outcome." The business requests a chatbot to reduce order calls. The carrier moves delivery from Friday to Monday, but the order record and chatbot still say Friday. No team owns the update. The customer needs a trustworthy revised date and clear next action.
-
-The two-panel comparison stays. Speaker notes explain the whole scenario and distinguish a shipped feature from a solved customer problem. This Friday-to-Monday case is the baseline for later leadership examples. The teaching boundary stays in notes; there is no visible scenario label.
-
-The failure predates AI. Faster implementation can let more unvalidated requests reach delivery while the customer problem remains unsolved. The response is to use that speed for learning and to own the customer outcome, not slow development.
-
-Slide 19 no longer uses this case. It follows one request, add authentication to the checkout flow, along two routes. One route guesses in ways that look informed. The other passes four gates: relevant context, recorded decisions, executable checks, and expert judgment.
-
-The diagram is an illustration, not a guarantee. No customer research, completed review, or measured gain is claimed. The manufacturing tutorial in the deeper section stays separate.
-
-Slide 17 no longer uses the case. It follows one expert practice along a marked trail from first use to update or retirement.
-
-Slide 7 uses two wheels from slide 5's visual language. The PM/SME/customer stays in the slower design/planning loop while the agent makes an assumption. Each fast turn copies the same unvalidated rule into behaviour, tests, and later increments. A curved return arc shows that rule becoming the starting point for more work.
-
-"More decisions. Validation lags." explains the pressure. When decision demand exceeds business validation capacity, more gaps can be filled with assumptions. Reuse then spreads each assumption's consequences. The animation follows one assumption; the copies are dependent uses, not a count of distinct new assumptions.
-
-The six-second sequence accumulates three copies in each output, then freezes. Implementation makes three turns while planning makes a quarter turn. These are conceptual cues, not measured speeds or completed outcomes. Replay and pause controls use the slide footer. Hidden pages and deck pause freeze the active time budget; slide exit stops it.
-
-Overview, reduced motion, print, and script failure show the complete static meaning. Passing tests does not remove the unvalidated-rule tag. The slide stays general and does not revisit the order-status case.
-
-The takeaway is "The question is still open. The product already contains an answer." Notes explain the impact of a decision made by default, distinguish it from legitimate technical choices, and leave the response for the next section. There is no scale label.
-
-Slide 8 uses a fast implementation wheel, a growing feature backlog, and a slower production-readiness wheel. The last wheel names acceptance tests, assurance checks, and release readiness, not teams. One marker enters readiness while more arrive. A straight return line with equal rounded corners shows late rework.
-
-The three headings share one row. Three short captions share another. The return line joins the bottom centre of each wheel and runs behind the lower labels. "Late rework" is centred on the horizontal section.
-
-The title is "Features arrive faster. Production readiness falls behind." The takeaway is "More finished code. More unfinished readiness work." The slide explains the problem; it does not show a solution lane or recommend removing assurance.
-
-The six-second sequence ends with seven waiting markers. Counts and speeds are conceptual, not measured throughput or released features. Replay, pause, hidden-page, overview, reduced-motion, print, and script-failure behavior match slide 7. Both sequences share their bounded-motion lifecycle.
-
-Notes include a roughly 75-second talk track. The later response shifts suitable work left and runs it continuously, including security-agent support during design, planning, and coding. Prepared foundations do not replace expert judgment, operational ownership, or required independent review.
-
-Slide 10 introduces "Hypervelocity Engineering" with the subtitle "How we change the delivery operating model". Advance once to replace serial handoffs with a circular idea, validation, engineering, and feedback loop. The larger centre keeps the customer and expert crew readable. Product, design, engineering, testing, security, operations, release, and service work support the short feedback cycle.
-
-The circle is static. Four purple arrowheads at its top, right, bottom, and left show the clockwise sequence. Overview, reduced motion, print, and script failure show both models. Static modes do not add an invisible fragment step. The visual has no assurance caption. Required independent review and continuous assurance remain in the notes.
-
-Its roughly 30-second talk track connects customer needs, decisions, and readiness work to shared ownership and learning. The wider production model is a proposal to test, not a fixed formula or a production-readiness guarantee. A POC or MVP still needs suitable operational and assurance work. Detailed pillars and toolkit features remain on later slides.
-
-Slide 11 uses selected B: four structural pillars without numbers. Advance four times with Right Arrow or Space to reveal one complete challenge, arrow, and practice column per step. Left Arrow reverses the sequence. The lower labels use 27px type with space inside the dashed edges.
-
-The title and ISE/FDE credit stay visible. Overview, print, and script failure show all four pillars. Reduced motion keeps the click sequence without a fade. The brief notes credit delivery experience rather than explain each pillar. The associations are not exclusive one-to-one solutions.
-
-Slides 12-19 carry a faint bottom-left pillar number above the swirl and below all content. Each pair uses the same number: 1, 1, 2, 2, 3, 3, 4, 4. The numeral is 585px at 7% opacity and is hidden from accessibility reading. Slides 12, 16, and 18 use "Pillar n: Title." with a subtitle on the next line. Slide 14 uses a compact one-line title. Example-slide headings stay separate.
-
-Slide 14 keeps the complete presenter-supplied Design Thinking image, with smaller embedded labels. The message below it explains why the practice matters when coding gets faster: use AI speed to test assumptions, not build the wrong thing faster. Lower coding barriers do not replace customer and domain expertise.
-
-Its 90-second notes connect the three spaces to the chatbot's stale date and the customer's intended outcome. Leaders must provide customer access, expert time, and decision authority. Forward arrows are a reading path, not fixed gates. The 10x-50x range is a hypothetical illustration, not a measured result.
-
-Slide 15 uses the selected paper-and-pencil treatment. Its body introduces one principle: test the requested chatbot against the customer's task. The bottom line gives the action and why it matters with faster AI coding: test value early, then change or stop options that do not help. Wrong assumptions can mean more rework.
-
-The 90-second notes retain the decision owner, customer evidence, and required assurance. The test is proposed, not completed. Stopping an option does not remove responsibility for the customer outcome. The full date-change recap is not repeated. Visible text and notes do not use em dashes.
-
-Slide 16 uses the selected A2 capability library. AI agents, Agent Skills, tools, and organizational knowledge feed "Agentic capabilities." Matching icons form an arc above the supplied team image. There is no oval behind it. The message is to give every team access to reusable expertise, not add a person for every role.
-
-The capability examples draw on the [HVE-Core role index](https://github.com/microsoft/hve-core/blob/main/docs/hve-guide/roles/README.md) and TPM guide. They do not claim ready-made coverage for every capability. Notes retain access, maintenance, adaptation, and required assurance.
-
-Slide 23 is the leadership wrap slide. It shows two QR codes, one for the HVE-Core repository and one for the documentation site, with their printed addresses.
-
-Three fact cards say that HVE-Core is open source and maintained by Microsoft with pull requests welcome, that teams should keep their copy up to date, and that teams can customize it and keep existing workflows. It routes to the deeper section or a pause for questions.
-
-The QR codes come from `qr.mjs`, which has no package dependency. Slide 35 closes the deeper section with the team boarding pass and routes to the demos. The demo recap does not claim that a system reached production.
+Slide-specific content and visual intent are in [OUTLINE.md](./OUTLINE.md). Keep speaker notes in `slide-meta.mjs`. The deck provides complete static views for motion slides in overview, reduced-motion, print, and script-failure states.
 
 ## Edit
 
@@ -188,7 +104,7 @@ The QR codes come from `qr.mjs`, which has no package dependency. Slide 35 close
 
 Content slides use a shared grid: header, title, diagram, takeaway, and footer. Section separators show only the centered title and background. Diagrams use shared parts in `diagrams.mjs`, with slide-specific layouts where needed. Conceptual flows are labelled as illustrative.
 
-Slide 2 has a scaled timeline entry animation. Slide 5 has bounded sweeping arcs and native Reveal.js fragment phases. Other planned animated diagrams retain their static versions.
+Slide 2 has a scaled timeline entry animation. Slides 5, 7, and 8 use bounded motion or native Reveal.js fragments. Slide 10 has a single model-replacement transition. Complete static views remain available.
 
 The light canvas, large headings, purple and tangerine accents, static Flowing blend background, horizontal pillars, and recurring customer-and-crew loop follow the selected visual direction. All text and diagrams are original. Private photos, transcripts, and the supplied internal-source guide are not included. The deck avoids unsupported productivity claims and private customer results.
 

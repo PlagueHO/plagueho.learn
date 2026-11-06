@@ -1,6 +1,6 @@
 ## Hypervelocity Engineering research notes
 
-Public sources checked on 2026-10-29, with focused narrative checks on 2026-10-30. These notes support the [proposed presentation outline](./OUTLINE.md) and the separate Reveal.js draft. The slides have not yet been changed to implement the new proposal. A live demo runbook is not yet prepared.
+Public evidence and claim limits for the Reveal.js presentation. The approved slide sequence and content are in [OUTLINE.md](./OUTLINE.md). This file records source support and version-sensitive HVE-Core behavior; slide-specific presenter notes remain in `slide-meta.mjs`. Public sources were checked on 2026-10-29, with focused narrative checks on 2026-10-30.
 
 ## Scope and source boundary
 
@@ -10,62 +10,15 @@ Private photos, transcripts, and the supplied internal-source research guide are
 
 Distinguish public source statements from presentation synthesis. The four-pillar structure and the concise HVE-to-FDE explanation are the presentation's framing, not a universal industry definition.
 
-## Narrative alignment revision
+## Narrative and scope
 
-The outline now incorporates the ISE transcript comparison. Its subtitle is *Why adding AI to the SDLC is not enough*. The target is adding AI while ownership, customer participation, decisions, specialist engagement, and governance remain unchanged. Do not reduce AI SDLC to coding or dismiss approaches that already include these organizational changes.
+The deck presents HVE as an operating model for shared ownership, continuous value validation, reusable expertise, and expert-led AI support. It distinguishes AI-assisted delivery from an AI-powered product and keeps customer evidence, human judgment, and required assurance visible.
 
-The committed draft remains unchanged. The revised outline retains proven engineering discipline and co-engineering, gives waiting and missing business value equal weight, and makes changed responsibilities visible in each pillar. Outcome measures then support wider organizational action. HVE remains the operating-model response, not simply a faster coding workflow.
-
-The revised outline follows this progression:
-
-1. Ask what must change when code moves faster than decisions, validation, and delivery.
-1. Briefly connect packaged releases and cloud delivery with overlapping Agile and DevOps practices, co-engineering, and retained customer capability.
-1. Show the familiar work, waiting, handoff, and decision flow, then shorten only its implementation segment.
-1. Explain why faster output can amplify waiting and wrong assumptions; working software alone does not establish business value.
-1. Define HVE as a whole-delivery operating-model response, not simply faster coding.
-1. Connect delivery challenges to four practices that work together: shared ownership, value validation, maintained foundations, and expert-led assistance. Slide 11 has no separate improvement cycle; do not attribute one to the HVE white paper.
-1. Reassemble the idea -> validation -> engineering -> feedback loop with the customer and expert crew inside it.
-1. Keep expert validation and built-in security, observability, testing, and CI/CD explicit.
-1. Test changed responsibilities and practices, expose cross-team constraints, identify owners, and seek sponsored changes while retaining assurance.
-1. Establish owned mechanisms and retained customer capability, then introduce HVE-Core as optional process support alongside existing tools.
-
-This is a planning synthesis in original wording. It is not a public account of private experiments or their results. Use the public sources below for publishable claims; the private references establish the requested narrative emphasis, not permission to publish their content.
-
-The leadership section has 23 sparse slides over 27 minutes. Act 3 receives 14 minutes, including two slides and three minutes per pillar. The section ends with a wrap slide that points to the open source repository and documentation.
-
-The deeper HVE-Core section has 13 slides over 34.5 minutes, followed by five demo support slides. Detailed context mechanics stay in the deeper section. FDE remains supporting context rather than a separate main-path slide.
-
-Slide 13 uses presenter-supplied handoff illustrations to explain how close multidisciplinary work can support faster decisions, alignment and buy-in, and continuous adjustment. The local assets are `my-part-is-done.png` and `shared-goal.png`. This is a teaching metaphor, not customer evidence or a fixed team roster.
-
-Slide 14 uses the presenter-supplied `design-thinking-customer-evidence.png` for HVE's problem, solution, and implementation spaces. Its complete artwork is retained with a compact title and smaller embedded labels. The text below explains why faster coding makes continued validation important: use AI speed to test assumptions, not build the wrong thing faster.
-
-The notes distinguish lower coding barriers from customer and domain expertise. The chatbot callback tests a trustworthy revised date and clear next action, not merely a working interface. Leaders must provide customer access, expert time, and decision authority. No customer research or measured benefit is claimed. The 10x-50x range is hypothetical, not an established productivity result.
-
-The [Design Council](https://www.designcouncil.org.uk/resources/framework-for-innovation/) describes exploration and focus. Its four-phase Double Diamond is not HVE's three-space model. IDEO's desirability, feasibility, and viability are different value lenses. The artwork's forward arrows are a reading path, not irreversible gates; evidence can reopen any space.
-
-Slide 15 uses the selected paper-and-pencil metaphor. One body principle tests the requested chatbot against the customer's task. The bottom line asks leaders to test value early and permit evidence to change or stop an option. Faster AI coding can mean more rework when an assumption is wrong. This is a conditional risk, not a measured gain or cost.
-
-The test for a trustworthy revised date and clear next action is proposed. No user testing or confirmed outcome is claimed. The customer or product decision owner records the decision. Stopping an unsuitable option does not remove responsibility for the outcome. The date-change recap remains on earlier slides.
-
-Slide 19 uses the selected two-route treatment. One request, add authentication to the checkout flow, is illustrative and not a measured case. Without the right inputs, AI can fill gaps with guesses that look informed. Relevant context, recorded decisions, and executable checks improve the odds of a suitable result. They do not guarantee correct or secure output.
-
-Experts still judge the result. A passing check is evidence only for the rule it tests. Context must stay focused and current, and model summaries need review before they become recorded decisions. This is a teaching illustration, not a published finding or measured result.
-
-Slide 17 uses the selected marked-trail treatment. It follows one expert practice from first use to update or retirement. The process is an illustrative example, not a prescription. Any organization needs a way to collate, curate, govern, and share its expertise.
-
-It does not use the carrier example. No real asset, result, or adoption figure is claimed. Reuse saves effort but does not certify output or replace review, suitable access, or required independent assurance.
-
-The manufacturing tutorial remains separate in the deeper section. Do not predetermine an interface or imply that user testing occurred. The proposed order-team owner must be agreed. A reused foundation does not make delivery data correct, and AI-generated tests do not establish customer value.
-
-The DT Coach, DT-to-RPI, installation, and manufacturing demo sequence remains our agreed extension. Do not imply that it reconstructs the speakers' presentation. The committed 35-slide Reveal.js draft implements the previous operating-model-first narrative. The proposed constraint-first outline awaits review before any slide changes.
-
-The main talk supports shared team duties, distributed specialist knowledge, co-engineering, experimentation, and customer capability. The Q&A makes executive sponsorship and organizational constraints explicit. Bringing these themes forward adapts the story for leaders; it does not reconstruct the original opening. An unanswered toolkit-evaluation question does not establish assurance.
-
-Use concrete commitments rather than a general call for a new mindset. The crew and customer co-own the outcome. Specialists shape work early. Evidence can change or stop work. Customer engineers maintain practices after the engagement. Decision rights and protected customer time are our practical interpretation, not a universal organization design established by the transcript.
+The 41-slide deck has a locked leadership section (slides 1-23), a deeper HVE-Core section (slides 24-36), and demo support (slides 37-41). The deeper section is a practical extension, not a reconstruction of the source presentation. Further HVE-Core refinement and speaker-note work are tracked separately.
 
 ### Use of the supplied guide
 
-The user supplied the fundamental message and a secondary research guide. The user-directed message sets the presentation's emphasis. The guide adds planning context on expert teams, customer co-creation, preparation, small increments, reuse, and feedback.
+The initial brief sets the presentation's emphasis. A secondary research guide adds planning context on expert teams, customer co-creation, preparation, small increments, reuse, and feedback.
 
 The guide cites internal material without public source links. Its customer descriptions include speculation. Its staffing and duration examples do not define a universal model. Its claim that information is shareable does not establish permission. Do not publish its customer stories, internal assets, figures, forecasts, or organizational details.
 
@@ -117,62 +70,15 @@ Do not repeat a universal exponential context-cost claim, a guaranteed first-pas
 
 The FDE sources support the delivery relationship, not an exclusive claim that FDE requires this particular toolkit. The HVE-Core sources describe a current implementation, not a fixed platform that defines the method.
 
-Slide 11 credits established practices refined through Microsoft ISE delivery and FDE experience. The ISE playbook records shared engineering practice; the FDE perspective describes customer co-engineering and multidisciplinary delivery over recent years. This supports an experience-based introduction, not a claim that ISE invented every practice or proved this four-pillar grouping guarantees outcomes.
+The ISE playbook and FDE perspective support an experience-based introduction. They do not show that ISE invented every practice or prove that this four-pillar grouping guarantees outcomes.
 
 The public findings support the whole-system argument. They do not prove the full historical narrative, the independent effect of each pillar, or a necessary-and-sufficient formula. These remain teaching synthesis. HVE-Core can accelerate processes; that does not make it a production solution foundation. Installing it does not supply infrastructure, customer evidence, authority, or readiness.
 
 The leadership measures track changed responsibilities and practices, not tool access alone. Identify an actual wait and its owner before seeking a change in participation, capacity, escalation, or policy. Some organizations already review quickly. Keep the manufacturing illustration separate from evidence of organizational transformation; no public change case or measured result is asserted here.
 
-## Four-pillar teaching synthesis
+## Slide content boundaries
 
-| Pillar | Meaning to preserve |
-|---|---|
-| Multidisciplinary teams | A small expert crew with customer participation, informed decisions, and shared ownership |
-| Design thinking | Establish actual business value through customer and user evidence throughout the loop |
-| Reusable accelerators | Build, collect, share, and govern agents, Agent Skills, tools, and organizational knowledge and guidance across roles; review fit, access, changes, and required assurance |
-| AI tooling | Amplify the crew across the lifecycle, with security and review at every stage, while experts stay accountable and set review depth to match the risk |
-
-Use this structure to explain the operating model and make HVE concrete behind FDE. Explain the model before the tool. Customer collaboration and continuous feedback connect all four pillars. Do not turn team composition into a staffing formula or make headcount reduction the outcome.
-
-The leadership section can discuss AI-assisted delivery without requiring AI in the delivered solution. This is a teaching distinction, not a claim that Microsoft Frontier Company accepts every type of non-AI engagement.
-
-## Slide 16 capability coverage
-
-The official repository's role index provides paths for Engineer, TPM, Tech Lead / Architect, Security Architect, Data Scientist, UX Designer, SRE / Operations, Business Program Manager, and New Contributor. Its Utility guide covers shared capabilities, not a job.
-
-Slide 16 translates those paths into capability examples. The cards describe work a team may need, not people every team must contain or a catalogue of ready-made agents.
-
-The [TPM guide](https://github.com/microsoft/hve-core/blob/main/docs/hve-guide/roles/tpm.md) also documents product definition, requirements, backlog work, and product-management advisory guidance. Product management is therefore an additional capability example on the slide, not a claim of another dedicated role guide.
-
-The cards show an open set of capabilities. "Other capabilities" leaves room for more. Coverage varies by role and lifecycle stage. The Business Program Manager path is beta and uses shared capabilities. Do not copy volatile asset counts or imply that every role has complete support.
-
-The knowledge illustration represents shared organizational guidance, not unrestricted access to internal information. The action is to build, collect, share, and govern assets with owners, suitable access, current sources, maintenance, and review. Reuse does not certify outputs or replace required assurance.
-
-The selected A2 treatment shows assets feeding a capability library titled "Agentic capabilities." Matching icons form an arc above the presenter-supplied team image. This shows reusable expertise extending a small team's work. It does not show added staff or remove specialist review.
-
-## Slide 22 role examples
-
-Slide 22 uses the selected hub-and-spokes treatment. One HVE-Core hub (agents, skills, instructions) connects to six role examples: program manager, UX designer, architect, operations, data scientist, and engineer. Most of the six are not developer roles.
-
-The [HVE Core documentation](https://microsoft.github.io/hve-core/) supports each example. The UX designer card names the Design Thinking coach and its customer-evidence methods. The engineer card names the Research, Plan, Implement, and Review method.
-
-The program manager and architect cards draw on project planning (decision records, requirements, diagrams, security plans) and backlog management. The role guides cover the other examples.
-
-The numbers link each role to a pillar. This mapping is a teaching synthesis, not a documented HVE-Core structure. A role can touch more than one pillar. The bottom line uses the documentation's own wording: production-ready starting points that a team can customize to its organization.
-
-The notes keep the caveats. Coverage varies by role, the Business Program Manager path is beta, and security outputs assist qualified people.
-
-HVE-Core is optional and replaceable. It does not supply sponsorship, end user time, authority, or review capacity. It does not replace expert judgment or required independent assurance. Do not copy volatile asset counts.
-
-## Slide 23 wrap slide
-
-Slide 23 ends the leadership section. Two QR codes point to the public [HVE-Core repository](https://github.com/microsoft/hve-core) and the [documentation site](https://microsoft.github.io/hve-core/docs/).
-
-The three fact cards say HVE-Core is open source and maintained by Microsoft with pull requests welcome, that a team keeps its copy current by merging upstream changes, and that a team can customize it and keep its existing spec-driven workflows. Visible text names no AI assistant products.
-
-Keep the caveats in the notes. A fork has an ongoing maintenance cost, so try in-place customization first. The repository README says to treat HVE-Core as a source of patterns and learning, and that it may change in ways that are not backward compatible. Reusing an asset does not certify its output. The toolkit does not supply sponsorship, customer time, authority, or review capacity.
-
-The adoption commitments (slide 33) and outcome measures (slide 34) now sit in the deeper section. The team boarding pass (slide 35) closes that section.
+The approved outline is the source of truth for the four pillars and role examples. The pillar grouping is this presentation's teaching synthesis, not an external standard or a claim of complete toolkit coverage. Keep public source statements separate from illustrative examples.
 
 ## Current CLI plugin limits
 
@@ -187,7 +93,7 @@ The installation demo must follow the current CLI plugin guide rather than the o
 - The guide documents shell commands and the interactive `/plugin` entry point. Verify exact interactive marketplace syntax against the installed CLI during demo preparation.
 - Distinguish direct phase skills from explicit custom-agent selection. Do not claim that a skill silently switches the CLI into an agent mode.
 
-Installed CLI shell help confirms the plugin and marketplace command surface. No HVE-Core installation or interactive marketplace rehearsal has been performed for this content draft. Recheck exact slash syntax before recording commands or screenshots.
+Installed CLI shell help confirms the plugin and marketplace command surface. The outline does not claim that installation or interactive marketplace behavior was rehearsed. Verify exact slash syntax before recording commands or screenshots.
 
 ## Manufacturing tutorial and selected DT exit
 
@@ -254,11 +160,6 @@ Select measures that test the desired outcome and expose the next delivery const
 
 AI usage and generated code volume are not success measures by themselves. DORA measures can support delivery analysis; do not replace them with a tool-adoption target. Apply them in the context of the application or service. Keep SPACE as an optional measurement framework, not a new HVE-specific metric set.
 
-## Remaining preparation
+## Follow-up scope
 
-- Agree demo and Q&A allocations separately from the two timed sections (27 and 34.5 minutes).
-- Select a bounded implementation outcome that follows the actual problem-space handoff and research.
-- Prepare labelled tutorial evidence and fallback artifacts without inventing interviews or test results.
-- Verify the installed CLI and plugin behavior before writing the final runbook.
-- Refine visual design separately from this content draft.
-- Prepare a new runbook and live artifacts in a separate demo-preparation step.
+Further refinement of the deeper HVE-Core section and speaker notes is tracked in separate issues. Recheck CLI plugin, Design Thinking Coach, and RPI behavior against the official documentation before demo rehearsal. Update the runbook when rehearsal or verified behavior changes its instructions.
