@@ -264,7 +264,8 @@ export const leadershipBodies = {
     deliveryTimeline(), 'milestone-figure') +
     takeaway('AI is more than a tool rollout. Like earlier shifts in software delivery, it asks us to rethink how teams organize and deliver outcomes.'),
 
-  'outcomes-question': '',
+  'outcomes-question': `<img class="section-divider-art" src="./images/good-news.png" width="1536" height="1024"
+    alt="An AI engine runs through a broken process while people work nearby. The caption says: Good news, we can now do the wrong thing a thousand times faster.">`,
 
   'agentic-cracks': fig('More output above an unchanged delivery model with five unresolved gaps',
     `<div class="cracks-composition">
