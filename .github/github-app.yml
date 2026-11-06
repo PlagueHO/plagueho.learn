@@ -1,0 +1,41 @@
+# Manual presentation tasks. Review and accept this configuration in the app.
+scripts:
+  - name: "Presentations: list"
+    command: node scripts/presentation-task.mjs list
+  - name: "Presentations: build all"
+    command: node scripts/presentation-task.mjs build-all
+  - name: "Slidev: build agentic-development-evolution"
+    command: node scripts/presentation-task.mjs build agentic-development-evolution
+  - name: "Slidev: run agentic-development-evolution"
+    command: node scripts/presentation-task.mjs run agentic-development-evolution
+  - name: "Slidev: build agentic-dotnet-appmod"
+    command: node scripts/presentation-task.mjs build agentic-dotnet-appmod
+  - name: "Slidev: run agentic-dotnet-appmod"
+    command: node scripts/presentation-task.mjs run agentic-dotnet-appmod
+  - name: "Slidev: build hypervelocity-engineering"
+    command: node scripts/presentation-task.mjs build hypervelocity-engineering
+  - name: "Slidev: run hypervelocity-engineering"
+    command: node scripts/presentation-task.mjs run hypervelocity-engineering
+  - name: "Slidev: build microsoft-iq-foundry-agent-best-practices"
+    command: node scripts/presentation-task.mjs build microsoft-iq-foundry-agent-best-practices
+  - name: "Slidev: run microsoft-iq-foundry-agent-best-practices"
+    command: node scripts/presentation-task.mjs run microsoft-iq-foundry-agent-best-practices
+  - name: "Slidev: build speckit"
+    command: node scripts/presentation-task.mjs build speckit
+  - name: "Slidev: run speckit"
+    command: node scripts/presentation-task.mjs run speckit
+  - name: "Slidev: build template"
+    command: node scripts/presentation-task.mjs build template
+  - name: "Slidev: run template"
+    command: node scripts/presentation-task.mjs run template
+  - name: "Reveal.js: build HVE"
+    command: node scripts/presentation-task.mjs build hypervelocity-engineering-ai-sdlc-is-not-enough
+  - name: "Reveal.js: run HVE"
+    command: node scripts/presentation-task.mjs run hypervelocity-engineering-ai-sdlc-is-not-enough
+  - name: "Reveal.js: test HVE"
+    command: node --test presentations/hypervelocity-engineering-ai-sdlc-is-not-enough/deck.test.mjs
+  - name: "Presentations: test task runner"
+    command: node --test scripts/presentation-task.test.mjs scripts/slidev-process.test.mjs
+
+server_ready_pattern: '(https?://(?:localhost|127\.0\.0\.1):[0-9]+(?:/[^\s\x1b]*)?)'
+auto_open_in_browser: true

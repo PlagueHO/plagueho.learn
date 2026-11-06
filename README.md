@@ -50,6 +50,37 @@ Browse the [published Presentations index](https://plagueho.github.io/plagueho.l
 | Original Hypervelocity Engineering | Slidev | [Original deck](presentations/hypervelocity-engineering/slides.md) |
 | Hypervelocity Engineering - *Why adding AI to the SDLC is not enough* | Reveal.js | [Source and run instructions](presentations/hypervelocity-engineering-ai-sdlc-is-not-enough/README.md) · [Published deck](https://plagueho.github.io/plagueho.learn/hypervelocity-engineering-ai-sdlc-is-not-enough/) |
 
+### GitHub Copilot app tasks
+
+The [repository app configuration](.github/github-app.yml) adds manual build and run tasks for all six Slidev decks and the standalone HVE Reveal.js deck. Review and accept the configuration in the app before use. No task runs automatically.
+
+Install the existing root dependencies with `pnpm install` before using Slidev tasks. Follow the [Reveal.js setup instructions](presentations/hypervelocity-engineering-ai-sdlc-is-not-enough/README.md) for its separate dependencies. Tasks do not install packages or change package sources.
+
+| Action | Task or app control |
+|---|---|
+| List decks and preferred ports | `Presentations: list` |
+| Build all decks in sequence | `Presentations: build all` |
+| Build one Slidev deck | `Slidev: build <deck-name>` |
+| Run one Slidev deck | `Slidev: run <deck-name>` |
+| Build or run the standalone Reveal.js deck | `Reveal.js: build HVE` or `Reveal.js: run HVE` |
+| Display a running deck | The app opens the detected local URL in its integrated browser. Use the URL in the task output to reopen it. |
+| Stop a running deck | Use the app's Stop control for that running task. Closing its browser view does not stop the server. |
+| Check the Reveal.js deck | `Reveal.js: test HVE` |
+| Check the task runner | `Presentations: test task runner` |
+
+Each build writes to `presentations/<deck-name>/dist/`. The all-deck build stops at the first failure. Slidev run tasks use preferred ports 3030-3035 and reload source changes. The Reveal.js run task uses port 3043 and builds before serving; stop and restart it after source changes. If a port is already in use, stop the task that owns it or use the actual URL reported by Slidev.
+
+The same runner works from a terminal:
+
+```sh
+node scripts/presentation-task.mjs list
+node scripts/presentation-task.mjs build template
+node scripts/presentation-task.mjs run hypervelocity-engineering-ai-sdlc-is-not-enough
+node --test scripts/presentation-task.test.mjs scripts/slidev-process.test.mjs
+```
+
+See the [GitHub Copilot app repository configuration reference](https://docs.github.com/en/copilot/reference/github-copilot-app-reference/repository-configuration) for configuration review and browser URL detection.
+
 ## Repository Structure
 
 ```text
