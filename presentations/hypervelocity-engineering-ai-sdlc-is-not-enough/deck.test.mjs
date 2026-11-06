@@ -6,8 +6,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { once } from 'node:events';
-import { slides, sources, renderSlides, escapeHtml } from './deck.mjs';
+import { slides, sources, chapters, renderSlides, escapeHtml } from './deck.mjs';
+import { qrMatrix, qrSvg } from './qr.mjs';
 import { createPreviewServer } from './serve.mjs';
 import { normalizeRect, toSlidePoint } from './annotations.mjs';
 import { trackRelativeWindowPosition } from './speaker-window.mjs';
@@ -20,19 +22,21 @@ import { setupOperatingModel } from './operating-model.mjs';
 const text = html => html.replace(/<[^>]+>/g, ' ').replace(/&\w+;/g, ' ').trim();
 const byId = Object.fromEntries(slides.map(slide => [slide.id, slide]));
 
-test('40 slides preserve the 30 + 30 minute structure', () => {
-  assert.equal(slides.length, 40);
-  assert.equal(new Set(slides.map(slide => slide.id)).size, 40);
-  for (const [part, count] of [['leadership', 25], ['deep-dive', 10], ['demos', 5]]) {
+test('41 slides split into 27 leadership minutes and 34.5 deeper minutes', () => {
+  assert.equal(slides.length, 41);
+  assert.equal(new Set(slides.map(slide => slide.id)).size, 41);
+  for (const [part, count, minutes] of [['leadership', 23, 27], ['deep-dive', 13, 34.5], ['demos', 5]]) {
     const section = slides.filter(slide => slide.part === part);
     assert.equal(section.length, count);
-    if (part !== 'demos') assert.equal(section.reduce((sum, item) => sum + item.minutes, 0), 30);
+    if (part !== 'demos') assert.equal(section.reduce((sum, item) => sum + item.minutes, 0), minutes);
     else assert.ok(section.every(item => item.minutes === undefined));
   }
-  assert.equal(slides[24].id, 'leadership-close');
-  assert.equal(slides[25].id, 'deep-dive');
-  assert.equal(slides[35].id, 'demo-install');
-  assert.equal(slides[39].id, 'recap');
+  assert.equal(slides[22].id, 'hve-core-open');
+  assert.equal(slides[23].id, 'deep-dive');
+  assert.equal(slides[34].id, 'team-pass');
+  assert.equal(slides[35].id, 'demo-route');
+  assert.equal(slides[36].id, 'demo-install');
+  assert.equal(slides[40].id, 'recap');
   assert.doesNotMatch(renderSlides(), /\u2014|&mdash;|&#(?:8212|x2014);/i);
 });
 
@@ -41,9 +45,10 @@ test('slide order follows the approved narrative and pillar examples', () => {
     'hve', 'delivery-eras', 'outcomes-question', 'agentic-cracks', 'handoffs', 'dashboard-request',
     'feedback-window', 'production-early', 'outcomes-response', 'hve-model', 'constraints-pillars', 'teams', 'team-example',
     'design-thinking', 'design-example', 'accelerators', 'accelerator-example', 'lifecycle-ai',
-    'lifecycle-example', 'evidence-judgment', 'supported-loop', 'organization-boundary', 'experiment',
-    'capability-transfer', 'leadership-close', 'deep-dive', 'toolkit', 'context', 'dt-coach',
-    'handoff-contract', 'rpi', 'review', 'cost', 'plugin-model', 'demo-route', 'demo-install',
+    'lifecycle-example', 'outcomes-action', 'framework-toolkit', 'team-support', 'hve-core-open',
+    'deep-dive', 'toolkit', 'context', 'dt-coach',
+    'handoff-contract', 'rpi', 'review', 'cost', 'plugin-model', 'adoption-commitments', 'outcome-measures',
+    'team-pass', 'demo-route', 'demo-install',
     'demo-discovery', 'demo-handoff', 'demo-rpi', 'recap',
   ]);
   assert.equal(byId.hve.title, 'Hypervelocity Engineering<em>Why adding AI to the SDLC is not enough</em>');
@@ -55,8 +60,16 @@ test('slide order follows the approved narrative and pillar examples', () => {
   assert.match(text(byId['dashboard-request'].body), /Reduce order calls\.\s+Build an AI chatbot/);
   assert.match(text(byId['team-example'].body), /Decide sooner/);
   assert.match(text(byId['design-example'].body), /Change or stop options that do not help/);
-  assert.match(text(byId['accelerator-example'].body), /Still verify/);
-  assert.match(text(byId['lifecycle-ai'].body), /AI-powered product/);
+  assert.match(text(byId['accelerator-example'].body), /Show the way[\s\S]*Write it down[\s\S]*Review and own[\s\S]*Teams adapt it[\s\S]*Update or retire/);
+  assert.match(text(byId['lifecycle-ai'].body), /Discover[\s\S]*Operate[\s\S]*Security and review at every stage, not at the end[\s\S]*AI assists every stage, not only coding/);
+  for (const role of ['Business', 'Design', 'Architecture', 'Assurance', 'Engineering', 'Data', 'Operations']) {
+    assert.ok(text(byId['lifecycle-ai'].body).includes(role));
+  }
+  assert.match(text(byId['lifecycle-ai'].body), /Experts stay accountable and set review to match the risk/);
+  assert.match(text(byId['lifecycle-ai'].body), /More speed needs more direction, from one shared baseline/);
+  assert.doesNotMatch(text(byId['lifecycle-ai'].body), /AI-powered product|Responsible AI/);
+  assert.match(byId['lifecycle-ai'].notes, /AI-assisted delivery does not require an AI-powered product/);
+  assert.match(byId['lifecycle-ai'].notes, /Shift them as far left as you can and run them continuously/);
 });
 
 test('pillar details explain distinct practices while unreviewed examples retain the order-status case', async () => {
@@ -201,24 +214,178 @@ test('pillar details explain distinct practices while unreviewed examples retain
   assert.ok(accelerators.sources.includes('core'));
   assert.ok(accelerators.sources.includes('guide'));
   assert.ok(accelerators.sources.includes('roles'));
-  for (const id of ['accelerator-example', 'lifecycle-example']) {
-    const slide = byId[id];
-    assert.match(text(slide.body), /Friday becomes Monday/);
-    assert.match(slide.notes, /Friday/);
-    assert.match(slide.notes, /Monday/);
-    assert.doesNotMatch(`${slide.title} ${slide.body} ${slide.notes}`, /dashboard|shift.handov|plant|voice interface/i);
-    assert.doesNotMatch(slide.body, /fragment|completed|certified/i);
-    assert.equal(slide.minutes, 1.5);
-    assert.ok(!slide.sources.includes('tutorial'));
+  const reuse = byId['accelerator-example'];
+  assert.equal(reuse.title.replace(/<[^>]+>/g, ''),
+    'Pillar 3: Reusable accelerators.Reuse expertise, not just infrastructure.');
+  assert.equal(reuse.minutes, 1.5);
+  assert.ok(!reuse.sources.includes('tutorial'));
+  assert.equal((reuse.body.match(/<li class="tone-/g) ?? []).length, 5);
+  assert.equal((reuse.body.match(/class="reuse-pin"[^>]+aria-hidden="true"/g) ?? []).length, 5);
+  assert.match(reuse.body, /<figure class="reuse-scene"\s+aria-label="[^"]+"/);
+  assert.match(text(reuse.body), /Contribute improvements back/);
+  assert.doesNotMatch(text(reuse.body), /Lessons return/);
+  assert.match(text(reuse.body), /Collate, curate, govern, and share expert practice\./);
+  assert.match(text(reuse.body), /One example process, not a prescription\. Reuse does not replace review\./);
+  assert.doesNotMatch(`${reuse.body} ${reuse.notes}`, /Friday|Monday|carrier integration|outline-box|dashed|fragment|completed|certified by/i);
+  assert.match(reuse.notes, /Reusable infrastructure[\s\S]*necessary/);
+  assert.match(reuse.notes, /agent, skill, instruction, or check/);
+  assert.match(reuse.notes, /named owner and checks that must pass/);
+  assert.match(reuse.notes, /this is an example, not a prescription/);
+  assert.match(reuse.notes, /collate, curate, govern, and share its expertise/);
+  assert.match(reuse.notes, /Teams contribute improvements back to the owner/);
+  assert.match(reuse.notes, /It does not certify output or replace review/);
+  assert.match(reuse.notes, /required independent assurance/);
+  assert.ok(reuse.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
+  const lifecycleExample = byId['lifecycle-example'];
+  assert.equal(lifecycleExample.title.replace(/<[^>]+>/g, ''), 'Give AI context, checks,and expert judgment.');
+  assert.equal(lifecycleExample.minutes, 1.5);
+  assert.ok(!lifecycleExample.sources.includes('tutorial'));
+  assert.match(lifecycleExample.body, /<figure class="context-scene"\s+aria-label="[^"]+"/);
+  assert.equal((lifecycleExample.body.match(/<li class="tone-/g) ?? []).length, 4);
+  assert.equal((lifecycleExample.body.match(/class="context-badge"[^>]+aria-hidden="true"/g) ?? []).length, 4);
+  assert.equal((lifecycleExample.body.match(/<path class="context-core /g) ?? []).length, 2);
+  assert.match(text(lifecycleExample.body), /Same request\s+Add authentication to the checkout flow/);
+  assert.match(text(lifecycleExample.body), /Guesses that look informed/);
+  assert.match(text(lifecycleExample.body), /Looks right\.\s+May fail later\./);
+  for (const gate of ['Relevant context', 'Recorded decisions', 'Executable checks', 'Expert judgment']) {
+    assert.ok(text(lifecycleExample.body).includes(gate));
   }
-  assert.match(text(byId['accelerator-example'].body), /Changed: carrier update to order record/);
-  assert.match(text(byId['accelerator-example'].body), /Reused.*Approved environment.*Identity.*Logging.*CI\/CD/);
-  assert.match(byId['accelerator-example'].notes, /Foundation controls do not make a stale delivery date correct/);
-  for (const role of ['Support lead', 'Product owner', 'Engineer', 'Operations']) {
-    assert.ok(text(byId['lifecycle-example'].body).includes(role));
+  assert.match(text(lifecycleExample.body), /Checked against your rules/);
+  assert.match(text(lifecycleExample.body), /The request is the same\. The inputs change the work\.\s+Experts still judge whether the result is right\./);
+  assert.doesNotMatch(`${lifecycleExample.title} ${lifecycleExample.body} ${lifecycleExample.notes}`,
+    /Friday|Monday|dashboard|shift.handov|plant|voice interface|dashed|fragment|certified|—/i);
+  assert.match(lifecycleExample.notes, /add authentication to the checkout flow/);
+  assert.match(lifecycleExample.notes, /guess that looks informed/);
+  assert.match(lifecycleExample.notes, /Relevant context[\s\S]*Recorded decisions[\s\S]*Executable checks/);
+  assert.match(lifecycleExample.notes, /kept in files, not in an old chat/);
+  assert.match(lifecycleExample.notes, /A passing check is evidence for the rule it tests\. It does not prove business value/);
+  assert.match(lifecycleExample.notes, /Review any model summary before it becomes a recorded decision/);
+  assert.match(lifecycleExample.notes, /They do not guarantee correct or secure output/);
+  assert.match(lifecycleExample.notes, /Required independent assurance still applies/);
+  assert.match(lifecycleExample.notes, /Add Responsible AI review when the solution itself uses AI/);
+  assert.ok(lifecycleExample.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
+});
+
+test('slide 21 gives one direct comparison of the framework and the toolkit', () => {
+  const slide = byId['framework-toolkit'];
+  assert.equal(slides[20].id, 'framework-toolkit');
+  assert.equal(slide.title.replace(/<[^>]+>/g, ''), 'HVE is the framework.HVE-Core is the toolkit.');
+  assert.equal(slide.minutes, 1);
+  assert.ok(slide.sources.includes('core'));
+  assert.match(slide.body, /<figure class="framework-scene"\s+aria-label="[^"]+"/);
+  assert.equal((slide.body.match(/<article class="framework-panel tone-/g) ?? []).length, 2);
+  assert.equal((slide.body.match(/<li class="framework-row/g) ?? []).length, 8);
+  assert.equal((slide.body.match(/class="framework-chip" aria-hidden="true"/g) ?? []).length, 8);
+  assert.equal((slide.body.match(/<div class="framework-loop" aria-hidden="true">/g) ?? []).length, 1);
+  const content = text(slide.body);
+  assert.match(content, /Principles and methods\s+Endures/);
+  assert.match(content, /Enabling technology\s+Evolves rapidly/);
+  assert.match(content, /1\s+Multidisciplinary teams[\s\S]*2\s+Design Thinking[\s\S]*3\s+Reusable accelerators[\s\S]*4\s+AI tooling/);
+  assert.match(content, /HVE-Core\s+Toolkit\s+Agents, skills, instructions[\s\S]*AI assistants[\s\S]*AI models[\s\S]*Automated checks/);
+  assert.match(content, /Tools help\s+apply the\s+principles/);
+  assert.match(content, /Principles endure\. Technology evolves\.\s+Choose tools that help\. Keep the principles when tools change\./);
+  assert.doesNotMatch(`${slide.title} ${slide.body} ${slide.notes}`, /dashed|certified|guarantee[sd]?\s+(results|savings)|—/i);
+  assert.match(slide.notes, /HVE is the framework\./);
+  assert.match(slide.notes, /HVE-Core is the toolkit\./);
+  assert.match(slide.notes, /one part of a wider stack of AI tools and models/);
+  assert.match(slide.notes, /The toolkit helps apply the framework\. It does not replace it\./);
+  assert.match(slide.notes, /HVE-Core is optional and replaceable/);
+  assert.match(slide.notes, /does not supply sponsorship, customer time, authority, or review capacity/);
+  assert.match(slide.notes, /does not replace expert judgment or required independent assurance/);
+  assert.ok(slide.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
+});
+
+test('slide 22 shows reusable HVE-Core starting points for six roles', () => {
+  const slide = byId['team-support'];
+  assert.equal(slides[21].id, 'team-support');
+  assert.equal(slide.title.replace(/<[^>]+>/g, ''), 'HVE-Core supportsthe whole team.');
+  assert.equal(slide.minutes, 1);
+  assert.ok(slide.sources.includes('core'));
+  assert.match(slide.body, /<figure class="team-scene"\s+aria-label="[^"]+"/);
+  assert.equal((slide.body.match(/<li class="team-card tone-/g) ?? []).length, 6);
+  assert.equal((slide.body.match(/class="team-chip"/g) ?? []).length, 6);
+  assert.equal((slide.body.match(/<path class="team-spoke tone-/g) ?? []).length, 6);
+  assert.equal((slide.body.match(/<div class="team-hub">/g) ?? []).length, 1);
+  const content = text(slide.body);
+  assert.match(content, /HVE-Core\s+Agents, skills, instructions/);
+  for (const role of ['Program manager', 'UX designer', 'Architect', 'Operations', 'Data scientist', 'Engineer']) {
+    assert.match(content, new RegExp(role));
   }
-  assert.match(byId['lifecycle-example'].notes, /AI does not validate its own work/);
-  assert.match(byId['lifecycle-example'].notes, /Passing tests alone does not prove customer value/);
+  assert.match(content, /Design Thinking coach, customer evidence/);
+  assert.match(content, /Research, plan, implement, review/);
+  assert.match(content, /Teams\s+2\s+Design Thinking\s+3\s+Accelerators\s+4\s+AI tooling/);
+  assert.match(content, /Give every role a reusable starting point\.\s+Customize it for your organization\./);
+  assert.doesNotMatch(`${slide.title} ${slide.body} ${slide.notes}`, /Examples only|dashed|certified|guarantee[sd]?\s+(results|savings)|—/i);
+  assert.match(slide.notes, /production-ready starting point that can be customized to your organization/);
+  assert.match(slide.notes, /Design Thinking coach/);
+  assert.match(slide.notes, /research, plan, implement, and review/);
+  assert.match(slide.notes, /mapping is illustrative/);
+  assert.match(slide.notes, /HVE-Core is optional and replaceable/);
+  assert.match(slide.notes, /does not supply sponsorship, end user time, authority, or review capacity/);
+  assert.match(slide.notes, /does not replace expert judgment or required independent assurance/);
+  assert.match(slide.notes, /coverage varies by role/);
+  assert.ok(slide.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
+});
+
+test('slide 33 shows that adoption needs six leadership commitments beyond installation', () => {
+  const slide = byId['adoption-commitments'];
+  assert.equal(slides[32].id, 'adoption-commitments');
+  assert.equal(slide.part, 'deep-dive');
+  assert.match(slide.notes, /toolkit cannot supply/);
+  assert.equal(slide.title.replace(/<[^>]+>/g, ''), 'Adoption needs morethan installation.');
+  assert.equal(slide.minutes, 1.25);
+  assert.ok(slide.sources.includes('core'));
+  assert.match(slide.body, /<figure class="adoption-scene"\s+aria-label="[^"]+"/);
+  assert.equal((slide.body.match(/<li class="adoption-card tone-/g) ?? []).length, 6);
+  assert.equal((slide.body.match(/class="adoption-chip"/g) ?? []).length, 6);
+  assert.equal((slide.body.match(/class="adoption-installed tone-slate"/g) ?? []).length, 1);
+  const content = text(slide.body);
+  assert.match(content, /Toolkit installed/);
+  assert.match(content, /Now what\? Six commitments\./);
+  for (const commitment of ['Sponsorship', 'Authority', 'Shared ownership', 'End user time', 'Review capacity', 'Maintained knowledge']) {
+    assert.match(content, new RegExp(commitment));
+  }
+  assert.doesNotMatch(content, /Customer time/);
+  assert.match(content, /Installation is the easy part\.\s+Adoption needs leadership commitments\./);
+  assert.ok(content.split(/\s+/).length <= 85);
+  assert.doesNotMatch(`${slide.title} ${slide.body} ${slide.notes}`, /dashed|certified|guarantee[sd]?\s+(results|savings)|—/i);
+  assert.match(slide.notes, /End user time/);
+  assert.match(slide.notes, /teaching synthesis/);
+  assert.match(slide.notes, /Each organization decides/);
+  assert.match(slide.notes, /not a customer result/);
+  assert.match(slide.notes, /cannot supply sponsorship, end user time, authority, or review capacity/);
+  assert.ok(slide.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
+});
+
+test('slide 34 contrasts AI activity with six outcome measures', () => {
+  const slide = byId['outcome-measures'];
+  assert.equal(slides[33].id, 'outcome-measures');
+  assert.equal(slide.part, 'deep-dive');
+  assert.equal(slide.title.replace(/<[^>]+>/g, ''), 'Measure the outcome,not the AI activity.');
+  assert.equal(slide.minutes, 1.25);
+  assert.match(slide.body, /<figure class="outcome-scene"\s+aria-label="[^"]+"/);
+  assert.equal((slide.body.match(/<li class="outcome-act"/g) ?? []).length, 3);
+  assert.equal((slide.body.match(/<li class="outcome-card tone-/g) ?? []).length, 6);
+  assert.equal((slide.body.match(/class="outcome-chip"/g) ?? []).length, 9);
+  const content = text(slide.body);
+  assert.match(content, /AI activity\s+Shows use, not success/);
+  assert.match(content, /Outcome\s+Shows what changed/);
+  for (const activity of ['Prompts sent', 'Code generated', 'Seats activated']) {
+    assert.match(content, new RegExp(activity));
+  }
+  for (const measure of ['Useful value', 'Quality', 'Waiting', 'Rework', 'Experience', 'Total cost']) {
+    assert.match(content, new RegExp(measure));
+  }
+  assert.match(content, /Count outcomes, not activity\.\s+Prompts and code volume show use, not success\./);
+  assert.ok(content.split(/\s+/).length <= 85);
+  assert.doesNotMatch(`${slide.title} ${slide.body} ${slide.notes}`, /dashed|certified|guarantee[sd]?\s+(results|savings)|—/i);
+  assert.match(slide.notes, /show use, not success/);
+  assert.match(slide.notes, /More code is not more value/);
+  assert.match(slide.notes, /teaching aid, not a standard/);
+  assert.match(slide.notes, /Each team picks its own baseline/);
+  assert.match(slide.notes, /this slide shows no results/);
+  assert.match(slide.notes, /Invent no chart or percentage/);
+  assert.ok(slide.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
 });
 
 test('section breaks preserve the approved output-to-outcome titles and selected C treatment', async () => {
@@ -467,7 +634,9 @@ test('pillar details share the approved bottom-left number and numbered introduc
       const separator = id === 'design-thinking' ? ' ' : '<br>';
       assert.match(byId[id].title, new RegExp(`^Pillar ${number}: [^<]+\\.${separator}<em>[^<]+\\.</em>$`));
     }
-    else if (!['team-example', 'design-example'].includes(id)) assert.match(byId[id].title, /^Example:/);
+    else if (!['team-example', 'design-example', 'accelerator-example', 'lifecycle-example'].includes(id)) {
+      assert.match(byId[id].title, /^Example:/);
+    }
   }
   const theme = await readFile(new URL('./theme.css', import.meta.url), 'utf8');
   assert.match(theme, /\.pillar-backdrop \{[^}]*z-index: 1;[^}]*opacity: 0.07;[^}]*pointer-events: none;/);
@@ -1360,30 +1529,201 @@ test('the cover includes the Microsoft mark and a locally built presenter photo'
   assert.deepEqual([...built.subarray(0, 3)], [0xff, 0xd8, 0xff]);
 });
 
-test('the customer stays inside the loop and the leadership close works alone', () => {
-  assert.match(text(byId['supported-loop'].body), /Customer \+ expert crew/);
-  assert.match(byId['supported-loop'].body, /data-hve-loop/);
-  for (const id of ['supported-loop', 'recap']) {
+test('the customer stays inside the loop and the team pass works alone', () => {
+  assert.match(text(byId.recap.body), /Customer \+ expert crew/);
+  assert.match(byId.recap.body, /data-hve-loop/);
+  for (const id of ['recap']) {
     assert.match(byId[id].body, /data-hve-loop/);
     assert.match(byId[id].body, /Idea/);
     assert.match(byId[id].body, /Validation/);
     assert.match(byId[id].body, /Engineering/);
     assert.match(byId[id].body, /Feedback/);
   }
-  assert.match(text(byId['leadership-close'].body), /HVE-Core/);
-  assert.match(byId['leadership-close'].body, /Tools do not supply organizational commitments/);
-  assert.match(text(byId['leadership-close'].body), /Customer time/);
-  assert.match(text(byId['leadership-close'].body), /Decision ownership/);
-  assert.match(byId['organization-boundary'].notes, /not an observed customer result/);
-  assert.match(byId.experiment.notes, /AI usage are not success measures/);
+  const pass = byId['team-pass'];
+  const close = text(pass.body);
+  assert.match(pass.title, /Explore HVE-Core/);
+  assert.match(pass.title, /Apply HVE together/);
+  for (const phrase of ['One team', 'One real outcome', 'Official documentation', 'Your role guide',
+    'Live demo', 'See one change, end to end.', 'Start with one team and one real outcome']) {
+    assert.ok(close.includes(phrase), `team pass names "${phrase}"`);
+  }
+  assert.equal((pass.body.match(/class="close-badge /g) ?? []).length, 4);
+  for (const route of ['#/demo-install', 'data-action="pause"']) {
+    assert.ok(pass.body.includes(route), `team pass routes to ${route}`);
+  }
+  assert.ok(!pass.body.includes('#/deep-dive'));
+  assert.doesNotMatch(`${pass.title} ${pass.body} ${pass.notes}`, /Optional session|Not required to board/);
 });
 
-test('the selected Flowing blend uses haze and fine ribbons across all 40 slides', async () => {
+test('the three chapters label every leadership header and mark each divider', () => {
+  assert.deepEqual(chapters, ['The outcome gap', 'How HVE changes the work', 'Making it real']);
+  const rendered = renderSlides();
+  const section = id => rendered.match(new RegExp(`<section id="${id}"[\\s\\S]*?</section>`))[0];
+  const chapterOf = new Map();
+  slides.slice(1, 8).forEach(slide => chapterOf.set(slide.id, 1));
+  slides.slice(8, 19).forEach(slide => chapterOf.set(slide.id, 2));
+  slides.slice(19, 23).forEach(slide => chapterOf.set(slide.id, 3));
+  assert.equal(chapterOf.size, 22);
+  for (const [id, chapter] of chapterOf) {
+    const html = section(id);
+    const header = html.match(/<header class="chrome-top">[\s\S]*?<\/header>/)[0];
+    assert.equal(text(header.match(/<span class="part-label">([\s\S]*?)<\/span>/)[1]).replace(/\s+/g, ' '),
+      `Chapter ${chapter} of 3 · ${chapters[chapter - 1]}`, id);
+    assert.equal((header.match(/<u class="on"><\/u>/g) ?? []).length, chapter, `${id}: filled marks`);
+    assert.equal((header.match(/<u/g) ?? []).length, 3, `${id}: total marks`);
+    assert.match(header, /<i class="hdr-bar" aria-hidden="true">/);
+  }
+  for (const [id, chapter] of [['outcomes-question', 1], ['outcomes-response', 2], ['outcomes-action', 3]]) {
+    const html = section(id);
+    const kicker = html.match(/<p class="kicker">([\s\S]*?)<\/p>/)[1];
+    assert.equal(text(kicker.match(/<b>([\s\S]*?)<\/b>/)[1]), `Chapter ${chapter} of 3`);
+    assert.equal((kicker.match(/<u class="on"><\/u>/g) ?? []).length, 1);
+    assert.match(kicker, /^<b>[^<]+<\/b><i class="kicker-bar" aria-hidden="true">(?:<u(?: class="on")?><\/u>){3}<\/i>$/);
+    assert.equal((kicker.match(/<u/g) ?? []).length, 3);
+    assert.ok(html.indexOf('class="kicker"') < html.indexOf('<h2>'));
+    assert.equal(byId[id].className, 'section-divider');
+  }
+  assert.equal((rendered.match(/class="kicker"/g) ?? []).length, 3);
+  const deeper = section('deep-dive').match(/<header class="chrome-top">[\s\S]*?<\/header>/)[0];
+  assert.match(deeper, /<span class="part-label"><b>Diving deeper into HVE-Core<\/b><\/span>/);
+  const demos = section('demo-install').match(/<header class="chrome-top">[\s\S]*?<\/header>/)[0];
+  assert.match(demos, /<span class="part-label"><b>Demos<\/b> · Public teaching scenario<\/span>/);
+  for (const header of [deeper, demos, section('team-pass').match(/<header class="chrome-top">[\s\S]*?<\/header>/)[0]]) {
+    assert.doesNotMatch(header, /hdr-bar|Chapter \d of 3/);
+  }
+  assert.match(section('hve'), /class="cover-brand"/);
+  assert.doesNotMatch(section('hve'), /class="chrome-top"|class="kicker"/);
+  assert.match(rendered, /<a href="#\/deep-dive"[^>]*>Diving deeper into HVE-Core<\/a>/);
+  assert.doesNotMatch(rendered, /Optional HVE-Core/);
+});
+
+test('the chapter header, kicker, and wrap slide styles ship in the theme', async () => {
+  const theme = await readFile(new URL('./theme.css', import.meta.url), 'utf8');
+  for (const selector of ['.hdr-bar', '.hdr-bar u.on', '.section-divider .kicker', '.kicker-bar', '.kicker-bar u.on',
+    '#hve-core-open .wr-scene', '#hve-core-open .wr-qr', '#hve-core-open .wr-code svg', '#hve-core-open .wr-facts',
+    '#team-pass .close-scene']) {
+    assert.ok(theme.includes(selector), `theme defines ${selector}`);
+  }
+  assert.doesNotMatch(theme, /leadership-close/);
+  assert.match(theme, /\.chrome-top\s*\{[^}]*font-size:\s*14px;/);
+});
+
+test('slide 23 wraps up for leaders with two QR codes and three facts about HVE-Core', () => {
+  const slide = byId['hve-core-open'];
+  assert.equal(slides[22].id, slide.id);
+  assert.equal(slide.part, 'leadership');
+  assert.equal(slide.minutes, 1.75);
+  assert.equal(slide.className, 'closing');
+  assert.equal(slide.title, 'HVE-Core is open source.<br><em>Make it yours.</em>');
+  assert.deepEqual(slide.sources, ['repo', 'core', 'guide', 'roles']);
+  assert.equal(sources.repo[1], 'https://github.com/microsoft/hve-core');
+  const content = text(slide.body);
+  for (const phrase of ['GitHub repo', 'Docs site', 'github.com', '/microsoft/hve-core', 'microsoft.github.io',
+    '/hve-core/docs', 'Open source', 'Maintained by Microsoft. Pull requests welcome.', 'Stay current',
+    'Fork it. Merge upstream changes when ready.', 'Make it yours',
+    'Use what helps. Drop the rest. Keep your spec-driven and other workflows.']) {
+    assert.ok(content.includes(phrase), `wrap slide names "${phrase}"`);
+  }
+  assert.equal((slide.body.match(/<svg class="qr"/g) ?? []).length, 2);
+  assert.equal((slide.body.match(/class="wr-qr /g) ?? []).length, 2);
+  assert.equal((slide.body.match(/class="wr-fact /g) ?? []).length, 3);
+  assert.ok(slide.body.includes('aria-label="QR code for the HVE-Core repository on GitHub"'));
+  assert.ok(slide.body.includes('aria-label="QR code for the HVE-Core documentation site"'));
+  for (const route of ['href="#/deep-dive"', 'Diving deeper into HVE-Core', 'data-action="pause"']) {
+    assert.ok(slide.body.includes(route), `wrap slide includes ${route}`);
+  }
+  assert.ok(text(`${slide.title} ${slide.body}`).split(/\s+/).length <= 85);
+  assert.doesNotMatch(`${slide.title} ${slide.body} ${slide.notes}`, /dashed|certified|guarantee[sd]?\s+(results|savings)|—/i);
+  assert.match(slide.notes, /Scan the left code for the GitHub repository/);
+  assert.match(slide.notes, /fork has an ongoing maintenance cost/i);
+  assert.match(slide.notes, /not as a stable platform or a production dependency/);
+  assert.match(slide.notes, /does not supply sponsorship, customer time, authority, or review capacity/);
+});
+
+test('slide 20 opens chapter three as a quiet divider', () => {
+  const slide = byId['outcomes-action'];
+  assert.equal(slides[19].id, slide.id);
+  assert.equal(slide.part, 'leadership');
+  assert.equal(slide.className, 'section-divider');
+  assert.equal(slide.body, '');
+  assert.equal(slide.minutes, 0.25);
+  assert.equal(text(slide.title).replace(/\s+/g, ' '), 'How do we make HVE real in our teams?');
+  assert.match(slide.title, /<strong>real in our teams\?<\/strong>/);
+  assert.doesNotMatch(slide.title, /<br|fragment/);
+  assert.equal(slides[20].id, 'framework-toolkit');
+});
+
+test('the encoder draws valid QR codes without a package dependency', async () => {
+  const digest = value => createHash('sha256').update(value).digest('hex');
+  const rows = ({ modules }) => modules.map(row => row.map(dark => (dark ? '1' : '0')).join('')).join('\n');
+  const fixtures = [
+    ['https://github.com/microsoft/hve-core', 3, 29, 0, '26b85f59f274695081588cd53e9c8bb9fd9971a520afe50761658fe38a70aa71'],
+    ['https://microsoft.github.io/hve-core/docs/', 3, 29, 3, 'dd608c6403860e02a837a7c7ad2c8932f56558c3ec19e7a02128b1e133d48fb1'],
+  ];
+  for (const [url, version, size, mask, hash] of fixtures) {
+    const matrix = qrMatrix(url);
+    assert.equal(matrix.version, version);
+    assert.equal(matrix.size, size);
+    assert.equal(matrix.mask, mask);
+    assert.equal(digest(rows(matrix)), hash, url);
+    assert.equal(rows(qrMatrix(url, { mask })), rows(matrix));
+  }
+  const { modules, size } = qrMatrix('https://example.com/');
+  const dark = (row, col) => modules[row][col];
+  for (const [top, left] of [[0, 0], [0, size - 7], [size - 7, 0]]) {
+    for (let i = 0; i < 7; i++) {
+      for (const [r, c] of [[top, left + i], [top + 6, left + i], [top + i, left], [top + i, left + 6]]) {
+        assert.ok(dark(r, c), `finder ring at ${r},${c}`);
+      }
+    }
+    assert.ok(dark(top + 3, left + 3));
+    assert.ok(!dark(top + 1, left + 1));
+  }
+  for (let i = 8; i < size - 8; i++) {
+    assert.equal(dark(6, i), i % 2 === 0, `row timing at ${i}`);
+    assert.equal(dark(i, 6), i % 2 === 0, `column timing at ${i}`);
+  }
+  assert.ok(dark(size - 8, 8), 'dark module');
+  const generatorBits = 0b10100110111;
+  const remainder = value => {
+    let result = value << 10;
+    for (let bit = 14; bit >= 10; bit--) if ((result >>> bit) & 1) result ^= generatorBits << (bit - 10);
+    return result;
+  };
+  for (const mask of [0, 3, 7]) {
+    const { modules: grid } = qrMatrix('https://example.com/', { mask });
+    let bits = 0;
+    for (let i = 0; i < 15; i++) {
+      const [row, col] = i < 6 ? [i, 8] : i < 8 ? [i + 1, 8] : i === 8 ? [8, 7] : [8, 14 - i];
+      bits |= (grid[row][col] ? 1 : 0) << i;
+    }
+    const word = bits ^ 0b101010000010010;
+    assert.equal(remainder(word >>> 10) ^ (word & 0x3ff), 0, `format information for mask ${mask}`);
+    assert.equal((word >>> 13) & 0b11, 0b00, 'error correction level M');
+    assert.equal((word >>> 10) & 0b111, mask);
+  }
+  assert.equal(qrMatrix('a'.repeat(14)).version, 1);
+  assert.equal(qrMatrix('a'.repeat(15)).version, 2);
+  assert.equal(qrMatrix('a'.repeat(106)).version, 6);
+  assert.throws(() => qrMatrix('a'.repeat(107)), RangeError);
+  for (const mask of [-1, 8, 1.5, '1']) assert.throws(() => qrMatrix('hello', { mask }), RangeError);
+  const svg = qrSvg('https://example.com/?a=1&b="2"', { label: 'A <b> & "c"' });
+  assert.match(svg, /^<svg class="qr" [^>]*role="img" aria-label="A &#60;b&#62; &#38; &#34;c&#34;"/);
+  assert.match(svg, /viewBox="0 0 37 37"/);
+  assert.match(qrSvg('https://example.com/'), /aria-label="QR code for https:\/\/example\.com\/"/);
+  assert.match(qrSvg('https://example.com/', { quiet: 2 }), /viewBox="0 0 29 29"/);
+  for (const file of ['bodies-leadership.mjs', 'deck.mjs', 'qr.mjs', 'build.mjs', 'slides.mjs']) {
+    const source = await readFile(new URL(`./${file}`, import.meta.url), 'utf8');
+    assert.doesNotMatch(source, /from ['"](?:qrcode|uqr|qrcode-generator|qr-image)['"]/, file);
+  }
+});
+
+test('the selected Flowing blend uses haze and fine ribbons across all 41 slides', async () => {
   const rendered = renderSlides();
   for (const preset of ['cover-cradle', 'split-diagonal', 'stream-progression', 'center-halo', 'dual-column-contrast', 'rising-twist']) {
     assert.match(rendered, new RegExp(`slide-wave-${preset}|data-wave="${preset}"`));
   }
-  assert.equal((rendered.match(/data-style="flowing-blend"/g) ?? []).length, 40);
+  assert.equal((rendered.match(/data-style="flowing-blend"/g) ?? []).length, 41);
   assert.match(rendered, /stop-color="#f8c49c" stop-opacity="\.36"/);
   assert.match(rendered, /stop-color="#c9b3ed" stop-opacity="\.36"/);
   assert.match(rendered, /<feGaussianBlur stdDeviation="30"\/>/);
@@ -1419,7 +1759,7 @@ test('visible content is concise and every slide has notes and public sources', 
     for (const key of item.sources) assert.ok(sources[key]?.[1].startsWith('https://'));
   }
   assert.doesNotMatch(renderedContent(), /youtube|simpsons|vibe.?cod|OneDrive|20261006_|pasted-text/i);
-  assert.equal((renderSlides().match(/<aside class="notes">/g) ?? []).length, 40);
+  assert.equal((renderSlides().match(/<aside class="notes">/g) ?? []).length, 41);
 });
 
 function renderedContent() {
@@ -1448,7 +1788,7 @@ test('internal routes resolve to actual slides', () => {
 test('speaker notes escape text and the build uses local runtime assets', async () => {
   assert.equal(escapeHtml('<&"\'>'), '&lt;&amp;&quot;&#39;&gt;');
   const html = await readFile(new URL('./dist/index.html', import.meta.url), 'utf8');
-  assert.equal((html.match(/<section id=/g) ?? []).length, 40);
+  assert.equal((html.match(/<section id=/g) ?? []).length, 41);
   assert.doesNotMatch(html, /<!-- SLIDES -->|<script[^>]+src="https?:|<link[^>]+href="https?:/);
   const assets = [
     'vendor/reveal.mjs',

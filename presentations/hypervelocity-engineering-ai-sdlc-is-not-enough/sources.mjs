@@ -11,6 +11,7 @@ export const sources = {
   engineering: ['Engineering Fundamentals Playbook', 'https://microsoft.github.io/code-with-engineering-playbook/'],
   accelerators: ['HVE Accelerators Hub', 'https://learn.microsoft.com/en-us/industry/playbook/'],
   core: ['HVE-Core documentation', 'https://microsoft.github.io/hve-core/docs/'],
+  repo: ['HVE-Core repository', 'https://github.com/microsoft/hve-core'],
   guide: ['HVE guide', 'https://microsoft.github.io/hve-core/docs/hve-guide/'],
   roles: [
     'HVE-Core role guides',

@@ -1,5 +1,5 @@
 /**
- * Optional HVE-Core and demo slide bodies (slides 26 to 40).
+ * HVE-Core deep-dive and demo slide bodies (slides 24 to 41, minus the adoption slides held in bodies-leadership.mjs).
  * Parameters: none. Each key is a slide id; each value is the slide body HTML.
  * Usage: import { coreBodies } from './bodies-core.mjs'.
  */
@@ -134,7 +134,7 @@ export const coreBodies = {
     <div class="col">${inode('check', 'Established evidence', 'Only what the run showed', 'tint')}${inode('question', 'Open decisions', 'Validation · adoption · readiness', 'warm')}${inode('flag', 'Next increment', 'Confirm or override gate')}</div>
   </div>`)
     + routes([
-      '<a href="#/leadership-close">Leadership close + resources</a>',
+      '<a href="#/team-pass">Team pass + resources</a>',
       `<a href="${sources.core[1]}">HVE-Core documentation</a>`,
       '<button type="button" data-action="pause">Questions</button>',
     ]),

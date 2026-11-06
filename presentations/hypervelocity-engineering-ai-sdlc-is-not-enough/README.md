@@ -2,11 +2,11 @@
 
 An independent presentation for technical leaders, engineering managers, and senior engineers. This deck sits beside the unchanged [original Slidev presentation](../hypervelocity-engineering/slides.md). It is not a Slidev conversion.
 
-The deck has 25 leadership slides for 30 minutes, 10 optional HVE-Core slides for 30 minutes, and five separate demo support slides. The live demo has a separate 30-minute budget. Q&A time is not assigned. See [OUTLINE.md](./OUTLINE.md) and [RESEARCH-NOTES.md](./RESEARCH-NOTES.md).
+The deck has 23 leadership slides for 27 minutes, 13 slides for diving deeper into HVE-Core for 34.5 minutes, and five separate demo support slides. The live demo has a separate 30-minute budget. Q&A time is not assigned. See [OUTLINE.md](./OUTLINE.md) and [RESEARCH-NOTES.md](./RESEARCH-NOTES.md).
 
-The executive revision is being reviewed one slide at a time. The opening uses a wide title, one plain executive subtitle, and presenter details. Speaker notes ask how the business must change when building becomes faster than deciding. Each pillar keeps its practice/example pair. Both timed sections remain 30 minutes.
+The executive revision is being reviewed one slide at a time. The opening uses a wide title, one plain executive subtitle, and presenter details. Speaker notes ask how the business must change when building becomes faster than deciding. Each pillar keeps its practice/example pair. The leadership section takes 27 minutes. The deeper HVE-Core section takes 34.5 minutes.
 
-The selected *Flowing blend* background adds lavender, peach, and rose haze, pale bands, and fine lines across all 40 slides. The approved cover, timeline, and fault line are now slides 1, 2, and 4. Slides 3 and 9 use approved titles and selected C: Warm key phrase. Slide 5 uses selected A: Sweeping arcs. Later copy, the order-status thread, and numbered pillars remain under revision.
+The selected *Flowing blend* background adds lavender, peach, and rose haze, pale bands, and fine lines across all 41 slides. The approved cover, timeline, and fault line are now slides 1, 2, and 4. Slides 3, 9, and 20 are the three chapter dividers, with approved titles and selected D. Slide 5 uses selected A: Sweeping arcs. Later copy, the order-status thread, and numbered pillars remain under revision.
 
 HVE is an engineering operating model, not simply faster coding with AI. A small expert crew and the customer work through a continuous idea, validation, engineering, and feedback loop. The four pillars support that loop: multidisciplinary teams, Design Thinking, production-ready accelerators, and AI throughout the lifecycle.
 
@@ -48,7 +48,7 @@ The Continuous Integration workflow builds and tests this deck on Ubuntu for pul
 
 ## Present
 
-The shared header reads "Hypervelocity Engineering • Why adding AI to the SDLC is not enough" and links to the title slide. The Microsoft cover branding and hidden headers on section separators remain unchanged.
+The shared header reads "Hypervelocity Engineering • Why adding AI to the SDLC is not enough" and links to the title slide. Beside it, each leadership slide shows its chapter ("Chapter 2 of 3 · How HVE changes the work"). Slides in the deeper section show "Diving deeper into HVE-Core", and demo slides show "Demos". The Microsoft cover branding and hidden headers on section separators remain unchanged.
 
 | Action | Control |
 |---|---|
@@ -56,7 +56,7 @@ The shared header reads "Hypervelocity Engineering • Why adding AI to the SDLC
 | Replay or pause slide 5 motion | Replay motion and Pause motion in its footer; replay keeps the current phase |
 | Slide overview | Escape or the Overview link in the slide footer |
 | Speaker view with notes and timer | S or the Notes link in the slide footer |
-| Pause for questions | B, or the Pause for questions and Questions buttons on slides 25 and 40 |
+| Pause for questions | B, or the Pause for questions and Questions buttons on slides 23, 35, and 41 |
 | Resume | B, Escape, or the resume button |
 | Full screen | F |
 | Laser pointer | L |
@@ -102,7 +102,11 @@ The two-panel comparison stays. Speaker notes explain the whole scenario and dis
 
 The failure predates AI. Faster implementation can let more unvalidated requests reach delivery while the customer problem remains unsolved. The response is to use that speed for learning and to own the customer outcome, not slow development.
 
-Slides 17 and 19 still use this Friday-to-Monday case pending individual review. They show a proposed carrier-update increment on reused controls and AI-assisted drafts checked by support, product, engineering, and operations. No customer research, completed integration, review result, or measured gain is claimed. The optional manufacturing tutorial stays separate.
+Slide 19 no longer uses this case. It follows one request, add authentication to the checkout flow, along two routes. One route guesses in ways that look informed. The other passes four gates: relevant context, recorded decisions, executable checks, and expert judgment.
+
+The diagram is an illustration, not a guarantee. No customer research, completed review, or measured gain is claimed. The manufacturing tutorial in the deeper section stays separate.
+
+Slide 17 no longer uses the case. It follows one expert practice along a marked trail from first use to update or retirement.
 
 Slide 7 uses two wheels from slide 5's visual language. The PM/SME/customer stays in the slower design/planning loop while the agent makes an assumption. Each fast turn copies the same unvalidated rule into behaviour, tests, and later increments. A curved return arc shows that rule becoming the starting point for more work.
 
@@ -148,7 +152,11 @@ Slide 16 uses the selected A2 capability library. AI agents, Agent Skills, tools
 
 The capability examples draw on the [HVE-Core role index](https://github.com/microsoft/hve-core/blob/main/docs/hve-guide/roles/README.md) and TPM guide. They do not claim ready-made coverage for every capability. Notes retain access, maintenance, adaptation, and required assurance.
 
-The leadership close includes public resources and routes to questions, the optional deep dive, or demos. The demo recap does not claim that a system reached production.
+Slide 23 is the leadership wrap slide. It shows two QR codes, one for the HVE-Core repository and one for the documentation site, with their printed addresses.
+
+Three fact cards say that HVE-Core is open source and maintained by Microsoft with pull requests welcome, that teams should keep their copy up to date, and that teams can customize it and keep existing workflows. It routes to the deeper section or a pause for questions.
+
+The QR codes come from `qr.mjs`, which has no package dependency. Slide 35 closes the deeper section with the team boarding pass and routes to the demos. The demo recap does not claim that a system reached production.
 
 ## Edit
 
@@ -161,11 +169,12 @@ The leadership close includes public resources and routes to questions, the opti
 | `finite-motion.mjs` | Shared bounded-motion lifecycle and SVG token positioning for slides 7 and 8 |
 | `operating-model.mjs` | Slide-10 single-advance model replacement and complete static viewing states |
 | `slide-meta.mjs` | Slide IDs, parts, timing, titles, speaker notes, and wave presets |
-| `bodies-leadership.mjs` | Body markup for the 25 leadership slides; section separators have empty bodies |
-| `bodies-core.mjs` | Body markup for the optional HVE-Core and demo slides |
+| `bodies-leadership.mjs` | Body markup for the 23 leadership slides and for slides 33-35 of the deeper section; section separators have empty bodies |
+| `bodies-core.mjs` | Body markup for the deeper HVE-Core and demo slides |
 | `diagrams.mjs` | Shared diagram parts: nodes, chains, loops, lanes, bands, return paths, and icons |
 | `sources.mjs` | Public sources for each slide |
-| `DEMO-SCRIPT.md` | Live demo runbook for slides 36-40: time plan, commands, prompts, and fallbacks |
+| `qr.mjs` | Self-contained QR code encoder for the slide 23 links; tests pin its output |
+| `DEMO-SCRIPT.md` | Live demo runbook for slides 37-41: time plan, commands, prompts, and fallbacks |
 | `waves.mjs` | Static Flowing blend background with slide-scoped SVG definitions |
 | `images/` | Local presenter photo, presenter-supplied team and Design Thinking PNGs, and earlier original illustrations, copied into the build |
 | `index.html` | Accessible presentation shell and build insertion marker |

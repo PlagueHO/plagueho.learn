@@ -4,7 +4,7 @@ Public sources checked on 2026-10-29, with focused narrative checks on 2026-10-3
 
 ## Scope and source boundary
 
-The leadership section presents HVE as an engineering operating model: a small expert multidisciplinary crew works with the customer in a tight idea, validation, engineering, and feedback loop. The four pillars make this model work. FDE is supporting delivery context. A separate optional section explains HVE-Core, followed by the agreed public teaching demo.
+The leadership section presents HVE as an engineering operating model: a small expert multidisciplinary crew works with the customer in a tight idea, validation, engineering, and feedback loop. The four pillars make this model work. FDE is supporting delivery context. A separate section, Diving deeper into HVE-Core, explains the toolkit, followed by the agreed public teaching demo.
 
 Private photos, transcripts, and the supplied internal-source research guide are for planning only. Do not publish those files, non-public quotations, internal customer figures, or local source paths. Public wording and original diagrams must rest on public evidence. Do not reproduce private slide designs.
 
@@ -14,7 +14,7 @@ Distinguish public source statements from presentation synthesis. The four-pilla
 
 The outline now incorporates the ISE transcript comparison. Its subtitle is *Why adding AI to the SDLC is not enough*. The target is adding AI while ownership, customer participation, decisions, specialist engagement, and governance remain unchanged. Do not reduce AI SDLC to coding or dismiss approaches that already include these organizational changes.
 
-The committed draft remains unchanged. The revised outline retains proven engineering discipline and co-engineering, gives waiting and missing business value equal weight, and makes changed responsibilities visible in each pillar. A measured delivery experiment then supports wider organizational action. HVE remains the operating-model response, not simply a faster coding workflow.
+The committed draft remains unchanged. The revised outline retains proven engineering discipline and co-engineering, gives waiting and missing business value equal weight, and makes changed responsibilities visible in each pillar. Outcome measures then support wider organizational action. HVE remains the operating-model response, not simply a faster coding workflow.
 
 The revised outline follows this progression:
 
@@ -31,7 +31,9 @@ The revised outline follows this progression:
 
 This is a planning synthesis in original wording. It is not a public account of private experiments or their results. Use the public sources below for publishable claims; the private references establish the requested narrative emphasis, not permission to publish their content.
 
-The proposed leadership section has 25 sparse slides over 30 minutes. Act 3 receives 16 minutes, including two slides and three minutes per pillar. The optional practical section retains 10 slides over 30 minutes, followed by five demo support slides. Detailed context mechanics stay in the practical section. FDE remains supporting context rather than a separate main-path slide.
+The leadership section has 23 sparse slides over 27 minutes. Act 3 receives 14 minutes, including two slides and three minutes per pillar. The section ends with a wrap slide that points to the open source repository and documentation.
+
+The deeper HVE-Core section has 13 slides over 34.5 minutes, followed by five demo support slides. Detailed context mechanics stay in the deeper section. FDE remains supporting context rather than a separate main-path slide.
 
 Slide 13 uses presenter-supplied handoff illustrations to explain how close multidisciplinary work can support faster decisions, alignment and buy-in, and continuous adjustment. The local assets are `my-part-is-done.png` and `shared-goal.png`. This is a teaching metaphor, not customer evidence or a fixed team roster.
 
@@ -45,11 +47,17 @@ Slide 15 uses the selected paper-and-pencil metaphor. One body principle tests t
 
 The test for a trustworthy revised date and clear next action is proposed. No user testing or confirmed outcome is claimed. The customer or product decision owner records the decision. Stopping an unsuitable option does not remove responsibility for the outcome. The date-change recap remains on earlier slides.
 
-Slides 17 and 19 still use slide 6's full order-status case pending individual review. The carrier changes Friday to Monday, but the order record and chatbot retain Friday. They propose a prepared foundation and reviewed AI assistance. These are teaching extensions, not published findings, completed discovery, or measured results.
+Slide 19 uses the selected two-route treatment. One request, add authentication to the checkout flow, is illustrative and not a measured case. Without the right inputs, AI can fill gaps with guesses that look informed. Relevant context, recorded decisions, and executable checks improve the odds of a suitable result. They do not guarantee correct or secure output.
 
-The manufacturing tutorial remains separate in the optional section. Do not predetermine an interface or imply that user testing occurred. The proposed order-team owner must be agreed. A reused foundation does not make delivery data correct, and AI-generated tests do not establish customer value.
+Experts still judge the result. A passing check is evidence only for the rule it tests. Context must stay focused and current, and model summaries need review before they become recorded decisions. This is a teaching illustration, not a published finding or measured result.
 
-The optional DT Coach, DT-to-RPI, installation, and manufacturing demo sequence remains our agreed extension. Do not imply that it reconstructs the speakers' presentation. The committed 35-slide Reveal.js draft implements the previous operating-model-first narrative. The proposed constraint-first outline awaits review before any slide changes.
+Slide 17 uses the selected marked-trail treatment. It follows one expert practice from first use to update or retirement. The process is an illustrative example, not a prescription. Any organization needs a way to collate, curate, govern, and share its expertise.
+
+It does not use the carrier example. No real asset, result, or adoption figure is claimed. Reuse saves effort but does not certify output or replace review, suitable access, or required independent assurance.
+
+The manufacturing tutorial remains separate in the deeper section. Do not predetermine an interface or imply that user testing occurred. The proposed order-team owner must be agreed. A reused foundation does not make delivery data correct, and AI-generated tests do not establish customer value.
+
+The DT Coach, DT-to-RPI, installation, and manufacturing demo sequence remains our agreed extension. Do not imply that it reconstructs the speakers' presentation. The committed 35-slide Reveal.js draft implements the previous operating-model-first narrative. The proposed constraint-first outline awaits review before any slide changes.
 
 The main talk supports shared team duties, distributed specialist knowledge, co-engineering, experimentation, and customer capability. The Q&A makes executive sponsorship and organizational constraints explicit. Bringing these themes forward adapts the story for leaders; it does not reconstruct the original opening. An unanswered toolkit-evaluation question does not establish assurance.
 
@@ -73,7 +81,7 @@ Adopt these distinctions in the outline:
 - Prototype scope and readiness must be explicit. Do not teach the guide's suggestion that security or compliance can simply be deferred until after prototyping.
 - Readiness includes customer time, bounded scope, data, access, maintained foundations, and known dependencies. Make these conditions visible without turning them into a rigid engagement template.
 
-Keep the recurring loop in the optional DT-to-RPI route. It is one pass with reviewed evidence and return paths, not a claim that research, engineering, and customer feedback happen only once.
+Keep the recurring loop in the DT-to-RPI route of the deeper section. It is one pass with reviewed evidence and return paths, not a claim that research, engineering, and customer feedback happen only once.
 
 ### Quantitative cautions
 
@@ -113,7 +121,7 @@ Slide 11 credits established practices refined through Microsoft ISE delivery an
 
 The public findings support the whole-system argument. They do not prove the full historical narrative, the independent effect of each pillar, or a necessary-and-sufficient formula. These remain teaching synthesis. HVE-Core can accelerate processes; that does not make it a production solution foundation. Installing it does not supply infrastructure, customer evidence, authority, or readiness.
 
-The leadership experiment tests changed responsibilities and practices, not tool access alone. Identify an actual wait and its owner before seeking a change in participation, capacity, escalation, or policy. Some organizations already review quickly. Keep the manufacturing illustration separate from evidence of organizational transformation; no public change case or measured result is asserted here.
+The leadership measures track changed responsibilities and practices, not tool access alone. Identify an actual wait and its owner before seeking a change in participation, capacity, escalation, or policy. Some organizations already review quickly. Keep the manufacturing illustration separate from evidence of organizational transformation; no public change case or measured result is asserted here.
 
 ## Four-pillar teaching synthesis
 
@@ -122,7 +130,7 @@ The leadership experiment tests changed responsibilities and practices, not tool
 | Multidisciplinary teams | A small expert crew with customer participation, informed decisions, and shared ownership |
 | Design thinking | Establish actual business value through customer and user evidence throughout the loop |
 | Reusable accelerators | Build, collect, share, and govern agents, Agent Skills, tools, and organizational knowledge and guidance across roles; review fit, access, changes, and required assurance |
-| AI tooling | Amplify the crew across the lifecycle while retaining expert review and validation |
+| AI tooling | Amplify the crew across the lifecycle, with security and review at every stage, while experts stay accountable and set review depth to match the risk |
 
 Use this structure to explain the operating model and make HVE concrete behind FDE. Explain the model before the tool. Customer collaboration and continuous feedback connect all four pillars. Do not turn team composition into a staffing formula or make headcount reduction the outcome.
 
@@ -141,6 +149,30 @@ The cards show an open set of capabilities. "Other capabilities" leaves room for
 The knowledge illustration represents shared organizational guidance, not unrestricted access to internal information. The action is to build, collect, share, and govern assets with owners, suitable access, current sources, maintenance, and review. Reuse does not certify outputs or replace required assurance.
 
 The selected A2 treatment shows assets feeding a capability library titled "Agentic capabilities." Matching icons form an arc above the presenter-supplied team image. This shows reusable expertise extending a small team's work. It does not show added staff or remove specialist review.
+
+## Slide 22 role examples
+
+Slide 22 uses the selected hub-and-spokes treatment. One HVE-Core hub (agents, skills, instructions) connects to six role examples: program manager, UX designer, architect, operations, data scientist, and engineer. Most of the six are not developer roles.
+
+The [HVE Core documentation](https://microsoft.github.io/hve-core/) supports each example. The UX designer card names the Design Thinking coach and its customer-evidence methods. The engineer card names the Research, Plan, Implement, and Review method.
+
+The program manager and architect cards draw on project planning (decision records, requirements, diagrams, security plans) and backlog management. The role guides cover the other examples.
+
+The numbers link each role to a pillar. This mapping is a teaching synthesis, not a documented HVE-Core structure. A role can touch more than one pillar. The bottom line uses the documentation's own wording: production-ready starting points that a team can customize to its organization.
+
+The notes keep the caveats. Coverage varies by role, the Business Program Manager path is beta, and security outputs assist qualified people.
+
+HVE-Core is optional and replaceable. It does not supply sponsorship, end user time, authority, or review capacity. It does not replace expert judgment or required independent assurance. Do not copy volatile asset counts.
+
+## Slide 23 wrap slide
+
+Slide 23 ends the leadership section. Two QR codes point to the public [HVE-Core repository](https://github.com/microsoft/hve-core) and the [documentation site](https://microsoft.github.io/hve-core/docs/).
+
+The three fact cards say HVE-Core is open source and maintained by Microsoft with pull requests welcome, that a team keeps its copy current by merging upstream changes, and that a team can customize it and keep its existing spec-driven workflows. Visible text names no AI assistant products.
+
+Keep the caveats in the notes. A fork has an ongoing maintenance cost, so try in-place customization first. The repository README says to treat HVE-Core as a source of patterns and learning, and that it may change in ways that are not backward compatible. Reusing an asset does not certify its output. The toolkit does not supply sponsorship, customer time, authority, or review capacity.
+
+The adoption commitments (slide 33) and outcome measures (slide 34) now sit in the deeper section. The team boarding pass (slide 35) closes that section.
 
 ## Current CLI plugin limits
 
@@ -224,7 +256,7 @@ AI usage and generated code volume are not success measures by themselves. DORA 
 
 ## Remaining preparation
 
-- Agree demo and Q&A allocations separately from the two 30-minute sections.
+- Agree demo and Q&A allocations separately from the two timed sections (27 and 34.5 minutes).
 - Select a bounded implementation outcome that follows the actual problem-space handoff and research.
 - Prepare labelled tutorial evidence and fallback artifacts without inventing interviews or test results.
 - Verify the installed CLI and plugin behavior before writing the final runbook.

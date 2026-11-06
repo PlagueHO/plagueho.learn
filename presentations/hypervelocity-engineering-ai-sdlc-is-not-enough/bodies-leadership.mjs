@@ -1,12 +1,13 @@
 /**
- * Leadership section slide bodies (slides 1 to 25).
+ * Leadership slide bodies, plus the adoption slides that close the deeper section.
  * Parameters: none. Each key is a slide id; each value is the slide body HTML.
  * Usage: import { leadershipBodies } from './bodies-leadership.mjs'.
  */
 import {
-  arrow, node, inode, chip, band, fig, takeaway, grid, chain, ret, icon, crack,
-  lane, under, laneGroup, legend, loop, evidenceTable,
+  arrow, node, chip, band, fig, takeaway, grid, chain, ret, icon, crack,
+  lane, under, laneGroup, legend,
 } from './diagrams.mjs';
+import { qrSvg } from './qr.mjs';
 
 const acceleratorCapabilities = [
   ['Security', 'shield', 'purple'], ['SRE / Operations', 'loop', 'teal'],
@@ -22,6 +23,131 @@ function acceleratorCapabilityIcon(label, symbol, tone, announce = false) {
   return `<span class="accelerator-capability-icon tone-${tone}" data-capability="${symbol}" ${accessibility}>
     ${icon(symbol).replace('aria-hidden="true"', 'aria-hidden="true" focusable="false"')}</span>`;
 }
+
+const reuseTrail = 'M8 52H104C218 52 218 22 332 22C446 22 446 52 560 52C674 52 674 22 788 22C902 22 902 52 1016 52H1112';
+
+const reuseStops = [
+  ['person', 'purple', 'Show the way', 'An expert has a practice that works.'],
+  ['pencil', 'teal', 'Write it down', 'Make it an agent, skill, instruction, or check.'],
+  ['shield', 'warm', 'Review and own', 'A named owner. Checks must pass.'],
+  ['team', 'purple', 'Teams adapt it', 'Fit it to the real case.'],
+  ['loop', 'teal', 'Update or retire', 'Keep it current or remove it.'],
+];
+
+const toolingStages = [
+  ['Discover', 'purple'], ['Define', 'teal'], ['Design', 'warm'],
+  ['Build', 'purple'], ['Verify', 'teal'], ['Operate', 'warm'],
+];
+
+const toolingRoles = [
+  ['Business', 'flag', 'warm'], ['Design', 'pencil', 'purple'], ['Architecture', 'layers', 'teal'],
+  ['Assurance', 'shield', 'warm'], ['Engineering', 'code', 'purple'], ['Data', 'dashboard', 'teal'],
+  ['Operations', 'loop', 'warm'],
+];
+
+const toolingBadge = (symbol, tone) =>
+  `<span class="tooling-badge tone-${tone}" aria-hidden="true">${icon(symbol)}</span>`;
+
+const contextGuessRoute = 'M216 144C262 144 262 46 312 46C360 46 372 84 420 70C468 56 480 24 540 40C600 56 600 92 660 76C720 60 740 34 800 46H880';
+const contextInformedRoute = 'M216 144C262 144 262 188 312 188H880';
+
+const contextGates = [
+  ['document', 'teal', 'Relevant context'], ['book', 'teal', 'Recorded decisions'],
+  ['shield', 'teal', 'Executable checks'], ['team', 'purple', 'Expert judgment'],
+];
+
+const frameworkPrinciples = [
+  ['1', 'Multidisciplinary teams', 'Experts share one outcome'],
+  ['2', 'Design Thinking', 'Validate value with customers'],
+  ['3', 'Reusable accelerators', 'Start from maintained expertise'],
+  ['4', 'AI tooling', 'Amplify the crew'],
+];
+
+const frameworkStack = [
+  ['code', 'HVE-Core', 'Agents, skills, instructions', 'Toolkit'],
+  ['spark', 'AI assistants', 'Help each role'],
+  ['search', 'AI models', 'Language and reasoning'],
+  ['check', 'Automated checks', 'Tests and analysis'],
+];
+
+const frameworkRow = ([mark, title, detail, flag], isIcon) => `<li class="framework-row${flag ? ' framework-key' : ''}">
+          <span class="framework-chip" aria-hidden="true">${isIcon ? icon(mark) : mark}</span>
+          <span class="framework-text"><strong>${title}${flag ? `<b class="framework-flag">${flag}</b>` : ''}</strong><span>${detail}</span></span></li>`;
+
+const frameworkPanel = (tone, title, tag, items, isIcon) => `<article class="framework-panel tone-${tone}">
+        <h3 class="framework-head"><span>${title}</span><b class="framework-tag">${tag}</b></h3>
+        <ul class="framework-rows">${items.map(item => frameworkRow(item, isIcon)).join('')}</ul>
+      </article>`;
+
+const frameworkLoop = `<div class="framework-loop" aria-hidden="true">
+        <svg viewBox="0 0 240 312" width="240" height="312" focusable="false">
+          <path class="framework-stroke" d="M196 307V112A76 76 0 0 0 44 112V276"/>
+          <polygon class="framework-arrowhead" points="21.5,275 44,308 66.5,275"/>
+        </svg>
+        <p>Tools help<br>apply the<br>principles</p>
+      </div>`;
+
+const teamPillars = [
+  ['purple', '1', 'Teams'], ['teal', '2', 'Design Thinking'],
+  ['warm', '3', 'Accelerators'], ['gold', '4', 'AI tooling'],
+];
+
+const teamRoles = [
+  ['purple', '1', 'flag', 'Program manager', 'Requirements and backlog planning'],
+  ['teal', '2', 'pencil', 'UX designer', 'Design Thinking coach, customer evidence'],
+  ['warm', '3', 'layers', 'Architect', 'Decision records, diagrams, security plans'],
+  ['warm', '3', 'loop', 'Operations', 'Runbooks and infrastructure checks'],
+  ['gold', '4', 'dashboard', 'Data scientist', 'Notebooks and dashboards'],
+  ['gold', '4', 'code', 'Engineer', 'Research, plan, implement, review'],
+];
+
+const teamCard = ([tone, pillar, symbol, role, job]) => `<li class="team-card tone-${tone}">
+          <span class="team-mark" aria-hidden="true"><span class="team-chip">${icon(symbol)}</span><b class="team-badge">${pillar}</b></span>
+          <span class="team-text"><strong>${role}</strong><span>${job}</span></span></li>`;
+
+const teamSpoke = ([tone], index) => {
+  const y = [44, 144, 244][index % 3];
+  const path = index < 3 ? `M350 ${y}C450 ${y} 470 144 540 144` : `M770 ${y}C670 ${y} 650 144 580 144`;
+  return `<path class="team-spoke tone-${tone}" d="${path}"/>`;
+};
+
+const teamLegend = `<ul class="team-legend" aria-label="Pillars">${teamPillars.map(([tone, number, name]) =>
+  `<li class="tone-${tone}"><b class="team-badge team-solid">${number}</b><span>${name}</span></li>`).join('')}</ul>`;
+
+const adoptionCommitments = [
+  ['purple', 'flag', 'Sponsorship', 'Leaders own the outcome'],
+  ['purple', 'target', 'Authority', 'Teams can decide and act'],
+  ['teal', 'team', 'Shared ownership', 'Decisions made together'],
+  ['teal', 'clock', 'End user time', 'End users join the work'],
+  ['warm', 'search', 'Review capacity', 'Experts review in time'],
+  ['warm', 'book', 'Maintained knowledge', 'Practices stay current'],
+];
+
+const adoptionCard = ([tone, symbol, title, detail]) => `<li class="adoption-card tone-${tone}">
+          <span class="adoption-chip" aria-hidden="true">${icon(symbol)}</span>
+          <span class="adoption-text"><strong>${title}</strong><span>${detail}</span></span></li>`;
+
+const aiActivity = [
+  ['pencil', 'Prompts sent'],
+  ['code', 'Code generated'],
+  ['dashboard', 'Seats activated'],
+];
+
+const outcomeMeasures = [
+  ['purple', 'target', 'Useful value', 'Users benefit'],
+  ['purple', 'shield', 'Quality', 'Holds up in use'],
+  ['teal', 'clock', 'Waiting', 'Less idle time'],
+  ['teal', 'loop', 'Rework', 'Fewer redo loops'],
+  ['warm', 'person', 'Experience', 'For users and teams'],
+  ['warm', 'coins', 'Total cost', 'All costs counted'],
+];
+
+const outcomeCard = ([tone, symbol, title, detail]) => `<li class="outcome-card tone-${tone}">
+          <span class="outcome-chip" aria-hidden="true">${icon(symbol)}</span>
+          <span class="outcome-text"><strong>${title}</strong><span>${detail}</span></span></li>`;
+
+const activityRow = ([symbol, title]) => `<li class="outcome-act">
+          <span class="outcome-chip" aria-hidden="true">${icon(symbol)}</span><strong>${title}</strong></li>`;
 
 function panel(iconName, caption, big, status, state, cls = '') {
   return `<div class="panel${cls ? ` ${cls}` : ''}">${icon(iconName)}<em>${caption}</em><strong>${big}</strong><b class="status ${state}">${icon(state === 'met' ? 'check' : 'question')}${status}</b></div>`;
@@ -68,10 +194,6 @@ function deliveryTimeline() {
   <div class="time-foundation"><strong>Engineering fundamentals</strong><span>Quality · security · customer learning</span></div>`;
 }
 
-function stackNode(iconName, title, detail = '', cls = '') {
-  return `<div class="node stack${cls ? ` ${cls}` : ''}">${icon(iconName)}<strong>${title}</strong>${detail ? `<span>${detail}</span>` : ''}</div>`;
-}
-
 function cadenceRing(kind, label) {
   return `<div class="cadence-loop loop-${kind}" data-loop="${kind}">
     ${kind === 'build' ? `<svg class="former-disc" viewBox="0 0 300 300" aria-hidden="true">
@@ -86,10 +208,6 @@ function cadenceRing(kind, label) {
   </div><strong class="loop-name name-${kind}">${label}</strong>`;
 }
 
-function layer(caption, cells, cls = '') {
-  return `<div class="layer${cls ? ` ${cls}` : ''}"><em>${caption}</em><div class="layer-cells">${cells.map(cell => `<span>${cell}</span>`).join('')}</div></div>`;
-}
-
 function drops(columns, active) {
   return grid(columns, active.map(isActive => (isActive ? '<i class="drop"></i>' : '<span></span>')), 'drops');
 }
@@ -100,12 +218,42 @@ function routes(items) {
 
 const crackLabels = ['Handoffs', 'Decision waits', 'Wrong problem', 'Late feedback', 'Late assurance'];
 
-const commitments = [
-  ['team', 'Customer time', 'Participation + evidence'],
-  ['person', 'Decision ownership', 'Crew + specialist + sponsor'],
-  ['layers', 'Prepared foundations', 'Maintained + fit for purpose'],
-  ['dashboard', 'Measured change', 'Value + quality + total cost'],
+const closeFields = [
+  ['purple', 'team', 'Team', 'One team'],
+  ['gold', 'flag', 'Outcome', 'One real outcome'],
+  ['teal', 'book', 'Read first', 'Official documentation'],
+  ['warm', 'person', 'Then use', 'Your role guide'],
 ];
+
+const closeField = ([tone, symbol, name, value]) => `<li class="close-field tone-${tone}">` +
+  `<span class="close-chip" aria-hidden="true">${icon(symbol)}</span>` +
+  `<span class="close-text"><span>${name}</span><strong>${value}</strong></span></li>`;
+
+const closePillars = teamPillars.map(([tone, number]) =>
+  `<b class="close-badge tone-${tone}">${number}</b>`).join('');
+
+const openTargets = [
+  { tone: 'purple', symbol: 'code', title: 'GitHub repo', host: 'github.com', path: '/microsoft/hve-core',
+    url: 'https://github.com/microsoft/hve-core', label: 'QR code for the HVE-Core repository on GitHub' },
+  { tone: 'teal', symbol: 'book', title: 'Docs site', host: 'microsoft.github.io', path: '/hve-core/docs',
+    url: 'https://microsoft.github.io/hve-core/docs/', label: 'QR code for the HVE-Core documentation site' },
+];
+
+const openQrCard = target => `<div class="wr-qr tone-${target.tone}">
+  <p class="wr-qr-head"><span class="st-chip" aria-hidden="true">${icon(target.symbol)}</span><strong>${target.title}</strong></p>
+  <div class="wr-code">${qrSvg(target.url, { label: target.label, quiet: 2 })}</div>
+  <p class="wr-url"><strong>${target.host}</strong><span>${target.path}</span></p>
+</div>`;
+
+const openFacts = [
+  ['purple', 'team', 'Open source', 'Maintained by Microsoft. Pull requests welcome.'],
+  ['teal', 'loop', 'Stay current', 'Fork it. Merge upstream changes when ready.'],
+  ['warm', 'pencil', 'Make it yours', 'Use what helps. Drop the rest. Keep your spec-driven and other workflows.'],
+];
+
+const openFact = ([tone, symbol, title, detail]) => `<li class="wr-fact tone-${tone}">` +
+  `<span class="st-chip" aria-hidden="true">${icon(symbol)}</span>` +
+  `<span class="wr-text"><strong>${title}</strong><span>${detail}</span></span></li>`;
 
 export const leadershipBodies = {
   hve: `<div class="cover-presenter" role="group" aria-label="Presenter">
@@ -386,66 +534,131 @@ export const leadershipBodies = {
   </figure>` + takeaway('Give every team access to reusable expertise.<br>' +
     '<span class="accelerator-why">Build, collect, share, and govern capabilities teams can draw on.</span>'),
 
-  'accelerator-example': fig('The carrier-update increment on a reused foundation', `<div class="outline-box">
-    <span class="tab">Still verify: late updates · access · operation · recovery</span>
-    ${node('Changed: carrier update to order record', 'Friday becomes Monday; confirm the next action', 'warm wide')}
-    ${layer('Reused', ['Approved environment', 'Identity', 'Logging', 'CI/CD'])}
-  </div>`) + takeaway('Separate inherited controls, changed behavior, and remaining assurance.'),
+  'accelerator-example': `<figure class="reuse-scene"
+    aria-label="An example of how expert practice becomes a maintained path that teams adapt, with improvements contributed back to its owner">
+    <svg class="reuse-trail" viewBox="0 0 1120 84" aria-hidden="true" focusable="false">
+      <path class="reuse-ribbon" d="${reuseTrail}"/>
+      <path class="reuse-core" d="${reuseTrail}"/>
+    </svg>
+    <ol class="reuse-stops">
+      ${reuseStops.map(([symbol, tone, title, text]) => `<li class="tone-${tone}">
+        <span class="reuse-pin" aria-hidden="true">${icon(symbol)}</span>
+        <strong>${title}</strong><span>${text}</span></li>`).join('')}
+    </ol>
+    <svg class="reuse-return" viewBox="0 0 1120 34" aria-hidden="true" focusable="false">
+      <path d="M788 2V14Q788 26 776 26H572Q560 26 560 14V8M553 15L560 6L567 15"/>
+    </svg>
+    <p class="reuse-return-label">Contribute improvements back</p>
+  </figure>` + takeaway('Collate, curate, govern, and share expert practice.<br>' +
+    '<span class="reuse-why">One example process, not a prescription. Reuse does not replace review.</span>'),
 
-  'lifecycle-ai': fig('AI assistance across the lifecycle with expert review', `
-    ${band('AI assists each stage', 'tint', 'spark')}
-    ${chain([
-      stackNode('target', 'Research'), stackNode('document', 'Requirements'), stackNode('layers', 'Architecture'),
-      stackNode('code', 'Build + test'), stackNode('loop', 'Operations'),
-    ], 'five')}
-    ${band('Experts review + accept', 'purple', 'check')}
-    ${ret('Gaps return to the crew', 5)}
-    <div class="contrast">${node('AI-assisted delivery', '', 'tint compact')}<b aria-hidden="true">≠</b>${node('AI-powered product', '', 'ghost compact')}<p>The delivered solution need not contain AI.</p></div>`),
+  'lifecycle-ai': `<figure class="tooling-scene"
+    aria-label="Security checks and review happen at every lifecycle stage, and AI assists every stage for seven kinds of role. Experts stay accountable.">
+    <ol class="tooling-stages">
+      ${toolingStages.map(([name, tone]) => `<li class="tone-${tone}"><span>${name}</span></li>`).join('')}
+    </ol>
+    <ul class="tooling-marks" aria-hidden="true">
+      ${toolingStages.map(() => `<li>${toolingBadge('shield', 'teal')}</li>`).join('')}
+    </ul>
+    <p class="tooling-mark-note">Security and review at every stage, not at the end</p>
+    <p class="tooling-ribbon">${icon('spark')}<span>AI assists every stage, not only coding</span></p>
+    <ul class="tooling-crew">
+      ${toolingRoles.map(([name, symbol, tone]) => `<li class="tone-${tone}">${toolingBadge(symbol, tone)}<span>${name}</span></li>`).join('')}
+    </ul>
+    <p class="tooling-accountable">${icon('check')}<span>Experts stay accountable and set review to match the risk</span></p>
+  </figure>` + takeaway('Continuous checks keep pace only with AI at every stage.<br>' +
+    '<span class="tooling-why">More speed needs more direction, from one shared baseline.</span>'),
 
-  'lifecycle-example': fig('Friday-to-Monday evidence carried through expert review', `<div class="cols7">
-    <em class="span7">AI-assisted drafts: Friday becomes Monday</em>
-    ${node('Trace carrier update', '', 'compact')}${arrow()}${node('Date + next action', '', 'compact')}${arrow()}${node('Update path + tests', '', 'compact')}${arrow()}${node('Late-update runbook', '', 'compact')}
-    ${['<i class="drop"></i>', '<span></span>', '<i class="drop"></i>', '<span></span>', '<i class="drop"></i>', '<span></span>', '<i class="drop"></i>'].join('')}
-    <em class="span7">Expert review</em>
-    ${[['Support lead', 'checks evidence'], ['Product owner', 'checks customer need'], ['Engineer', 'checks update rules'], ['Operations', 'checks recovery']].map(([who, check], index) => `${index ? '<span></span>' : ''}${inode('check', who, check, 'tint')}`).join('')}
-  </div>${ret('Unresolved assumption → back to the crew', 4)}`),
+  'lifecycle-example': `<figure class="context-scene"
+    aria-label="From the same request, guessing leads to work that looks right but may fail later. Relevant context, recorded decisions, executable checks, and expert judgment lead to work checked against your rules.">
+    <div class="context-map">
+      <svg class="context-routes" viewBox="0 0 1088 288" aria-hidden="true" focusable="false">
+        <path class="context-ribbon tone-warm" d="${contextGuessRoute}"/>
+        <path class="context-core tone-warm" d="${contextGuessRoute}"/>
+        <path class="context-ribbon tone-teal" d="${contextInformedRoute}"/>
+        <path class="context-core tone-teal" d="${contextInformedRoute}"/>
+      </svg>
+      <p class="context-start"><span>Same request</span><strong>Add authentication to the checkout flow</strong></p>
+      <p class="context-guess">Guesses that look informed</p>
+      <p class="context-end context-end-guess tone-warm"><span>Looks right.<br>May fail later.</span></p>
+      <ol class="context-gates">
+        ${contextGates.map(([symbol, tone, label]) => `<li class="tone-${tone}">
+          <span class="context-badge" aria-hidden="true">${icon(symbol)}</span><span>${label}</span></li>`).join('')}
+      </ol>
+      <p class="context-end context-end-informed tone-teal"><span>Checked against your rules</span></p>
+    </div>
+  </figure>` + takeaway('The request is the same. The inputs change the work.<br>' +
+    '<span class="context-why">Experts still judge whether the result is right.</span>'),
 
-  'evidence-judgment': fig('Evidence converging on an owner decision', `<div class="converge">
-    <div class="col evidence">${node('Reviewed intent', 'Requirements + architecture')}${node('Repeatable checks', 'Tests + build + analysis')}${node('Human review', 'Specialist + customer')}</div>
-    <svg class="gutter" viewBox="0 0 110 328" aria-hidden="true"><path d="M0 48C55 48 55 164 110 164M0 164H110M0 280C55 280 55 164 110 164M100 156L110 164L100 172"/></svg>
-    ${node('Owner decides', 'Evidence + judgment', 'tint')}
-    <svg class="gutter" viewBox="0 0 90 328" aria-hidden="true"><path d="M0 164C45 164 45 70 90 70M80 62L90 70L80 78M0 164C45 164 45 258 90 258M80 250L90 258L80 266"/></svg>
-    <div class="col outcomes">${node('Accept with an owner', 'Evidence is sufficient', 'purple')}${node('Return for more work', 'A gap or doubt remains', 'warm')}</div>
-  </div>`) + takeaway('Plausible output and passing tests alone do not prove correctness.'),
+  'outcomes-action': '',
 
-  'supported-loop': fig('The delivery loop and what the organization provides', `<div class="split-loop">
-    ${loop({ scale: 0.9, fragile: true })}
-    <div class="col provides"><em>The organization provides</em>${[['team', 'Shared ownership'], ['clock', 'Customer time'], ['layers', 'Maintained foundations'], ['check', 'Review capacity']].map(([iconName, text]) => inode(iconName, text, '', 'compact')).join('')}</div>
-  </div>
-  <div class="callout">${icon('flag')}<span>Fragile boundary: customer decisions need organizational support</span></div>`),
+  'framework-toolkit': `<figure class="framework-scene"
+    aria-label="HVE principles and methods endure. The enabling technology stack, which includes the HVE-Core toolkit, evolves rapidly. The technology helps apply the principles.">
+    <div class="framework-grid">
+      ${frameworkPanel('purple', 'Principles and methods', 'Endures', frameworkPrinciples, false)}
+      ${frameworkLoop}
+      ${frameworkPanel('teal', 'Enabling technology', 'Evolves rapidly', frameworkStack, true)}
+    </div>
+  </figure>` + takeaway('Principles endure. Technology evolves.<br>' +
+    '<span class="framework-why">Choose tools that help. Keep the principles when tools change.</span>'),
 
-  'organization-boundary': fig('From a waiting increment to a sponsored change', chain([
-    node('Ready increment', 'Waits for required risk decision', 'warm'),
-    node('Name reviewer + policy owner', '', 'tint'),
-    node('Sponsored change', 'Participation · capacity · escalation · approved policy', 'purple'),
-    node('Reassess', 'Keep required assurance'),
-  ]) + ret('Repeat for the next wait', 4)) + takeaway('Name the owner. Measure the next wait.'),
+  'team-support': `<figure class="team-scene"
+    aria-label="HVE-Core is one toolkit of agents, skills, and instructions. It gives six roles a starting point: program manager, UX designer with a Design Thinking coach, architect, operations, data scientist, and engineer. Each role connects to one of the four pillars.">
+    <svg class="team-spokes" viewBox="0 0 1120 288" aria-hidden="true" focusable="false">
+      ${teamRoles.map(teamSpoke).join('')}
+    </svg>
+    <div class="team-hub"><span class="team-hub-icon" aria-hidden="true">${icon('team')}</span><strong>HVE-Core</strong><span>Agents, skills, instructions</span></div>
+    <ul class="team-side team-left">${teamRoles.slice(0, 3).map(teamCard).join('')}</ul>
+    <ul class="team-side team-right">${teamRoles.slice(3).map(teamCard).join('')}</ul>
+    ${teamLegend}
+  </figure>` + takeaway('Give every role a reusable starting point.<br>' +
+    '<span class="team-why">Customize it for your organization.</span>'),
 
-  experiment: fig('Baseline and experiment evidence for one outcome', `
-    ${band('One outcome: named customer owner + sponsor', 'tint', 'target')}
-    ${evidenceTable(['Value', 'Quality', 'Waiting', 'Rework', 'Cost'])}
-    <p class="foot">AI-written-code share measures adoption, not success.</p>`),
+  'hve-core-open': `<figure class="wr-scene"
+    aria-label="HVE-Core is open source and maintained by Microsoft. Scan the codes for the GitHub repository and the documentation site. Use what helps, drop the rest, and keep your own workflows.">
+    <div class="wr-qrs">${openTargets.map(openQrCard).join('')}</div>
+    <ul class="wr-facts">${openFacts.map(openFact).join('')}</ul>
+  </figure>` + routes(['<a href="#/deep-dive">Diving deeper into HVE-Core →</a>', '<button type="button" data-action="pause">Pause for questions</button>']),
 
-  'capability-transfer': fig('From a principle to a customer-owned capability', `<div class="cols7">
-    ${stackNode('document', 'Principle', 'Understand')}${arrow()}${stackNode('team', 'Owned practice', 'Co-work')}${arrow()}${stackNode('layers', 'Maintained mechanism', 'Review + update')}${arrow()}${stackNode('flag', 'Customer capability', 'Continue independently')}
-    <span></span><span></span><i class="drop"></i><span></span><i class="drop"></i><span></span><span></span>
-    <span></span><span></span><div class="band purple span3"><span>Customer engineers co-own and maintain</span></div><span></span><span></span>
-  </div>`) + takeaway('Capability stays after co-engineering ends.'),
+  'adoption-commitments': `<figure class="adoption-scene"
+    aria-label="Installing the toolkit is only the start. Adoption needs six leadership commitments: sponsorship, authority, shared ownership, end user time, review capacity, and maintained knowledge.">
+    <div class="adoption-strip">
+      <span class="adoption-installed tone-slate"><span class="adoption-tick" aria-hidden="true">${icon('check')}</span>Toolkit installed</span>
+      <span class="adoption-next" aria-hidden="true">→</span>
+      <strong>Now what? Six commitments.</strong>
+    </div>
+    <ul class="adoption-grid">${adoptionCommitments.map(adoptionCard).join('')}</ul>
+  </figure>` + takeaway('Installation is the easy part.<br>' +
+    '<span class="adoption-why">Adoption needs leadership commitments.</span>'),
 
-  'leadership-close': fig('Four organizational commitments and optional process support', `
-    <em class="cap">Organizational commitments</em>
-    <div class="commit">${commitments.map(([iconName, title, detail]) => stackNode(iconName, title, detail)).join('')}</div>
-    <div class="support"><strong>Optional process support: HVE-Core</strong><span>Tools do not supply organizational commitments.</span></div>
-    <em class="cap">Stop here or continue</em>`)
-    + routes(['<a href="#/deep-dive">Optional HVE-Core →</a>', '<a href="#/demo-install">Demos →</a>', '<button type="button" data-action="pause">Pause for questions</button>']),
+  'outcome-measures': `<figure class="outcome-scene"
+    aria-label="Measure the outcome, not the AI activity. Prompts sent, code generated, and seats activated show use. Useful value, quality, waiting, rework, experience, and total cost show the outcome.">
+    <div class="outcome-left tone-slate">
+      <p class="outcome-head"><strong>AI activity</strong><span>Shows use, not success</span></p>
+      <ul class="outcome-acts">${aiActivity.map(activityRow).join('')}</ul>
+    </div>
+    <span class="outcome-next" aria-hidden="true">→</span>
+    <div class="outcome-right">
+      <p class="outcome-head tone-purple"><strong>Outcome</strong><span>Shows what changed</span></p>
+      <ul class="outcome-grid">${outcomeMeasures.map(outcomeCard).join('')}</ul>
+    </div>
+  </figure>` + takeaway('Count outcomes, not activity.<br>' +
+    '<span class="outcome-why">Prompts and code volume show use, not success.</span>'),
+
+  'team-pass': `<figure class="close-scene"
+    aria-label="Explore HVE-Core through the official documentation, then use your role guide. Apply HVE together with one team on one real outcome, guided by the four numbered pillars. A live demo follows.">
+    <div class="close-ticket"><div class="close-pass">
+      <div class="close-main">
+        <p class="close-band"><span class="close-band-title"><span class="close-chip" aria-hidden="true">${icon('team')}</span>Team pass</span>
+          <span class="close-pillars" aria-hidden="true">${closePillars}</span></p>
+        <ul class="close-fields">${closeFields.map(closeField).join('')}</ul>
+      </div>
+      <div class="close-stub tone-slate">
+        <span class="close-chip" aria-hidden="true">${icon('layers')}</span>
+        <strong>Live demo</strong>
+        <span>See one change, end to end.</span>
+      </div>
+    </div></div>
+  </figure>` + takeaway('Start with one team and one real outcome.')
+    + routes(['<a href="#/demo-install">Demos →</a>', '<button type="button" data-action="pause">Pause for questions</button>']),
 };
