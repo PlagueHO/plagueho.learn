@@ -77,11 +77,126 @@ Keep toolkit logos, commands, and detailed pillar explanations off this slide. T
     "wave": "center-halo"
   },
   {"id":"constraints-pillars","part":"leadership","minutes":1.25,"title":"Four pillars address<br><em>the challenges exposed by AI-accelerated delivery.</em>","notes":"Talk track (about 25 seconds):\nThese are established delivery practices, brought together through Microsoft Industry Solutions Engineering (ISE) experience and lessons from applying Forward Deployed Engineering over recent years. They are grounded in customer co-engineering, not just theory. Together, they support the short customer-and-crew learning loop. We will explain each pillar on the next slides.\nPresenter guidance:\nAdvance four times with Right Arrow or Space to reveal one complete column per step, from left to right. Left Arrow reverses the sequence. The title and provenance line remain visible. Overview, print, and script failure show all four pillars; reduced motion keeps the steps without a fade. Keep this introduction brief; do not explain each pillar here. Exposed means that faster implementation makes existing delivery challenges more visible, not that AI creates every challenge. Credit ISE's delivery experience without claiming that ISE invented every underlying practice. The columns show useful connections, not an exclusive one-to-one mapping. Public sources support engineering practice and FDE experience, not proof that this four-pillar grouping guarantees outcomes. Retain required independent review. Do not attribute an additional three-step improvement cycle to the HVE white paper.","sources":["engineering","fde","accelerators"],"className":"","wave":"split-diagonal"},
-  {"id":"teams","part":"leadership","minutes":1.5,"title":"Pillar 1: Multidisciplinary teams.<br><em>Shared work, shared decisions.</em>","notes":"Pillar one: multidisciplinary teams. The crew and the customer co-own the outcome. Specialists join the work, with support and an escalation path.\nThis is different from separate departments coordinating handoffs. Shared responsibility means shared decisions.\nTeam shape follows the problem. You still need real expertise, clear risk owners, and separation of duties where it is required.\nSmall means focused. It is not a headcount target. And pairing should leave the customer team stronger.","sources":["engineering","fde"],"className":"","wave":"cover-cradle"},
-  {"id":"team-example","part":"leadership","minutes":1.5,"title":"Example: resolve the question<br><em>with the people who know.</em>","notes":"Return to slide 6. The business asks for an AI chatbot to reduce order calls. The carrier moves delivery from Friday to Monday, but the order record still says Friday. A correctly built chatbot repeats the stale date.\nBring the customer, support, carrier, order team, product, and engineering into the same investigation. They trace the update together instead of handing the request to another queue. Security expertise shapes access and data handling, with specialist support when needed.\nPropose that the order team owns passing carrier changes into the order record, with a named customer decision-maker. Record the evidence, next-action question, and gaps to investigate. This ownership must be agreed; it is not an observed customer decision. Ownership covers the information path, not just shipping the chatbot.\nCarry the open questions into Design Thinking. Do not select an interface before testing the need.\nCareful: this continues the selected teaching example, not completed discovery or measured results. Champions do not replace required independent assurance.","sources":["engineering","fde","rai"],"className":"","wave":"split-diagonal"},
-  {"id":"design-thinking","part":"leadership","minutes":1.5,"title":"Pillar 2: Design Thinking.<br><em>Validate value throughout.</em>","notes":"Pillar two: Design Thinking. Think of three spaces: problem, solution, implementation. You gather evidence, compare options, test assumptions, and go back to reframe when the evidence says so.\nIt is a continuous discipline. It is not a kickoff workshop, and it is not a way to turn a request into a backlog.\nThat is why the diagram is not a one-way funnel. And a prototype that looks convincing is not a validated concept.","sources":["dt","engineering"],"className":"","wave":"center-halo"},
-  {"id":"design-example","part":"leadership","minutes":1.5,"title":"Example: the chatbot is a request,<br><em>not the problem.</em>","notes":"Build on slide 13's crew check and slide 6's Friday-to-Monday case. The carrier changed the date, but the order record did not. The chatbot repeats Friday as specified. This is stale information, not a hallucination or coding defect.\nTest the customer need: can a delayed-order customer get a trustworthy revised date and know what to do next? Trace the carrier update with support and the order team, then test representative delayed-order tasks with customers. Those are proposed activities, not completed research.\nCompare ways to repair the update path and communicate the result. A tracking view, notification, or chatbot may help once the information is reliable. Changing the interface alone does not fix a stale order record. Evidence can change or stop an option.\nProposed criteria are a trustworthy revised date and clear next action. Repeat contacts per delayed order are a possible business measure to baseline, not a claimed reduction. Test assumptions again as the increment changes.\nCareful: no user tests have occurred here. Do not present a preferred interface, invented measurements, or a confirmed customer outcome.","sources":["engineering","dt"],"className":"","wave":"stream-progression"},
-  {"id":"accelerators","part":"leadership","minutes":1.5,"title":"Pillar 3: Reusable accelerators.<br><em>Production foundations from the start.</em>","notes":"Pillar three: reusable accelerators. Think of maintained starting points that already have infrastructure, identity, security, observability, tests, CI/CD, and operational guidance baked in. Nobody rebuilds that scaffolding every project.\nSomeone has to own and maintain them. And you still check the fit and the assurance you need.\nNote that HVE-Core is not in this diagram. It supports the process. It is not a production foundation.","sources":["accelerators","engineering"],"className":"","wave":"center-halo"},
+  {
+    id: 'teams',
+    part: 'leadership',
+    minutes: 1.5,
+    title: 'Pillar 1: Multidisciplinary teams.<br><em>Shared work, shared decisions.</em>',
+    notes: `Talk track (about 90 seconds):
+Start at the center: one jointly owned outcome. The crew and the customer are responsible for the same result, not separate lists of completed tasks.
+
+Read the left side. Customer and domain knowledge help frame the need. Product and engineering turn that understanding into choices and working increments. Relevant specialists join the work when their expertise is needed.
+
+Read the right side. A named decision owner makes responsibility clear. Shared team duties prevent work from falling between roles. Mentoring and pairing spread knowledge and leave the customer team stronger. Shared work does not mean everyone has the same skills.
+
+Now point to the long foundation: Continuous alignment. It sits under the whole diagram because alignment is part of every role's work. Keep the outcome, priorities, assumptions, and decisions clear as the work changes. Check understanding together and use feedback to adjust throughout delivery, not only at a final handoff.
+
+That is the takeaway: distributed expertise, not separate queues. The next slide shows why this changes the handoffs.
+
+Presenter guidance:
+Team shape follows the problem. Small means focused, not a headcount target.
+Keep support and escalation available. Required independent review and separation of duties stay. Alignment is not permission to bypass assurance.
+Agreement does not prove an assumption. Check it with relevant people and evidence.`,
+    sources: ['engineering', 'fde'],
+    className: '',
+    wave: 'cover-cradle',
+  },
+  {
+    "id": "team-example",
+    "part": "leadership",
+    "minutes": 1.5,
+    "title": "Expertise stays.<br><em>Handoffs change.</em>",
+    "notes": `Talk track (about 90 seconds):
+On the left, each person can finish their own task while someone else still lacks the context to use it. The joke is about the handoff, not the people.
+On the right, a small multidisciplinary team works closely around one shared goal. The customer and relevant experts help shape the work, rather than receiving it at the end.
+That changes three things. First, people can ask the right expert directly and check assumptions together. Decisions need not wait for another handoff.
+Second, sharing context and making choices together builds alignment and buy-in. Agreement develops through the work, not only at a final presentation.
+Third, checking and adjusting continues during delivery. New evidence can change a decision before more work depends on it.
+This can reduce waiting and rework. It is not a reason to remove expertise or required review. Leaders must provide time, access, and suitable decision authority.
+Next, Design Thinking asks whether those shared decisions solve the right problem.
+Presenter guidance:
+This original illustration is a teaching metaphor, not measured customer evidence, a fixed team roster, or a headcount target. The three people represent shared work, not three prescribed roles. Team composition follows the problem.
+Keep deep expertise, customer participation, named decision ownership, and access to specialists. Sharing context does not remove disagreements, guarantee faster decisions, or validate assumptions by consensus. Check relevant evidence with the people who know.
+Required independent review and separation of duties stay where needed. Close collaboration does not grant every team member every approval right or require constant customer availability.
+The three points explain how fewer unnecessary handoffs can help. They are not a claim that every handoff is harmful or that all outcomes improve automatically. Return to the order-status case on slide 15, not on every pillar slide.`,
+    "sources": ["engineering", "fde", "rai"],
+    "className": "",
+    "wave": "split-diagonal"
+  },
+  {
+    id: 'design-thinking',
+    part: 'leadership',
+    minutes: 1.5,
+    title: 'Pillar 2: Design Thinking. <em>Validate value throughout.</em>',
+    notes: `Talk track (about 90 seconds):
+AI can make coding faster and let more people build working software. It does not validate their requests. An assumption can reach implementation before customer or domain judgment catches up.
+
+In the first diamond, explore what people need. Focus the problem using evidence. A request is a proposed answer, not proof.
+
+In the second diamond, compare alternatives. Use faster coding for small prototypes and experiments. Test assumptions with customers and domain experts before more work depends on them.
+
+At implementation, test the working result in real use. Passing technical tests does not establish customer value. The forward arrows are a reading path, not three sign-off gates. Evidence can reopen any space.
+
+In our example, a chatbot can arrive faster and still say Friday when the carrier says Monday. Test whether the customer gets a trustworthy revised date and clear next action. Do not assume a new interface fixes the missing update.
+
+Leaders must provide customer access, expert time, and decision authority throughout delivery. Use AI speed to learn, not just deliver the request. Next, apply these questions to the chatbot.
+
+Presenter guidance:
+The presenter supplied this illustration of HVE's three learning spaces. It is not the Design Council's four-phase Double Diamond. Do not equate the models or read the forward arrows as irreversible stages.
+Lower coding barriers do not remove the need for customer, domain, security, or operational expertise. People with less coding experience still need access to qualified judgment and review.
+If using 10x-50x, state that it is a hypothetical illustration, not a measured result or universal productivity gain. Faster code generation does not establish faster end-to-end delivery.
+No customer tests or outcome validation have occurred in this teaching case. The green check in the artwork is illustrative, not evidence of acceptance. A convincing prototype is not a validated concept.
+Technical checks and required assurance still apply. Agreement alone is not customer evidence. Keep the HVE practice distinct from toolkit support: tools can structure the work, but cannot supply customer evidence or own acceptance.`,
+    sources: ['dt', 'engineering', 'designcouncil'],
+    className: '',
+    wave: 'center-halo',
+  },
+  {
+    id: 'design-example',
+    part: 'leadership',
+    minutes: 1.5,
+    title: 'Validate value,<br><em>not just delivery.</em>',
+    notes: `Talk track (about 90 seconds):
+Point to the request on the paper. We were asked to build an AI chatbot. The pencil shows that this is an option we can change, not a promise to ship that feature.
+
+Point to the customer task. Can the person get a trustworthy revised date and a clear next action? A working chatbot alone does not answer that question. Agree the criteria with customers and domain experts, then test representative tasks.
+
+The result must be able to change a decision. If the chatbot-only option does not help, change the approach or stop that option. If the evidence is unclear, investigate further. Keep responsibility for the customer outcome.
+
+The bottom line explains why this matters more with faster AI coding. An untested assumption can become more implementation before anyone checks it. Discovering that later can mean more rework. Use the speed for small tests and earlier decisions, not a larger commitment to an untested request.
+
+Leaders must give the team customer access, expert time, and permission to change the plan. Next, reusable foundations support the work we choose to pursue.
+
+Presenter guidance:
+This is a proposed customer task, not completed research. No user tests have occurred here. Do not imply that a chatbot has failed a test, that another interface has won, or that a customer outcome has been confirmed.
+Changing an interface alone does not repair stale information. Test the information and the customer's ability to act, not just whether the chatbot responds. Keep the date-change recap on earlier slides.
+The named customer or product decision owner makes and records the decision using the evidence. An AI agent does not independently cancel work or own acceptance. Stop an unsuitable option, not responsibility for the outcome.
+The pencil and paper illustrate a revisable request. They are not a completed approval or a validated concept. Required technical checks, specialist review, and assurance remain.
+Faster coding can increase rework when an assumption is wrong; this is a conditional risk, not a measured productivity or cost claim. Validation continues as the work and evidence change.`,
+    sources: ['engineering', 'dt'],
+    className: '',
+    wave: 'stream-progression',
+  },
+  {
+    "id": "accelerators",
+    "part": "leadership",
+    "minutes": 1.5,
+    "title": "Pillar 3: Reusable accelerators.<br><em>Broader capability for every team.</em>",
+    "notes": `Pillar three is reusable accelerators that extend a team's capability, not a staffing plan.
+A team may have one person or several, with any mix of disciplines. It cannot contain every specialist. It needs access to reviewed expertise without starting from scratch each time.
+Read the diagram left to right. AI agents, Agent Skills, tools, and organizational knowledge feed a shared library of agentic capabilities. The team draws on those capabilities for its work. Matching icons show the connection; they are not extra team members.
+These assets can carry methods, guidance, context, and checks from experts into repeatable tasks. They do not make every person an expert or remove specialist review.
+The leadership action is to build, collect, share, and govern useful accelerators. Give teams suitable access. Name owners. Keep sources and checks current. Adapt assets to the task. Retain required independent assurance and human acceptance.
+HVE-Core supplies practical examples across roles. It does not supply customer evidence, decision authority, or automatic assurance.
+Presenter guidance:
+Walk through the four asset types, the library, then the people and the action below. Five matching icons form an arc above the supplied people image. They illustrate capabilities the team can draw on, not a required set or extra staff. The two people are an illustration, not a team-size rule.
+The capability labels summarize the nine role paths and Utility category in the official repository's role index. Utility is a shared capability, not a job. Product management is an additional capability example supported by the TPM guide, not another dedicated role guide.
+Coverage varies by role and lifecycle stage. The Business Program Manager path is beta and uses shared capabilities. The cards are examples, not a claim that every capability is available as a ready-made agent. The final group leaves room for other capabilities.
+The library does not grant an agent access to all organizational knowledge. Select relevant, current, permitted information. Maintain owners, sources, checks, access controls, required independent assurance, and human acceptance. Faster work is not a measured productivity claim or a guarantee of correct output.`,
+    "sources": ["core", "guide", "roles"],
+    "className": "",
+    "wave": "center-halo",
+  },
   {"id":"accelerator-example","part":"leadership","minutes":1.5,"title":"Example: build the useful slice<br><em>on a prepared foundation.</em>","notes":"Continue the Friday-to-Monday order-status case. After validating the need and agreeing ownership, the crew can test a narrow carrier-update path on a maintained foundation. The changed work passes the revised date into the order record and supports the agreed customer next action. The interface remains an evidence-led choice.\nSeparate three things. Reuse an approved environment, identity, logging, and CI/CD only after checking fit and maintenance. Implement the carrier integration and business update rules for this increment. Then verify what reuse cannot establish: legitimate access, late or conflicting updates, deployment, operation, and recovery.\nTest a carrier change from Friday to Monday through to the customer-facing result. Decide with the order owner what happens when information is missing or arrives late. Foundation controls do not make a stale delivery date correct. The customer and operations must still accept the changed behavior.\nCareful: this is a proposed increment, not a completed integration. Reuse is not certification or a production-readiness guarantee. Retain required independent assurance.","sources":["accelerators","engineering"],"className":"","wave":"split-diagonal"},
   {"id":"lifecycle-ai","part":"leadership","minutes":1.5,"title":"Pillar 4: AI tooling.<br><em>Amplify the crew across the lifecycle.</em>","notes":"Pillar four: AI across the lifecycle, not just in the editor. Research, requirements, architecture, implementation, testing, docs, operations. Each with reviewed context and checks.\nExperts stay accountable. One distinction matters here: AI-assisted delivery is not an AI-powered product. Using AI to build something does not mean the thing you ship has AI in it.\nFor repeatable rules, prefer a deterministic check over asking a model. And people own intent, access, risk, and acceptance.","sources":["engineering","rai"],"className":"","wave":"stream-progression"},
   {"id":"lifecycle-example","part":"leadership","minutes":1.5,"title":"Example: carry evidence<br><em>through the whole increment.</em>","notes":"Follow the same Friday-to-Monday increment across the lifecycle. AI can help trace the carrier update from reviewed support evidence, draft acceptance criteria for a trustworthy date and next action, implement the agreed update path and deterministic tests, and draft a late-update runbook.\nEach output needs a qualified reviewer. The support lead checks the evidence against the actual case. The product owner checks the customer need and acceptance criteria with the customer. Engineering checks the update rules, implementation, and tests. Operations checks monitoring, recovery, and escalation with the order owner.\nA proposed test starts with Friday in the order record, applies the carrier's Monday update, and checks the resulting date and agreed next action. Tests must also cover the approved rules for late or conflicting updates. Passing tests alone does not prove customer value. Unresolved assumptions return to the crew instead of becoming business rules by default.\nThe original chatbot request does not require the final product to use AI. AI-assisted delivery can support a tracking view or notification too. AI does not validate its own work or own acceptance.\nCareful: these are proposed drafts and checks, not completed review evidence, released software, or measured results. Retain required independent assurance.","sources":["engineering","rai"],"className":"","wave":"dual-column-contrast"},

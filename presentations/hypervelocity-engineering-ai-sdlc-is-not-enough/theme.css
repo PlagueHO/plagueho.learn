@@ -141,6 +141,148 @@ button { font: inherit; color: inherit; cursor: pointer; }
   background: var(--warm);
 }
 
+/* Approved handoff comic and its three cause-and-effect points. */
+#team-example .team-story { display: flex; flex: 1; min-height: 0; flex-direction: column; justify-content: space-between; gap: 16px; }
+#team-example .team-figure { margin: 0; }
+#team-example .team-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; }
+#team-example .team-scene { min-width: 0; text-align: center; }
+#team-example .team-scene h3 { margin: 0; color: var(--warm-ink); font-size: 31px; font-weight: 600; line-height: 1.25; letter-spacing: -.02em; }
+#team-example .team-scene.shared h3 { color: var(--purple); }
+#team-example .team-scene-art { display: block; width: 100%; height: 208px; object-fit: contain; }
+#team-example .team-reasons { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin: 0; padding: 0; list-style: none; }
+#team-example .team-reasons strong { display: block; color: var(--purple); font-size: 27px; font-weight: 650; line-height: 1.2; }
+#team-example .team-reasons p { margin: 6px 0 0; font-size: 25px; line-height: 1.25; }
+
+/* Presenter-supplied artwork, compact title, and the AI-speed implication below. */
+#design-thinking h2 { font-size: 42px; white-space: nowrap; }
+#design-thinking .slide-content { top: 140px; bottom: 64px; }
+#design-thinking .dt-figure { position: relative; flex: 1; min-height: 0; margin: 0; }
+#design-thinking .dt-art {
+  position: absolute; inset: 0; display: block; width: 100%; height: 100%;
+  margin: 0; max-width: none; max-height: none; object-fit: contain;
+}
+#design-thinking .dt-context { color: var(--muted); font-size: 24px; font-weight: 400; }
+
+/* A request in pencil stays provisional; the decision and AI-speed risk sit below. */
+#design-example .value-figure {
+  display: flex; flex: 1; min-height: 0; align-items: center; justify-content: center; margin: 0;
+}
+#design-example .value-draft { position: relative; isolation: isolate; width: 1040px; transform: rotate(-.8deg); }
+#design-example .value-draft::before {
+  content: ""; position: absolute; z-index: -1; inset: 8px 8px -8px; transform: rotate(1.6deg);
+  border: 1px solid var(--edge); border-radius: 12px; background: var(--purple-tint);
+}
+#design-example .value-sheet {
+  position: relative; min-height: 252px; padding: 34px 40px; border: 1px solid var(--edge);
+  border-radius: 12px 48px 12px 12px; background: linear-gradient(145deg, #ffffff 60%, #fff5ed);
+  box-shadow: 0 10px 28px rgba(92, 45, 145, .10);
+}
+#design-example .value-sheet::after {
+  content: ""; position: absolute; top: -1px; right: -1px; width: 48px; height: 48px;
+  border-radius: 0 12px 0 10px; background: linear-gradient(45deg, #eddef9 48%, var(--paper) 50%);
+  box-shadow: -3px 3px 8px rgba(92, 45, 145, .08);
+}
+#design-example .value-request {
+  width: fit-content; max-width: 780px; margin: 0; padding: 0 4px; font-size: 44px;
+  font-weight: 650; line-height: 1.18;
+  background: linear-gradient(transparent 78%, #ffe1c1 78%, #ffe1c1 94%, transparent 94%);
+}
+#design-example .value-principle { max-width: 880px; margin: 24px 0 0; font-size: 30px; line-height: 1.3; }
+#design-example .value-principle strong { color: var(--purple); font-weight: 600; }
+#design-example .value-pencil {
+  position: absolute; top: -18px; right: -14px; display: block; width: 210px; height: 210px;
+  overflow: visible; transform: rotate(-4deg); filter: drop-shadow(3px 6px 3px rgba(92, 45, 145, .13));
+}
+#design-example .takeaway { font-size: 28px; }
+#design-example .value-why {
+  display: inline-block; margin-top: 6px; color: var(--muted); font-size: 26px; font-weight: 400;
+}
+
+#accelerators .accelerator-figure {
+  display: grid; grid-template-columns: 196px 36px 600px 36px 252px;
+  flex: 1; min-height: 0; align-items: center; margin: 0 16px;
+}
+#accelerators .accelerator-assets {
+  display: grid; gap: 16px;
+}
+#accelerators h3 { margin: 0; color: var(--purple); font-weight: 600; }
+#accelerators .accelerator-assets h3 { font-size: 25px; line-height: 1.15; }
+#accelerators .accelerator-asset,
+#accelerators .accelerator-knowledge {
+  display: flex; align-items: center; gap: 10px; min-width: 0;
+  font-size: 23px; line-height: 1.15;
+}
+#accelerators .accelerator-asset-art,
+#accelerators .accelerator-book {
+  display: block; width: 42px; height: 46px; flex: none; padding: 4px; margin: 0;
+  border-radius: 12px; background: #ffffff; box-shadow: 0 4px 10px rgba(92,45,145,.08);
+}
+#accelerators .accelerator-knowledge { font-size: 20px; }
+#accelerators .accelerator-arrow {
+  display: block; width: 36px; height: 40px; margin: 0; fill: none; stroke: var(--purple);
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+#accelerators .accelerator-library {
+  height: 308px; padding: 12px 16px; border: 1px solid var(--edge); border-radius: 18px;
+  background: #f9f6fe; box-shadow: 0 7px 18px rgba(92,45,145,.10);
+}
+#accelerators .accelerator-library-heading { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+#accelerators .accelerator-library-heading h3 { font-size: 24px; line-height: 1.15; }
+#accelerators .accelerator-library-icon {
+  display: grid; place-items: center; width: 40px; height: 44px; flex: none;
+}
+#accelerators .accelerator-capabilities {
+  display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 4px 12px;
+  margin: 0; padding: 0; list-style: none;
+}
+#accelerators .accelerator-capabilities li {
+  display: grid; grid-template-columns: 32px minmax(0,1fr); align-items: center; gap: 8px;
+  min-width: 0; min-height: 52px; border-radius: 8px; background: var(--cap-tint);
+  box-shadow: 0 3px 7px rgba(92,45,145,.06); font-size: 21px; line-height: 1.1;
+}
+#accelerators .tone-purple { --cap-ink: #5c2d91; --cap-tint: #eee5fa; --cap-edge: #cbb6e8; }
+#accelerators .tone-teal { --cap-ink: #1b786e; --cap-tint: #dcefe9; --cap-edge: #b1d6c9; }
+#accelerators .tone-warm { --cap-ink: #9c3e08; --cap-tint: #ffead7; --cap-edge: #ecc7a8; }
+#accelerators .accelerator-capability-icon {
+  display: grid; place-items: center; width: 32px; height: 32px; margin-left: 2px;
+  border-radius: 50%; background: #ffffff; color: var(--cap-ink);
+}
+#accelerators .accelerator-capability-icon .ico {
+  display: block; width: 24px; height: 24px; margin: 0; color: inherit;
+}
+#accelerators .accelerator-team {
+  position: relative; height: 324px; background: none; border: 0; border-radius: 0; box-shadow: none;
+}
+#accelerators .accelerator-team h3 {
+  position: absolute; top: 8px; left: 0; right: 0; font-size: 27px; line-height: 1.15; text-align: center;
+}
+#accelerators .accelerator-team-icons {
+  position: absolute; top: 44px; left: 0; width: 252px; height: 96px;
+  margin: 0; padding: 0; list-style: none;
+}
+#accelerators .accelerator-team-icons li { position: absolute; }
+#accelerators .accelerator-team-icons li:nth-child(1) { top: 58px; left: 5px; }
+#accelerators .accelerator-team-icons li:nth-child(2) { top: 16px; left: 54px; }
+#accelerators .accelerator-team-icons li:nth-child(3) { top: 0; left: 108px; }
+#accelerators .accelerator-team-icons li:nth-child(4) { top: 16px; left: 162px; }
+#accelerators .accelerator-team-icons li:nth-child(5) { top: 58px; left: 211px; }
+#accelerators .accelerator-team-icons .accelerator-capability-icon {
+  width: 36px; height: 36px; margin: 0; border: 1px solid var(--cap-edge);
+  box-shadow: 0 4px 9px rgba(92,45,145,.10);
+}
+#accelerators .accelerator-team-art {
+  position: absolute; top: 130px; left: 0; display: block; width: 252px; height: 152px;
+  margin: 0; max-width: none; max-height: none; object-fit: contain;
+}
+#accelerators .accelerator-team p {
+  position: absolute; right: 0; bottom: 8px; left: 0; margin: 0;
+  color: #235d53; font-size: 20px; line-height: 1.2; text-align: center;
+}
+#accelerators .takeaway { font-size: 28px; }
+#accelerators .accelerator-why {
+  display: inline-block; margin-top: 6px; color: var(--muted); font-size: 26px; font-weight: 400;
+}
+
 /* Four structural pillars, revealed one complete challenge-to-practice column at a time. */
 #constraints-pillars .pillar-figure { gap: 0; }
 #constraints-pillars .pillar-columns { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; height: 306px; }

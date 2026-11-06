@@ -48,6 +48,8 @@ The Continuous Integration workflow builds and tests this deck on Ubuntu for pul
 
 ## Present
 
+The shared header reads "Hypervelocity Engineering • Why adding AI to the SDLC is not enough" and links to the title slide. The Microsoft cover branding and hidden headers on section separators remain unchanged.
+
 | Action | Control |
 |---|---|
 | Next or previous slide or phase | Arrow keys, Space, or Page Up and Page Down |
@@ -100,7 +102,7 @@ The two-panel comparison stays. Speaker notes explain the whole scenario and dis
 
 The failure predates AI. Faster implementation can let more unvalidated requests reach delivery while the customer problem remains unsolved. The response is to use that speed for learning and to own the customer outcome, not slow development.
 
-Slides 13, 15, 17, and 19 use this same Friday-to-Monday case. They show proposed update-path ownership, customer-success tests, a carrier-update increment on reused controls, and AI-assisted drafts checked by support, product, engineering, and operations. No customer research, completed integration, review result, or measured gain is claimed. The optional manufacturing tutorial stays separate.
+Slides 17 and 19 still use this Friday-to-Monday case pending individual review. They show a proposed carrier-update increment on reused controls and AI-assisted drafts checked by support, product, engineering, and operations. No customer research, completed integration, review result, or measured gain is claimed. The optional manufacturing tutorial stays separate.
 
 Slide 7 uses two wheels from slide 5's visual language. The PM/SME/customer stays in the slower design/planning loop while the agent makes an assumption. Each fast turn copies the same unvalidated rule into behaviour, tests, and later increments. A curved return arc shows that rule becoming the starting point for more work.
 
@@ -132,7 +134,19 @@ Slide 11 uses selected B: four structural pillars without numbers. Advance four 
 
 The title and ISE/FDE credit stay visible. Overview, print, and script failure show all four pillars. Reduced motion keeps the click sequence without a fade. The brief notes credit delivery experience rather than explain each pillar. The associations are not exclusive one-to-one solutions.
 
-Slides 12-19 carry a faint bottom-left pillar number above the swirl and below all content. Each pair uses the same number: 1, 1, 2, 2, 3, 3, 4, 4. The numeral is 585px at 7% opacity and is hidden from accessibility reading. Slides 12, 14, 16, and 18 use "Pillar n: Title." with a subtitle on the next line. Example-slide headings stay separate.
+Slides 12-19 carry a faint bottom-left pillar number above the swirl and below all content. Each pair uses the same number: 1, 1, 2, 2, 3, 3, 4, 4. The numeral is 585px at 7% opacity and is hidden from accessibility reading. Slides 12, 16, and 18 use "Pillar n: Title." with a subtitle on the next line. Slide 14 uses a compact one-line title. Example-slide headings stay separate.
+
+Slide 14 keeps the complete presenter-supplied Design Thinking image, with smaller embedded labels. The message below it explains why the practice matters when coding gets faster: use AI speed to test assumptions, not build the wrong thing faster. Lower coding barriers do not replace customer and domain expertise.
+
+Its 90-second notes connect the three spaces to the chatbot's stale date and the customer's intended outcome. Leaders must provide customer access, expert time, and decision authority. Forward arrows are a reading path, not fixed gates. The 10x-50x range is a hypothetical illustration, not a measured result.
+
+Slide 15 uses the selected paper-and-pencil treatment. Its body introduces one principle: test the requested chatbot against the customer's task. The bottom line gives the action and why it matters with faster AI coding: test value early, then change or stop options that do not help. Wrong assumptions can mean more rework.
+
+The 90-second notes retain the decision owner, customer evidence, and required assurance. The test is proposed, not completed. Stopping an option does not remove responsibility for the customer outcome. The full date-change recap is not repeated. Visible text and notes do not use em dashes.
+
+Slide 16 uses the selected A2 capability library. AI agents, Agent Skills, tools, and organizational knowledge feed "Agentic capabilities." Matching icons form an arc above the supplied team image. There is no oval behind it. The message is to give every team access to reusable expertise, not add a person for every role.
+
+The capability examples draw on the [HVE-Core role index](https://github.com/microsoft/hve-core/blob/main/docs/hve-guide/roles/README.md) and TPM guide. They do not claim ready-made coverage for every capability. Notes retain access, maintenance, adaptation, and required assurance.
 
 The leadership close includes public resources and routes to questions, the optional deep dive, or demos. The demo recap does not claim that a system reached production.
 
@@ -153,7 +167,7 @@ The leadership close includes public resources and routes to questions, the opti
 | `sources.mjs` | Public sources for each slide |
 | `DEMO-SCRIPT.md` | Live demo runbook for slides 36-40: time plan, commands, prompts, and fallbacks |
 | `waves.mjs` | Static Flowing blend background with slide-scoped SVG definitions |
-| `images/` | Local presenter photo, copied into the build |
+| `images/` | Local presenter photo, presenter-supplied team and Design Thinking PNGs, and earlier original illustrations, copied into the build |
 | `index.html` | Accessible presentation shell and build insertion marker |
 | `theme.css` | Light theme, 1280 by 720 layout grid, diagram styles, and print rules |
 | `presentation.mjs` | Reveal.js settings and footer button actions |

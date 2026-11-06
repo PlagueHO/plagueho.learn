@@ -33,6 +33,7 @@ test('40 slides preserve the 30 + 30 minute structure', () => {
   assert.equal(slides[25].id, 'deep-dive');
   assert.equal(slides[35].id, 'demo-install');
   assert.equal(slides[39].id, 'recap');
+  assert.doesNotMatch(renderSlides(), /\u2014|&mdash;|&#(?:8212|x2014);/i);
 });
 
 test('slide order follows the approved narrative and pillar examples', () => {
@@ -52,14 +53,155 @@ test('slide order follows the approved narrative and pillar examples', () => {
   assert.doesNotMatch(byId.hve.body, /cover-sub|cover-scope/);
   assert.match(byId.hve.notes, /when building becomes faster than deciding/);
   assert.match(text(byId['dashboard-request'].body), /Reduce order calls\.\s+Build an AI chatbot/);
-  assert.match(text(byId['team-example'].body), /Own the carrier update path/);
-  assert.match(text(byId['design-example'].body), /Compare options/);
+  assert.match(text(byId['team-example'].body), /Decide sooner/);
+  assert.match(text(byId['design-example'].body), /Change or stop options that do not help/);
   assert.match(text(byId['accelerator-example'].body), /Still verify/);
   assert.match(text(byId['lifecycle-ai'].body), /AI-powered product/);
 });
 
-test('pillar examples carry the same order-status case into distinct reviewed practices', () => {
-  for (const id of ['team-example', 'design-example', 'accelerator-example', 'lifecycle-example']) {
+test('pillar details explain distinct practices while unreviewed examples retain the order-status case', async () => {
+  const teams = byId.teams;
+  assert.match(teams.body, /<div class="band purple"><span>Continuous alignment<\/span><\/div>/);
+  assert.doesNotMatch(teams.body, /Support \+ escalation|Independent assurance|class="drop/);
+  assert.match(teams.notes, /center[\s\S]*left side[\s\S]*right side[\s\S]*long foundation: Continuous alignment/);
+  assert.match(teams.notes, /outcome, priorities, assumptions, and decisions/);
+  assert.match(teams.notes, /Required independent review and separation of duties stay/);
+  assert.ok(teams.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
+  const design = byId['design-thinking'];
+  assert.equal(design.minutes, 1.5);
+  assert.equal(design.title, 'Pillar 2: Design Thinking. <em>Validate value throughout.</em>');
+  for (const phrase of ['Customer evidence can change any decision.', 'Explore', 'Focus', 'Test in real use',
+    'Problem', 'Are we solving the right problem?', 'Solution', 'Does this idea help people?',
+    'Implementation', 'Does it work in real use?',
+    'Use AI speed to test assumptions, not build the wrong thing faster.',
+    'Lower coding barriers do not replace customer and domain expertise.']) {
+    assert.ok(design.body.includes(phrase), phrase);
+  }
+  assert.match(design.body,
+    /aria-label="Design Thinking: customer evidence can reopen the Problem, Solution, and Implementation spaces"/);
+  assert.match(design.body,
+    /src="\.\/images\/design-thinking-customer-evidence\.png" width="1536" height="1024"[^>]+alt="[^"]+"/);
+  assert.doesNotMatch(design.body, /fragment|Desirability|Viability|10x|50x|two-way|dt-space|method-note/);
+  const designArt = await readFile(new URL('./images/design-thinking-customer-evidence.png', import.meta.url));
+  assert.deepEqual(designArt.subarray(0, 8), Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
+  assert.equal(designArt.toString('ascii', 12, 16), 'IHDR');
+  assert.equal(designArt.readUInt32BE(16), 1536);
+  assert.equal(designArt.readUInt32BE(20), 1024);
+  assert.deepEqual(await readFile(new URL('./dist/images/design-thinking-customer-evidence.png', import.meta.url)),
+    designArt);
+  assert.match(design.notes, /first diamond[\s\S]*second diamond[\s\S]*implementation[\s\S]*forward arrows/);
+  assert.match(design.notes, /not three sign-off gates/);
+  assert.match(design.notes, /Use faster coding for small prototypes and experiments/);
+  assert.match(design.notes, /customers and domain experts/);
+  assert.match(design.notes, /chatbot[\s\S]*Friday[\s\S]*Monday[\s\S]*trustworthy revised date and clear next action/);
+  assert.match(design.notes, /Leaders must provide customer access, expert time, and decision authority/);
+  assert.match(design.notes, /10x-50x[\s\S]*hypothetical illustration, not a measured result/);
+  assert.match(design.notes, /not the Design Council's four-phase Double Diamond/);
+  assert.match(design.notes, /Technical checks and required assurance still apply/);
+  assert.ok(design.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
+  assert.ok(design.sources.includes('designcouncil'));
+  const team = byId['team-example'];
+  assert.equal(team.title, 'Expertise stays.<br><em>Handoffs change.</em>');
+  assert.equal(team.minutes, 1.5);
+  assert.equal((team.body.match(/<li>/g) ?? []).length, 3);
+  for (const phrase of ['My part is done.', 'Our outcome works.', 'Decide sooner', 'Ask experts directly.',
+    'Check assumptions together.', 'Build alignment and buy-in', 'Share context and decisions.',
+    'Build agreement as you work.', 'Adjust continuously', 'not after a long delivery cycle.',
+    'Keep the expertise and required review. Shorten the feedback loop.']) {
+    assert.ok(text(team.body).includes(phrase), phrase);
+  }
+  assert.doesNotMatch(team.body, /Friday|Monday|A useful customer outcome|fragment/);
+  assert.match(team.body, /aria-label="Why close teamwork helps"/);
+  for (const [name, width, height] of [['my-part-is-done', 1536, 1024], ['shared-goal', 1024, 1024]]) {
+    assert.match(team.body, new RegExp(
+      `src="\\./images/${name}\\.png" width="${width}" height="${height}"[^>]+alt="[^"]+"`));
+    const asset = await readFile(new URL(`./images/${name}.png`, import.meta.url));
+    assert.deepEqual(asset.subarray(0, 8), Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
+    assert.equal(asset.toString('ascii', 12, 16), 'IHDR');
+    assert.equal(asset.readUInt32BE(16), width);
+    assert.equal(asset.readUInt32BE(20), height);
+    assert.deepEqual(await readFile(new URL(`./dist/images/${name}.png`, import.meta.url)), asset);
+  }
+  assert.match(team.notes, /small multidisciplinary team/);
+  assert.match(team.notes, /not measured customer evidence/);
+  assert.match(team.notes, /Required independent review and separation of duties stay/);
+  assert.ok(team.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
+  const value = byId['design-example'];
+  assert.equal(value.title, 'Validate value,<br><em>not just delivery.</em>');
+  assert.equal(value.minutes, 1.5);
+  for (const phrase of ['Build an AI chatbot.', "Test the option against the customer's task:",
+    'a trustworthy revised date and a clear next action.',
+    'Test value early. Change or stop options that do not help.',
+    'Faster AI coding can mean more rework when the idea is wrong.']) {
+    assert.ok(text(value.body).includes(phrase), phrase);
+  }
+  assert.equal((value.body.match(/<p class="value-principle">/g) ?? []).length, 1);
+  assert.equal((value.body.match(/class="takeaway"/g) ?? []).length, 1);
+  assert.match(value.body, /<svg class="value-pencil"[^>]+aria-hidden="true" focusable="false"/);
+  assert.doesNotMatch(value.body,
+    /Friday|Monday|fragment|value-hypothesis|value-decision|value-test|promise to ship|Validation must/);
+  assert.doesNotMatch(value.notes, /Friday|Monday/);
+  assert.match(value.notes, /No user tests have occurred here/);
+  assert.match(value.notes, /named customer or product decision owner makes and records the decision/);
+  assert.match(value.notes, /Stop an unsuitable option, not responsibility for the outcome/);
+  assert.match(value.notes, /conditional risk, not a measured productivity or cost claim/);
+  assert.ok(value.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
+  assert.ok(!value.sources.includes('tutorial'));
+  const accelerators = byId.accelerators;
+  assert.equal(accelerators.title, 'Pillar 3: Reusable accelerators.<br><em>Broader capability for every team.</em>');
+  assert.equal(accelerators.minutes, 1.5);
+  for (const phrase of ['AI agents', 'Agent Skills', 'Tools', 'Organizational', 'knowledge and guidance',
+    'Security', 'SRE / Operations', 'UX design', 'Architecture', 'Technical programs',
+    'Business programs', 'Data science', 'Engineering', 'Contributor onboarding',
+    'Cross-role utilities', 'Product management', 'Other capabilities', 'Agentic capabilities',
+    'One small team', 'People stay accountable.', 'Give every team access to reusable expertise.',
+    'Build, collect, share, and govern capabilities teams can draw on.']) {
+    assert.ok(text(accelerators.body).includes(phrase), phrase);
+  }
+  const capabilityList = accelerators.body.match(/<ul class="accelerator-capabilities"[^>]*>([\s\S]*?)<\/ul>/)?.[1];
+  assert.ok(capabilityList);
+  assert.equal((capabilityList.match(/<li class=/g) ?? []).length, 12);
+  assert.equal((capabilityList.match(/<svg class="ico"/g) ?? []).length, 12);
+  assert.equal((capabilityList.match(/aria-hidden="true" focusable="false"/g) ?? []).length, 12);
+  const librarySymbols = [...capabilityList.matchAll(/data-capability="([^"]+)"/g)].map(match => match[1]);
+  assert.equal(new Set(librarySymbols).size, 12);
+  assert.match(accelerators.body, /aria-labelledby="accelerator-library-title"/);
+  assert.match(accelerators.body, /<h3 id="accelerator-library-title">Agentic capabilities<\/h3>/);
+  const teamGroup = accelerators.body.match(/<div class="accelerator-team"[^>]*>([\s\S]*?)<\/div>/)?.[1];
+  assert.ok(teamGroup);
+  const teamIcons = teamGroup.match(/<ul class="accelerator-team-icons"[^>]*>([\s\S]*?)<\/ul>/)?.[1];
+  assert.ok(teamIcons);
+  const teamSymbols = [...teamIcons.matchAll(/data-capability="([^"]+)"/g)].map(match => match[1]);
+  assert.deepEqual(teamSymbols, ['shield', 'pencil', 'layers', 'dashboard', 'target']);
+  assert.ok(teamSymbols.every(symbol => librarySymbols.includes(symbol)));
+  assert.equal((teamIcons.match(/role="img" aria-label="[^"]+ capability"/g) ?? []).length, 5);
+  assert.match(teamGroup, /class="accelerator-team-art" src="\.\/images\/team-with-ai-capabilities\.png"/);
+  assert.match(teamGroup, /<img[^>]+alt="[^"]+"/);
+  assert.doesNotMatch(text(teamGroup), /Security|Data science/);
+  assert.match(accelerators.body, /class="accelerator-arrow"[^>]+aria-hidden="true" focusable="false"/);
+  assert.doesNotMatch(accelerators.body, /Examples of capabilities|accelerator-team-note|accelerator-roles/);
+  assert.match(accelerators.body, /class="accelerator-book"[^>]+aria-hidden="true" focusable="false"/);
+  const acceleratorArt = await readFile(new URL('./images/team-with-ai-capabilities.png', import.meta.url));
+  assert.deepEqual(acceleratorArt.subarray(0, 8), Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
+  assert.equal(acceleratorArt.readUInt32BE(16), 1536);
+  assert.equal(acceleratorArt.readUInt32BE(20), 1024);
+  assert.deepEqual(await readFile(new URL('./dist/images/team-with-ai-capabilities.png', import.meta.url)),
+    acceleratorArt);
+  assert.doesNotMatch(accelerators.body, /\bFund\b|cutaway|Secure platform baseline|Engineering baseline|fragment/);
+  assert.match(accelerators.notes, /build, collect, share, and govern/);
+  assert.match(accelerators.notes, /Utility is a shared capability, not a job/);
+  assert.match(accelerators.notes, /Coverage varies by role and lifecycle stage/);
+  assert.match(accelerators.notes, /required independent assurance/);
+  assert.match(accelerators.notes, /A team may have one person or several, with any mix of disciplines/);
+  assert.match(accelerators.notes, /not extra team members/);
+  assert.match(accelerators.notes, /They do not make every person an expert or remove specialist review/);
+  assert.match(accelerators.notes, /Five matching icons form an arc above the supplied people image/);
+  assert.doesNotMatch(accelerators.notes, /HVE-Core is not in this diagram/);
+  assert.ok(accelerators.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
+  assert.ok(accelerators.sources.includes('core'));
+  assert.ok(accelerators.sources.includes('guide'));
+  assert.ok(accelerators.sources.includes('roles'));
+  for (const id of ['accelerator-example', 'lifecycle-example']) {
     const slide = byId[id];
     assert.match(text(slide.body), /Friday becomes Monday/);
     assert.match(slide.notes, /Friday/);
@@ -69,12 +211,6 @@ test('pillar examples carry the same order-status case into distinct reviewed pr
     assert.equal(slide.minutes, 1.5);
     assert.ok(!slide.sources.includes('tutorial'));
   }
-  assert.match(text(byId['team-example'].body), /Owner: order team/);
-  assert.match(byId['team-example'].notes, /ownership must be agreed/);
-  assert.match(byId['design-example'].title, /chatbot is a request/);
-  assert.match(text(byId['design-example'].body), /trustworthy revised date \+ clear next action/);
-  assert.match(byId['design-example'].notes, /no user tests have occurred/i);
-  assert.match(byId['design-example'].notes, /not a hallucination or coding defect/);
   assert.match(text(byId['accelerator-example'].body), /Changed: carrier update to order record/);
   assert.match(text(byId['accelerator-example'].body), /Reused.*Approved environment.*Identity.*Logging.*CI\/CD/);
   assert.match(byId['accelerator-example'].notes, /Foundation controls do not make a stale delivery date correct/);
@@ -327,8 +463,11 @@ test('pillar details share the approved bottom-left number and numbered introduc
     assert.match(section, /x="64" y="700" text-anchor="start"/);
     assert.ok(section.indexOf('class="slide-wave"') < section.indexOf('class="pillar-backdrop"'));
     assert.ok(section.indexOf('class="pillar-backdrop"') < section.indexOf('<h2>'));
-    if (index % 2 === 0) assert.match(byId[id].title, new RegExp(`^Pillar ${number}: [^<]+\\.<br><em>[^<]+\\.</em>$`));
-    else assert.match(byId[id].title, /^Example:/);
+    if (index % 2 === 0) {
+      const separator = id === 'design-thinking' ? ' ' : '<br>';
+      assert.match(byId[id].title, new RegExp(`^Pillar ${number}: [^<]+\\.${separator}<em>[^<]+\\.</em>$`));
+    }
+    else if (!['team-example', 'design-example'].includes(id)) assert.match(byId[id].title, /^Example:/);
   }
   const theme = await readFile(new URL('./theme.css', import.meta.url), 'utf8');
   assert.match(theme, /\.pillar-backdrop \{[^}]*z-index: 1;[^}]*opacity: 0.07;[^}]*pointer-events: none;/);
@@ -1182,8 +1321,15 @@ test('readiness and shared motion ship locally with complete no-script meaning',
   assert.match(presentation, /setupReadiness\(deck\)/);
 });
 
-test('presentation title and single-subtitle cover match source and build', async () => {
+test('presentation title, shared headers, and single-subtitle cover match source and build', async () => {
   const title = 'Hypervelocity Engineering - Why adding AI to the SDLC is not enough';
+  const headerTitle = 'Hypervelocity Engineering • Why adding AI to the SDLC is not enough';
+  const checkHeaders = html => {
+    const headers = [...html.matchAll(/<a class="wordmark" href="#\/hve">([\s\S]*?)<\/a>/g)];
+    assert.equal(headers.length, slides.length - 1);
+    for (const [, label] of headers) assert.equal(text(label).replace(/\s+/g, ' '), headerTitle);
+    assert.doesNotMatch(html, /Expert teams\. Shared outcomes\./);
+  };
   const pkg = JSON.parse(await readFile(new URL('./package.json', import.meta.url), 'utf8'));
   assert.equal(pkg.presentation.title, title);
   assert.equal(text(byId.hve.title).replace(/\s+/g, ' '), 'Hypervelocity Engineering Why adding AI to the SDLC is not enough');
@@ -1191,10 +1337,14 @@ test('presentation title and single-subtitle cover match source and build', asyn
   assert.match(theme, /\.opening h2 em\s*\{[^}]*font-style:\s*normal;/);
   const heading = `<h2>${byId.hve.title}</h2>`;
   assert.ok(renderSlides().includes(heading));
+  checkHeaders(renderSlides());
   for (const file of ['./index.html', './dist/index.html']) {
     const html = await readFile(new URL(file, import.meta.url), 'utf8');
     assert.equal(html.match(/<title>([^<]+)<\/title>/)?.[1], title, file);
-    if (file === './dist/index.html') assert.ok(html.includes(heading));
+    if (file === './dist/index.html') {
+      assert.ok(html.includes(heading));
+      checkHeaders(html);
+    }
   }
 });
 
@@ -1407,6 +1557,17 @@ test('preview serves HTML and modules, rejects missing files, bad URLs, and writ
   assert.match(photo.headers.get('content-type'), /image\/jpeg/);
   assert.deepEqual(Buffer.from(await photo.arrayBuffer()),
     await readFile(new URL('./dist/images/daniel-scott-raynsford.jpg', import.meta.url)));
+  for (const name of ['my-part-is-done.png', 'shared-goal.png']) {
+    const image = await fetch(`${base}/images/${name}`);
+    assert.equal(image.status, 200);
+    assert.equal(image.headers.get('content-type'), 'image/png');
+    assert.deepEqual(Buffer.from(await image.arrayBuffer()),
+      await readFile(new URL(`./dist/images/${name}`, import.meta.url)));
+    const head = await fetch(`${base}/images/${name}`, { method: 'HEAD' });
+    assert.equal(head.status, 200);
+    assert.equal(head.headers.get('content-type'), 'image/png');
+    assert.equal((await head.arrayBuffer()).byteLength, 0);
+  }
   for (const path of ['/vendor%2freveal.mjs', '/vendor%5creveal.mjs']) {
     const asset = await fetch(`${base}${path}`);
     assert.equal(asset.status, 200, path);
