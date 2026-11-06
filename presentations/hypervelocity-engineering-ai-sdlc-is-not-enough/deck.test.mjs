@@ -1564,7 +1564,7 @@ test('the customer stays inside the loop and the team pass works alone', () => {
   assert.doesNotMatch(`${pass.title} ${pass.body} ${pass.notes}`, /Optional session|Not required to board/);
 });
 
-test('the three chapters label every leadership header and mark each divider', () => {
+test('chapter labels mark leadership dividers and open the HVE-Core section', () => {
   assert.deepEqual(chapters, ['The outcome gap', 'How HVE changes the work', 'Making it real']);
   const rendered = renderSlides();
   assert.equal((rendered.match(/<a href="#\/hve"[^>]*>Introduction to HVE<\/a>/g) ?? []).length, slides.length);
@@ -1594,7 +1594,18 @@ test('the three chapters label every leadership header and mark each divider', (
     assert.ok(html.indexOf('class="kicker"') < html.indexOf('<h2>'));
     assert.equal(byId[id].className, 'section-divider');
   }
-  assert.equal((rendered.match(/class="kicker"/g) ?? []).length, 3);
+  assert.equal((rendered.match(/<p class="kicker"><b>Chapter/g) ?? []).length, 4);
+  const deepDive = byId['deep-dive'];
+  assert.equal(deepDive.chapter, 1);
+  assert.equal(deepDive.chapterCount, 1);
+  assert.equal(deepDive.className, 'section-divider');
+  assert.equal(deepDive.title, 'Diving deeper into HVE-Core');
+  const deepDiveHtml = section('deep-dive');
+  const deepDiveKicker = deepDiveHtml.match(/<p class="kicker">([\s\S]*?)<\/p>/)[1];
+  assert.equal(text(deepDiveKicker.match(/<b>([\s\S]*?)<\/b>/)[1]), 'Chapter 1');
+  assert.equal((deepDiveKicker.match(/<u class="on"><\/u>/g) ?? []).length, 1);
+  assert.equal((deepDiveKicker.match(/<u/g) ?? []).length, 1);
+  assert.ok(deepDiveHtml.indexOf('class="kicker"') < deepDiveHtml.indexOf('<h2>'));
   const deeper = section('deep-dive').match(/<header class="chrome-top">[\s\S]*?<\/header>/)[0];
   assert.match(deeper, /<span class="part-label"><b>Diving deeper into HVE-Core<\/b><\/span>/);
   const demos = section('demo-install').match(/<header class="chrome-top">[\s\S]*?<\/header>/)[0];
