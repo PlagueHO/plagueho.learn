@@ -20,6 +20,9 @@ const ICONS = {
   check: '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16.5 9.5"/>',
   search: '<circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5.5 5.5"/>',
   flag: '<path d="M6 21V4M6 5h11l-2 4 2 4H6"/>',
+  pencil: '<path d="M4 16.5L15.5 5a2.1 2.1 0 0 1 3 3L7 19.5 3.5 21zM13.5 7l3 3"/>',
+  plus: '<path d="M12 5v14M5 12h14"/><circle cx="12" cy="12" r="10"/>',
+  book: '<path d="M12 5Q8 2 3 4v15q5-2 9 2 4-4 9-2V4q-5-2-9 1z"/><path d="M12 5v16M6 8l3 .5M6 12l3 .5M15 8.5l3-.5M15 12.5l3-.5"/>',
 };
 
 export function icon(name, cls = '') {

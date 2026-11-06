@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 280">
+  <title>Work passes over a wall without shared context</title>
+  <ellipse cx="270" cy="253" rx="236" ry="13" fill="#ede5f8"/>
+  <g transform="translate(94 83) scale(.95)">
+    <path d="M-12 95L-16 146M12 95L16 146" stroke="#292239" stroke-width="15" stroke-linecap="round"/>
+    <path d="M-24 42Q0 29 24 42L22 100H-22Z" fill="#7651aa"/>
+    <path d="M-24 47L-47 13M24 47L47 13" fill="none" stroke="#e6bc9d" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cy="3" r="22" fill="#e6bc9d"/>
+    <path d="M-22 0Q-25-25 0-23Q22-24 23 0Q8-13-7-10Z" fill="#292239"/>
+    <path d="M-7 9Q0 16 7 9" fill="none" stroke="#292239" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <path d="M205 245V67H291V245" fill="#c3b0d7" stroke="#aa94c2" stroke-width="3"/>
+  <path d="M205 105H291M205 144H291M205 183H291M248 67V105M232 105V144M263 144V183M233 183V221" stroke="#aa94c2" stroke-width="3"/>
+  <g transform="rotate(18 283 33)">
+    <g transform="translate(256 11)">
+      <rect width="58" height="41.76" rx="4" fill="#e1ae6d"/>
+      <path d="M29 0V41.76" stroke="#fff1d2" stroke-width="9.28"/>
+    </g>
+  </g>
+  <path d="M189 30Q222 3 247 15" fill="none" stroke="#b098ca" stroke-width="4" stroke-linecap="round"/>
+  <g transform="translate(427 83) scale(.95)">
+    <path d="M-12 95L-16 146M12 95L16 146" stroke="#292239" stroke-width="15" stroke-linecap="round"/>
+    <path d="M-24 42Q0 29 24 42L22 100H-22Z" fill="#218d88"/>
+    <path d="M-24 47L-34 91M24 47L34 91" fill="none" stroke="#e6bc9d" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cy="3" r="22" fill="#e6bc9d"/>
+    <path d="M-22 0Q-25-25 0-23Q22-24 23 0Q8-13-7-10Z" fill="#292239"/>
+    <path d="M-7 9Q0 16 7 9" fill="none" stroke="#292239" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <path d="M419 36Q419 20 434 20Q451 20 448 34Q448 42 435 46V53M435 62V64" fill="none" stroke="#292239" stroke-width="4" stroke-linecap="round"/>
+</svg>

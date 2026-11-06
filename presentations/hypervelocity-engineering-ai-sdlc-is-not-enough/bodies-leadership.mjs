@@ -8,6 +8,21 @@ import {
   lane, under, laneGroup, legend, loop, evidenceTable,
 } from './diagrams.mjs';
 
+const acceleratorCapabilities = [
+  ['Security', 'shield', 'purple'], ['SRE / Operations', 'loop', 'teal'],
+  ['UX design', 'pencil', 'warm'], ['Architecture', 'layers', 'purple'],
+  ['Technical programs', 'clock', 'teal'], ['Business programs', 'flag', 'warm'],
+  ['Data science', 'dashboard', 'teal'], ['Engineering', 'code', 'purple'],
+  ['Contributor onboarding', 'question', 'warm'], ['Cross-role utilities', 'spark', 'teal'],
+  ['Product management', 'target', 'purple'], ['Other capabilities', 'plus', 'warm'],
+];
+
+function acceleratorCapabilityIcon(label, symbol, tone, announce = false) {
+  const accessibility = announce ? `role="img" aria-label="${label} capability"` : 'aria-hidden="true"';
+  return `<span class="accelerator-capability-icon tone-${tone}" data-capability="${symbol}" ${accessibility}>
+    ${icon(symbol).replace('aria-hidden="true"', 'aria-hidden="true" focusable="false"')}</span>`;
+}
+
 function panel(iconName, caption, big, status, state, cls = '') {
   return `<div class="panel${cls ? ` ${cls}` : ''}">${icon(iconName)}<em>${caption}</em><strong>${big}</strong><b class="status ${state}">${icon(state === 'met' ? 'check' : 'question')}${status}</b></div>`;
 }
@@ -241,49 +256,135 @@ export const leadershipBodies = {
     </div>`).join('')}</div>`, 'pillar-figure') +
     takeaway('Established practices, refined through Microsoft ISE delivery.<br>Built on customer co-engineering and Forward Deployed Engineering experience.'),
 
-  teams: fig('One team with distributed expertise around one outcome', `
+  teams: fig('One team with distributed expertise around one outcome, underpinned by continuous alignment', `
     <div class="boundary">${grid('1fr 230px 1fr', [
       `<div class="col">${node('Customer + domain', '', 'compact')}${node('Product + engineering', '', 'compact')}${node('Relevant specialists', '', 'compact')}</div>`,
       '<div class="orb"><strong>One jointly owned outcome</strong></div>',
       `<div class="col">${node('Decision owner', '', 'compact')}${node('Shared team duties', '', 'compact')}${node('Mentoring + pairing', '', 'compact')}</div>`,
     ])}</div>
-    ${grid('1fr 230px 1fr', [
-      `<div class="col reach"><i class="drop dashed"></i>${node('Support + escalation', '', 'ghost compact')}</div>`,
-      '<span></span>',
-      `<div class="col reach"><i class="drop dashed"></i>${node('Independent assurance', '', 'ghost compact')}</div>`,
-    ])}`) + takeaway('Distributed expertise. Not separate queues.'),
+    ${band('Continuous alignment', 'purple')}`) + takeaway('Distributed expertise. Not separate queues.'),
 
-  'team-example': fig('The crew owns the carrier update from Friday to Monday', `
-    <div class="cols4">
-      <em>Trigger</em><span></span><em>Crew checks</em><span></span><em>Decision</em><span></span><em>Record</em>
-      ${node('Build an AI chatbot', 'Reduce order calls', 'ghost tall')}${arrow()}
-      <div class="col">${node('Customer + support', '', 'compact')}${node('Carrier + order team', '', 'compact')}${node('Product + engineering', '', 'compact')}${node('Security champion', '', 'ghost compact')}</div>${arrow()}
-      ${node('Own the carrier update path', 'Friday becomes Monday', 'warm tall')}${arrow()}
-      <div class="record"><strong>Proposed decision</strong><ul><li>Owner: order team</li><li>Trace the stale date</li><li>Confirm next action</li><li>Record open questions</li></ul></div>
-    </div>`),
+  'team-example': `<div class="team-story">
+    <figure class="team-figure" aria-label="Separate handoffs compared with close multidisciplinary work">
+      <div class="team-comparison">
+        <div class="team-scene"><h3>“My part is done.”</h3>
+          <img class="team-scene-art" src="./images/my-part-is-done.png" width="1536" height="1024"
+            alt="Work is thrown over a wall to someone who lacks its context.">
+        </div>
+        <div class="team-scene shared"><h3>“Our outcome works.”</h3>
+          <img class="team-scene-art" src="./images/shared-goal.png" width="1024" height="1024"
+            alt="A close multidisciplinary crew shares one goal and one piece of work, with expert review retained.">
+        </div>
+      </div>
+    </figure>
+    <ul class="team-reasons" aria-label="Why close teamwork helps">
+      <li><strong>Decide sooner</strong><p>Ask experts directly.<br>Check assumptions together.</p></li>
+      <li><strong>Build alignment and buy-in</strong><p>Share context and decisions.<br>Build agreement as you work.</p></li>
+      <li><strong>Adjust continuously</strong><p>Check and adapt throughout,<br>not after a long delivery cycle.</p></li>
+    </ul>
+  </div>` + takeaway('Keep the expertise and required review. Shorten the feedback loop.'),
 
-  'design-thinking': fig('Design Thinking spaces with the crew alongside', `
-    ${band('Customer + expert crew alongside', 'purple', 'team')}
-    ${chain([
-      stackNode('search', 'Problem', 'Who needs what, and why?'),
-      stackNode('layers', 'Solution', 'What could help? What to test?'),
-      stackNode('code', 'Implementation', 'Does it work for people?'),
-    ])}
-    ${drops('1fr 44px 1fr 44px 1fr', [true, false, true, false, true])}
-    ${band('Evidence links the spaces', 'tint')}
-    ${ret('Feedback can reopen any decision', 3)}`) + takeaway('A request is not proof of value.'),
+  'design-thinking': `<figure class="dt-figure"
+      aria-label="Design Thinking: customer evidence can reopen the Problem, Solution, and Implementation spaces">
+    <img class="dt-art" src="./images/design-thinking-customer-evidence.png" width="1536" height="1024"
+      alt="Customer evidence can change any decision.
+        Problem: Explore and Focus. Are we solving the right problem?
+        Solution: Explore and Focus. Does this idea help people?
+        Implementation: Test in real use. Does it work in real use?">
+  </figure>` + takeaway('Use AI speed to test assumptions, not build the wrong thing faster.<br>' +
+    '<span class="dt-context">Lower coding barriers do not replace customer and domain expertise.</span>'),
 
-  'design-example': fig('Test the delivery-update problem before choosing an interface', `<div class="example">
-    <div class="col wide">${node('Build an AI chatbot', '', 'ghost compact')}${arrow('d')}${node('Friday becomes Monday', 'The order record still says Friday', 'tint')}${arrow('d')}${node('Define customer success', 'Proposed: trustworthy revised date + clear next action')}</div>
-    ${arrow('r', 'arr-big')}
-    <div class="col">${node('Compare options', 'Update path + tracking view, notification, or chatbot', 'purple compact')}<div class="quad">${['Test', 'Change', 'Investigate', 'Stop'].map(item => node(item, '', 'compact')).join('')}</div></div>
-  </div>`),
+  'design-example': `<figure class="value-figure" aria-label="Test the requested chatbot against the customer's task">
+    <div class="value-draft">
+      <div class="value-sheet">
+        <p class="value-request">&ldquo;Build an AI chatbot.&rdquo;</p>
+        <p class="value-principle">Test the option against the customer's task:<br>
+          <strong>a trustworthy revised date and a clear next action.</strong></p>
+      </div>
+      <svg class="value-pencil" viewBox="0 0 160 160" aria-hidden="true" focusable="false">
+        <g transform="rotate(39 80 80)">
+          <path d="M62 36H98V125L80 150L62 125Z" fill="#ffd7a6" stroke="#b85a20"
+            stroke-width="3" stroke-linejoin="round"/>
+          <path d="M62 36H98V125H62Z" fill="#f4a44b"/>
+          <path d="M72 38V123M88 38V123" stroke="#ffdda5" stroke-width="4"/>
+          <path d="M62 36V20Q62 10 72 10H88Q98 10 98 20V36Z" fill="#d8c6f0" stroke="#7651aa"
+            stroke-width="3"/>
+          <path d="M62 34H98V47H62Z" fill="#f2edf8" stroke="#7651aa" stroke-width="3"/>
+          <path d="M73 140L80 150L87 140Z" fill="#292239"/>
+        </g>
+      </svg>
+    </div>
+  </figure>` + takeaway('Test value early. Change or stop options that do not help.<br>' +
+    '<span class="value-why">Faster AI coding can mean more rework when the idea is wrong.</span>'),
 
-  accelerators: fig('Reusable foundations beneath business-specific work', `<div class="cutaway">
-    <div class="tip">${node('Business-specific work', 'Useful to this customer', 'warm')}</div>
-    <div class="layers">${layer('Secure platform baseline', ['Infrastructure', 'Identity', 'Security', 'Observability'], 'purple')}${layer('Engineering baseline', ['Tests', 'CI/CD', 'Ownership', 'Guidance'])}</div>
-    <div class="owner"><svg viewBox="0 0 28 100" preserveAspectRatio="none" aria-hidden="true"><path d="M4 2H20V98H4" vector-effect="non-scaling-stroke"/></svg>${node('Named owner maintains the foundation', '', 'ghost')}</div>
-  </div>`) + takeaway('A starting point is not a finished or certified solution.'),
+  accelerators: `<figure class="accelerator-figure"
+    aria-label="Reusable assets feed a capability library, and matching capability icons extend a small team">
+    <div class="accelerator-assets" role="group" aria-label="Four reusable asset types">
+      <h3>Reusable assets</h3>
+      <div class="accelerator-asset">
+        <svg class="accelerator-asset-art" viewBox="0 0 96 88" aria-hidden="true" focusable="false">
+          <path d="M16 78Q17 51 46 51Q75 51 76 78Z" fill="#d8c6f0" stroke="#7651aa" stroke-width="2"/>
+          <circle cx="46" cy="31" r="18" fill="#f3edfc" stroke="#7651aa" stroke-width="2"/>
+          <path d="M78 8L81 18L91 21L81 24L78 34L75 24L65 21L75 18Z" fill="#f4a44b" stroke="#b85a20" stroke-width="2"/>
+        </svg>
+        <span>AI agents</span>
+      </div>
+      <div class="accelerator-asset">
+        <svg class="accelerator-asset-art" viewBox="0 0 96 88" aria-hidden="true" focusable="false">
+          <path d="M23 8H66L79 21V78H23Z" fill="#fff3ea" stroke="#b85a20" stroke-width="2"/>
+          <path d="M66 8V21H79" fill="#ffd7a6" stroke="#b85a20" stroke-width="2"/>
+          <path d="M36 34H65M36 43H55M36 64H64" stroke="#b85a20" stroke-width="3" stroke-linecap="round"/>
+          <path d="M62 47L68 53L62 59M68 53H44" fill="none" stroke="#7651aa" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <span>Agent Skills</span>
+      </div>
+      <div class="accelerator-asset">
+        <svg class="accelerator-asset-art" viewBox="0 0 96 88" aria-hidden="true" focusable="false">
+          <path d="M75 10Q89 27 72 41Q66 45 60 43L30 75Q22 83 15 75Q8 68 16 60L48 30Q46 18 57 11L60 27L72 25Z"
+            fill="#d9efe8" stroke="#1b786e" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="23" cy="68" r="3" fill="#1b786e"/>
+        </svg>
+        <span>Tools</span>
+      </div>
+      <div class="accelerator-knowledge">
+        <svg class="accelerator-book" viewBox="0 0 96 88" aria-hidden="true" focusable="false">
+          <path d="M48 20Q30 8 8 14V69Q30 63 48 76Q66 63 88 69V14Q66 8 48 20Z"
+            fill="#ffffff" stroke="#7651aa" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M48 20V76M19 29Q30 26 38 32M19 41Q30 38 38 44M59 32Q70 26 79 29M59 44Q70 38 79 41"
+            fill="none" stroke="#7651aa" stroke-width="2" stroke-linecap="round"/>
+          <path d="M65 13V34L71 29L77 34V12" fill="#ffd7a6" stroke="#b85a20" stroke-width="2"/>
+        </svg>
+        <span>Organizational<br>knowledge and guidance</span>
+      </div>
+    </div>
+    <svg class="accelerator-arrow" viewBox="0 0 48 40" aria-hidden="true" focusable="false">
+      <path d="M4 20H44M34 10L44 20L34 30"/>
+    </svg>
+    <div class="accelerator-library" role="group" aria-labelledby="accelerator-library-title">
+      <div class="accelerator-library-heading">
+        <span class="accelerator-library-icon" aria-hidden="true">${icon('book')}</span>
+        <h3 id="accelerator-library-title">Agentic capabilities</h3>
+      </div>
+      <ul class="accelerator-capabilities" aria-label="Examples of shared capabilities">
+        ${acceleratorCapabilities.map(capability => `<li class="tone-${capability[2]}">
+          ${acceleratorCapabilityIcon(...capability)}<span>${capability[0]}</span></li>`).join('')}
+      </ul>
+    </div>
+    <svg class="accelerator-arrow" viewBox="0 0 48 40" aria-hidden="true" focusable="false">
+      <path d="M4 20H44M34 10L44 20L34 30"/>
+    </svg>
+    <div class="accelerator-team" role="group" aria-labelledby="accelerator-team-title">
+      <h3 id="accelerator-team-title">One small team</h3>
+      <ul class="accelerator-team-icons" aria-label="Examples of shared capabilities used by the team">
+        ${[0, 2, 3, 6, 10].map(index => `<li>${
+          acceleratorCapabilityIcon(...acceleratorCapabilities[index], true)}</li>`).join('')}
+      </ul>
+      <img class="accelerator-team-art" src="./images/team-with-ai-capabilities.png" width="1536" height="1024"
+        alt="Two people working together at a laptop.">
+      <p>People stay accountable.</p>
+    </div>
+  </figure>` + takeaway('Give every team access to reusable expertise.<br>' +
+    '<span class="accelerator-why">Build, collect, share, and govern capabilities teams can draw on.</span>'),
 
   'accelerator-example': fig('The carrier-update increment on a reused foundation', `<div class="outline-box">
     <span class="tab">Still verify: late updates · access · operation · recovery</span>
@@ -331,7 +432,7 @@ export const leadershipBodies = {
   ]) + ret('Repeat for the next wait', 4)) + takeaway('Name the owner. Measure the next wait.'),
 
   experiment: fig('Baseline and experiment evidence for one outcome', `
-    ${band('One outcome — Named customer owner + sponsor', 'tint', 'target')}
+    ${band('One outcome: named customer owner + sponsor', 'tint', 'target')}
     ${evidenceTable(['Value', 'Quality', 'Waiting', 'Rework', 'Cost'])}
     <p class="foot">AI-written-code share measures adoption, not success.</p>`),
 

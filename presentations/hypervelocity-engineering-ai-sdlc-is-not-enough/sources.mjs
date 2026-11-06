@@ -12,7 +12,15 @@ export const sources = {
   accelerators: ['HVE Accelerators Hub', 'https://learn.microsoft.com/en-us/industry/playbook/'],
   core: ['HVE-Core documentation', 'https://microsoft.github.io/hve-core/docs/'],
   guide: ['HVE guide', 'https://microsoft.github.io/hve-core/docs/hve-guide/'],
+  roles: [
+    'HVE-Core role guides',
+    'https://github.com/microsoft/hve-core/blob/main/docs/hve-guide/roles/README.md',
+  ],
   dt: ['Design Thinking guide', 'https://microsoft.github.io/hve-core/docs/design-thinking/'],
+  designcouncil: [
+    'Design Council: Framework for Innovation',
+    'https://www.designcouncil.org.uk/resources/framework-for-innovation/',
+  ],
   tutorial: ['Manufacturing teaching scenario', 'https://microsoft.github.io/hve-core/docs/design-thinking/using-together/'],
   handoff: ['DT-to-RPI integration', 'https://microsoft.github.io/hve-core/docs/design-thinking/dt-rpi-integration/'],
   rpi: ['RPI workflow', 'https://microsoft.github.io/hve-core/docs/rpi/'],

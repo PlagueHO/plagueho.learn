@@ -33,7 +33,19 @@ This is a planning synthesis in original wording. It is not a public account of 
 
 The proposed leadership section has 25 sparse slides over 30 minutes. Act 3 receives 16 minutes, including two slides and three minutes per pillar. The optional practical section retains 10 slides over 30 minutes, followed by five demo support slides. Detailed context mechanics stay in the practical section. FDE remains supporting context rather than a separate main-path slide.
 
-The leadership pillar examples now reuse slide 6's order-status teaching case. The carrier changes Friday to Monday, but the order record and chatbot retain Friday. Slides 13, 15, 17, and 19 propose ownership, customer tests, a prepared foundation, and reviewed AI assistance. These are teaching extensions, not published findings, completed discovery, or measured results.
+Slide 13 uses presenter-supplied handoff illustrations to explain how close multidisciplinary work can support faster decisions, alignment and buy-in, and continuous adjustment. The local assets are `my-part-is-done.png` and `shared-goal.png`. This is a teaching metaphor, not customer evidence or a fixed team roster.
+
+Slide 14 uses the presenter-supplied `design-thinking-customer-evidence.png` for HVE's problem, solution, and implementation spaces. Its complete artwork is retained with a compact title and smaller embedded labels. The text below explains why faster coding makes continued validation important: use AI speed to test assumptions, not build the wrong thing faster.
+
+The notes distinguish lower coding barriers from customer and domain expertise. The chatbot callback tests a trustworthy revised date and clear next action, not merely a working interface. Leaders must provide customer access, expert time, and decision authority. No customer research or measured benefit is claimed. The 10x-50x range is hypothetical, not an established productivity result.
+
+The [Design Council](https://www.designcouncil.org.uk/resources/framework-for-innovation/) describes exploration and focus. Its four-phase Double Diamond is not HVE's three-space model. IDEO's desirability, feasibility, and viability are different value lenses. The artwork's forward arrows are a reading path, not irreversible gates; evidence can reopen any space.
+
+Slide 15 uses the selected paper-and-pencil metaphor. One body principle tests the requested chatbot against the customer's task. The bottom line asks leaders to test value early and permit evidence to change or stop an option. Faster AI coding can mean more rework when an assumption is wrong. This is a conditional risk, not a measured gain or cost.
+
+The test for a trustworthy revised date and clear next action is proposed. No user testing or confirmed outcome is claimed. The customer or product decision owner records the decision. Stopping an unsuitable option does not remove responsibility for the outcome. The date-change recap remains on earlier slides.
+
+Slides 17 and 19 still use slide 6's full order-status case pending individual review. The carrier changes Friday to Monday, but the order record and chatbot retain Friday. They propose a prepared foundation and reviewed AI assistance. These are teaching extensions, not published findings, completed discovery, or measured results.
 
 The manufacturing tutorial remains separate in the optional section. Do not predetermine an interface or imply that user testing occurred. The proposed order-team owner must be agreed. A reused foundation does not make delivery data correct, and AI-generated tests do not establish customer value.
 
@@ -55,7 +67,7 @@ Adopt these distinctions in the outline:
 
 - Small and expert describes how the crew works; it is not a fixed headcount or a workforce-reduction target.
 - AI across the lifecycle means useful assistance under expert direction, not a requirement to automate every task or put an LLM in the product.
-- Production-ready accelerators remove repeated setup work and include engineering controls; they do not prove that the new business solution is ready for production.
+- Reusable accelerators can carry reviewed expertise across roles. They need maintenance, task-specific adaptation, and suitable checks. Reuse does not prove that a business solution is ready for production.
 - Short cycles aim to compress time from idea toward production; they do not guarantee a five-day production delivery or require a fixed sprint ceremony.
 - Customer collaboration includes problem framing, validation, design choices, working increments, and acceptance, not only a final demonstration.
 - Prototype scope and readiness must be explicit. Do not teach the guide's suggestion that security or compliance can simply be deferred until after prototyping.
@@ -85,6 +97,7 @@ Do not repeat a universal exponential context-cost claim, a guaranteed first-pas
 | Current HVE-Core toolkit | Agents, executable skills, instructions, and structured workflows; do not copy old prompt inventories | [HVE-Core documentation](https://microsoft.github.io/hve-core/docs/) |
 | Toolkit limits and human judgment | Current README retains human responsibility and describes a rapidly changing framework to evaluate as patterns and learning, not a stable platform or production dependency | [HVE-Core README](https://github.com/microsoft/hve-core#readme) |
 | Lifecycle and roles | Assistance across delivery stages and team responsibilities | [HVE guide](https://microsoft.github.io/hve-core/docs/hve-guide/) |
+| Documented role paths | Role-specific entry points plus cross-role utilities, not a fixed team roster or complete business-wide coverage | [HVE-Core role index](https://github.com/microsoft/hve-core/blob/main/docs/hve-guide/roles/README.md) |
 | CLI plugin behavior | Marketplace registration, installation, updates, discovery, and instruction-loading limits | [CLI plugin guide](https://microsoft.github.io/hve-core/docs/getting-started/methods/cli-plugins/) |
 | Design Thinking | Three spaces, nine methods, DT Coach, and supported handoffs | [Design Thinking guide](https://microsoft.github.io/hve-core/docs/design-thinking/) |
 | Manufacturing teaching scenario | Dashboard request reframed as knowledge accessibility across shifts | [Using DT methods together](https://microsoft.github.io/hve-core/docs/design-thinking/using-together/) |
@@ -108,12 +121,26 @@ The leadership experiment tests changed responsibilities and practices, not tool
 |---|---|
 | Multidisciplinary teams | A small expert crew with customer participation, informed decisions, and shared ownership |
 | Design thinking | Establish actual business value through customer and user evidence throughout the loop |
-| Reusable accelerators | Adapt production-ready foundations with security, observability, tests, and CI/CD already included |
+| Reusable accelerators | Build, collect, share, and govern agents, Agent Skills, tools, and organizational knowledge and guidance across roles; review fit, access, changes, and required assurance |
 | AI tooling | Amplify the crew across the lifecycle while retaining expert review and validation |
 
 Use this structure to explain the operating model and make HVE concrete behind FDE. Explain the model before the tool. Customer collaboration and continuous feedback connect all four pillars. Do not turn team composition into a staffing formula or make headcount reduction the outcome.
 
 The leadership section can discuss AI-assisted delivery without requiring AI in the delivered solution. This is a teaching distinction, not a claim that Microsoft Frontier Company accepts every type of non-AI engagement.
+
+## Slide 16 capability coverage
+
+The official repository's role index provides paths for Engineer, TPM, Tech Lead / Architect, Security Architect, Data Scientist, UX Designer, SRE / Operations, Business Program Manager, and New Contributor. Its Utility guide covers shared capabilities, not a job.
+
+Slide 16 translates those paths into capability examples. The cards describe work a team may need, not people every team must contain or a catalogue of ready-made agents.
+
+The [TPM guide](https://github.com/microsoft/hve-core/blob/main/docs/hve-guide/roles/tpm.md) also documents product definition, requirements, backlog work, and product-management advisory guidance. Product management is therefore an additional capability example on the slide, not a claim of another dedicated role guide.
+
+The cards show an open set of capabilities. "Other capabilities" leaves room for more. Coverage varies by role and lifecycle stage. The Business Program Manager path is beta and uses shared capabilities. Do not copy volatile asset counts or imply that every role has complete support.
+
+The knowledge illustration represents shared organizational guidance, not unrestricted access to internal information. The action is to build, collect, share, and govern assets with owners, suitable access, current sources, maintenance, and review. Reuse does not certify outputs or replace required assurance.
+
+The selected A2 treatment shows assets feeding a capability library titled "Agentic capabilities." Matching icons form an arc above the presenter-supplied team image. This shows reusable expertise extending a small team's work. It does not show added staff or remove specialist review.
 
 ## Current CLI plugin limits
 

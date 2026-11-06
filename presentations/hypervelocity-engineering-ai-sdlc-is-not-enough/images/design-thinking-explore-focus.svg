@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1152" height="365" viewBox="0 0 1152 365">
+  <title>Explore and focus, test in real use, and return through two-way feedback</title>
+  <path d="M4 122L168 50L332 122L168 194Z" fill="#fff0e4" stroke="#b85a20" stroke-width="3"/>
+  <path d="M412 122L576 50L740 122L576 194Z" fill="#ede5f8" stroke="#7651aa" stroke-width="3"/>
+  <path d="M4 122H332M412 122H740" stroke="#c3b0d7" stroke-width="2"/>
+  <path d="M24 199H1128" stroke="#c3b0d7" stroke-width="9" stroke-linecap="round"/>
+  <g transform="translate(168 119) scale(.72)">
+    <circle cx="-8" cy="-8" r="41" fill="#fff3ea" stroke="#b85a20" stroke-width="8"/>
+    <path d="M22 22L61 61" stroke="#b85a20" stroke-width="16" stroke-linecap="round"/>
+    <circle cx="-8" cy="-19" r="11" fill="#292239"/>
+    <path d="M-29 17Q-28-1-8-1Q12-1 13 17Z" fill="#218d88"/>
+  </g>
+  <g transform="translate(576 119) scale(.72)">
+    <path d="M-22 13A35 35 0 1 1 22 13L16 32H-16Z" fill="#ede5f8" stroke="#7651aa" stroke-width="5"/>
+    <path d="M-15 42H15M-10 51H10M0-51V-63M-44-35L-53-43M44-35L53-43M-50 0H-63M50 0H63"
+      fill="none" stroke="#7651aa" stroke-width="5" stroke-linecap="round"/>
+    <path d="M-9 13L-13-8L0-1L13-8L9 13" fill="none" stroke="#7651aa" stroke-width="3"/>
+  </g>
+  <g transform="translate(984 119) scale(.98)">
+    <rect x="-53" y="-42" width="106" height="76" rx="8" fill="#e9f5f2" stroke="#218d88" stroke-width="5"/>
+    <path d="M-15 36V49M15 36V49M-34 50H34" fill="none" stroke="#218d88" stroke-width="5" stroke-linecap="round"/>
+    <path d="M-50-23H50" stroke="#218d88" stroke-width="3"/>
+    <circle cx="-24" cy="-2" r="9" fill="#b85a20"/>
+    <path d="M-40 24Q-40 9-24 9Q-8 9-8 24Z" fill="#b85a20"/>
+    <path d="M14-7H37M14 5H30M14 17H34" stroke="#218d88" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <path d="M348 122H396M756 122H902" fill="none" stroke="#c3b0d7" stroke-width="4" stroke-linecap="round"/>
+  <path d="M357 114L348 122L357 130M387 114L396 122L387 130M765 114L756 122L765 130M893 114L902 122L893 130"
+    fill="none" stroke="#7651aa" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

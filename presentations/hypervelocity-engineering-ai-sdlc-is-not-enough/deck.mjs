@@ -51,7 +51,9 @@ function topChrome({ id, part }) {
       </svg><span aria-hidden="true">Microsoft</span>
     </header>`;
   return `<header class="chrome-top">
-      <a class="wordmark" href="#/hve" aria-label="Hypervelocity Engineering title">HVE<span> · </span>Expert teams. Shared outcomes.</a>
+      <a class="wordmark" href="#/hve">
+        Hypervelocity Engineering<span> • </span>Why adding AI to the SDLC is not enough
+      </a>
       <span class="part-label">${partLabels[part]}</span>
     </header>`;
 }
