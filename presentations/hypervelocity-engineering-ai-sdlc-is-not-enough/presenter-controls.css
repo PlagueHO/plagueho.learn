@@ -5,6 +5,15 @@
  */
 .presenter-zoom-surface { width: 100%; height: 100dvh; transform-origin: 0 0; }
 body.deck-ready { overflow: hidden; }
+body.deck-ready.reveal-scroll { overflow-y: auto; }
+@media screen {
+  html:not(.print-pdf) body.deck-ready:has(.presenter-toolbar) {
+    height: calc(100dvh - var(--presenter-toolbar-height, 0px) - max(12px, env(safe-area-inset-bottom)) - 12px);
+  }
+  html:not(.print-pdf) body.deck-ready.is-presenting:has(.presenter-toolbar) { height: 100dvh; }
+  html:not(.print-pdf) body.deck-ready .presenter-zoom-surface,
+  html:not(.print-pdf) body.deck-ready .presenter-zoom-surface > .reveal { height: 100%; }
+}
 .presenter-toolbar {
   position: fixed;
   z-index: 50;

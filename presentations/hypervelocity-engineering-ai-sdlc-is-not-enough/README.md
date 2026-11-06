@@ -70,7 +70,9 @@ One floating icon toolbar sits at the bottom of the window. It contains section 
 | Show keyboard help | Keys toolbar button |
 | Browser print layout | Append `?print-pdf` before the URL hash |
 
-The toolbar stays visible in normal mode. Present mode hides the slide headers and footers and hides the toolbar after a short pause. Move the pointer to the bottom edge to show it. Keyboard focus, an open toolbar panel, or the pointer over the toolbar keeps it visible. The groups wrap in narrow windows. Hover or focus shows each icon's label.
+The toolbar stays visible in normal mode. The slide viewport reserves its measured height, including wrapped rows and contextual motion controls. Present mode uses the full viewport, hides the slide headers and footers, and hides the toolbar after a short pause. Move the pointer to the bottom edge to show it.
+
+Keyboard focus, an open toolbar panel, or the pointer over the toolbar keeps it visible. The groups wrap in narrow windows. Hover or focus shows each icon's label. A pointer click releases button focus, including on motion controls. Keyboard activation keeps focus. Select the slide to close an open toolbar panel, including while a drawing tool is active.
 
 Present mode does not start browser fullscreen. Fullscreen needs browser permission. If the browser rejects it, a visible notice gives a recovery action. Browser Escape can exit fullscreen before the deck receives the key.
 
