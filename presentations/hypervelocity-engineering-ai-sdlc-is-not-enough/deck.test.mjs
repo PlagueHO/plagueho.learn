@@ -469,7 +469,10 @@ test('slide 7 shows business decisions made by default and carried through imple
   assert.equal((returnBranches.match(/M/g) ?? []).length, 3);
   const returnPath = slide.body.match(/class="rule-return" d="([^"]+)"/)[1];
   assert.equal((returnPath.match(/Q/g) ?? []).length, 2);
-  assert.match(returnPath, /M1148 76V284Q1148 324 1108 324H692Q652 324 652 284V238/);
+  assert.match(returnPath, /M1148 76V284Q1148 324 1108 324H614Q574 324 574 284V246/);
+  assert.match(slide.body, /class="rule-heads" d="M568 256L574 246L580 256"/);
+  const slideTheme = await readFile(new URL('./theme.css', import.meta.url), 'utf8');
+  assert.match(slideTheme, /\.amplification-diagram \.rule-choice \{[^}]*top: 258px;[^}]*height: 58px;/);
   assert.match(slide.body, /data-amplification data-copies="3"/);
   assert.doesNotMatch(slide.body, /choice-icon|lane-row|decision-transfer|Chooses a default/);
   assert.doesNotMatch(slide.body, /Illustrative|not to scale|Keep useful ceremonies|Direct route|Customer decision owner|time \+ authority|fragment|Friday|Monday|chatbot|carrier/i);
