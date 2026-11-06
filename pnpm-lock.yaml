@@ -1051,8 +1051,8 @@ packages:
   '@floating-ui/utils@0.2.12':
     resolution: {integrity: sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww==}
 
-  '@hono/node-server@1.19.17':
-    resolution: {integrity: sha512-dSneS5qhiauZWGDCeK4o695Xd9nUNjviSZCMQrj10eetr8Uln1ucn6bbphOM6UynAMMtNIzZNSpL9vnASJwrPQ==}
+  '@hono/node-server@1.19.18':
+    resolution: {integrity: sha512-609kppIP9GITS+EwPyB6Kiq8z2yXONaYD1VHpo7MMP9celRJYbkFr9KakJncHwK0EK/XYtlogqmrLchDv5HX5w==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: ^4
@@ -6520,7 +6520,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.12': {}
 
-  '@hono/node-server@1.19.17(hono@4.12.34)':
+  '@hono/node-server@1.19.18(hono@4.12.34)':
     dependencies:
       hono: 4.12.34
 
@@ -6621,7 +6621,7 @@ snapshots:
 
   '@modelcontextprotocol/node@2.0.0(@modelcontextprotocol/server@2.0.0)(hono@4.12.34)':
     dependencies:
-      '@hono/node-server': 1.19.17(hono@4.12.34)
+      '@hono/node-server': 1.19.18(hono@4.12.34)
       '@modelcontextprotocol/server': 2.0.0
     optionalDependencies:
       hono: 4.12.34
