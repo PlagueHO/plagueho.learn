@@ -20,6 +20,9 @@ await writeFile(join(output, 'index.html'), template.replace(marker, renderSlide
 await Promise.all([
   ...[
     'theme.css',
+    'presenter-controls.css',
+    'flowing-dark.css',
+    'presenter-controls.mjs',
     'presentation.mjs',
     'annotations.mjs',
     'speaker-window.mjs',

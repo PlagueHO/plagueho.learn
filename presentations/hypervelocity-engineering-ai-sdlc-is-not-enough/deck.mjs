@@ -31,12 +31,6 @@ const partLabels = {
   demos: '<b>Demos</b> · Public teaching scenario',
 };
 
-const partLinks = [
-  ['leadership', '#/hve', 'Introduction to HVE'],
-  ['deep-dive', '#/deep-dive', 'Diving deeper into HVE-Core'],
-  ['demos', '#/demo-install', 'Demos'],
-];
-
 const pillarNumbers = {
   teams: 1, 'team-example': 1,
   'design-thinking': 2, 'design-example': 2,
@@ -87,19 +81,15 @@ function withChapters(list) {
   });
 }
 
-function bottomChrome(part, number, total, id) {
-  const items = partLinks.map(([key, href, label]) => `<a href="${href}"${key === part ? ' aria-current="location"' : ''}>${label}</a>`);
+function bottomChrome(number, total, id) {
   const motion = {
     handoffs: 'cadence',
     'feedback-window': 'amplification',
     'production-early': 'readiness',
   }[id];
   return `<footer class="chrome-bottom">
-      <nav aria-label="Presentation sections">${items.join('')}</nav>
       ${motion ? `<button type="button" data-${motion}-action="replay" hidden>Replay motion</button>
       <button type="button" data-${motion}-action="pause" aria-pressed="false" disabled hidden>Pause motion</button>` : ''}
-      <button type="button" data-action="overview" aria-label="Show slide overview">Overview</button>
-      <button type="button" data-action="notes" aria-label="Open speaker notes">Notes</button>
       <span class="slide-count" aria-label="Slide ${number} of ${total}">${String(number).padStart(2, '0')} / ${total}</span>
     </footer>`;
 }
@@ -113,7 +103,7 @@ export function renderSlides() {
     ${topChrome(slide)}
     ${slide.divider ? chapterKicker(slide.chapter) : ''}
     <h2>${slide.title}</h2><div class="slide-content">${slide.body}</div>
-    ${bottomChrome(slide.part, index + 1, slides.length, slide.id)}
+    ${bottomChrome(index + 1, slides.length, slide.id)}
     <aside class="notes">${slide.notes.split('\n').map(line => `<p>${escapeHtml(line.trim())}</p>`).join('')}${links(slide.sources)}</aside>
     </section>`).join('\n');
 }

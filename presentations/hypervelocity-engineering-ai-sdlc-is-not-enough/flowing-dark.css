@@ -1,0 +1,117 @@
+/*
+ * Flowing dark: semantic colours and overrides for the existing HVE diagrams.
+ * Parameters: data-theme="flowing-dark" on the document root.
+ * Usage: load after theme.css and presenter-controls.css. Images and brand marks stay unchanged.
+ */
+:root[data-theme="flowing-dark"] {
+  color-scheme: dark;
+  --paper: #171321;
+  --ink: #f5efff;
+  --muted: #c6b9d8;
+  --purple: #c6a2f5;
+  --purple-tint: #312342;
+  --warm: #ff9a59;
+  --warm-tint: #39271e;
+  --warm-ink: #ffb47e;
+  --rule: #49365f;
+  --edge: #77628e;
+  --dash: #ac90cb;
+  --control-surface: #211a2d;
+  --pressed-ink: #21152f;
+  --solid-purple: #61369a;
+  --shadow: 0 6px 18px rgba(0, 0, 0, .22);
+}
+:root[data-theme="flowing-dark"] body { background: var(--paper); color: var(--ink); }
+:root[data-theme="flowing-dark"] .slide-wave { opacity: .35; }
+:root[data-theme="flowing-dark"] :is(.hdr-bar, .kicker-bar) u { background: var(--rule); }
+:root[data-theme="flowing-dark"] :is(.hdr-bar, .kicker-bar) u.on { background: var(--purple); }
+:root[data-theme="flowing-dark"] .cover-brand { color: var(--muted); }
+:root[data-theme="flowing-dark"] .skip-link { background: var(--control-surface); }
+:root[data-theme="flowing-dark"] .reveal :is(
+  .node, .chip, .ret > span, .cell.work, .rule-output, .rule-tag, .sw-work,
+  .panel, .panel .status.open, .gap-link b, .loop .step, .record,
+  .routes a, .routes button, .command, .quote, .clear-hop code
+) { background: var(--control-surface); }
+:root[data-theme="flowing-dark"] :is(.notes-panel, .notes-panel button) {
+  background: var(--control-surface);
+}
+:root[data-theme="flowing-dark"] .reveal :is(.node.warm, .panel.warm) {
+  background: var(--warm-tint); border-color: var(--warm);
+}
+:root[data-theme="flowing-dark"] .reveal :is(.node.ghost, .boundary, .support) {
+  background: var(--purple-tint);
+}
+:root[data-theme="flowing-dark"] .reveal .cell.fast { background: var(--purple-tint); }
+:root[data-theme="flowing-dark"] .reveal :is(.cell.wait, .sw-wait) {
+  background: repeating-linear-gradient(135deg, var(--warm-tint) 0 8px, #503527 8px 16px);
+  border-color: var(--warm);
+}
+:root[data-theme="flowing-dark"] .reveal :is(
+  .node.purple, .band.purple, .cell.impl, .cell.key, .num, .loop .crew,
+  .learning-centre, .orb, .stop b, .routes a:first-child
+) { background: var(--solid-purple); color: #ffffff; }
+:root[data-theme="flowing-dark"] .reveal .node.purple .chip { background: #ffffff24; }
+:root[data-theme="flowing-dark"] #design-example .value-sheet { background: var(--control-surface); }
+:root[data-theme="flowing-dark"] #design-example .value-sheet::after {
+  background: linear-gradient(45deg, var(--purple-tint) 48%, var(--paper) 50%);
+}
+:root[data-theme="flowing-dark"] #design-example .value-request {
+  background: linear-gradient(transparent 78%, #573721 78%, #573721 94%, transparent 94%);
+}
+
+/* These per-card variables override the light palette defined on slide-specific classes. */
+:root[data-theme="flowing-dark"] .tone-purple {
+  --cap-ink: #c6a2f5 !important; --cap-tint: #312342 !important; --cap-edge: #806294 !important;
+}
+:root[data-theme="flowing-dark"] .tone-teal {
+  --cap-ink: #83d6be !important; --cap-tint: #19392f !important; --cap-edge: #548b7a !important;
+}
+:root[data-theme="flowing-dark"] .tone-warm {
+  --cap-ink: #ffb47e !important; --cap-tint: #39271e !important; --cap-edge: #ac7652 !important;
+}
+:root[data-theme="flowing-dark"] .tone-gold {
+  --cap-ink: #ebc575 !important; --cap-tint: #3a301b !important; --cap-edge: #a88a4e !important;
+}
+:root[data-theme="flowing-dark"] .tone-slate {
+  --cap-ink: #c4b8db !important; --cap-tint: #302939 !important; --cap-edge: #887a99 !important;
+}
+:root[data-theme="flowing-dark"] :is(
+  #accelerators .accelerator-asset-art, #accelerators .accelerator-book,
+  #accelerators .accelerator-capability-icon, #accelerator-example .reuse-pin,
+  #lifecycle-ai .tooling-badge, #lifecycle-example .context-start,
+  #lifecycle-example .context-end-guess, #lifecycle-example .context-badge,
+  #framework-toolkit .framework-tag, #framework-toolkit .framework-row,
+  #team-support .team-card, #team-support .team-badge:not(.team-solid), #team-support .team-hub,
+  #hve-core-open .wr-qr, #hve-core-open .wr-fact, #team-pass .close-pass, #team-pass .close-badge
+) { background: var(--control-surface); }
+:root[data-theme="flowing-dark"] #accelerators .accelerator-library { background: var(--purple-tint); }
+:root[data-theme="flowing-dark"] #accelerators .accelerator-team p { color: #83d6be; }
+:root[data-theme="flowing-dark"] #accelerator-example .reuse-ribbon { stroke: var(--purple-tint); }
+:root[data-theme="flowing-dark"] #lifecycle-ai .tooling-ribbon {
+  background: linear-gradient(90deg, var(--purple-tint), #19392f 52%, var(--warm-tint));
+}
+:root[data-theme="flowing-dark"] :is(
+  #lifecycle-ai .tooling-mark-note, #lifecycle-example .context-core.tone-teal
+) { color: #83d6be; stroke: #83d6be; }
+:root[data-theme="flowing-dark"] #lifecycle-example .context-guess { color: var(--warm-ink); }
+:root[data-theme="flowing-dark"] #lifecycle-example .context-ribbon.tone-warm { stroke: var(--warm-tint); }
+:root[data-theme="flowing-dark"] #lifecycle-example .context-ribbon.tone-teal { stroke: #19392f; }
+:root[data-theme="flowing-dark"] :is(
+  #team-support .team-hub-icon .ico, #team-support .team-hub strong,
+  #outcome-measures .outcome-act strong
+) { color: var(--purple); }
+:root[data-theme="flowing-dark"] :is(
+  #framework-toolkit .framework-chip, #framework-toolkit .framework-chip .ico,
+  #framework-toolkit .framework-flag, #team-support .team-chip, #team-support .team-chip .ico,
+  #team-support .team-solid, #adoption-commitments .adoption-tick,
+  #adoption-commitments .adoption-tick .ico, #adoption-commitments .adoption-chip,
+  #adoption-commitments .adoption-chip .ico, #outcome-measures .outcome-chip,
+  #outcome-measures .outcome-chip .ico, #hve-core-open .st-chip, #hve-core-open .st-chip .ico,
+  #team-pass .close-chip, #team-pass .close-chip .ico
+) { color: var(--pressed-ink); }
+:root[data-theme="flowing-dark"] #team-pass .close-band .close-chip { color: #ffffff; }
+:root[data-theme="flowing-dark"] #team-pass .close-band .close-chip .ico { color: #ffffff; }
+:root[data-theme="flowing-dark"] #outcome-measures .outcome-act .outcome-chip { background: #c4b8db; }
+:root[data-theme="flowing-dark"] #team-pass .close-stub { background: var(--purple-tint); }
+:root[data-theme="flowing-dark"] .reveal .pause-overlay { background: var(--paper); }
+:root[data-theme="flowing-dark"] .reveal .pause-overlay .resume-button { color: var(--ink); }
