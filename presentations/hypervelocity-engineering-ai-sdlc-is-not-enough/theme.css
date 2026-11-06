@@ -942,7 +942,7 @@ html.print-pdf #constraints-pillars .pillar-column.fragment { opacity: 1; visibi
 .amplification-diagram .pending-label { left: 288px; top: 108px; width: 172px; color: var(--purple); }
 .amplification-diagram .rule-stream-label { left: 660px; top: 108px; width: 134px; color: var(--warm-ink); }
 .amplification-diagram .choice-actor { left: 510px; top: 122px; width: 128px; height: 76px; color: var(--warm-ink); }
-.amplification-diagram .rule-choice { left: 414px; top: 246px; z-index: 1; width: 320px; height: 64px; color: var(--warm-ink); background: var(--paper); }
+.amplification-diagram .rule-choice { left: 414px; top: 258px; z-index: 1; width: 320px; height: 58px; color: var(--warm-ink); background: var(--paper); }
 .amplification-diagram .rule-output { left: 866px; width: 276px; height: 80px; padding: 8px 42px 8px 12px; border: 1.5px solid var(--edge); border-radius: 12px; background: #ffffff; }
 .amplification-diagram .rule-tag {
   display: inline-flex;

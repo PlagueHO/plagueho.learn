@@ -310,7 +310,7 @@ export const leadershipBodies = {
       panel('person', 'The unresolved customer problem', 'Carrier: now Monday.<br>Chatbot: still Friday.', 'Missing update. No owner.', 'open', 'warm'),
     ], 'panels')) + takeaway('Faster implementation can multiply solutions to the wrong problem.<br>The outcome: customers know the revised date and what to do next.'),
 
-  'feedback-window': fig('More delivery decisions outpace business validation. An agent makes an assumption in the fast implementation loop. The same unvalidated business rule accumulates in behaviour, tests, and later increments. A shared return route runs below the implementation loop and rises behind the assumption label.',
+  'feedback-window': fig('More delivery decisions outpace business validation. An agent makes an assumption in the fast implementation loop. The same unvalidated business rule accumulates in behaviour, tests, and later increments. A shared return route runs below the implementation loop and rises to just outside its lower edge.',
     `<div class="amplification-diagram" data-amplification data-copies="3">
       <svg class="amplification-links" viewBox="0 0 1152 332" aria-hidden="true">
         <path class="pending-route" d="M294 160H454"/>
@@ -320,8 +320,8 @@ export const leadershipBodies = {
         <path class="rule-branch" d="M652 160H802V244H858"/>
         <path class="rule-heads" d="M850 68L858 76L850 84M850 152L858 160L850 168M850 236L858 244L850 252"/>
         <path class="rule-return-branches" d="M1142 76H1148M1142 160H1148M1142 244H1148"/>
-        <path class="rule-return" d="M1148 76V284Q1148 324 1108 324H692Q652 324 652 284V238"/>
-        <path class="rule-heads" d="M646 248L652 238L658 248"/>
+        <path class="rule-return" d="M1148 76V284Q1148 324 1108 324H614Q574 324 574 284V246"/>
+        <path class="rule-heads" d="M568 256L574 246L580 256"/>
         ${[0, 1, 2].map(() => '<path class="rule-token" d="M0 -6L6 0L0 6L-6 0Z"/>').join('')}
         <path class="return-token" d="M0 -6L6 0L0 6L-6 0Z"/>
       </svg>
