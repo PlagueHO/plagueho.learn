@@ -215,8 +215,8 @@ test('pillar details explain distinct practices while unreviewed examples retain
   assert.ok(accelerators.sources.includes('guide'));
   assert.ok(accelerators.sources.includes('roles'));
   const reuse = byId['accelerator-example'];
-  assert.equal(reuse.title.replace(/<[^>]+>/g, ''),
-    'Pillar 3: Reusable accelerators.Reuse expertise, not just infrastructure.');
+  assert.equal(reuse.title,
+    'Pillar 3: Reusable accelerators.<br><em>Reuse expertise, not just infrastructure.</em>');
   assert.equal(reuse.minutes, 1.5);
   assert.ok(!reuse.sources.includes('tutorial'));
   assert.equal((reuse.body.match(/<li class="tone-/g) ?? []).length, 5);
@@ -237,7 +237,8 @@ test('pillar details explain distinct practices while unreviewed examples retain
   assert.match(reuse.notes, /required independent assurance/);
   assert.ok(reuse.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
   const lifecycleExample = byId['lifecycle-example'];
-  assert.equal(lifecycleExample.title.replace(/<[^>]+>/g, ''), 'Give AI context, checks,and expert judgment.');
+  assert.equal(lifecycleExample.title,
+    'Give AI context, checks,<br><em>and expert judgment.</em>');
   assert.equal(lifecycleExample.minutes, 1.5);
   assert.ok(!lifecycleExample.sources.includes('tutorial'));
   assert.match(lifecycleExample.body, /<figure class="context-scene"\s+aria-label="[^"]+"/);
@@ -269,7 +270,7 @@ test('pillar details explain distinct practices while unreviewed examples retain
 test('slide 21 gives one direct comparison of the framework and the toolkit', () => {
   const slide = byId['framework-toolkit'];
   assert.equal(slides[20].id, 'framework-toolkit');
-  assert.equal(slide.title.replace(/<[^>]+>/g, ''), 'HVE is the framework.HVE-Core is the toolkit.');
+  assert.equal(slide.title, 'HVE is the framework.<br><em>HVE-Core is the toolkit.</em>');
   assert.equal(slide.minutes, 1);
   assert.ok(slide.sources.includes('core'));
   assert.match(slide.body, /<figure class="framework-scene"\s+aria-label="[^"]+"/);
@@ -298,7 +299,7 @@ test('slide 21 gives one direct comparison of the framework and the toolkit', ()
 test('slide 22 shows reusable HVE-Core starting points for six roles', () => {
   const slide = byId['team-support'];
   assert.equal(slides[21].id, 'team-support');
-  assert.equal(slide.title.replace(/<[^>]+>/g, ''), 'HVE-Core supportsthe whole team.');
+  assert.equal(slide.title, 'HVE-Core supports<br><em>the whole team.</em>');
   assert.equal(slide.minutes, 1);
   assert.ok(slide.sources.includes('core'));
   assert.match(slide.body, /<figure class="team-scene"\s+aria-label="[^"]+"/);
@@ -332,7 +333,7 @@ test('slide 33 shows that adoption needs six leadership commitments beyond insta
   assert.equal(slides[32].id, 'adoption-commitments');
   assert.equal(slide.part, 'deep-dive');
   assert.match(slide.notes, /toolkit cannot supply/);
-  assert.equal(slide.title.replace(/<[^>]+>/g, ''), 'Adoption needs morethan installation.');
+  assert.equal(slide.title, 'Adoption needs more<br><em>than installation.</em>');
   assert.equal(slide.minutes, 1.25);
   assert.ok(slide.sources.includes('core'));
   assert.match(slide.body, /<figure class="adoption-scene"\s+aria-label="[^"]+"/);
@@ -361,7 +362,7 @@ test('slide 34 contrasts AI activity with six outcome measures', () => {
   const slide = byId['outcome-measures'];
   assert.equal(slides[33].id, 'outcome-measures');
   assert.equal(slide.part, 'deep-dive');
-  assert.equal(slide.title.replace(/<[^>]+>/g, ''), 'Measure the outcome,not the AI activity.');
+  assert.equal(slide.title, 'Measure the outcome,<br><em>not the AI activity.</em>');
   assert.equal(slide.minutes, 1.25);
   assert.match(slide.body, /<figure class="outcome-scene"\s+aria-label="[^"]+"/);
   assert.equal((slide.body.match(/<li class="outcome-act"/g) ?? []).length, 3);
@@ -390,13 +391,13 @@ test('slide 34 contrasts AI activity with six outcome measures', () => {
 
 test('section breaks preserve the approved output-to-outcome titles and selected C treatment', async () => {
   const expected = [
-    ['outcomes-question', 2, 'We’re delivering code faster. Are we delivering better outcomes?'],
-    ['outcomes-response', 8, 'From faster code delivery to better business outcomes.'],
+    ['outcomes-question', 2, 'We’re delivering code faster. Are we delivering <strong>better outcomes?</strong>'],
+    ['outcomes-response', 8, 'From faster code delivery to <strong>better business outcomes.</strong>'],
   ];
   for (const [id, index, title] of expected) {
     const slide = byId[id];
     assert.equal(slides[index].id, id);
-    assert.equal(slide.title.replace(/<[^>]+>/g, ''), title);
+    assert.equal(slide.title, title);
     assert.equal(slide.className, 'section-divider');
     if (id === 'outcomes-question') {
       assert.match(slide.body, /class="section-divider-art"[^>]+good-news\.png/);

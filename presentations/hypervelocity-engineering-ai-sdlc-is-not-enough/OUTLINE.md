@@ -14,7 +14,7 @@
 | Last updated | 2026-11-06 |
 | Status | Executive revision in progress; slides 12-23 and the chapter structure are updated locally; later individual slide reviews remain pending |
 
-This outline has 41 slides: 23 leadership slides, 13 slides for diving deeper into HVE-Core, and five demo support slides. Each pillar has a practice slide and an example slide. Organizational and cultural change is central throughout the story. The leadership section has three chapters, and every leadership slide after the cover names its chapter in the top bar. The HVE-Core section opens with its own Chapter 1 divider.
+This 41-slide outline includes 23 leadership slides, 13 HVE-Core deep dives, and five demo support slides. Each pillar has practice and example slides. Organizational and cultural change remain central. The leadership section has three chapters; each leadership slide after the cover names its chapter in the top bar. The HVE-Core section starts with a Chapter 1 divider.
 
 The independent Reveal.js deck implements this outline. The original [Slidev presentation](../hypervelocity-engineering/slides.md) remains unchanged.
 
