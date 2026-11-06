@@ -44,8 +44,8 @@ const pillarNumbers = {
   'lifecycle-ai': 4, 'lifecycle-example': 4,
 };
 
-function steps(className, isOn) {
-  const marks = chapters.map((name, index) => `<u${isOn(index + 1) ? ' class="on"' : ''}></u>`);
+function steps(className, isOn, count = chapters.length) {
+  const marks = Array.from({ length: count }, (_, index) => `<u${isOn(index + 1) ? ' class="on"' : ''}></u>`);
   return `<i class="${className}" aria-hidden="true">${marks.join('')}</i>`;
 }
 
@@ -58,26 +58,32 @@ function topChrome({ id, part, chapter }) {
     </header>`;
   const inLeadership = part === 'leadership';
   const label = inLeadership
-    ? `<b>Chapter ${chapter} of ${chapters.length}</b> · ${chapters[chapter - 1]}`
+    ? `<b>Chapter ${chapter.number} of ${chapter.total}</b> · ${chapters[chapter.number - 1]}`
     : partLabels[part];
   return `<header class="chrome-top">
       <a class="wordmark" href="#/hve">
         Hypervelocity Engineering<span> • </span>Why adding AI to the SDLC is not enough
       </a>
       <span class="part-label">${label}</span>
-      ${inLeadership ? steps('hdr-bar', step => step <= chapter) : ''}
+      ${inLeadership ? steps('hdr-bar', step => step <= chapter.number, chapter.total) : ''}
     </header>`;
 }
 
 function chapterKicker(chapter) {
-  return `<p class="kicker"><b>Chapter ${chapter} of ${chapters.length}</b>${steps('kicker-bar', step => step === chapter)}</p>`;
+  const total = chapter.total ?? chapters.length;
+  const label = total === 1 ? `Chapter ${chapter.number}` : `Chapter ${chapter.number} of ${total}`;
+  return `<p class="kicker"><b>${label}</b>${steps('kicker-bar', step => step === chapter.number, total)}</p>`;
 }
 
 function withChapters(list) {
   let current = 1;
   return list.map(slide => {
     if (slide.chapter) current = slide.chapter;
-    return { ...slide, chapter: slide.part === 'leadership' ? current : undefined, divider: Boolean(slide.chapter) };
+    const divider = Boolean(slide.chapter);
+    const chapter = slide.part === 'leadership'
+      ? { number: current, total: chapters.length }
+      : slide.chapter ? { number: slide.chapter, total: slide.chapterCount } : undefined;
+    return { ...slide, chapter, divider };
   });
 }
 

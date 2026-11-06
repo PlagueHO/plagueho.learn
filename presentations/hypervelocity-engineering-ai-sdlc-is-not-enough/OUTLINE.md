@@ -14,7 +14,7 @@
 | Last updated | 2026-11-06 |
 | Status | Executive revision in progress; slides 12-23 and the chapter structure are updated locally; later individual slide reviews remain pending |
 
-This outline has 41 slides: 23 leadership slides, 13 slides for diving deeper into HVE-Core, and five demo support slides. Each pillar has a practice slide and an example slide. Organizational and cultural change is central throughout the story. The leadership section has three chapters, and every leadership slide after the cover names its chapter in the top bar.
+This outline has 41 slides: 23 leadership slides, 13 slides for diving deeper into HVE-Core, and five demo support slides. Each pillar has a practice slide and an example slide. Organizational and cultural change is central throughout the story. The leadership section has three chapters, and every leadership slide after the cover names its chapter in the top bar. The HVE-Core section opens with its own Chapter 1 divider.
 
 The independent Reveal.js deck implements this outline. The original [Slidev presentation](../hypervelocity-engineering/slides.md) remains unchanged.
 
@@ -132,7 +132,7 @@ The leadership section has three chapters. Chapter 1, "The outcome gap", covers 
 
 Every slide except the cover carries a top bar with the title *Hypervelocity Engineering • Why adding AI to the SDLC is not enough* and the part label. On leadership slides the label names the chapter and shows three progress marks. In the deeper section the label reads "Diving deeper into HVE-Core". In the demos it reads "Demos".
 
-Slides 3, 9, and 20 are the chapter dividers. Each carries a "Chapter n of 3" kicker above its key phrase.
+Slides 3, 9, and 20 are the leadership chapter dividers. Each carries a "Chapter n of 3" kicker above its key phrase. Slide 24 opens the HVE-Core section with the same divider style and a "Chapter 1" kicker.
 
 ## Four pillars
 
@@ -290,7 +290,7 @@ The 13 slides total 34.5 minutes. This is our practical extension, not a reconst
 
 | Slide | Title | Main message | Visual | Minutes |
 |---|---|---|---|---:|
-| 24 | From operating model to daily work | Build on the leadership wrap slide. HVE-Core offers reusable process support, not organizational transformation. People retain judgment and responsibility. Useful capabilities can be adopted alongside existing tools. | Same method-to-mechanism bridge, with people and tools kept distinct | 1 |
+| 24 | Diving deeper into HVE-Core | Open the practitioner section as Chapter 1. Build on the leadership wrap slide: HVE-Core offers reusable process support, not organizational transformation. People retain judgment and responsibility. Useful capabilities can be adopted alongside existing tools. | Chapter divider in the established style, followed by a transition from operating model to daily work | 1 |
 | 25 | Give each practice a repeatable mechanism | Map the pillars to capabilities, artifacts, reviewers, and decisions. Introduce DT Coach for discovery and the RPI (Research, Plan, Implement, Review) workflow for controlled engineering execution. Explain agents, skills, instructions, and workflows through their purpose. Distinguish process acceleration from production solution foundations; adopt selectively. | Leadership requirement -> capability (including DT Coach and RPI) -> artifact -> reviewer and decision | 4 |
 | 26 | Keep the team and agents working from shared evidence | Show reviewed requirements, architecture, standards, decisions, and scoped task context. Check freshness and access. Apply slide 19 through a public repository example rather than a new abstract context lecture. | Repository evidence to bounded task to durable artifact | 3 |
 | 27 | Validate the problem with DT Coach support | Apply slides 14-15 to the public manufacturing request. Support scope, research planning, and synthesis. An agent organizes evidence; it does not replace interviews, user observation, or customer decisions. | User evidence to reviewed problem framing, with a customer return loop | 3 |
