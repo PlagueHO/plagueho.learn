@@ -190,8 +190,7 @@ function deliveryTimeline() {
     </svg>
     <ol class="milestone-events" aria-label="Delivery milestones spaced by year; earlier practices continue">${events.join('')}</ol>
     <span class="milestone-end" style="--delay:${duration}ms" aria-hidden="true">${end}</span>
-  </div>
-  <div class="time-foundation"><strong>Engineering fundamentals</strong><span>Quality · security · customer learning</span></div>`;
+  </div>`;
 }
 
 function cadenceRing(kind, label) {
@@ -263,7 +262,7 @@ export const leadershipBodies = {
 
   'delivery-eras': fig('Delivery changes and responsibilities on a timeline from 1970 to 2026',
     deliveryTimeline(), 'milestone-figure') +
-    takeaway('AI is not just the next tool rollout. Revisit who owns the outcome.'),
+    takeaway('AI is more than a tool rollout. Like earlier shifts in software delivery, it asks us to rethink how teams organize and deliver outcomes.'),
 
   'outcomes-question': '',
 
@@ -311,7 +310,7 @@ export const leadershipBodies = {
       panel('person', 'The unresolved customer problem', 'Carrier: now Monday.<br>Chatbot: still Friday.', 'Missing update. No owner.', 'open', 'warm'),
     ], 'panels')) + takeaway('Faster implementation can multiply solutions to the wrong problem.<br>The outcome: customers know the revised date and what to do next.'),
 
-  'feedback-window': fig('More delivery decisions outpace business validation. An agent makes an assumption in the fast implementation loop. The same unvalidated business rule accumulates in behaviour, tests, and later increments, then returns on a curved arc as the starting point for more work.',
+  'feedback-window': fig('More delivery decisions outpace business validation. An agent makes an assumption in the fast implementation loop. The same unvalidated business rule accumulates in behaviour, tests, and later increments. A shared return route runs below the implementation loop and rises behind the assumption label.',
     `<div class="amplification-diagram" data-amplification data-copies="3">
       <svg class="amplification-links" viewBox="0 0 1152 332" aria-hidden="true">
         <path class="pending-route" d="M294 160H454"/>
@@ -320,8 +319,9 @@ export const leadershipBodies = {
         <path class="rule-branch" d="M652 160H858"/>
         <path class="rule-branch" d="M652 160H802V244H858"/>
         <path class="rule-heads" d="M850 68L858 76L850 84M850 152L858 160L850 168M850 236L858 244L850 252"/>
-        <path class="rule-return" d="M1136 284C1136 328 930 324 790 324C762 324 766 198 646 198"/>
-        <path class="rule-heads" d="M656 192L646 198L656 204"/>
+        <path class="rule-return-branches" d="M1142 76H1148M1142 160H1148M1142 244H1148"/>
+        <path class="rule-return" d="M1148 76V284Q1148 324 1108 324H692Q652 324 652 284V238"/>
+        <path class="rule-heads" d="M646 248L652 238L658 248"/>
         ${[0, 1, 2].map(() => '<path class="rule-token" d="M0 -6L6 0L0 6L-6 0Z"/>').join('')}
         <path class="return-token" d="M0 -6L6 0L0 6L-6 0Z"/>
       </svg>
