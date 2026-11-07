@@ -1,5 +1,5 @@
 /**
- * Leadership slide bodies, plus the adoption slides that close the deeper section.
+ * Leadership slide bodies, plus the retained practitioner team pass.
  * Parameters: none. Each key is a slide id; each value is the slide body HTML.
  * Usage: import { leadershipBodies } from './bodies-leadership.mjs'.
  */
@@ -113,41 +113,6 @@ const teamSpoke = ([tone], index) => {
 
 const teamLegend = `<ul class="team-legend" aria-label="Pillars">${teamPillars.map(([tone, number, name]) =>
   `<li class="tone-${tone}"><b class="team-badge team-solid">${number}</b><span>${name}</span></li>`).join('')}</ul>`;
-
-const adoptionCommitments = [
-  ['purple', 'flag', 'Sponsorship', 'Leaders own the outcome'],
-  ['purple', 'target', 'Authority', 'Teams can decide and act'],
-  ['teal', 'team', 'Shared ownership', 'Decisions made together'],
-  ['teal', 'clock', 'End user time', 'End users join the work'],
-  ['warm', 'search', 'Review capacity', 'Experts review in time'],
-  ['warm', 'book', 'Maintained knowledge', 'Practices stay current'],
-];
-
-const adoptionCard = ([tone, symbol, title, detail]) => `<li class="adoption-card tone-${tone}">
-          <span class="adoption-chip" aria-hidden="true">${icon(symbol)}</span>
-          <span class="adoption-text"><strong>${title}</strong><span>${detail}</span></span></li>`;
-
-const aiActivity = [
-  ['pencil', 'Prompts sent'],
-  ['code', 'Code generated'],
-  ['dashboard', 'Seats activated'],
-];
-
-const outcomeMeasures = [
-  ['purple', 'target', 'Useful value', 'Users benefit'],
-  ['purple', 'shield', 'Quality', 'Holds up in use'],
-  ['teal', 'clock', 'Waiting', 'Less idle time'],
-  ['teal', 'loop', 'Rework', 'Fewer redo loops'],
-  ['warm', 'person', 'Experience', 'For users and teams'],
-  ['warm', 'coins', 'Total cost', 'All costs counted'],
-];
-
-const outcomeCard = ([tone, symbol, title, detail]) => `<li class="outcome-card tone-${tone}">
-          <span class="outcome-chip" aria-hidden="true">${icon(symbol)}</span>
-          <span class="outcome-text"><strong>${title}</strong><span>${detail}</span></span></li>`;
-
-const activityRow = ([symbol, title]) => `<li class="outcome-act">
-          <span class="outcome-chip" aria-hidden="true">${icon(symbol)}</span><strong>${title}</strong></li>`;
 
 function panel(iconName, caption, big, status, state, cls = '') {
   return `<div class="panel${cls ? ` ${cls}` : ''}">${icon(iconName)}<em>${caption}</em><strong>${big}</strong><b class="status ${state}">${icon(state === 'met' ? 'check' : 'question')}${status}</b></div>`;
@@ -620,31 +585,6 @@ export const leadershipBodies = {
     <div class="wr-qrs">${openTargets.map(openQrCard).join('')}</div>
     <ul class="wr-facts">${openFacts.map(openFact).join('')}</ul>
   </figure>` + routes(['<a href="#/deep-dive">Diving deeper into HVE-Core →</a>', '<button type="button" data-action="pause">Pause for questions</button>']),
-
-  'adoption-commitments': `<figure class="adoption-scene"
-    aria-label="Installing the toolkit is only the start. Adoption needs six leadership commitments: sponsorship, authority, shared ownership, end user time, review capacity, and maintained knowledge.">
-    <div class="adoption-strip">
-      <span class="adoption-installed tone-slate"><span class="adoption-tick" aria-hidden="true">${icon('check')}</span>Toolkit installed</span>
-      <span class="adoption-next" aria-hidden="true">→</span>
-      <strong>Now what? Six commitments.</strong>
-    </div>
-    <ul class="adoption-grid">${adoptionCommitments.map(adoptionCard).join('')}</ul>
-  </figure>` + takeaway('Installation is the easy part.<br>' +
-    '<span class="adoption-why">Adoption needs leadership commitments.</span>'),
-
-  'outcome-measures': `<figure class="outcome-scene"
-    aria-label="Measure the outcome, not the AI activity. Prompts sent, code generated, and seats activated show use. Useful value, quality, waiting, rework, experience, and total cost show the outcome.">
-    <div class="outcome-left tone-slate">
-      <p class="outcome-head"><strong>AI activity</strong><span>Shows use, not success</span></p>
-      <ul class="outcome-acts">${aiActivity.map(activityRow).join('')}</ul>
-    </div>
-    <span class="outcome-next" aria-hidden="true">→</span>
-    <div class="outcome-right">
-      <p class="outcome-head tone-purple"><strong>Outcome</strong><span>Shows what changed</span></p>
-      <ul class="outcome-grid">${outcomeMeasures.map(outcomeCard).join('')}</ul>
-    </div>
-  </figure>` + takeaway('Count outcomes, not activity.<br>' +
-    '<span class="outcome-why">Prompts and code volume show use, not success.</span>'),
 
   'team-pass': `<figure class="close-scene"
     aria-label="Explore HVE-Core through the official documentation, then use your role guide. Apply HVE together with one team on one real outcome, guided by the four numbered pillars. A live demo follows.">
