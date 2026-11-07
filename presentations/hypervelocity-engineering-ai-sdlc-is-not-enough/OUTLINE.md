@@ -251,6 +251,14 @@ Keep the other counterexamples in speaker notes: without the crew, decisions que
 
 ### Act transitions and speaker-note intent
 
+The introduction notes for slides 1-23 contain only exact spoken words in Daniel's conversational presentation voice. Do not add presenter guidance, timing headings, animation instructions, or bracketed stage cues. Sources remain separate links in the notes renderer. Slides 24-41 keep their existing notes.
+
+The steel thread is faster implementation -> exposed delivery gaps -> ISE's delivery lessons -> shared ownership and continuous validation -> reusable expertise and lifecycle-wide AI -> practices that any team can adopt and adapt. Keep the three failure patterns distinct. Use the existing examples without presenting them as customer research.
+
+Keep the introduction below 3,000 spoken words. At a conservative planning rate of 120 words per minute, this allows pauses and slide advances within 30 minutes. Limit each slide to 120 words per allocated minute. Keep the existing 27-minute timing metadata. A word count is a planning check, not a substitute for rehearsal.
+
+Credit Microsoft Industry Solutions Engineering and Forward Deployed Engineering experience without claiming that ISE invented the underlying practices. The supplied summary is not the original whitepaper. Do not state an unverified publication date or quote its internal content. Public Frontier skilling sources support wider Microsoft backing, not universal adoption or a requirement for every partner.
+
 | Transition | Spoken connection | What the audience should now understand |
 |---|---|---|
 | Act 1 -> Act 2, after slide 5 | Faster implementation needs faster learning and decisions, not fewer checks. First, see how a working feature can still miss the customer problem. | A shipped feature is not proof of a useful outcome |
