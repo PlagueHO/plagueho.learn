@@ -48,6 +48,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
   isolation: isolate;
   background: var(--paper);
 }
+/* Reveal's PDF reset collapses sections whose slide content is positioned. */
+html.print-pdf .reveal .slides section { height: 720px !important; }
 .slide-wave {
   position: absolute;
   z-index: 0;
@@ -1334,6 +1336,25 @@ html:not(.print-pdf) body.deck-ready .reveal:not(.overview) #delivery-eras.prese
 .command > span:last-child { color: var(--muted); font-size: 22px; }
 .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
 .duo .col { gap: 14px; }
+.practitioner-prompts { align-items: stretch; gap: 24px; }
+.practitioner-prompt { gap: 10px; }
+.practitioner-prompt > span { font-size: 23px; line-height: 1.35; }
+.practitioner-artifacts { gap: 16px; }
+.reveal #plugin-model .node > span code,
+.reveal #customize .node > span code { font-size: inherit; }
+.reveal .practitioner-commands pre {
+  margin: 8px 0 0;
+  width: 100%;
+  box-shadow: none;
+  white-space: pre-wrap;
+}
+.reveal .practitioner-commands code {
+  padding: 0;
+  font-size: 25px;
+  line-height: 1.6;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
 .quote { padding: 20px 26px; border: 1.5px solid var(--edge); border-radius: 18px; background: #ffffff; box-shadow: var(--shadow); font-size: 30px; font-weight: 600; line-height: 1.25; }
 .rpi-chain .node.rpi { gap: 6px; }
 .reveal .node.rpi em { display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; margin-top: 6px; padding: 4px 12px 4px 8px; border-radius: 999px; background: var(--purple-tint); color: var(--purple); font-size: 19px; font-weight: 600; }

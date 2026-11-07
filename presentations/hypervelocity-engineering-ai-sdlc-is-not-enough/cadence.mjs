@@ -16,6 +16,9 @@ const keyPhrases = [
 const mergedRoutes = new Map([
   ['#/ai-implementation', '#/handoffs/0'],
   ['#/outcome-waiting', '#/handoffs/1'],
+  ['#/cost', '#/practitioner-workflow'],
+  ['#/outcome-measures', '#/practitioner-workflow'],
+  ['#/adoption-commitments', '#/customize'],
 ]);
 
 export function mergedSlideHash(hash) {
