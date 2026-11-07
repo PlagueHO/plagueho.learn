@@ -10,6 +10,16 @@ Private photos, transcripts, and the supplied internal-source research guide are
 
 Distinguish public source statements from presentation synthesis. The four-pillar structure and the concise HVE-to-FDE explanation are the presentation's framing, not a universal industry definition.
 
+### Introduction talk track
+
+Slides 1-23 now use spoken text only. ISE and FDE delivery experience supplies the context; the examples and concise connections remain teaching material, not measured customer results. The supplied summary is not the original whitepaper. No precise publication chronology is asserted without public evidence.
+
+The public [FY27 skilling roadmap](https://partner.microsoft.com/en-us/blog/article/skilling-updates-2026-issue-7) places the Frontier Transformation Engineer journey in Microsoft's partner skilling focus. The [LevelUp journey](https://skillupwithlevelup.com/frontier) lists required HVE Framework assessment. These support wider backing, not adoption by every Microsoft team.
+
+The public [Frontier Partner specialization requirements](https://partner.microsoft.com/en-us/partnership/specialization/frontier-partner) require five people to earn the Frontier Transformation Engineer badge. The requirement applies to organizations seeking that specialization. It is not a standalone HVE certification or a requirement for every Microsoft partner.
+
+The public pages' HTML was checked because simplified text extraction omitted their detailed requirements. The talk does not depend on private learning material, internal strategy documents, assessment questions, or pass-score details.
+
 ## Narrative and scope
 
 The deck presents HVE as an operating model for shared ownership, continuous value validation, reusable expertise, and expert-led AI support. It distinguishes AI-assisted delivery from an AI-powered product and keeps customer evidence, human judgment, and required assurance visible.

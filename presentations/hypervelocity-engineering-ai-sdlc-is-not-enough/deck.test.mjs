@@ -22,6 +22,51 @@ import { presenterMarkup } from './presenter-controls.mjs';
 
 const text = html => html.replace(/<[^>]+>/g, ' ').replace(/&\w+;/g, ' ').trim();
 const byId = Object.fromEntries(slides.map(slide => [slide.id, slide]));
+const wordCount = notes => notes.trim().split(/\s+/).length;
+
+test('all 23 introduction notes are spoken text within the delivery budget', () => {
+  const introduction = slides.filter(slide => slide.part === 'leadership');
+  assert.equal(introduction.length, 23);
+  let total = 0;
+  for (const slide of introduction) {
+    const words = wordCount(slide.notes);
+    assert.ok(words >= 20, `${slide.id}: spoken narrative is missing`);
+    assert.ok(words <= slide.minutes * 120, `${slide.id}: ${words} words exceeds the slide budget`);
+    assert.doesNotMatch(slide.notes,
+      /Talk track|Presenter guidance|Careful:|Check:|(?:Right|Left) Arrow|Replay motion|Pause motion|(?:^|\n)(?:Point to|Read the|Advance|Introduce|Take Q&A)|\[[^\]]+\]/i,
+      `${slide.id}: notes must contain only spoken text`);
+    assert.doesNotMatch(slide.notes, /https?:|sharepoint|OneDrive|[A-Z]:\\|—|\bTODO\b|\bTBC\b/i,
+      `${slide.id}: keep source links, private paths, and placeholders out of speech`);
+    total += words;
+  }
+  assert.ok(total <= 3000, `${total} spoken words exceeds the introduction budget`);
+});
+
+test('introduction sources and spoken paragraphs remain separate in the rendered notes', async () => {
+  const built = await readFile(new URL('./dist/index.html', import.meta.url), 'utf8');
+  for (const slide of slides.filter(slide => slide.part === 'leadership')) {
+    const section = built.match(new RegExp(`<section id="${slide.id}"[\\s\\S]*?</section>`))[0];
+    const paragraphs = slide.notes.split('\n').map(line => `<p>${escapeHtml(line.trim())}</p>`).join('');
+    assert.ok(section.includes(`<aside class="notes">${paragraphs}<nav class="resources"`), slide.id);
+    for (const key of slide.sources) assert.ok(section.includes(`href="${sources[key][1]}"`), `${slide.id}: ${key}`);
+    assert.doesNotMatch(section.match(/<aside class="notes">([\s\S]*?)<\/aside>/)[1],
+      /Presenter guidance|Talk track|Careful:/);
+  }
+});
+
+test('ISE attribution and wider backing do not claim universal adoption', () => {
+  const notes = byId['constraints-pillars'].notes;
+  assert.match(notes, /Microsoft Industry Solutions Engineering, or ISE/);
+  assert.match(notes, /Forward Deployed Engineering experience/);
+  assert.match(notes, /leave customers with capability, not just code/);
+  assert.match(notes, /FY27 partner skilling[\s\S]*required HVE Framework assessment/);
+  assert.match(notes, /Partners seeking Frontier Partner specialization need five people with that badge/);
+  assert.match(notes, /not a claim that every Microsoft team uses HVE or every partner needs the specialization/);
+  for (const key of ['skilling', 'fte', 'specialization']) {
+    assert.ok(byId['constraints-pillars'].sources.includes(key), key);
+  }
+  assert.match(byId['hve-core-open'].notes, /adopt HVE's practices, adapt them to your business, and help shape what comes next/);
+});
 
 test('41 slides split into 27 leadership minutes and 34.5 deeper minutes', () => {
   assert.equal(slides.length, 41);
@@ -70,17 +115,16 @@ test('slide order follows the approved narrative and pillar examples', () => {
   assert.match(text(byId['lifecycle-ai'].body), /More speed needs more direction, from one shared baseline/);
   assert.doesNotMatch(text(byId['lifecycle-ai'].body), /AI-powered product|Responsible AI/);
   assert.match(byId['lifecycle-ai'].notes, /AI-assisted delivery does not require an AI-powered product/);
-  assert.match(byId['lifecycle-ai'].notes, /Shift them as far left as you can and run them continuously/);
+  assert.match(byId['lifecycle-ai'].notes, /bring security and review forward and keep them continuous where suitable/);
 });
 
-test('pillar details explain distinct practices while unreviewed examples retain the order-status case', async () => {
+test('pillar details explain distinct practices and keep each example in its intended scope', async () => {
   const teams = byId.teams;
   assert.match(teams.body, /<div class="band purple"><span>Continuous alignment<\/span><\/div>/);
   assert.doesNotMatch(teams.body, /Support \+ escalation|Independent assurance|class="drop/);
-  assert.match(teams.notes, /center[\s\S]*left side[\s\S]*right side[\s\S]*long foundation: Continuous alignment/);
+  assert.match(teams.notes, /center[\s\S]*left[\s\S]*right[\s\S]*foundation is continuous alignment/);
   assert.match(teams.notes, /outcome, priorities, assumptions, and decisions/);
   assert.match(teams.notes, /Required independent review and separation of duties stay/);
-  assert.ok(teams.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
   const design = byId['design-thinking'];
   assert.equal(design.minutes, 1.5);
   assert.equal(design.title, 'Pillar 2: Design Thinking. <em>Validate value throughout.</em>');
@@ -103,16 +147,13 @@ test('pillar details explain distinct practices while unreviewed examples retain
   assert.equal(designArt.readUInt32BE(20), 1024);
   assert.deepEqual(await readFile(new URL('./dist/images/design-thinking-customer-evidence.png', import.meta.url)),
     designArt);
-  assert.match(design.notes, /first diamond[\s\S]*second diamond[\s\S]*implementation[\s\S]*forward arrows/);
-  assert.match(design.notes, /not three sign-off gates/);
+  assert.match(design.notes, /first diamond[\s\S]*second diamond[\s\S]*implementation[\s\S]*arrows aren't three sign-off gates/);
   assert.match(design.notes, /Use faster coding for small prototypes and experiments/);
   assert.match(design.notes, /customers and domain experts/);
   assert.match(design.notes, /chatbot[\s\S]*Friday[\s\S]*Monday[\s\S]*trustworthy revised date and clear next action/);
   assert.match(design.notes, /Leaders must provide customer access, expert time, and decision authority/);
-  assert.match(design.notes, /10x-50x[\s\S]*hypothetical illustration, not a measured result/);
-  assert.match(design.notes, /not the Design Council's four-phase Double Diamond/);
+  assert.doesNotMatch(design.notes, /10x|50x|Design Council's four-phase Double Diamond/);
   assert.match(design.notes, /Technical checks and required assurance still apply/);
-  assert.ok(design.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
   assert.ok(design.sources.includes('designcouncil'));
   const team = byId['team-example'];
   assert.equal(team.title, 'Expertise stays.<br><em>Handoffs change.</em>');
@@ -139,7 +180,6 @@ test('pillar details explain distinct practices while unreviewed examples retain
   assert.match(team.notes, /small multidisciplinary team/);
   assert.match(team.notes, /not measured customer evidence/);
   assert.match(team.notes, /Required independent review and separation of duties stay/);
-  assert.ok(team.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
   const value = byId['design-example'];
   assert.equal(value.title, 'Validate value,<br><em>not just delivery.</em>');
   assert.equal(value.minutes, 1.5);
@@ -155,11 +195,10 @@ test('pillar details explain distinct practices while unreviewed examples retain
   assert.doesNotMatch(value.body,
     /Friday|Monday|fragment|value-hypothesis|value-decision|value-test|promise to ship|Validation must/);
   assert.doesNotMatch(value.notes, /Friday|Monday/);
-  assert.match(value.notes, /No user tests have occurred here/);
+  assert.match(value.notes, /haven't run those tests in this example/);
   assert.match(value.notes, /named customer or product decision owner makes and records the decision/);
   assert.match(value.notes, /Stop an unsuitable option, not responsibility for the outcome/);
-  assert.match(value.notes, /conditional risk, not a measured productivity or cost claim/);
-  assert.ok(value.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
+  assert.match(value.notes, /risk, not a measured cost claim/);
   assert.ok(!value.sources.includes('tutorial'));
   const accelerators = byId.accelerators;
   assert.equal(accelerators.title, 'Pillar 3: Reusable accelerators.<br><em>Broader capability for every team.</em>');
@@ -203,15 +242,14 @@ test('pillar details explain distinct practices while unreviewed examples retain
     acceleratorArt);
   assert.doesNotMatch(accelerators.body, /\bFund\b|cutaway|Secure platform baseline|Engineering baseline|fragment/);
   assert.match(accelerators.notes, /build, collect, share, and govern/);
-  assert.match(accelerators.notes, /Utility is a shared capability, not a job/);
+  assert.match(accelerators.notes, /Cross-role utilities are shared capabilities, not another job/);
   assert.match(accelerators.notes, /Coverage varies by role and lifecycle stage/);
   assert.match(accelerators.notes, /required independent assurance/);
-  assert.match(accelerators.notes, /A team may have one person or several, with any mix of disciplines/);
+  assert.match(teams.notes, /small team means focused, not a prescribed headcount/);
   assert.match(accelerators.notes, /not extra team members/);
-  assert.match(accelerators.notes, /They do not make every person an expert or remove specialist review/);
-  assert.match(accelerators.notes, /Five matching icons form an arc above the supplied people image/);
+  assert.match(accelerators.notes, /They don't make everyone an expert/);
+  assert.match(accelerators.notes, /Keep specialist review and required independent assurance/);
   assert.doesNotMatch(accelerators.notes, /HVE-Core is not in this diagram/);
-  assert.ok(accelerators.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
   assert.ok(accelerators.sources.includes('core'));
   assert.ok(accelerators.sources.includes('guide'));
   assert.ok(accelerators.sources.includes('roles'));
@@ -228,15 +266,14 @@ test('pillar details explain distinct practices while unreviewed examples retain
   assert.match(text(reuse.body), /Collate, curate, govern, and share expert practice\./);
   assert.match(text(reuse.body), /One example process, not a prescription\. Reuse does not replace review\./);
   assert.doesNotMatch(`${reuse.body} ${reuse.notes}`, /Friday|Monday|carrier integration|outline-box|dashed|fragment|completed|certified by/i);
-  assert.match(reuse.notes, /Reusable infrastructure[\s\S]*necessary/);
+  assert.match(reuse.notes, /Reusable infrastructure is necessary/);
   assert.match(reuse.notes, /agent, skill, instruction, or check/);
   assert.match(reuse.notes, /named owner and checks that must pass/);
-  assert.match(reuse.notes, /this is an example, not a prescription/);
-  assert.match(reuse.notes, /collate, curate, govern, and share its expertise/);
+  assert.match(reuse.notes, /This is an example, not a prescription/);
+  assert.match(reuse.notes, /collate, curate, govern, and share what people know/);
   assert.match(reuse.notes, /Teams contribute improvements back to the owner/);
-  assert.match(reuse.notes, /It does not certify output or replace review/);
+  assert.match(reuse.notes, /Reuse doesn't certify output or replace review/);
   assert.match(reuse.notes, /required independent assurance/);
-  assert.ok(reuse.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
   const lifecycleExample = byId['lifecycle-example'];
   assert.equal(lifecycleExample.title,
     'Give AI context, checks,<br><em>and expert judgment.</em>');
@@ -262,10 +299,9 @@ test('pillar details explain distinct practices while unreviewed examples retain
   assert.match(lifecycleExample.notes, /kept in files, not in an old chat/);
   assert.match(lifecycleExample.notes, /A passing check is evidence for the rule it tests\. It does not prove business value/);
   assert.match(lifecycleExample.notes, /Review any model summary before it becomes a recorded decision/);
-  assert.match(lifecycleExample.notes, /They do not guarantee correct or secure output/);
+  assert.match(lifecycleExample.notes, /Better context doesn't guarantee correct or secure output/);
   assert.match(lifecycleExample.notes, /Required independent assurance still applies/);
-  assert.match(lifecycleExample.notes, /Add Responsible AI review when the solution itself uses AI/);
-  assert.ok(lifecycleExample.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
+  assert.match(byId['lifecycle-ai'].notes, /If the product itself uses AI, add the relevant Responsible AI review/);
 });
 
 test('slide 21 gives one direct comparison of the framework and the toolkit', () => {
@@ -289,12 +325,11 @@ test('slide 21 gives one direct comparison of the framework and the toolkit', ()
   assert.doesNotMatch(`${slide.title} ${slide.body} ${slide.notes}`, /dashed|certified|guarantee[sd]?\s+(results|savings)|—/i);
   assert.match(slide.notes, /HVE is the framework\./);
   assert.match(slide.notes, /HVE-Core is the toolkit\./);
-  assert.match(slide.notes, /one part of a wider stack of AI tools and models/);
-  assert.match(slide.notes, /The toolkit helps apply the framework\. It does not replace it\./);
+  assert.match(slide.notes, /toolkit helps apply them through agents, skills, instructions, and workflows/);
+  assert.match(slide.notes, /sits with AI assistants, models, and automated checks/);
   assert.match(slide.notes, /HVE-Core is optional and replaceable/);
-  assert.match(slide.notes, /does not supply sponsorship, customer time, authority, or review capacity/);
-  assert.match(slide.notes, /does not replace expert judgment or required independent assurance/);
-  assert.ok(slide.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
+  assert.match(slide.notes, /doesn't supply sponsorship, customer time, authority, or review capacity/);
+  assert.match(slide.notes, /doesn't replace expert judgment or required independent assurance/);
 });
 
 test('slide 22 shows reusable HVE-Core starting points for six roles', () => {
@@ -318,15 +353,13 @@ test('slide 22 shows reusable HVE-Core starting points for six roles', () => {
   assert.match(content, /Teams\s+2\s+Design Thinking\s+3\s+Accelerators\s+4\s+AI tooling/);
   assert.match(content, /Give every role a reusable starting point\.\s+Customize it for your organization\./);
   assert.doesNotMatch(`${slide.title} ${slide.body} ${slide.notes}`, /Examples only|dashed|certified|guarantee[sd]?\s+(results|savings)|—/i);
-  assert.match(slide.notes, /production-ready starting point that can be customized to your organization/);
+  assert.match(slide.notes, /reusable starting points, not finished work or guaranteed production readiness/);
   assert.match(slide.notes, /Design Thinking coach/);
   assert.match(slide.notes, /research, plan, implement, and review/);
-  assert.match(slide.notes, /mapping is illustrative/);
-  assert.match(slide.notes, /HVE-Core is optional and replaceable/);
-  assert.match(slide.notes, /does not supply sponsorship, end user time, authority, or review capacity/);
-  assert.match(slide.notes, /does not replace expert judgment or required independent assurance/);
-  assert.match(slide.notes, /coverage varies by role/);
-  assert.ok(slide.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
+  assert.match(slide.notes, /pillar numbers show connections, not exclusive ownership/);
+  assert.match(slide.notes, /Customize what helps your organization/);
+  assert.match(slide.notes, /People still provide the evidence, judgment, and decisions/);
+  assert.match(slide.notes, /Coverage varies by role/);
 });
 
 test('slide 33 shows that adoption needs six leadership commitments beyond installation', () => {
@@ -437,15 +470,15 @@ test('slide 6 separates a delivered chatbot from the customer outcome', () => {
   assert.match(slide.body, /class="gap-link" aria-hidden="true"/);
   assert.doesNotMatch(slide.body, /quality dashboard|shift handover|fragment|class="legend"|Illustrative|unreliable|Faster code/);
   assert.match(slide.notes, /The carrier moves a delivery from Friday to Monday\. The order record still says Friday/);
-  assert.match(slide.notes, /No team owns passing the carrier update through to the order system and the customer/);
-  assert.match(slide.notes, /The chatbot reads that unchanged record and repeats Friday/);
-  assert.match(slide.notes, /green check confirms a shipped chatbot, not accurate order information or proven business value/);
-  assert.match(slide.notes, /Faster implementation did not create this problem/);
-  assert.match(slide.notes, /unchanged learning and decision cycles can allow more unvalidated requests/);
-  assert.match(slide.notes, /not an argument for slower engineering or a new central approval queue/);
-  assert.match(slide.notes, /proposed success criteria, not measured outcomes/);
-  assert.match(slide.notes, /Use this same Friday-to-Monday story for the later leadership pillar examples/);
-  assert.match(slide.notes, /Do not select an interface before the evidence is available/);
+  assert.match(slide.notes, /Nobody owns getting that update into the order system and through to the customer/);
+  assert.match(slide.notes, /chatbot confidently repeats Friday/);
+  assert.match(slide.notes, /isn't a hallucination/);
+  assert.match(slide.notes, /green check means we shipped a chatbot, not that we helped the customer/);
+  assert.match(slide.notes, /Faster implementation didn't create the missing handoff/);
+  assert.match(slide.notes, /deliver the requested answer before checking the problem/);
+  assert.match(slide.notes, /made-up example/);
+  assert.match(slide.notes, /proposed success criterion, not a result we've measured/);
+  assert.match(slide.notes, /outcome we should test is a trustworthy revised date and a clear next action/);
   assert.deepEqual(slide.sources, ['engineering', 'dt']);
 });
 
@@ -483,23 +516,14 @@ test('slide 7 shows business decisions made by default and carried through imple
   assert.doesNotMatch(slide.body, /choice-icon|lane-row|decision-transfer|Chooses a default/);
   assert.doesNotMatch(slide.body, /Illustrative|not to scale|Keep useful ceremonies|Direct route|Customer decision owner|time \+ authority|fragment|Friday|Monday|chatbot|carrier/i);
   assert.doesNotMatch(slide.notes, /Friday|Monday|order-status|carrier|chatbot/i);
-  assert.ok(slide.notes.startsWith('Talk track (about 75 seconds):\n'));
-  const talkTrack = slide.notes.split('Presenter guidance:\n')[0];
-  assert.ok(talkTrack.trim().split(/\s+/).length <= 190, 'Talk track fits the slide allocation');
-  assert.match(talkTrack, /slow purple planning loop[\s\S]*dashed line[\s\S]*agent[\s\S]*product behaviour, tests, and later increments[\s\S]*return arc/);
-  assert.match(talkTrack, /If business validation cannot keep pace/);
-  assert.match(talkTrack, /The question is still open\. The product already contains an answer\./);
-  assert.match(slide.notes, /choice made by default, not an explicit transfer of decision authority/);
-  assert.match(slide.notes, /When delivery accelerates but business validation does not keep pace/);
-  assert.match(slide.notes, /conditional capacity gap, not evidence that faster delivery inevitably produces more assumptions/);
-  assert.match(slide.notes, /The agent makes the illustrated assumption/);
-  assert.match(slide.notes, /not a count of distinct new assumptions/);
-  assert.match(slide.notes, /not three independently validated decisions/);
-  assert.match(slide.notes, /not three independently validated decisions or sequential lifecycle stages/);
-  assert.match(slide.notes, /Unvalidated does not mean that the chosen rule is necessarily wrong/);
-  assert.match(slide.notes, /amplification is the reach of one unchecked choice/);
-  assert.match(slide.notes, /Engineering owns legitimate technical decisions within its scope/);
-  assert.match(slide.notes, /Leave the response for the next section/);
+  assert.match(slide.notes, /slow planning loop[\s\S]*agent[\s\S]*product behaviour, tests, and later increments[\s\S]*return arc/);
+  assert.match(slide.notes, /If business validation can't keep pace with implementation/);
+  assert.match(slide.notes, /The question is still open\. The product already contains an answer\./);
+  assert.match(slide.notes, /Not a decision someone authorized/);
+  assert.match(slide.notes, /copies of one unchecked choice, not separate validated decisions/);
+  assert.match(slide.notes, /assumption isn't necessarily wrong/);
+  assert.match(slide.notes, /Engineers still own technical decisions within their scope/);
+  assert.doesNotMatch(slide.notes, /skip checks|central approval|constant customer availability/i);
   const theme = await readFile(new URL('./theme.css', import.meta.url), 'utf8');
   assert.match(theme, /\.amplification-diagram \{ position: relative; width: 1152px; height: 332px;/);
   assert.match(theme, /\.amplification-diagram \.loop-build \{ left: 574px; --diameter: 156px;/);
@@ -523,17 +547,13 @@ test('slide 8 explains late readiness, excess arrivals, and rework without prese
   assert.match(slide.body, /class="feature-caption"><span>Faster arrivals<\/span>/);
   assert.match(slide.body, /class="readiness-caption"><span>Work still arrives late<\/span>/);
   assert.doesNotMatch(slide.body, /Illustrative|not to scale|Involved from the start|Shift assurance|participate throughout|Security \+ ops|Release \+ SRE/);
-  const talkTrack = slide.notes.split('Presenter guidance:\n')[0];
-  assert.ok(talkTrack.trim().split(/\s+/).length <= 190);
-  assert.match(talkTrack, /fast implementation wheel[\s\S]*old cycle[\s\S]*backlog grows[\s\S]*return line/);
-  assert.match(slide.notes, /conditional capacity gap/);
-  assert.match(slide.notes, /The right wheel names work, not teams/);
-  assert.match(slide.notes, /not three required serial gates/);
-  assert.match(slide.notes, /does not imply that tests and reviews belong only after build/);
-  assert.match(slide.notes, /separate pieces of work, not copies of one business assumption/);
-  assert.match(slide.notes, /required independent review/);
-  assert.match(slide.notes, /security-agent support during design, planning, and coding/);
-  assert.match(slide.notes, /Leave the response for the next section/);
+  assert.match(slide.notes, /fast implementation wheel[\s\S]*work late[\s\S]*backlog grows[\s\S]*return line/);
+  assert.match(slide.notes, /If features arrive faster than readiness work can handle them/);
+  assert.match(slide.notes, /kinds of work, not three teams or mandatory serial gates/);
+  assert.match(slide.notes, /separate pieces of work, unlike the copies of one assumption/);
+  assert.match(slide.notes, /isn't an argument for skipping checks or blaming specialists/);
+  assert.match(slide.notes, /Nor is it inevitable with AI/);
+  assert.doesNotMatch(slide.notes, /Shift assurance|security agent|prepared foundations/i);
   const rendered = renderSlides().match(/<section id="production-early"[\s\S]*?<\/section>/)[0];
   assert.match(rendered, /data-readiness-action="replay"/);
   assert.match(rendered, /data-readiness-action="pause"/);
@@ -568,13 +588,8 @@ test('slide 10 uses the selected large circular model and keeps assurance in not
   }
   assert.doesNotMatch(slide.body, /model-assurance|AI \+ prepared foundations|Continuous assurance/);
   assert.match(slide.notes, /independent review where required/);
-  assert.match(slide.notes, /not a measured result or a mandated formula/);
-  assert.match(slide.notes, /a POC or MVP is not a production-ready release/);
+  assert.match(slide.notes, /A turn isn't necessarily a release\. A prototype isn't production-ready/);
   assert.doesNotMatch(slide.body, /HVE-Core|GitHub Copilot|Multidisciplinary teams|Design Thinking/);
-  assert.ok(slide.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 80);
-  assert.match(slide.notes, /Advance once with Right Arrow or Space/);
-  assert.match(slide.notes, /Four fixed purple arrowheads/);
-  assert.match(slide.notes, /The circle does not animate/);
   assert.doesNotMatch(slide.notes, /six active seconds|Motion pauses/);
   for (const file of ['operating-model.mjs']) {
     assert.equal(
@@ -611,20 +626,12 @@ test('slide 11 reveals four unnumbered structural pillars without the extra impr
   assert.match(theme, /body:not\(\.deck-ready\) #constraints-pillars \.pillar-column.fragment/);
   assert.match(theme, /\.reveal.overview #constraints-pillars \.pillar-column.fragment/);
   assert.match(theme, /html.print-pdf #constraints-pillars \.pillar-column.fragment \{ opacity: 1; visibility: visible; transition: none;/);
-  assert.match(slide.notes, /Advance four times/);
   assert.doesNotMatch(slide.title, /constraints/i);
   assert.match(slide.body, /Established practices, refined through Microsoft ISE delivery/);
   assert.match(slide.body, /customer co-engineering and Forward Deployed Engineering experience/);
   assert.doesNotMatch(slide.body, /proven|guaranteed/i);
-  const talkTrack = slide.notes.split('Presenter guidance:\n')[0];
-  assert.ok(talkTrack.trim().split(/\s+/).length <= 70);
-  assert.match(talkTrack, /Microsoft Industry Solutions Engineering \(ISE\)/);
-  assert.match(talkTrack, /Forward Deployed Engineering over recent years/);
-  assert.match(talkTrack, /short customer-and-crew learning loop/);
-  assert.doesNotMatch(talkTrack, /Multidisciplinary|Design Thinking|accelerators|AI assistance/);
-  assert.match(slide.notes, /not an exclusive one-to-one mapping/);
-  assert.match(slide.notes, /required independent review/);
-  assert.match(slide.notes, /not that AI creates every challenge/);
+  assert.match(slide.notes, /practices come from delivery experience/);
+  assert.match(slide.notes, /aren't inventions that replace good engineering/);
   assert.ok(slide.sources.includes('fde'));
 });
 
@@ -666,9 +673,9 @@ test('delivery shifts connect technology changes to responsibility and outcome o
   assert.match(content, /AI is more than a tool rollout\. Like earlier shifts in software delivery, it asks us to rethink how teams organize and deliver outcomes\./);
   assert.match(content, /AI SDLC emerges\s+Assist across delivery/);
   assert.doesNotMatch(content, /Approximate milestones|Overlapping eras|not to scale/);
-  assert.match(slide.notes, /Responsible coding-tool use and token value matter/);
-  assert.match(slide.notes, /Reference milestones, not invention or adoption dates/);
-  assert.match(slide.notes, /not measured evidence of organizational change/);
+  assert.match(slide.notes, /reference points, not invention dates/);
+  assert.match(slide.notes, /practices overlap/);
+  assert.match(slide.notes, /leave them able to operate and improve the result/);
   for (const key of ['cics', 'agile', 'devops', 'cloud', 'coengineering', 'copilotx']) {
     assert.ok(slide.sources.includes(key), key);
   }
@@ -681,8 +688,8 @@ test('Agile and DevOps have distinct dated milestones', () => {
   assert.match(milestones.get('2001'), /^2001\s+Agile\s+Own delivery \+ feedback$/);
   assert.doesNotMatch(milestones.get('2001'), /DevOps/);
   assert.equal(milestones.get('2009'), 'DevOps 2009');
-  assert.match(slide.notes, /2001 milestone is Agile only/);
-  assert.match(slide.notes, /2009 marker for the first DevOpsDays in Ghent/);
+  assert.ok(slide.sources.includes('agile'));
+  assert.ok(slide.sources.includes('devops'));
 });
 
 test('timeline positions and arrival delays use the same linear year scale', () => {
@@ -754,8 +761,8 @@ test('slide 4 uses the selected fault line without statistics or boxes', () => {
   assert.doesNotMatch(content, /\d|%|GitClear|DORA/);
   assert.doesNotMatch(content, /Big words|New names|Forward Deployed Engineering/);
   assert.match(slide.notes, /planning scenario, not a forecast/);
-  assert.match(slide.notes, /not slower engineering or a new central approval queue/);
-  assert.match(slide.notes, /AI does not cause them/);
+  assert.match(slide.notes, /don't need slower engineering or a new central approval queue/);
+  assert.match(slide.notes, /AI didn't invent them/);
 });
 
 test('slide 5 combines the approved sweeping loops and retains assurance', () => {
@@ -780,7 +787,7 @@ test('slide 5 combines the approved sweeping loops and retains assurance', () =>
   assert.match(slide.notes, /Retain independent review and separation of duties where required/);
   assert.match(slide.notes, /customer and team jointly responsible for the outcome/);
   assert.match(slide.notes, /not accepted customer outcomes/);
-  assert.match(slide.notes, /not measured durations or workload shares/);
+  assert.match(slide.notes, /wheel speeds are illustrations, not measured productivity/);
   assert.doesNotMatch(slide.body, /class="lane|Time saved|\d+%/);
 });
 
@@ -1677,9 +1684,9 @@ test('slide 23 wraps up for leaders with two QR codes and three facts about HVE-
   assert.ok(text(`${slide.title} ${slide.body}`).split(/\s+/).length <= 85);
   assert.doesNotMatch(`${slide.title} ${slide.body} ${slide.notes}`, /dashed|certified|guarantee[sd]?\s+(results|savings)|—/i);
   assert.match(slide.notes, /Scan the left code for the GitHub repository/);
-  assert.match(slide.notes, /fork has an ongoing maintenance cost/i);
+  assert.match(slide.notes, /fork is an option, but it brings an ongoing maintenance cost/i);
   assert.match(slide.notes, /not as a stable platform or a production dependency/);
-  assert.match(slide.notes, /does not supply sponsorship, customer time, authority, or review capacity/);
+  assert.match(slide.notes, /one team and one real outcome/);
 });
 
 test('slide 20 opens chapter three as a quiet divider', () => {
@@ -1796,7 +1803,7 @@ test('visible content is concise and every slide has notes and public sources', 
   for (const item of slides) {
     const words = text(`${item.title} ${item.body}`).split(/\s+/);
     assert.ok(words.length <= 85, `${item.id}: ${words.length} visible words`);
-    assert.ok(item.notes.length >= 100, `${item.id}: presenter guidance is missing`);
+    assert.ok(item.notes.length >= 100, `${item.id}: speaker notes are missing`);
     assert.ok(item.sources.length > 0);
     for (const key of item.sources) assert.ok(sources[key]?.[1].startsWith('https://'));
   }
