@@ -92,8 +92,8 @@ test('slide order follows the approved narrative and pillar examples', () => {
     'feedback-window', 'production-early', 'outcomes-response', 'hve-model', 'constraints-pillars', 'teams', 'team-example',
     'design-thinking', 'design-example', 'accelerators', 'accelerator-example', 'lifecycle-ai',
     'lifecycle-example', 'outcomes-action', 'framework-toolkit', 'team-support', 'hve-core-open',
-    'deep-dive', 'toolkit', 'context', 'dt-coach',
-    'handoff-contract', 'rpi', 'review', 'cost', 'plugin-model', 'adoption-commitments', 'outcome-measures',
+    'deep-dive', 'plugin-model', 'rpi', 'context', 'toolkit', 'dt-coach', 'handoff-contract',
+    'review', 'practitioner-workflow', 'customize', 'maintain-toolkit',
     'team-pass', 'demo-route', 'demo-install',
     'demo-discovery', 'demo-handoff', 'demo-rpi', 'recap',
   ]);
@@ -362,65 +362,148 @@ test('slide 22 shows reusable HVE-Core starting points for six roles', () => {
   assert.match(slide.notes, /Coverage varies by role/);
 });
 
-test('slide 33 shows that adoption needs six leadership commitments beyond installation', () => {
-  const slide = byId['adoption-commitments'];
-  assert.equal(slides[32].id, 'adoption-commitments');
-  assert.equal(slide.part, 'deep-dive');
-  assert.match(slide.notes, /toolkit cannot supply/);
-  assert.equal(slide.title, 'Adoption needs more<br><em>than installation.</em>');
-  assert.equal(slide.minutes, 1.25);
-  assert.ok(slide.sources.includes('core'));
-  assert.match(slide.body, /<figure class="adoption-scene"\s+aria-label="[^"]+"/);
-  assert.equal((slide.body.match(/<li class="adoption-card tone-/g) ?? []).length, 6);
-  assert.equal((slide.body.match(/class="adoption-chip"/g) ?? []).length, 6);
-  assert.equal((slide.body.match(/class="adoption-installed tone-slate"/g) ?? []).length, 1);
-  const content = text(slide.body);
-  assert.match(content, /Toolkit installed/);
-  assert.match(content, /Now what\? Six commitments\./);
-  for (const commitment of ['Sponsorship', 'Authority', 'Shared ownership', 'End user time', 'Review capacity', 'Maintained knowledge']) {
-    assert.match(content, new RegExp(commitment));
-  }
-  assert.doesNotMatch(content, /Customer time/);
-  assert.match(content, /Installation is the easy part\.\s+Adoption needs leadership commitments\./);
-  assert.ok(content.split(/\s+/).length <= 85);
-  assert.doesNotMatch(`${slide.title} ${slide.body} ${slide.notes}`, /dashed|certified|guarantee[sd]?\s+(results|savings)|—/i);
-  assert.match(slide.notes, /End user time/);
-  assert.match(slide.notes, /teaching synthesis/);
-  assert.match(slide.notes, /Each organization decides/);
-  assert.match(slide.notes, /not a customer result/);
-  assert.match(slide.notes, /cannot supply sponsorship, end user time, authority, or review capacity/);
-  assert.ok(slide.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
+test('practitioner allocations preserve the approved 34.5-minute budget and published duration', async () => {
+  const practitioner = slides.filter(slide => slide.part === 'deep-dive');
+  assert.deepEqual(practitioner.map(slide => slide.minutes), [0.5, 3, 4, 2.5, 2, 4, 4, 3, 4, 2.5, 2, 1.5, 1.5]);
+  const { presentation } = JSON.parse(await readFile(new URL('./package.json', import.meta.url), 'utf8'));
+  assert.equal(presentation.duration, 61.5);
+  assert.match(presentation.info, /61\.5 minutes; demos and Q&A are separate/);
+  for (const id of ['cost', 'adoption-commitments', 'outcome-measures']) assert.equal(byId[id], undefined);
+  assert.equal(byId['deep-dive'].body, '');
 });
 
-test('slide 34 contrasts AI activity with six outcome measures', () => {
-  const slide = byId['outcome-measures'];
-  assert.equal(slides[33].id, 'outcome-measures');
-  assert.equal(slide.part, 'deep-dive');
-  assert.equal(slide.title, 'Measure the outcome,<br><em>not the AI activity.</em>');
-  assert.equal(slide.minutes, 1.25);
-  assert.match(slide.body, /<figure class="outcome-scene"\s+aria-label="[^"]+"/);
-  assert.equal((slide.body.match(/<li class="outcome-act"/g) ?? []).length, 3);
-  assert.equal((slide.body.match(/<li class="outcome-card tone-/g) ?? []).length, 6);
-  assert.equal((slide.body.match(/class="outcome-chip"/g) ?? []).length, 9);
-  const content = text(slide.body);
-  assert.match(content, /AI activity\s+Shows use, not success/);
-  assert.match(content, /Outcome\s+Shows what changed/);
-  for (const activity of ['Prompts sent', 'Code generated', 'Seats activated']) {
-    assert.match(content, new RegExp(activity));
+test('installation and maintenance show runnable commands with current host limits', () => {
+  for (const command of [
+    'copilot plugin marketplace add microsoft/hve-core',
+    'copilot plugin install hve-core@hve-core',
+  ]) assert.ok(text(byId['plugin-model'].body).includes(command), command);
+  assert.match(byId['plugin-model'].body, /\/agent[\s\S]*DT Coach[\s\S]*RPI Agent[\s\S]*rpi-research/);
+  assert.match(byId['plugin-model'].notes, /new Copilot session/);
+  assert.match(byId['plugin-model'].notes, /one install route to avoid duplicate agents/);
+  assert.match(byId['plugin-model'].notes, /\/hve-core:rpi-research/);
+  for (const id of ['plugin-model', 'demo-install']) {
+    assert.match(byId[id].notes, /VS Code picks up CLI-installed plugins/);
+    assert.match(byId[id].notes, /instructions load through applyTo/i);
+    assert.doesNotMatch(byId[id].notes, /instructions are not applied automatically|Copilot app, and VS Code/);
+    assert.match(byId[id].notes, /no claim about the Copilot desktop app|does not establish the behavior of the Copilot desktop app/);
   }
-  for (const measure of ['Useful value', 'Quality', 'Waiting', 'Rework', 'Experience', 'Total cost']) {
-    assert.match(content, new RegExp(measure));
+  const update = text(byId['maintain-toolkit'].body);
+  assert.ok(update.indexOf('copilot plugin marketplace update hve-core') <
+    update.indexOf('copilot plugin update hve-core@hve-core'));
+  assert.match(update, /copilot plugin marketplace update hve-core/);
+  assert.match(update, /copilot plugin update hve-core@hve-core/);
+  assert.match(byId['maintain-toolkit'].notes, /without a release gate or release attestation/);
+  assert.match(byId['maintain-toolkit'].notes, /Reload VS Code after instruction updates/);
+});
+
+test('the first RPI task has agreed intent, approval, durable artifacts, and follow-up', () => {
+  assert.match(byId.rpi.body, /Select RPI Agent[\s\S]*illustrative starter request/);
+  assert.match(byId.rpi.notes, /intent and acceptance criteria are already agreed/);
+  assert.match(byId.rpi.notes, /Do not treat the original chatbot request as an approved solution/);
+  assert.match(byId.rpi.body, /wait for approval before implementation/);
+  assert.match(byId.rpi.notes, /Execution complete is not acceptance/);
+  assert.match(byId.rpi.body, /defects, decisions, evidence gaps, and residual work/);
+  assert.match(byId.rpi.body, /Not every task needs every phase/);
+  assert.match(byId.rpi.notes, /supports \/rpi coordination, RPI Agent, and direct phase skills/);
+  for (const path of [
+    '.copilot-tracking/research/<date>/<slug>-research.md',
+    '.copilot-tracking/plans/<date>/<slug>-plan.md',
+    '.copilot-tracking/changes/<date>/<slug>-changes.md',
+    '.copilot-tracking/reviews/logs/<date>/<slug>-review.md',
+  ]) assert.ok(byId.context.notes.includes(path), path);
+  assert.match(byId.context.body, /Resume from files, not memory/);
+  assert.match(byId.context.notes, /ownership, access limits, and freshness/);
+  assert.match(byId.context.body, /Shared does not mean public/);
+});
+
+test('DT and UX have concrete requests, labelled artifacts, flexible evidence, and human decisions', () => {
+  const slide = byId['dt-coach'];
+  assert.match(slide.body, /Select DT Coach[\s\S]*Friday-to-Monday[\s\S]*Prepare questions/);
+  assert.match(slide.body, /Select UX UI Designer[\s\S]*map the current order-update journey/);
+  assert.match(slide.body, /Save it; do not publish/);
+  for (const input of ['co-work', 'email questions', 'permitted replies', 'supplied documents', 'WorkIQ meeting transcripts']) {
+    assert.ok(slide.notes.includes(input), input);
   }
-  assert.match(content, /Count outcomes, not activity\.\s+Prompts and code volume show use, not success\./);
-  assert.ok(content.split(/\s+/).length <= 85);
-  assert.doesNotMatch(`${slide.title} ${slide.body} ${slide.notes}`, /dashed|certified|guarantee[sd]?\s+(results|savings)|—/i);
-  assert.match(slide.notes, /show use, not success/);
-  assert.match(slide.notes, /More code is not more value/);
-  assert.match(slide.notes, /teaching aid, not a standard/);
-  assert.match(slide.notes, /Each team picks its own baseline/);
-  assert.match(slide.notes, /this slide shows no results/);
-  assert.match(slide.notes, /Invent no chart or percentage/);
-  assert.ok(slide.notes.split('Presenter guidance:\n')[0].trim().split(/\s+/).length <= 220);
+  assert.match(slide.notes, /configured connector, permission, and an explicit request/);
+  assert.match(slide.notes, /Reported evidence is not direct observation or customer validation/);
+  assert.match(slide.notes, /map-journey/);
+  assert.match(slide.notes, /\.copilot-tracking\/ux-artifacts\//);
+  assert.match(slide.notes, /observed, reported, assumed, and unresolved/);
+  assert.match(slide.notes, /product owner and customer\/domain experts must review/);
+  assert.match(slide.notes, /All requests and expected outputs here are illustrative/);
+});
+
+test('requirements and reviewed DT handoffs keep gaps visible and enter research, not build', () => {
+  const slide = byId['handoff-contract'];
+  for (const label of ['BRD Builder', 'PRD Builder', 'UX artifact', 'Reviewed DT handoff', 'rpi-research']) {
+    assert.ok(text(slide.body).includes(label), label);
+  }
+  assert.match(slide.body, /Source: supplied teaching case[\s\S]*Assumed: update path[\s\S]*Unknown: confirmed owner/);
+  assert.match(slide.notes, /business justification, objectives, stakeholder needs/);
+  assert.match(slide.notes, /features, measurable requirements, acceptance criteria/);
+  assert.match(slide.notes, /Neither document nor both documents are mandatory/);
+  assert.match(slide.notes, /timing, authoritative source, failure behavior, and owner/);
+  for (const exit of ['Problem Statement Complete', 'Concept Validated', 'Implementation Spec Ready']) {
+    assert.ok(slide.notes.includes(exit), exit);
+  }
+  assert.match(slide.notes, /All enter rpi-research/);
+  assert.match(slide.notes, /not validated requirements/);
+  for (const confidence of ['validated', 'assumed', 'unknown', 'conflicting']) {
+    assert.match(slide.body, new RegExp(confidence, 'i'));
+  }
+});
+
+test('specialist support keeps planning, assessment, and expert acceptance separate', () => {
+  const slide = byId.review;
+  for (const agent of ['Security Planner', 'Security Reviewer', 'RAI Planner', 'RAI Reviewer']) {
+    assert.ok(slide.notes.includes(agent), agent);
+  }
+  assert.match(slide.notes, /audit, diff, or plan mode/);
+  assert.match(slide.notes, /plan risk is not a verified vulnerability in current code/);
+  assert.match(slide.notes, /An AI coding assistant does not automatically make the product an AI system/);
+  assert.match(slide.notes, /failed, skipped, and blocked checks/);
+  assert.match(slide.notes, /required independent assurance/);
+  assert.match(slide.notes, /human acceptance pending/);
+  for (const key of ['securityplan', 'securityreview', 'raiplan', 'raireview']) assert.ok(slide.sources.includes(key), key);
+});
+
+test('the connected example retains feedback, honest measurement, and the separate demo', () => {
+  const slide = byId['practitioner-workflow'];
+  assert.match(slide.body, /trustworthy revised date \+ a clear next action/);
+  assert.match(slide.body, /DT → rpi-research/);
+  assert.match(slide.body, /Feedback can reopen the problem, options, or implementation/);
+  assert.match(slide.notes, /not necessarily a chatbot/);
+  assert.match(slide.notes, /one illustrative route, not a mandatory pipeline/);
+  assert.match(slide.notes, /supplies no results/);
+  assert.match(slide.notes, /human time, and total cost/);
+  assert.match(slide.notes, /tool-limit handling, and AI cost/);
+  assert.match(slide.notes, /suitable comparison before attributing a gain/);
+  assert.match(byId['demo-route'].notes, /leave the illustrative order-update case/);
+  assert.match(byId['demo-route'].notes, /route stays unchanged/);
+  assert.match(byId['demo-route'].notes, /own 30-minute budget/);
+  assert.match(byId['demo-rpi'].notes, /Run \/clear between every stage/);
+  for (const item of slides.filter(item => item.part === 'deep-dive')) {
+    assert.doesNotMatch(`${item.title} ${item.body} ${item.notes}`, /manufacturing|quality.dashboard|voice.guided repair/i);
+  }
+});
+
+test('customization and maintenance keep local knowledge governed beside upstream assets', () => {
+  assert.match(byId.customize.notes, /Do not edit installed upstream assets/);
+  for (const path of [
+    '.github/copilot-instructions.md', '.github/instructions/<topic>.instructions.md',
+    '.github/skills/<skill-name>/SKILL.md',
+  ]) assert.ok(byId.customize.notes.includes(path), path);
+  assert.match(byId.customize.notes, /security requirements beside the shared OWASP methods/);
+  assert.match(byId.customize.notes, /private and access-controlled/);
+  assert.match(byId.customize.notes, /spec-driven development or other working practices/);
+  assert.match(byId.customize.notes, /Detailed customization and distribution are outside this session/);
+  assert.match(byId['maintain-toolkit'].notes, /owners, source dates, access, compatibility checks, and review dates/);
+  assert.match(byId['maintain-toolkit'].notes, /Update or retire/);
+  assert.match(byId['maintain-toolkit'].notes, /upstream contribution process/);
+  assert.match(byId['maintain-toolkit'].notes, /not a stable platform or production dependency/);
+  assert.match(byId['team-pass'].notes, /Practical starter checklist/);
+  assert.match(byId.toolkit.notes, /read-only backlog-plan from mutating backlog-execute/);
+  assert.match(byId.toolkit.notes, /Data Science and Engineering Coach/);
 });
 
 test('section breaks preserve the approved output-to-outcome titles and selected C treatment', async () => {
@@ -1188,7 +1271,10 @@ test('leaving the slide or page cancels motion and re-entry restores native frag
 test('merged slide hashes preserve the corresponding phase without adding sections', async () => {
   assert.equal(mergedSlideHash('#/ai-implementation'), '#/handoffs/0');
   assert.equal(mergedSlideHash('#/outcome-waiting'), '#/handoffs/1');
-  for (const hash of ['', '#/handoffs', '#/handoffs/0', '#/teams', '#/unknown']) {
+  assert.equal(mergedSlideHash('#/cost'), '#/practitioner-workflow');
+  assert.equal(mergedSlideHash('#/outcome-measures'), '#/practitioner-workflow');
+  assert.equal(mergedSlideHash('#/adoption-commitments'), '#/customize');
+  for (const hash of ['', '#/handoffs', '#/handoffs/0', '#/teams', '#/unknown', '#/cost/0', '#/practitioner-workflow']) {
     assert.equal(mergedSlideHash(hash), hash);
   }
   const presentation = await readFile(new URL('./presentation.mjs', import.meta.url), 'utf8');
@@ -1609,7 +1695,7 @@ test('chapter labels mark leadership dividers and open the HVE-Core section', ()
   assert.equal(deepDive.chapter, 1);
   assert.equal(deepDive.chapterCount, 1);
   assert.equal(deepDive.className, 'section-divider');
-  assert.equal(deepDive.title, 'Diving deeper into HVE-Core');
+  assert.equal(deepDive.title, 'HVE-Core<br><em>A practical starter guide.</em>');
   const deepDiveHtml = section('deep-dive');
   const deepDiveKicker = deepDiveHtml.match(/<p class="kicker">([\s\S]*?)<\/p>/)[1];
   assert.equal(text(deepDiveKicker.match(/<b>([\s\S]*?)<\/b>/)[1]), 'Chapter 1');
@@ -1797,6 +1883,15 @@ test('background SVG definitions are unique and resolve inside each slide', () =
   assert.throws(() => waveBackground('unknown'), /Unknown wave preset/);
   assert.throws(() => waveBackground('__proto__'), /Unknown wave preset/);
   assert.throws(() => waveBackground('cover-cradle', 'bad" id'), /Wave instance id/);
+});
+
+test('PDF layout keeps the full canvas for positioned titles and slide numbers', async () => {
+  const css = await readFile(new URL('./dist/theme.css', import.meta.url), 'utf8');
+  const runtime = await readFile(new URL('./presentation.mjs', import.meta.url), 'utf8');
+  const height = runtime.match(/height:\s*(\d+)/)[1];
+  assert.match(css, new RegExp(
+    `html\\.print-pdf \\.reveal \\.slides section\\s*\\{\\s*height: ${height}px !important;\\s*\\}`,
+  ));
 });
 
 test('visible content is concise and every slide has notes and public sources', () => {

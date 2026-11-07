@@ -11,8 +11,8 @@
 | Format | Standalone leadership section, "Diving deeper into HVE-Core" practitioner section, then separate demos |
 | Content duration | 27 minutes leadership + 34.5 minutes diving deeper into HVE-Core |
 | Demo and Q&A duration | 30 minutes live demo; Q&A allocation not yet set |
-| Last updated | 2026-11-06 |
-| Status | Executive revision in progress; slides 12-23 and the chapter structure are updated locally; later individual slide reviews remain pending |
+| Last updated | 2026-11-07 |
+| Status | Practitioner-guide restructure; leadership and the separate demo route remain unchanged |
 
 This 41-slide outline includes 23 leadership slides, 13 HVE-Core deep dives, and five demo support slides. Each pillar has practice and example slides. Organizational and cultural change remain central. The leadership section has three chapters; each leadership slide after the cover names its chapter in the top bar. The HVE-Core section starts with a Chapter 1 divider.
 
@@ -24,7 +24,7 @@ The [slide-by-slide visual and animation plan](#slide-by-slide-visual-and-animat
 
 Attendees can explain why responsible AI coding and efficient token use are necessary but not sufficient. They can use the four pillars to organize teams around outcomes, improve decision and validation capacity, provide maintained production-ready starting points, and enable every role with suitable AI tools. They can plan a measured change in how work is owned and delivered, not merely a tool rollout.
 
-The "Diving deeper into HVE-Core" section is a practitioner guide for teams that make the change real. It answers the practical question left by the leadership section: how do we turn these principles into shared, repeatable work? It maps HVE-Core capabilities to the delivery problems already established, then returns to adoption commitments and outcome measures for leaders who stay.
+The practitioner section starts with CLI plugin installation and a first bounded RPI task. Attendees then learn which tools improve discovery, UX, requirements, and assurance. They leave with starter requests, durable artifacts, an adaptable workflow, and a way to maintain shared knowledge.
 
 The demos connect problem understanding to a bounded implementation through one public teaching scenario.
 
@@ -56,7 +56,7 @@ The intended change is from months of serial delivery toward useful outcomes in 
 
 The leadership section closes with the difference between the framework and the toolkit, the roles the toolkit supports, and one wrap slide with two QR codes. HVE-Core is open source and maintained by Microsoft. Teams can customize it and keep their own spec-driven workflows.
 
-It is reusable process support, not a substitute for organizational change or a production application foundation. The leadership commitments and outcome measures follow in the deeper section for those who want them.
+It is reusable process support, not a substitute for organizational change or a production application foundation. The practitioner section puts it to work through one illustrative order-update case.
 
 ### Subtitle framing
 
@@ -74,7 +74,7 @@ Lead with a question: what must change when implementation moves faster than the
 | Act 2: faster output can expose three delivery gaps | 6-8 | Are we solving the right problem, validating business choices, and preparing work for release? | Separate a shipped feature from its outcome, show an agent assumption spreading before business input arrives, and explain readiness demand exceeding late-process capacity |
 | Act 3: change how work is owned, validated, and produced | 9-19 | Who must work differently for the short learning loop to succeed? | Introduce the outcome-led response on slides 9-10. Then explain the four pillars through changed responsibilities, examples, evidence, and limits |
 | Act 4: make it real | 20-23 | What do we remember, and what do we do next? | Separate the framework from the toolkit, show the whole team the toolkit supports, and wrap up with two QR codes and three facts about HVE-Core |
-| Diving deeper into HVE-Core | 24-36 | How do these principles become daily work, and what must leaders still commit? | Map toolkit capabilities to the constraints, artifacts, and human decisions already explained. Then show that installation is not adoption, measure the outcome, and close with one team action |
+| Diving deeper into HVE-Core | 24-36 | How do I install it, start, choose support, and keep the work useful? | Install, try RPI, improve its inputs with DT/UX and requirements, involve specialists, inspect one workflow, and maintain shared assets |
 | Separate demonstration | 37-41 | Can we follow the evidence through one real workflow? | Show one labelled teaching scenario, a reviewed handoff, controlled change, and remaining gaps |
 
 The progression is recognition -> opportunity -> tension -> changed responsibilities -> evidence -> action. The four pillars connect delivery problems to changes in practice. Present this as a coherent operating model to test and adapt, not a proven necessary-and-sufficient formula for every organization.
@@ -91,7 +91,7 @@ The failure predates AI. Where implementation becomes much faster, unchanged lea
 
 Test the update path with the people who know it before choosing a response. A trustworthy answer and a clear next action are proposed success criteria, not findings. A chatbot, tracking view, and notification are hypothetical options, not instructions to build three POCs. Keep the teaching boundary in notes, not a visible scenario label on slide 6.
 
-Use the Friday-to-Monday case in suitable later pillar examples as each is reviewed. Do not force it into the general risk patterns on slides 7-8. Keep the manufacturing tutorial and Apex Dynamics demo separate. Explain the change of teaching scenario. Later entries retain the previous draft until review. The order-status case is not customer research or a Microsoft result.
+Continue the Friday-to-Monday case in the practitioner section. Do not force it into the general risk patterns on slides 7-8. Replace the former manufacturing tutorial, not the separate Apex Dynamics demo. The order-update case and all new excerpts are illustrative, not customer research or a Microsoft result.
 
 On slide 7, distinguish increasing decision demand from the spread of one assumption. PM, SME, and customer input remains in the slower planning loop. The agent fills an unanswered business choice while implementation continues. That same rule spreads into product behaviour, tests, and later increments, then returns as the starting point for more work. Unvalidated does not necessarily mean wrong.
 
@@ -105,14 +105,16 @@ FDE remains supporting context and needs no separate leadership slide. Capabilit
 1. Connect the four pillars to changed ownership, continuous value validation, distributed expertise, and one customer-and-engineering loop.
 1. Identify leadership commitments for customer participation, decisions, specialist assurance, and retained customer capability.
 1. Start with one team and one real outcome, and measure value, quality, waiting, rework, experience, and total cost instead of AI activity.
-1. In the "Diving deeper into HVE-Core" section, connect each selected HVE-Core capability to a principle, a reviewed artifact, and a human decision. Then name the leadership commitments and outcome measures that a toolkit cannot supply.
+1. Install the CLI plugin, start one bounded RPI task, and find its saved evidence, plan, changes, and review.
+1. Use DT/UX, requirements, and specialist support to improve inputs and decisions. Keep people accountable.
+1. Extend shared organizational knowledge beside the plugin, keep it current, and contribute suitable improvements upstream.
 
 ## Section structure and timing
 
 | Section | Slides | Duration | End condition |
 |---|---|---:|---|
 | A: HVE leadership section | 1-23 | 27 min | Complete leadership argument, worked pillar examples, the framework-toolkit comparison, and a wrap slide with two QR codes |
-| B: Diving deeper into HVE-Core | 24-36 | 34.5 min | Practical concepts, leadership commitments, outcome measures, and one team action understood before live work |
+| B: Diving deeper into HVE-Core | 24-36 | 34.5 min | Installation, starter requests, saved handoffs, specialist support, and a small next action understood before live work |
 | C: separate demos | 37-41 | 30 min | Installation, problem understanding, handoff, PRD, one bounded RPI pass, and recap |
 | Questions and reference material | Separate route | Not yet set | Does not consume the content or demo allocations |
 
@@ -120,7 +122,7 @@ The revised sequence uses concrete pillar support to introduce HVE-Core before t
 
 The three chapter dividers on slides 3, 9, and 20 receive 0.25 minutes each. The combined loop slide receives 2.5 minutes and the HVE model introduction receives 0.5 minutes. The wrap slide receives 1.75 minutes, which keeps the leadership allocation at 27 minutes. Act 3 retains 14 minutes, with three minutes per pillar. Keep explanation and examples separate. Keep toolkit commands in the deeper section.
 
-The three leadership slides that state commitments and measures (adoption needs more than installation, measure the outcome, and the team boarding pass) now sit at the end of the deeper section, before the demo route. They can move after the demo route if the presenter prefers to end the session on them.
+Replace the repeated adoption and measurement slides with a worked workflow, lightweight customization, and toolkit maintenance. Keep useful outcome measures inside the example and human commitments inside the starter checklist. Keep the 41-slide total and preserve old links as aliases.
 
 The leadership wrap slide names open source, maintenance by Microsoft, and pull requests, then points to the deeper section for those who want to continue.
 
@@ -226,7 +228,7 @@ The 23 slides total 27 minutes, including transitions. A separate Q&A slot is no
 
 Each pillar gets three minutes across two visual slides. The first explains meaning and changed practice. The second makes that meaning concrete. Do not replace these examples with four definitions, tool names, or a dense summary grid.
 
-Slides 13, 15, 16, 17, 18, and 19 now use their selected distinct treatments. Slide 19 no longer uses the Friday-to-Monday case. The manufacturing tutorial stays in the deeper section. No customer results are claimed.
+Slides 13, 15, 16, 17, 18, and 19 use their selected distinct treatments. Slide 19 does not use the Friday-to-Monday case. The practitioner section returns to that case instead of the former manufacturing tutorial. No customer results are claimed.
 
 For each example, ask: *Who must work differently for this to succeed?* Show the question, changed responsibility, action, review evidence, and next decision. Show an expected artifact where useful, but do not invent findings, completed checks, or measured gains.
 
@@ -280,9 +282,9 @@ Introduce the response on slides 9-10 and develop it through the pillars. Explai
 
 On slide 11, use a brief talk track. Expand ISE as Industry Solutions Engineering. Credit Microsoft ISE delivery experience and FDE learning over recent years; leave pillar detail to later slides. Established practices do not prove that this grouping guarantees results. Show the four connected practices without adding a separate improvement process or attributing one to the white paper.
 
-On slide 33, show that installing the toolkit is only the start. Six leadership commitments follow: sponsorship, authority, shared ownership, end user time, review capacity, and maintained knowledge. Group them by who leads them (leaders, the team, the organization) and say the grouping is a teaching synthesis. Do not describe the commitments as a customer result or a guarantee.
+On slide 33, show organizational guidance and domain skills beside the upstream plugin. Use organization-specific security requirements alongside OWASP as the example. Give shared assets owners, checks, access rules, review dates, and a retirement path.
 
-On slide 34, contrast AI activity with outcomes. Prompts sent, code generated, and seats activated show use, not success. Measure useful value, quality, waiting, rework, experience, and total cost. Each team baselines its own workflow first. Show no chart and no result. If something is not measured, say so.
+On slide 34, show marketplace refresh and installed-plugin update as separate commands. Check changed behavior before team use. Keep the project warning visible: these are rapidly evolving patterns, not a stable production dependency. Suitable public fixes can go upstream; controlled organizational knowledge need not become public.
 
 Customer representatives need time and authority. Specialists need a workable review path. Platform and access owners need readiness plans. Use decision windows that fit the work and risk; continuous alignment does not require everyone to remain in meetings all day. Keep these commitments concrete without inventing a universal engagement template.
 
@@ -298,19 +300,19 @@ The 13 slides total 34.5 minutes. This is our practical extension, not a reconst
 
 | Slide | Title | Main message | Visual | Minutes |
 |---|---|---|---|---:|
-| 24 | Diving deeper into HVE-Core | Open the practitioner section as Chapter 1. Build on the leadership wrap slide: HVE-Core offers reusable process support, not organizational transformation. People retain judgment and responsibility. Useful capabilities can be adopted alongside existing tools. | Chapter divider in the established style, followed by a transition from operating model to daily work | 1 |
-| 25 | Give each practice a repeatable mechanism | Map the pillars to capabilities, artifacts, reviewers, and decisions. Introduce DT Coach for discovery and the RPI (Research, Plan, Implement, Review) workflow for controlled engineering execution. Explain agents, skills, instructions, and workflows through their purpose. Distinguish process acceleration from production solution foundations; adopt selectively. | Leadership requirement -> capability (including DT Coach and RPI) -> artifact -> reviewer and decision | 4 |
-| 26 | Keep the team and agents working from shared evidence | Show reviewed requirements, architecture, standards, decisions, and scoped task context. Check freshness and access. Apply slide 19 through a public repository example rather than a new abstract context lecture. | Repository evidence to bounded task to durable artifact | 3 |
-| 27 | Validate the problem with DT Coach support | Apply slides 14-15 to the public manufacturing request. Support scope, research planning, and synthesis. An agent organizes evidence; it does not replace interviews, user observation, or customer decisions. | User evidence to reviewed problem framing, with a customer return loop | 3 |
-| 28 | Carry Design Thinking evidence into RPI | Connect slide 14's three Design Thinking spaces (Problem, Solution, Implementation) to the three structured exits (`Problem Statement Complete`, `Concept Validated`, `Implementation Spec Ready`) and confidence markers. Every DT exit enters `rpi-research`. Return to DT when evidence invalidates the problem framing. | Three DT space exits converging on `rpi-research`, with confidence markers and a return loop | 4 |
-| 29 | RPI connects evidence to controlled change | Explain Research, Plan, Implement, Review, and follow-up through artifacts and decisions. Keep concepts distinct from command names. | Evidence chain with human checkpoints | 4 |
-| 30 | Build controls into the workflow | Apply slides 8 and 19: involve relevant specialists early, generate reviewable evidence, and use deterministic checks. Match review depth to uncertainty and risk. Requirements, tests, specialist review, and human acceptance have different jobs. | Uncertainty to controls, review evidence, and an accountable decision | 3 |
-| 31 | Check whether the mechanism improved delivery | Apply slide 34: compare the outcome measures for value, quality, waiting, rework, human time, and AI cost. Include time spent managing tool limits. Use available evidence, not a universal token budget or an adoption percentage. | Task-level cost, human effort, and delivery outcome view | 3 |
-| 32 | Install and maintain the CLI plugin correctly | Explain marketplace registration and installation. The documented plugin tracks main. Its instruction files are not automatically applied by path. | Marketplace to plugin to verified capabilities | 3 |
-| 33 | Adoption needs more than installation | State the leadership commitments that a toolkit does not supply: sponsorship, authority, shared ownership, end user time, review capacity, and maintained knowledge. The grouping of the six commitments is a teaching synthesis. Each organization decides its own commitments. Do not present them as a customer result or a guarantee. | Toolkit installed -> six commitment cards, grouped by who leads them | 1.25 |
-| 34 | Measure the outcome, not the AI activity. | Contrast AI activity (prompts sent, code generated, seats activated), which shows use, with six outcome measures: useful value, quality, waiting, rework, experience, and total cost. Each team baselines its own workflow first. | AI activity beside six outcome cards; no chart and no result | 1.25 |
-| 35 | Explore HVE-Core. Apply HVE together. | Give a clear team action: start with one team and one real outcome. Point to the official documentation and role guides. The live demo that follows shows one change, end to end; it is not required to act. Tools cannot supply the organizational commitments. | Selected C: Team boarding pass. One ticket with a "Team pass" band, four numbered pillar badges, four fields (team, outcome, official documentation, role guide), and a "Live demo" stub | 2 |
-| 36 | From problem understanding to implementation | Introduce the demo route through artifacts, reviewers, and decisions. The route is install, DT Coach, a short PRD with no BRD, then one bounded RPI pass. Completing the workflow does not establish customer validation, organizational adoption, production readiness, or improved delivery. State fallback and return paths. | Four connected demo stages with review and decision points | 2 |
+| 24 | HVE-Core: a practitioner's guide | Connect the introduction to four practical actions: install, try, inspect, and adapt. Put instructions on the next slide, not inside the hidden divider body. | Existing chapter-divider style | 0.5 |
+| 25 | Install once. Find your tools. | Register the CLI marketplace, install the plugin, open a new session, and confirm discovery. Require Copilot CLI and authorized access. Plugin instructions load by `applyTo`; documented hosts are CLI and VS Code. | Two real commands and one discovery check | 3 |
+| 26 | Start with one agreed task. | Select RPI Agent and give a bounded order-update request with agreed criteria. Explain Research, Plan, Implement, Review, follow-up, and their outputs. Reuse adequate evidence; not every task needs every phase. | Starter request above the existing RPI chain | 4 |
+| 27 | Keep the evidence, not just the chat. | Inspect saved research, plan, changes, and review. Carry source, assumption, criterion, owner, and decision into later sessions. Shared knowledge can remain access-controlled. | Four artifact cards and a resume request | 2.5 |
+| 28 | Choose support for the job. | Connect to AI tools for everyone and reusable accelerators. Give most attention to discovery/UX and Security/RAI. Briefly show backlog, data science, and utilities. Define agents, skills, instructions, and tools in notes. | Four concise need-to-capability rows | 2 |
+| 29 | Improve the question with DT and UX. | DT Coach can support co-work, email questions, or supplied documents and permitted WorkIQ transcripts. Iterate discovery. UX/UI Designer turns evidence into a journey and states; people review the gaps. | Two starter requests with a clear evidence return path | 4 |
+| 30 | Make the handoff inspectable. | BRD explains business justification; PRD records product requirements and criteria. Show optional documents beside a reviewed UX/DT handoff. Every official DT exit targets `rpi-research`; no mandatory BRD-plus-PRD pipeline. | Small artifact excerpts, confidence markers, and research target | 4 |
+| 31 | Bring assurance into every stage. | Show Security Planner/Reviewer and RAI Planner/Reviewer with inputs, outputs, and expert decisions. Apply product RAI only where AI is in scope. Tests do not replace specialist review or acceptance. | Two specialist paths with evidence and owners | 3 |
+| 32 | Follow one example, not one rule. | Connect evidence, DT/UX, optional requirements, reviewed handoff, RPI, assurance, acceptance, and feedback. Keep the chatbot an option, not an accepted decision. Check customer benefit and delivery cost without invented results. | One order-update route with a feedback loop | 4 |
+| 33 | Add your knowledge beside the toolkit. | Layer organizational instructions and skills beside the plugin. Add local security requirements alongside OWASP. Keep existing spec-driven workflows and required governance. Do not edit installed upstream files. | Upstream and local assets joined by reviewed task context | 2.5 |
+| 34 | Keep the toolkit and knowledge current. | Refresh the marketplace and update the installed plugin separately. Review upstream changes and local checks, then contribute suitable improvements. Owners update or retire organizational assets. | Two update commands and a maintenance loop | 2 |
+| 35 | Explore HVE-Core. Apply HVE together. | Leave with one outcome, one bounded task, one saved handoff, and expert review. Retain the team pass, official documentation, role guides, and separate demo link. | Existing team pass; practical starter list in notes | 1.5 |
+| 36 | From problem understanding to implementation | Explicitly switch to the fictional Apex Dynamics case. Keep install, DT Coach, short PRD with no BRD, and one bounded RPI pass. Name fallbacks and return paths. | Existing four demo stages | 1.5 |
 
 Use the current [HVE-Core documentation](https://microsoft.github.io/hve-core/docs/) for capability names. Use the [CLI plugin guide](https://microsoft.github.io/hve-core/docs/getting-started/methods/cli-plugins/) for installation behavior. Explain that marketplace refresh and plugin update are separate actions.
 
@@ -320,7 +322,7 @@ Use the current [HVE-Core documentation](https://microsoft.github.io/hve-core/do
 |---|---|---|
 | A shared expert crew and customer decisions | Shared artifacts, explicit context, role-focused assistance, and review checkpoints | Team composition, customer participation, decision rights, and escalation |
 | Continuous problem and value validation | DT Coach, evidence synthesis, confidence markers, and reviewed DT-to-RPI handoffs | Real user evidence, testable success criteria, and the decision to proceed or stop |
-| Prepared production foundations | Reusable guidance and checks, used with a separately selected and maintained solution accelerator | Infrastructure, access, approved architecture, operational readiness, and solution-specific assurance |
+| Reusable accelerators | Owned instructions, domain skills, reviewed guidance, and executable checks beside the plugin | Current organizational knowledge, access rules, architecture, operational readiness, and solution-specific assurance |
 | AI throughout delivery under expert direction | Research, planning, implementation, review, and follow-up workflows | Judgment, tradeoffs, specialist accountability, and customer acceptance |
 
 End this section by returning to the same loop. The demo shows one pass with reviewed evidence and return paths. It does not prove that the organization has adopted all four pillars.
@@ -329,7 +331,7 @@ End this section by returning to the same loop. The demo shows one pass with rev
 
 Use the public [Apex Dynamics Response Systems](https://github.com/PlagueHO/Apex-Dynamics-Response-Systems) repository for all five demo stages. It is a fully mocked React Kaiju Defense Network dashboard.
 
-The deeper section's manufacturing tutorial on slides 27 and 28 stays separate from the leadership order-status case and the Apex Dynamics demonstration. [DEMO-SCRIPT.md](./DEMO-SCRIPT.md) holds the demo time plan, commands, prompts, and fallbacks.
+The practitioner section continues the leadership order-update case. Slide 36 explicitly switches to the fictional Apex Dynamics demonstration. [DEMO-SCRIPT.md](./DEMO-SCRIPT.md) holds the unchanged demo route, commands, prompts, and fallbacks.
 
 The demo scenario is the application's single-save decision. A coin flip picks the city that the AI agent saves, with no reason given. The demo asks who can defend that choice. It uses the fictional stakeholder documents in the repository as evidence. Label them as teaching material, not customer research, new interviews, or live user validation.
 
@@ -351,9 +353,9 @@ Show this route as one pass through the continuous HVE loop, not a one-way deliv
 
 ### Installation demonstration
 
-Recommend the Copilot CLI `/plugin` marketplace route for every surface, including VS Code and VS Code Insiders. The stated rationale is that one plugin install makes HVE-Core available in Copilot CLI, the Copilot app, and VS Code.
+Recommend the Copilot CLI marketplace route. The current guide states that VS Code picks up plugins installed through CLI. It does not establish the behavior of every Copilot client or the desktop app.
 
-The public docs do not state this cross-tool behavior, and they name the VS Code extension as the main VS Code route. Verify the claim on the demo machine. Soften it if it does not hold. The slide says only that this is the recommended route.
+Use one installation route to avoid duplicate agents. Open a new session to confirm discovery. Verify the intended host on the demo machine. Do not direct attendees to install the VS Code extension.
 
 Verify the exact `/plugin marketplace` syntax against the installed CLI help during preparation. Do not assume shell and slash commands have identical syntax. The shell equivalents are:
 
@@ -362,7 +364,7 @@ copilot plugin marketplace add microsoft/hve-core
 copilot plugin install hve-core@hve-core
 ```
 
-The documented registration tracks `main`, without a release gate or release attestation. Do not describe it as a stable extension channel or a pinned release. Plugin instructions remain available for explicit references; they are not automatically applied through repository path patterns.
+The documented registration tracks `main`, without a release gate or release attestation. Do not describe it as a stable release. Plugin instructions load by `applyTo` patterns. Refreshing the marketplace and updating the installed plugin are separate actions; reload VS Code after updates that change instructions.
 
 ### RPI demonstration
 
@@ -389,13 +391,13 @@ Use the Q&A to qualify the main story, not to turn every question into a main-pa
 
 | Question | Treatment |
 |---|---|
-| Must we replace our current development toolkit? | Slide 21 and deeper slide 25: separate method from tools; adopt useful capabilities selectively |
-| Does better AI remove the need for explicit context? | Slide 19 and deeper slide 26: keep relevant knowledge and decisions clear; do not predict future model limits |
-| Who checks the growing volume of output? | Slides 18-19, 21, and deeper slide 30: risk-based review, deterministic checks, independent review, and accountable humans |
-| What happens when organizational approvals remain slow? | Slides 33-34: make waiting visible and secure leadership support; a fast team cannot remove every constraint alone |
+| Must we replace our current development toolkit? | Slides 21 and 33: keep working methods and layer useful capabilities beside them |
+| Does better AI remove the need for explicit context? | Slides 19 and 27: retain relevant evidence, source access, and recorded decisions |
+| Who checks the growing volume of output? | Slides 18-19 and 31: risk-based checks, specialist review, independent assurance, and accountable humans |
+| What happens when organizational approvals remain slow? | Slides 32 and 35: make waiting and decision ownership visible; a toolkit cannot supply authority |
 | How do we keep capability after an engagement? | Slides 12-13, 17, and 33: co-work, shared practices, maintained artifacts, and customer ownership |
-| Are toolkit instructions current and evaluated? | Deeper slide 25: verify the selected artifact and its evidence; curation is not proof of current accuracy or fitness |
-| How do we estimate or control AI cost? | Deeper slide 31: inspect available telemetry, compare task outcomes and rework, and explain estimate uncertainty |
+| Are toolkit instructions current and evaluated? | Slide 34: review changes, run checks, and maintain owners; curation is not proof of fitness |
+| How do we estimate or control AI cost? | Slide 32: compare outcome, quality, waiting, rework, human effort, and total cost against a suitable baseline |
 | Does the method apply beyond code or AI products? | Slides 18-19: discovery, documentation, advisory work, and deterministic solutions can use the same delivery principles |
 | Does FDE mean a fixed role or team roster? | Slide 4 and slide 12 notes: explain the delivery motion and needed expertise, not a universal job definition or staffing ratio |
 | Must we abandon Agile, DevOps, or two-week planning? | Slides 2 and 7: retain useful practices; allow decisions, feedback, and release at the pace the work needs |
@@ -523,19 +525,19 @@ Reuse these compositions rather than introduce a new visual language on every sl
 
 | Slide | Decision and reason | Required composition | Build and static treatment |
 |---|---|---|---|
-| 24 | Static diagram. Preserve the bridge instead of restarting with a product introduction. | Show a human-responsibility band above optional process support (agents, skills, instructions, and workflows). Focus the practical discussion on the support layer without hiding the human obligations. | No animation. The change in depth is marked by the section-break styling; no logo reveal or new framework is needed. |
-| 25 | Animated diagram. Follow one practice into a mechanism, define DT Coach and RPI (`Research -> Plan -> Implement -> Review`), and distinguish artifact production from a human decision. | Four short requirement-to-support mappings that name DT Coach for discovery and RPI for controlled engineering delivery. Expand only one at a time into capability -> artifact -> reviewer and decision. Use agents, skills, instructions, and workflows as types of support, not a feature inventory. | Three states: requirements and named support (including DT Coach and RPI), one worked artifact path, then its reviewer and decision. Static version: compact mappings plus the complete worked path. Keep production solution foundations in a separately labelled external dependency. |
-| 26 | Animated diagram. Selecting relevant evidence is a transformation, not a claim that more context is always better. | Reviewed public repository evidence feeds one bounded task. Mark access, freshness, and assumptions before the task. Its durable output returns to the shared evidence with a reviewer and decision. Do not expose private source material. | Three states: available evidence, selected task context, then reviewed output and return. Static version: numbered selection-to-output flow. Do not animate evidence disappearing as if it were discarded or treat the output as automatically trusted. |
-| 27 | Static diagram. Separate human-supplied evidence from agent support and customer judgment. | User or supplied teaching evidence -> DT Coach-supported organization and synthesis -> reviewed problem framing. Keep the customer decision and return path visible. Label evidence origin; place the coach in a support role, not at the source of user findings. | No animation. A clear role-and-evidence map is enough; live interaction belongs in slide 38. |
-| 28 | Animated diagram. Connect slide 14's three Design Thinking spaces to the three exits into `rpi-research`, and show the return path to DT. | Map Problem Space (Methods 1-3 -> `Problem Statement Complete`), Solution Space (Methods 4-6 -> `Concept Validated`), and Implementation Space (Methods 7-9 -> `Implementation Spec Ready`) converging on `rpi-research`. Mark the Methods 1-3 route as the selected demonstration. Attach validated, assumed, unknown, and conflicting labels to the handoff, not color-only badges. | Three states: three DT space exits into `rpi-research`, selected Methods 1-3 handoff with confidence markers, then the research-to-DT return path. Static version: full routing diagram with the selected path labelled. Use the linked integration reference; do not imply later methods occurred. |
-| 29 | Animated diagram. Explain controlled progress and a return path without turning RPI into an automatic pipeline. | Research -> Plan and critique -> approved Implement -> Review -> follow-up. Put evidence or artifacts beneath the work and the implementation decision between planning and change. Show one review gap returning to the appropriate earlier work. | Three states: research and planning evidence, approved change and review, then follow-up or return. Static version: full flow with the decision and labelled return path. Do not present every task as needing every phase or treat a skill call as approval. |
-| 30 | Static diagram. Different controls answer different questions; fast tests cannot replace specialist or customer judgment. | Build a compact evidence-to-decision map. Add a risk-and-uncertainty input that selects suitable checks, specialist review, and customer acceptance. Keep required independent assurance visible. Each branch states what it can establish. | No animation. Show controls in parallel, not as interchangeable green gates. Use no fictional risk score or implied automatic acceptance. |
-| 31 | Static visual. Evaluation needs real evidence, not a new visualization with invented data. | Reuse slide 34's outcome measures and each team's baseline. Add human review effort, rework, AI spend, and time managing tool limits to total cost. Connect cost to the same user outcome and quality evidence. Label missing data explicitly. | No diagram or animation. Use an evidence table, not a token counter or an unsupported cost curve. Only add a chart later if actual comparable measurements justify it. |
-| 32 | Static diagram. Installation and maintenance relationships are clearer together than as animated command output. | Show marketplace registration -> selected plugin installation -> verified agents and skills. Use a separate maintenance branch for marketplace refresh and installed-plugin update. Add a short instruction-loading limit: explicit references, not automatic path application. | No animation. Do not simulate a terminal or mark installation complete. State the main-tracking limit; verify exact commands during demo preparation. |
-| 33 | Static card grid with a short lead-in. Attendees must leave knowing that installing the toolkit does not create adoption. | A slate "Toolkit installed" check pill, an arrow, and "Now what? Six commitments." Below it, six icon cards in a 3 by 2 grid, paired by colour as leaders, team, and organization: Sponsorship (leaders own the outcome), Authority (teams can decide and act), Shared ownership (decisions made together), End user time (end users join the work), Review capacity (experts review in time), and Maintained knowledge (practices stay current). Takeaway: installation is the easy part; adoption needs leadership commitments. | No animation, product names, guarantee, or measured result. Notes say the colour grouping is a teaching synthesis and each organization decides its own commitments. HVE-Core cannot supply sponsorship, end user time, authority, or review capacity. |
-| 34 | Static visual with a clear contrast. An honest measurement frame is better than a chart without data. Attendees must leave knowing that AI activity shows use, not success. | A slate "AI activity" panel (prompts sent, code generated, seats activated; "Shows use, not success"), an arrow, and an "Outcome" panel ("Shows what changed") with six icon cards: useful value, quality, waiting, rework, experience, and total cost. Colour pairs group them as value and quality, flow, and people and cost. Takeaway: count outcomes, not activity. | No animation, chart, percentage, or product name. Do not add rising bars, countdowns, or a fabricated dashboard. Notes say the colour grouping is a teaching aid, each team baselines its own workflow, and unmeasured items are stated as not measured. |
-| 35 | Static visual. The deeper section must close with a clear stopping point and a clear starting point. A team boarding pass makes the action concrete and personal. | One wide ticket. A purple "Team pass" band carries four numbered badges for the pillars. Four fields follow: Team (one team), Outcome (one real outcome), Read first (official documentation), and Then use (your role guide). A stub on the right says "Live demo" and "See one change, end to end." Takeaway: start with one team and one real outcome. Routes: demos and pause for questions. | No animation. The pass is a metaphor, not a required process. Notes keep the beta, security, and certification caveats and state that expert judgment and required independent review stay in place. Do not make the toolkit appear to complete the organizational change. |
-| 36 | Static diagram. Give the audience a route map before switching to live work. | Four stages: install -> DT Coach problem -> PRD with no BRD -> one bounded RPI phase. Place the expected artifact and human checkpoint under each stage. Include a research-to-DT return and a clearly labelled prepared-fallback route. | No animation. Use the same compact route marker on slides 37-40, with only the current stage marked. Completing the route must not be drawn as a production-readiness badge. |
+| 24 | Static divider | Practitioner's guide title in the established divider style; no hidden body instructions | Complete in overview and print |
+| 25 | Static command panel | Two install commands, prerequisites, and a new-session discovery check; no simulated success | Commands remain selectable text |
+| 26 | Static starter request and RPI chain | Four phases with artifacts and human checkpoints; an illustrative bounded request | Full flow, no mandatory phase or reset claim |
+| 27 | Static artifact map | Four saved-file roles and a resume request; source, access, owner, and freshness remain visible | No real private files or fabricated evidence |
+| 28 | Static capability map | Four need-to-tool rows, with focus on DT/UX and Security/RAI; supporting capabilities stay brief | No fixed asset count or full inventory |
+| 29 | Static two-panel prompt pair | DT Coach and UX/UI Designer requests for the order-update case; human-supplied evidence and gaps | Explicitly illustrative; no invented interviews |
+| 30 | Static artifact excerpts | BRD/PRD distinction, UX recovery state, source and confidence labels, reviewed handoff to research | No compulsory document chain or implied approval |
+| 31 | Static parallel assurance paths | Security and AI-system RAI inputs, planner/reviewer outputs, and expert decision owners | Continuous support; no automatic certification |
+| 32 | Static worked loop | Evidence -> DT/UX -> requirements -> reviewed handoff -> RPI -> acceptance -> feedback | One example, not a universal process; no invented metrics |
+| 33 | Static upstream/local comparison | Plugin beside organizational instructions, knowledge, and domain skills; owner/check/update loop | Solid shaded panels; no installed-file edits |
+| 34 | Static update panel | Marketplace refresh and plugin update commands; review, check, share, maintain | No stable-release or automatic-compatibility promise |
+| 35 | Existing team pass | Documentation, role guide, one team/outcome, and demo/pause routes; practical checklist in notes | No adoption or readiness guarantee |
+| 36 | Existing demo route | Clearly named Apex Dynamics transition and four demo stages | Separate fictional case; same demo behavior |
 
 ### Demo visual plan: slides 37-41
 
@@ -561,4 +563,4 @@ Use [RESEARCH-NOTES.md](./RESEARCH-NOTES.md) for the claim-to-source map and cur
 
 The 41-slide deck is implemented. Slides 1-23 form the locked leadership section; slides 24-36 cover HVE-Core; slides 37-41 support the demos. The outline records the approved narrative, slide order, and visual intent.
 
-Further refinement of the deeper HVE-Core section and speaker notes is tracked in separate issues. Keep those changes out of the leadership section unless a later decision explicitly reopens it. Live demo rehearsal and runbook preparation remain separate from this presentation issue.
+Issue #67 restructures the practitioner section and its speaker notes. Keep those changes out of the leadership section unless a later decision explicitly reopens it. Live demo rehearsal and runbook preparation remain separate from this presentation issue.

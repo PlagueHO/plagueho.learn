@@ -1,11 +1,11 @@
 /**
- * HVE-Core deep-dive and demo slide bodies (slides 24 to 41, minus the adoption slides held in bodies-leadership.mjs).
+ * HVE-Core practitioner and demo slide bodies (slides 24 to 41, except the team pass).
  * Parameters: none. Each key is a slide id; each value is the slide body HTML.
  * Usage: import { coreBodies } from './bodies-core.mjs'.
  */
 import {
-  arrow, node, inode, chip, band, fig, takeaway, grid, chain, ret, icon,
-  loop, rpiChain, evidenceTable, confidence,
+  arrow, node, inode, chip, band, fig, takeaway, grid, chain, ret,
+  loop, rpiChain, confidence,
 } from './diagrams.mjs';
 import { sources } from './sources.mjs';
 
@@ -25,72 +25,127 @@ const stops = [
 ];
 
 export const coreBodies = {
-  'deep-dive': fig('Human responsibility with optional process support', `
-    <div class="band tint tall"><span><strong>Human responsibility remains</strong>judgment · decisions · accountability</span></div>
-    <div class="support open"><strong>Optional process support: HVE-Core</strong>
-      <div class="chain-4">${['Agents', 'Skills', 'Instructions', 'Workflows'].map(item => node(item, '', 'compact')).join('')}</div></div>`)
-    + routes(['<a href="#/demo-install">Skip to demos →</a>']),
+  'deep-dive': '',
 
-  toolkit: fig('Each practice paired with a repeatable mechanism', `
-    ${mapRow(inode('team', 'Shared crew', '', 'tint compact'), 'Artifacts + decision checkpoints')}
-    ${mapRow(inode('search', 'Value validation', '', 'tint compact'), 'DT Coach + reviewed evidence')}
-    ${mapRow(inode('layers', 'Prepared foundations', '', 'tint compact'), node('Maintained solution accelerators', 'Separate · not HVE-Core', 'ghost compact'))}
-    ${mapRow(inode('spark', 'Lifecycle support', '', 'tint compact'), 'RPI: Research · Plan · Implement · Review')}
-    <div class="strip">${chain([node('Capability', '', 'compact'), node('Artifact', '', 'compact'), node('Reviewer', '', 'compact'), node('Decision', '', 'compact')], 'small')}</div>`),
-
-  context: fig('Repository evidence feeding a bounded task context', `
+  'plugin-model': fig('Install the CLI plugin, then confirm discovery in a new session', `
+    ${band('First: Copilot CLI + authorized GitHub Copilot access')}
+    <div class="node tint practitioner-commands"><strong>Run in your terminal</strong>
+      <pre><code>copilot plugin marketplace add microsoft/hve-core
+copilot plugin install hve-core@hve-core</code></pre></div>
     ${chain([
-      node('Repository', 'Requirements · architecture · standards · decisions'),
-      `<div class="node purple"><strong>Bounded task context</strong><div class="chips">${['Access', 'Freshness', 'Assumptions'].map(item => chip(item, 'light')).join('')}</div></div>`,
-      node('Reviewed artifact', 'Acceptance evidence · gaps · next decision', 'tint'),
-    ])}
-    ${ret('Reviewed output returns to the evidence', 3)}`) + takeaway('Check freshness, access, and ownership.'),
+      node('Open a new session', '<code>copilot</code> in your project', 'compact'),
+      node('Find the entries', '<code>/agent</code> · DT Coach · RPI Agent', 'compact'),
+      node('Browse skills', 'Type <code>/</code> · find <code>rpi-research</code>', 'tint compact'),
+    ], 'small')}`)
+    + takeaway('One route. CLI and VS Code. Instructions load by applyTo.'),
 
-  'dt-coach': fig('Evidence organized by DT Coach and decided by people', `
-    ${chain([
-      node('User evidence', 'Observation + interviews'),
-      node('DT Coach', 'Scope + plan + synthesize', 'purple'),
-      node('Reviewed framing', 'Problem + open questions', 'tint'),
-      node('Customer decision', '', 'warm'),
-    ])}
-    ${ret('Reopen the framing if evidence changes', 4)}`) + takeaway('An agent organizes evidence. It does not replace people.'),
-
-  'handoff-contract': fig('Design Thinking exits feeding rpi-research', `
-    <div class="handoff">
-      <div class="col">${node('Problem space', '', 'compact')}${node('Solution space', '', 'compact')}${node('Implementation space', '', 'compact')}</div>
-      <div class="col">${arrow()}${arrow()}${arrow()}</div>
-      <div class="col">${node('Problem Statement Complete', 'Methods 1–3 selected <b class="tag">Used in demos</b>', 'purple compact')}${node('Concept Validated', 'Methods 4–6', 'tint compact')}${node('Implementation Spec Ready', 'Methods 7–9', 'tint compact')}</div>
-      <svg class="gutter" viewBox="0 0 100 246" aria-hidden="true"><path d="M0 37C50 37 50 123 100 123M0 123H100M0 209C50 209 50 123 100 123M90 115L100 123L90 131"/></svg>
-      <div class="col mid"><div class="node code"><strong><code>rpi-research</code></strong></div></div>
-    </div>
-    ${confidence()}
-    ${ret('Return to DT when evidence changes the framing', 5)}`),
-
-  rpi: fig('Research, plan, implement, and review with a decision at each stage', `
+  rpi: fig('A bounded starter request followed by evidence, plan, changes, and review', `
+    ${node('Select RPI Agent · illustrative starter request',
+      'Use the agreed order-update criteria. Investigate gaps, plan one bounded change, and wait for approval before implementation.', 'tint practitioner-prompt')}
     ${rpiChain([
       ['Research', 'Evidence + gaps', 'Readiness'],
       ['Plan', 'Work + acceptance', 'Critique + approval'],
       ['Implement', 'Changes + checks', 'Approved scope'],
-      ['Review', 'Results + follow-up', 'Acceptance'],
+      ['Review', 'Results + gaps', 'Human decision'],
     ])}
-    ${ret('Customer feedback can reopen the framing or plan', 4)}`) + takeaway('Each stage produces an artifact and needs a decision.'),
+    ${ret('Follow-up routes defects, decisions, evidence gaps, and residual work', 4)}`)
+    + takeaway('Reuse adequate evidence. Not every task needs every phase.'),
 
-  review: fig('Uncertainty selects controls, then a human decides', `
+  context: fig('Saved files carry reviewed knowledge into later sessions', `
+    ${grid('1fr 1fr', [
+      inode('search', 'Research', 'Sources · assumptions · unknowns', 'compact'),
+      inode('document', 'Plan', 'Scope · criteria · decision owner', 'compact'),
+      inode('code', 'Changes', 'What changed · checks run', 'compact'),
+      inode('shield', 'Review', 'Findings · acceptance still open', 'compact'),
+    ], 'practitioner-artifacts')}
+    ${node('Resume from files, not memory', 'Read the saved plan and review. Summarize open decisions before proposing the next step.', 'tint practitioner-prompt')}`)
+    + takeaway('Shared does not mean public. Check access, freshness, and ownership.'),
+
+  toolkit: fig('Choose cross-role support by need, not by a full inventory', `
+    ${mapRow(inode('search', 'Understand people', '', 'tint compact'), 'DT Coach · UX UI Designer')}
+    ${mapRow(inode('shield', 'Assess risk', '', 'tint compact'), 'Security + RAI planners and reviewers')}
+    ${mapRow(inode('document', 'Organize work', '', 'tint compact'), 'BRD / PRD · Azure DevOps / GitHub backlog')}
+    ${mapRow(inode('dashboard', 'Analyze and reuse', '', 'tint compact'), 'Data Science and Engineering Coach · utilities')}`)
+    + takeaway('AI tools for everyone. Reusable accelerators, not only coding.'),
+
+  'dt-coach': fig('Illustrative DT and UX requests use supplied order-update evidence', `
+    <div class="duo practitioner-prompts">
+      ${node('Select DT Coach',
+        'Use the Friday-to-Monday case. Frame the customer problem. Prepare questions for the customer and carrier expert. Keep gaps visible.', 'tint practitioner-prompt')}
+      ${node('Select UX UI Designer',
+        'Use our reviewed framing artifact to map the current order-update journey. Mark stale-date and recovery gaps. Save it; do not publish.', 'practitioner-prompt')}
+    </div>
+    ${band('Co-work · email replies · supplied documents · permitted WorkIQ transcripts')}
+    ${ret('New evidence can change the framing, journey, or next question', 2)}`)
+    + takeaway('People supply evidence. Agents help organize it.'),
+
+  'handoff-contract': fig('Illustrative requirements and UX evidence enter a reviewed DT handoff', `
+    <div class="duo">
+      <div class="col">
+        ${node('BRD Builder · why invest?', 'Business objective: a trustworthy revised date.', 'compact')}
+        ${node('PRD Builder · what must work?', 'Proposed criterion: changed date + clear next action.', 'compact')}
+        ${node('UX artifact · what is still missing?', 'Stale date → recovery state → next action.', 'tint compact')}
+      </div>
+      <div class="col">
+        ${node('Reviewed DT handoff', 'Source: supplied teaching case<br>Assumed: update path<br>Unknown: confirmed owner', 'warm')}
+        ${node('Target: rpi-research', 'Carry evidence, constraints, and gaps.', 'tint compact')}
+      </div>
+    </div>
+    ${confidence()}`)
+    + takeaway('Use the documents you need. A handoff is not approval to build.'),
+
+  review: fig('Security and Responsible AI support planning and review throughout the work', `
+    <div class="duo practitioner-prompts">
+      ${node('Security Planner → Reviewer',
+        'Input: update path + access rules<br>Plan: threats + controls + backlog<br>Review: scoped findings + evidence<br>Decision: security owner', 'practitioner-prompt')}
+      ${node('RAI Planner → Reviewer',
+        'When the product uses AI<br>Input: purpose + affected people<br>Output: risks + controls + evidence gaps<br>Decision: qualified human review', 'tint practitioner-prompt')}
+    </div>
     ${chain([
-      node('Uncertainty', 'Identify gaps + risk', 'warm'),
-      `<div class="node purple"><strong>Controls</strong><div class="chips">${['Deterministic checks', 'Specialist review'].map(item => chip(item, 'light')).join('')}</div></div>`,
-      node('Decision', 'Human owner + evidence', 'tint'),
-    ])}
-    ${ret('Failed, skipped, and blocked checks stay visible', 3)}`) + takeaway('Requirements, tests, review, and acceptance have different jobs.'),
+      node('Start early', 'Revisit changed scope', 'compact'),
+      node('Run checks', 'Record failed, skipped, and blocked', 'compact'),
+      node('Keep expert judgment', 'No automatic acceptance', 'warm compact'),
+    ], 'small')}`)
+    + takeaway('Planning, tests, specialist review, and acceptance do different jobs.'),
 
-  cost: fig('Baseline and experiment evidence for total cost', evidenceTable(['Outcome', 'Quality', 'Waiting', 'Rework', 'Human time', 'AI cost']))
-    + takeaway('Include time managing tool limits. Do not use adoption as the result.'),
+  'practitioner-workflow': fig('One illustrative order-update route with human decisions and feedback', `
+    ${band('Outcome: a trustworthy revised date + a clear next action')}
+    ${chain([
+      node('Evidence + DT/UX', 'Customer + carrier expert', 'compact'),
+      node('Requirements', 'BRD / PRD where useful', 'compact'),
+      node('Reviewed handoff', 'DT → rpi-research', 'tint compact'),
+    ], 'small')}
+    ${chain([
+      node('RPI', 'Approve one bounded change', 'compact'),
+      node('Checks + assurance', 'Specialists throughout', 'compact'),
+      node('Acceptance', 'Customer / product owner', 'warm compact'),
+    ], 'small')}
+    ${ret('Feedback can reopen the problem, options, or implementation', 3)}`)
+    + takeaway('One example route. Passing tests do not prove customer value.'),
 
-  'plugin-model': fig('Install, verify, and maintain the plugin separately', `<div class="cols5">
-    ${node('Marketplace', 'Register + browse <b class="tag">Tracks main</b>')}${arrow()}${node('Plugin', 'Install + update')}${arrow()}${node('Capabilities', 'Verify discovery', 'tint')}
-    <div class="maint span3"><em>Maintain separately</em>${chip('Refresh marketplace')}<b aria-hidden="true">≠</b>${chip('Update plugin')}</div><span></span>
-    <div class="maint">${chip('Reference instructions explicitly')}</div>
-  </div>`) + takeaway('Installation is a starting point, not a readiness check.'),
+  customize: fig('Keep organizational knowledge beside the maintained upstream plugin', `
+    <div class="duo">
+      ${node('Upstream HVE-Core plugin', 'Agents · skills · instructions<br>OWASP guidance and shared methods', 'tint')}
+      ${node('Your reviewed knowledge', '<code>.github/copilot-instructions.md</code><br>Path-specific instructions · domain skills<br>Example: your security requirements')}
+    </div>
+    ${chain([
+      node('Scope the context', 'Relevant, access-controlled sources', 'compact'),
+      node('Review and check', 'Named expert owner', 'compact'),
+      node('Update or retire', 'Keep the shared knowledge useful', 'warm compact'),
+    ], 'small')}`)
+    + takeaway('Do not edit installed files. Keep workflows that already work.'),
+
+  'maintain-toolkit': fig('Refresh the catalog and update the installed plugin as separate actions', `
+    <div class="node tint practitioner-commands"><strong>Two separate update actions</strong>
+      <pre><code>copilot plugin marketplace update hve-core
+copilot plugin update hve-core@hve-core</code></pre></div>
+    ${chain([
+      node('Review changes', 'Marketplace tracks main', 'compact'),
+      node('Run local checks', 'Owners review compatibility', 'compact'),
+      node('Share improvements', 'Contribute suitable fixes upstream', 'compact'),
+    ], 'small')}
+    ${ret('Update sources, owners, and checks for local assets too', 3)}`)
+    + takeaway('Rapidly evolving patterns, not a stable production dependency.'),
 
   'demo-route': fig('Demo route from problem evidence to the next decision', `
     <div class="route">${stops.map(([title, detail], index) => `<div class="stop"><b>${index + 1}</b><strong>${title}</strong><span>${detail}</span></div>`).join('')}</div>

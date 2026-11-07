@@ -263,6 +263,17 @@ test('theme URLs keep subpaths, query parameters, legacy links, and native phase
   const legacy = new URL(themeUrl('https://example.test/?theme=flowing-blend#/outcome-waiting', 'flowing-dark'),
     'https://example.test');
   assert.equal(mergedSlideHash(legacy.hash), '#/handoffs/1');
+  for (const [hash, target] of [
+    ['#/cost', '#/practitioner-workflow'], ['#/outcome-measures', '#/practitioner-workflow'],
+    ['#/adoption-commitments', '#/customize'],
+  ]) {
+    const url = new URL(themeUrl(`https://example.test/talks/hve/?print-pdf${hash}`, 'flowing-dark'),
+      'https://example.test');
+    assert.equal(url.pathname, '/talks/hve/');
+    assert.ok(url.searchParams.has('print-pdf'));
+    assert.equal(themeFromUrl(url.href), 'flowing-dark');
+    assert.equal(mergedSlideHash(url.hash), target);
+  }
 });
 
 test('Escape dismisses exactly one state, in priority order, before native deck behavior', () => {

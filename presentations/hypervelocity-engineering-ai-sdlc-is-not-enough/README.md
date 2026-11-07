@@ -4,6 +4,10 @@ An independent Reveal.js presentation for technical leaders, engineering manager
 
 The deck has 41 slides: 23 leadership slides (27 minutes), 13 deeper HVE-Core slides (34.5 minutes), and five demo support slides. The live demo has a separate 30-minute budget. See [OUTLINE.md](./OUTLINE.md) for the approved narrative, slide order, and visual plan.
 
+The practitioner section starts with Copilot CLI plugin installation and a first bounded RPI task. It continues the illustrative order-update case through DT Coach, UX UI Designer, requirements, reviewed handoffs, Security and Responsible AI support, saved artifacts, customization, and maintenance. Slide 36 switches to the unchanged Apex Dynamics demo.
+
+The current [CLI plugin guide](https://microsoft.github.io/hve-core/docs/getting-started/methods/cli-plugins/) documents VS Code discovery of CLI-installed plugins and instruction loading through `applyTo`. The deck does not extend that claim to every Copilot client or the desktop app. Examples are illustrative, not customer findings or measured results.
+
 Use [RESEARCH-NOTES.md](./RESEARCH-NOTES.md) for public evidence, claim boundaries, and version-sensitive HVE-Core behavior. Use [DEMO-SCRIPT.md](./DEMO-SCRIPT.md) as the live demo runbook. Slide-specific speaker notes stay in `slide-meta.mjs`.
 
 ## Run locally
@@ -32,7 +36,7 @@ npm run build
 npm test
 ```
 
-Run `npm run lint:md` from the repository root to check Markdown.
+Run `pnpm lint:md` from the repository root to check Markdown.
 
 The build copies the pinned Reveal.js runtime, notes plugin, and license into `dist/vendor/`. It does not load a CDN, remote font, or remote script. The package source comes from the developer's npm configuration. The lockfile records the version and integrity without a registry URL.
 
@@ -96,13 +100,19 @@ Flowing blend is the default light theme. Select Flowing dark for a dark canvas.
 
 Theme changes apply without reloading and preserve the current slide and phase. Reload, Back, and Forward keep the selected theme. Other query parameters, including `print-pdf`, stay in the URL.
 
+Old links remain valid: `#/cost` and `#/outcome-measures` open `#/practitioner-workflow`; `#/adoption-commitments` opens `#/customize`. Existing `#/ai-implementation` and `#/outcome-waiting` links still open the corresponding phases of `#/handoffs`.
+
 Speaker view needs HTTP and permission to open a popup. The notes window keeps its initial position relative to the deck as the deck moves. Browser or desktop restrictions can prevent scripts from moving a popup; if that happens, the popup may not follow the deck.
 
 If the browser blocks the popup, the deck shows the notes in an inline panel at the bottom of the slide. Press S or select Close to hide the panel. Notes ship with the public deck; do not put private information in them. See [MDN's `Window.moveTo()` reference](https://developer.mozilla.org/en-US/docs/Web/API/Window/moveTo) for browser limits.
 
-Slides 1-23 contain exact spoken text, with public sources linked separately. They have no presenter guidance or stage directions. Tests enforce a 3,000-word total ceiling and a limit of 120 words per allocated minute on each slide. Rehearse to confirm delivery under 30 minutes; the word budget does not measure personal speaking pace. Later sections retain their existing notes.
+Slides 1-23 contain exact spoken text, with public sources linked separately. They have no presenter guidance or stage directions. Tests enforce a 3,000-word total ceiling and a limit of 120 words per allocated minute on each slide. Rehearse to confirm delivery under 30 minutes; the word budget does not measure personal speaking pace.
+
+Practitioner notes contain starter requests, artifact paths, human decisions, and claim limits. Demo notes retain the separate live route, with current installation guidance. The timed content totals 61.5 minutes; the live demo and Q&A are separate.
 
 For PDF export, open `http://127.0.0.1:3043/?print-pdf`, wait for the slides to load, then use the browser's Print command. Enable background graphics. See the [Reveal.js PDF guide](https://revealjs.com/pdf-export/).
+
+Print layout keeps the full 1280 by 720 slide canvas inside each PDF page. Chapter titles and slide numbers use that canvas for their positions.
 
 Slide-specific content and visual intent are in [OUTLINE.md](./OUTLINE.md). Keep speaker notes in `slide-meta.mjs`. The deck provides complete static views for motion slides in overview, reduced-motion, print, and script-failure states.
 
@@ -117,7 +127,7 @@ Slide-specific content and visual intent are in [OUTLINE.md](./OUTLINE.md). Keep
 | `finite-motion.mjs` | Shared bounded-motion lifecycle and SVG token positioning for slides 7 and 8 |
 | `operating-model.mjs` | Slide-10 single-advance model replacement and complete static viewing states |
 | `slide-meta.mjs` | Slide IDs, parts, timing, titles, speaker notes, and wave presets |
-| `bodies-leadership.mjs` | Body markup for the 23 leadership slides and for slides 33-35 of the deeper section; section separators have empty bodies |
+| `bodies-leadership.mjs` | Body markup for the 23 leadership slides and the retained practitioner team pass on slide 35; section separators have empty bodies |
 | `bodies-core.mjs` | Body markup for the deeper HVE-Core and demo slides |
 | `diagrams.mjs` | Shared diagram parts: nodes, chains, loops, lanes, bands, return paths, and icons |
 | `sources.mjs` | Public sources for each slide |

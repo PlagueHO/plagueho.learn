@@ -1,6 +1,6 @@
 ## Hypervelocity Engineering research notes
 
-Public evidence and claim limits for the Reveal.js presentation. The approved slide sequence and content are in [OUTLINE.md](./OUTLINE.md). This file records source support and version-sensitive HVE-Core behavior; slide-specific presenter notes remain in `slide-meta.mjs`. Public sources were checked on 2026-10-29, with focused narrative checks on 2026-10-30.
+Public evidence and claim limits for the Reveal.js presentation. The approved sequence is in [OUTLINE.md](./OUTLINE.md); speaker notes remain in `slide-meta.mjs`. Initial checks ran on 2026-10-29 and 2026-10-30. Issue #67 checks used current HVE-Core docs and repository commit `f425e943bf228052a23e6bc4810b5faef030314f` (2026-11-06).
 
 ## Scope and source boundary
 
@@ -24,7 +24,7 @@ The public pages' HTML was checked because simplified text extraction omitted th
 
 The deck presents HVE as an operating model for shared ownership, continuous value validation, reusable expertise, and expert-led AI support. It distinguishes AI-assisted delivery from an AI-powered product and keeps customer evidence, human judgment, and required assurance visible.
 
-The 41-slide deck has a locked leadership section (slides 1-23), a deeper HVE-Core section (slides 24-36), and demo support (slides 37-41). The deeper section is a practical extension, not a reconstruction of the source presentation. Further HVE-Core refinement and speaker-note work are tracked separately.
+The 41-slide deck has a locked leadership section (slides 1-23), a practical HVE-Core starter guide (slides 24-36), and demo support (slides 37-41). Issue #67 replaces repeated concepts with installation, starter requests, illustrative artifacts, reviewed handoffs, and a connected order-update example. The separate Apex Dynamics demo remains unchanged apart from installation claim corrections.
 
 ### Use of the supplied guide
 
@@ -71,7 +71,13 @@ Do not repeat a universal exponential context-cost claim, a guaranteed first-pas
 | Documented role paths | Role-specific entry points plus cross-role utilities, not a fixed team roster or complete business-wide coverage | [HVE-Core role index](https://github.com/microsoft/hve-core/blob/main/docs/hve-guide/roles/README.md) |
 | CLI plugin behavior | Marketplace registration, installation, updates, discovery, and instruction-loading limits | [CLI plugin guide](https://microsoft.github.io/hve-core/docs/getting-started/methods/cli-plugins/) |
 | Design Thinking | Three spaces, nine methods, DT Coach, and supported handoffs | [Design Thinking guide](https://microsoft.github.io/hve-core/docs/design-thinking/) |
-| Manufacturing teaching scenario | Dashboard request reframed as knowledge accessibility across shifts | [Using DT methods together](https://microsoft.github.io/hve-core/docs/design-thinking/using-together/) |
+| DT coaching and evidence | Nonlinear coaching; questions and reported material do not replace observation and conversation | [DT Coach](https://microsoft.github.io/hve-core/docs/design-thinking/dt-coach/), [Design research](https://microsoft.github.io/hve-core/docs/design-thinking/method-02-design-research/) |
+| UX support | Select UX UI Designer; request evidence-labelled journey or structure artifacts; review gaps before later actions | [UX UI Designer](https://microsoft.github.io/hve-core/docs/reference/agents/project-planning/ux-ui-designer/), [UX artifacts](https://microsoft.github.io/hve-core/docs/reference/skills/design-thinking/ux-artifacts/) |
+| Requirements support | BRD covers the business case and stakeholder needs; PRD covers product requirements and criteria | [BRD and PRD builders](https://microsoft.github.io/hve-core/docs/agents/project-planning/brd-prd-builders/) |
+| Security support | Planner develops models and controls; Reviewer supports scoped audit, diff, and plan assessments with evidence limits | [Security planning](https://microsoft.github.io/hve-core/docs/agents/security/), [Security Reviewer](https://microsoft.github.io/hve-core/docs/reference/agents/security/security-reviewer/) |
+| Product Responsible AI support | Planner scopes impacts and controls; Reviewer assesses supported frameworks while human acceptance stays open | [RAI planning](https://microsoft.github.io/hve-core/docs/agents/rai-planning/), [RAI Reviewer](https://microsoft.github.io/hve-core/docs/reference/agents/rai-planning/rai-reviewer/) |
+| Work and data support | Read-only versus mutating backlog skills; role-based data workflows, not a full inventory | [Backlog](https://microsoft.github.io/hve-core/docs/agents/backlog/), [Data science guide](https://microsoft.github.io/hve-core/docs/hve-guide/roles/data-scientist/) |
+| Local knowledge and maintenance | Add reviewed repository knowledge beside installed assets; retain owners, checks, updates, and retirement | [Customization](https://microsoft.github.io/hve-core/docs/customization/), [Team adoption](https://microsoft.github.io/hve-core/docs/customization/team-adoption/) |
 | Handoff contract | Three exits, confidence markers, research entry, and return paths | [DT-to-RPI integration](https://microsoft.github.io/hve-core/docs/design-thinking/dt-rpi-integration/) |
 | Handoff procedure | Generate and review artifacts before research; tutorial illustrates the implementation-space exit | [Handoff tutorial](https://microsoft.github.io/hve-core/docs/design-thinking/tutorial-handoff-to-rpi/) |
 | RPI behavior | Evidence readiness, research, plan and critique, approved implementation, review, follow-up, and context management | [RPI workflow](https://microsoft.github.io/hve-core/docs/rpi/) |
@@ -84,7 +90,7 @@ The ISE playbook and FDE perspective support an experience-based introduction. T
 
 The public findings support the whole-system argument. They do not prove the full historical narrative, the independent effect of each pillar, or a necessary-and-sufficient formula. These remain teaching synthesis. HVE-Core can accelerate processes; that does not make it a production solution foundation. Installing it does not supply infrastructure, customer evidence, authority, or readiness.
 
-The leadership measures track changed responsibilities and practices, not tool access alone. Identify an actual wait and its owner before seeking a change in participation, capacity, escalation, or policy. Some organizations already review quickly. Keep the manufacturing illustration separate from evidence of organizational transformation; no public change case or measured result is asserted here.
+The leadership measures track changed responsibilities and practices, not tool access alone. Identify an actual wait and its owner before seeking a change in participation, capacity, escalation, or policy. Some organizations already review quickly. The order-update illustration is not evidence of organizational transformation; no customer findings or measured results are asserted.
 
 ## Slide content boundaries
 
@@ -99,29 +105,29 @@ The installation demo must follow the current CLI plugin guide rather than the o
 - Stable and PreRelease are VS Code extension channels, not CLI plugin channel choices.
 - Marketplace catalog refresh and installed-plugin update are separate operations.
 - Agents and skills are discoverable after installation.
-- Plugin instruction files are available through explicit references. The CLI does not auto-apply their path patterns as repository instructions.
+- The current guide states that plugin instructions load through `applyTo`. Earlier explicit-reference-only wording in this deck was stale.
+- VS Code picks up CLI-installed plugins. This does not establish support in every Copilot client or the desktop app. Use one route to avoid duplicate agents.
+- New sessions pick up installed assets. Reload VS Code after instruction updates.
 - The guide documents shell commands and the interactive `/plugin` entry point. Verify exact interactive marketplace syntax against the installed CLI during demo preparation.
 - Distinguish direct phase skills from explicit custom-agent selection. Do not claim that a skill silently switches the CLI into an agent mode.
 
 Installed CLI shell help confirms the plugin and marketplace command surface. The outline does not claim that installation or interactive marketplace behavior was rehearsed. Verify exact slash syntax before recording commands or screenshots.
 
-## Manufacturing tutorial and selected DT exit
+## Order-update illustration and reviewed handoffs
 
-Use the public tutorial's quality-dashboard request to introduce the knowledge-accessibility problem across shifts. Treat its observations and outcomes as supplied teaching material, not a customer case or findings gathered live.
+Continue the leadership example: the carrier changes Friday to Monday, the order record still says Friday, and nobody owns the update. The desired outcome is a trustworthy revised date and clear next action. The chatbot remains a proposed option, not an approved solution.
 
-The selected route stops DT after:
+All new requests, journeys, requirements, and artifact excerpts are illustrative. No interviews, WorkIQ queries, customer validation, specialist approval, or measured results were produced for this content task. WorkIQ would need a configured connector, permission, and an explicit request. Reported material is not direct observation.
 
-1. Scope Conversations.
-1. Design Research.
-1. Input Synthesis.
+The first RPI exercise assumes intent and criteria are already agreed for one bounded task. Later DT and UX examples show how to proceed when framing or design is uncertain. This teaching order does not require implementation before discovery.
 
-Use the *Problem Statement Complete* handoff. Carry the problem statement, stakeholder map, scope, research themes, constraints, and assumptions into research. Preserve `validated`, `assumed`, `unknown`, and `conflicting` confidence markers.
+UX UI Designer routes an explicit journey request to `ux-artifacts` with `mode=map-journey`. It retains observed, reported, assumed, and unresolved evidence classes. A later `sketch-structure` action or external publication is a separate request. The product owner and customer/domain experts must review the artifact and missing evidence.
 
-Only mark a tutorial item as validated relative to the supplied scenario evidence. Do not imply new interviews or real user validation occurred during the demonstration. Missing evidence must remain visible.
+Use BRD Builder for business justification, objectives, and stakeholder needs. Use PRD Builder for features, measurable requirements, acceptance criteria, and exclusions. Neither document nor both documents are mandatory. The shown criterion still needs agreement on timing, authoritative source, failure behavior, and owner.
 
-All three DT exits enter `rpi-research`. Later exits supply more evidence; they do not bypass research. The linked handoff tutorial illustrates Methods 7-9, so do not copy its later-stage artifact names or readiness claim into the Methods 1-3 demonstration.
+All three DT exits enter `rpi-research`: *Problem Statement Complete*, *Concept Validated*, and *Implementation Spec Ready*. Later exits supply more evidence; they do not bypass research. Preserve `validated`, `assumed`, `unknown`, and `conflicting` markers without inventing validation.
 
-The problem-statement exit leaves broad questions about solution approaches, technology options, and feasibility. A voice-guided repair system is a later tutorial concept, not a predetermined outcome of the selected exit. Return to DT if research invalidates the framing or reveals missing stakeholders.
+The separate Apex Dynamics demo keeps the *Problem Statement Complete* route after Methods 1-3. It does not become an order-update demonstration. Return to DT or UX when research or feedback changes the framing or reveals missing stakeholders.
 
 ## Current RPI behavior
 
@@ -132,10 +138,19 @@ The problem-statement exit leaves broad questions about solution approaches, tec
 - Review compares the implementation evidence with requirements and decisions. Keep completed execution separate from acceptance.
 - Follow-up routes defects, decisions, evidence gaps, and residual work to the correct next action.
 - Direct phase skills and the user-selected RPI Agent are different entry surfaces.
+- The current overview supports `/rpi` coordination. Do not repeat older claims that it was universally retired.
 - A new chat or `/clear` can improve clarity. It does not require restarting the lifecycle or repeating adequate research.
 - The demo intentionally shows the full process. Do not imply every task must run every phase.
 
 Use current `rpi-*` skills instead of the old `task-*` prompt-command walkthrough. Verify exact names, paths, and host behavior again during demo preparation.
+
+## Specialist and maintenance boundaries
+
+Security and RAI planners develop scope, risks, controls, and owned follow-up. Their reviewers support `audit`, `diff`, and `plan` modes. Select the named agent rather than inventing a slash command. Plan risks are not verified current-code vulnerabilities. Keep excluded, failed, skipped, and blocked assessments visible.
+
+Product RAI work depends on whether the product is an AI system or option. Using an AI coding assistant does not settle that question. Human acceptance and required independent assurance remain with qualified people.
+
+Keep local instructions and domain skills beside the upstream plugin. Do not edit installed assets. Example: apply organizational security requirements alongside OWASP methods. Keep owners, source dates, access, checks, and retirement visible. Preserve useful spec-driven and other existing approaches. Detailed customization is outside this session.
 
 ## Content limits applied to the slide draft
 

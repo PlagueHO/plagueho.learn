@@ -80,9 +80,9 @@ Do these steps the day before. Then do a full rehearsal.
 
 Recommend the **GitHub Copilot CLI plugin route**, even for people who work in VS Code or VS Code Insiders.
 
-Presenter position: one plugin install makes HVE-Core available in Copilot CLI, the GitHub Copilot app, and VS Code. You do not install it separately for each tool.
+The current [CLI plugin guide](https://microsoft.github.io/hve-core/docs/getting-started/methods/cli-plugins/) states that VS Code picks up CLI-installed plugins. Use one install route to avoid duplicate agents. This does not establish support in the Copilot desktop app or every Copilot client.
 
-Verify before the talk: the public docs say the VS Code extension `ise-hve-essentials.hve-core` is the main route for VS Code users. They do not state the cross-tool behavior. Test it on your machine. Soften the claim if it does not hold.
+Verify discovery in a new session before the talk. Check the installed CLI's exact interactive syntax. Reload VS Code after instruction updates.
 
 ```powershell
 copilot plugin marketplace add microsoft/hve-core
@@ -103,7 +103,7 @@ Say it, do not skip it:
 
 - The registration tracks `main`. It has no release gate and no release attestation.
 - Update is two steps: `copilot plugin marketplace update hve-core`, then `copilot plugin update hve-core@hve-core`.
-- Instruction files in a plugin are not applied automatically by path pattern in the CLI.
+- Plugin instructions load through `applyTo`.
 
 Fallback: show the prepared capture of the `/agent` list. Say that it is a capture.
 
