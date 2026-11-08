@@ -18,11 +18,37 @@ const elements = slides.map(slide => ({
 }));
 
 test('only the native Upcoming receiver hides presentation controls', () => {
-  assert.equal(isUpcomingSpeakerPreview('?receiver&controls=false'), true);
-  assert.equal(isUpcomingSpeakerPreview('?theme=flowing-dark&receiver&controls=false'), true);
-  for (const search of ['', '?receiver', '?controls=false', '?receiver&controls=true']) {
-    assert.equal(isUpcomingSpeakerPreview(search), false);
+  const preview = (search, role) => ({
+    location: { search },
+    frameElement: role ? { parentElement: { id: role } } : null,
+  });
+  for (const inherited of [
+    '', '?controls=false', '?controls=true', '?controls=true&controls=false', '?controls=false&controls=true',
+    '?theme=flowing-dark&controls=true',
+  ]) {
+    const receiver = `${inherited}${inherited ? '&' : '?'}receiver`;
+    const current = `${receiver}&postMessageEvents=true`;
+    const upcoming = `${receiver}&controls=false`;
+    assert.equal(isUpcomingSpeakerPreview(preview(inherited)), false, `Main: ${inherited}`);
+    assert.equal(isUpcomingSpeakerPreview(preview(current, 'current-slide')), false, `Current: ${current}`);
+    assert.equal(isUpcomingSpeakerPreview(preview(upcoming, 'upcoming-slide')), true, `Upcoming: ${upcoming}`);
+    assert.equal(isUpcomingSpeakerPreview(preview(upcoming)), false, `Unframed receiver: ${upcoming}`);
+    assert.equal(isUpcomingSpeakerPreview(preview(upcoming, 'other-frame')), false, `Other iframe: ${upcoming}`);
   }
+  for (const search of ['', '?controls=false', '?controls=true&controls=false']) {
+    assert.equal(isUpcomingSpeakerPreview(preview(search, 'upcoming-slide')), false);
+  }
+  for (const search of ['?receiver', '?receiver&controls=true']) {
+    assert.equal(isUpcomingSpeakerPreview(preview(search, 'upcoming-slide')), true);
+  }
+  assert.equal(isUpcomingSpeakerPreview({
+    location: { search: '?receiver&controls=false' },
+    get frameElement() { throw new DOMException('Cross-origin frame', 'SecurityError'); },
+  }), false);
+  assert.throws(() => isUpcomingSpeakerPreview({
+    location: { search: '?receiver' },
+    get frameElement() { throw new Error('Unexpected frame lookup failure'); },
+  }), /Unexpected frame lookup failure/);
 });
 
 test('the Default preview divider supports dragging, keyboard limits, and one instance', () => {
@@ -211,15 +237,33 @@ function popupFixture() {
   function popup() {
     const nodes = new Map();
     const events = {};
-    const createElement = tag => ({
-      tag, dataset: {}, style: {}, setAttribute(name, value) { this[name] = value; },
-      append() {}, replaceChildren() { nodes.clear(); },
-      querySelector(selector) {
-        if (!nodes.has(selector)) nodes.set(selector, createElement('output'));
-        return nodes.get(selector);
-      },
-      addEventListener(name, callback) { events[name] = callback; },
-    });
+    const createElement = tag => {
+      let text = '';
+      return {
+        tag, dataset: {}, style: {}, textWrites: 0,
+        setAttribute(name, value) { this[name] = value; },
+        getAttribute(name) { return this[name] ?? null; },
+        get textContent() { return text; },
+        set textContent(value) { text = value; this.textWrites += 1; },
+        set innerHTML(markup) {
+          for (const [, childTag, attributes, name] of markup.matchAll(
+            /<([a-z]+)\b([^>]*\bdata-time="([^"]+)"[^>]*)>/g,
+          )) {
+            const child = createElement(childTag);
+            for (const [, attribute, value] of attributes.matchAll(/([\w-]+)="([^"]*)"/g)) {
+              child.setAttribute(attribute, value);
+            }
+            nodes.set(`[data-time="${name}"]`, child);
+          }
+        },
+        append() {}, replaceChildren() { nodes.clear(); },
+        querySelector(selector) {
+          if (!nodes.has(selector)) nodes.set(selector, createElement('span'));
+          return nodes.get(selector);
+        },
+        addEventListener(name, callback) { events[name] = callback; },
+      };
+    };
     let native = { replaceWith: replacement => { native = replacement; } };
     const head = [];
     const document = {
@@ -242,6 +286,63 @@ function popupFixture() {
     change: index => { current = elements[index]; listeners.slidechanged(); },
   };
 }
+
+test('periodic timing values stay readable without live announcements or unchanged text writes', t => {
+  t.mock.timers.enable({ apis: ['Date'], now: new Date(2026, 10, 9, 12, 0).getTime() });
+  const fixture = popupFixture();
+  const popup = fixture.popup();
+  fixture.connect(popup);
+  const node = name => popup.nodes.get(`[data-time="${name}"]`);
+  const readouts = ['elapsed', 'part-percent', 'total-percent', 'clock'];
+  for (const name of readouts) {
+    assert.equal(node(name).tag, 'span');
+    assert.equal(node(name).getAttribute('aria-live'), 'off');
+    assert.equal(node(name).getAttribute('role'), null);
+    assert.notEqual(node(name).textContent, '');
+  }
+  assert.equal(node('status').getAttribute('role'), 'status');
+  assert.equal(node('status').getAttribute('aria-live'), 'polite');
+  assert.equal(node('status').getAttribute('aria-atomic'), 'true');
+
+  const names = [...readouts, 'part', 'part-number', 'duration', 'start', 'end', 'pace', 'status', 'overrun'];
+  const writes = () => names.map(name => node(name).textWrites);
+  const initial = writes();
+  fixture.advance(250);
+  fixture.advance(250);
+  fixture.advance(250);
+  assert.deepEqual(writes(), initial);
+  fixture.advance(250);
+  assert.equal(node('elapsed').textContent, '0:01');
+  assert.equal(node('elapsed').textWrites, 2);
+  assert.equal(node('status').textWrites, 1);
+  assert.equal(node('clock').textWrites, 1);
+
+  const clock = node('clock').textContent;
+  t.mock.timers.tick(60000);
+  fixture.advance(59000);
+  assert.equal(node('elapsed').textContent, '1:00');
+  assert.equal(node('part-percent').textContent, '3.3%');
+  assert.equal(node('total-percent').textContent, '1.1%');
+  assert.equal(node('part-percent').textWrites, 3);
+  assert.equal(node('total-percent').textWrites, 2);
+  assert.notEqual(node('clock').textContent, clock);
+  assert.equal(node('clock').textWrites, 2);
+  fixture.advance(250);
+  assert.equal(node('clock').textWrites, 2);
+
+  fixture.click(popup, 'toggle');
+  assert.equal(node('status').textContent, 'Paused · On time');
+  assert.equal(node('status').textWrites, 2);
+  const paused = writes();
+  fixture.advance(60000);
+  assert.deepEqual(writes(), paused);
+  fixture.change(23);
+  assert.equal(node('status').textContent, 'Paused · Ahead / Slow down');
+  assert.equal(node('status').textWrites, 3);
+  fixture.controller.render();
+  assert.equal(node('status').textWrites, 3);
+  assert.deepEqual(fixture.errors, []);
+});
 
 test('speaker popup controls share one timer across jumps, pause, closure, and reopening', () => {
   const fixture = popupFixture();
