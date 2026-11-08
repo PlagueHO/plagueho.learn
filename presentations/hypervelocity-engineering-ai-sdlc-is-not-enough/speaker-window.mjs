@@ -88,9 +88,14 @@ export function formatTiming(seconds) {
   return hours ? `${hours}:${String(minutes).padStart(2, '0')}:${remainder}` : `${minutes}:${remainder}`;
 }
 
-export function isUpcomingSpeakerPreview(search) {
-  const params = new URLSearchParams(search);
-  return params.has('receiver') && params.get('controls') === 'false';
+export function isUpcomingSpeakerPreview(view) {
+  if (!new URLSearchParams(view.location.search).has('receiver')) return false;
+  try {
+    return view.frameElement?.parentElement?.id === 'upcoming-slide';
+  } catch (error) {
+    if (error.name !== 'SecurityError') throw error;
+    return false;
+  }
 }
 
 export function setupSpeakerPreviewResize(view) {
@@ -136,7 +141,7 @@ export function setupSpeakerPreviewResize(view) {
 
 export function speakerTimingMarkup() {
   return `<h4 class="hve-timing-hidden">Presentation timing</h4>
-    <span class="hve-timing-label">Elapsed</span><output class="hve-elapsed" data-time="elapsed"></output>
+    <span class="hve-timing-label">Elapsed</span><span class="hve-elapsed" aria-live="off" data-time="elapsed"></span>
     <div class="hve-timer-actions">
       <button type="button" data-timer="toggle" aria-label="Pause timer" title="Pause timer">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path class="hve-pause-icon" d="M8 5v14M16 5v14"/>
@@ -153,12 +158,12 @@ export function speakerTimingMarkup() {
       <span class="hve-part-marker" data-time="part-marker-one"></span>
       <span class="hve-part-marker" data-time="part-marker-two"></span>
     </div>
-    <output class="hve-total-percent" data-time="total-percent"></output>
+    <span class="hve-total-percent" aria-live="off" data-time="total-percent"></span>
     <span class="hve-timing-label">Total</span>
     <span class="hve-part-number" data-time="part-number"></span>
-    <output class="hve-part-percent" data-time="part-percent"></output>
+    <span class="hve-part-percent" aria-live="off" data-time="part-percent"></span>
     <div class="hve-timing-hidden" id="hve-timing-details">
-    <span>Clock <output data-time="clock"></output></span>
+    <span>Clock <span aria-live="off" data-time="clock"></span></span>
     <dl>
       <div><dt>Part</dt><dd data-time="part"></dd></div>
       <div><dt>Slide duration</dt><dd data-time="duration"></dd></div>
@@ -177,7 +182,6 @@ export function setupSpeakerTiming(deck, view = window) {
   let panel = null;
   let schedule = null;
   let failed = false;
-  let lastStatus = '';
 
   function showError(error) {
     failed = true;
@@ -195,7 +199,10 @@ export function setupSpeakerTiming(deck, view = window) {
     if (!panel || popup.closed || failed) return;
     try {
       const state = timingStatus(schedule, deck.getSlides().indexOf(deck.getCurrentSlide()), timer.elapsed());
-      const output = (name, value) => { panel.querySelector(`[data-time="${name}"]`).textContent = value; };
+      const output = (name, value) => {
+        const node = panel.querySelector(`[data-time="${name}"]`);
+        if (node.textContent !== value) node.textContent = value;
+      };
       output('elapsed', formatTiming(state.elapsed));
       const clock = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       output('clock', clock);
@@ -209,10 +216,7 @@ export function setupSpeakerTiming(deck, view = window) {
       }
       const status = `${timer.paused ? 'Paused' : 'Running'} · ${state.pace}`;
       output('pace', state.pace.split(' / ')[0]);
-      if (status !== lastStatus) {
-        output('status', status);
-        lastStatus = status;
-      }
+      output('status', status);
       const toggle = panel.querySelector('[data-timer="toggle"]');
       const action = timer.paused ? 'Resume timer' : 'Pause timer';
       toggle.setAttribute('aria-label', action);
@@ -235,7 +239,7 @@ export function setupSpeakerTiming(deck, view = window) {
       }
       const overrun = panel.querySelector('[data-time="overrun"]');
       overrun.hidden = state.overrun === 0;
-      overrun.textContent = `+${formatTiming(state.overrun)}`;
+      output('overrun', `+${formatTiming(state.overrun)}`);
       overrun.title = `Over planned total by ${formatTiming(state.overrun)}`;
       panel.dataset.pace = state.pace.split(' / ')[0].toLowerCase().replace(' ', '-');
     } catch (error) {
@@ -269,7 +273,6 @@ export function setupSpeakerTiming(deck, view = window) {
     panel.addEventListener('keydown', event => {
       if (event.target.closest('button, .hve-total-track')) event.stopPropagation();
     });
-    lastStatus = '';
     failed = false;
     try {
       setupSpeakerPreviewResize(candidate);

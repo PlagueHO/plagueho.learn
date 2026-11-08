@@ -30,7 +30,7 @@ else {
 }
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const upcomingPreview = isUpcomingSpeakerPreview(window.location.search);
+const upcomingPreview = isUpcomingSpeakerPreview(window);
 if (upcomingPreview) document.documentElement.dataset.speakerPreview = 'upcoming';
 const deck = new Reveal(document.querySelector('.reveal'), {
   width: 1280,
