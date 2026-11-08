@@ -20,7 +20,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Install pnpm
         uses: pnpm/action-setup@v6
@@ -50,6 +50,57 @@ jobs:
           else
             echo "Successfully built and packaged $found presentation(s)."
           fi
+
+      - name: Test offline presentation server
+        run: node --test scripts/serve-presentation.test.mjs
+
+      - name: Build and package Reveal.js presentations
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          repository="${GITHUB_REPOSITORY##*/}"
+          tag="${GITHUB_REF_NAME}"
+          found=0
+          for manifest in presentations/*/package.json; do
+            is_reveal=$(node --input-type=module - "$manifest" <<'NODE'
+          import { readFileSync } from 'node:fs';
+          const manifest = process.argv[2];
+          const pkg = JSON.parse(readFileSync(manifest, 'utf8'));
+          console.log(Object.hasOwn(pkg.dependencies ?? {}, 'reveal.js') ||
+            Object.hasOwn(pkg.devDependencies ?? {}, 'reveal.js'));
+          NODE
+            )
+            if [ "$is_reveal" != "true" ]; then
+              continue
+            fi
+            deck=$(dirname "$manifest")
+            deck_name=$(basename "$deck")
+            for component in "$repository" "$deck_name" "$tag"; do
+              if [[ ! "$component" =~ ^[A-Za-z0-9][A-Za-z0-9._-]*$ ]]; then
+                echo "::error::Unsafe release asset name. Use letters, digits, dots, underscores, or hyphens."
+                exit 1
+              fi
+            done
+            echo "::group::Building Reveal.js presentation $deck_name"
+            (
+              cd "$deck"
+              npm ci
+              npm run build
+              npm test
+              if [ ! -f dist/index.html ]; then
+                echo "::error::Reveal.js build did not produce dist/index.html."
+                exit 1
+              fi
+              cp "${GITHUB_WORKSPACE}/scripts/serve-presentation.mjs" dist/serve.mjs
+              cd dist
+              zip -r "${GITHUB_WORKSPACE}/${repository}-${deck_name}-${tag}.zip" .
+            )
+            echo "::endgroup::"
+            echo "Packaged ${repository}-${deck_name}-${tag}.zip"
+            found=$((found + 1))
+          done
+          echo "Successfully built and packaged $found Reveal.js presentation(s)."
 
       - name: Create GitHub release with presentation assets
         uses: softprops/action-gh-release@v3

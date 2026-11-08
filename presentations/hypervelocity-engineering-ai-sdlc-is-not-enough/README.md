@@ -27,6 +27,8 @@ npm run preview -- 3044
 
 `npm start` builds once and starts a loopback-only server. It does not watch files. After an edit, run `npm run build` in another terminal and reload the page.
 
+Source preview uses the shared server in `scripts/serve-presentation.mjs` at the repository root. Keep this deck inside the repository when you use `npm start`. Release ZIP files include a standalone copy of the server.
+
 The preview server treats decoded forward slashes and backslashes as path separators on both Windows and Linux. Requests that resolve outside `dist/` return HTTP `403`. Missing files inside `dist/` return HTTP `404`.
 
 ## Build and check
@@ -162,7 +164,35 @@ Build the deck and copy the *contents* of `dist/` to a static host. All runtime 
 
 The Deploy GitHub Pages workflow builds and tests this deck, then publishes it at [hypervelocity-engineering-ai-sdlc-is-not-enough](https://plagueho.github.io/plagueho.learn/hypervelocity-engineering-ai-sdlc-is-not-enough/). The [Presentations index](https://plagueho.github.io/plagueho.learn/) reads the deck's `presentation` metadata from `package.json`.
 
-The tag-based release workflow still packages only Slidev presentations. Do not add a dummy `slides.md` file to trigger the Slidev builder.
+The tag-based release workflow builds and tests each Reveal.js deck, then attaches its offline ZIP file to the [GitHub release](https://github.com/PlagueHO/plagueho.learn/releases). It detects Reveal.js through the deck's `package.json` dependencies or devDependencies.
+
+Keep a deck-local lockfile and `build` and `test` scripts. The build must produce `dist/index.html` and local runtime assets. Do not add a dummy `slides.md` file to trigger the Slidev builder.
+
+Existing Slidev release assets keep their names and layout. Reveal.js assets use `<repository>-<presentation>-<tag>.zip`. For example, tag `v1.0.0` produces `plagueho.learn-hypervelocity-engineering-ai-sdlc-is-not-enough-v1.0.0.zip`.
+
+## Run a release offline
+
+Download this deck's ZIP file from a GitHub release before you go offline. Extract it into a separate folder. The ZIP contains the built files at its root: `index.html`, CSS, JavaScript modules, images, and `vendor/` with the Reveal.js runtime, notes plugin, and license. It also includes `serve.mjs`, a local Node.js server. You do not need the repository or npm packages to use the extracted deck.
+
+Install Node.js 22.12 or later before you go offline. Open a terminal in the extracted folder that contains `index.html` and `serve.mjs`. Start the loopback-only HTTP server:
+
+```shell
+node serve.mjs
+```
+
+Open `http://127.0.0.1:3043` in your browser. Keep the terminal open while you present. Press Ctrl+C in that terminal to stop the server.
+
+If port 3043 is in use, select another port:
+
+```shell
+node serve.mjs 3044
+```
+
+Then open `http://127.0.0.1:3044`. The server uses only Node.js built-in modules and serves the folder that contains `serve.mjs`. It binds only to `127.0.0.1` and is for local use, not production hosting. No `npm install` or Python installation is needed.
+
+Do not open `index.html` directly with a `file://` URL. Presentation controls use JavaScript modules and need HTTP. Speaker view also needs HTTP and permission to open a popup. See the [Reveal.js speaker view documentation](https://revealjs.com/speaker-view/).
+
+All presentation runtime assets load locally. Slides, controls, images, and speaker notes work without an internet connection. Source links, linked websites, and external demo services still need an internet connection.
 
 ## Demo preparation
 
