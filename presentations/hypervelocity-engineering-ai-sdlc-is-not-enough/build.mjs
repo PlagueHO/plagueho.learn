@@ -26,6 +26,7 @@ await Promise.all([
     'presentation.mjs',
     'annotations.mjs',
     'speaker-window.mjs',
+    'speaker-timing.css',
     'cadence.mjs',
     'amplification.mjs',
     'finite-motion.mjs',

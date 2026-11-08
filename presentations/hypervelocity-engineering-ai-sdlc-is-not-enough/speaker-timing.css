@@ -1,0 +1,217 @@
+.hve-speaker-timing {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  line-height: 1.3;
+  color: #292333;
+  background: #f7f4fb;
+  border-right: 1px solid #ded5eb;
+  text-align: center;
+}
+
+.hve-timing-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.hve-timer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hve-elapsed {
+  font-size: 17px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.hve-speaker-timing button {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 4px;
+  border: 1px solid #6b3ca1;
+  border-radius: 6px;
+  background: white;
+  color: #4e247e;
+  cursor: pointer;
+}
+
+.hve-speaker-timing svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hve-resume-icon,
+.hve-speaker-timing[data-paused="true"] .hve-pause-icon {
+  display: none;
+}
+
+.hve-speaker-timing[data-paused="true"] .hve-resume-icon {
+  display: block;
+}
+
+.hve-speaker-timing button:focus-visible,
+.hve-total-track:focus-visible {
+  outline: 3px solid #6b3ca1;
+  outline-offset: 2px;
+}
+
+.hve-total-track {
+  position: relative;
+  flex: 1 0 60px;
+  min-height: 60px;
+  max-height: 160px;
+  width: 16px;
+  margin: 4px 0;
+}
+
+.hve-total-track progress {
+  position: absolute;
+  inset: 0;
+  width: 8px;
+  height: 100%;
+  margin: auto;
+  appearance: none;
+  writing-mode: vertical-lr;
+}
+
+.hve-total-track progress::-webkit-progress-bar {
+  background: #ded5eb;
+  border-radius: 4px;
+}
+
+.hve-total-track progress::-webkit-progress-value {
+  background: #6b3ca1;
+  border-radius: 4px;
+}
+
+.hve-total-track progress::-moz-progress-bar {
+  background: #6b3ca1;
+  border-radius: 4px;
+}
+
+.hve-part-marker {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #292333;
+  pointer-events: none;
+}
+
+.hve-pace,
+.hve-total-percent {
+  font-weight: 600;
+}
+
+.hve-speaker-timing[data-pace="behind"] .hve-pace {
+  color: #9c320b;
+}
+
+.hve-speaker-timing[data-pace="ahead"] .hve-pace {
+  color: #174f90;
+}
+
+.hve-speaker-timing[data-pace="on-time"] .hve-pace {
+  color: #216434;
+}
+
+body[data-speaker-layout] #speaker-controls {
+  display: flex;
+  overflow: hidden;
+}
+
+body[data-speaker-layout] .hve-speaker-timing {
+  flex: 0 0 76px;
+  height: 100%;
+  margin: 0;
+  border-bottom: 0;
+  overflow: auto;
+  padding: 8px 4px;
+  cursor: auto;
+}
+
+body[data-speaker-layout] .speaker-controls-notes {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+}
+
+body[data-speaker-layout="default"] #current-slide {
+  width: var(--hve-current-width, 60%);
+}
+
+body[data-speaker-layout="default"] #upcoming-slide,
+body[data-speaker-layout="default"] #speaker-controls {
+  left: var(--hve-current-width, 60%);
+  width: calc(100% - var(--hve-current-width, 60%));
+}
+
+.hve-preview-divider {
+  display: none;
+}
+
+body[data-speaker-layout="default"] .hve-preview-divider {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: calc(var(--hve-current-width, 60%) - 6px);
+  width: 12px;
+  height: 100%;
+  cursor: col-resize;
+  touch-action: none;
+  z-index: 2;
+}
+
+.hve-preview-divider::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: #ded5eb;
+}
+
+.hve-preview-divider:hover::after,
+.hve-preview-divider:focus-visible::after {
+  background: #6b3ca1;
+  width: 4px;
+}
+
+.hve-preview-divider:focus-visible {
+  outline: 2px solid #6b3ca1;
+  outline-offset: -2px;
+}
+
+@media screen and (max-width: 900px) {
+  body[data-speaker-layout="default"] #current-slide {
+    height: 40%;
+  }
+
+  body[data-speaker-layout="default"] .hve-preview-divider {
+    height: 40%;
+  }
+
+  body[data-speaker-layout="default"] #speaker-controls {
+    left: 0;
+    width: 100%;
+  }
+}

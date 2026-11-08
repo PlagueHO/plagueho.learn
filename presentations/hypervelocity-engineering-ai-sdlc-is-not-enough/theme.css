@@ -1503,3 +1503,6 @@ body:not(.deck-ready) .notes { display: none; }
   .annotation-layer, .annotation-status { display: none !important; }
   .chrome-bottom { justify-content: flex-end; }
 }
+[data-speaker-preview="upcoming"] :is(button, .controls, .presenter-toolbar) {
+  display: none !important;
+}
