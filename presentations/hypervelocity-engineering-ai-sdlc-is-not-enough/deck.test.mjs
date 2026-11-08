@@ -2067,7 +2067,14 @@ test('preview serves HTML and modules, rejects missing files, bad URLs, and writ
   }
   assert.equal((await fetch(`${base}/missing-file`)).status, 404);
   assert.equal((await fetch(`${base}/`, { method: 'POST' })).status, 405);
-  assert.equal((await fetch(`${base}/%zz`)).status, 400);
+  const invalidUrlLog = t.mock.method(console, 'error', () => {});
+  try {
+    assert.equal((await fetch(`${base}/%zz`)).status, 400);
+    assert.equal(invalidUrlLog.mock.callCount(), 1);
+    assert.equal(invalidUrlLog.mock.calls[0].arguments[0], 'Invalid preview request URL:');
+  } finally {
+    invalidUrlLog.mock.restore();
+  }
   for (const path of [
     '/..%5cpackage.json',
     '/..%2fpackage.json',

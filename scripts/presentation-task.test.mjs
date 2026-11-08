@@ -48,8 +48,10 @@ test('every deck has build and run tasks and a unique preferred port', async () 
   }
   assert.doesNotMatch(config, /triggers:|session\.create|session\.archive/);
   assert.match(config, /auto_open_in_browser: true/);
+  assert.match(config, /command: node --test scripts\/serve-presentation\.test\.mjs/);
+  assert.ok(config.includes(`command: node scripts/presentation-task.mjs test ${reveal}\n`));
   const pattern = config.match(/server_ready_pattern: '([^']+)'/)[1];
-  for (const output of ['Local: http://localhost:3032/', 'HVE Reveal.js preview: http://127.0.0.1:3043']) {
+  for (const output of ['Local: http://localhost:3032/', 'Presentation preview: http://127.0.0.1:3043']) {
     assert.match(output.match(new RegExp(pattern))[1], /^http:\/\/(?:localhost|127\.0\.0\.1):\d+\/?$/);
   }
 });
@@ -68,11 +70,16 @@ test('Slidev builds have isolated portable outputs and previews do not open an e
   }
 });
 
-test('Reveal run rebuilds before serving and preserves its own working directory', () => {
+test('Reveal run and test rebuild before serving or testing', () => {
   const folder = join(root, 'presentations', reveal);
   assert.deepEqual(presentationPlan('run', reveal), [
     { format: 'node', args: [join(folder, 'build.mjs')], cwd: folder },
     { format: 'node', args: [join(folder, 'serve.mjs'), '3043'], cwd: folder },
+  ]);
+  assert.deepEqual(presentationPlan('test', reveal), [
+    { format: 'node', args: [join(folder, 'build.mjs')], cwd: folder },
+    { format: 'node', args: ['--test', join(folder, 'deck.test.mjs'), join(folder, 'presenter-controls.test.mjs')],
+      cwd: folder },
   ]);
   assert.equal(presentationPlan('build', reveal).length, 1);
 });
@@ -80,6 +87,7 @@ test('Reveal run rebuilds before serving and preserves its own working directory
 test('unknown actions and deck names fail before any process starts', async () => {
   assert.throws(() => presentationPlan('stop', reveal), /Unknown action/);
   assert.throws(() => presentationPlan('build', '../anything'), /Unknown presentation/);
+  assert.throws(() => presentationPlan('test', 'template'), /No test task is configured/);
   const child = spawn(process.execPath, [runner, 'build', 'missing-deck']);
   let errors = '';
   child.stderr.on('data', chunk => { errors += chunk; });

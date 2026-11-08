@@ -33,7 +33,9 @@ scripts:
   - name: "Reveal.js: run HVE"
     command: node scripts/presentation-task.mjs run hypervelocity-engineering-ai-sdlc-is-not-enough
   - name: "Reveal.js: test HVE"
-    command: node --test presentations/hypervelocity-engineering-ai-sdlc-is-not-enough/deck.test.mjs
+    command: node scripts/presentation-task.mjs test hypervelocity-engineering-ai-sdlc-is-not-enough
+  - name: "Presentations: test offline server"
+    command: node --test scripts/serve-presentation.test.mjs
   - name: "Presentations: test task runner"
     command: node --test scripts/presentation-task.test.mjs scripts/slidev-process.test.mjs
 

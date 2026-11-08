@@ -1,6 +1,6 @@
 /**
  * Purpose: Build or run a presentation from the GitHub Copilot app without a shell.
- * Parameters: build|run <deck>, build-all, or list.
+ * Parameters: build|run|test <deck>, build-all, or list. Test is available for Reveal.js.
  * Usage: node scripts/presentation-task.mjs run hypervelocity-engineering
  */
 import { spawn } from 'node:child_process';
@@ -20,11 +20,12 @@ export const presentations = [
 ];
 
 export function presentationPlan(action, name, root = repositoryRoot) {
-  if (!['build', 'run'].includes(action)) throw new Error(`Unknown action: ${action}. Use build or run.`);
+  if (!['build', 'run', 'test'].includes(action)) throw new Error(`Unknown action: ${action}. Use build, run, or test.`);
   const deck = presentations.find(item => item.name === name);
   if (!deck) throw new Error(`Unknown presentation: ${name}. Use list to see available decks.`);
   const folder = join(root, 'presentations', deck.name);
   if (deck.format === 'slidev') {
+    if (action === 'test') throw new Error(`No test task is configured for ${name}.`);
     const entry = join(folder, 'slides.md');
     return [{
       format: 'slidev',
@@ -37,6 +38,10 @@ export function presentationPlan(action, name, root = repositoryRoot) {
   const steps = [{ format: 'node', args: [join(folder, 'build.mjs')], cwd: folder }];
   if (action === 'run') steps.push({
     format: 'node', args: [join(folder, 'serve.mjs'), String(deck.port)], cwd: folder,
+  });
+  if (action === 'test') steps.push({
+    format: 'node', args: ['--test', join(folder, 'deck.test.mjs'), join(folder, 'presenter-controls.test.mjs')],
+    cwd: folder,
   });
   return steps;
 }
@@ -65,7 +70,7 @@ export function runStep(step) {
 export async function main(args) {
   const [action, name, ...extra] = args;
   if (extra.length || (['list', 'build-all'].includes(action) && name !== undefined)) {
-    throw new Error('Usage: presentation-task.mjs build|run <deck>, build-all, or list.');
+    throw new Error('Usage: presentation-task.mjs build|run|test <deck>, build-all, or list.');
   }
   if (action === 'list') {
     for (const deck of presentations) console.log(`${deck.name} (${deck.format}, preferred port ${deck.port})`);

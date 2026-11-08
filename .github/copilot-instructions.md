@@ -5,7 +5,7 @@ See `AGENTS.md` for directory layout, build/lint commands, and CI pipeline.
 ## Purpose
 
 External-facing learning content repository for Daniel Scott-Raynsford
-(PlagueHO) — Slidev presentations, demos, learning pathways, and reusable
+(PlagueHO) — Slidev and Reveal.js presentations, demos, learning pathways, and reusable
 patterns. Primary content is Markdown; tooling is Node.js (pnpm) with Slidev
 and markdownlint-cli2. Agentic workflow assets live in
 [PlagueHO/plagueho.os](https://github.com/PlagueHO/plagueho.os); plugins and
@@ -53,6 +53,18 @@ skills in [PlagueHO/skills](https://github.com/PlagueHO/skills).
 - Code blocks: specify language + line highlights (`ts {2,3|5|all}`)
 - Store images in the talk's `images/` subfolder with relative paths
 - `presentations/**/slides.md` is excluded from markdownlint
+
+## Reveal.js patterns
+
+- Use Node.js 22.12 or later. Keep each deck's npm package and lockfile separate from the root Slidev toolchain.
+- Identify Reveal.js decks through `reveal.js` in `package.json` dependencies or devDependencies. Do not add dummy `slides.md` files.
+- Provide `build` and `test` scripts. Build `dist/index.html` and copy all runtime assets, notes plugins, and licenses locally.
+- Reuse `scripts/serve-presentation.mjs` for hosting. Use only Node.js built-in modules; do not require Python or an extra server package.
+- Source preview uses a deck-local `serve.mjs` wrapper that serves `dist/`. Keep the shared script available in the repository.
+- Release ZIP files include a standalone copy as `serve.mjs`. Run `node serve.mjs` after extraction; it serves its own folder on loopback port 3043. An optional port argument selects another port.
+- Keep built assets and `serve.mjs` at the ZIP root. Use `<repository>-<presentation>-<tag>.zip`; preserve existing Slidev release assets.
+- Keep `.github/github-app.yml` tasks aligned with the shared Node server. Use `scripts/presentation-task.mjs` for build, run, and HVE test tasks. Build before testing the deck and presenter controls. Keep manual tests for the shared server and task runner.
+- Check app server detection against `Presentation preview: http://127.0.0.1:3043`. Keep tasks manual and require app configuration review.
 
 ## Documentation
 

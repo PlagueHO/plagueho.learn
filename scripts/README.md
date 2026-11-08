@@ -74,4 +74,6 @@ Prerequisites:
 
 | Script | Technology | Description |
 |--------|-----------|-------------|
-| *(none yet — add your first script!)* | | |
+| `serve-presentation.mjs` | Node.js | Dependency-free loopback HTTP server shared by local preview and Reveal.js release ZIP files |
+
+The release workflow copies `serve-presentation.mjs` into each Reveal.js ZIP as `serve.mjs`. Run `node serve.mjs` from the extracted folder. It serves the folder that contains the script on port 3043. Pass another port with `node serve.mjs 3044`. Run its tests with `node --test scripts/serve-presentation.test.mjs`.

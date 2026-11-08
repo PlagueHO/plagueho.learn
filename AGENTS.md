@@ -21,10 +21,14 @@ plagueho.learn/
 │   └── .vitepress/             # Site configuration, theme, and generated sidebar
 ├── learning-pathways/          # Curated learning pathway Markdown docs
 ├── patterns/                   # Reusable development patterns
-├── presentations/              # Slidev presentations (one folder per talk)
+├── presentations/              # Slidev and Reveal.js presentations
 │   └── <talk-name>/
 │       ├── OUTLINE.md          # Talk outline — create first
-│       ├── slides.md           # Slidev Markdown slides
+│       ├── slides.md           # Slidev entry only
+│       ├── package.json        # Reveal.js deck-local dependencies and scripts
+│       ├── index.html          # Reveal.js shell
+│       ├── build.mjs           # Reveal.js static build
+│       ├── serve.mjs           # Reveal.js wrapper for the shared Node.js server
 │       ├── style.css           # Optional custom styles
 │       ├── components/         # Optional Vue components
 │       └── images/             # Slide images
@@ -50,6 +54,9 @@ node scripts/link-impeccable.mjs
 
 # Test external skill setup and shell-free Slidev execution
 node --test scripts/link-impeccable.test.mjs scripts/slidev-process.test.mjs
+
+# Test app tasks and the shared offline presentation server
+node --test scripts/presentation-task.test.mjs scripts/serve-presentation.test.mjs
 
 # Lint all Markdown
 pnpm lint:md
@@ -78,7 +85,7 @@ pnpm labs:dev
 # Generate and preview a production labs build
 pnpm labs:preview
 
-# Dev-preview a presentation (hot reload)
+# Dev-preview a Slidev presentation (hot reload)
 pnpm slidev presentations/<talk-name>/slides.md
 
 # Build a single presentation to static SPA
@@ -86,9 +93,20 @@ pnpm exec slidev build presentations/<talk-name>/slides.md
 
 # Export a presentation to PDF
 pnpm exec slidev export presentations/<talk-name>/slides.md
+
+# List presentations supported by the GitHub Copilot app tasks
+node scripts/presentation-task.mjs list
+
+# Build, run, or test the Reveal.js deck from the repository root
+node scripts/presentation-task.mjs build hypervelocity-engineering-ai-sdlc-is-not-enough
+node scripts/presentation-task.mjs run hypervelocity-engineering-ai-sdlc-is-not-enough
+node scripts/presentation-task.mjs test hypervelocity-engineering-ai-sdlc-is-not-enough
+
+# Serve an extracted Reveal.js release (run from the extracted ZIP folder)
+node serve.mjs
 ```
 
-## Adding a Presentation — Checklist
+## Adding a Slidev presentation checklist
 
 1. Create `presentations/<talk-name>/` (kebab-case folder name)
 1. Add `OUTLINE.md` with talk structure
@@ -97,6 +115,22 @@ pnpm exec slidev export presentations/<talk-name>/slides.md
 1. Add optional `style.css` or `components/` as needed
 1. Run `pnpm lint:md` — must pass
 1. Run `pnpm exec slidev build presentations/<talk-name>/slides.md` — must build
+
+## Reveal.js presentations and app tasks
+
+Use Node.js 22.12 or later for Reveal.js builds and local hosting. Keep deck-local npm dependencies and lockfiles separate from the root pnpm package.
+
+A Reveal.js deck has `package.json`, `index.html`, and `build.mjs`; do not add a dummy `slides.md`. Create `OUTLINE.md` before authoring the deck. Provide `build` and `test` scripts, and build all runtime assets into `dist/` with `dist/index.html` as the entry.
+
+Use `scripts/serve-presentation.mjs` for local hosting. It uses only Node.js built-in modules; do not require Python or an extra server package. The deck-local `serve.mjs` wrapper serves `dist/` and imports the shared script. Keep source preview inside the repository.
+
+The release workflow copies the shared script into each ZIP as `serve.mjs`; this standalone copy serves its own folder on `127.0.0.1:3043`. Use `node serve.mjs 3044` to select another port.
+
+Manual GitHub Copilot app tasks are declared in `.github/github-app.yml`. Build and run tasks use `scripts/presentation-task.mjs` without a shell. Reveal.js run tasks build before starting the shared Node server. Keep the app's server-ready pattern compatible with `Presentation preview: http://127.0.0.1:3043`.
+
+The HVE test task builds the deck before it tests the deck and presenter controls. Other test tasks cover the shared offline server and the task runner. Users must review and accept the app configuration; no task starts automatically.
+
+See the [Reveal.js deck guide](presentations/hypervelocity-engineering-ai-sdlc-is-not-enough/README.md) for build, test, and offline presentation commands.
 
 ## Adding a lab checklist
 
@@ -129,6 +163,10 @@ PR merges to `main` require the **Continuous Integration** workflow to pass:
 
 On push to `main`, **Deploy GitHub Pages** builds all presentations and the labs site into one Pages artifact. On tag push, **Publish Presentations** creates a GitHub release with zipped presentation bundles.
 
+Tag releases detect Reveal.js decks through `reveal.js` in deck-local dependencies or devDependencies. They run `npm ci`, `npm run build`, `npm test`, and the shared server tests.
+
+Reveal.js ZIP names are `<repository>-<presentation>-<tag>.zip`; built files and standalone `serve.mjs` are at the ZIP root. Keep existing Slidev build commands, ZIP names, contents, and release attachments unchanged.
+
 ## Conventions
 
 | Concern | Rule |
@@ -137,7 +175,8 @@ On push to `main`, **Deploy GitHub Pages** builds all presentations and the labs
 | Lab source | `labs/<lab-name>/`; never author generated pages in `labs-site/<lab-name>/` |
 | Lab modules | `<nn-module>/README.md` with a zero-padded number and matching frontmatter |
 | Lab solutions | Optional files under `<nn-module>/solution/` |
-| Presentation entry | Always `slides.md` inside the talk folder |
+| Presentation entry | Slidev: `slides.md`; Reveal.js: `package.json`, `index.html`, and `build.mjs` |
+| Local presentation hosting | Shared Node.js server; no Python or extra server package |
 | Outline file | `OUTLINE.md` — create before writing slides |
 | Images | Store in talk's `images/` subfolder; kebab-case filenames |
 | Indentation | 2 spaces for YAML/JSON/Markdown; 4 spaces for PowerShell/Python |

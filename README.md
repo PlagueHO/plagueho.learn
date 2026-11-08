@@ -50,6 +50,10 @@ Browse the [published Presentations index](https://plagueho.github.io/plagueho.l
 | Original Hypervelocity Engineering | Slidev | [Original deck](presentations/hypervelocity-engineering/slides.md) |
 | Hypervelocity Engineering - *Why adding AI to the SDLC is not enough* | Reveal.js | [Source and run instructions](presentations/hypervelocity-engineering-ai-sdlc-is-not-enough/README.md) · [Published deck](https://plagueho.github.io/plagueho.learn/hypervelocity-engineering-ai-sdlc-is-not-enough/) |
 
+Tag-based [GitHub releases](https://github.com/PlagueHO/plagueho.learn/releases) include one ZIP file per presentation. Reveal.js assets use `<repository>-<presentation>-<tag>.zip`. Existing Slidev assets keep their names and layout.
+
+Extract the Reveal.js ZIP and run its included Node.js server with `node serve.mjs` to present offline. No npm packages or Python installation are needed. See the [offline run instructions](presentations/hypervelocity-engineering-ai-sdlc-is-not-enough/README.md#run-a-release-offline).
+
 ### GitHub Copilot app tasks
 
 The [repository app configuration](.github/github-app.yml) adds manual build and run tasks for all six Slidev decks and the standalone HVE Reveal.js deck. Review and accept the configuration in the app before use. No task runs automatically.
