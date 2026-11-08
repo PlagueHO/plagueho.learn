@@ -6,7 +6,7 @@
 import Reveal from './vendor/reveal.mjs';
 import Notes from './vendor/plugin/notes.mjs';
 import { keyboardAllowed, setupPresenterControls, themeFromUrl } from './presenter-controls.mjs';
-import { trackRelativeWindowPosition } from './speaker-window.mjs';
+import { isUpcomingSpeakerPreview, setupSpeakerTiming, trackRelativeWindowPosition } from './speaker-window.mjs';
 import { mergedSlideHash, setupCadence } from './cadence.mjs';
 import { setupAmplification } from './amplification.mjs';
 import { setupReadiness } from './readiness.mjs';
@@ -30,6 +30,8 @@ else {
 }
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const upcomingPreview = isUpcomingSpeakerPreview(window.location.search);
+if (upcomingPreview) document.documentElement.dataset.speakerPreview = 'upcoming';
 const deck = new Reveal(document.querySelector('.reveal'), {
   width: 1280,
   height: 720,
@@ -51,6 +53,7 @@ const deck = new Reveal(document.querySelector('.reveal'), {
   plugins: [Notes],
 });
 
+setupSpeakerTiming(deck);
 await deck.initialize();
 document.body.classList.add('deck-ready');
 setupCadence(deck);
@@ -126,7 +129,7 @@ document.addEventListener('click', event => {
   }
 });
 
-setupPresenterControls(deck, {
+if (!upcomingPreview) setupPresenterControls(deck, {
   openNotes: openSpeakerNotes,
   closeNotes: () => {
     if (!notesPanel || notesPanel.hidden) return false;

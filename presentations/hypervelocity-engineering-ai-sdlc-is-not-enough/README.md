@@ -2,7 +2,7 @@
 
 An independent Reveal.js presentation for technical leaders, engineering managers, and senior engineers. It sits beside the unchanged [original Slidev presentation](../hypervelocity-engineering/slides.md).
 
-The deck has 41 slides: 23 leadership slides (27 minutes), 13 deeper HVE-Core slides (34.5 minutes), and five demo support slides. The live demo has a separate 30-minute budget. See [OUTLINE.md](./OUTLINE.md) for the approved narrative, slide order, and visual plan.
+The deck has 41 slides in three 30-minute parts: Introduction to HVE (slides 1-23), Diving deeper into HVE-Core (slides 24-36), and Demos (slides 37-41). The full plan totals 90 minutes, including live demo time. Unplanned Q&A is separate. See [OUTLINE.md](./OUTLINE.md) for the approved narrative, slide order, and visual plan.
 
 The practitioner section starts with Copilot CLI plugin installation and a first bounded RPI task. It continues the illustrative order-update case through DT Coach, UX UI Designer, requirements, reviewed handoffs, Security and Responsible AI support, saved artifacts, customization, and maintenance. Slide 36 switches to the unchanged Apex Dynamics demo.
 
@@ -108,9 +108,45 @@ Speaker view needs HTTP and permission to open a popup. The notes window keeps i
 
 If the browser blocks the popup, the deck shows the notes in an inline panel at the bottom of the slide. Press S or select Close to hide the panel. Notes ship with the public deck; do not put private information in them. See [MDN's `Window.moveTo()` reference](https://developer.mozilla.org/en-US/docs/Web/API/Window/moveTo) for browser limits.
 
-Slides 1-23 contain exact spoken text, with public sources linked separately. They have no presenter guidance or stage directions. Tests enforce a 3,000-word total ceiling and a limit of 120 words per allocated minute on each slide. Rehearse to confirm delivery under 30 minutes; the word budget does not measure personal speaking pace.
+Slides 1-23 contain exact spoken text, with public sources linked separately. Seven stage cues are permitted: two literal `<click>` lines on slide 5, one on slide 10, and four on slide 11. Each marks an animation advance. They appear as text in popup and inline notes.
 
-Practitioner notes contain starter requests, artifact paths, human decisions, and claim limits. Demo notes retain the separate live route, with current installation guidance. The timed content totals 61.5 minutes; the live demo and Q&A are separate.
+Slide 11 has one cue before each pillar, in reveal order. Tests exclude the cues from the 3,000-word ceiling and 120 spoken words per allocated minute. Rehearse to confirm delivery within 30 minutes.
+
+Practitioner notes contain starter requests, artifact paths, human decisions, and claim limits. Demo notes retain the live route, with current installation guidance. Each part has a 30-minute allocation. The shorter deeper section needs rehearsal; the timing estimates do not measure personal speaking pace.
+
+### Speaker timing
+
+In *Default* speaker layout, drag the vertical divider to change the Current preview width. Focus the divider and use Left/Right arrow keys for 2% steps. Home sets 25% and End sets 75%. The Upcoming preview and notes use the remaining width. In narrow windows, notes keep the full width below both previews. Other layouts keep their standard arrangement.
+
+The Upcoming preview hides player controls and slide action buttons. The Current preview keeps its controls. These changes do not affect the main presentation.
+
+The speaker popup uses a narrow vertical timing strip beside the notes. It shows elapsed time, pause/reset icons, pace text, one total progress line, and part/total percentages. Hover over the strip for full timing details. Focus the progress line to read those details with a screen reader. The icon buttons have *Pause timer*, *Resume timer*, and *Reset timer* labels.
+
+The elapsed timer starts at zero when speaker view first connects. Pausing freezes elapsed time, progress, and pace comparisons. Resume continues from that value without counting the paused interval. The wall clock remains available in the timing details.
+
+The timer keeps its state if you close and reopen the popup. It counts while the popup is closed unless paused. Reloading the deck starts a new timer. Reset sets elapsed time to zero without moving slides or changing the schedule. Reset keeps the current pause state.
+
+Timer pause is separate from B (*Pause for questions*) and the slide-motion pause buttons. Those controls do not pause the timing plan. Pause the timer manually for unplanned Q&A. Keep it running during the live demo, including time spent in another application. The inline notes fallback does not provide the timing panel.
+
+The timing details include the active part, its allocation, the current slide's estimated duration, and its planned start and end. Start and end are elapsed times from slide 1, not wall-clock times. Each slide starts after the sum of the preceding slide durations. The two marks on the progress line identify the part boundaries.
+
+| Indicator | Calculation or meaning |
+|---|---|
+| Total progress | Elapsed time divided by total planned time |
+| Part progress | Elapsed time minus the part's planned start, divided by its duration |
+| Ahead / Slow down | More than 30 seconds before the current slide's planned start |
+| On time | Within the slide's planned window, including the 30-second allowance on each side |
+| Behind / Speed up | More than 30 seconds after the current slide's planned end |
+
+Progress is limited to 0-100%. Elapsed time continues past the planned total. The strip shows overrun as `+minutes:seconds`. All elapsed-based indicators use the same timer. Pace guidance uses *Ahead*, *On time*, or *Behind* text, not colour alone. The full details include the *Slow down* or *Speed up* instruction.
+
+Section jumps and backward navigation keep the fixed 90-minute schedule. They change the current planned slide window but do not reset the timer or remove skipped slides from the total. Animation advances do not change timing. A jump into a later part early in the session can therefore show *Ahead / Slow down*.
+
+### Edit timing estimates
+
+Edit each slide's `minutes` field in `slide-meta.mjs`. This is the only source for runtime duration values. `deck.mjs` converts the values to seconds in `data-timing` attributes. For example, `minutes: 2.75` on slide 5 becomes `data-timing="165"`. The speaker panel calculates slide starts, part totals, and the total duration from those attributes.
+
+Keep each part at 30 minutes and the full deck at 90 minutes. The tests check those totals and require positive durations on all 41 slides. Keep the allocation tables in `OUTLINE.md` and the demo substep cut-offs in `DEMO-SCRIPT.md` consistent. After an edit, run `npm run build` and reload the deck and speaker popup.
 
 For PDF export, open `http://127.0.0.1:3043/?print-pdf`, wait for the slides to load, then use the browser's Print command. Enable background graphics. See the [Reveal.js PDF guide](https://revealjs.com/pdf-export/).
 
@@ -140,6 +176,9 @@ Slide-specific content and visual intent are in [OUTLINE.md](./OUTLINE.md). Keep
 | `index.html` | Accessible presentation shell and build insertion marker |
 | `theme.css` | Light theme, 1280 by 720 layout grid, diagram styles, and print rules |
 | `presentation.mjs` | Reveal.js settings, speaker notes, and in-slide question actions |
+| `speaker-window.mjs` | Popup positioning, shared elapsed timer, schedule calculations, and speaker timing controls |
+| `speaker-timing.css` | Responsive speaker timing panel and keyboard focus styles |
+| `speaker-window.test.mjs` | Timing source, click cues, timer lifecycle, progress, pace boundaries, and popup integration checks |
 | `presenter-controls.mjs` | Shared toolbar, keyboard safety, navigation, zoom, themes, Present mode, and fullscreen |
 | `presenter-controls.css` | Bottom toolbar, responsive groups, focus, panels, and Present-mode visibility |
 | `flowing-dark.css` | Dark palette and diagram overrides; original images and brand marks stay unchanged |

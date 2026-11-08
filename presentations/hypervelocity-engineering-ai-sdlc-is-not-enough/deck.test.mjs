@@ -22,14 +22,17 @@ import { presenterMarkup } from './presenter-controls.mjs';
 
 const text = html => html.replace(/<[^>]+>/g, ' ').replace(/&\w+;/g, ' ').trim();
 const byId = Object.fromEntries(slides.map(slide => [slide.id, slide]));
-const wordCount = notes => notes.trim().split(/\s+/).length;
+const wordCount = notes => notes.replaceAll('<click>', '').trim().split(/\s+/).length;
 
-test('all 23 introduction notes are spoken text within the delivery budget', () => {
+test('all 23 introduction notes are spoken text with only approved click cues within the delivery budget', () => {
   const introduction = slides.filter(slide => slide.part === 'leadership');
   assert.equal(introduction.length, 23);
   let total = 0;
   for (const slide of introduction) {
     const words = wordCount(slide.notes);
+    const cues = slide.notes.match(/<click>/g) ?? [];
+    const expectedCues = { handoffs: 2, 'hve-model': 1, 'constraints-pillars': 4 };
+    assert.equal(cues.length, expectedCues[slide.id] ?? 0, slide.id);
     assert.ok(words >= 20, `${slide.id}: spoken narrative is missing`);
     assert.ok(words <= slide.minutes * 120, `${slide.id}: ${words} words exceeds the slide budget`);
     assert.doesNotMatch(slide.notes,
@@ -68,14 +71,14 @@ test('ISE attribution and wider backing do not claim universal adoption', () => 
   assert.match(byId['hve-core-open'].notes, /adopt HVE's practices, adapt them to your business, and help shape what comes next/);
 });
 
-test('41 slides split into 27 leadership minutes and 34.5 deeper minutes', () => {
+test('41 slides have positive durations in three 30-minute parts', () => {
   assert.equal(slides.length, 41);
   assert.equal(new Set(slides.map(slide => slide.id)).size, 41);
-  for (const [part, count, minutes] of [['leadership', 23, 27], ['deep-dive', 13, 34.5], ['demos', 5]]) {
+  for (const [part, count, minutes] of [['leadership', 23, 30], ['deep-dive', 13, 30], ['demos', 5, 30]]) {
     const section = slides.filter(slide => slide.part === part);
     assert.equal(section.length, count);
-    if (part !== 'demos') assert.equal(section.reduce((sum, item) => sum + item.minutes, 0), minutes);
-    else assert.ok(section.every(item => item.minutes === undefined));
+    assert.equal(section.reduce((sum, item) => sum + item.minutes, 0), minutes);
+    assert.ok(section.every(item => Number.isFinite(item.minutes) && item.minutes > 0));
   }
   assert.equal(slides[22].id, 'hve-core-open');
   assert.equal(slides[23].id, 'deep-dive');
@@ -126,7 +129,7 @@ test('pillar details explain distinct practices and keep each example in its int
   assert.match(teams.notes, /outcome, priorities, assumptions, and decisions/);
   assert.match(teams.notes, /Required independent review and separation of duties stay/);
   const design = byId['design-thinking'];
-  assert.equal(design.minutes, 1.5);
+  assert.equal(design.minutes, 1.75);
   assert.equal(design.title, 'Pillar 2: Design Thinking. <em>Validate value throughout.</em>');
   for (const phrase of ['Customer evidence can change any decision.', 'Explore', 'Focus', 'Test in real use',
     'Problem', 'Are we solving the right problem?', 'Solution', 'Does this idea help people?',
@@ -157,7 +160,7 @@ test('pillar details explain distinct practices and keep each example in its int
   assert.ok(design.sources.includes('designcouncil'));
   const team = byId['team-example'];
   assert.equal(team.title, 'Expertise stays.<br><em>Handoffs change.</em>');
-  assert.equal(team.minutes, 1.5);
+  assert.equal(team.minutes, 1.75);
   assert.equal((team.body.match(/<li>/g) ?? []).length, 3);
   for (const phrase of ['My part is done.', 'Our outcome works.', 'Decide sooner', 'Ask experts directly.',
     'Check assumptions together.', 'Build alignment and buy-in', 'Share context and decisions.',
@@ -182,7 +185,7 @@ test('pillar details explain distinct practices and keep each example in its int
   assert.match(team.notes, /Required independent review and separation of duties stay/);
   const value = byId['design-example'];
   assert.equal(value.title, 'Validate value,<br><em>not just delivery.</em>');
-  assert.equal(value.minutes, 1.5);
+  assert.equal(value.minutes, 1.75);
   for (const phrase of ['Build an AI chatbot.', "Test the option against the customer's task:",
     'a trustworthy revised date and a clear next action.',
     'Test value early. Change or stop options that do not help.',
@@ -202,7 +205,7 @@ test('pillar details explain distinct practices and keep each example in its int
   assert.ok(!value.sources.includes('tutorial'));
   const accelerators = byId.accelerators;
   assert.equal(accelerators.title, 'Pillar 3: Reusable accelerators.<br><em>Broader capability for every team.</em>');
-  assert.equal(accelerators.minutes, 1.5);
+  assert.equal(accelerators.minutes, 1.75);
   for (const phrase of ['AI agents', 'Agent Skills', 'Tools', 'Organizational', 'knowledge and guidance',
     'Security', 'SRE / Operations', 'UX design', 'Architecture', 'Technical programs',
     'Business programs', 'Data science', 'Engineering', 'Contributor onboarding',
@@ -256,7 +259,7 @@ test('pillar details explain distinct practices and keep each example in its int
   const reuse = byId['accelerator-example'];
   assert.equal(reuse.title,
     'Pillar 3: Reusable accelerators.<br><em>Reuse expertise, not just infrastructure.</em>');
-  assert.equal(reuse.minutes, 1.5);
+  assert.equal(reuse.minutes, 1.75);
   assert.ok(!reuse.sources.includes('tutorial'));
   assert.equal((reuse.body.match(/<li class="tone-/g) ?? []).length, 5);
   assert.equal((reuse.body.match(/class="reuse-pin"[^>]+aria-hidden="true"/g) ?? []).length, 5);
@@ -277,7 +280,7 @@ test('pillar details explain distinct practices and keep each example in its int
   const lifecycleExample = byId['lifecycle-example'];
   assert.equal(lifecycleExample.title,
     'Give AI context, checks,<br><em>and expert judgment.</em>');
-  assert.equal(lifecycleExample.minutes, 1.5);
+  assert.equal(lifecycleExample.minutes, 1.75);
   assert.ok(!lifecycleExample.sources.includes('tutorial'));
   assert.match(lifecycleExample.body, /<figure class="context-scene"\s+aria-label="[^"]+"/);
   assert.equal((lifecycleExample.body.match(/<li class="tone-/g) ?? []).length, 4);
@@ -362,12 +365,12 @@ test('slide 22 shows reusable HVE-Core starting points for six roles', () => {
   assert.match(slide.notes, /Coverage varies by role/);
 });
 
-test('practitioner allocations preserve the approved 34.5-minute budget and published duration', async () => {
+test('practitioner allocations fit 30 minutes and the published full duration includes demos', async () => {
   const practitioner = slides.filter(slide => slide.part === 'deep-dive');
-  assert.deepEqual(practitioner.map(slide => slide.minutes), [0.5, 3, 4, 2.5, 2, 4, 4, 3, 4, 2.5, 2, 1.5, 1.5]);
+  assert.deepEqual(practitioner.map(slide => slide.minutes), [0.5, 2.5, 3.5, 2.25, 1.75, 3.5, 3.5, 2.5, 3.5, 2.25, 1.75, 1.25, 1.25]);
   const { presentation } = JSON.parse(await readFile(new URL('./package.json', import.meta.url), 'utf8'));
-  assert.equal(presentation.duration, 61.5);
-  assert.match(presentation.info, /61\.5 minutes; demos and Q&A are separate/);
+  assert.equal(presentation.duration, 90);
+  assert.match(presentation.info, /Three 30-minute parts total 90 minutes, including demos/);
   for (const id of ['cost', 'adoption-commitments', 'outcome-measures']) assert.equal(byId[id], undefined);
   assert.equal(byId['deep-dive'].body, '');
 });
@@ -538,7 +541,7 @@ test('section breaks preserve the approved output-to-outcome titles and selected
 test('slide 6 separates a delivered chatbot from the customer outcome', () => {
   const slide = byId['dashboard-request'];
   assert.equal(slides[5].id, slide.id);
-  assert.equal(slide.minutes, 1.25);
+  assert.equal(slide.minutes, 1.5);
   assert.equal(slide.title, 'Delivering software faster.<br><em>But not delivering the outcome.</em>');
   assert.doesNotMatch(slide.title, /chatbot|customer|Friday|Monday/i);
   const content = text(slide.body);
@@ -568,7 +571,7 @@ test('slide 6 separates a delivered chatbot from the customer outcome', () => {
 test('slide 7 shows business decisions made by default and carried through implementation', async () => {
   const slide = byId['feedback-window'];
   assert.equal(slides[6].id, slide.id);
-  assert.equal(slide.minutes, 1.25);
+  assert.equal(slide.minutes, 1.5);
   assert.equal(slide.title, 'Unanswered questions become<br><em>business decisions in code.</em>');
   const content = text(slide.body);
   for (const phrase of ['Business question', 'Still open', 'PM / SME / customer',
@@ -851,7 +854,7 @@ test('slide 4 uses the selected fault line without statistics or boxes', () => {
 test('slide 5 combines the approved sweeping loops and retains assurance', () => {
   const slide = byId.handoffs;
   assert.equal(slide.title, 'Development got faster.<br><em>The operating model did not.</em>');
-  assert.equal(slide.minutes, 2.5);
+  assert.equal(slide.minutes, 2.75);
   const content = text(slide.body);
   for (const phrase of ['Planning + decisions', 'Implementation + testing', 'Review + learning',
     'Human handoff', 'Decision wait', 'Review queue', 'Security, quality, and operations checks stay.',
@@ -1747,7 +1750,7 @@ test('slide 23 wraps up for leaders with two QR codes and three facts about HVE-
   const slide = byId['hve-core-open'];
   assert.equal(slides[22].id, slide.id);
   assert.equal(slide.part, 'leadership');
-  assert.equal(slide.minutes, 1.75);
+  assert.equal(slide.minutes, 2);
   assert.equal(slide.className, 'closing');
   assert.equal(slide.title, 'HVE-Core is open source.<br><em>Make it yours.</em>');
   assert.deepEqual(slide.sources, ['repo', 'core', 'guide', 'roles']);
