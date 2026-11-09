@@ -161,11 +161,11 @@ PR merges to `main` require the **Continuous Integration** workflow to pass:
 - **Markdown lint** (`pnpm lint:md`): fails on any markdownlint rule violation
 - **Slidev build**: builds all `presentations/*/slides.md`; fails on build errors
 
-On push to `main`, **Deploy GitHub Pages** builds all presentations and the labs site into one Pages artifact. On tag push, **Publish Presentations** creates a GitHub release with zipped presentation bundles.
+On push to `main`, **Deploy GitHub Pages** builds all presentations and the labs site into one Pages artifact. On tag push, **Publish Presentations** builds each actual presentation, skips the Slidev starter template, and attaches one offline-ready ZIP per presentation. Each ZIP contains the built files and standalone server at its root.
 
 Tag releases detect Reveal.js decks through `reveal.js` in deck-local dependencies or devDependencies. They run `npm ci`, `npm run build`, `npm test`, and the shared server tests.
 
-Reveal.js ZIP names are `<repository>-<presentation>-<tag>.zip`; built files and standalone `serve.mjs` are at the ZIP root. Keep existing Slidev build commands, ZIP names, contents, and release attachments unchanged.
+Slidev ZIP names are `<presentation>-<tag>.zip`; Reveal.js ZIP names are `<repository>-<presentation>-<tag>.zip`. Both formats contain the built files and standalone `serve.mjs` at the ZIP root. Do not release the Slidev starter template.
 
 ## Conventions
 

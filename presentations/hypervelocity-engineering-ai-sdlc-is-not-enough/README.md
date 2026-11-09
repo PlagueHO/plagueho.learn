@@ -207,7 +207,7 @@ The tag-based release workflow builds and tests each Reveal.js deck, then attach
 
 Keep a deck-local lockfile and `build` and `test` scripts. The build must produce `dist/index.html` and local runtime assets. Do not add a dummy `slides.md` file to trigger the Slidev builder.
 
-Existing Slidev release assets keep their names and layout. Reveal.js assets use `<repository>-<presentation>-<tag>.zip`. For example, tag `v1.0.0` produces `plagueho.learn-hypervelocity-engineering-ai-sdlc-is-not-enough-v1.0.0.zip`.
+Slidev release assets use `<presentation>-<tag>.zip`; Reveal.js assets use `<repository>-<presentation>-<tag>.zip`. Both formats contain the built files and `serve.mjs` at the ZIP root. The Slidev starter template is not released. For example, tag `v1.0.0` produces `plagueho.learn-hypervelocity-engineering-ai-sdlc-is-not-enough-v1.0.0.zip`.
 
 ## Run a release offline
 

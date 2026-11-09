@@ -50,9 +50,9 @@ Browse the [published Presentations index](https://plagueho.github.io/plagueho.l
 | Original Hypervelocity Engineering | Slidev | [Original deck](presentations/hypervelocity-engineering/slides.md) |
 | Hypervelocity Engineering - *Why adding AI to the SDLC is not enough* | Reveal.js | [Source and run instructions](presentations/hypervelocity-engineering-ai-sdlc-is-not-enough/README.md) · [Published deck](https://plagueho.github.io/plagueho.learn/hypervelocity-engineering-ai-sdlc-is-not-enough/) |
 
-Tag-based [GitHub releases](https://github.com/PlagueHO/plagueho.learn/releases) include one ZIP file per presentation. Reveal.js assets use `<repository>-<presentation>-<tag>.zip`. Existing Slidev assets keep their names and layout.
+Tag-based [GitHub releases](https://github.com/PlagueHO/plagueho.learn/releases) include one offline-ready ZIP file per presentation. The Slidev starter template is not included. Slidev assets use `<presentation>-<tag>.zip`; Reveal.js assets use `<repository>-<presentation>-<tag>.zip`. Each ZIP contains the built files and `serve.mjs` at its root.
 
-Extract the Reveal.js ZIP and run its included Node.js server with `node serve.mjs` to present offline. No npm packages or Python installation are needed. See the [offline run instructions](presentations/hypervelocity-engineering-ai-sdlc-is-not-enough/README.md#run-a-release-offline).
+Extract a presentation ZIP and run `node serve.mjs` in its folder. Open `http://127.0.0.1:3043` in a browser to present offline. No npm packages or Python installation are needed. See the [offline run instructions](presentations/hypervelocity-engineering-ai-sdlc-is-not-enough/README.md#run-a-release-offline).
 
 ### GitHub Copilot app tasks
 

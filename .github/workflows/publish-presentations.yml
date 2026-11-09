@@ -37,10 +37,28 @@ jobs:
           for slides in presentations/*/slides.md; do
             deck=$(dirname "$slides")
             deck_name=$(basename "$deck")
+            if [ "$deck_name" = "template" ]; then
+              echo "Skipping the Slidev starter template."
+              continue
+            fi
+            if [ -f "$deck/package.json" ] && node --input-type=module - "$deck/package.json" <<'NODE'
+          import { readFileSync } from 'node:fs';
+          const pkg = JSON.parse(readFileSync(process.argv[2], 'utf8'));
+          process.exit(Object.hasOwn(pkg.dependencies ?? {}, 'reveal.js') ||
+            Object.hasOwn(pkg.devDependencies ?? {}, 'reveal.js') ? 0 : 1);
+          NODE
+            then
+              echo "Skipping $deck_name because it uses Reveal.js."
+              continue
+            fi
             echo "::group::Building $deck_name"
-            pnpm exec slidev build "$slides" --out "$deck/dist"
+            pnpm exec slidev build "$slides" --out dist
             echo "::endgroup::"
-            zip -r "${deck_name}-${tag}.zip" "$deck/dist"
+            cp scripts/serve-presentation.mjs "$deck/dist/serve.mjs"
+            (
+              cd "$deck/dist"
+              zip -r "${GITHUB_WORKSPACE}/${deck_name}-${tag}.zip" .
+            )
             echo "Packaged ${deck_name}-${tag}.zip"
             found=$((found + 1))
           done

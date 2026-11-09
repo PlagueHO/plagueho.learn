@@ -62,7 +62,7 @@ skills in [PlagueHO/skills](https://github.com/PlagueHO/skills).
 - Reuse `scripts/serve-presentation.mjs` for hosting. Use only Node.js built-in modules; do not require Python or an extra server package.
 - Source preview uses a deck-local `serve.mjs` wrapper that serves `dist/`. Keep the shared script available in the repository.
 - Release ZIP files include a standalone copy as `serve.mjs`. Run `node serve.mjs` after extraction; it serves its own folder on loopback port 3043. An optional port argument selects another port.
-- Keep built assets and `serve.mjs` at the ZIP root. Use `<repository>-<presentation>-<tag>.zip`; preserve existing Slidev release assets.
+- Keep built assets and `serve.mjs` at the ZIP root. Release one ZIP per presentation and skip the Slidev starter template. Use `<presentation>-<tag>.zip` for Slidev and `<repository>-<presentation>-<tag>.zip` for Reveal.js.
 - Keep `.github/github-app.yml` tasks aligned with the shared Node server. Use `scripts/presentation-task.mjs` for build, run, and HVE test tasks. Build before testing the deck and presenter controls. Keep manual tests for the shared server and task runner.
 - Check app server detection against `Presentation preview: http://127.0.0.1:3043`. Keep tasks manual and require app configuration review.
 
