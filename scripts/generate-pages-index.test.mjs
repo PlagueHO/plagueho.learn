@@ -66,7 +66,10 @@ duration: 45
   assert.equal(deckPackage.presentation.title, title);
   assert.ok(html.includes(`<h2>${title}</h2>`));
   assert.ok(html.includes(deckPackage.presentation.info.replaceAll('&', '&amp;')));
-  assert.match(html, /60 min/);
+  const hveCard = html.match(new RegExp(`<a\\b[^>]*href="\\./${renamedDeck}/"[^>]*>[\\s\\S]*?</a>`));
+  assert.ok(hveCard, 'The HVE presentation card is present');
+  const duration = hveCard[0].match(/<span class="duration">[\s\S]*?<\/svg>\s*([^<]*)<\/span>/);
+  assert.equal(duration?.[1], `${deckPackage.presentation.duration} min`);
   assert.match(html, /href="\.\/original\/"/);
   assert.match(html, /A 45-minute presentation\./);
   assert.match(html, />Engineering<\/span>/);
