@@ -120,11 +120,17 @@ In *Default* speaker layout, drag the vertical divider to change the Current pre
 
 The Upcoming preview hides player controls and slide action buttons. The Current preview keeps its controls. These changes do not affect the main presentation.
 
-The speaker popup uses a narrow vertical timing strip beside the notes. It shows elapsed time, pause/reset icons, pace text, one total progress line, and part/total percentages. Hover over the strip for full timing details. Focus the progress line to read those details with a screen reader. The icon buttons have *Pause timer*, *Resume timer*, and *Reset timer* labels.
+The narrow timing strip beside the notes shows elapsed time, pause/reset icons, pace, total progress, planned total (`1:30:00`), and part percentage. Hover over the strip for details. Focus the progress line to read the details with a screen reader. Buttons have *Pause timer*, *Resume timer*, and *Reset timer* labels.
 
-The elapsed timer starts at zero when speaker view first connects. Pausing freezes elapsed time, progress, and pace comparisons. Resume continues from that value without counting the paused interval. The wall clock remains available in the timing details.
+The notes header shows *Slide n / 41*, the slide allocation, and its remaining time. Use *Decrease font size* and *Increase font size* for 2 px steps from 16 to 40 px. The default is Arial at 20 px. The selector also offers Verdana, Georgia, and Monospace. All fonts are local. Settings affect only note text. Long notes scroll below the header.
 
-The timer keeps its state if you close and reopen the popup. It counts while the popup is closed unless paused. Reloading the deck starts a new timer. Reset sets elapsed time to zero without moving slides or changing the schedule. Reset keeps the current pause state.
+The full notes header stays on one compact row. It uses text-only controls at 12 px, matching the *Elapsed* label, with no control boxes or visible horizontal scrollbar. Tab reaches each control. In narrow panels, focus brings off-screen controls into view. With the header focused, Left/Right moves along the row without changing slides.
+
+Elapsed time and the first slide countdown start when speaker view connects. Each different slide visit starts its full allocation, including backward visits and jumps. Animation advances and same-slide events do not restart it. At 10 seconds or less, a static cue appears and the remaining time pulses once per second. At zero, the countdown stops at *0:00* without an instruction.
+
+Pause freezes elapsed time, the countdown, progress, and pace. Resume excludes paused time. A slide change while paused sets the new allocation but keeps it paused. The pulse stops while paused. Reduced-motion mode keeps the static warning without animation. Countdown digits stay visible. The wall clock stays in the timing details.
+
+The timer and font settings survive popup close/reopen. The timer counts during closure unless paused. Slide visits still start a fresh allocation. Reloading the main deck starts a new timer and restores Arial at 20 px. Reset clears elapsed time and restarts the current countdown. It keeps the slide, pause state, fonts, and fixed schedule.
 
 Timer pause is separate from B (*Pause for questions*) and the slide-motion pause buttons. Those controls do not pause the timing plan. Pause the timer manually for unplanned Q&A. Keep it running during the live demo, including time spent in another application. The inline notes fallback does not provide the timing panel.
 
@@ -140,7 +146,7 @@ The timing details include the active part, its allocation, the current slide's 
 
 Progress is limited to 0-100%. Elapsed time continues past the planned total. The strip shows overrun as `+minutes:seconds`. All elapsed-based indicators use the same timer. Pace guidance uses *Ahead*, *On time*, or *Behind* text, not colour alone. The full details include the *Slow down* or *Speed up* instruction.
 
-Section jumps and backward navigation keep the fixed 90-minute schedule. They change the current planned slide window but do not reset the timer or remove skipped slides from the total. Animation advances do not change timing. A jump into a later part early in the session can therefore show *Ahead / Slow down*.
+Section jumps and backward navigation keep the fixed 90-minute schedule. They change the current planned slide window but do not reset elapsed time or remove skipped slides from the total. The per-visit countdown can therefore differ from pace guidance. For example, an early jump to a later part starts a full slide countdown but can show *Ahead / Slow down*. Animation advances do not change timing.
 
 ### Edit timing estimates
 
@@ -176,9 +182,9 @@ Slide-specific content and visual intent are in [OUTLINE.md](./OUTLINE.md). Keep
 | `index.html` | Accessible presentation shell and build insertion marker |
 | `theme.css` | Light theme, 1280 by 720 layout grid, diagram styles, and print rules |
 | `presentation.mjs` | Reveal.js settings, speaker notes, and in-slide question actions |
-| `speaker-window.mjs` | Popup positioning, shared elapsed timer, schedule calculations, and speaker timing controls |
-| `speaker-timing.css` | Responsive speaker timing panel and keyboard focus styles |
-| `speaker-window.test.mjs` | Timing source, click cues, timer lifecycle, progress, pace boundaries, and popup integration checks |
+| `speaker-window.mjs` | Popup positioning, note font settings, per-visit countdown, shared elapsed timer, and fixed schedule |
+| `speaker-timing.css` | Responsive notes header and timing strip, countdown warning, reduced motion, and keyboard focus |
+| `speaker-window.test.mjs` | Timing source, click cues, font controls, countdown boundaries, timer lifecycle, pace, and popup integration |
 | `presenter-controls.mjs` | Shared toolbar, keyboard safety, navigation, zoom, themes, Present mode, and fullscreen |
 | `presenter-controls.css` | Bottom toolbar, responsive groups, focus, panels, and Present-mode visibility |
 | `flowing-dark.css` | Dark palette and diagram overrides; original images and brand marks stay unchanged |

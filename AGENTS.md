@@ -130,6 +130,10 @@ Manual GitHub Copilot app tasks are declared in `.github/github-app.yml`. Build 
 
 The HVE test task builds the deck before it tests the deck and presenter controls. Other test tasks cover the shared offline server and the task runner. Users must review and accept the app configuration; no task starts automatically.
 
+New Reveal.js decks must provide the HVE speaker-display controls: note fonts, slide position and allocation, a per-visit countdown, and elapsed/planned total time.
+
+For custom Reveal.js speaker controls, preserve the native note-content node and updates. Scope font settings to note text. Use one monotonic elapsed timer for pause, resume, reset, and per-visit countdowns. Keep fixed-schedule pace separate from the current visit's countdown. Retain settings across popup reopen, not main-deck reload. Keep warnings readable without motion and ship all assets locally.
+
 See the [Reveal.js deck guide](presentations/hypervelocity-engineering-ai-sdlc-is-not-enough/README.md) for build, test, and offline presentation commands.
 
 ## Adding a lab checklist
