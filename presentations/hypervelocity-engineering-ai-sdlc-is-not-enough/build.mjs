@@ -4,6 +4,7 @@
  * Usage: npm run build
  */
 import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { renderSlides, slides } from './deck.mjs';
@@ -13,11 +14,23 @@ const output = join(root, 'dist');
 const revealRoot = dirname(dirname(fileURLToPath(import.meta.resolve('reveal.js'))));
 
 await mkdir(join(output, 'vendor'), { recursive: true });
-const template = await readFile(join(root, 'index.html'), 'utf8');
+const [template, speakerModule, speakerCss] = await Promise.all([
+  readFile(join(root, 'index.html'), 'utf8'),
+  readFile(join(root, 'speaker-window.mjs'), 'utf8'),
+  readFile(join(root, 'speaker-timing.css')),
+]);
 const marker = '<!-- SLIDES -->';
 if (template.split(marker).length !== 2) throw new Error('Expected exactly one slide insertion marker.');
+const stylesheetPath = './speaker-timing.css';
+if (speakerModule.split(stylesheetPath).length !== 2) {
+  throw new Error('Expected exactly one speaker stylesheet reference.');
+}
+const stylesheetVersion = createHash('sha256').update(speakerCss).digest('hex');
 await writeFile(join(output, 'index.html'), template.replace(marker, renderSlides()), 'utf8');
 await Promise.all([
+  writeFile(join(output, 'speaker-window.mjs'),
+    speakerModule.replace(stylesheetPath, `${stylesheetPath}?v=${stylesheetVersion}`), 'utf8'),
+  writeFile(join(output, 'speaker-timing.css'), speakerCss),
   ...[
     'theme.css',
     'presenter-controls.css',
@@ -25,8 +38,6 @@ await Promise.all([
     'presenter-controls.mjs',
     'presentation.mjs',
     'annotations.mjs',
-    'speaker-window.mjs',
-    'speaker-timing.css',
     'cadence.mjs',
     'amplification.mjs',
     'finite-motion.mjs',

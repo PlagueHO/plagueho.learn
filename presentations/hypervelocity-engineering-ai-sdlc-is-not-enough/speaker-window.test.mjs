@@ -5,6 +5,7 @@
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { slides, renderSlides } from './deck.mjs';
 import {
@@ -214,7 +215,7 @@ test('click cues are escaped text at exactly the seven required advance points',
   );
 });
 
-function popupFixture() {
+function popupFixture(setup = setupSpeakerTiming) {
   const listeners = {};
   let current = elements[0];
   let now = 0;
@@ -313,7 +314,7 @@ function popupFixture() {
       get panel() { return native; },
     };
   }
-  const controller = setupSpeakerTiming(deck, view);
+  const controller = setup(deck, view);
   function connect(candidate, type = 'connected', origin = view.location.origin) {
     listeners.message({ origin, source: candidate, data: JSON.stringify({ namespace: 'reveal-notes', type }) });
   }
@@ -755,6 +756,31 @@ test('countdown pulse keeps readable contrast throughout the animation', async (
   }
 });
 
+test('built speaker popups use a content-bound CSS URL instead of the previous cached URL', async () => {
+  const css = await readFile(new URL('./dist/speaker-timing.css', import.meta.url));
+  const version = createHash('sha256').update(css).digest('hex');
+  const { setupSpeakerTiming: setupBuilt } = await import('./dist/speaker-window.mjs');
+  for (const href of [
+    'https://example.test/',
+    'https://example.test/decks/hve/',
+    'https://example.test/decks/hve/index.html?theme=flowing-dark#/handoffs',
+  ]) {
+    const fixture = popupFixture(setupBuilt);
+    fixture.view.location.href = href;
+    const popup = fixture.popup();
+    fixture.connect(popup);
+    const expected = new URL('./speaker-timing.css', href);
+    expected.searchParams.set('v', version);
+    assert.equal(popup.head[0].href, expected.href);
+    assert.equal(popup.head.length, 1);
+    fixture.connect(popup, 'heartbeat');
+    assert.equal(popup.head.length, 1);
+    assert.equal(popup.noteValue.markup, '<p>Keep the original notes.</p>');
+    assert.equal(popup.noteValue.style.fontSize, '20px');
+    assert.deepEqual(fixture.errors, []);
+  }
+});
+
 test('the built deck ships timing code and CSS without changing vendor assets', async () => {
   const source = await readFile(new URL('./dist/presentation.mjs', import.meta.url), 'utf8');
   assert.match(source, /setupSpeakerTiming\(deck\);[\s\S]*await deck.initialize/);
@@ -779,6 +805,8 @@ test('the built deck ships timing code and CSS without changing vendor assets', 
   assert.equal(css, await readFile(new URL('./speaker-timing.css', import.meta.url), 'utf8'));
   assert.deepEqual(await readFile(new URL('./dist/vendor/plugin/notes.mjs', import.meta.url)),
     await readFile(new URL('./node_modules/reveal.js/dist/plugin/notes.mjs', import.meta.url)));
+  const version = createHash('sha256').update(css).digest('hex');
   assert.equal(await readFile(new URL('./dist/speaker-window.mjs', import.meta.url), 'utf8'),
-    await readFile(new URL('./speaker-window.mjs', import.meta.url), 'utf8'));
+    (await readFile(new URL('./speaker-window.mjs', import.meta.url), 'utf8'))
+      .replace('./speaker-timing.css', `./speaker-timing.css?v=${version}`));
 });
