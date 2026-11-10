@@ -1,5 +1,5 @@
 /**
- * Speaker popup positioning, elapsed timer, schedule calculations, and timing controls.
+ * Speaker popup positioning, note preferences, shared elapsed clock, and slide countdown.
  * Parameters: Reveal deck and browser window; clock and scheduler can be injected in tests.
  * Usage: setupSpeakerTiming(deck) before deck.initialize(); attach popups opened by the Notes plugin.
  */
@@ -8,6 +8,16 @@ export const PART_NAMES = {
   'deep-dive': 'Diving deeper into HVE-Core',
   demos: 'Demos',
 };
+
+const NOTE_FONTS = {
+  arial: { label: 'Arial', family: 'Arial, Helvetica, sans-serif' },
+  verdana: { label: 'Verdana', family: 'Verdana, Geneva, sans-serif' },
+  georgia: { label: 'Georgia', family: 'Georgia, "Times New Roman", serif' },
+  monospace: { label: 'Monospace', family: 'Consolas, "Liberation Mono", monospace' },
+};
+const MIN_NOTE_SIZE = 16;
+const MAX_NOTE_SIZE = 40;
+const NOTE_SIZE_STEP = 2;
 
 export function createElapsedTimer(now = () => performance.now()) {
   let saved = 0;
@@ -88,6 +98,20 @@ export function formatTiming(seconds) {
   return hours ? `${hours}:${String(minutes).padStart(2, '0')}:${remainder}` : `${minutes}:${remainder}`;
 }
 
+export function formatSlideDuration(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainder = seconds % 60;
+  return [
+    minutes ? `${minutes} minute${minutes === 1 ? '' : 's'}` : '',
+    remainder ? `${remainder} second${remainder === 1 ? '' : 's'}` : '',
+  ].filter(Boolean).join(' ');
+}
+
+export function slideCountdown(duration, elapsed, entered) {
+  const remaining = Math.max(0, duration - (elapsed - entered));
+  return { remaining, urgent: remaining > 0 && remaining <= 10 };
+}
+
 export function isUpcomingSpeakerPreview(view) {
   if (!new URLSearchParams(view.location.search).has('receiver')) return false;
   try {
@@ -158,8 +182,8 @@ export function speakerTimingMarkup() {
       <span class="hve-part-marker" data-time="part-marker-one"></span>
       <span class="hve-part-marker" data-time="part-marker-two"></span>
     </div>
-    <span class="hve-total-percent" aria-live="off" data-time="total-percent"></span>
-    <span class="hve-timing-label">Total</span>
+    <span class="hve-timing-label">Planned total</span>
+    <span class="hve-total-duration" aria-live="off" data-time="total-duration"></span>
     <span class="hve-part-number" data-time="part-number"></span>
     <span class="hve-part-percent" aria-live="off" data-time="part-percent"></span>
     <div class="hve-timing-hidden" id="hve-timing-details">
@@ -175,6 +199,28 @@ export function speakerTimingMarkup() {
     <p data-time="overrun" hidden></p>`;
 }
 
+export function speakerNotesMarkup() {
+  const fonts = Object.entries(NOTE_FONTS).map(([id, font]) =>
+    `<option value="${id}">${font.label}</option>`).join('');
+  return `<div class="hve-notes-heading">
+      <h4>Speaker notes</h4>
+      <span class="hve-slide-position" data-slide="position"></span>
+    </div>
+    <div class="hve-note-tools" role="group" aria-label="Note text settings">
+      <label>Font <select aria-label="Note font">${fonts}</select></label>
+      <div class="hve-note-size">
+        <button type="button" data-notes="decrease" aria-label="Decrease font size" title="Decrease font size">A−</button>
+        <span data-notes-size aria-live="off"></span>
+        <button type="button" data-notes="increase" aria-label="Increase font size" title="Increase font size">A+</button>
+      </div>
+    </div>
+    <div class="hve-slide-timing">
+      <span class="hve-slide-allocation">Slide allocation <strong data-slide="duration"></strong></span>
+      <span class="hve-slide-remaining">Remaining <strong data-slide="countdown" aria-live="off"></strong></span>
+    </div>
+    <p class="hve-slide-cue" data-slide="cue" role="status" aria-live="polite" aria-atomic="true"></p>`;
+}
+
 export function setupSpeakerTiming(deck, view = window) {
   if (new URLSearchParams(view.location.search).has('receiver') || deck.isPrintView()) return null;
   const timer = createElapsedTimer(() => view.performance.now());
@@ -182,6 +228,17 @@ export function setupSpeakerTiming(deck, view = window) {
   let panel = null;
   let schedule = null;
   let failed = false;
+  let notesHeader = null;
+  let currentSlide = null;
+  let entered = 0;
+  let noteSize = 20;
+  let noteFont = 'arial';
+
+  function output(root, selector, value) {
+    const node = root.querySelector(selector);
+    if (!node) throw new Error(`Missing speaker display control: ${selector}`);
+    if (node.textContent !== value) node.textContent = value;
+  }
 
   function showError(error) {
     failed = true;
@@ -193,30 +250,49 @@ export function setupSpeakerTiming(deck, view = window) {
       notice.textContent = `Speaker timing is unavailable. ${error.message}`;
       panel.append(notice);
     }
+    if (notesHeader) {
+      notesHeader.dataset.urgent = 'false';
+      for (const [name, value] of [['countdown', 'Unavailable'], ['cue', 'Timing unavailable']]) {
+        const node = notesHeader.querySelector(`[data-slide="${name}"]`);
+        if (node) node.textContent = value;
+      }
+    }
   }
 
   function render() {
+    const slide = deck.getCurrentSlide();
+    if (slide !== currentSlide) {
+      currentSlide = slide;
+      entered = timer.elapsed();
+    }
     if (!panel || popup.closed || failed) return;
     try {
-      const state = timingStatus(schedule, deck.getSlides().indexOf(deck.getCurrentSlide()), timer.elapsed());
-      const output = (name, value) => {
-        const node = panel.querySelector(`[data-time="${name}"]`);
-        if (node.textContent !== value) node.textContent = value;
-      };
-      output('elapsed', formatTiming(state.elapsed));
+      const index = deck.getSlides().indexOf(currentSlide);
+      const state = timingStatus(schedule, index, timer.elapsed());
+      const write = (name, value) => output(panel, `[data-time="${name}"]`, value);
+      write('elapsed', formatTiming(state.elapsed));
       const clock = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      output('clock', clock);
-      output('part', `${state.part.name} (${formatTiming(state.part.duration)})`);
-      output('part-number', `Part ${schedule.parts.indexOf(state.part) + 1}/${schedule.parts.length}`);
-      for (const name of ['duration', 'start', 'end']) output(name, formatTiming(state[name]));
+      write('clock', clock);
+      write('part', `${state.part.name} (${formatTiming(state.part.duration)})`);
+      write('part-number', `Part ${schedule.parts.indexOf(state.part) + 1}/${schedule.parts.length}`);
+      for (const name of ['duration', 'start', 'end']) write(name, formatTiming(state[name]));
       for (const name of ['part', 'total']) {
         const value = state[`${name}Progress`];
-        output(`${name}-percent`, `${value.toFixed(1)}%`);
         panel.querySelector(`[data-time="${name}-progress"]`).value = value;
       }
+      write('part-percent', `${state.partProgress.toFixed(1)}%`);
+      write('total-duration', formatTiming(schedule.total));
+      const countdown = slideCountdown(state.duration, state.elapsed, entered);
+      output(notesHeader, '[data-slide="position"]', `Slide ${index + 1} / ${schedule.entries.length}`);
+      output(notesHeader, '[data-slide="duration"]', formatSlideDuration(state.duration));
+      output(notesHeader, '[data-slide="countdown"]', formatTiming(Math.ceil(countdown.remaining)));
+      output(notesHeader, '[data-slide="cue"]', timer.paused ? 'Timer paused'
+        : countdown.urgent ? '10 seconds or less remaining' : '');
+      notesHeader.dataset.urgent = String(countdown.urgent);
+      notesHeader.dataset.paused = String(timer.paused);
       const status = `${timer.paused ? 'Paused' : 'Running'} · ${state.pace}`;
-      output('pace', state.pace.split(' / ')[0]);
-      output('status', status);
+      write('pace', state.pace.split(' / ')[0]);
+      write('status', status);
       const toggle = panel.querySelector('[data-timer="toggle"]');
       const action = timer.paused ? 'Resume timer' : 'Pause timer';
       toggle.setAttribute('aria-label', action);
@@ -239,12 +315,56 @@ export function setupSpeakerTiming(deck, view = window) {
       }
       const overrun = panel.querySelector('[data-time="overrun"]');
       overrun.hidden = state.overrun === 0;
-      output('overrun', `+${formatTiming(state.overrun)}`);
+      write('overrun', `+${formatTiming(state.overrun)}`);
       overrun.title = `Over planned total by ${formatTiming(state.overrun)}`;
       panel.dataset.pace = state.pace.split(' / ')[0].toLowerCase().replace(' ', '-');
     } catch (error) {
       showError(error);
     }
+  }
+
+  function setupNotes(candidate) {
+    const notes = candidate.document.querySelector('.speaker-controls-notes');
+    const label = notes?.querySelector('.label') ?? notes?.querySelector('.hve-notes-header');
+    const value = notes?.querySelector('.value');
+    if (!label || !value) throw new Error('The speaker view needs a notes heading and content container.');
+    const header = candidate.document.createElement('header');
+    header.className = 'hve-notes-header';
+    header.tabIndex = 0;
+    header.setAttribute('role', 'region');
+    header.setAttribute('aria-label', 'Speaker notes controls');
+    header.innerHTML = speakerNotesMarkup();
+    label.replaceWith(header);
+    notes.classList.add('hve-speaker-notes');
+    notesHeader = header;
+    const select = header.querySelector('select');
+    function applyFont() {
+      value.style.fontSize = `${noteSize}px`;
+      value.style.fontFamily = NOTE_FONTS[noteFont].family;
+      select.value = noteFont;
+      output(header, '[data-notes-size]', `${noteSize} px`);
+      header.querySelector('[data-notes="decrease"]').disabled = noteSize === MIN_NOTE_SIZE;
+      header.querySelector('[data-notes="increase"]').disabled = noteSize === MAX_NOTE_SIZE;
+    }
+    header.addEventListener('click', event => {
+      const action = event.target.closest('button[data-notes]')?.dataset.notes;
+      if (!action) return;
+      noteSize = Math.max(MIN_NOTE_SIZE, Math.min(MAX_NOTE_SIZE,
+        noteSize + (action === 'increase' ? NOTE_SIZE_STEP : -NOTE_SIZE_STEP)));
+      applyFont();
+    });
+    select.addEventListener('change', () => {
+      if (!Object.hasOwn(NOTE_FONTS, select.value)) {
+        showError(new Error(`Unknown note font: ${select.value}`));
+        return;
+      }
+      noteFont = select.value;
+      applyFont();
+    });
+    header.addEventListener('keydown', event => {
+      if (event.target === header || event.target.closest('button, select')) event.stopPropagation();
+    });
+    applyFont();
   }
 
   function attach(candidate) {
@@ -253,6 +373,7 @@ export function setupSpeakerTiming(deck, view = window) {
     const native = candidate.document.querySelector('.speaker-controls-time');
     if (!native || native === panel) return;
     popup = candidate;
+    notesHeader = null;
     panel = candidate.document.createElement('section');
     panel.className = 'speaker-controls-time hve-speaker-timing';
     panel.setAttribute('aria-label', 'Presentation timing');
@@ -265,7 +386,10 @@ export function setupSpeakerTiming(deck, view = window) {
     panel.addEventListener('click', event => {
       const action = event.target.closest('button[data-timer]')?.dataset.timer;
       if (!action) return;
-      if (action === 'reset') timer.reset();
+      if (action === 'reset') {
+        timer.reset();
+        entered = 0;
+      }
       else if (timer.paused) timer.resume();
       else timer.pause();
       render();
@@ -275,6 +399,7 @@ export function setupSpeakerTiming(deck, view = window) {
     });
     failed = false;
     try {
+      setupNotes(candidate);
       setupSpeakerPreviewResize(candidate);
       schedule = createSchedule(deck.getSlides());
       timer.start();

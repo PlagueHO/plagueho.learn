@@ -3,11 +3,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   font-size: 12px;
   line-height: 1.3;
   color: #292333;
-  background: #f7f4fb;
+  background: linear-gradient(180deg, #f3edf9, #faf8fc);
   border-right: 1px solid #ded5eb;
   text-align: center;
 }
@@ -29,7 +29,7 @@
 }
 
 .hve-elapsed {
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
@@ -67,7 +67,10 @@
 }
 
 .hve-speaker-timing button:focus-visible,
-.hve-total-track:focus-visible {
+.hve-total-track:focus-visible,
+.hve-notes-header:focus-visible,
+.hve-notes-header button:focus-visible,
+.hve-notes-header select:focus-visible {
   outline: 3px solid #6b3ca1;
   outline-offset: 2px;
 }
@@ -116,8 +119,18 @@
 }
 
 .hve-pace,
-.hve-total-percent {
+.hve-total-duration {
   font-weight: 600;
+}
+
+.hve-total-duration {
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+
+.hve-timing-label {
+  font-weight: 600;
+  color: #5d506b;
 }
 
 .hve-speaker-timing[data-pace="behind"] .hve-pace {
@@ -147,11 +160,165 @@ body[data-speaker-layout] .hve-speaker-timing {
   cursor: auto;
 }
 
-body[data-speaker-layout] .speaker-controls-notes {
+body[data-speaker-layout] .hve-speaker-notes,
+body[data-speaker-layout] .hve-speaker-notes.hidden {
+  display: flex;
+  flex-direction: column;
   flex: 1 1 auto;
   min-width: 0;
   min-height: 0;
+  padding: 0;
+  color: #292333;
+  background: #fff;
+}
+
+body[data-speaker-layout] .hve-speaker-notes .value {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 0;
+  padding: 16px;
   overflow: auto;
+  overflow-wrap: anywhere;
+  line-height: 1.55;
+}
+
+body[data-speaker-layout] .hve-speaker-notes.hidden .value {
+  display: none;
+}
+
+.hve-notes-header {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 12px;
+  padding: 4px 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  white-space: nowrap;
+  border-bottom: 1px solid #ded5eb;
+  background: #fff;
+  font: 12px/1.3 Arial, Helvetica, sans-serif;
+}
+
+.hve-notes-header::-webkit-scrollbar {
+  display: none;
+}
+
+.hve-notes-heading,
+.hve-note-tools,
+.hve-slide-timing {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  gap: 6px;
+}
+
+.hve-notes-heading h4 {
+  margin: 0;
+  font: inherit;
+  font-weight: 600;
+}
+
+.hve-slide-position {
+  color: #5d506b;
+  font-variant-numeric: tabular-nums;
+}
+
+.hve-note-tools {
+  margin: 0;
+}
+
+.hve-note-tools label,
+.hve-note-size {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hve-notes-header button,
+.hve-notes-header select {
+  box-sizing: border-box;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #4e247e;
+  font: inherit;
+}
+
+.hve-notes-header button {
+  padding: 0 2px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hve-notes-header button:disabled {
+  color: #766b82;
+  cursor: default;
+}
+
+.hve-notes-header select {
+  max-width: 100%;
+  padding: 0;
+}
+
+.hve-note-size [data-notes-size] {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.hve-slide-allocation {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  color: #5d506b;
+}
+
+.hve-slide-allocation strong {
+  color: #292333;
+}
+
+.hve-slide-remaining {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  color: #4e247e;
+}
+
+.hve-slide-remaining strong {
+  font-size: inherit;
+  font-variant-numeric: tabular-nums;
+}
+
+.hve-slide-cue {
+  flex: 0 0 auto;
+  margin: 0;
+  color: #864000;
+  font-weight: 600;
+}
+
+.hve-slide-cue:empty {
+  display: none;
+}
+
+.hve-notes-header[data-urgent="true"] .hve-slide-remaining {
+  color: #753500;
+}
+
+.hve-notes-header[data-urgent="true"][data-paused="false"] .hve-slide-remaining {
+  animation: hve-countdown-pulse 1s ease-in-out infinite;
+}
+
+@keyframes hve-countdown-pulse {
+  50% { color: #9c4610; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hve-notes-header[data-urgent="true"][data-paused="false"] .hve-slide-remaining {
+    animation: none;
+  }
 }
 
 body[data-speaker-layout="default"] #current-slide {

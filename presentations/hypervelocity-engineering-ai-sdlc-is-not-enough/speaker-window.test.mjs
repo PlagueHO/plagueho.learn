@@ -1,5 +1,5 @@
 /**
- * Check speaker timing calculations, elapsed-clock behavior, and popup integration.
+ * Check speaker timing, countdowns, note fonts, elapsed-clock behavior, and popup integration.
  * Parameters: none. Build before checking shipped assets.
  * Usage: npm test
  */
@@ -8,8 +8,8 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { slides, renderSlides } from './deck.mjs';
 import {
-  createElapsedTimer, createSchedule, formatTiming, isUpcomingSpeakerPreview, setupSpeakerPreviewResize,
-  setupSpeakerTiming, speakerTimingMarkup, timingStatus,
+  createElapsedTimer, createSchedule, formatSlideDuration, formatTiming, isUpcomingSpeakerPreview,
+  setupSpeakerPreviewResize, setupSpeakerTiming, slideCountdown, speakerNotesMarkup, speakerTimingMarkup, timingStatus,
 } from './speaker-window.mjs';
 
 const elements = slides.map(slide => ({
@@ -236,42 +236,82 @@ function popupFixture() {
   };
   function popup() {
     const nodes = new Map();
-    const events = {};
     const createElement = tag => {
       let text = '';
+      const children = new Map();
+      const classes = new Set();
       return {
-        tag, dataset: {}, style: {}, textWrites: 0,
+        tag, dataset: {}, style: { setProperty(name, value) { this[name] = value; } }, textWrites: 0,
+        events: {}, children: [], markup: '',
+        classList: {
+          add: name => classes.add(name),
+          remove: name => classes.delete(name),
+          contains: name => classes.has(name),
+        },
         setAttribute(name, value) { this[name] = value; },
         getAttribute(name) { return this[name] ?? null; },
         get textContent() { return text; },
         set textContent(value) { text = value; this.textWrites += 1; },
         set innerHTML(markup) {
-          for (const [, childTag, attributes, name] of markup.matchAll(
-            /<([a-z]+)\b([^>]*\bdata-time="([^"]+)"[^>]*)>/g,
-          )) {
+          this.markup = markup;
+          for (const [, childTag, attributes] of markup.matchAll(/<([a-z]+)\b([^>]*)>/g)) {
             const child = createElement(childTag);
             for (const [, attribute, value] of attributes.matchAll(/([\w-]+)="([^"]*)"/g)) {
               child.setAttribute(attribute, value);
             }
-            nodes.set(`[data-time="${name}"]`, child);
+            const selectors = [];
+            for (const attribute of ['data-time', 'data-slide', 'data-notes', 'data-timer']) {
+              if (child[attribute]) selectors.push(`[${attribute}="${child[attribute]}"]`);
+            }
+            if (attributes.includes('data-notes-size')) selectors.push('[data-notes-size]');
+            if (childTag === 'select') selectors.push('select');
+            for (const name of (child.class ?? '').split(' ').filter(Boolean)) selectors.push(`.${name}`);
+            for (const selector of selectors) {
+              children.set(selector, child);
+              nodes.set(selector, child);
+            }
           }
         },
-        append() {}, replaceChildren() { nodes.clear(); },
-        querySelector(selector) {
-          if (!nodes.has(selector)) nodes.set(selector, createElement('span'));
-          return nodes.get(selector);
-        },
-        addEventListener(name, callback) { events[name] = callback; },
+        append(node) { this.children.push(node); },
+        replaceChildren() { children.clear(); this.children = []; },
+        querySelector: selector => children.get(selector) ?? null,
+        addEventListener(name, callback) { this.events[name] = callback; },
       };
     };
-    let native = { replaceWith: replacement => { native = replacement; } };
+    const notes = createElement('div');
+    let heading = createElement('h4');
+    const noteValue = createElement('div');
+    noteValue.markup = '<p>Keep the original notes.</p>';
+    function replaceHeading(replacement) {
+      heading = replacement;
+      heading.replaceWith = replaceHeading;
+    }
+    heading.replaceWith = replaceHeading;
+    notes.querySelector = selector => ({
+      '.label': heading.className === 'hve-notes-header' ? null : heading, '.value': noteValue,
+      '.hve-notes-header': heading.className === 'hve-notes-header' ? heading : null,
+    })[selector] ?? null;
+    function replacePanel(replacement) {
+      native = replacement;
+      native.replaceWith = replacePanel;
+    }
+    let native = { replaceWith: replacePanel };
+    let divider = null;
     const head = [];
     const document = {
       createElement: tag => { const node = createElement(tag); node.ownerDocument = document; return node; },
-      querySelector: () => native,
+      querySelector: selector => ({
+        '.speaker-controls-time': native, '.speaker-controls-notes': notes, '.hve-preview-divider': divider,
+      })[selector] ?? null,
       head: { append: node => head.push(node) },
+      body: { style: { setProperty() {} }, append: node => { divider = node; } },
     };
-    return { closed: false, opener: view, document, nodes, events, head };
+    return {
+      closed: false, opener: view, innerWidth: 1100, document, nodes, head, notes, noteValue,
+      get events() { return native.events; },
+      get header() { return heading; },
+      get panel() { return native; },
+    };
   }
   const controller = setupSpeakerTiming(deck, view);
   function connect(candidate, type = 'connected', origin = view.location.origin) {
@@ -293,7 +333,7 @@ test('periodic timing values stay readable without live announcements or unchang
   const popup = fixture.popup();
   fixture.connect(popup);
   const node = name => popup.nodes.get(`[data-time="${name}"]`);
-  const readouts = ['elapsed', 'part-percent', 'total-percent', 'clock'];
+  const readouts = ['elapsed', 'part-percent', 'total-duration', 'clock'];
   for (const name of readouts) {
     assert.equal(node(name).tag, 'span');
     assert.equal(node(name).getAttribute('aria-live'), 'off');
@@ -322,9 +362,9 @@ test('periodic timing values stay readable without live announcements or unchang
   fixture.advance(59000);
   assert.equal(node('elapsed').textContent, '1:00');
   assert.equal(node('part-percent').textContent, '3.3%');
-  assert.equal(node('total-percent').textContent, '1.1%');
+  assert.equal(node('total-duration').textContent, '1:30:00');
   assert.equal(node('part-percent').textWrites, 3);
-  assert.equal(node('total-percent').textWrites, 2);
+  assert.equal(node('total-duration').textWrites, 1);
   assert.notEqual(node('clock').textContent, clock);
   assert.equal(node('clock').textWrites, 2);
   fixture.advance(250);
@@ -361,7 +401,7 @@ test('speaker popup controls share one timer across jumps, pause, closure, and r
   fixture.change(23);
   assert.equal(value('start'), '30:00');
   assert.equal(value('part'), 'Diving deeper into HVE-Core (30:00)');
-  assert.equal(value('total-percent'), '1.1%');
+  assert.equal(value('total-duration'), '1:30:00');
   fixture.change(0);
   assert.equal(value('start'), '0:00');
   fixture.click(first, 'toggle');
@@ -399,6 +439,322 @@ test('receiver previews do not create timers; timing buttons own keyboard events
   assert.equal(formatTiming(65.9), '1:05');
 });
 
+test('slide duration text handles whole minutes, fractional estimates, and singular units', () => {
+  assert.equal(formatSlideDuration(180), '3 minutes');
+  assert.equal(formatSlideDuration(165), '2 minutes 45 seconds');
+  assert.equal(formatSlideDuration(60), '1 minute');
+  assert.equal(formatSlideDuration(61), '1 minute 1 second');
+  assert.equal(formatSlideDuration(30), '30 seconds');
+  assert.equal(formatSlideDuration(1), '1 second');
+});
+
+test('countdown boundaries use unrounded time and clamp at zero', () => {
+  const beforeWarning = slideCountdown(60, 49.999, 0);
+  assert.ok(Math.abs(beforeWarning.remaining - 10.001) < 0.000001);
+  assert.equal(beforeWarning.urgent, false);
+  assert.deepEqual(slideCountdown(60, 50, 0), { remaining: 10, urgent: true });
+  assert.deepEqual(slideCountdown(60, 59, 0), { remaining: 1, urgent: true });
+  assert.deepEqual(slideCountdown(60, 60, 0), { remaining: 0, urgent: false });
+  assert.deepEqual(slideCountdown(60, 100, 0), { remaining: 0, urgent: false });
+  assert.deepEqual(slideCountdown(60, 100, 90), { remaining: 50, urgent: false });
+});
+
+test('notes fonts are bounded, scoped to native note text, and retained across popup reopening', () => {
+  const fixture = popupFixture();
+  const popup = fixture.popup();
+  fixture.connect(popup);
+  assert.deepEqual(fixture.errors, []);
+  const original = popup.noteValue.markup;
+  const size = () => popup.nodes.get('[data-notes-size]').textContent;
+  const adjust = action => popup.header.events.click({
+    target: { closest: () => ({ dataset: { notes: action } }) },
+  });
+  assert.equal(size(), '20 px');
+  assert.equal(popup.noteValue.style.fontSize, '20px');
+  assert.equal(popup.noteValue.style.fontFamily, 'Arial, Helvetica, sans-serif');
+  assert.equal(popup.panel.style.fontSize, undefined);
+  assert.equal(popup.header.style.fontSize, undefined);
+  for (let index = 0; index < 4; index += 1) adjust('decrease');
+  assert.equal(size(), '16 px');
+  assert.equal(popup.nodes.get('[data-notes="decrease"]').disabled, true);
+  for (let index = 0; index < 15; index += 1) adjust('increase');
+  assert.equal(size(), '40 px');
+  assert.equal(popup.nodes.get('[data-notes="increase"]').disabled, true);
+  assert.equal(popup.nodes.get('[data-notes="decrease"]').disabled, false);
+  adjust('decrease');
+  assert.equal(size(), '38 px');
+  assert.equal(popup.nodes.get('[data-notes="increase"]').disabled, false);
+  const select = popup.nodes.get('select');
+  for (const [font, family] of [
+    ['verdana', 'Verdana, Geneva, sans-serif'], ['georgia', 'Georgia, "Times New Roman", serif'],
+    ['monospace', 'Consolas, "Liberation Mono", monospace'],
+  ]) {
+    select.value = font;
+    select.events.change();
+    assert.equal(popup.noteValue.style.fontFamily, family);
+  }
+  fixture.change(4);
+  assert.equal(popup.noteValue.markup, original);
+  assert.equal(popup.noteValue.style.fontSize, '38px');
+  fixture.connect(popup, 'heartbeat');
+  assert.equal(popup.head.length, 1);
+  assert.equal(popup.header.events.click instanceof Function, true);
+  popup.closed = true;
+  const next = fixture.popup();
+  fixture.connect(next);
+  assert.equal(next.noteValue.style.fontSize, '38px');
+  assert.equal(next.nodes.get('select').value, 'monospace');
+  assert.equal(next.noteValue.markup, original);
+  assert.match(speakerNotesMarkup(), /aria-label="Note font"/);
+  assert.match(speakerNotesMarkup(), /aria-label="Increase font size"/);
+  assert.match(speakerNotesMarkup(), /aria-label="Decrease font size"/);
+  assert.deepEqual(fixture.errors, []);
+});
+
+test('note controls own keyboard input without blocking keys in note text', () => {
+  const fixture = popupFixture();
+  const popup = fixture.popup();
+  fixture.connect(popup);
+  let stopped = 0;
+  const key = interactive => ({
+    target: { closest: () => interactive ? {} : null },
+    stopPropagation() { stopped += 1; },
+  });
+  popup.header.events.keydown(key(true));
+  assert.equal(stopped, 1);
+  popup.header.events.keydown(key(false));
+  assert.equal(stopped, 1);
+  popup.header.events.keydown({ target: popup.header, stopPropagation() { stopped += 1; } });
+  assert.equal(stopped, 2);
+  assert.equal(popup.header.tabIndex, 0);
+  assert.equal(popup.header.getAttribute('role'), 'region');
+  assert.equal(popup.header.getAttribute('aria-label'), 'Speaker notes controls');
+  assert.deepEqual(fixture.errors, []);
+});
+
+test('a new main-deck controller starts with default fonts and no elapsed time before first connection', () => {
+  const first = popupFixture();
+  const popup = first.popup();
+  first.connect(popup);
+  popup.header.events.click({ target: { closest: () => ({ dataset: { notes: 'increase' } }) } });
+  const select = popup.nodes.get('select');
+  select.value = 'verdana';
+  select.events.change();
+  first.advance(10000);
+  const reload = popupFixture();
+  reload.advance(60000);
+  reload.change(4);
+  const next = reload.popup();
+  reload.connect(next);
+  assert.equal(next.noteValue.style.fontSize, '20px');
+  assert.equal(next.nodes.get('select').value, 'arial');
+  assert.equal(next.nodes.get('[data-time="elapsed"]').textContent, '0:00');
+  assert.equal(next.nodes.get('[data-slide="countdown"]').textContent, '2:45');
+  assert.deepEqual(reload.errors, []);
+});
+
+test('notes header follows slide position and allocation without replacing native content', () => {
+  const fixture = popupFixture();
+  const popup = fixture.popup();
+  fixture.connect(popup);
+  const read = name => popup.nodes.get(`[data-slide="${name}"]`).textContent;
+  const header = popup.header;
+  assert.equal(read('position'), 'Slide 1 / 41');
+  assert.equal(read('duration'), formatSlideDuration(slides[0].minutes * 60));
+  fixture.change(4);
+  assert.equal(read('position'), 'Slide 5 / 41');
+  assert.equal(read('duration'), '2 minutes 45 seconds');
+  popup.noteValue.innerHTML = '<p>New native note content.</p>';
+  popup.notes.classList.add('hidden');
+  fixture.change(40);
+  assert.equal(read('position'), 'Slide 41 / 41');
+  assert.equal(popup.header, header);
+  assert.equal(popup.noteValue.markup, '<p>New native note content.</p>');
+  assert.equal(popup.notes.classList.contains('hve-speaker-notes'), true);
+  assert.equal(popup.notes.classList.contains('hidden'), true);
+  assert.deepEqual(fixture.errors, []);
+});
+
+test('main-deck reload reconnects an open speaker window with fresh timing and font defaults', () => {
+  const first = popupFixture();
+  const popup = first.popup();
+  first.connect(popup);
+  first.advance(12000);
+  popup.header.events.click({ target: { closest: () => ({ dataset: { notes: 'increase' } }) } });
+  popup.nodes.get('select').value = 'georgia';
+  popup.nodes.get('select').events.change();
+  const oldHeader = popup.header;
+  const originalNotes = popup.noteValue;
+  const reloaded = popupFixture();
+  popup.opener = reloaded.view;
+  reloaded.connect(popup, 'heartbeat');
+  assert.deepEqual(reloaded.errors, []);
+  assert.notEqual(popup.header, oldHeader);
+  assert.equal(popup.noteValue, originalNotes);
+  assert.equal(popup.noteValue.style.fontSize, '20px');
+  assert.equal(popup.nodes.get('select').value, 'arial');
+  assert.equal(popup.nodes.get('[data-time="elapsed"]').textContent, '0:00');
+  reloaded.advance(1000);
+  assert.equal(popup.nodes.get('[data-time="elapsed"]').textContent, '0:01');
+  assert.equal(popup.nodes.get('[data-slide="countdown"]').textContent, formatTiming(slides[0].minutes * 60 - 1));
+  popup.header.events.click({ target: { closest: () => ({ dataset: { notes: 'increase' } }) } });
+  assert.equal(popup.noteValue.style.fontSize, '22px');
+});
+
+test('countdown final-10-second cue, pause, expiration, and resets share the elapsed timer', () => {
+  const fixture = popupFixture();
+  const popup = fixture.popup();
+  fixture.connect(popup);
+  const read = name => popup.nodes.get(`[data-slide="${name}"]`).textContent;
+  const duration = slides[0].minutes * 60;
+  assert.equal(read('countdown'), formatTiming(duration));
+  fixture.advance(duration * 1000 - 10001);
+  assert.equal(read('countdown'), '0:11');
+  assert.equal(popup.header.dataset.urgent, 'false');
+  fixture.advance(1);
+  assert.equal(read('countdown'), '0:10');
+  assert.equal(popup.header.dataset.urgent, 'true');
+  assert.equal(read('cue'), '10 seconds or less remaining');
+  const cue = popup.nodes.get('[data-slide="cue"]');
+  const writes = cue.textWrites;
+  fixture.advance(1);
+  assert.equal(read('countdown'), '0:10');
+  assert.equal(cue.textWrites, writes);
+  fixture.click(popup, 'toggle');
+  fixture.advance(60000);
+  assert.equal(read('countdown'), '0:10');
+  assert.equal(popup.header.dataset.paused, 'true');
+  assert.equal(read('cue'), 'Timer paused');
+  fixture.click(popup, 'toggle');
+  fixture.advance(9999);
+  assert.equal(read('countdown'), '0:00');
+  assert.equal(popup.header.dataset.urgent, 'false');
+  assert.equal(read('cue'), '');
+  fixture.advance(60000);
+  assert.equal(read('countdown'), '0:00');
+  assert.equal(read('cue'), '');
+  fixture.click(popup, 'reset');
+  assert.equal(read('countdown'), formatTiming(duration));
+  assert.equal(popup.nodes.get('[data-time="elapsed"]').textContent, '0:00');
+  assert.equal(popup.header.dataset.paused, 'false');
+  fixture.advance(1000);
+  fixture.click(popup, 'toggle');
+  fixture.click(popup, 'reset');
+  fixture.advance(60000);
+  assert.equal(read('countdown'), formatTiming(duration));
+  assert.equal(popup.nodes.get('[data-time="elapsed"]').textContent, '0:00');
+  assert.equal(popup.header.dataset.paused, 'true');
+  assert.deepEqual(fixture.errors, []);
+});
+
+test('slide visits restart only the countdown and preserve it across closure and slide jumps', () => {
+  const fixture = popupFixture();
+  const popup = fixture.popup();
+  fixture.connect(popup);
+  const read = name => popup.nodes.get(`[data-slide="${name}"]`).textContent;
+  fixture.advance(5000);
+  const countdown = read('countdown');
+  fixture.change(0);
+  assert.equal(read('countdown'), countdown, 'Same-slide events do not restart a countdown');
+  fixture.change(4);
+  assert.equal(read('countdown'), '2:45');
+  assert.equal(popup.nodes.get('[data-time="elapsed"]').textContent, '0:05');
+  fixture.advance(1000);
+  fixture.change(0);
+  assert.equal(read('countdown'), formatTiming(slides[0].minutes * 60));
+  fixture.click(popup, 'toggle');
+  fixture.change(4);
+  fixture.advance(60000);
+  assert.equal(read('countdown'), '2:45', 'Changing slide while paused starts a frozen allocation');
+  fixture.click(popup, 'toggle');
+  popup.closed = true;
+  fixture.advance(1000);
+  fixture.change(23);
+  fixture.advance(3000);
+  const next = fixture.popup();
+  fixture.connect(next);
+  const remaining = () => next.nodes.get('[data-slide="countdown"]').textContent;
+  assert.equal(remaining(), formatTiming(slides[23].minutes * 60 - 3));
+  assert.equal(next.nodes.get('[data-time="elapsed"]').textContent, '0:10');
+  assert.equal(next.nodes.get('[data-time="total-duration"]').textContent, '1:30:00');
+  assert.equal(next.nodes.get('[data-time="pace"]').textContent, 'Ahead');
+  fixture.connect(next, 'heartbeat');
+  fixture.advance(1000);
+  assert.equal(remaining(), formatTiming(slides[23].minutes * 60 - 4));
+  assert.equal(next.head.length, 1);
+  assert.deepEqual(fixture.errors, []);
+});
+
+test('popup integration rejects foreign openers, incomplete notes, and invalid font values explicitly', () => {
+  const fixture = popupFixture();
+  const foreign = fixture.popup();
+  foreign.opener = {};
+  fixture.connect(foreign);
+  assert.equal(foreign.head.length, 0);
+  const popup = fixture.popup();
+  fixture.connect(popup);
+  const second = fixture.popup();
+  fixture.connect(second);
+  assert.equal(second.head.length, 0, 'A second open window cannot replace the active speaker view');
+  const select = popup.nodes.get('select');
+  select.value = 'unlisted-font';
+  select.events.change();
+  assert.match(fixture.errors.at(-1)[1].message, /Unknown note font/);
+  assert.equal(popup.panel.children[0].getAttribute('role'), 'alert');
+  assert.equal(popup.nodes.get('[data-slide="countdown"]').textContent, 'Unavailable');
+
+  const missing = popupFixture();
+  const incomplete = missing.popup();
+  incomplete.notes.querySelector = () => null;
+  missing.connect(incomplete);
+  assert.match(missing.errors[0][1].message, /notes heading and content container/);
+  assert.equal(incomplete.panel.children[0].getAttribute('role'), 'alert');
+  const print = popupFixture();
+  print.deck.isPrintView = () => true;
+  assert.equal(setupSpeakerTiming(print.deck, print.view), null);
+});
+
+test('invalid timing metadata reports an error while note font controls remain usable', () => {
+  const fixture = popupFixture();
+  fixture.deck.getSlides = () => [{
+    id: 'invalid', getAttribute: name => ({ 'data-timing': '0', 'data-part': 'leadership' })[name],
+  }];
+  const popup = fixture.popup();
+  fixture.connect(popup);
+  assert.match(fixture.errors[0][1].message, /positive data-timing value/);
+  assert.equal(popup.nodes.get('[data-slide="countdown"]').textContent, 'Unavailable');
+  popup.header.events.click({ target: { closest: () => ({ dataset: { notes: 'increase' } }) } });
+  assert.equal(popup.noteValue.style.fontSize, '22px');
+  assert.equal(popup.panel.children[0].getAttribute('role'), 'alert');
+});
+
+test('a missing countdown node reports an error without throwing again in the error display', () => {
+  const fixture = popupFixture();
+  const popup = fixture.popup();
+  fixture.connect(popup);
+  const query = popup.header.querySelector;
+  popup.header.querySelector = selector => selector === '[data-slide="countdown"]' ? null : query(selector);
+  assert.doesNotThrow(() => fixture.advance(1000));
+  assert.match(fixture.errors[0][1].message, /Missing speaker display control/);
+  assert.equal(popup.panel.children[0].getAttribute('role'), 'alert');
+  assert.equal(popup.nodes.get('[data-slide="cue"]').textContent, 'Timing unavailable');
+});
+
+test('countdown pulse keeps readable contrast throughout the animation', async () => {
+  const css = await readFile(new URL('./speaker-timing.css', import.meta.url), 'utf8');
+  const pulse = css.match(/@keyframes hve-countdown-pulse\s*\{([\s\S]*?)\n\}/)[1];
+  assert.doesNotMatch(pulse, /opacity/);
+  const warning = css.match(/\[data-urgent="true"\] \.hve-slide-remaining\s*\{([^}]*)\}/)[1];
+  for (const rule of [warning, pulse]) {
+    const color = rule.match(/color:\s*#([0-9a-f]{6})/i)?.[1];
+    assert.ok(color, 'Warning and pulse must specify an opaque text color');
+    const channels = color.match(/../g).map(hex => parseInt(hex, 16) / 255)
+      .map(value => value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4);
+    const luminance = channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
+    assert.ok(1.05 / (luminance + 0.05) >= 4.5, `Warning color #${color} must meet 4.5:1 on white`);
+  }
+});
+
 test('the built deck ships timing code and CSS without changing vendor assets', async () => {
   const source = await readFile(new URL('./dist/presentation.mjs', import.meta.url), 'utf8');
   assert.match(source, /setupSpeakerTiming\(deck\);[\s\S]*await deck.initialize/);
@@ -406,6 +762,23 @@ test('the built deck ships timing code and CSS without changing vendor assets', 
   assert.match(css, /:focus-visible/);
   assert.match(css, /flex: 0 0 76px/);
   assert.match(css, /writing-mode: vertical-lr/);
+  assert.match(css, /\.hve-speaker-notes\.hidden\s*\{[^}]*display: flex/);
+  assert.match(css, /\.hve-speaker-notes\.hidden \.value\s*\{[^}]*display: none/);
+  assert.match(css, /hve-countdown-pulse 1s/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]*animation: none/);
+  assert.match(css, /\.hve-notes-header\s*\{[^}]*display: flex;[^}]*overflow-x: auto;[^}]*white-space: nowrap;/);
+  assert.match(css, /\.hve-notes-header\s*\{[^}]*padding: 4px 8px;[^}]*scrollbar-width: none;[^}]*font: 12px\/1\.3/);
+  assert.match(css, /\.hve-notes-header::-webkit-scrollbar\s*\{[^}]*display: none/);
+  assert.match(css, /\.hve-notes-header select\s*\{[^}]*min-height: 0;[^}]*border: 0;[^}]*background: transparent/);
+  assert.match(css, /\.hve-notes-heading h4\s*\{[^}]*font: inherit/);
+  assert.match(css, /\.hve-slide-remaining strong\s*\{[^}]*font-size: inherit/);
+  assert.doesNotMatch(css.match(/\.hve-slide-remaining\s*\{[^}]*\}/)[0], /border|background|padding/);
+  assert.doesNotMatch(css, /flex-wrap: wrap|@container/);
+  assert.doesNotMatch(speakerTimingMarkup(), /data-time="total-percent"/);
+  assert.match(speakerTimingMarkup(), /Planned total/);
+  assert.equal(css, await readFile(new URL('./speaker-timing.css', import.meta.url), 'utf8'));
+  assert.deepEqual(await readFile(new URL('./dist/vendor/plugin/notes.mjs', import.meta.url)),
+    await readFile(new URL('./node_modules/reveal.js/dist/plugin/notes.mjs', import.meta.url)));
   assert.equal(await readFile(new URL('./dist/speaker-window.mjs', import.meta.url), 'utf8'),
     await readFile(new URL('./speaker-window.mjs', import.meta.url), 'utf8'));
 });
