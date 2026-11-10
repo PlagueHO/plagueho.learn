@@ -126,6 +126,8 @@ The notes header shows *Slide n / 41*, the slide allocation, and its remaining t
 
 The full notes header stays on one compact row. It uses text-only controls at 12 px, matching the *Elapsed* label, with no control boxes or visible horizontal scrollbar. Tab reaches each control. In narrow panels, focus brings off-screen controls into view. With the header focused, Left/Right moves along the row without changing slides.
 
+The build adds a content hash to the speaker stylesheet URL. This value changes when the CSS changes. It prevents a new popup module from using an older cached stylesheet after a site update. The CSS stays local and works offline. After deployment, reload the main deck and open a new speaker window to use the new build.
+
 Elapsed time and the first slide countdown start when speaker view connects. Each different slide visit starts its full allocation, including backward visits and jumps. Animation advances and same-slide events do not restart it. At 10 seconds or less, a static cue appears and the remaining time pulses once per second. At zero, the countdown stops at *0:00* without an instruction.
 
 Pause freezes elapsed time, the countdown, progress, and pace. Resume excludes paused time. A slide change while paused sets the new allocation but keeps it paused. The pulse stops while paused. Reduced-motion mode keeps the static warning without animation. Countdown digits stay visible. The wall clock stays in the timing details.
