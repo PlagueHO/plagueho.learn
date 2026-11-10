@@ -200,7 +200,9 @@ test('click cues are escaped text at exactly the seven required advance points',
   assert.doesNotMatch(markup, /<click>/);
   assert.match(slides[4].notes, /<click>\nNow implementation gets smaller and faster/);
   assert.match(slides[4].notes, /<click>\nThat's what the final picture exposes/);
-  assert.match(slides[9].notes, /^<click>\nInstead of serial handoffs/);
+  const [serialNotes, learningNotes] = slides[9].notes.split('<click>');
+  assert.match(serialNotes, /serial handoffs[\s\S]*feedback returns/);
+  assert.match(learningNotes, /^\nInstead,[\s\S]*short learning loop/);
   const pillars = slides[10];
   const reveals = [...pillars.body.matchAll(/class="pillar-column fragment" data-fragment-index="(\d)"/g)];
   assert.deepEqual(reveals.map(match => Number(match[1])), [0, 1, 2, 3]);
