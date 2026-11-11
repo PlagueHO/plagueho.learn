@@ -68,12 +68,12 @@ jobs:
 
           Extract the ZIP file, open a terminal in the extracted folder, and run:
 
-          ```shell
+          \`\`\`shell
           node serve.mjs
-          ```
+          \`\`\`
 
           Open [http://127.0.0.1:3043](http://127.0.0.1:3043) in a browser. To use
-          another port, run `node serve.mjs 3044` and open
+          another port, run \`node serve.mjs 3044\` and open
           [http://127.0.0.1:3044](http://127.0.0.1:3044). Press Ctrl+C in the
           terminal to stop the server.
           EOF
@@ -146,12 +146,12 @@ jobs:
 
           Extract the ZIP file, open a terminal in the extracted folder, and run:
 
-          ```shell
+          \`\`\`shell
           node serve.mjs
-          ```
+          \`\`\`
 
           Open [http://127.0.0.1:3043](http://127.0.0.1:3043) in a browser. To use
-          another port, run `node serve.mjs 3044` and open
+          another port, run \`node serve.mjs 3044\` and open
           [http://127.0.0.1:3044](http://127.0.0.1:3044). Press Ctrl+C in the
           terminal to stop the server.
           EOF
