@@ -165,7 +165,7 @@ PR merges to `main` require the **Continuous Integration** workflow to pass:
 - **Markdown lint** (`pnpm lint:md`): fails on any markdownlint rule violation
 - **Slidev build**: builds all `presentations/*/slides.md`; fails on build errors
 
-On push to `main`, **Deploy GitHub Pages** builds all presentations and the labs site into one Pages artifact. On tag push, **Publish Presentations** builds each actual presentation, skips the Slidev starter template, and attaches one offline-ready ZIP per presentation. Each ZIP contains the built files and standalone server at its root.
+On push to `main`, **Deploy GitHub Pages** builds all presentations and the labs site into one Pages artifact. On tag push, **Publish Presentations** builds each actual presentation, skips the Slidev starter template, and attaches one offline-ready ZIP per presentation. Each ZIP includes the built files, a README with run and runtime requirements, and the standalone server.
 
 Tag releases detect Reveal.js decks through `reveal.js` in deck-local dependencies or devDependencies. They run `npm ci`, `npm run build`, `npm test`, and the shared server tests.
 

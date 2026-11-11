@@ -55,6 +55,28 @@ jobs:
             pnpm exec slidev build "$slides" --out dist
             echo "::endgroup::"
             cp scripts/serve-presentation.mjs "$deck/dist/serve.mjs"
+            cat > "$deck/dist/README.md" <<EOF
+          # $deck_name
+
+          ## Requirements
+
+          - Node.js 22.12 or later.
+          - No npm or pnpm packages need to be installed. This release contains
+            the built presentation and its local server.
+
+          ## Run the presentation
+
+          Extract the ZIP file, open a terminal in the extracted folder, and run:
+
+          ```shell
+          node serve.mjs
+          ```
+
+          Open [http://127.0.0.1:3043](http://127.0.0.1:3043) in a browser. To use
+          another port, run `node serve.mjs 3044` and open
+          [http://127.0.0.1:3044](http://127.0.0.1:3044). Press Ctrl+C in the
+          terminal to stop the server.
+          EOF
             (
               cd "$deck/dist"
               zip -r "${GITHUB_WORKSPACE}/${deck_name}-${tag}.zip" .
@@ -111,6 +133,28 @@ jobs:
                 exit 1
               fi
               cp "${GITHUB_WORKSPACE}/scripts/serve-presentation.mjs" dist/serve.mjs
+              cat > dist/README.md <<EOF
+          # $deck_name
+
+          ## Requirements
+
+          - Node.js 22.12 or later.
+          - No npm or pnpm packages need to be installed. This release contains
+            the built presentation and its local server.
+
+          ## Run the presentation
+
+          Extract the ZIP file, open a terminal in the extracted folder, and run:
+
+          ```shell
+          node serve.mjs
+          ```
+
+          Open [http://127.0.0.1:3043](http://127.0.0.1:3043) in a browser. To use
+          another port, run `node serve.mjs 3044` and open
+          [http://127.0.0.1:3044](http://127.0.0.1:3044). Press Ctrl+C in the
+          terminal to stop the server.
+          EOF
               cd dist
               zip -r "${GITHUB_WORKSPACE}/${repository}-${deck_name}-${tag}.zip" .
             )
