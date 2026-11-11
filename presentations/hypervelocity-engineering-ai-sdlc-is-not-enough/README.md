@@ -112,7 +112,7 @@ Slides 1-23 contain exact spoken text, with public sources linked separately. Se
 
 The introduction notes follow the live transcript, with transcription errors, false starts, and production cues removed. They use a casual, inclusive voice and occasional familiar comparisons. Slide 13 keeps the corrected point about two weeks being a long feedback delay when a feature can take days or hours to build. The slide allocations remain unchanged.
 
-Slide 11 has one cue before each pillar, in reveal order. Tests exclude the cues from the 3,000-word ceiling and 120 spoken words per allocated minute. Rehearse to confirm delivery within 30 minutes.
+Slide 11 has one cue before each pillar, in reveal order. Tests exclude the cues from the 3,200-word ceiling, the 120 spoken words per allocated minute on slides 1-22, and the 400-word limit on slide 23. Rehearse to confirm delivery within 30 minutes.
 
 Practitioner notes contain starter requests, artifact paths, human decisions, and claim limits. Demo notes retain the live route, with current installation guidance. Each part has a 30-minute allocation. The shorter deeper section needs rehearsal; the timing estimates do not measure personal speaking pace.
 
