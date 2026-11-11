@@ -259,7 +259,9 @@ The introduction notes for slides 1-23 contain exact spoken words in Daniel's co
 
 On slide 10, explain the serial-handoff state before its cue, then describe the learning loop after the cue. On slide 11, place one cue before each pillar in reveal order. Do not add other guidance, timing headings, or stage cues. Sources remain separate links. Review wording across all 41 slides without changing technical steps or demo boundaries.
 
-Use an experienced, empathetic presenter voice. Prefer connected sentences with clear actors and objects, and use "we" or "us" where natural. Use "end user" for the person who uses the system, including internal systems. Keep "customer" for the organization, relationship, or genuinely external-customer example. Do not rewrite suitable passages merely for consistency.
+Use a casual, experienced, and empathetic presenter voice. Show genuine enthusiasm without hype. Prefer connected sentences with clear actors and objects, and use "we" or "us" for shared work. Occasionally compare new concepts with familiar ones, but keep the key points explicit. Use "end user" for the person who uses the system, including internal systems.
+
+Keep "customer" for the organization, relationship, or genuinely external-customer example. Follow the live transcript's intended meaning, not its false starts or transcription errors. Slide 13 keeps the corrected explanation of the long feedback cycle. Do not rewrite suitable passages merely for consistency or add detail to fill time.
 
 The steel thread is faster implementation -> exposed delivery gaps -> ISE's delivery lessons -> shared ownership and continuous validation -> reusable expertise and lifecycle-wide AI -> practices that any team can adopt and adapt. Keep the three failure patterns distinct. Use the existing examples without presenting them as customer research.
 

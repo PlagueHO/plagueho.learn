@@ -110,6 +110,8 @@ If the browser blocks the popup, the deck shows the notes in an inline panel at 
 
 Slides 1-23 contain exact spoken text, with public sources linked separately. Seven stage cues are permitted: two literal `<click>` lines on slide 5, one on slide 10, and four on slide 11. Each marks an animation advance. They appear as text in popup and inline notes.
 
+The introduction notes follow the live transcript, with transcription errors, false starts, and production cues removed. They use a casual, inclusive voice and occasional familiar comparisons. Slide 13 keeps the corrected point about two weeks being a long feedback delay when a feature can take days or hours to build. The slide allocations remain unchanged.
+
 Slide 11 has one cue before each pillar, in reveal order. Tests exclude the cues from the 3,000-word ceiling and 120 spoken words per allocated minute. Rehearse to confirm delivery within 30 minutes.
 
 Practitioner notes contain starter requests, artifact paths, human decisions, and claim limits. Demo notes retain the live route, with current installation guidance. Each part has a 30-minute allocation. The shorter deeper section needs rehearsal; the timing estimates do not measure personal speaking pace.

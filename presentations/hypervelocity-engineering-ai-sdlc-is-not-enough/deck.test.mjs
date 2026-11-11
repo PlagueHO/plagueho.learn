@@ -40,9 +40,28 @@ test('all 23 introduction notes are spoken text with only approved click cues wi
       `${slide.id}: notes must contain only spoken text`);
     assert.doesNotMatch(slide.notes, /https?:|sharepoint|OneDrive|[A-Z]:\\|—|\bTODO\b|\bTBC\b/i,
       `${slide.id}: keep source links, private paths, and placeholders out of speech`);
+    assert.doesNotMatch(slide.notes, /just go back|pause notes|\bSpeaker \d+\b|\b\d{2}:\d{2}:\d{2}\b/i,
+      `${slide.id}: keep production cues and transcript labels out of speech`);
     total += words;
   }
   assert.ok(total <= 3000, `${total} spoken words exceeds the introduction budget`);
+});
+
+test('the introduction keeps the live delivery clarification and useful context without transcription errors', () => {
+  const correction = 'Rather than waiting for the end of a long cycle, as we know, two weeks is a long time ' +
+    'when it can take days or even hours to build a feature.';
+  const notes = slides.filter(slide => slide.part === 'leadership').map(slide => slide.notes).join('\n');
+  assert.ok(byId['team-example'].notes.includes(correction));
+  assert.equal(notes.split(correction).length - 1, 1);
+  assert.match(byId['team-example'].notes, /This is a teaching picture, not measured customer evidence/);
+  assert.doesNotMatch(byId['team-example'].notes, /This isn't a teaching picture|Even 2 weeks|two weekly sprint/i);
+  assert.match(byId.hve.notes, /Kia ora[\s\S]*Daniel Scott-Raynsford[\s\S]*recovering software engineer/);
+  assert.match(byId.hve.notes, /learn with end users, co-create/);
+  assert.match(byId['production-early'].notes, /assurance and security checks/);
+  assert.match(byId['lifecycle-example'].notes, /our requirements, architecture, identity patterns, governance, and security rules/);
+  assert.match(byId['hve-core-open'].notes, /patterns and learning, not a fixed target for implementation/);
+  assert.match(byId['hve-core-open'].notes, /adapt AI tooling across our delivery workflow/);
+  assert.doesNotMatch(notes, /HPE[- ]Core|decision weights|review cues|retries it|Cape coding|a guest that/i);
 });
 
 test('introduction sources and spoken paragraphs remain separate in the rendered notes', async () => {
@@ -69,7 +88,7 @@ test('ISE attribution and wider backing do not claim universal adoption', () => 
   for (const key of ['skilling', 'fte', 'specialization']) {
     assert.ok(!byId['constraints-pillars'].sources.includes(key), key);
   }
-  assert.match(byId['hve-core-open'].notes, /adopt HVE's practices, adapt them to your business, and help shape what comes next/);
+  assert.match(byId['hve-core-open'].notes, /adopt HVE's practices, adapt them to our business, and help shape what comes next/);
 });
 
 test('the operating-model question precedes solutions and the serial-handoff reveal has spoken context', () => {
@@ -143,7 +162,7 @@ test('pillar details explain distinct practices and keep each example in its int
   const teams = byId.teams;
   assert.match(teams.body, /<div class="band purple"><span>Continuous alignment<\/span><\/div>/);
   assert.doesNotMatch(teams.body, /Support \+ escalation|Independent assurance|class="drop/);
-  assert.match(teams.notes, /center[\s\S]*left[\s\S]*right[\s\S]*foundation is continuous alignment/);
+  assert.match(teams.notes, /center[\s\S]*Customer and domain knowledge[\s\S]*named decision owner[\s\S]*foundation is continuous alignment/);
   assert.match(teams.notes, /outcome, priorities, assumptions, and decisions/);
   assert.match(teams.notes, /Required independent review and separation of duties stay/);
   const design = byId['design-thinking'];
@@ -217,7 +236,7 @@ test('pillar details explain distinct practices and keep each example in its int
     /Friday|Monday|fragment|value-hypothesis|value-decision|value-test|promise to ship|Validation must/);
   assert.doesNotMatch(value.notes, /Friday|Monday/);
   assert.match(value.notes, /haven't run those tests in this example/);
-  assert.match(value.notes, /named customer or product decision owner makes and records the decision/);
+  assert.match(value.notes, /named customer, end user, or product decision owner makes and records the decision/);
   assert.match(value.notes, /stopping an unsuitable option, not responsibility for the outcome/);
   assert.match(value.notes, /risk, not a measured cost claim/);
   assert.ok(!value.sources.includes('tutorial'));
@@ -265,7 +284,7 @@ test('pillar details explain distinct practices and keep each example in its int
   assert.match(accelerators.notes, /build, collect, share, and govern/);
   assert.match(accelerators.notes, /haven't defined and recorded what each capability requires in our own organization/);
   assert.match(accelerators.notes, /expert data scientist take responsibility for/);
-  assert.match(accelerators.notes, /know about our data, consider before using it, and advise the team on/);
+  assert.match(accelerators.notes, /know about our data and systems, consider before using them, and advise the team on/);
   assert.doesNotMatch(accelerators.notes, /HVE-Core/i);
   assert.match(accelerators.notes, /required independent assurance/);
   assert.match(teams.notes, /small team means focused, not a prescribed headcount/);
@@ -324,7 +343,7 @@ test('pillar details explain distinct practices and keep each example in its int
   assert.match(lifecycleExample.notes, /review any model summary before it becomes a recorded decision/);
   assert.match(lifecycleExample.notes, /Better context doesn't guarantee correct or secure output/);
   assert.match(lifecycleExample.notes, /Required independent assurance still applies/);
-  assert.match(byId['lifecycle-ai'].notes, /If the product itself uses AI, add the relevant Responsible AI review/);
+  assert.match(byId['lifecycle-ai'].notes, /If the product itself uses AI, we add the relevant Responsible AI review/);
 });
 
 test('slide 21 gives one direct comparison of the framework and the toolkit', () => {
@@ -381,7 +400,7 @@ test('slide 22 shows reusable HVE-Core starting points for six roles', () => {
   assert.doesNotMatch(`${slide.title} ${slide.body} ${slide.notes}`, /Examples only|dashed|certified|guarantee[sd]?\s+(results|savings)|—/i);
   assert.match(slide.notes, /reusable starting points, not finished work or guaranteed production readiness/);
   assert.match(slide.notes, /free, open-source AI agent and skill definitions/);
-  assert.match(slide.notes, /bring into our organization and customize/);
+  assert.match(slide.notes, /we can customize with our organizational knowledge, practices, and governance/);
   for (const phrase of ['program managers shape requirements and backlogs', 'UX designers explore needs',
     'architects develop decisions and diagrams', 'operations teams prepare runbooks and checks',
     'Engineers get support', 'data scientist gets help to plan and build notebooks and dashboards']) {
@@ -390,7 +409,7 @@ test('slide 22 shows reusable HVE-Core starting points for six roles', () => {
   assert.match(slide.notes, /When they're unavailable[\s\S]*informed decisions without removing specialist responsibility/);
   assert.match(slide.notes, /Design Thinking coach/);
   assert.match(slide.notes, /research, plan, implement, and review/);
-  assert.match(slide.notes, /pillar numbers show connections, not exclusive ownership/);
+  assert.match(slide.notes, /pillar numbers show connections, not exclusive ownership/i);
   assert.match(slide.notes, /People keep responsibility for evidence, judgment, and decisions/);
   assert.match(slide.notes, /Coverage varies by role/);
 });
@@ -1816,7 +1835,7 @@ test('slide 23 wraps up for leaders with two QR codes and three facts about HVE-
   assert.doesNotMatch(`${slide.title} ${slide.body} ${slide.notes}`, /dashed|certified|guarantee[sd]?\s+(results|savings)|—/i);
   assert.doesNotMatch(slide.notes, /Scan the left code|Scan the right code/);
   assert.match(slide.notes, /fork is an option, but it brings an ongoing maintenance cost/i);
-  assert.match(slide.notes, /not as a stable platform or a production dependency/);
+  assert.match(slide.notes, /patterns and learning, not a fixed target for implementation/);
   assert.match(slide.notes, /one team and one real outcome/);
 });
 
